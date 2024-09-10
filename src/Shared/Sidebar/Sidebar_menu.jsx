@@ -11,6 +11,12 @@ const Items=[
                 label:(
                     <a href="/trabajadores/ventas">Vendedores</a>
                 ),
+            },
+            {
+                key:"2",
+                label:(
+                    <a href="/trabajadores/ventas">Costureros</a>
+                ),
             }
         ]
     }
