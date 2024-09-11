@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
+import { Col, ConfigProvider, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import { CrearTrabajador, fetchTiendas, manejonumeros, manejotexto } from "../../../Shared/Funciones/Funciones_Fetch";
 
 
@@ -7,6 +7,7 @@ const Modal_añadir = ({
   ModalAñadirAbierto,
   closeModalAñadir,
   tipo_trabajador,
+  AñadidoExitoso
 }) => {
 
     const[tiendas,setTiendas]=useState([])
@@ -17,7 +18,6 @@ const Modal_añadir = ({
         if(tipo_trabajador==="ventas"){
             fetchTiendas(setTiendas)
         }
-
         form.setFieldsValue({tipo_trabajadorh:tipo_trabajador})
     },[tipo_trabajador])
 
@@ -25,7 +25,6 @@ const Modal_añadir = ({
 
   return (
     <Modal
-      forceRender
       getContainer={false}
       title={`Añadir nuevo trabajador de ${tipo_trabajador}`}
       open={ModalAñadirAbierto}
@@ -44,7 +43,8 @@ const Modal_añadir = ({
       id="formulariocrear"
       onFinish={async(values)=>{
         await CrearTrabajador(values)
-        closeModalAñadir()
+        form.resetFields()
+        AñadidoExitoso()
       }}>
 
         <Form.Item
@@ -128,9 +128,10 @@ const Modal_añadir = ({
                         message:"Fecha Nacimiento requerido"
                     }
                 ]}>
-                    <DatePicker
-                    placeholder="DD-MM-YYYY"
-                    />
+                      <DatePicker
+                      placeholder="YYYY-MM-DD"
+                      format={"YYYY-MM-DD"}
+                      />
                 </Form.Item>
 
             </Col>

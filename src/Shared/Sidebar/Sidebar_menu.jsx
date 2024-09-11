@@ -1,5 +1,6 @@
 import React from "react";
 import { Menu } from "antd";
+import { Link } from "react-router-dom";
 
 const Items=[
     {
@@ -9,7 +10,7 @@ const Items=[
             {
                 key:"1",
                 label:(
-                    <a href="/trabajadores/ventas">Vendedores</a>
+                    <Link to="/trabajadores/ventas">Vendedores</Link>
                 ),
             }
         ]

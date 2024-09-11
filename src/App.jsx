@@ -1,12 +1,19 @@
 import { Routing } from './routing'
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css'
+import locale from 'antd/locale/es_ES'; 
+import dayjs from 'dayjs';
+import 'dayjs/locale/es'; 
+import { ConfigProvider } from 'antd';
+dayjs.locale('es')
 
 function App() {
   return (
-    <Router>
-      <Routing />
-    </Router>
+    <ConfigProvider locale={locale}>
+      <Router>
+        <Routing />
+      </Router>
+    </ConfigProvider>
   )
 }
 
