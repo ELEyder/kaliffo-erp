@@ -12,10 +12,11 @@ const Modal_editar = ({
 
   const [form] = Form.useForm();
   const[tiendas,setTiendas]=useState([])
+  const[valoresO,setValoresO] = useState({})
   
   useEffect(() => {
     if(id){
-      CargarEditar(id,form)
+      CargarEditar(id,form,setValoresO)
       form.setFieldsValue({usuario_id:id})
       if(tipo_trabajador==="ventas"){
         fetchTiendas(setTiendas)
@@ -41,13 +42,13 @@ const Modal_editar = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await editar(values)
+          await editar(values,valoresO)
           EdicionExitosa()
         }}
       >
         <Form.Item
           style={{ marginTop: 20 }}
-          name="nombreE"
+          name="nombre"
           label="Nombres"
           rules={[
             {
@@ -71,7 +72,7 @@ const Modal_editar = ({
         >
           <Col span={12} className="gutter-row">
             <Form.Item
-              name="ap_paternoE"
+              name="ap_paterno"
               label="Apellido Paterno"
               rules={[
                 {
@@ -86,7 +87,7 @@ const Modal_editar = ({
 
           <Col span={12} className="gutter-row">
             <Form.Item
-              name="ap_maternoE"
+              name="ap_materno"
               label="Apellido Materno"
               rules={[
                 {
@@ -113,7 +114,7 @@ const Modal_editar = ({
           <Col span={12} className="gutter-row">
             <Form.Item
               label="Fecha Nacimiento"
-              name="fecha_nacimientoE"
+              name="fecha_nacimiento"
               rules={[
                 {
                   required: true,
@@ -127,7 +128,7 @@ const Modal_editar = ({
 
           <Col span={12} className="gutter-row">
             <Form.Item
-              name="telefonoE"
+              name="telefono"
               label="Telefono"
               rules={[
                 {
@@ -157,7 +158,7 @@ const Modal_editar = ({
         >
           <Col span={10} className="gutter-row">
             <Form.Item
-              name="dniE"
+              name="dni"
               label="DNI"
               rules={[
                 {
