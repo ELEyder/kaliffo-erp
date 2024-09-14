@@ -1,20 +1,39 @@
 import React from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
+import {BookOutlined,UserOutlined} from '@ant-design/icons';
 
 const Items=[
     {
         key:"sub1",
-        label:"Trabajadores",
+        label:(<span><BookOutlined />  Trabajadores</span>),
         children:[
             {
                 key:"1",
                 label:(
-                    <Link to="/trabajadores/ventas">Vendedores</Link>
+                    <Link to="/trabajadores/ventas" style={{textDecoration:"none"}}><UserOutlined /> Vendedores</Link>
+                ),
+            },
+            {
+                key:"1",
+                label:(
+                    <Link to="/trabajadores/ventas" style={{textDecoration:"none"}}><UserOutlined /> Vendedores</Link>
+                ),
+            },
+            {
+                key:"1",
+                label:(
+                    <Link to="/trabajadores/ventas" style={{textDecoration:"none"}}><UserOutlined /> Vendedores</Link>
                 ),
             }
         ]
+    },
+    {
+        key:"sub3",
+        label:(<Link to={"/tiendas"}>Tiendas</Link>)
     }
+
+    
 ]
 
 const Sidebar_menu = () =>{
