@@ -35,8 +35,12 @@ const Items=[
         ]
     },
     {
-        key:"sub3",
+        key:"sub2",
         label:(<Link to={"/tiendas"}>Tiendas</Link>)
+    },
+    {
+        key:"sub3",
+        label:(<Link to={"/productos"}>Productos</Link>)
     }
 
     
