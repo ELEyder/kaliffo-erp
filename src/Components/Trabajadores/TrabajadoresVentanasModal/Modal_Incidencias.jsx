@@ -22,14 +22,16 @@ const Modal_incidencias = ({ModalIncidenciasAbierto,closeModalIncidencias,id,Inc
             open={ModalIncidenciasAbierto}
             onCancel={closeModalIncidencias}
             okText="Añadir"
+            style={{textAlign:"center",textTransform:"uppercase"}}
             onOk={form.submit}
             centered={true}
             width={500}
             >
 
                 <Form
-                style={{maxWidth:600,margin:"0 auto"}}
+                style={{maxWidth:500,margin:"0 auto"}}
                 size="large"
+                layout="vertical"
                 form={form}
                 labelAlign="center"
                 id="formularioinicidencias"

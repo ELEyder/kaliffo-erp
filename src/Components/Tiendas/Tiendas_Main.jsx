@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Plantilla from "../../Shared/Plantilla"
 import Tiendas_cards from "./TiendasCards/Tiendas_cards";
-import { FloatButton } from "antd";
+import { Divider, FloatButton } from "antd";
 import Modal_añadir from "./TiendasModal/Modal_Añadir";
 
 const Tiendas_main = () =>{
@@ -29,6 +29,7 @@ const Tiendas_main = () =>{
 
     return(
         <Plantilla>
+            <Divider>TIENDAS</Divider>
             <FloatButton tooltip="Añadir" onClick={showModalAñadir}/>
             <Tiendas_cards refrescar={Refrescar}/>
             <Modal_añadir ModalAñadirAbierto={ModalAñadirAbierto}

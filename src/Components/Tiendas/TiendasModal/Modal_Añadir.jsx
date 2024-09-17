@@ -10,6 +10,7 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
     <Modal
       getContainer={false}
       title={"Nueva Tienda"}
+      style={{textAlign:"center",textTransform:"uppercase"}}
       open={ModalAñadirAbierto}
       onCancel={closeModalAñadir}
       okText="Añadir"
@@ -21,6 +22,7 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
         style={{ maxWidth: 600, margin: "0 auto" }}
         size="large"
         form={form}
+        layout="vertical"
         labelAlign="center"
         id="formulariocrear"
         onFinish={async (values) =>{
