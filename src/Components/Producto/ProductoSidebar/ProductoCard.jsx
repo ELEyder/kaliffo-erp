@@ -5,10 +5,9 @@ const ProductoCard = () =>{
     return(
         <Card
         style={{ width: 300, margin: "auto", textAlign: "center" }}
-      >
-        <h3>Producto 1</h3>
-        <p className="text-muted">Jr ajhsahsahsa</p>        
-        <p className="text-muted">2312334</p>
+        title={"Jean 1"}
+        cover={<img alt="example" src="/img/prenda-template.jpg" />}
+        >
         <List
           itemLayout="horizontal"
           dataSource={[

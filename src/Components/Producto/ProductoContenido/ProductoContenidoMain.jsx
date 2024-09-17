@@ -6,18 +6,13 @@ import ProductoPersonal from "./ProductoPersonal"
 const items = [
     {
       key: '1',
-      label: 'Productos',
+      label: 'Tallas',
       children: <ProductoProductos/>,
     },
     {
       key: '2',
-      label: 'Personal',
+      label: 'Colores',
       children: <ProductoPersonal />,
-    },
-    {
-      key: '3',
-      label: 'Tab 3',
-      children: 'Content of Tab Pane 3',
     },
   ];
 
