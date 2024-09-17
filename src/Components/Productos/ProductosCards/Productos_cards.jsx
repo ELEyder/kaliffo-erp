@@ -20,7 +20,7 @@ const Productos_cards = ({ refrescar }) => {
           <Card title={producto.nombre}
           actions={[
             <>
-              <Link to={`/tienda/${producto.producto_id}`}>VER MAS</Link>
+              <Link to={`/producto/${producto.producto_id}`}>VER MAS</Link>
             </>
           ]}
           cover={<img alt="example" src="/img/prenda-template.jpg" />}

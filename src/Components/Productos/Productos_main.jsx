@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Plantilla from "../../Shared/Plantilla"
-import Tiendas_cards from "./ProductosCards/Productos_cards";
+import Productos_Cards from "./ProductosCards/Productos_cards";
 import Modal_añadir from "./ProductosModal/Modal_Añadir";
 import { FloatButton } from "antd";
 
@@ -30,7 +30,7 @@ const Tiendas_main = () =>{
     return(
         <Plantilla>
             <FloatButton tooltip="Añadir" onClick={showModalAñadir}/>
-            <Tiendas_cards refrescar={Refrescar}/>
+            <Productos_Cards refrescar={Refrescar}/>
             <Modal_añadir ModalAñadirAbierto={ModalAñadirAbierto}
             closeModalAñadir={closeModalAñadir} añadidoexitoso={handleAñadirExitoso}/>
         </Plantilla>
