@@ -194,7 +194,7 @@ const Modal_editar = ({
                   style={{textAlign:"center"}}
                   options={tiendas.map((tienda) => ({
                     value: tienda.tienda_id,
-                    label: tienda.tienda,
+                    label: tienda.tienda.tienda,
                     key: tienda.tienda_id,
                   }))}
                 />

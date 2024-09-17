@@ -3,6 +3,8 @@ import Trabajadores_main from "./Components/Trabajadores/Trabajadores_main";
 import Tiendas_main from "./Components/Tiendas/Tiendas_Main";
 import Tienda_main from "./Components/Tienda/Tienda_main";
 import ErrorPagina from "./Components/Error/ErrorPagina"
+import Productos_main from "./Components/Productos/Productos_main"
+import Producto_main from "./Components/Producto/Producto_main"
 export const Routing = () =>{
     return(
         <Routes>
@@ -11,6 +13,8 @@ export const Routing = () =>{
             <Route path="/tiendas" element={<Tiendas_main/>}/>
             <Route path="/tienda/:id" element={<Tienda_main />}/>
             <Route path="/error" element={<ErrorPagina />} />
+            <Route path="/productos" element={<Productos_main />}/>
+            <Route path="/producto/:id" element={<Producto_main />}/>
         </Routes>
     )
 }
