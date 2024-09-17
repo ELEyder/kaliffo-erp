@@ -11,3 +11,20 @@ html {
   max-height: 250px;
   overflow-y: auto;
 }
+
+@media (max-width: 768px) {
+
+  .opciones-botones {
+    flex-direction: column; 
+    gap: 8px; 
+  }
+  
+  .tabla_trabajadores .ant-table {
+    font-size: 12px;
+  }
+
+  .tabla_trabajadores .ant-btn {
+    font-size: 12px;
+    width: 80%;
+  }
+}

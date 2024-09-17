@@ -32,13 +32,15 @@ const Modal_editar = ({
       onCancel={closeModalEditar}
       okText="Guardar"
       onOk={form.submit}
+      style={{textTransform:"uppercase"}}
       centered={true}
-      width={700}
+      width={500}
     >
       <Form
-        style={{ maxWidth: 600, margin: "0 auto" }}
+        style={{ maxWidth: 500, margin: "0 auto" }}
         size="large"
         form={form}
+        layout="vertical"
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
@@ -156,7 +158,7 @@ const Modal_editar = ({
             lg: 32,
           }}
         >
-          <Col span={10} className="gutter-row">
+          <Col span={10}  className="gutter-row">
             <Form.Item
               name="dni"
               label="DNI"
@@ -169,6 +171,7 @@ const Modal_editar = ({
             >
               <Input
                 maxLength={8}
+                style={{textAlign:"center"}}
                 showCount
                 onChange={manejonumeros(form, "dniE")}
               />
@@ -188,6 +191,7 @@ const Modal_editar = ({
                 ]}
               >
                 <Select
+                  style={{textAlign:"center"}}
                   options={tiendas.map((tienda) => ({
                     value: tienda.tienda_id,
                     label: tienda.tienda,

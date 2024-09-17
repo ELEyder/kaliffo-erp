@@ -2,7 +2,7 @@ import { Route,Routes } from "react-router-dom";
 import Trabajadores_main from "./Components/Trabajadores/Trabajadores_main";
 import Tiendas_main from "./Components/Tiendas/Tiendas_Main";
 import Tienda_main from "./Components/Tienda/Tienda_main";
-
+import ErrorPagina from "./Components/Error/ErrorPagina"
 export const Routing = () =>{
     return(
         <Routes>
@@ -10,6 +10,7 @@ export const Routing = () =>{
             <Route path="/trabajadores/:tipo_trabajador" element={<Trabajadores_main/>}/>
             <Route path="/tiendas" element={<Tiendas_main/>}/>
             <Route path="/tienda/:id" element={<Tienda_main />}/>
+            <Route path="/error" element={<ErrorPagina />} />
         </Routes>
     )
 }

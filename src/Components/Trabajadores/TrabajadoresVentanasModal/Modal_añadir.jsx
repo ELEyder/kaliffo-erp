@@ -29,16 +29,18 @@ const Modal_añadir = ({
       title={`Añadir nuevo trabajador de ${tipo_trabajador}`}
       open={ModalAñadirAbierto}
       onCancel={closeModalAñadir}
+      style={{textTransform:"uppercase"}}
       okText="Añadir"
       onOk={form.submit}
       centered={true}
-      width={700}
+      width={500}
     >
 
       <Form 
-      style={{ maxWidth: 600, margin:"0 auto" }}
+      style={{ maxWidth: 500, margin:"0 auto" }}
       size="large"
       form={form}
+      layout="vertical"
       labelAlign="center"
       id="formulariocrear"
       onFinish={async(values)=>{

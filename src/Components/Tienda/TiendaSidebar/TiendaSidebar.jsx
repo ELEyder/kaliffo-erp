@@ -1,11 +1,13 @@
 import React from "react";
 import TiendaCard from "./TiendaCard";
 import TiendaLista from "./TiendaLista";
+import { Divider } from "antd";
 
-const TiendaSidebar = () =>{
+const TiendaSidebar = ({tienda}) =>{
     return(
         <>
-            <TiendaCard/>
+            <TiendaCard tienda={tienda}/>
+            <Divider></Divider>
             <TiendaLista/>
         </>
     )

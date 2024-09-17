@@ -14,14 +14,15 @@ const Plantilla = ({ children }) => {
       <Sidebar_main />
       <Layout>
         <Header_main />
-        <Content style={{ padding: "0 24px", minHeight: 280 }}>
+        <Content style={{ padding: "0 24px", minHeight: 280, height: 'calc(100vh - 64px - 70px)', overflowY: 'auto' }}>
           {children}
         </Content>
-        <Footer_main/>
+        <Footer_main />
       </Layout>
     </Layout>
   );
 };
+
 
 Plantilla.propTypes = {
     children: PropTypes.node,
