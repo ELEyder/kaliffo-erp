@@ -29,13 +29,22 @@ const Items=[
                 label:(
                     <Link to="/trabajadores/miscelaneos" style={{textDecoration:"none"}}>Miscelaneos</Link>
                 ),
+            },
+            {
+                key:"2",
+                label:(
+                    <a href="/trabajadores/ventas">Costureros</a>
+                ),
             }
         ]
     },
     {
         key:"sub3",
-        icon:<CoffeeOutlined />,
         label:(<Link to={"/tiendas"}>Tiendas</Link>)
+    },
+    {
+        key:"sub3",
+        label:(<Link to={"/productos"}>Productos</Link>)
     }
 
     
