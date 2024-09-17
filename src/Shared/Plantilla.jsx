@@ -14,7 +14,7 @@ const Plantilla = ({ children }) => {
       <Sidebar_main />
       <Layout>
         <Header_main />
-        <Content style={{ padding: "0 24px", minHeight: 280 }}>
+        <Content style={{ padding: "24px 24px", minHeight: 280 }}>
           {children}
         </Content>
         <Footer_main/>

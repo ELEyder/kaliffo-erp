@@ -4,7 +4,7 @@ import React from "react";
 const ProductoCard = () =>{
     return(
         <Card
-        style={{ width: 300, margin: "auto", textAlign: "center" }}
+        style={{ width: 300, textAlign: "center", margin: "auto" } }
         title={"Jean 1"}
         cover={<img alt="example" src="/img/prenda-template.jpg" />}
         >
@@ -23,9 +23,6 @@ const ProductoCard = () =>{
           )}
         />
   
-        <Button type="primary" block>
-          Obtener reporte
-        </Button>
       </Card>
     )
 }

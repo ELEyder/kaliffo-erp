@@ -11,7 +11,8 @@ const Producto_main = () => {
     return (
       <Plantilla>
         <Row>
-            <Col span={8}>
+            <Col span={7}
+            style={{padding: "auto", gap: "24px"}}>
                 <ProductoSidebar/>
             </Col>
             <Col span={16}>

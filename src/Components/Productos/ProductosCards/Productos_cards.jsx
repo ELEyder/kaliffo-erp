@@ -16,7 +16,9 @@ const Productos_cards = ({ refrescar }) => {
   return (
     <Row gutter={16}>
       {productos.map((producto, index) => (
-        <Col key={index} span={6}>
+        <Col key={index} span={6}
+        style={{ margin: "0 0 24px 0" }}
+        >
           <Card title={producto.nombre}
           actions={[
             <>
