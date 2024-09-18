@@ -6,7 +6,7 @@ const TiendaPersonalModal = ({
   ModalPersonalTiendaAbierto,
   closeModalPersonalTiendaAbierto,
   id_personal,
-  handleEditarExitoso
+  handleEditarExitoso,
 }) => {
   const [form] = Form.useForm();
   const [tiendas,setTiendas] = useState([])

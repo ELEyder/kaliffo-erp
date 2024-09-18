@@ -4,7 +4,7 @@ import { getusuariosTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
 import TiendaPersonalModal from "../TiendaModales/TiendaPersonalModal";
 import { EliminarUsuario } from "../../../Shared/Funciones/Funciones_Fetch";
 
-const TiendaPersonal = ({ id }) => {
+const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
   const [usuariostienda, setusuariostienda] = useState([]);
   const [id_personal, setIDPersonal] = useState(null);
   const [Refrescar, setRefrescar] = useState(false);
@@ -28,11 +28,13 @@ const TiendaPersonal = ({ id }) => {
   const handleEditarExitoso = () => {
     closeModalPersonalTiendaAbierto();
     refrescarTabla();
+    handlerefrescarSideCard1()
   };
 
   const eliminar = (id) =>{
     if(EliminarUsuario(id)){
       refrescarTabla()
+      handlerefrescarSideCard1()
     }
   }
 
@@ -113,6 +115,7 @@ const TiendaPersonal = ({ id }) => {
         closeModalPersonalTiendaAbierto={closeModalPersonalTiendaAbierto}
         id_personal={id_personal}
         handleEditarExitoso={handleEditarExitoso}
+        handlerefrescarSideCard1={handlerefrescarSideCard1}
       />
     </>
   );

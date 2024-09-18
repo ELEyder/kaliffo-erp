@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Plantilla from "../../Shared/Plantilla";
 import { useParams } from "react-router-dom";
-import { Col, Divider, Layout, Row } from "antd";
+import { Col, Divider, Row } from "antd";
 import TiendaSidebar from "./TiendaSidebar/TiendaSidebar";
 import TiendaContenidoMain from "./TiendaContenido/TiendaContenidoMain";
-import { Content } from "antd/es/layout/layout";
-import Sider from "antd/es/layout/Sider";
 import { getTienda } from "../../Shared/Funciones/Fucniones_Tienda";
 
 const Tienda_main = () => {
   const { id } = useParams();
-  const [tienda,setTienda] = useState([])
-  
-  useEffect(()=>{
-    getTienda(id,setTienda)
-  },[id])
+  const [refrescarSideCard1, setrefrescarSideCard1] = useState(false);
+
+  const handlerefrescarSideCard1 = () => {
+    setrefrescarSideCard1(true);
+    setTimeout(() => setrefrescarSideCard1(false), 500);
+  };
 
   return (
     <Plantilla>
@@ -27,11 +26,11 @@ const Tienda_main = () => {
           lg: 32,
         }}
       >
-        <Col  className="gutter-row" span={8}>
-          <TiendaSidebar tienda={tienda} />
+        <Col className="gutter-row" span={8}>
+          <TiendaSidebar id={id} refrescarSideCard1={refrescarSideCard1}/>
         </Col>
-        <Col  className="gutter-row" span={16}>
-          <TiendaContenidoMain id={id}/>
+        <Col className="gutter-row" span={16}>
+          <TiendaContenidoMain id={id} handlerefrescarSideCard1={handlerefrescarSideCard1}/>
         </Col>
       </Row>
       <Divider></Divider>

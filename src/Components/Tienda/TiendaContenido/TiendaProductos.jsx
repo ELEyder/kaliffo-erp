@@ -52,7 +52,7 @@ const columns = [
   },
 ];
 
-const TiendaProductos = ({ id }) => {
+const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
 
     const[productostienda,setproductostienda] = useState([])
 
