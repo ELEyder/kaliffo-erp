@@ -6,11 +6,16 @@ import ProductoPersonal from "./ProductoPersonal"
 const items = [
     {
       key: '1',
-      label: 'Tallas',
+      label: 'Tiendas',
       children: <ProductoProductos/>,
     },
     {
       key: '2',
+      label: 'Tallas',
+      children: <ProductoPersonal />,
+    },
+    {
+      key: '3',
       label: 'Colores',
       children: <ProductoPersonal />,
     },

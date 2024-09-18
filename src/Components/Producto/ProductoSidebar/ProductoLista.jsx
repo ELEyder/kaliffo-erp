@@ -5,7 +5,7 @@ import { Card, List,Button } from "antd";
 const ProductoLista = () =>{
     return(
         <Card
-        style={{ width: 300, margin: "auto" , textAlign: "center" }}
+        style={{ maxWidth: 300, margin: "auto" , textAlign: "center" }}
         title="PRODUCTOS MAS VENDIDOS"
       >
         <List
