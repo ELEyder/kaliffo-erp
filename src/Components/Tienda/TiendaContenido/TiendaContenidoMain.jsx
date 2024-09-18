@@ -3,16 +3,19 @@ import React from "react";
 import TiendaProductos from "./TiendaProductos";
 import TiendaPersonal from "./TiendaPersonal"
 
-const items = [
+
+const TiendaContenidoMain = ({id}) =>{
+
+  const items = [
     {
       key: '1',
       label: 'Productos',
-      children: <TiendaProductos/>,
+      children: <TiendaProductos id={id}/>,
     },
     {
       key: '2',
       label: 'Personal',
-      children: <TiendaPersonal />,
+      children: <TiendaPersonal id={id}/>,
     },
     {
       key: '3',
@@ -21,7 +24,7 @@ const items = [
     },
   ];
 
-const TiendaContenidoMain = () =>{
+
     return (
         <Tabs defaultActiveKey="1" items={items} />
     )

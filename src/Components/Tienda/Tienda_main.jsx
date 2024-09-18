@@ -31,7 +31,7 @@ const Tienda_main = () => {
           <TiendaSidebar tienda={tienda} />
         </Col>
         <Col  className="gutter-row" span={16}>
-          <TiendaContenidoMain />
+          <TiendaContenidoMain id={id}/>
         </Col>
       </Row>
       <Divider></Divider>

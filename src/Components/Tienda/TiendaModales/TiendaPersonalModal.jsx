@@ -1,38 +1,34 @@
-import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { CargarEditar, manejonumeros, fetchTiendas,manejotexto, editar } from "../../../Shared/Funciones/Funciones_Fetch";
+import React, { useEffect, useState } from "react";
+import { manejonumeros,manejotexto,fetchTiendas, CargarEditar,editar } from "../../../Shared/Funciones/Funciones_Fetch";
 
-const Modal_editar = ({
-  ModalEditarAbierto,
-  closeModalEditar,
-  tipo_trabajador,
-  id,
-  EdicionExitosa
+const TiendaPersonalModal = ({
+  ModalPersonalTiendaAbierto,
+  closeModalPersonalTiendaAbierto,
+  id_personal,
+  handleEditarExitoso
 }) => {
-
   const [form] = Form.useForm();
-  const[tiendas,setTiendas]=useState([])
+  const [tiendas,setTiendas] = useState([])
   const[valoresO,setValoresO] = useState({})
-  
-  useEffect(() => {
-    if(id){
-      CargarEditar(id,form,setValoresO)
-      form.setFieldsValue({usuario_id:id})
-      if(tipo_trabajador==="ventas"){
+
+  useEffect(()=>{
+    if(id_personal){
+        CargarEditar(id_personal,form,setValoresO)
+        form.setFieldsValue({usuario_id:id_personal})
         fetchTiendas(setTiendas)
     }
-    }
-  }, [tipo_trabajador,id]);
+  },[id_personal])
 
   return (
     <Modal
       getContainer={false}
-      title={`Editar Trabajador de ${tipo_trabajador}`}
-      open={ModalEditarAbierto}
-      onCancel={closeModalEditar}
-      okText="Guardar"
+      title={`Añadir nuevo trabajador`}
+      open={ModalPersonalTiendaAbierto}
+      onCancel={closeModalPersonalTiendaAbierto}
+      style={{ textTransform: "uppercase" }}
       onOk={form.submit}
-      style={{textTransform:"uppercase"}}
+      okText="Guardar"
       centered={true}
       width={500}
     >
@@ -44,8 +40,8 @@ const Modal_editar = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await editar(values,valoresO)
-          EdicionExitosa()
+          await editar(values, valoresO);
+          handleEditarExitoso();
         }}
       >
         <Form.Item
@@ -158,7 +154,7 @@ const Modal_editar = ({
             lg: 32,
           }}
         >
-          <Col span={10}  className="gutter-row">
+          <Col span={10} className="gutter-row">
             <Form.Item
               name="dni"
               label="DNI"
@@ -171,7 +167,7 @@ const Modal_editar = ({
             >
               <Input
                 maxLength={8}
-                style={{textAlign:"center"}}
+                style={{ textAlign: "center" }}
                 showCount
                 onChange={manejonumeros(form, "dniE")}
               />
@@ -179,7 +175,6 @@ const Modal_editar = ({
           </Col>
 
           <Col span={14} className="gutter-row">
-            {tipo_trabajador === "ventas" ? (
               <Form.Item
                 name="tienda_id"
                 label="Tienda Asignada"
@@ -191,7 +186,7 @@ const Modal_editar = ({
                 ]}
               >
                 <Select
-                  style={{textAlign:"center"}}
+                  style={{ textAlign: "center" }}
                   options={tiendas.map((tienda) => ({
                     value: tienda.tienda_id,
                     label: tienda.tienda.tienda,
@@ -199,7 +194,6 @@ const Modal_editar = ({
                   }))}
                 />
               </Form.Item>
-            ) : null}
           </Col>
         </Row>
 
@@ -211,4 +205,4 @@ const Modal_editar = ({
   );
 };
 
-export default Modal_editar;
+export default TiendaPersonalModal;

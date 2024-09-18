@@ -5,6 +5,8 @@ import Tienda_main from "./Components/Tienda/Tienda_main";
 import Productos_main from "./Components/Productos/Productos_main";
 import Producto_main from "./Components/Producto/Producto_main";
 import ErrorPagina from "./Components/Error/ErrorPagina"
+import Productos_main from "./Components/Productos/Productos_main"
+import Producto_main from "./Components/Producto/Producto_main"
 export const Routing = () =>{
     return(
         <Routes>
@@ -15,6 +17,8 @@ export const Routing = () =>{
             <Route path="/productos/" element={<Productos_main />}/>
             <Route path="/producto/:id" element={<Producto_main />}/>
             <Route path="/error" element={<ErrorPagina />} />
+            <Route path="/productos" element={<Productos_main />}/>
+            <Route path="/producto/:id" element={<Producto_main />}/>
         </Routes>
     )
 }

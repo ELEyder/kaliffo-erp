@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
-import {BookOutlined,UserOutlined,CoffeeOutlined} from '@ant-design/icons';
+import {BookOutlined,UserOutlined,CoffeeOutlined,HarmonyOSOutlined} from '@ant-design/icons';
 
 const Items=[
     {
@@ -31,20 +31,23 @@ const Items=[
                 ),
             },
             {
-                key:"2",
+                key:"4",
+                icon:<UserOutlined /> ,
                 label:(
-                    <a href="/trabajadores/ventas">Costureros</a>
+                    <a href="/trabajadores/ventas" style={{textDecoration:"none"}}>Costureros</a>
                 ),
             }
         ]
     },
     {
-        key:"sub3",
-        label:(<Link to={"/tiendas"}>Tiendas</Link>)
+        key:"sub2",
+        icon:<HarmonyOSOutlined />,
+        label:(<Link to={"/tiendas"} style={{textDecoration:"none"}} >Tiendas</Link>)
     },
     {
-        key:"sub3",
-        label:(<Link to={"/productos"}>Productos</Link>)
+        key:"sub4",
+        icon:<CoffeeOutlined/>,
+        label:(<Link to={"/productos"} style={{textDecoration:"none"}} >Productos</Link>)
     }
 
     
