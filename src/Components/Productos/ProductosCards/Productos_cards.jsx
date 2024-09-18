@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CargarProductos } from "../../../Shared/Funciones/Funciones_Productos";
-import { Button, Card, Col, Row } from "antd";
+import { Button, Card, Col, Row, Divider } from "antd";
 import { Link } from "react-router-dom";
 
 const {Meta} = Card
@@ -14,6 +14,8 @@ const Productos_cards = ({ refrescar }) => {
   }, [refrescar]);
 
   return (
+    <>
+    <Divider>Productos: {productos.length}</Divider>
     <Row gutter={16}>
       {productos.map((producto, index) => (
         <Col key={index} span={6}
@@ -25,7 +27,7 @@ const Productos_cards = ({ refrescar }) => {
               <Link to={`/producto/${producto.producto_id}`}>VER MAS</Link>
             </>
           ]}
-          cover={<img alt="example" src="/img/prenda-template.jpg" />}
+          cover={<img alt="example" src={`/img//${producto.producto_id}.png`} />}
           >
             <Meta
             title={`Precio: S/${producto.precio}`}
@@ -37,6 +39,7 @@ const Productos_cards = ({ refrescar }) => {
         </Col>
       ))}
     </Row>
+    </>
   );
 };
 
