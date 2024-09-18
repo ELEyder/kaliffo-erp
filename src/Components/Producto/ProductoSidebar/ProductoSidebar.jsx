@@ -1,5 +1,5 @@
 import React from "react";
-import ProductoCard from "./ProductoCard";
+import ProductoCard from "./ProductoInfo";
 import ProductoLista from "./ProductoLista";
 
 const ProductoSidebar = () =>{
