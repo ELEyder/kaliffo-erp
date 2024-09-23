@@ -4,7 +4,7 @@ import Productos_Cards from "./ProductosCards/Productos_cards";
 import Modal_añadir from "./ProductosModal/Modal_Añadir";
 import { FloatButton } from "antd";
 
-const Tiendas_main = () =>{
+const Productos_main = () =>{
 
     const [ModalAñadirAbierto,setModalAñadirAbierto]=useState(false)
     const [Refrescar,setRefrescar] = useState(false)
@@ -37,4 +37,4 @@ const Tiendas_main = () =>{
     )
 }
 
-export default Tiendas_main
+export default Productos_main
