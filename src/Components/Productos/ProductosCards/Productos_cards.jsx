@@ -19,7 +19,7 @@ const Productos_cards = ({ refrescar }) => {
     <Row gutter={16}>
       {productos.map((producto, index) => (
         <Col key={index} span={6}
-        style={{ margin: "0 0 24px 0" }}
+        style={{ margin: "0 0 24px 0", textAlign:"center"}}
         >
           <Card title={producto.nombre}
           actions={[
@@ -30,9 +30,11 @@ const Productos_cards = ({ refrescar }) => {
           cover={<img alt="example" src={`/img//${producto.producto_id}.png`} />}
           >
             <Meta
+            style={{textAlign:"left"}}
             title={`Precio: S/${producto.precio}`}
             />
             <Meta
+            style={{textAlign:"left"}}
             title={`Stock general: ${producto.stockGeneral}`}
             />
           </Card>
