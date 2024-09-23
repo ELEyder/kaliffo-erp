@@ -9,7 +9,6 @@ const ProductoSidebar = () =>{
     return(
         <>
             <ProductoInfo
-            id = { id }
             />
             <Divider></Divider>
             <ProductoLista/>

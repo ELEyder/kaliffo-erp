@@ -1,11 +1,11 @@
 import React from "react";
-import { Card, List,Button } from "antd";
-
+import { Card, List } from "antd";
+import { useParams } from "react-router-dom";
 
 const ProductoLista = () =>{
     return(
         <Card
-        style={{ maxWidth: 300, margin: "auto" , textAlign: "center" }}
+        style={{ margin: "auto" , textAlign: "center" }}
         title="PRODUCTOS MAS VENDIDOS"
       >
         <List

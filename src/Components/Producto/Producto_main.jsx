@@ -10,10 +10,8 @@ const Producto_main = () => {
     return (
       <Plantilla>
         <Divider>Producto</Divider>
-        <Row>
-            <Col span={7}
-            style={{padding: "auto", gap: "24px"}}>
-              
+        <Row  gutter={24}>
+            <Col span={8}>
               <ProductoSidebar/>
             </Col>
             <Col span={16}>
