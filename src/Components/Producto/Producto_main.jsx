@@ -6,7 +6,6 @@ import ProductoSidebar from "./ProductoSidebar/ProductoSidebar";
 import ProductoContenidoMain from "./ProductoContenido/ProductoContenidoMain";
 
 const Producto_main = () => {
-    const { id } = useParams();
   
     return (
       <Plantilla>
