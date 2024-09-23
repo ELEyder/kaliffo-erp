@@ -6,14 +6,14 @@ const ProductoLista = () =>{
     return(
         <Card
         style={{ margin: "auto" , textAlign: "center" }}
-        title="PRODUCTOS MAS VENDIDOS"
+        title="COLORES MAS VENDIDOS"
       >
         <List
           itemLayout="horizontal"
           dataSource={[
-            { title: "STOCK TOTAL", value: "1,322" },
-            { title: "Ventas Totales", value: "543" },
-            { title: "Personal asignado", value: "13,287" },
+            { title: "Rojo", value: "122" },
+            { title: "Verde Azul", value: "543" },
+            { title: "Amarillo", value: "123" },
           ]}
           renderItem={(item) => (
             <List.Item>

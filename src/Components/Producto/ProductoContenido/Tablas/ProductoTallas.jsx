@@ -3,20 +3,20 @@ import React from "react";
 
 const columns=[
     {
-        title:"Nombre"
+        title:"Talla"
     },
     {
-        title:"DNI"
+        title:"Stock"
     },
     {
-        title:"Telefono"
+        title:"Ver Más"
     },
     {
-        title:"OPciones"
+        title:"Opciones"
     }
 ]
 
-const ProductoPersonal = () =>{
+const ProductoTallas = () =>{
     return(
         <>
             <Table columns={columns}></Table>
@@ -24,4 +24,4 @@ const ProductoPersonal = () =>{
     )
 }
 
-export default ProductoPersonal
+export default ProductoTallas

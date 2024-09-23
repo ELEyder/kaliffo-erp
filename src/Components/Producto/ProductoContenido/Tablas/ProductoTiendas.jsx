@@ -3,7 +3,7 @@ import React from "react";
 
 const columns=[
     {
-        title:"Producto"
+        title:"Tienda"
     },
     {
         title:"Stock"
@@ -12,14 +12,14 @@ const columns=[
         title:"Precio"
     },
     {
-        title:"Detalle"
+        title:"Ver más"
     },
     {
         title:"Opciones"
     }
 ]
 
-const ProductoProductos = () =>{
+const ProductoTiendas = () =>{
     return(
        <>
          <Table
@@ -28,4 +28,4 @@ const ProductoProductos = () =>{
     )
 }
 
-export default ProductoProductos
+export default ProductoTiendas

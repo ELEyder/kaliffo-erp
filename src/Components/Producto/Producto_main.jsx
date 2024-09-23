@@ -3,7 +3,7 @@ import Plantilla from "../../Shared/Plantilla"
 import { useParams } from "react-router-dom";
 import { Col, Divider, Row } from "antd";
 import ProductoSidebar from "./ProductoSidebar/ProductoSidebar";
-import ProductoContenidoMain from "./ProductoContenido/ProductoContenidoMain";
+import ProductoContenido from "./ProductoContenido/ProductoContenido";
 
 const Producto_main = () => {
   
@@ -15,7 +15,7 @@ const Producto_main = () => {
               <ProductoSidebar/>
             </Col>
             <Col span={16}>
-                <ProductoContenidoMain/>
+                <ProductoContenido/>
             </Col>
         </Row>
       </Plantilla>
