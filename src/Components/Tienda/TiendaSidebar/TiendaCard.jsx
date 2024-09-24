@@ -1,7 +1,17 @@
 import { Card, List,Button } from "antd";
-import React from "react";
+import React,{useState,useEffect}from "react";
+import { getTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
 
-const TiendaCard = ({tienda}) =>{
+const TiendaCard = ({id,refrescarSideCard1}) =>{
+
+
+  const [tienda, setTienda] = useState([]);
+
+  useEffect(() => {
+    getTienda(id, setTienda);
+  }, [id,refrescarSideCard1]);
+
+
     return(
         <Card
         style={{ width: 300, margin: "auto", textAlign: "center" }}
