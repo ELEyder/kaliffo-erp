@@ -1,6 +1,7 @@
-import { Button, Flex, Popconfirm, Table } from "antd";
+import { Button, Flex, Modal, Popconfirm, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { getProductosTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
+import TiendaAddProductos from "../TiendaModales/TiendaAddProductos";
 
 const columns = [
   {
@@ -11,9 +12,9 @@ const columns = [
   },
   {
     title: "Stock",
-    key: "stockGeneral",
+    key: "stock",
     align: "center",
-    dataIndex:"stockGeneral",
+    dataIndex:"stock",
     defaultSortOrder: "ascend",
   },
   {
@@ -27,6 +28,17 @@ const columns = [
     dataIndex:"descuento",
     key:"descuento",
     align:"center"
+  },
+  {
+    title:"Ver mas",
+    dataIndex:"",
+    key:"f",
+    align:"center",
+    render:(text,record) =>{
+      return(
+        <Button type="primary" block>+</Button>
+      )
+    }
   },
   {
     title: "Opciones",
@@ -55,18 +67,31 @@ const columns = [
 const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
 
     const[productostienda,setproductostienda] = useState([])
+    
+    const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)
+
+    const showModalProductoAddTiendaAbierto = () =>{
+      setModalProductoAddTiendaAbierto(true)
+    }
+
+    const closeModalProductoAddTiendaAbierto = () =>{
+      setModalProductoAddTiendaAbierto(false)
+    }
 
   useEffect(() => {
     getProductosTienda(id,setproductostienda)
   }, [id]);
 
   return (
-    <>
+    <> 
+      <Button onClick={showModalProductoAddTiendaAbierto}>Añadir Nuevo Producto</Button>
       <Table columns={columns}
       pagination={{ pageSize: 5 }}
       bordered
       dataSource={[...productostienda]}
       rowKey={(record) => record.producto_id}></Table>
+      <TiendaAddProductos ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
+      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}/>
     </>
   );
 };

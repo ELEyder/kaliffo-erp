@@ -15,30 +15,44 @@ const Productos_cards = ({ refrescar }) => {
 
   return (
     <>
-    <Divider>Productos: {productos.length}</Divider>
-    <Row gutter={16}>
-      {productos.map((producto, index) => (
-        <Col key={index} span={6}
-        style={{ margin: "0 0 24px 0" }}
-        >
-          <Card title={producto.nombre}
-          actions={[
-            <>
-              <Link to={`/producto/${producto.producto_id}`}>VER MAS</Link>
-            </>
-          ]}
-          cover={<img alt="example" src={`/img//${producto.producto_id}.png`} />}
-          >
-            <Meta
-            title={`Precio: S/${producto.precio}`}
-            />
-            <Meta
-            title={`Stock general: ${producto.stockGeneral}`}
-            />
-          </Card>
-        </Col>
-      ))}
-    </Row>
+      <Divider>Productos: {productos.length}</Divider>
+      <Row gutter={16}>
+        {productos.map((producto, index) => {
+          const imgSrc = `/img/${producto.producto_id}.png`;
+          
+          const handleError = (e) => {
+            e.target.src = '/img/generic.png';
+          };
+
+          return (
+            <Col key={index} span={6} style={{ margin: "0 0 24px 0", textAlign: "center" }}>
+              <Card
+                title={producto.nombre}
+                actions={[
+                  <Link to={`/producto/${producto.producto_id}`}>VER MAS</Link>
+                ]}
+                cover={
+                  <img
+                    src={imgSrc}
+                    alt={producto.nombre}
+                    onError={handleError} // Usa el manejador de eventos en React
+                    style={{ width: '100%', height: 'auto' }} // Ajusta el estilo
+                  />
+                }
+              >
+                <Meta
+                  style={{ textAlign: "left" }}
+                  title={`Precio: S/${producto.precio}`}
+                />
+                <Meta
+                  style={{ textAlign: "left" }}
+                  title={`Stock general: ${producto.stockGeneral}`}
+                />
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
     </>
   );
 };

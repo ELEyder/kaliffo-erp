@@ -1,7 +1,6 @@
-import { Form, Modal, Input } from "antd";
+import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 import React from "react";
-import { manejonumeros } from "../../../Shared/Funciones/Funciones_Fetch";
-import { AñadirTienda } from "../../../Shared/Funciones/Funciones_Tiendas";
+import { addProducto } from "../../../Shared/Funciones/Funciones_Producto";
 
 const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso }) => {
   const [form] = Form.useForm();
@@ -9,30 +8,31 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
   return (
     <Modal
       getContainer={false}
-      title={"Nueva Tienda"}
+      title={"Nuevo Producto"}
       open={ModalAñadirAbierto}
       onCancel={closeModalAñadir}
       okText="Añadir"
       onOk={form.submit}
       centered={true}
-      width={500}
+      width={400}
     >
       <Form
-        style={{ maxWidth: 600, margin: "0 auto" }}
+        style={{ margin: "0 auto" }}
         size="large"
         form={form}
         labelAlign="center"
         id="formulariocrear"
+        layout="vertical"
         onFinish={async (values) =>{
-            await AñadirTienda(values)
+            await addProducto(values)
             form.resetFields()
             añadidoexitoso()
         }}
       >
         <Form.Item
           style={{ marginTop: 20 }}
-          name="tienda"
-          label="Nombre de la Tienda"
+          name="nombre"
+          label="Nombre del Producto"
           rules={[
             {
               required: true,
@@ -43,36 +43,36 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
           <Input />
         </Form.Item>
 
-        <Form.Item
-          style={{ marginTop: 20 }}
-          name="direccion"
-          label="Direccion de la Tienda"
-          rules={[
-            {
-              required: true,
-              message: "Direccion requerida",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-
-        <Form.Item
-          name="telefono"
-          label="Telefono"
-          rules={[
-            {
-              required: true,
-              message: "Telefono Requerido",
-            },
-          ]}
-        >
-          <Input
-            maxLength={9}
-            showCount
-            onChange={manejonumeros(form, "telefono")}
-          />
-        </Form.Item>
+        <Row gutter={16} style={{gap : "20px"}}>
+          <Form.Item
+            style={{ marginLeft: 10 }}
+            name="precio"
+            label="Precio"
+            rules={[
+              {
+                type:"number",
+                required: true,
+                message: "Precio requerido",
+              },
+            ]}
+          >
+            <InputNumber placeholder="S/"/>
+          </Form.Item>
+          <Form.Item
+            name="descuento"
+            label="Descuento"
+            rules={[
+              {
+                type:"number",
+                required: true,
+                message: "Descuento requerido",
+              },
+            ]}
+          >
+            <InputNumber placeholder="%" />
+          </Form.Item>
+  
+        </Row>
       </Form>
     </Modal>
   );
