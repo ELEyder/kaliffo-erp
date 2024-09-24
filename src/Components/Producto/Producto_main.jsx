@@ -1,6 +1,5 @@
 import React from "react";
 import Plantilla from "../../Shared/Plantilla"
-import { useParams } from "react-router-dom";
 import { Col, Divider, Row } from "antd";
 import ProductoSidebar from "./ProductoSidebar/ProductoSidebar";
 import ProductoContenido from "./ProductoContenido/ProductoContenido";
