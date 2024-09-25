@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Flex, Popconfirm, Table, notification } from "antd";
+import { Button, Row, Col, Popconfirm, Table, notification } from "antd";
 import {
   FetchDataTablaTrabajadores,
 } from "../../../Shared/Funciones/Funciones_Fetch";
@@ -61,12 +61,18 @@ const Tabla_Trabajadores = ({
       align: "center",
       render: (text, record) => {
         return (
-          <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-              <Button type="primary" onClick={() => editar(record.usuario_id)} block>Editar</Button>
-              <Button style={{background:"#ffdf5e",color:"white"}}
-               onClick={() => incidencias(record.usuario_id)} block>
+          <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
+            <Col>
+              <Button type="primary" onClick={() => editar(record.usuario_id)} block>
+                Editar
+              </Button>
+            </Col>
+            <Col>
+              <Button style={{ background: "#ffdf5e", color: "white" }} onClick={() => incidencias(record.usuario_id)} block>
                 Incidencias
               </Button>
+            </Col>
+            <Col>
               <Popconfirm
                 title="ELIMINAR"
                 description="DESEA ELIMINAR A"
@@ -74,9 +80,13 @@ const Tabla_Trabajadores = ({
                 onConfirm={() => eliminar(record.usuario_id)}
                 cancelText="NO"
               >
-                <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
+                <Button block style={{ background: "#f54242", color: "white" }} danger>
+                  Eliminar
+                </Button>
               </Popconfirm>
-          </Flex>
+            </Col>
+          </Row>
+
         );
       },
     },
@@ -109,6 +119,13 @@ const Tabla_Trabajadores = ({
         rowKey={(record) => record.dni}
         bordered
         className="tabla_trabajadores"
+        onRow={(record) => {
+          return {
+            onClick: () => {
+              console.log('Fila clickeada:', record);
+            },
+          };
+        }}
       />
     </>
   );
