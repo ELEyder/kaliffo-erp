@@ -16,7 +16,7 @@ const ProductoInfo = () =>{
   };
     return(
         <Card
-        style={{ textAlign: "center", margin: "auto" } }
+        style={{ maxwidth: 300, textAlign: "center", margin: "auto" } }
         title={producto.nombre}
         onError={handleError}
         cover={<img alt="example" src={imgSrc} />}

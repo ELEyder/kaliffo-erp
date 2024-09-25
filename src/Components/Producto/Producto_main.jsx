@@ -7,8 +7,11 @@ import ProductoContenido from "./ProductoContenido/ProductoContenido";
 const Producto_main = () => {
   
     return (
+
       <Plantilla>
-        <Divider>Producto</Divider>
+        <Divider style={{textTransform: "uppercase"}}>
+          Detalles del Producto
+        </Divider>
         <Row  gutter={24}>
             <Col span={8}>
               <ProductoSidebar/>

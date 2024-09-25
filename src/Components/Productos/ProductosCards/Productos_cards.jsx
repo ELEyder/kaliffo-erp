@@ -15,7 +15,9 @@ const Productos_cards = ({ refrescar }) => {
 
   return (
     <>
-      <Divider>Productos: {productos.length}</Divider>
+      <Divider style={{textTransform: "uppercase"}}>
+        Productos: {productos.length}
+      </Divider>
       <Row gutter={16}>
         {productos.map((producto, index) => {
           const imgSrc = `/img/${producto.producto_id}.png`;

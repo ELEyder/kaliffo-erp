@@ -50,7 +50,7 @@ const Trabajadores_main = () => {
 
   return (
     <Plantilla>
-      <Divider style={{ fontSize: "20px", textTransform: "uppercase", fontWeight: "bold" }}>
+      <Divider style={{textTransform: "uppercase"}}>
         {tipo_trabajador}
       </Divider>
       <Tabla_Trabajadores
