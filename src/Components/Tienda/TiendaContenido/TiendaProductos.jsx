@@ -1,4 +1,4 @@
-import { Button, Flex, Modal, Popconfirm, Table } from "antd";
+import { Button, Flex, Popconfirm, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { getProductosTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
 import TiendaAddProductos from "../TiendaModales/TiendaAddProductos";
@@ -18,7 +18,7 @@ const columns = [
     defaultSortOrder: "ascend",
     render: (text) => {
       // Cambia la clase según el valor del stock
-      let backgroundColor = text >= 30 ? 'green' : 'yellow';
+      let backgroundColor = text >= 50 ? 'green' : 'yellow';
       backgroundColor = text < 20 ? 'red' : backgroundColor;
       let color = backgroundColor == 'yellow' ? 'black' : 'white'; 
       return (
