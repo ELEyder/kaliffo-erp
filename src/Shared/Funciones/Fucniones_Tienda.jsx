@@ -16,6 +16,31 @@ export const getProductosTienda = async (id, seteador) => {
   }
 };
 
+export const getProductosNuevos = async(id,seteador) =>{
+  try {
+    const response = await fetch(
+      `http://localhost:3000/producto/lose/${id}`
+    );
+    const data = await response.json();
+    seteador(data);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getColoresProductos = (form,seteador) => async (event) => {
+  try {
+    const productoId = event.target.value;
+    const response = await fetch(`http://localhost:3000/producto/colores/${productoId}`);
+    const data = await response.json();
+
+    seteador(data);
+  } catch (error) {
+    console.log("Error al obtener los colores del producto:", error);
+  }
+};
+
+
 export const FetchTrabajadoresDiferentes = async (id, Seteador) => {
   try {
     const response = await fetch(
@@ -58,3 +83,15 @@ export const getusuariosTienda = async (id, seteador) => {
     console.log(error);
   }
 };
+
+export const getProductoTiendaDetalle = async (id,idp,seteador) =>{
+  try {
+    const response = await fetch(
+      `http://localhost:3000/producto/${idp}?tienda_id=${id}`
+    );
+    const data = await response.json();
+    seteador(data);
+  } catch (error) {
+    console.log(error)
+  }
+}

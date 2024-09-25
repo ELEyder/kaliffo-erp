@@ -42,8 +42,9 @@ const Trabajadores_main = () => {
     refrescarTabla();
   };
 
-  const eliminar = (id) => {
-    if (EliminarUsuario(id)) {
+  const eliminar = async (id) => {
+    const eliminado = await EliminarUsuario(id);
+    if (eliminado) {
       refrescarTabla();
     }
   };

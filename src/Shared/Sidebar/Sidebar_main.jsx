@@ -28,15 +28,14 @@ const Sidebar_main = () => {
       style={{ background: "#162b4e", textAlign: "center" }}
       breakpoint="lg"
       collapsedWidth="0"
-      collapsed={collapsed} // Controla el colapso aquí
+      collapsed={collapsed}
     >
       <Avatar size={64} icon={<UserOutlined />} />
       <Title level={4} style={{ color: "white" }}>Tienda 1</Title>
       <Sidebar_menu/>
 
     </Sider>
-      <FloatButton onClick={toggleCollapsed} style={style}
-      icon = {icon}/>
+
     </>
 
   );

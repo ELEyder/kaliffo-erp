@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { Col, Divider, Row } from "antd";
 import TiendaSidebar from "./TiendaSidebar/TiendaSidebar";
 import TiendaContenidoMain from "./TiendaContenido/TiendaContenidoMain";
-import { getTienda } from "../../Shared/Funciones/Fucniones_Tienda";
 
 const Tienda_main = () => {
   const { id } = useParams();

@@ -1,41 +1,37 @@
 import React, { useState } from "react";
-import Plantilla from "../../Shared/Plantilla"
+import Plantilla from "../../Shared/Plantilla";
 import Tiendas_cards from "./TiendasCards/Tiendas_cards";
 import { Divider, FloatButton } from "antd";
 import Modal_añadir from "./TiendasModal/Modal_Añadir";
 
-const Tiendas_main = () =>{
+const Tiendas_main = () => {
+  const [modalAñadirAbierto, setModalAñadirAbierto] = useState(false);
+  const [refrescar, setRefrescar] = useState(false);
 
-    const [ModalAñadirAbierto,setModalAñadirAbierto]=useState(false)
-    const [Refrescar,setRefrescar] = useState(false)
+  const refrescarCards = () => {
+    setRefrescar(true);
+    setTimeout(() => setRefrescar(false), 500);
+  };
 
-    const refrescarCards = () =>{
-        setRefrescar(true)
-        setTimeout(() => setRefrescar(false), 500);
-    }
+  const toggleModalAñadir = () => setModalAñadirAbierto((prev) => !prev);
 
-    const showModalAñadir = () =>{
-        setModalAñadirAbierto(true)
-    }
+  const handleAñadirExitoso = () => {
+    toggleModalAñadir();
+    refrescarCards();
+  };
 
-    const closeModalAñadir = () => {
-        setModalAñadirAbierto(false)
-    }
+  return (
+    <Plantilla>
+      <Divider>TIENDAS</Divider>
+      <FloatButton tooltip="Añadir" onClick={toggleModalAñadir} />
+      <Tiendas_cards refrescar={refrescar} />
+      <Modal_añadir 
+        ModalAñadirAbierto={modalAñadirAbierto}
+        closeModalAñadir={toggleModalAñadir} 
+        añadidoexitoso={handleAñadirExitoso} 
+      />
+    </Plantilla>
+  );
+};
 
-    const handleAñadirExitoso = () =>{
-        closeModalAñadir();
-        refrescarCards()
-    }
-
-    return(
-        <Plantilla>
-            <Divider>TIENDAS</Divider>
-            <FloatButton tooltip="Añadir" onClick={showModalAñadir}/>
-            <Tiendas_cards refrescar={Refrescar}/>
-            <Modal_añadir ModalAñadirAbierto={ModalAñadirAbierto}
-            closeModalAñadir={closeModalAñadir} añadidoexitoso={handleAñadirExitoso}/>
-        </Plantilla>
-    )
-}
-
-export default Tiendas_main
+export default Tiendas_main;

@@ -13,16 +13,6 @@ const Tabla_Trabajadores = ({
 }) => {
   const [tabla_datos, SetTabla_datos] = useState([]);
 
-  const [notificacion, setNotificaciones] = notification.useNotification();
-
-  // const abrirNotificacion = (placement) => {
-  //   notificacion.info({
-  //     message: notificacion,
-  //     description: "La tabla ha sido recargada correctamente",
-  //     placement,
-  //   });
-  // };
-
   const columnas = [
     {
       title: "Nombre",
@@ -111,7 +101,6 @@ const Tabla_Trabajadores = ({
 
   return (
     <>
-      {setNotificaciones}
       <Table
         columns={columnas}
         pagination={{ pageSize: 5 }}
