@@ -16,6 +16,24 @@ const columns = [
     align: "center",
     dataIndex:"stock",
     defaultSortOrder: "ascend",
+    render: (text) => {
+      // Cambia la clase según el valor del stock
+      let backgroundColor = text >= 30 ? 'green' : 'yellow';
+      backgroundColor = text < 20 ? 'red' : backgroundColor;
+      let color = backgroundColor == 'yellow' ? 'black' : 'white'; 
+      return (
+        <span style={{ 
+            display: 'block', 
+            width: '100%', 
+            backgroundColor: backgroundColor, 
+            color: color, 
+            padding: '8px', 
+            textAlign: 'center', 
+          }}>
+          {text}
+        </span>
+      );    
+    },
   },
   {
     title: "Precio",
@@ -27,7 +45,25 @@ const columns = [
     title: "Descuento",
     dataIndex:"descuento",
     key:"descuento",
-    align:"center"
+    align:"center",
+    render: (text) => {
+      // Cambia la clase según el valor del stock
+      let backgroundColor = text >= 30 ? 'green' : 'yellow';
+      backgroundColor = text < 20 ? 'red' : backgroundColor;
+      let color = backgroundColor == 'yellow' ? 'black' : 'white'; 
+      return (
+        <span style={{ 
+            display: 'block', 
+            width: '100%', 
+            backgroundColor: backgroundColor, 
+            color: color, 
+            padding: '8px', 
+            textAlign: 'center', 
+          }}>
+          {text}
+        </span>
+      );    
+    },
   },
   {
     title:"Ver mas",
@@ -89,7 +125,8 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
       pagination={{ pageSize: 5 }}
       bordered
       dataSource={[...productostienda]}
-      rowKey={(record) => record.producto_id}></Table>
+      rowKey={(record) => record.producto_id}
+      ></Table>
       <TiendaAddProductos ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
       closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}/>
     </>
