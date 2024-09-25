@@ -17,6 +17,7 @@ const Producto_main = () => {
                 <ProductoContenido/>
             </Col>
         </Row>
+        <Divider></Divider>
       </Plantilla>
     );
   };

@@ -9,12 +9,17 @@ const ProductoInfo = () =>{
   useEffect(() => {
     getProductoById(id, setProducto);
   }, [id]);
-  
+  const imgSrc = `/img/${producto.producto_id}.png`;
+          
+  const handleError = (e) => {
+    e.target.src = '/img/generic.png';
+  };
     return(
         <Card
         style={{ textAlign: "center", margin: "auto" } }
         title={producto.nombre}
-        cover={<img alt="example" src={`/img//${producto.producto_id}.png`} />}
+        onError={handleError}
+        cover={<img alt="example" src={imgSrc} />}
         >
         <List
           itemLayout="horizontal"

@@ -9,7 +9,7 @@ const columns=[
         title:"Stock"
     },
     {
-        title:"Ver Más"
+        title:"Ver más"
     },
     {
         title:"Opciones"

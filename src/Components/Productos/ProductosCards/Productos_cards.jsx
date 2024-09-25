@@ -35,8 +35,8 @@ const Productos_cards = ({ refrescar }) => {
                   <img
                     src={imgSrc}
                     alt={producto.nombre}
-                    onError={handleError} // Usa el manejador de eventos en React
-                    style={{ width: '100%', height: 'auto' }} // Ajusta el estilo
+                    onError={handleError}
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 }
               >
@@ -46,7 +46,7 @@ const Productos_cards = ({ refrescar }) => {
                 />
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Stock general: ${producto.stockGeneral}`}
+                  title={`Stock general: ${producto.stock}`}
                 />
               </Card>
             </Col>

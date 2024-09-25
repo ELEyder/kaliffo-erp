@@ -1,29 +1,54 @@
 import { Table } from "antd";
 import React from "react";
+import { useState, useEffect } from 'react'
+import { getProductoById, getProductoTiendas } from "../../../../Shared/Funciones/Funciones_Producto";
 
-const columns=[
-    {
-        title:"Tienda"
-    },
-    {
-        title:"Stock"
-    },
-    {
-        title:"Precio"
-    },
-    {
-        title:"Ver más"
-    },
-    {
-        title:"Opciones"
-    }
-]
+const ProductoTiendas = ({ id }) =>{
+    const columns=[
+        {
+            title: "Tienda",
+            dataIndex: "tienda",
+            key: "tienda",
+        },
+        {
+            title: "Stock",
+            dataIndex: "stock",
+            key: "stock",
+        },
+        {
+            title: "Precio",
+            dataIndex: "precio",
+            key: "precio",
+        },
+        {
+            title: "Ver más",
+            render: (text, record) => <a href={`/tienda/${record.id}`}>Ver más</a>,
+            key: "verMas",
+        },
+        {
+            title: "Opciones",
+            render: (text, record) => <button>Opciones</button>,
+            key: "opciones",
+        },
+    ]
 
-const ProductoTiendas = () =>{
+
+    const [user, setUser] = useState();
+    const [tabla, setTabla] = useState();
+
+    useEffect(() => {
+        getProductoById(id , setUser);
+        getProductoTiendas(id , setTabla);
+      }, [id]);
+
     return(
        <>
          <Table
-        columns={columns}></Table>
+        columns={columns}
+        dataSource={tabla}
+        >
+
+        </Table>
        </>
     )
 }

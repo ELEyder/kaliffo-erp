@@ -4,6 +4,18 @@ export const getProductoById = async (id, setProducto) => {
     setProducto(productoData)
 }
 
+export const getProductoTiendas = async (id, setTabla) => {
+    const response = await fetch(`http://localhost:3000/producto/${id}`)
+    const productoData= await response.json()
+
+    // Talla por defecto
+    const detallesConNuevoParametro = productoData.detalles.map(detalle => ({
+        ...detalle,
+        precio: productoData.precio
+      }));
+
+    setTabla(detallesConNuevoParametro)
+}
 export const addProducto = async (values) => {
     let Producto = {
         nombre:values.nombre,
