@@ -18,7 +18,7 @@ const Trabajadores_main = () => {
   });
   const [refrescar, setRefrescar] = useState(false);
 
-  const tiposValidos = ["ventas", "talleres", "miscelaneos"];
+  const tiposValidos = ["ventas", "talleres", "miscelaneos", "costureros"];
   if (tipo_trabajador && !tiposValidos.includes(tipo_trabajador)) {
     return <Navigate to="/error" />;
   }
@@ -53,6 +53,7 @@ const Trabajadores_main = () => {
       <Divider style={{textTransform: "uppercase"}}>
         {tipo_trabajador}
       </Divider>
+
       <Tabla_Trabajadores
         tipo_trabajador={tipo_trabajador}
         Refrescar={refrescar}

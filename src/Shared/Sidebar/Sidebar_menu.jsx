@@ -34,7 +34,7 @@ const Items=[
                 key:"4",
                 icon:<UserOutlined /> ,
                 label:(
-                    <Link to="/trabajadores/ventas" style={{textDecoration:"none"}}>Costureros</Link>
+                    <Link to="/trabajadores/costureros" style={{textDecoration:"none"}}>Costureros</Link>
                 ),
             }
         ]

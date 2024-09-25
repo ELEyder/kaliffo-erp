@@ -1,5 +1,5 @@
 import moment from "moment";
-const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3 };
+const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
 export const evitarnumeros = (texto) => {
   return texto.replace(/\d/g, "");
