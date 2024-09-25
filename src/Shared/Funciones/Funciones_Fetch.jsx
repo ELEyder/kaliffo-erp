@@ -19,11 +19,19 @@ export const manejonumeros = (form, nombre) => (event) => {
 
 export const FetchDataTablaTrabajadores = async (tipo, Seteador) => {
   try {
-    const response = await fetch(
-      `http://localhost:3000/usuario?rol=${dTipos[tipo]}`
-    );
-    const data = await response.json();
-    Seteador(data);
+    const response = await fetch(`http://localhost:3000/usuario?rol=${dTipos[tipo]}`);
+    const trabajadores = await response.json();
+    trabajadores.forEach(trabajador => {
+        if (typeof trabajador === 'object' && trabajador !== null) {
+          if (trabajador.tienda_id === null) {
+            trabajador.tienda_id = 0;
+            trabajador.tienda = "Sin asignar  ";
+          }
+        } else {
+          console.warn('Elemento no es un objeto:', trabajador);
+        }
+      Seteador(trabajadores);
+    })
   } catch (error) {
     console.error("Error fetching data:", error);
   }

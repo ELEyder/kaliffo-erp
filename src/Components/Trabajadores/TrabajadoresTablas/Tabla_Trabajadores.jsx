@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Flex, Popconfirm, Table, notification } from "antd";
 import {
-  editar,
   FetchDataTablaTrabajadores,
 } from "../../../Shared/Funciones/Funciones_Fetch";
 
