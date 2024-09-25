@@ -34,7 +34,7 @@ const Items=[
                 key:"4",
                 icon:<UserOutlined /> ,
                 label:(
-                    <a href="/trabajadores/ventas" style={{textDecoration:"none"}}>Costureros</a>
+                    <Link to="/trabajadores/costureros" style={{textDecoration:"none"}}>Costureros</Link>
                 ),
             }
         ]
@@ -54,15 +54,13 @@ const Items=[
 ]
 
 const Sidebar_menu = () =>{
-    
-    const [collapsed, setCollapsed] = useState(false);
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
 
     return(
-        <Menu mode="inline" theme="dark"
-        items={Items} inlineCollapsed={collapsed}></Menu>
+        <Menu
+            mode="inline"
+            theme="dark"
+            items={Items}
+        />
     )
 }
 

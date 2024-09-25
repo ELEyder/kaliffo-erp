@@ -1,25 +1,46 @@
-import React from "react";
-import Sider from "antd/es/layout/Sider";
-import Avatar from "antd/es/avatar/avatar";
-import { UserOutlined } from '@ant-design/icons';
-import Typography from "antd/es/typography/Typography";
+import React, { useState } from "react";
+import { UserOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { Layout, Avatar, Typography, FloatButton } from 'antd';
 import Sidebar_menu from "./Sidebar_menu";
 
-const{Title,Text}=Typography
+const { Sider } = Layout;
+const { Title } =Typography
+
 
 const Sidebar_main = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const [icon, setIcon] = useState(<LeftOutlined />);
+  const [style, setStyle] = useState({ position: 'absolute', top: '16px', left: '216px', transition: 'ease 0.2s'});
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+    setIcon(collapsed ? <LeftOutlined /> : <RightOutlined />);
+    setStyle(prevStyle => ({
+      ...prevStyle,
+      left: collapsed ? '216px' : '16px'
+    }));
+  };
+
   return (
+    <>
     <Sider
       width={200}
-      style={{ background: "#162b4e", textAlign:"center"}}
+      style={{ background: "#162b4e", textAlign: "center" }}
       breakpoint="lg"
       collapsedWidth="0"
-    >  
-        <Avatar size={64} icon={<UserOutlined/>}/>
-        <Title level={4} style={{color:"white"}}>Tienda 1</Title>
-        <Sidebar_menu/>
+      collapsed={collapsed}
+    >
+      <Avatar size={64} icon={<UserOutlined />} />
+      <Title level={4} style={{ color: "white" }}>Tienda 1</Title>
+      <Sidebar_menu/>
+
     </Sider>
+
+    </>
+
   );
 };
 
 export default Sidebar_main;
+
+

@@ -1,0 +1,14 @@
+.correct {
+    background-color: rgb(157, 255, 189);
+    /* Color de fondo para filas pares */
+}
+
+.incorrect {
+    background-color: rgb(245, 255, 157);
+    /* Color de fondo para filas impares */
+}
+
+.danger {
+    background-color: rgb(255, 157, 157);
+    /* Color de fondo para filas impares */
+}

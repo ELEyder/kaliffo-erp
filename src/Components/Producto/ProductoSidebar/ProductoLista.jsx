@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const ProductoLista = () =>{
     return(
         <Card
-        style={{ margin: "auto" , textAlign: "center" }}
+        style={{ maxwidth: 300, margin: "auto" , textAlign: "center" }}
         title="COLORES MAS VENDIDOS"
       >
         <List

@@ -19,7 +19,7 @@ const Modal_añadir = ({
             fetchTiendas(setTiendas)
         }
         form.setFieldsValue({tipo_trabajadorh:tipo_trabajador})
-    },[tipo_trabajador])
+    },[tipo_trabajador, form])
 
 
 

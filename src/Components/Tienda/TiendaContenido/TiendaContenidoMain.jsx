@@ -1,7 +1,7 @@
 import { Tabs } from "antd";
 import React from "react";
-import TiendaProductos from "./TiendaProductos";
-import TiendaPersonal from "./TiendaPersonal"
+import TablaProductos from "./Tablas/TablaProductos";
+import TablaPersonal from "./Tablas/TablaPersonal"
 
 
 const TiendaContenidoMain = ({id,handlerefrescarSideCard1}) =>{
@@ -10,12 +10,12 @@ const TiendaContenidoMain = ({id,handlerefrescarSideCard1}) =>{
     {
       key: '1',
       label: 'Productos',
-      children: <TiendaProductos id={id} handlerefrescarSideCard1={handlerefrescarSideCard1}/>,
+      children: <TablaProductos id={id} handlerefrescarSideCard1={handlerefrescarSideCard1}/>,
     },
     {
       key: '2',
       label: 'Personal',
-      children: <TiendaPersonal id={id} handlerefrescarSideCard1={handlerefrescarSideCard1}/>,
+      children: <TablaPersonal id={id} handlerefrescarSideCard1={handlerefrescarSideCard1}/>,
     },
     {
       key: '3',

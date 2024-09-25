@@ -14,7 +14,7 @@ const TiendaCard = ({id,refrescarSideCard1}) =>{
 
     return(
         <Card
-        style={{ width: 300, margin: "auto", textAlign: "center" }}
+        style={{ maxwidth: 300, margin: "auto", textAlign: "center" }}
       >
         <h3>{tienda.tienda}</h3>
         <p className="text-muted">{tienda.direccion}</p>        
