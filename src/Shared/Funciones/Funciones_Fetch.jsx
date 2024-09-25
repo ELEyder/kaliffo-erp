@@ -29,6 +29,8 @@ export const FetchDataTablaTrabajadores = async (tipo, Seteador) => {
   }
 };
 
+
+
 export const fetchTiendas = async (seteador) => {
   const query = await fetch(`http://localhost:3000/tienda`);
   const tiendasdata = await query.json();

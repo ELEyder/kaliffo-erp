@@ -3,10 +3,10 @@ import TiendaCard from "./TiendaCard";
 import TiendaLista from "./TiendaLista";
 import { Divider } from "antd";
 
-const TiendaSidebar = ({tienda}) =>{
+const TiendaSidebar = ({id,refrescarSideCard1}) =>{
     return(
         <>
-            <TiendaCard tienda={tienda}/>
+            <TiendaCard id={id} refrescarSideCard1={refrescarSideCard1}/>
             <Divider></Divider>
             <TiendaLista/>
         </>
