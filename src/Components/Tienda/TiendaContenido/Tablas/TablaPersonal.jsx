@@ -1,9 +1,9 @@
-import { Table, Button, Flex, Popconfirm } from "antd";
+import { Table, Button, Row, Col, Popconfirm } from "antd";
 import React, { useState, useEffect } from "react";
-import { getusuariosTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
-import TiendaPersonalModal from "../TiendaModales/TiendaPersonalModal";
-import { EliminarUsuario } from "../../../Shared/Funciones/Funciones_Fetch";
-import TiendaAddPersonal from "../TiendaModales/TiendaAddPersonal";
+import { getusuariosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
+import TiendaPersonalModal from "../../TiendaModales/TiendaPersonalModal";
+import { EliminarUsuario } from "../../../../Shared/Funciones/Funciones_Fetch";
+import TiendaAddPersonal from "../../TiendaModales/TiendaAddPersonal";
 
 const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
   const [usuariostienda, setusuariostienda] = useState([]);
@@ -90,28 +90,21 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
       align: "center",
       render: (text, record) => {
         return (
-          <Flex
-            gap="small"
-            align="center"
-            horizontal="true"
-            style={{ width: "100%" }}
-            className="opciones-botones"
-          >
-            <Button type="primary" block onClick={() => showModalPersonalTiendaAbierto(record.usuario_id)}>
-              Editar
-            </Button>
-            <Popconfirm
-              title="ELIMINAR"
-              description="DESEA ELIMINAR A"
-              okText="Confirmar"
-              cancelText="NO"
-              onConfirm={() => eliminar(record.usuario_id)}
-            >
-              <Button block style={{ background: "#f54242", color: "white" }} danger>
-                Eliminar
-              </Button>
-            </Popconfirm>
-          </Flex>
+          <Row gutter={[8, 8]} justify="center" align="middle">
+            <Col>
+                <Button type="primary" block onClick={() => showModalPersonalTiendaAbierto(record.usuario_id)}>Editar</Button>
+            </Col>
+            <Col>
+              <Popconfirm
+                title="ELIMINAR"
+                description="DESEA ELIMINAR A"
+                okText="Confirmar"
+                cancelText="NO"
+              >
+              <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+              </Popconfirm>
+            </Col>
+          </Row>
         );
       },
     },

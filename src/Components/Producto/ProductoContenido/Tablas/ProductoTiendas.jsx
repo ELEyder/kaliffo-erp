@@ -1,7 +1,7 @@
-import { Table, Button, Popconfirm, Flex } from "antd";
+import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getProductoById, getProductoTiendas } from "../../../../Shared/Funciones/Funciones_Producto";
+import { getProductoTiendas } from "../../../../Shared/Funciones/Funciones_Producto";
 
 const ProductoTiendas = ({ id }) =>{
     const columns=[
@@ -58,28 +58,30 @@ const ProductoTiendas = ({ id }) =>{
             align:"center",
             render:(text,record) =>{
                 return (
-                    <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-                        <Button type="primary" block>Editar</Button>
-                        <Popconfirm
-                          title="ELIMINAR"
-                          description="DESEA ELIMINAR A"
-                          okText="Confirmar"
-                          cancelText="NO"
-                        >
-                          <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
-                        </Popconfirm>
-                    </Flex>
-                  );
+                    <Row gutter={[8, 8]} justify="center" align="middle">
+                        <Col>
+                            <Button type="primary" block>Editar</Button>
+                        </Col>
+                        <Col>
+                            <Popconfirm
+                                title="ELIMINAR"
+                                description="DESEA ELIMINAR A"
+                                okText="Confirmar"
+                                cancelText="NO"
+                            >
+                                <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+                            </Popconfirm>
+                        </Col>
+                    </Row>
+                );
             }
         },
     ]
 
 
-    const [user, setUser] = useState();
     const [tabla, setTabla] = useState();
 
     useEffect(() => {
-        getProductoById(id , setUser);
         getProductoTiendas(id , setTabla);
       }, [id]);
 
@@ -88,7 +90,7 @@ const ProductoTiendas = ({ id }) =>{
          <Table
          ali
         columns={columns}
-        dataSource={tabla}
+        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
         >
 
         </Table>

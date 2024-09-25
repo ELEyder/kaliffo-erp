@@ -1,7 +1,7 @@
-import { Button, Flex, Popconfirm, Table } from "antd";
+import { Button, Row, Col, Popconfirm, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import { getProductosTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
-import TiendaAddProductos from "../TiendaModales/TiendaAddProductos";
+import { getProductosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
+import TiendaAddProductos from "../../TiendaModales/TiendaAddProductos";
 
 const columns = [
   {
@@ -81,20 +81,24 @@ const columns = [
     dataIndex:"",
     key:"x",
     align:"center",
-    render:(text,record) =>{
+    render:() =>{
         return (
-            <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-                <Button type="primary" block>Editar</Button>
-                <Popconfirm
-                  title="ELIMINAR"
-                  description="DESEA ELIMINAR A"
-                  okText="Confirmar"
-                  cancelText="NO"
-                >
-                  <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
-                </Popconfirm>
-            </Flex>
-          );
+          <Row gutter={[8, 8]} justify="center" align="middle">
+            <Col>
+              <Button type="primary" block>Editar</Button>
+            </Col>
+            <Col>
+              <Popconfirm
+                title="ELIMINAR"
+                description="DESEA ELIMINAR A"
+                okText="Confirmar"
+                cancelText="NO"
+              >
+              <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+              </Popconfirm>
+            </Col>
+          </Row>
+        );
     }
     
   },
