@@ -1,97 +1,108 @@
-import { Button, Flex, Modal, Popconfirm, Table } from "antd";
+import { Button, Flex, Table, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import { getProductosTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
 import TiendaAddProductos from "../TiendaModales/TiendaAddProductos";
+import TiendaDetalleProducto from "../TiendaModales/TiendaDetalleProducto";
 
-const columns = [
-  {
-    title: "Producto",
-    key: "nombre",
-    dataIndex:"nombre",
-    align: "center",
-  },
-  {
-    title: "Stock",
-    key: "stock",
-    align: "center",
-    dataIndex:"stock",
-    defaultSortOrder: "ascend",
-  },
-  {
-    title: "Precio",
-    key:"precio",
-    dataIndex:"precio",
-    align:"center"
-  },
-  {
-    title: "Descuento",
-    dataIndex:"descuento",
-    key:"descuento",
-    align:"center"
-  },
-  {
-    title:"Ver mas",
-    dataIndex:"",
-    key:"f",
-    align:"center",
-    render:(text,record) =>{
-      return(
-        <Button type="primary" block>+</Button>
-      )
-    }
-  },
-  {
-    title: "Opciones",
-    dataIndex:"",
-    key:"x",
-    align:"center",
-    render:(text,record) =>{
-        return (
-            <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-                <Button type="primary" block>Editar</Button>
-                <Popconfirm
-                  title="ELIMINAR"
-                  description="DESEA ELIMINAR A"
-                  okText="Confirmar"
-                  cancelText="NO"
-                >
-                  <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
-                </Popconfirm>
-            </Flex>
-          );
-    }
-    
-  },
-];
+const TiendaProductos = ({ id, handlerefrescarSideCard1 }) => {
+  const [productosTienda, setProductosTienda] = useState([]);
+  const [idP, setIdP] = useState(null);
+  const [modalProductoAddTiendaAbierto, setModalProductoAddTiendaAbierto] = useState(false);
+  const [modalTiendaDetalleProducto, setModalTiendaDetalleProducto] = useState(false);
 
-const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
+  const toggleModalProductoAdd = () => {
+    setModalProductoAddTiendaAbierto((prev) => !prev);
+  };
 
-    const[productostienda,setproductostienda] = useState([])
-    
-    const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)
+  const showModalTiendaDetalleProducto = (idP) => {
+    setIdP(idP);
+    setModalTiendaDetalleProducto(true);
+  };
 
-    const showModalProductoAddTiendaAbierto = () =>{
-      setModalProductoAddTiendaAbierto(true)
-    }
-
-    const closeModalProductoAddTiendaAbierto = () =>{
-      setModalProductoAddTiendaAbierto(false)
-    }
+  const closeModalTiendaDetalleProducto = () => {
+    setIdP(null);
+    setModalTiendaDetalleProducto(false);
+  };
 
   useEffect(() => {
-    getProductosTienda(id,setproductostienda)
+    getProductosTienda(id, setProductosTienda);
   }, [id]);
 
+  const columns = [
+    {
+      title: "Producto",
+      dataIndex: "nombre",
+      key: "nombre",
+      align: "center",
+    },
+    {
+      title: "Stock",
+      dataIndex: "stock",
+      key: "stock",
+      align: "center",
+      defaultSortOrder: "ascend",
+    },
+    {
+      title: "Precio",
+      dataIndex: "precio",
+      key: "precio",
+      align: "center",
+    },
+    {
+      title: "Descuento",
+      dataIndex: "descuento",
+      key: "descuento",
+      align: "center",
+    },
+    {
+      title: "Ver más",
+      key: "verMas",
+      align: "center",
+      render: (_, record) => (
+        <Button type="primary" block onClick={() => showModalTiendaDetalleProducto(record.producto_id)}>+</Button>
+      ),
+    },
+    {
+      title: "Opciones",
+      key: "opciones",
+      align: "center",
+      render: (_, record) => (
+        <Flex gap="small" align="center" horizontal="true" style={{ width: "100%" }} className="opciones-botones">
+          <Button type="primary" block>Editar</Button>
+          <Popconfirm
+            title="ELIMINAR"
+            description="¿DESEA ELIMINAR A?"
+            okText="Confirmar"
+            cancelText="NO"
+          >
+            <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+          </Popconfirm>
+        </Flex>
+      ),
+    },
+  ];
+
   return (
-    <> 
-      <Button onClick={showModalProductoAddTiendaAbierto}>Añadir Nuevo Producto</Button>
-      <Table columns={columns}
-      pagination={{ pageSize: 5 }}
-      bordered
-      dataSource={[...productostienda]}
-      rowKey={(record) => record.producto_id}></Table>
-      <TiendaAddProductos ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
-      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}/>
+    <>
+      <Button onClick={toggleModalProductoAdd}>Añadir Nuevo Producto</Button>
+      <Table
+        columns={columns}
+        pagination={{ pageSize: 5 }}
+        bordered
+        dataSource={productosTienda}
+        rowKey="producto_id"
+      />
+      <TiendaAddProductos
+        ModalProductoAddTiendaAbierto={modalProductoAddTiendaAbierto}
+        closeModalProductoAddTiendaAbierto={toggleModalProductoAdd}
+        id={id}
+      />
+      <TiendaDetalleProducto
+        ModalTiendaDetalleProducto={modalTiendaDetalleProducto}
+        closeModalTiendaDetalleProducto={closeModalTiendaDetalleProducto}
+        id={id}
+        idp={idP}
+      />
     </>
   );
 };

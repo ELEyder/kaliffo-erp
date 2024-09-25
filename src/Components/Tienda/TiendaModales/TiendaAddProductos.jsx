@@ -1,28 +1,29 @@
-import React from "react";
-import {
-  Button,
-  Card,
-  Col,
-  DatePicker,
-  Form,
-  Input,
-  Modal,
-  Row,
-  Select,
-  Space,
-} from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Form, Input, Modal, Select, Space } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import {
+  getColoresProductos,
+  getProductosNuevos,
+} from "../../../Shared/Funciones/Fucniones_Tienda";
 
 const TiendaAddProductos = ({
   ModalProductoAddTiendaAbierto,
   closeModalProductoAddTiendaAbierto,
+  id,
 }) => {
   const [form] = Form.useForm();
+
+  const [Productos, setProductos] = useState([]);
+  const [Colores, setColores] = useState([]);
+
+  useEffect(() => {
+    getProductosNuevos(id, setProductos);
+  }, []);
 
   return (
     <Modal
       getContainer={false}
-      title={`Añadir nuevo trabajador`}
+      title={`Añadir nuevo producto`}
       open={ModalProductoAddTiendaAbierto}
       onCancel={closeModalProductoAddTiendaAbierto}
       style={{ textTransform: "uppercase" }}
@@ -62,11 +63,25 @@ const TiendaAddProductos = ({
                   }
                 >
                   <Form.Item label="Producto" name={[campo.name, "producto"]}>
-                    <Input />
+                    <Select
+                      showSearch
+                      placeholder="Seleccionar Producto"
+                      filterOption={(input, option) =>
+                        (option?.label ?? "")
+                          .toLowerCase()
+                          .includes(input.toLowerCase())
+                      }
+                      onChange={getColoresProductos(form, setColores)}
+                      options={Productos.map((producto) => ({
+                        value: producto.producto_id,
+                        label: producto.nombre,
+                        key: producto.producto_id,
+                      }))}
+                    />
                   </Form.Item>
 
                   <Form.Item label="Detalle">
-                    <Form.List name={[campo.name, "lista"]}>
+                    <Form.List name={[campo.name, "detalle"]}>
                       {(subcampos, subopt) => (
                         <div
                           style={{
@@ -81,7 +96,24 @@ const TiendaAddProductos = ({
                                 noStyle
                                 name={[subcampo.name, "color"]}
                               >
-                                <Input placeholder="COLOR" />
+                                <Select
+                                  showSearch
+                                  placeholder="Seleccionar color"
+                                  filterOption={(input, option) =>
+                                    (option?.label ?? "")
+                                      .toLowerCase()
+                                      .includes(input.toLowerCase())
+                                  }
+                                  onChange={getColoresProductos(
+                                    form,
+                                    setColores
+                                  )}
+                                  options={Colores.map((color) => ({
+                                    value: color.color_id,
+                                    label: color.nombre,
+                                    key: color.color_id,
+                                  }))}
+                                />
                               </Form.Item>
 
                               <Form.Item
@@ -105,7 +137,11 @@ const TiendaAddProductos = ({
                               />
                             </Space>
                           ))}
-                          <Button type="dashed" onClick={()=>subopt.add()} block>
+                          <Button
+                            type="dashed"
+                            onClick={() => subopt.add()}
+                            block
+                          >
                             AÑADIR
                           </Button>
                         </div>
@@ -115,10 +151,9 @@ const TiendaAddProductos = ({
                 </Card>
               ))}
 
-              <Button type="dashed" onClick={()=>add()} block>
+              <Button type="dashed" onClick={() => add()} block>
                 + AÑADIR
               </Button>
-
             </div>
           )}
         </Form.List>

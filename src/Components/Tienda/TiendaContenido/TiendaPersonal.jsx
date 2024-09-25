@@ -5,70 +5,51 @@ import TiendaPersonalModal from "../TiendaModales/TiendaPersonalModal";
 import { EliminarUsuario } from "../../../Shared/Funciones/Funciones_Fetch";
 import TiendaAddPersonal from "../TiendaModales/TiendaAddPersonal";
 
-const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
-  const [usuariostienda, setusuariostienda] = useState([]);
-  const [id_personal, setIDPersonal] = useState(null);
-  const [Refrescar, setRefrescar] = useState(false);
+const TiendaPersonal = ({ id, handlerefrescarSideCard1 }) => {
+  const [usuariosTienda, setUsuariosTienda] = useState([]);
+  const [idPersonal, setIdPersonal] = useState(null);
+  const [modalPersonalTiendaAbierto, setModalPersonalTiendaAbierto] = useState(false);
+  const [modalTiendaAddPersonalAbierto, setModalTiendaAddPersonalAbierto] = useState(false);
 
-  const [ModalPersonalTiendaAbierto, setModalPersonalTiendaAbierto] = useState(false);
-  const [ModalTiendaAddPersonalAbierto,setModalTiendaAddPersonalAbierto] = useState(false)
-
-
-  const showModalPersonalTiendaAbierto = (id_personal) => {
-    setIDPersonal(id_personal);
-    setModalPersonalTiendaAbierto(true);
+  const toggleModalPersonalTienda = (id) => {
+    setIdPersonal(id);
+    setModalPersonalTiendaAbierto(!modalPersonalTiendaAbierto);
   };
 
-  const closeModalPersonalTiendaAbierto = () => {
-    setModalPersonalTiendaAbierto(false);
-    setIDPersonal(null);
+  const toggleModalTiendaAddPersonal = () => {
+    setModalTiendaAddPersonalAbierto(!modalTiendaAddPersonalAbierto);
   };
 
-  const showModalTiendaAddPersonalAbierto = () =>{
-    setModalTiendaAddPersonalAbierto(true)
-  }
-
-  const closeModalTiendaAddPersonalAbierto = () =>{
-    setModalTiendaAddPersonalAbierto(false)
-  }
-
-  const refrescarTabla = () => {
-    setRefrescar(true);
+  const handleRefresh = () => {
+    getusuariosTienda(id, setUsuariosTienda);
+    handlerefrescarSideCard1();
   };
 
   const handleEditarExitoso = () => {
-    closeModalPersonalTiendaAbierto();
-    refrescarTabla();
-    handlerefrescarSideCard1()
+    toggleModalPersonalTienda(null);
+    handleRefresh();
   };
 
   const handleAddExitoso = () => {
-    closeModalTiendaAddPersonalAbierto();
-    refrescarTabla();
-    handlerefrescarSideCard1()
+    toggleModalTiendaAddPersonal();
+    handleRefresh();
   };
 
-  const eliminar = (id) =>{
-    if(EliminarUsuario(id)){
-      refrescarTabla()
-      handlerefrescarSideCard1()
+  const eliminarUsuario = (id) => {
+    if (EliminarUsuario(id)) {
+      handleRefresh();
     }
-  }
+  };
 
   useEffect(() => {
-    getusuariosTienda(id, setusuariostienda);
-    if (Refrescar) {
-      getusuariosTienda(id, setusuariostienda);
-      setRefrescar(false); 
-    }
-  }, [id, Refrescar]);
+    getusuariosTienda(id, setUsuariosTienda);
+  }, [id]);
 
   const columns = [
     {
       title: "Nombre",
       key: "nombre",
-      render: (text, record) =>
-        `${record.nombre} ${record.ap_paterno} ${record.ap_materno}`,
+      render: (_, record) => `${record.nombre} ${record.ap_paterno} ${record.ap_materno}`,
       align: "center",
     },
     {
@@ -85,67 +66,56 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
     },
     {
       title: "Opciones",
-      dataIndex: "",
-      key: "x",
+      key: "opciones",
       align: "center",
-      render: (text, record) => {
-        return (
-          <Flex
-            gap="small"
-            align="center"
-            horizontal="true"
-            style={{ width: "100%" }}
-            className="opciones-botones"
+      render: (_, record) => (
+        <Flex gap="small" align="center" horizontal="true" style={{ width: "100%" }} className="opciones-botones">
+          <Button type="primary" block onClick={() => toggleModalPersonalTienda(record.usuario_id)}>
+            Editar
+          </Button>
+          <Popconfirm
+            title="ELIMINAR"
+            description="¿DESEA ELIMINAR A?"
+            okText="Confirmar"
+            cancelText="NO"
+            onConfirm={() => eliminarUsuario(record.usuario_id)}
           >
-            <Button type="primary" block onClick={() => showModalPersonalTiendaAbierto(record.usuario_id)}>
-              Editar
+            <Button block style={{ background: "#f54242", color: "white" }} danger>
+              Eliminar
             </Button>
-            <Popconfirm
-              title="ELIMINAR"
-              description="DESEA ELIMINAR A"
-              okText="Confirmar"
-              cancelText="NO"
-              onConfirm={() => eliminar(record.usuario_id)}
-            >
-              <Button block style={{ background: "#f54242", color: "white" }} danger>
-                Eliminar
-              </Button>
-            </Popconfirm>
-          </Flex>
-        );
-      },
+          </Popconfirm>
+        </Flex>
+      ),
     },
   ];
 
   return (
     <>
-
-      <div style={{margin:"0 auto"}}>
-        <Button onClick={showModalTiendaAddPersonalAbierto}>Añadir Nuevo Personal</Button>
+      <div style={{ margin: "0 auto" }}>
+        <Button onClick={toggleModalTiendaAddPersonal}>Añadir Nuevo Personal</Button>
       </div>
 
       <Table
         columns={columns}
         pagination={{ pageSize: 5 }}
         bordered
-        dataSource={[...usuariostienda]}
-        rowKey={(record) => record.usuario_id}
+        dataSource={usuariosTienda}
+        rowKey="usuario_id"
       />
 
       <TiendaPersonalModal
-        ModalPersonalTiendaAbierto={ModalPersonalTiendaAbierto}
-        closeModalPersonalTiendaAbierto={closeModalPersonalTiendaAbierto}
-        id_personal={id_personal}
+        ModalPersonalTiendaAbierto={modalPersonalTiendaAbierto}
+        closeModalPersonalTiendaAbierto={() => toggleModalPersonalTienda(null)}
+        id_personal={idPersonal}
         handleEditarExitoso={handleEditarExitoso}
       />
 
       <TiendaAddPersonal
-        ModalTiendaAddPersonalAbierto={ModalTiendaAddPersonalAbierto}
-        closeModalTiendaAddPersonalAbierto={closeModalTiendaAddPersonalAbierto}
+        ModalTiendaAddPersonalAbierto={modalTiendaAddPersonalAbierto}
+        closeModalTiendaAddPersonalAbierto={toggleModalTiendaAddPersonal}
         id={id}
         handleAddExitoso={handleAddExitoso}
       />
-
     </>
   );
 };

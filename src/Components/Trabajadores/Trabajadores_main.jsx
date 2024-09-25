@@ -42,8 +42,9 @@ const Trabajadores_main = () => {
     refrescarTabla();
   };
 
-  const eliminar = (id) => {
-    if (EliminarUsuario(id)) {
+  const eliminar = async (id) => {
+    const eliminado = await EliminarUsuario(id);
+    if (eliminado) {
       refrescarTabla();
     }
   };
@@ -53,6 +54,7 @@ const Trabajadores_main = () => {
       <Divider style={{ fontSize: "20px", textTransform: "uppercase", fontWeight: "bold" }}>
         {tipo_trabajador}
       </Divider>
+
       <Tabla_Trabajadores
         tipo_trabajador={tipo_trabajador}
         Refrescar={refrescar}
