@@ -2,6 +2,7 @@ import { Tabs } from "antd";
 import React from "react";
 import TablaIncidencias from "./Tablas/TablaIncidencias";
 import TablaHorario from "./Tablas/TablaHorario"
+import TablaPagos from "./Tablas/TablaPagos"
 import { useParams } from 'react-router-dom'
 
 
@@ -23,7 +24,7 @@ const TrabajadorContenidoMain = () =>{
       {
         key: '3',
         label: 'Pagos',
-        children: "wa",
+        children: <TablaPagos id={ id }/>,
       },
     ];
     return (

@@ -1,91 +1,68 @@
-import { Table, Button, Popconfirm, Row, Col } from "antd";
+import { Table, Button, Popconfirm, Flex } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getProductoTiendas } from "../../../../Shared/Funciones/Funciones_Producto";
+import { getPagosById } from "../../../../Shared/Funciones/Funciones_Usuario";
 
-const ProductoTiendas = ( { id } ) =>{
-    const [tabla, setTabla] = useState([]);
-
-    useEffect(() => {
-        getProductoTiendas(id , setTabla);
-      }, [id]);
-    
+const TablaPagos = ({ id }) =>{
     const columns=[
         {
-            title: "Tienda",
-            dataIndex: "tienda",
-            key: "tienda",
-            align:"center",
+          title: "Monto Pagado",
+          dataIndex: "montoPagado",
+          key: "montoPagado",
+          align:"center",
         },
         {
-            title: "Stock",
-            dataIndex: "stock",
-            key: "stock",
-            align:"center",
-            render(text, record) {
-                let backgroundColor = text >= 50 ? 'green' : '#FCFB77';
-                backgroundColor = text < 20 ? '#f54242' : backgroundColor;
-                let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-                  return {
-                    props: {
-                        style: { background: backgroundColor, padding: "10px"}  
-                    },
-                    children: <p style={{color: color, margin: 0}}>{text}</p>
-                  };
-                }
+          title: "Monto Faltante",
+          dataIndex: "montoFaltante",
+          key: "montoFaltante",
+          align:"center",
         },
         {
-            title: "Precio",
-            dataIndex: "precio",
-            key: "precio",
-            align:"center",
-            
+          title: "Fecha",
+          dataIndex: "fecha",
+          key: "fecha",
+          align:"center",
         },
         {
-            title: "Ver más",
-            key: "verMas",
-            align:"center",
-            render:(text,record) =>{
-                return(
-                  <Button type="primary" block>+</Button>
-                )
-              },
-        },
-        {
+            title: "Estado",
+            dataIndex: "estado",
+            key: "estado",
+            align:"estado",
+            },
+         {
             title: "Opciones",
             key: "opciones",
             align:"center",
             render:(text,record) =>{
                 return (
-                    <Row gutter={[8, 8]} justify="center" align="middle">
-                        <Col>
-                            <Button type="primary" block>Editar</Button>
-                        </Col>
-                        <Col>
-                            <Popconfirm
-                                title="ELIMINAR"
-                                description="DESEA ELIMINAR A"
-                                okText="Confirmar"
-                                cancelText="NO"
-                            >
-                                <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
-                            </Popconfirm>
-                        </Col>
-                    </Row>
-                );
+                    <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
+                        <Button type="primary" block>Editar</Button>
+                        <Popconfirm
+                          title="ELIMINAR"
+                          description="DESEA ELIMINAR A"
+                          okText="Confirmar"
+                          cancelText="NO"
+                        >
+                          <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
+                        </Popconfirm>
+                    </Flex>
+                  );
             }
         },
     ]
+    const [tabla, setTabla] = useState();
 
-
-
+    useEffect(() => {
+        getPagosById(id , setTabla);
+      }, [id]);
 
     return(
        <>
          <Table
          ali
         columns={columns}
-        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
+        dataSource={tabla}
+        pagination={{ pageSize: 5 }}
         >
 
         </Table>
@@ -93,4 +70,4 @@ const ProductoTiendas = ( { id } ) =>{
     )
 }
 
-export default ProductoTiendas
+export default TablaPagos

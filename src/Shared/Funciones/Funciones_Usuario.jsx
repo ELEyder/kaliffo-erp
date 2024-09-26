@@ -14,9 +14,8 @@ export const getIncidenciasById = async (id, setIncidencias) => {
         const fecha_creacion = new Date(detalle.fecha_creacion);
         return {
             ...detalle,
-            incidencia: incidencias[detalle.tipo - 1], // Añadir el tipo de incidencia
-            fecha_creacion: fecha_creacion.toLocaleDateString("es-ES"), // Formatear la fecha
-            id: id // Añadir el id (este valor ya viene en el parámetro de la función)
+            incidencia: incidencias[detalle.tipo - 1],
+            fecha_creacion: fecha_creacion.toLocaleDateString("es-ES"),
         };
     });
     setIncidencias(detallesConNuevoParametro)
@@ -28,4 +27,18 @@ export const getHorarioById = async (id, setHorario) => {
     const productoData= await response.json()
     setHorario(productoData)
     console.log(productoData)
+}
+
+export const getPagosById = async (id, setHorario) => {
+    const incidencias = ["Pagado", "En Proceso"]
+    const response = await fetch(`http://localhost:3000/pago/${id}`)
+    const productoData= await response.json()
+    const detallesConNuevoParametro = productoData.map(detalle => {
+        return {
+            ...detalle,
+            estado: incidencias[detalle.estado], // Añadir el tipo de incidencia
+        };
+    });
+    setHorario(detallesConNuevoParametro)
+    console.log(detallesConNuevoParametro)
 }
