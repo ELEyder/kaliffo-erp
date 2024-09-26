@@ -111,7 +111,7 @@ const Tabla_Trabajadores = ({
         onRow={(record) => {
           return {
             onClick: () => {
-              console.log('Fila clickeada:', record);
+              window.location.href = `/trabajador/${record.usuario_id}`
             },
           };
         }}
