@@ -24,12 +24,8 @@ export const getIncidenciasById = async (id, setIncidencias) => {
 }
 
 export const getHorarioById = async (id, setHorario) => {
-    const incidencias = ["Familiar", "Salud", "Personal"]
-    const response = await fetch(`http://localhost:3000/incidencias/${id}`)
+    const response = await fetch(`http://localhost:3000/asistencia/horasTrabajadas/${id}`)
     const productoData= await response.json()
-    const detallesConNuevoParametro = productoData.map(detalle => ({
-        ...detalle,
-        incidencia: incidencias[detalle.tipo - 1],
-    }));
-    setHorario(detallesConNuevoParametro)
+    setHorario(productoData)
+    console.log(productoData)
 }

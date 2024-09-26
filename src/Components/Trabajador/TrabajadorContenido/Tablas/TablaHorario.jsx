@@ -1,49 +1,51 @@
 import { Table, Button, Popconfirm, Flex } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import { getHorarioById } from "../../../../Shared/Funciones/Funciones_Usuario";
 
 const TablaHorario = ({ id }) =>{
     const columns=[
         {
-            title: "Id",
-            dataIndex: "id",
-            key: "id",
-            render: (text, record, index) => index + 1,
-            align:"center",
-        },
-        {
-            title: "Incidencia",
-            dataIndex: "incidencia",
-            key: "incidencia",
-            align:"center",
-            render(text) {
-              let backgroundColor = text == "Familiar" ? '#FCFB77' : '#f54242';
-              backgroundColor = text == "Personal" ? 'orange' : backgroundColor;
-              let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-                return {
-                  props: {
-                      style: { background: backgroundColor, padding: "10px"}  
-                  },
-                  children: <p style={{color: color, margin: 0}}>{text}</p>
-                };
-              }
-        },
-        {
-            title: "Descripción",
-            dataIndex: "descripcion",
-            key: "descripcion",
-            align:"center",
-            
-        },
-        {
-          title: "Fecha",
-          dataIndex: "fecha",
-          key: "fecha",
+          title: "Hora de Ingreso",
+          dataIndex: "hora_entrada",
+          key: "hora_entrada",
           align:"center",
-          
-      },
+        },
         {
+          title: "Hora de Salida",
+          dataIndex: "hora_salida",
+          key: "hora_salida",
+          align:"center",
+        },
+        {
+          title: "Horas Trabajadas",
+          dataIndex: "horas_trabajadas",
+          key: "horas_trabajadas",
+          align:"center",
+          render: (text) => {
+            // Esta parte se encarga de devolver el contenido de la celda
+            return (
+                <p style={{ margin: 0 }}>{text}</p>
+            );
+         },
+          onCell: (record) => {
+            const [horas, minutos, seg] = record.horas_trabajadas.split(':').map(Number);
+            const totalMinutos = horas * 60 + minutos;
+
+            let backgroundColor = totalMinutos >= 540 ? 'green' : '#FCFB77';
+            backgroundColor = totalMinutos <= 300 ? '#f54242' : backgroundColor;
+            let color = backgroundColor === '#FCFB77' ? 'black' : 'white';
+      
+              return {
+                  style: {
+                      background: backgroundColor,
+                      padding: "10px",
+                      color: color
+                  }
+              };
+          },
+          },
+         {
             title: "Opciones",
             key: "opciones",
             align:"center",
@@ -67,7 +69,7 @@ const TablaHorario = ({ id }) =>{
     const [tabla, setTabla] = useState();
 
     useEffect(() => {
-      getIncidenciasById(id , setTabla);
+      getHorarioById(id , setTabla);
       }, [id]);
 
     return(
