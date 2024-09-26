@@ -108,13 +108,14 @@ const Tabla_Trabajadores = ({
         rowKey={(record) => record.dni}
         bordered
         className="tabla_trabajadores"
-        onRow={(record) => {
-          return {
-            onClick: () => {
-              window.location.href = `/trabajador/${record.usuario_id}`
-            },
-          };
-        }}
+        onRow={(record) => ({
+          onClick: () => {
+            window.location.href = `/trabajador/${record.usuario_id}`
+          },
+          style: {
+            cursor: "pointer",
+          }
+        })}
       />
     </>
   );
