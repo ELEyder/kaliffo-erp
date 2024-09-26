@@ -6,6 +6,7 @@ import Tienda_main from "./Components/Tienda/Tienda_main";
 import Productos_main from "./Components/Productos/Productos_main";
 import Producto_main from "./Components/Producto/Producto_main";
 import ErrorPagina from "./Components/Error/ErrorPagina"
+import { notification } from 'antd'
 export const Routing = () =>{
     return(
         <Routes>
