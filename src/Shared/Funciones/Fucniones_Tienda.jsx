@@ -28,13 +28,11 @@ export const getProductosNuevos = async(id,seteador) =>{
   }
 }
 
-export const getColoresProductos = (form,seteador) => async (event) => {
+export const getColoresProductos =async (value,seteador)=>{
   try {
-    const productoId = event.target.value;
-    const response = await fetch(`http://localhost:3000/producto/colores/${productoId}`);
+    const response = await fetch(`http://localhost:3000/producto/colores/${value}`);
     const data = await response.json();
-
-    seteador(data);
+    seteador([data]);
   } catch (error) {
     console.log("Error al obtener los colores del producto:", error);
   }

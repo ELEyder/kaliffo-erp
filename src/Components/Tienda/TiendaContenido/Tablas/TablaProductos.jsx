@@ -118,7 +118,7 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
       rowKey={(record) => record.producto_id}
       ></Table>
       <TiendaAddProductos ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
-      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}/>
+      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto} id={id}/>
     </>
   );
 };

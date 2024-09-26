@@ -12,13 +12,18 @@ const TiendaAddProductos = ({
   id,
 }) => {
   const [form] = Form.useForm();
-
   const [Productos, setProductos] = useState([]);
   const [Colores, setColores] = useState([]);
-
+  
   useEffect(() => {
     getProductosNuevos(id, setProductos);
-  }, []);
+  }, [id]);
+
+  const handleProductChange = (value) => {
+    setColores([]);
+    form.setFieldValue({})
+    getColoresProductos(value, setColores);
+  };
 
   return (
     <Modal
@@ -38,7 +43,6 @@ const TiendaAddProductos = ({
         form={form}
         layout="vertical"
         labelAlign="center"
-        id="formularioTiendaAddProductos"
         initialValues={{ productos: [{}] }}
         onFinish={async (values) => {
           console.log(values);
@@ -46,19 +50,15 @@ const TiendaAddProductos = ({
       >
         <Form.List name="productos">
           {(campos, { add, remove }) => (
-            <div
-              style={{ display: "flex", rowGap: 16, flexDirection: "column" }}
-            >
-              {campos.map((campo) => (
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {campos.map((campo, index) => (
                 <Card
                   size="small"
                   title={`PRODUCTO ${campo.name + 1}`}
                   key={campo.key}
                   extra={
                     <CloseOutlined
-                      onClick={() => {
-                        remove(campo.name);
-                      }}
+                      onClick={() => remove(campo.name)}
                     />
                   }
                 >
@@ -67,91 +67,57 @@ const TiendaAddProductos = ({
                       showSearch
                       placeholder="Seleccionar Producto"
                       filterOption={(input, option) =>
-                        (option?.label ?? "")
-                          .toLowerCase()
-                          .includes(input.toLowerCase())
+                        (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
                       }
-                      onChange={getColoresProductos(form, setColores)}
+                      onChange={handleProductChange}
                       options={Productos.map((producto) => ({
                         value: producto.producto_id,
                         label: producto.nombre,
-                        key: producto.producto_id,
                       }))}
                     />
                   </Form.Item>
 
-                  <Form.Item label="Detalle">
-                    <Form.List name={[campo.name, "detalle"]}>
-                      {(subcampos, subopt) => (
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            rowGap: 16,
-                          }}
-                        >
-                          {subcampos.map((subcampo) => (
-                            <Space key={subcampo.key}>
-                              <Form.Item
-                                noStyle
-                                name={[subcampo.name, "color"]}
-                              >
-                                <Select
-                                  showSearch
-                                  placeholder="Seleccionar color"
-                                  filterOption={(input, option) =>
-                                    (option?.label ?? "")
-                                      .toLowerCase()
-                                      .includes(input.toLowerCase())
-                                  }
-                                  onChange={getColoresProductos(
-                                    form,
-                                    setColores
-                                  )}
-                                  options={Colores.map((color) => ({
-                                    value: color.color_id,
-                                    label: color.nombre,
-                                    key: color.color_id,
-                                  }))}
-                                />
-                              </Form.Item>
+                  {Colores.length > 0 ? (
+                    <Form.Item label="Detalle">
+                      <Form.List name={[campo.name, "detalle"]}>
+                        {(subcampos, { add: addSubcampo, remove: removeSubcampo }) => (
+                          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                            {subcampos.map((subcampo) => (
+                              <Space key={subcampo.key}>
+                                <Form.Item noStyle name={[subcampo.name, "color"]}>
+                                  <Select
+                                    showSearch
+                                    placeholder="Seleccionar color"
+                                    options={Colores.map((color) => ({
+                                      value: color.color_id,
+                                      label: color.nombre,
+                                    }))}
+                                  />
+                                </Form.Item>
 
-                              <Form.Item
-                                noStyle
-                                name={[subcampo.name, "talla"]}
-                              >
-                                <Input placeholder="Talla" />
-                              </Form.Item>
+                                <Form.Item noStyle name={[subcampo.name, "talla"]}>
+                                  <Input placeholder="Talla" />
+                                </Form.Item>
 
-                              <Form.Item
-                                noStyle
-                                name={[subcampo.name, "cantidad"]}
-                              >
-                                <Input placeholder="Cantidad" />
-                              </Form.Item>
+                                <Form.Item noStyle name={[subcampo.name, "cantidad"]}>
+                                  <Input placeholder="Cantidad" />
+                                </Form.Item>
 
-                              <CloseOutlined
-                                onClick={() => {
-                                  subopt.remove(subcampo.name);
-                                }}
-                              />
-                            </Space>
-                          ))}
-                          <Button
-                            type="dashed"
-                            onClick={() => subopt.add()}
-                            block
-                          >
-                            AÑADIR
-                          </Button>
-                        </div>
-                      )}
-                    </Form.List>
-                  </Form.Item>
+                                <CloseOutlined onClick={() => removeSubcampo(subcampo.name)} />
+                              </Space>
+                            ))}
+                            <Button type="dashed" onClick={addSubcampo} block>
+                              AÑADIR
+                            </Button>
+                          </div>
+                        )}
+                      </Form.List>
+                    </Form.Item>
+                  ) : null}
                 </Card>
               ))}
 
-              <Button type="dashed" onClick={() => add()} block>
+              <Button type="dashed" onClick={add} block>
                 + AÑADIR
               </Button>
             </div>
