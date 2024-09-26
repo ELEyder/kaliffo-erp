@@ -16,24 +16,17 @@ const ProductoColores = ({ id }) =>{
             dataIndex: "tipo",
             key: "tipo",
             align:"center",
-            render: (text) => {
-                // Cambia la clase según el valor del stock
-                let backgroundColor = text >= 50 ? 'green' : 'yellow';
-                backgroundColor = text < 20 ? 'red' : backgroundColor;
-                let color = backgroundColor == 'yellow' ? 'black' : 'white'; 
-                return (
-                  <span style={{ 
-                      display: 'block', 
-                      width: '100%', 
-                      backgroundColor: backgroundColor, 
-                      color: color, 
-                      padding: '8px', 
-                      textAlign: 'center', 
-                    }}>
-                    {text}
-                  </span>
-                );    
-              },
+            render(text, record) {
+              let backgroundColor = text == 1 ? '#FCFB77' : '#f54242';
+              backgroundColor = text == 3 ? 'orange' : backgroundColor;
+              let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
+                return {
+                  props: {
+                      style: { background: backgroundColor, padding: "10px"}  
+                  },
+                  children: <p style={{color: color, margin: 0}}>{text}</p>
+                };
+              }
         },
         {
             title: "Descripción",
@@ -80,8 +73,6 @@ const ProductoColores = ({ id }) =>{
             }
         },
     ]
-
-
     const [tabla, setTabla] = useState();
 
     useEffect(() => {

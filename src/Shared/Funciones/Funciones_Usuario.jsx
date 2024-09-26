@@ -5,7 +5,14 @@ export const getUsuarioById = async (id, setUsuario) => {
 }
 
 export const getIncidenciasById = async (id, setUsuario) => {
-    const response = await fetch(`http://localhost:3000/incidencias/${id}`)
+    const incidencias = ["Familiar", "Salud", "Personal"]
+    // const response = await fetch(`http://localhost:3000/incidencias/${id}`)
+    const response = await fetch(`http://localhost:3000/incidencia/`)
     const productoData= await response.json()
-    setUsuario(productoData)
+    const detallesConNuevoParametro = productoData.map(detalle => ({
+        ...detalle,
+        incidencia: incidencias[detalle.tipo - 1]
+    }));
+    setUsuario(detallesConNuevoParametro)
+    console.log(detallesConNuevoParametro)
 }
