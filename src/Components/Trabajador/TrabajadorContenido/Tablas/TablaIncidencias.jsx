@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuario";
 
-const ProductoColores = ({ id }) =>{
+const TablaIncidencias = ({ id }) =>{
     const columns=[
         {
             title: "Id",
@@ -11,36 +11,57 @@ const ProductoColores = ({ id }) =>{
             key: "id",
             render: (text, record, index) => index + 1,
             align:"center",
+            onCell: () => ({
+              style: { padding: "10px" }
+            }),
+            onHeaderCell: () => ({
+              style: { padding: "10px" }
+            }),
         },
         {
             title: "Incidencia",
             dataIndex: "incidencia",
             key: "incidencia",
             align:"center",
-            render(text) {
-              let backgroundColor = text == "Familiar" ? '#FCFB77' : '#f54242';
-              backgroundColor = text == "Personal" ? 'orange' : backgroundColor;
-              let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-                return {
-                  props: {
-                      style: { background: backgroundColor, padding: "10px"}  
-                  },
-                  children: <p style={{color: color, margin: 0}}>{text}</p>
-                };
+            onCell: (record) => ({
+              style: {
+                background: record.incidencia === "Familiar" 
+                  ? '#FCFB77' 
+                  : record.incidencia === "Personal" 
+                  ? 'orange' 
+                  : '#f54242',
+                color: record.incidencia === "Salud" ? "white" : "black",
+                padding: "10px"
               }
+            }),
+            onHeaderCell: () => ({
+              style: { padding: "10px" }
+            }),
         },
         {
             title: "Descripción",
             dataIndex: "descripcion",
             key: "descripcion",
             align:"center",
+            onCell: () => ({
+              style: { padding: "10px" }
+            }),
+            onHeaderCell: () => ({
+              style: { padding: "10px" }
+            }),
             
         },
         {
           title: "Fecha",
-          dataIndex: "fecha",
-          key: "fecha",
+          dataIndex: "fecha_creacion",
+          key: "fecha_creacion",
           align:"center",
+          onCell: () => ({
+            style: { padding: "10px" }
+          }),
+          onHeaderCell: () => ({
+            style: { padding: "10px" }
+          }),
           
       },
         {
@@ -61,7 +82,13 @@ const ProductoColores = ({ id }) =>{
                         </Popconfirm>
                     </Flex>
                   );
-            }
+            },
+            onCell: () => ({
+              style: { padding: "10px" }
+            }),
+            onHeaderCell: () => ({
+              style: { padding: "10px" }
+            }),
         },
     ]
     const [tabla, setTabla] = useState();
@@ -73,7 +100,6 @@ const ProductoColores = ({ id }) =>{
     return(
        <>
          <Table
-         ali
         columns={columns}
         dataSource={tabla}
         pagination={{ pageSize: 5 }}
@@ -84,4 +110,4 @@ const ProductoColores = ({ id }) =>{
     )
 }
 
-export default ProductoColores
+export default TablaIncidencias

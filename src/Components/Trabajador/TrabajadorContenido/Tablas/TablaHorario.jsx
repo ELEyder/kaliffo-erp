@@ -6,47 +6,43 @@ import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuar
 const TablaHorario = ({ id }) =>{
     const columns=[
         {
+            title: "Id",
+            dataIndex: "id",
+            key: "id",
+            render: (text, record, index) => index + 1,
+            align:"center",
+        },
+        {
+            title: "Incidencia",
+            dataIndex: "incidencia",
+            key: "incidencia",
+            align:"center",
+            render(text) {
+              let backgroundColor = text == "Familiar" ? '#FCFB77' : '#f54242';
+              backgroundColor = text == "Personal" ? 'orange' : backgroundColor;
+              let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
+                return {
+                  props: {
+                      style: { background: backgroundColor, padding: "10px"}  
+                  },
+                  children: <p style={{color: color, margin: 0}}>{text}</p>
+                };
+              }
+        },
+        {
+            title: "Descripción",
+            dataIndex: "descripcion",
+            key: "descripcion",
+            align:"center",
+            
+        },
+        {
           title: "Fecha",
           dataIndex: "fecha",
           key: "fecha",
           align:"center",
-        },
-        {
-            title: "Inicio",
-            dataIndex: "inicio",
-            key: "inicio",
-            align:"center",
-        },
-        {
-          title: "Fin",
-          dataIndex: "fin",
-          key: "fin",
-          align:"center",
-        },
-        {
-            title: "Horas Trabajadas",
-            dataIndex: "horas",
-            key: "horas",
-            align:"center",
-            render: (text) => {
-                // Cambia la clase según el valor del stock
-                let backgroundColor = text >= 9 ? 'green' : 'yellow';
-                backgroundColor = text < 5 ? 'red' : backgroundColor;
-                let color = backgroundColor == 'yellow' ? 'black' : 'white'; 
-                return (
-                  <span style={{ 
-                      display: 'block', 
-                      width: '100%', 
-                      backgroundColor: backgroundColor, 
-                      color: color, 
-                      padding: '8px', 
-                      textAlign: 'center', 
-                    }}>
-                    {text}
-                  </span>
-                );    
-              },
-        },
+          
+      },
         {
             title: "Opciones",
             key: "opciones",
@@ -54,6 +50,7 @@ const TablaHorario = ({ id }) =>{
             render:(text,record) =>{
                 return (
                     <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
+                        <Button type="primary" block>Editar</Button>
                         <Popconfirm
                           title="ELIMINAR"
                           description="DESEA ELIMINAR A"
@@ -67,8 +64,6 @@ const TablaHorario = ({ id }) =>{
             }
         },
     ]
-
-
     const [tabla, setTabla] = useState();
 
     useEffect(() => {
@@ -81,6 +76,7 @@ const TablaHorario = ({ id }) =>{
          ali
         columns={columns}
         dataSource={tabla}
+        pagination={{ pageSize: 5 }}
         >
 
         </Table>

@@ -12,3 +12,7 @@
     background-color: rgb(255, 157, 157);
     /* Color de fondo para filas impares */
 }
+
+.ant-table-cell {
+    padding: 10px !important;
+}
