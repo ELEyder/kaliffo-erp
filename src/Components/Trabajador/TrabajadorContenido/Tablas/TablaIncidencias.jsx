@@ -6,19 +6,20 @@ import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuar
 const ProductoColores = ({ id }) =>{
     const columns=[
         {
+            title: "Id",
+            dataIndex: "id",
+            key: "id",
+            render: (text, record, index) => index + 1,
+            align:"center",
+        },
+        {
             title: "Incidencia",
             dataIndex: "incidencia",
             key: "incidencia",
             align:"center",
-        },
-        {
-            title: "Tipo",
-            dataIndex: "tipo",
-            key: "tipo",
-            align:"center",
-            render(text, record) {
-              let backgroundColor = text == 1 ? '#FCFB77' : '#f54242';
-              backgroundColor = text == 3 ? 'orange' : backgroundColor;
+            render(text) {
+              let backgroundColor = text == "Familiar" ? '#FCFB77' : '#f54242';
+              backgroundColor = text == "Personal" ? 'orange' : backgroundColor;
               let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
                 return {
                   props: {
@@ -75,6 +76,7 @@ const ProductoColores = ({ id }) =>{
          ali
         columns={columns}
         dataSource={tabla}
+        pagination={{ pageSize: 5 }}
         >
 
         </Table>

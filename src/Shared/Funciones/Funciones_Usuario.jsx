@@ -11,7 +11,8 @@ export const getIncidenciasById = async (id, setUsuario) => {
     const productoData= await response.json()
     const detallesConNuevoParametro = productoData.map(detalle => ({
         ...detalle,
-        incidencia: incidencias[detalle.tipo - 1]
+        incidencia: incidencias[detalle.tipo - 1],
+        id: id
     }));
     setUsuario(detallesConNuevoParametro)
     console.log(detallesConNuevoParametro)
