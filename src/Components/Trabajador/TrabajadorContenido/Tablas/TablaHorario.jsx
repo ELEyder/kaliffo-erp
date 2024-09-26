@@ -6,6 +6,12 @@ import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuar
 const TablaHorario = ({ id }) =>{
     const columns=[
         {
+          title: "Fecha",
+          dataIndex: "fecha",
+          key: "fecha",
+          align:"center",
+        },
+        {
             title: "Inicio",
             dataIndex: "inicio",
             key: "inicio",
@@ -42,23 +48,12 @@ const TablaHorario = ({ id }) =>{
               },
         },
         {
-            title: "Ver más",
-            key: "verMas",
-            align:"center",
-            render:(text,record) =>{
-                return(
-                  <Button type="primary" block>+</Button>
-                )
-              },
-        },
-        {
             title: "Opciones",
             key: "opciones",
             align:"center",
             render:(text,record) =>{
                 return (
                     <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-                        <Button type="primary" block>Editar</Button>
                         <Popconfirm
                           title="ELIMINAR"
                           description="DESEA ELIMINAR A"

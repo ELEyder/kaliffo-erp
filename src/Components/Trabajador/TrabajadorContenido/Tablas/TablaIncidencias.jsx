@@ -43,16 +43,6 @@ const ProductoColores = ({ id }) =>{
           
       },
         {
-            title: "Ver más",
-            key: "verMas",
-            align:"center",
-            render:(text,record) =>{
-                return(
-                  <Button type="primary" block>+</Button>
-                )
-              },
-        },
-        {
             title: "Opciones",
             key: "opciones",
             align:"center",
