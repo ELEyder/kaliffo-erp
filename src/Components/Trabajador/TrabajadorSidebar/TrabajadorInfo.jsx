@@ -27,8 +27,8 @@ const TrabajadorInfo = () =>{
           dataSource={[
             { title: "DNI", value: usuario.dni },
             { title: "TELÉFONO", value: usuario.telefono },
-            { title: "HORAS TRABAJADAS", value: "Sin datos" },
-            { title: "NUM. INCIDENCIAS", value: "Sin datos" },
+            { title: "HORAS TRABAJADAS", value: "Sin datos" },  
+            { title: "NUM. INCIDENCIAS", value: usuario.nroIncidencias },
             { title: "SALARIO", value: "Sin datos" },
           ]}
           renderItem={(item) => (

@@ -1,4 +1,4 @@
-import { Table, Button, Popconfirm, Flex } from "antd";
+import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
 import { getHorarioById } from "../../../../Shared/Funciones/Funciones_Usuario";
@@ -50,20 +50,24 @@ const TablaHorario = ({ id }) =>{
             key: "opciones",
             align:"center",
             render:(text,record) =>{
-                return (
-                    <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-                        <Button type="primary" block>Editar</Button>
-                        <Popconfirm
-                          title="ELIMINAR"
-                          description="DESEA ELIMINAR A"
-                          okText="Confirmar"
-                          cancelText="NO"
-                        >
-                          <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
-                        </Popconfirm>
-                    </Flex>
-                  );
-            }
+              return (
+                  <Row gutter={[8, 8]} justify="center" align="middle">
+                      <Col>
+                          <Button type="primary" block>Editar</Button>
+                      </Col>
+                      <Col>
+                          <Popconfirm
+                              title="ELIMINAR"
+                              description="DESEA ELIMINAR A"
+                              okText="Confirmar"
+                              cancelText="NO"
+                          >
+                              <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+                          </Popconfirm>
+                      </Col>
+                  </Row>
+              );
+          }
         },
     ]
     const [tabla, setTabla] = useState();
