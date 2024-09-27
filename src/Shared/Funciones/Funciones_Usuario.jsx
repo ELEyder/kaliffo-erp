@@ -44,3 +44,75 @@ export const getPagosById = async (id, setHorario) => {
     setHorario(detallesConNuevoParametro)
     console.log(detallesConNuevoParametro)
 }
+
+export const updateIncidenciaById = async (id, values, reload, setReload) => {
+    const incidencia = {
+        tipo : values.tipo,
+        descripcion : values.descripcion,
+    }
+    console.log(incidencia)
+    const response = await fetch(`http://localhost:3000/incidencia/update/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(incidencia),
+    })
+    setReload(reload == true ? false : true)
+    console.log(response)
+}
+
+export const updateHorarioById = async (id, reload, setReload) => {
+    const response = await fetch(`http://localhost:3000/asistencia/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    })
+    setReload(reload == true ? false : true)
+    console.log(response)
+}
+
+export const updatePagoById = async (id, reload, setReload) => {
+    const response = await fetch(`http://localhost:3000/pago/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    })
+    setReload(reload == true ? false : true)
+    console.log(response)
+}
+
+export const deleteIncidenciaById = async (id, reload, setReload) => {
+    const response = await fetch(`http://localhost:3000/incidencia/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    })
+    setReload(reload == true ? false : true)
+    console.log(response)
+}
+
+export const deleteHorarioById = async (id, reload, setReload) => {
+    const response = await fetch(`http://localhost:3000/asistencia/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    })
+    setReload(reload == true ? false : true)
+    console.log(response)
+}
+
+export const deletePagoById = async (id, reload, setReload) => {
+    const response = await fetch(`http://localhost:3000/pago/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+    })
+    setReload(reload == true ? false : true)
+    console.log(response)
+}

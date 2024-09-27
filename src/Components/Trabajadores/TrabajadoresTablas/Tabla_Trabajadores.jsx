@@ -53,12 +53,19 @@ const Tabla_Trabajadores = ({
         return (
           <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
             <Col>
-              <Button type="primary" onClick={() => editar(record.usuario_id)} block>
+              <Button
+              type="primary"
+              onClick={(e) =>{
+                e.stopPropagation()
+                editar(record.usuario_id)
+              }}
+              block
+              >
                 Editar
               </Button>
             </Col>
             <Col>
-              <Button style={{ background: "#ffdf5e", color: "white" }} onClick={() => incidencias(record.usuario_id)} block>
+              <Button style={{ background: "#ffdf5e", color: "black" }} onClick={() => incidencias(record.usuario_id)} block>
                 Incidencias
               </Button>
             </Col>
@@ -67,16 +74,23 @@ const Tabla_Trabajadores = ({
                 title="ELIMINAR"
                 description="DESEA ELIMINAR A"
                 okText="Confirmar"
-                onConfirm={() => eliminar(record.usuario_id)}
+                onConfirm={(e) =>{
+                  e.stopPropagation();
+                  eliminar(record.usuario_id)
+                }} 
                 cancelText="NO"
               >
-                <Button block style={{ background: "#f54242", color: "white" }} danger>
+                <Button block style={{ background: "#f54242", color: "white" }}
+                danger
+                onClick={(e) =>{
+                  e.stopPropagation();
+                }} 
+                >
                   Eliminar
                 </Button>
               </Popconfirm>
             </Col>
           </Row>
-
         );
       },
     },

@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getHorarioById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import { getHorarioById, deleteHorarioById} from "../../../../Shared/Funciones/Funciones_Usuario";
 
 const TablaHorario = ({ id }) =>{
     const columns=[
@@ -58,6 +58,9 @@ const TablaHorario = ({ id }) =>{
                               description="DESEA ELIMINAR A"
                               okText="Confirmar"
                               cancelText="NO"
+                              onConfirm={(e) => {
+                                deleteHorarioById(record.horario_id, reload, setReload)
+                              }}
                           >
                               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
                           </Popconfirm>
@@ -68,10 +71,11 @@ const TablaHorario = ({ id }) =>{
         },
     ]
     const [tabla, setTabla] = useState();
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
       getHorarioById(id , setTabla);
-      }, [id]);
+      }, [id, reload]);
 
     return(
        <>

@@ -1,7 +1,9 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import { getIncidenciasById, deleteIncidenciaById, updateIncidenciaById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import Modal_editar from "../Modals/Modal_editar";
+// import { Modal_añadir} from "../Modals/Modal_añadir";
 
 const TablaIncidencias = ({ id }) =>{
     const columns=[
@@ -48,7 +50,15 @@ const TablaIncidencias = ({ id }) =>{
               return (
                   <Row gutter={[8, 8]} justify="center" align="middle">
                       <Col>
-                          <Button type="primary" block>Editar</Button>
+                          <Button type="primary"
+                          block
+                          onClick={(e) => {
+                            setIncidencia(record)
+                            setModalEditarAbierto(true)
+                          }}
+                          >
+                            Editar
+                          </Button>
                       </Col>
                       <Col>
                           <Popconfirm
@@ -56,6 +66,9 @@ const TablaIncidencias = ({ id }) =>{
                               description="DESEA ELIMINAR A"
                               okText="Confirmar"
                               cancelText="NO"
+                              onConfirm={(e) => {
+                                deleteIncidenciaById(record.incidencia_id, reload, setReload)
+                              }}
                           >
                               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
                           </Popconfirm>
@@ -65,11 +78,15 @@ const TablaIncidencias = ({ id }) =>{
           }
         },
     ]
-    const [tabla, setTabla] = useState();
+
+    const [tabla, setTabla] = useState([]);
+    const [incidencia, setIncidencia] = useState([]);
+    const [reload, setReload] = useState(false);
+    const [ModalEditarAbierto, setModalEditarAbierto] = useState(false);
 
     useEffect(() => {
       getIncidenciasById(id , setTabla);
-      }, [id]);
+      }, [id, reload]);
 
     return(
        <>
@@ -80,6 +97,13 @@ const TablaIncidencias = ({ id }) =>{
         >
 
         </Table>
+        <Modal_editar
+        ModalEditarAbierto = {ModalEditarAbierto}
+        setModalEditarAbierto = {setModalEditarAbierto}
+        setReload = {setReload}
+        reload = {reload}
+        values = {incidencia}
+        />
        </>
     )
 }
