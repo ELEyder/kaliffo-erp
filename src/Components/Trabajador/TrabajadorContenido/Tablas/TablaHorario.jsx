@@ -70,7 +70,7 @@ const TablaHorario = ({ id }) =>{
           }
         },
     ]
-    const [tabla, setTabla] = useState();
+    const [tabla, setTabla] = useState([]);
     const [reload, setReload] = useState(false);
 
     useEffect(() => {

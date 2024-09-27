@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getPagosById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import { getPagosById, deletePagoById } from "../../../../Shared/Funciones/Funciones_Usuario";
 
 const TablaPagos = ({ id }) =>{
     const columns=[
@@ -54,6 +54,9 @@ const TablaPagos = ({ id }) =>{
                               description="DESEA ELIMINAR A"
                               okText="Confirmar"
                               cancelText="NO"
+                              onConfirm={(e) => {
+                                deletePagoById(record.pago_id, reload, setReload)
+                              }}
                           >
                               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
                           </Popconfirm>
@@ -63,7 +66,8 @@ const TablaPagos = ({ id }) =>{
           }
         },
     ]
-    const [tabla, setTabla] = useState();
+    const [tabla, setTabla] = useState([]);
+    const [reload, setReload] = useState(false);
 
     useEffect(() => {
         getPagosById(id , setTabla);
