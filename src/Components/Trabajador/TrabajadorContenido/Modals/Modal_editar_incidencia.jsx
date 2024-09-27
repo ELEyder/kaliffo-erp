@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {Form, Input, Modal, Select } from "antd";
-import { CargarEditar, fetchTiendas,manejotexto, editar } from "../../../../Shared/Funciones/Funciones_Fetch";
 import { updateIncidenciaById } from "../../../../Shared/Funciones/Funciones_Usuario";
 const { Option } = Select;
-const Modal_editar = ({
+const Modal_editar_incidencia = ({
   ModalEditarAbierto,
   setModalEditarAbierto,
   tipo_trabajador,
-  id,
   reload,
   setReload,
   values
@@ -59,7 +57,7 @@ const Modal_editar = ({
             },
           ]}
         >
-          <Input onChange={manejotexto(form, "nombreE")} />
+          <Input/>
         </Form.Item>
         <Form.Item
           style={{ marginTop: 20 }}
@@ -86,4 +84,4 @@ const Modal_editar = ({
   );
 };
 
-export default Modal_editar;
+export default Modal_editar_incidencia;

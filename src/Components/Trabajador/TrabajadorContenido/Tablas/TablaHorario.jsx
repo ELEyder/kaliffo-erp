@@ -82,7 +82,7 @@ const TablaHorario = ({ id }) =>{
          <Table
          ali
         columns={columns}
-        dataSource={tabla}
+        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
         pagination={{ pageSize: 5 }}
         >
 

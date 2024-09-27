@@ -1,8 +1,8 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getIncidenciasById, deleteIncidenciaById, updateIncidenciaById } from "../../../../Shared/Funciones/Funciones_Usuario";
-import Modal_editar from "../Modals/Modal_editar";
+import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import Modal_editar_incidencia from "../Modals/Modal_editar_incidencia";
 // import { Modal_añadir} from "../Modals/Modal_añadir";
 
 const TablaIncidencias = ({ id }) =>{
@@ -92,12 +92,12 @@ const TablaIncidencias = ({ id }) =>{
        <>
          <Table
         columns={columns}
-        dataSource={tabla}
+        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
         pagination={{ pageSize: 5 }}
         >
 
         </Table>
-        <Modal_editar
+        <Modal_editar_incidencia
         ModalEditarAbierto = {ModalEditarAbierto}
         setModalEditarAbierto = {setModalEditarAbierto}
         setReload = {setReload}
