@@ -32,7 +32,12 @@ const columns = [
     title: "Precio",
     key:"precio",
     dataIndex:"precio",
-    align:"center"
+    align:"center",
+    render(text) {
+      return {
+        children: "S/" + text
+      };
+    }
   },
   {
     title: "Descuento",
@@ -47,7 +52,7 @@ const columns = [
           props: {
               style: { background: backgroundColor, padding: "10px"}  
           },
-          children: <p style={{color: color, margin: 0}}>{text}</p>
+          children: <p style={{color: color, margin: 0}}>{text}%</p>
         };
       }
   },
