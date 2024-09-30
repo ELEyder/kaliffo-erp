@@ -28,9 +28,12 @@ const TrabajadorInfo = () =>{
           dataSource={[
             { title: "DNI", value: usuario.dni },
             { title: "TELÉFONO", value: usuario.telefono },
-            { title: "HORAS TRABAJADAS", value: "Sin datos" },  
+            { title: "HORAS TRABAJADAS", value: usuario?.nroHoras?.min_trabajados 
+              ? (usuario.nroHoras.min_trabajados / 60)
+              : 'Cargando...'
+           },  
             { title: "NUM. INCIDENCIAS", value: usuario.nroIncidencias },
-            { title: "SALARIO", value: "Sin datos" },
+            { title: "SALARIO", value: "S/ " + usuario.sueldo },
           ]}
           renderItem={(item) => (
             <List.Item>

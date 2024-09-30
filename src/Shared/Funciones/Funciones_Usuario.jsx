@@ -1,7 +1,8 @@
 export const getUsuarioById = async (id, setUsuario) => {
     const response = await fetch(`http://localhost:3000/usuario/${id}`)
-    const productoData= await response.json()
-    setUsuario(productoData)
+    const usuarioData= await response.json()
+    setUsuario(usuarioData)
+    console.log(usuarioData)
 }
 
 export const getIncidenciasById = async (id, setIncidencias) => {

@@ -45,6 +45,28 @@ const Tabla_Trabajadores = ({
       align: "center",
     },
     {
+      title: "Incidencias",
+      dataIndex: "incidencias",
+      key: "incidencias",
+      defaultSortOrder: "ascend",
+      sorter: {
+        compare: (a, b) => a.telefono.localeCompare(b.telefono),
+        multiple: 2,
+      },
+      align: "center",
+    },
+    {
+      title: "Sueldo",
+      dataIndex: "sueldo",
+      key: "sueldo",
+      defaultSortOrder: "ascend",
+      sorter: {
+        compare: (a, b) => a.telefono.localeCompare(b.telefono),
+        multiple: 2,
+      },
+      align: "center",
+    },
+    {
       title: "Opciones",
       dataIndex: "",
       key: "x",
