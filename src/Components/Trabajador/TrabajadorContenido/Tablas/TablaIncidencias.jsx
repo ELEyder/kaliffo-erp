@@ -1,7 +1,9 @@
-import { Table, Button, Popconfirm, Flex } from "antd";
+import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getIncidenciasById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/Funciones/Funciones_Usuario";
+import Modal_editar_incidencia from "../Modals/Modal_editar_incidencia";
+// import { Modal_añadir} from "../Modals/Modal_añadir";
 
 const TablaIncidencias = ({ id }) =>{
     const columns=[
@@ -9,14 +11,7 @@ const TablaIncidencias = ({ id }) =>{
             title: "Id",
             dataIndex: "id",
             key: "id",
-            render: (text, record, index) => index + 1,
             align:"center",
-            onCell: () => ({
-              style: { padding: "10px" }
-            }),
-            onHeaderCell: () => ({
-              style: { padding: "10px" }
-            }),
         },
         {
             title: "Incidencia",
@@ -34,78 +29,82 @@ const TablaIncidencias = ({ id }) =>{
                 padding: "10px"
               }
             }),
-            onHeaderCell: () => ({
-              style: { padding: "10px" }
-            }),
         },
         {
             title: "Descripción",
             dataIndex: "descripcion",
             key: "descripcion",
-            align:"center",
-            onCell: () => ({
-              style: { padding: "10px" }
-            }),
-            onHeaderCell: () => ({
-              style: { padding: "10px" }
-            }),
-            
+            align:"center", 
         },
         {
           title: "Fecha",
           dataIndex: "fecha_creacion",
           key: "fecha_creacion",
           align:"center",
-          onCell: () => ({
-            style: { padding: "10px" }
-          }),
-          onHeaderCell: () => ({
-            style: { padding: "10px" }
-          }),
-          
       },
         {
             title: "Opciones",
             key: "opciones",
             align:"center",
             render:(text,record) =>{
-                return (
-                    <Flex gap="small" align="center" horizontal="true" style={{width:"100%"}} className="opciones-botones">
-                        <Button type="primary" block>Editar</Button>
-                        <Popconfirm
-                          title="ELIMINAR"
-                          description="DESEA ELIMINAR A"
-                          okText="Confirmar"
-                          cancelText="NO"
-                        >
-                          <Button block style={{background:"#f54242",color:"white"}} danger>Eliminar</Button>
-                        </Popconfirm>
-                    </Flex>
-                  );
-            },
-            onCell: () => ({
-              style: { padding: "10px" }
-            }),
-            onHeaderCell: () => ({
-              style: { padding: "10px" }
-            }),
+              return (
+                  <Row gutter={[8, 8]} justify="center" align="middle">
+                      <Col>
+                          <Button type="primary"
+                          block
+                          onClick={(e) => {
+                            setIncidencia(record)
+                            setModalEditarAbierto(true)
+                          }}
+                          >
+                            Editar
+                          </Button>
+                      </Col>
+                      <Col>
+                          <Popconfirm
+                              title="ELIMINAR"
+                              description="DESEA ELIMINAR A"
+                              okText="Confirmar"
+                              cancelText="NO"
+                              onConfirm={(e) => {
+                                deleteIncidenciaById(record.incidencia_id, reload, setReload)
+                              }}
+                          >
+                              <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+                          </Popconfirm>
+                      </Col>
+                  </Row>
+              );
+          }
         },
     ]
-    const [tabla, setTabla] = useState();
+
+    const [tabla, setTabla] = useState([]);
+    const [incidencia, setIncidencia] = useState([]);
+    const [reload, setReload] = useState(false);
+    const [ModalEditarAbierto, setModalEditarAbierto] = useState(false);
 
     useEffect(() => {
       getIncidenciasById(id , setTabla);
-      }, [id]);
+      }, [id, reload]);
 
     return(
        <>
          <Table
         columns={columns}
-        dataSource={tabla}
+        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
         pagination={{ pageSize: 5 }}
         >
 
         </Table>
+        
+        <Modal_editar_incidencia
+        ModalEditarAbierto = {ModalEditarAbierto}
+        setModalEditarAbierto = {setModalEditarAbierto}
+        setReload = {setReload}
+        reload = {reload}
+        values = {incidencia}
+        />
        </>
     )
 }
