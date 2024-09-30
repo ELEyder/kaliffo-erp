@@ -2,6 +2,7 @@ import { Card, List,Button } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUsuarioById } from "../../../Shared/Funciones/Funciones_Usuario";
+import { GetReporteUsuario } from "../../../Shared/Funciones/Funciones_Fetch";
 
 const TrabajadorInfo = () =>{
   const { id } = useParams();
@@ -38,9 +39,10 @@ const TrabajadorInfo = () =>{
             </List.Item>
           )}
         />
-        <Button type="primary" block>
+       <Button type="primary" onClick={() => GetReporteUsuario(id)} block>
           Obtener reporte
         </Button>
+
       </Card>
     )
 }
