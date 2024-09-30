@@ -115,7 +115,15 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
 
   return (
     <> 
-      <Button onClick={showModalProductoAddTiendaAbierto}>Añadir Nuevo Producto</Button>
+    <Row justify = "end">
+      <Button
+      onClick = {showModalProductoAddTiendaAbierto}
+      type = "primary"
+      style = {{
+        margin : "0 0 10px 0"
+      }}
+      >+</Button>
+    </Row>
       <Table columns={columns}
       pagination={{ pageSize: 5 }}
       bordered
