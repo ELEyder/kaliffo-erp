@@ -57,7 +57,7 @@ const Modal_editar = ({
             },
           ]}
         >
-          <Input onChange={manejotexto(form, "nombreE")} />
+          <Input />
         </Form.Item>
         <Form.Item
           style={{ marginTop: 20 }}

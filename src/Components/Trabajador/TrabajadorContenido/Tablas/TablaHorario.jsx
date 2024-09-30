@@ -19,23 +19,18 @@ const TablaHorario = ({ id }) =>{
         },
         {
           title: "Horas Trabajadas",
-          dataIndex: "horas_trabajadas",
-          key: "horas_trabajadas",
+          dataIndex: "min_trabajados",
+          key: "min_trabajados",
           align:"center",
           render: (text) => {
-            // Esta parte se encarga de devolver el contenido de la celda
             return (
-                <p style={{ margin: 0 }}>{text}</p>
+                <p style={{ margin: 0 }}>{text/60}</p>
             );
          },
           onCell: (record) => {
-            const [horas, minutos, seg] = record.horas_trabajadas.split(':').map(Number);
-            const totalMinutos = horas * 60 + minutos;
-
-            let backgroundColor = totalMinutos >= 540 ? 'green' : '#FCFB77';
-            backgroundColor = totalMinutos <= 300 ? '#f54242' : backgroundColor;
+            let backgroundColor = record.min_trabajados >= 540 ? 'green' : '#FCFB77';
+            backgroundColor = record.min_trabajados <= 300 ? '#f54242' : backgroundColor;
             let color = backgroundColor === '#FCFB77' ? 'black' : 'white';
-      
               return {
                   style: {
                       background: backgroundColor,

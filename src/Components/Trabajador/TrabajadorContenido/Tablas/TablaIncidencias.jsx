@@ -97,6 +97,7 @@ const TablaIncidencias = ({ id }) =>{
         >
 
         </Table>
+        
         <Modal_editar_incidencia
         ModalEditarAbierto = {ModalEditarAbierto}
         setModalEditarAbierto = {setModalEditarAbierto}
