@@ -4,7 +4,7 @@ import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 import { getProductosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
 import { deleteProductoById } from "../../../../Shared/Funciones/Producto";
-import TiendaAddProductos from "../../TiendaModales/TiendaAddProductos";
+import ModalAddProducto from "../../TiendaModales/ModalAddProducto";
 
 
 const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
@@ -134,8 +134,11 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
 
       <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => showModalProductoAddTiendaAbierto()} type="primary" icon={<FileAddOutlined />}/>
 
-      <TiendaAddProductos ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
-      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto} id={id}/>
+      <ModalAddProducto
+      ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
+      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}
+      id={id}
+      />
     </>
   );
 };
