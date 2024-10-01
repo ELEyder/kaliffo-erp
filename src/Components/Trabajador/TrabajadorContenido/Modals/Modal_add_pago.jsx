@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Select, ConfigProvider, DatePicker, Form, Input, Modal } from "antd";
-import { addIncidencia } from "../../../../Shared/Funciones/Incidencia"
+import { Select, ConfigProvider, DatePicker, Form, Input, Modal, Row } from "antd";
+import { addPago } from "../../../../Shared/Funciones/Pago"
 const { Option } = Select;
 
-const Modal_add_incidencia = ({
+const Modal_add_pago = ({
   ModalAddOpen,
   setModalAddOpen,
   reload,
@@ -35,7 +35,7 @@ const Modal_add_incidencia = ({
       labelAlign="center"
       id="formulariocrear"
       onFinish={async(values)=>{
-        await addIncidencia(idUsuario, values, reload, setReload)
+        await addPago(idUsuario, values, reload, setReload)
         form.resetFields()
         setModalAddOpen(false)
       }}>
@@ -76,4 +76,4 @@ const Modal_add_incidencia = ({
   );
 };
 
-export default Modal_add_incidencia;
+export default Modal_add_pago;

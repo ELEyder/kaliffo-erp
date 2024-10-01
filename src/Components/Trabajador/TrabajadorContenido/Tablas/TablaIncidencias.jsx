@@ -1,7 +1,8 @@
-  import { Table, Button, Popconfirm, Row, Col } from "antd";
+  import { Table, Button, Popconfirm, Row, Col, FloatButton } from "antd";
+  import { FileAddOutlined } from '@ant-design/icons';
   import React from "react";
   import { useState, useEffect } from 'react'
-  import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/Funciones/Funciones_Usuario";
+  import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/Funciones/Incidencia";
   import Modal_editar_incidencia from "../Modals/Modal_editar_incidencia";
   import Modal_add_incidencia from "../Modals/Modal_add_incidencia";
 
@@ -87,7 +88,7 @@
       const [incidencia, setIncidencia] = useState([]);
       const [reload, setReload] = useState(false);
       const [ModalEditarAbierto, setModalEditarAbierto] = useState(false);
-      const [ModalAddOpen, setModalAddOpen] = useState(false);
+      const [ModalAddIncidenciaOpen, setModalAddIncidenciaOpen] = useState(false);
 
       useEffect(() => {
         getIncidenciasById(id , setTabla);
@@ -96,17 +97,6 @@
       return(
         <>
         <Row justify = "end">
-            <Button
-            type="primary"
-            onClick={() =>{
-              setModalAddOpen(true)
-            }}
-            style={{
-              marginBottom : "10px"
-            }}
-            >
-            +
-          </Button>
           </Row>
           <Table
           columns={columns}
@@ -116,6 +106,8 @@
 
           </Table>
           
+          <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => setModalAddIncidenciaOpen(true)} type="primary" icon={<FileAddOutlined />}/>
+
           <Modal_editar_incidencia
           ModalEditarAbierto = {ModalEditarAbierto}
           setModalEditarAbierto = {setModalEditarAbierto}
@@ -124,12 +116,14 @@
           values = {incidencia}
           />
           <Modal_add_incidencia
-          ModalAddOpen = {ModalAddOpen}
-          setModalAddOpen = {setModalAddOpen}
+          ModalAddOpen = {ModalAddIncidenciaOpen}
+          setModalAddOpen = {setModalAddIncidenciaOpen}
           setReload = {setReload}
           reload = {reload}
           idUsuario = {id}
           />
+
+
         </>
       )
   }
