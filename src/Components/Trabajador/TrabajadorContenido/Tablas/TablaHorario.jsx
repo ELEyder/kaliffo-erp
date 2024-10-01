@@ -6,6 +6,16 @@ import { getHorarioById, deleteHorarioById} from "../../../../Shared/Funciones/F
 const TablaHorario = ({ id }) =>{
     const columns=[
         {
+          title: "Fecha",
+          dataIndex: "fecha",
+          key: "fecha",
+          align:"center",
+          sorter: {
+            compare: (a, b) => a.fecha.localeCompare(b.fecha),
+            multiple: 2,
+          },
+        },
+        {
           title: "Hora de Ingreso",
           dataIndex: "hora_entrada",
           key: "hora_entrada",

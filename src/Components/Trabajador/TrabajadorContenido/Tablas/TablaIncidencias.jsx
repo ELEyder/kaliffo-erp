@@ -31,7 +31,7 @@
                 }
               }),
               sorter: {
-                compare: (a, b) => a.telefono.localeCompare(b.telefono),
+                compare: (a, b) => a.incidencia.localeCompare(b.incidencia),
                 multiple: 2,
               },
           },

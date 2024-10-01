@@ -48,7 +48,11 @@ const TablaPagos = ({ id }) =>{
                 padding: "10px"
               }
             }),
+            sorter: {
+              compare: (a, b) => a.estado.localeCompare(b.estado),
+              multiple: 2,
             },
+        },
          {
             title: "Opciones",
             key: "opciones",

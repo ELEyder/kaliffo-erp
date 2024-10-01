@@ -22,17 +22,17 @@ const ProductoTiendas = ( { id } ) =>{
             dataIndex: "stock",
             key: "stock",
             align:"center",
-            render(text, record) {
-                let backgroundColor = text >= 50 ? 'green' : '#FCFB77';
-                backgroundColor = text < 20 ? '#f54242' : backgroundColor;
-                let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-                  return {
-                    props: {
-                        style: { background: backgroundColor, padding: "10px"}  
-                    },
-                    children: <p style={{color: color, margin: 0}}>{text}</p>
-                  };
+            onCell: (record) => ({
+                style: {
+                  background: record.stock >= 50
+                    ? 'green' 
+                    : record.stock <= 20
+                    ? '#f54242' 
+                    : '#FCFB77',
+                  color: record.stock <= 20 || record.stock >=  50 ? "white" : "black",
+                  padding: "10px"
                 }
+              }),
         },
         {
             title: "Precio",
