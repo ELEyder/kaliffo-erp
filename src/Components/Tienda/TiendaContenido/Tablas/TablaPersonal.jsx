@@ -1,5 +1,6 @@
-import { Table, Button, Row, Col, Popconfirm } from "antd";
 import React, { useState, useEffect } from "react";
+import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
+import { FileAddOutlined } from "@ant-design/icons";
 import { getusuariosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
 import TiendaPersonalModal from "../../TiendaModales/TiendaPersonalModal";
 import { EliminarUsuario } from "../../../../Shared/Funciones/Funciones_Fetch";
@@ -113,9 +114,7 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
   return (
     <>
 
-      <div style={{margin:"0 auto"}}>
-        <Button onClick={showModalTiendaAddPersonalAbierto}>Añadir Nuevo Personal</Button>
-      </div>
+      <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => showModalTiendaAddPersonalAbierto()} type="primary" icon={<FileAddOutlined />}/>
 
       <Table
         columns={columns}

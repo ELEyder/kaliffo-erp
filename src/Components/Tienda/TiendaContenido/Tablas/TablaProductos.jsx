@@ -1,4 +1,5 @@
-import { Button, Row, Col, Popconfirm, Table } from "antd";
+import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
+import { FileAddOutlined } from "@ant-design/icons";
 import React, { useEffect, useState } from "react";
 import { getProductosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
 import TiendaAddProductos from "../../TiendaModales/TiendaAddProductos";
@@ -16,17 +17,17 @@ const columns = [
     align: "center",
     dataIndex:"stock",
     defaultSortOrder: "ascend",
-    render(text, record) {
-      let backgroundColor = text >= 50 ? 'green' : '#FCFB77';
-      backgroundColor = text < 20 ? '#f54242' : backgroundColor;
-      let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-        return {
-          props: {
-              style: { background: backgroundColor, padding: "10px"}  
-          },
-          children: <p style={{color: color, margin: 0}}>{text}</p>
-        };
+    onCell: (record, text) => ({
+      style: {
+        background: text >= 50 
+          ? 'green' 
+          : text < 20
+          ? '#f54242' 
+          : '#FCFB77',
+        color: text > 20 ? "black" : "white",
+        padding: "10px"
       }
+    }),
   },
   {
     title: "Precio",
@@ -115,21 +116,15 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
 
   return (
     <> 
-    <Row justify = "end">
-      <Button
-      onClick = {showModalProductoAddTiendaAbierto}
-      type = "primary"
-      style = {{
-        margin : "0 0 10px 0"
-      }}
-      >+</Button>
-    </Row>
       <Table columns={columns}
       pagination={{ pageSize: 5 }}
       bordered
       dataSource={[...productostienda]}
       rowKey={(record) => record.producto_id}
       ></Table>
+
+      <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => showModalProductoAddTiendaAbierto()} type="primary" icon={<FileAddOutlined />}/>
+
       <TiendaAddProductos ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
       closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto} id={id}/>
     </>

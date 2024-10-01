@@ -19,7 +19,7 @@ const TiendaContenidoMain = ({id,handlerefrescarSideCard1}) =>{
     },
     {
       key: '3',
-      label: 'Tab 3',
+      label: 'Pagos',
       children: 'Content of Tab Pane 3',
     },
   ];
