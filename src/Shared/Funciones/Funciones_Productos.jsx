@@ -9,7 +9,7 @@ export const AñadirTienda = async (values) => {
     let Tienda = {
         tienda:values.tienda,
         direccion:values.direccion,
-        telefono:values.telefono
+        telefono:values.telefono    
     }
 
     try {

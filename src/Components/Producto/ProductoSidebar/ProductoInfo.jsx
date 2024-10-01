@@ -1,7 +1,7 @@
 import { Card, List,Button } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductoById } from "../../../Shared/Funciones/Funciones_Producto";
+import { getProductoById } from "../../../Shared/Funciones/Producto";
 
 const ProductoInfo = () =>{
   const { id } = useParams();

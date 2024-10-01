@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 import { getusuariosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
@@ -7,6 +8,8 @@ import { EliminarUsuario } from "../../../../Shared/Funciones/Funciones_Fetch";
 import TiendaAddPersonal from "../../TiendaModales/TiendaAddPersonal";
 
 const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
+  const navigate = useNavigate();
+
   const [usuariostienda, setusuariostienda] = useState([]);
   const [id_personal, setIDPersonal] = useState(null);
   const [Refrescar, setRefrescar] = useState(false);
@@ -83,6 +86,21 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
       dataIndex: "telefono",
       key: "telefono",
       align: "center",
+    },
+    {
+      title:"Ver mas",
+      dataIndex:"",
+      key:"f",
+      align:"center",
+      render:(text,record) =>{
+        return(
+          <Button type="primary" block
+          onClick={() => {
+            navigate(`/trabajador/${record.usuario_id}`)
+          }}
+          >+</Button>
+        )
+      }
     },
     {
       title: "Opciones",

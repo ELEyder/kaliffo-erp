@@ -1,107 +1,116 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
 import { getProductosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
+import { deleteProductoById } from "../../../../Shared/Funciones/Producto";
 import TiendaAddProductos from "../../TiendaModales/TiendaAddProductos";
 
-const columns = [
-  {
-    title: "Producto",
-    key: "nombre",
-    dataIndex:"nombre",
-    align: "center",
-  },
-  {
-    title: "Stock",
-    key: "stock",
-    align: "center",
-    dataIndex:"stock",
-    defaultSortOrder: "ascend",
-    onCell: (record, text) => ({
-      style: {
-        background: text >= 50 
-          ? 'green' 
-          : text < 20
-          ? '#f54242' 
-          : '#FCFB77',
-        color: text > 20 ? "black" : "white",
-        padding: "10px"
-      }
-    }),
-  },
-  {
-    title: "Precio",
-    key:"precio",
-    dataIndex:"precio",
-    align:"center",
-    render(text) {
-      return {
-        children: "S/" + text
-      };
-    }
-  },
-  {
-    title: "Descuento",
-    dataIndex:"descuento",
-    key:"descuento",
-    align:"center",
-    render(text, record) {
-      let backgroundColor = text >= 50 ? 'green' : '#FCFB77';
-      backgroundColor = text < 20 ? '#f54242' : backgroundColor;
-      let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-        return {
-          props: {
-              style: { background: backgroundColor, padding: "10px"}  
-          },
-          children: <p style={{color: color, margin: 0}}>{text}%</p>
-        };
-      }
-  },
-  {
-    title:"Ver mas",
-    dataIndex:"",
-    key:"f",
-    align:"center",
-    render:(text,record) =>{
-      return(
-        <Button type="primary" block>+</Button>
-      )
-    }
-  },
-  {
-    title: "Opciones",
-    dataIndex:"",
-    key:"x",
-    align:"center",
-    render:() =>{
-        return (
-          <Row gutter={[8, 8]} justify="center" align="middle">
-            <Col>
-              <Button type="primary" block>Editar</Button>
-            </Col>
-            <Col>
-              <Popconfirm
-                title="ELIMINAR"
-                description="DESEA ELIMINAR A"
-                okText="Confirmar"
-                cancelText="NO"
-              >
-              <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
-              </Popconfirm>
-            </Col>
-          </Row>
-        );
-    }
-    
-  },
-];
 
 const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
+  const navigate = useNavigate();
+  const[productostienda,setproductostienda] = useState([])
+  const[reload,setReload] = useState(false)
+  const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)
 
-    const[productostienda,setproductostienda] = useState([])
-    
-    const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)
-
+  const columns = [
+    {
+      title: "Producto",
+      key: "nombre",
+      dataIndex:"nombre",
+      align: "center",
+    },
+    {
+      title: "Stock",
+      key: "stock",
+      align: "center",
+      dataIndex:"stock",
+      defaultSortOrder: "ascend",
+      onCell: (record) => ({
+          style: {
+            background: record.stock >= 50 
+              ? 'green' 
+              : record.stock <= 20
+              ? '#f54242' 
+              : '#FCFB77',  
+            color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
+            padding: "10px"
+          }
+        })
+    },
+    {
+      title: "Precio",
+      key:"precio",
+      dataIndex:"precio",
+      align:"center",
+      render: (text) =>
+        `S/ ${text}`,
+    },
+    {
+      title: "Descuento",
+      dataIndex:"descuento",
+      key:"descuento",
+      align:"center",
+      onCell: (record) => ({
+        style: {
+          background: record.descuento <= 10 
+            ? 'green' 
+            : record.descuento >= 20
+            ? '#f54242' 
+            : '#FCFB77',  
+          color: record.descuento <= 10 || record.descuento >= 20 ? "white" : "black",
+          padding: "10px"
+        }
+      }),
+      render: (text) =>
+        `${text}%`,
+    },
+    {
+      title:"Ver mas",
+      dataIndex:"",
+      key:"f",
+      align:"center",
+      render:(text,record) =>{
+        return(
+          <Button type="primary" block
+          onClick={() => {
+            navigate(`/producto/${record.producto_id}`)
+          }}
+          >+</Button>
+        )
+      }
+    },
+    {
+      title: "Opciones",
+      dataIndex:"",
+      key:"x",
+      align:"center",
+      render:(record) =>{
+          return (
+            <Row gutter={[8, 8]} justify="center" align="middle">
+              <Col>
+                <Button type="primary" block>Editar</Button>
+              </Col>
+              <Col>
+                <Popconfirm
+                  title="ELIMINAR"
+                  description="DESEA ELIMINAR A"
+                  okText="Confirmar"
+                  cancelText="NO"
+                  onConfirm= {() => {
+                    deleteProductoById(record.producto_id, reload, setReload)
+                  }}
+                >
+                <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+                </Popconfirm>
+              </Col>
+            </Row>
+          );
+      }
+      
+    },
+  ];
+  
     const showModalProductoAddTiendaAbierto = () =>{
       setModalProductoAddTiendaAbierto(true)
     }
@@ -112,7 +121,7 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
 
   useEffect(() => {
     getProductosTienda(id,setproductostienda)
-  }, [id]);
+  }, [id, reload]);
 
   return (
     <> 

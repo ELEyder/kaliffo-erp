@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getProductoTiendas } from "../../../../Shared/Funciones/Funciones_Producto";
+import { getProductoTiendas } from "../../../../Shared/Funciones/Producto";
 
 const ProductoColores = ({ id }) =>{
     const columns=[
