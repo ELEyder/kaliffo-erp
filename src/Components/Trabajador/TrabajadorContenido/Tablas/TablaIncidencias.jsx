@@ -1,4 +1,4 @@
-  import { Table, Button, Popconfirm, Row, Col, FloatButton } from "antd";
+  import { Table, Button, Popconfirm, Row, Col, FloatButton, notification } from "antd";
   import { FileAddOutlined } from '@ant-design/icons';
   import React from "react";
   import { useState, useEffect } from 'react'
@@ -7,6 +7,8 @@
   import Modal_add_incidencia from "../Modals/Modal_add_incidencia";
 
   const TablaIncidencias = ({ id }) =>{
+  const [api, contextHolder] = notification.useNotification(); 
+
       const columns=[
           {
               title: "Id",
@@ -72,7 +74,7 @@
                                 okText="Confirmar"
                                 cancelText="NO"
                                 onConfirm={(e) => {
-                                  deleteIncidenciaById(record.incidencia_id, reload, setReload)
+                                  deleteIncidenciaById(record.incidencia_id, reload, setReload, api)
                                 }}
                             >
                                 <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -96,6 +98,7 @@
 
       return(
         <>
+        {contextHolder}
         <Row justify = "end">
           </Row>
           <Table

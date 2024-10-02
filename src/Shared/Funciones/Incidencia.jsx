@@ -1,3 +1,5 @@
+import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+
 export const addIncidencia = async (id, data, reload, setReload) => {
     const Incidencia = {
         tipo : data.tipo,
@@ -36,7 +38,7 @@ export const getIncidenciasById = async (id, setIncidencias) => {
     console.log(detallesConNuevoParametro)
 }
 
-export const updateIncidenciaById = async (id, values, reload, setReload) => {
+export const updateIncidenciaById = async (id, values, reload, setReload, api) => {
     const incidencia = {
         tipo : values.tipo,
         descripcion : values.descripcion,
@@ -50,10 +52,11 @@ export const updateIncidenciaById = async (id, values, reload, setReload) => {
         body: JSON.stringify(incidencia),
     })
     setReload(reload == true ? false : true)
+    api.open(showNotificationUpdate("Incidencia actualizada", `ID: ${id}`))
     console.log(response)
 }
 
-export const deleteIncidenciaById = async (id, reload, setReload) => {
+export const deleteIncidenciaById = async (id, reload, setReload, api) => {
     const response = await fetch(`http://localhost:3000/incidencia/delete/${id}`, {
         method: "DELETE",
         headers: {
@@ -61,5 +64,6 @@ export const deleteIncidenciaById = async (id, reload, setReload) => {
         },
     })
     setReload(reload == true ? false : true)
+    api.open(showNotificationDelete("Incidencia borrada", ""))
     console.log(response)
 }

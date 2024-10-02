@@ -1,9 +1,11 @@
-import { Table, Button, Popconfirm, Row, Col } from "antd";
+import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
 import { getHorarioById, deleteHorarioById} from "../../../../Shared/Funciones/Funciones_Usuario";
 
 const TablaHorario = ({ id }) =>{
+  const [api, contextHolder] = notification.useNotification(); 
+
     const columns=[
         {
           title: "Fecha",
@@ -64,7 +66,7 @@ const TablaHorario = ({ id }) =>{
                               okText="Confirmar"
                               cancelText="NO"
                               onConfirm={(e) => {
-                                deleteHorarioById(record.horario_id, reload, setReload)
+                                deleteHorarioById(record.horario_id, reload, setReload, api)
                               }}
                           >
                               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -84,6 +86,7 @@ const TablaHorario = ({ id }) =>{
 
     return(
        <>
+        {contextHolder}
          <Table
          ali
         columns={columns}

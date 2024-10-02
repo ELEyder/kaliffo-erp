@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Form, Input, Modal, Select } from "antd";
+import {Form, Input, Modal, Select, notification } from "antd";
 import { updateIncidenciaById } from "../../../../Shared/Funciones/Incidencia";
 const { Option } = Select;
 const Modal_editar_incidencia = ({
@@ -12,6 +12,7 @@ const Modal_editar_incidencia = ({
 }) => {
 
   const [form] = Form.useForm();
+  const [api, contextHolder] = notification.useNotification(); 
 
   useEffect(() => {
     form.setFieldsValue({
@@ -21,6 +22,8 @@ const Modal_editar_incidencia = ({
   }, [values]);
 
   return (
+    <>
+    {contextHolder}    
     <Modal
       getContainer={false}
       title={`Editar Trabajador de ${tipo_trabajador}`}
@@ -42,7 +45,7 @@ const Modal_editar_incidencia = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async () => {
-          updateIncidenciaById(values.incidencia_id, form.getFieldsValue() , reload, setReload)
+          updateIncidenciaById(values.incidencia_id, form.getFieldsValue() , reload, setReload,api)
           setModalEditarAbierto(false)
         }}
       >
@@ -81,6 +84,7 @@ const Modal_editar_incidencia = ({
         </Form.Item>
       </Form>
     </Modal>
+    </>
   );
 };
 
