@@ -19,7 +19,7 @@ const Tiendas_cards = ({ refrescar }) => {
         <Col key={index} span={8}>
           <Card style={{textAlign:"center"}} title={
             <div style={{marginTop:"10px"}}>
-              <h3 style={{fontSize:"20px",fontWeight:"bold"}}>{tienda.tienda.tienda}</h3>
+              <h3 style={{fontSize:"20px",fontWeight:"bold"}}>{tienda.tienda}</h3>
             </div>
           }
           actions={[
@@ -30,13 +30,13 @@ const Tiendas_cards = ({ refrescar }) => {
             <Meta
             title={
               <>
-                <p>TELEFONO: {tienda.tienda.telefono}</p>
+                <p>TELEFONO: {tienda.telefono}</p>
               </>
             }
             description={
               <>
-                <p>STOCK: {tienda.stock}</p>
-                <p>DIRECCION: {tienda.tienda.direccion}</p>
+                <p>STOCK: {tienda.total_stock}</p>
+                <p>DIRECCION: {tienda.direccion}</p>
               </>
             }/>
           </Card>
