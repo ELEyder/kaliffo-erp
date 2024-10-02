@@ -46,11 +46,11 @@ const Tabla_Trabajadores = ({
     },
     {
       title: "Incidencias",
-      dataIndex: "incidencias",
-      key: "incidencias",
+      dataIndex: "total_incidencias",
+      key: "total_incidencias",
       defaultSortOrder: "ascend",
       sorter: {
-        compare: (a, b) => a.telefono.localeCompare(b.telefono),
+        compare: (a, b) => a.telefono.localeCompare(b.total_incidencias),
         multiple: 2,
       },
       align: "center",

@@ -22,9 +22,9 @@ const TiendaCard = ({id,refrescarSideCard1}) =>{
         <List
           itemLayout="horizontal"
           dataSource={[
-            { title: "STOCK TOTAL", value: `${tienda.stockTotal}` },
+            { title: "STOCK TOTAL", value: `${tienda.total_stock}` },
             { title: "Ventas Totales", value: `12`  },
-            { title: "Personal asignado", value: `${tienda.nroUsuarios}` },
+            { title: "Personal asignado", value: `${tienda.total_usuarios}` },
           ]}
           renderItem={(item) => (
             <List.Item>
