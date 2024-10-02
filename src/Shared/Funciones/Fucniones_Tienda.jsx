@@ -28,11 +28,14 @@ export const getProductosNuevos = async(id,seteador) =>{
   }
 }
 
-export const getColoresProductos =async (value,seteador)=>{
+export const getColoresProductos =async (value,setColores)=>{
   try {
     const response = await fetch(`http://localhost:3000/producto/colores/${value}`);
     const data = await response.json();
-    seteador([data]);
+    setColores(prevColores => ({
+      ...prevColores,
+      [value] : [data]
+    }));
   } catch (error) {
     console.log("Error al obtener los colores del producto:", error);
   }
