@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Row, Col, Popconfirm, Table, notification } from "antd";
 import {
   FetchDataTablaTrabajadores,
-} from "../../../Shared/Funciones/Funciones_Fetch";
+} from "../../../Shared/api/Funciones_Fetch";
 
 const Tabla_Trabajadores = ({
   tipo_trabajador,

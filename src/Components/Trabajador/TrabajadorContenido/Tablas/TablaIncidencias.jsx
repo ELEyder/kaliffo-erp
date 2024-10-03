@@ -2,7 +2,7 @@
   import { FileAddOutlined } from '@ant-design/icons';
   import React from "react";
   import { useState, useEffect } from 'react'
-  import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/Funciones/Incidencia";
+  import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/api/Incidencia";
   import Modal_editar_incidencia from "../Modals/Modal_editar_incidencia";
   import Modal_add_incidencia from "../Modals/Modal_add_incidencia";
 
@@ -103,7 +103,7 @@
           </Row>
           <Table
           columns={columns}
-          dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
+          dataSource={tabla?.map((item, index) => ({ ...item, key: index }))}
           pagination={{ pageSize: 5 }}
           >
 

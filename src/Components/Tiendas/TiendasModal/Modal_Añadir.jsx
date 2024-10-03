@@ -1,7 +1,7 @@
 import { Form, Modal, Input } from "antd";
 import React from "react";
-import { manejonumeros } from "../../../Shared/Funciones/Funciones_Fetch";
-import { AñadirTienda } from "../../../Shared/Funciones/Funciones_Tiendas";
+import { manejonumeros } from "../../../Shared/api/Funciones_Fetch";
+import { addTienda } from "../../../Shared/api/Tienda";
 
 const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso }) => {
   const [form] = Form.useForm();
@@ -26,7 +26,7 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
         labelAlign="center"
         id="formulariocrear"
         onFinish={async (values) =>{
-            await AñadirTienda(values)
+            await addTienda(values)
             form.resetFields()
             añadidoexitoso()
         }}

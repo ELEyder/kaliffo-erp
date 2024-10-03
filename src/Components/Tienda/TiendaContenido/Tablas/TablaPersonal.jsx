@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getusuariosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
+import { getusuariosTienda } from "../../../../Shared/api/Fucniones_Tienda";
+import { EliminarUsuario } from "../../../../Shared/api/Funciones_Fetch";
 import TiendaPersonalModal from "../../TiendaModales/TiendaPersonalModal";
-import { EliminarUsuario } from "../../../../Shared/Funciones/Funciones_Fetch";
 import TiendaAddPersonal from "../../TiendaModales/TiendaAddPersonal";
 
 const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {

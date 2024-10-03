@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getHorarioById, deleteHorarioById} from "../../../../Shared/Funciones/Funciones_Usuario";
+import { getHorarioById, deleteHorarioById} from "../../../../Shared/api/Horario";
 
 const TablaHorario = ({ id }) =>{
   const [api, contextHolder] = notification.useNotification(); 

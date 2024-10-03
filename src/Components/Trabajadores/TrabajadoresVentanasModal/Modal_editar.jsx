@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { CargarEditar, manejonumeros, fetchTiendas,manejotexto, editar } from "../../../Shared/Funciones/Funciones_Fetch";
+import { CargarEditar, manejonumeros, fetchTiendas,manejotexto, editar } from "../../../Shared/api/Funciones_Fetch";
 
 const Modal_editar = ({
   ModalEditarAbierto,

@@ -1,4 +1,5 @@
 import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+
 export const addPago = async (id, data, reload, setReload, api) => {
     const Pago = {
         tipo : data.tipo,

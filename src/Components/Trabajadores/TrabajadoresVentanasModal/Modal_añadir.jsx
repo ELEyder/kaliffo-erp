@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Col, ConfigProvider, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { CrearTrabajador, fetchTiendas, manejonumeros, manejotexto } from "../../../Shared/Funciones/Funciones_Fetch";
+import { fetchTiendas, manejonumeros, manejotexto } from "../../../Shared/api/Funciones_Fetch";
+import { addUsuario } from "../../../Shared/api/Usuario";
 
 
 const Modal_añadir = ({
@@ -44,7 +45,7 @@ const Modal_añadir = ({
       labelAlign="center"
       id="formulariocrear"
       onFinish={async(values)=>{
-        await CrearTrabajador(values)
+        await addUsuario(values)
         form.resetFields()
         AñadidoExitoso()
       }}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Select, ConfigProvider, DatePicker, Form, Input, Modal, Row, notification } from "antd";
 import { SmileOutlined } from '@ant-design/icons';
-import { addPago } from "../../../../Shared/Funciones/Pago"
+import { addPago } from "../../../../Shared/api/Pago"
 
 const { Option } = Select;
 

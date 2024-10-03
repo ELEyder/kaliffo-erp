@@ -36,9 +36,13 @@ export const deleteProductoById = async (id, reload, setReload) => {
     console.log(response)
 }
 
+export const getProductos = async (seteador) => {
+    const response = await fetch(`http://localhost:3000/producto`)
+    const productosData= await response.json()
+    seteador(productosData)
+}
 
-
-export const getProductoTiendas = async (id, setTabla) => {
+export const getProductosTiendas = async (id, setTabla) => {
     const response = await fetch(`http://localhost:3000/producto/${id}`)
     const productoData= await response.json()
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CargarTiendas } from "../../../Shared/Funciones/Funciones_Tiendas";
+import { getTiendas } from "../../../Shared/api/Tienda";
 import { Button, Card, Col, Row } from "antd";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const Tiendas_cards = ({ refrescar }) => {
   const [tiendas, setTiendas] = useState([]);
 
   useEffect(() => {
-    CargarTiendas(setTiendas);
+    getTiendas(setTiendas);
   }, [refrescar]);
 
   return (

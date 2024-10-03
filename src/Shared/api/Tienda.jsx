@@ -1,11 +1,4 @@
-
-export const CargarProductos = async (seteador) => {
-    const response = await fetch(`http://localhost:3000/producto`)
-    const productosData= await response.json()
-    seteador(productosData)
-}
-
-export const AñadirTienda = async (values) => {
+export const addTienda = async (values) => {
     let Tienda = {
         tienda:values.tienda,
         direccion:values.direccion,
@@ -24,4 +17,10 @@ export const AñadirTienda = async (values) => {
         console.log(error)
     }
 
+}
+
+export const getTiendas = async (setTienda) => {
+    const response = await fetch(`http://localhost:3000/tienda`)
+    const productosData= await response.json()
+    setTienda(productosData)
 }

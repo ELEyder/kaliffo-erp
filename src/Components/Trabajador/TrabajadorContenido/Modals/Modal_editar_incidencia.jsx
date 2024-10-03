@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {Form, Input, Modal, Select, notification } from "antd";
-import { updateIncidenciaById } from "../../../../Shared/Funciones/Incidencia";
+import { updateIncidenciaById } from "../../../../Shared/api/Incidencia";
 const { Option } = Select;
 const Modal_editar_incidencia = ({
   ModalEditarAbierto,

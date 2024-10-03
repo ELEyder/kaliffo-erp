@@ -1,6 +1,6 @@
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import React, { useEffect, useState } from "react";
-import { manejonumeros,manejotexto,fetchTiendas, CargarEditar,editar } from "../../../Shared/Funciones/Funciones_Fetch";
+import { manejonumeros,manejotexto,fetchTiendas, CargarEditar,editar } from "../../../Shared/api/Funciones_Fetch";
 
 const TiendaPersonalModal = ({
   ModalPersonalTiendaAbierto,

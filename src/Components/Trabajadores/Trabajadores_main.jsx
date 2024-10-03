@@ -6,7 +6,7 @@ import Modal_añadir from "./TrabajadoresVentanasModal/Modal_añadir";
 import Tabla_Trabajadores from "./TrabajadoresTablas/Tabla_Trabajadores";
 import Modal_editar from "./TrabajadoresVentanasModal/Modal_editar";
 import Modal_incidencias from "./TrabajadoresVentanasModal/Modal_Incidencias";
-import { EliminarUsuario } from "../../Shared/Funciones/Funciones_Fetch";
+import { EliminarUsuario } from "../../Shared/api/Funciones_Fetch";
 
 const Trabajadores_main = () => {
   const { tipo_trabajador } = useParams();

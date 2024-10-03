@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Select } from "antd";
 import { Link } from "react-router-dom";
-import { AddUsuarioTienda, FetchTrabajadoresDiferentes } from "../../../Shared/Funciones/Fucniones_Tienda";
+import { AddUsuarioTienda, FetchTrabajadoresDiferentes } from "../../../Shared/api/Fucniones_Tienda";
 
 const TiendaAddPersonal = ({
   ModalTiendaAddPersonalAbierto,

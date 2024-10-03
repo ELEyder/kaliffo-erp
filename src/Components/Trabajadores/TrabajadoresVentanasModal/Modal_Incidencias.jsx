@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { AñadirIncidencia } from "../../../Shared/Funciones/Funciones_Fetch";
+import { AñadirIncidencia } from "../../../Shared/api/Funciones_Fetch";
 
 const { TextArea } = Input;
 

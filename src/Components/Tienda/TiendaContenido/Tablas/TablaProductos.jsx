@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getProductosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
-import { deleteProductoById } from "../../../../Shared/Funciones/Producto";
+import { getProductosTienda } from "../../../../Shared/api/Fucniones_Tienda";
+import { deleteProductoById } from "../../../../Shared/api/Producto";
 import ModalAddProducto from "../../TiendaModales/ModalAddProducto";
 
 

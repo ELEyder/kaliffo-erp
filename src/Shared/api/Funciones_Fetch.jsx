@@ -45,47 +45,7 @@ export const fetchTiendas = async (seteador) => {
   seteador(tiendasdata);
 };
 
-export const CrearTrabajador = async (values) => {
-  const rol = dTipos[values.tipo_trabajadorh];
 
-  let Trabajador;
-  if (rol === 1) {
-    Trabajador = {
-      nombre: values.nombre,
-      ap_paterno: values.ap_paterno,
-      ap_materno: values.ap_materno,
-      fecha_nacimiento: values.fecha_nacimiento.format("YYYY-MM-DD"),
-      dni: values.dni,
-      telefono: values.telefono,
-      contraseña: "124",
-      rol,
-      tienda_id: values.tienda_id,
-    };
-  } else {
-    Trabajador = {
-      nombre: values.nombre,
-      ap_paterno: values.ap_paterno,
-      ap_materno: values.ap_materno,
-      fecha_nacimiento: values.fecha_nacimiento.format("YYYY-MM-DD"),
-      dni: values.dni,
-      telefono: values.telefono,
-      contraseña: "124",
-      rol,
-    };
-  }
-
-  try {
-    const response = await fetch(`http://localhost:3000/usuario/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Trabajador),
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const CargarEditar = async (id, form,seteadorO) => {
   try {

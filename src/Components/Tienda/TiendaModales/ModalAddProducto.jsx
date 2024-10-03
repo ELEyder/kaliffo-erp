@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Input, Button, Space, Select, Card } from 'antd';
 import { CloseOutlined } from "@ant-design/icons";
-import { getColoresProductos, getProductosNuevos } from "../../../Shared/Funciones/Fucniones_Tienda";
+import { getColoresProductos, getProductosNuevos } from "../../../Shared/api/Fucniones_Tienda";
 
 const { Option } = Select;
 
