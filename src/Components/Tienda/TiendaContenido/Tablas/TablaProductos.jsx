@@ -22,9 +22,9 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
     },
     {
       title: "Stock",
-      key: "stock",
+      key: "stockTotal",
       align: "center",
-      dataIndex:"stock",
+      dataIndex:"stockTotal",
       defaultSortOrder: "ascend",
       onCell: (record) => ({
           style: {

@@ -74,9 +74,9 @@ const Modal_editar_incidencia = ({
           ]}
         >
         <Select placeholder="Selecciona una opción">
-          <Option value="1">Familiar</Option>
-          <Option value="2">Salud</Option>
-          <Option value="3">Personal</Option>
+          <Option value={1}>Familiar</Option>
+          <Option value={2}>Salud</Option>
+          <Option value={3}>Personal</Option>
         </Select>
         </Form.Item>
         <Form.Item name="usuario_id" noStyle>

@@ -20,16 +20,16 @@ export const addIncidencia = async (id, data, reload, setReload) => {
 
 export const getIncidenciasById = async (id, setIncidencias) => {
     const incidencias = ["Familiar", "Salud", "Personal"]
-    const response = await fetch(`http://localhost:3000/incidencia?usuario_id="${id}"`)
+    const response = await fetch(`http://localhost:3000/incidencia?usuario_id=${id}`)
     const incidenciasData = await response.json()
     console.log(incidenciasData)
     let count = 0
-    const detallesConNuevoParametro = incidenciasData.data.map(detalle => {
+    const detallesConNuevoParametro = incidenciasData.map(detalle => {
         const fecha_creacion = new Date(detalle.fecha_creacion);
         count = count + 1
         return {
             ...detalle,
-            incidencia: incidencias[detalle.tipo + 1],
+            incidencia: incidencias[detalle.tipo - 1],
             fecha_creacion: fecha_creacion.toLocaleDateString("es-ES"),
             id: count,
         };
