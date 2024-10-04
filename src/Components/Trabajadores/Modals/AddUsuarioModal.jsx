@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { fetchTiendas, manejonumeros, manejotexto } from "../../../Shared/api/Funciones_Fetch";
+import { manejonumeros, manejotexto } from "../../../Shared/api/Funciones_Fetch";
 import { addUsuario } from "../../../Shared/api/Usuario";
+import { getTiendas } from "../../../Shared/api/Tienda";
 
 
 const AddUsuarioModal = ({
@@ -18,7 +19,7 @@ const AddUsuarioModal = ({
 
     useEffect(()=>{
         if(tipoTrabajador==="ventas"){
-            fetchTiendas(setTiendas)
+          getTiendas(setTiendas)
         }
         form.setFieldsValue({tipo_trabajadorh:tipoTrabajador})
     },[tipoTrabajador, form])
@@ -27,6 +28,7 @@ const AddUsuarioModal = ({
 
   return (
     <Modal
+      forceRender
       getContainer={false}
       title={`Añadir nuevo trabajador de ${tipoTrabajador}`}
       open={openModal}

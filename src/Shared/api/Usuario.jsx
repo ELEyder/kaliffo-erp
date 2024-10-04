@@ -44,7 +44,7 @@ export const getUsuarioById = async (id, setUsuario) => {
     console.log(usuarioData)
 }
 
-export const updateUsuario = async (values, originales) => {
+export const updateUsuario = async (id, values, originales) => {
   const valoresnuevos={}
   for (const key in originales) {
     if (key === "fecha_nacimientoE") {
@@ -60,7 +60,7 @@ export const updateUsuario = async (values, originales) => {
     }
   }
   try {
-    const response = await fetch(`http://localhost:3000/usuario/update/${values.usuario_id}`,{
+    const response = await fetch(`http://localhost:3000/usuario/update/${id}`,{
       method:"PUT",
       headers: {
         "Content-Type": "application/json",

@@ -16,11 +16,7 @@ export const manejonumeros = (form, nombre) => (event) => {
   form.setFieldsValue({ [nombre]: evitarletras(event.target.value) });
 };
 
-export const fetchTiendas = async (seteador) => {
-  const query = await fetch(`http://localhost:3000/tienda`);
-  const tiendasdata = await query.json();
-  seteador(tiendasdata);
-};
+
 
 
 

@@ -16,3 +16,5 @@
 .ant-table-cell {
     padding: 10px !important;
 }
+
+@media (forced-colors: active) and (prefers-color-scheme: light) {}
