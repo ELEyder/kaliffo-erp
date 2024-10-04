@@ -1,5 +1,4 @@
 import moment from "moment";
-const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
 export const evitarnumeros = (texto) => {
   return texto.replace(/\d/g, "");
@@ -16,28 +15,6 @@ export const manejotexto = (form, nombre) => (event) => {
 export const manejonumeros = (form, nombre) => (event) => {
   form.setFieldsValue({ [nombre]: evitarletras(event.target.value) });
 };
-
-export const FetchDataTablaTrabajadores = async (tipo, Seteador) => {
-  try {
-    const response = await fetch(`http://localhost:3000/usuario?rol=${dTipos[tipo]}`);
-    const trabajadores = await response.json();
-    trabajadores.forEach(trabajador => {
-        if (typeof trabajador === 'object' && trabajador !== null) {
-          if (trabajador.tienda_id === null) {
-            trabajador.tienda_id = 0;
-            trabajador.tienda = "Sin asignar  ";
-          }
-        } else {
-          console.warn('Elemento no es un objeto:', trabajador);
-        }
-      Seteador(trabajadores);
-    })
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
-
-
 
 export const fetchTiendas = async (seteador) => {
   const query = await fetch(`http://localhost:3000/tienda`);

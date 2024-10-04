@@ -1,6 +1,5 @@
 import { Form, Modal, Input } from "antd";
 import React from "react";
-import { manejonumeros } from "../../../Shared/api/Funciones_Fetch";
 import { addTienda } from "../../../Shared/api/Tienda";
 
 const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso }) => {
@@ -72,7 +71,6 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
           <Input
             maxLength={9}
             showCount
-            onChange={manejonumeros(form, "telefono")}
           />
         </Form.Item>
       </Form>

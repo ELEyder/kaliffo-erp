@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Input, Button, Space, Select, Card } from 'antd';
 import { CloseOutlined } from "@ant-design/icons";
-import { getColoresProductos, getProductosNuevos } from "../../../Shared/api/Fucniones_Tienda";
+import { getColoresProductos, getProductosNuevos } from "../../../Shared/api/Producto";
 
 const { Option } = Select;
 
@@ -71,7 +71,8 @@ const ModalAddProducto = ({
     setCards(cards.map(card => {
       if (card.id === cardId) {
         const newEntries = [{ key: Date.now(), data: ['', '', ''] }];
-        getColoresProductos(value, setColores); // Asynchronously fetch colors based on the selected product
+        getColoresProductos(value, setColores);
+        console.log(colores)
         return { ...card, entries: newEntries };
       }
       return card;

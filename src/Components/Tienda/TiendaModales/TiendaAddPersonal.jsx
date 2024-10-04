@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Select } from "antd";
 import { Link } from "react-router-dom";
-import { AddUsuarioTienda, FetchTrabajadoresDiferentes } from "../../../Shared/api/Fucniones_Tienda";
+import { updateUsuarioTienda, getTrabajadoresDiferentes } from "../../../Shared/api/Usuario";
 
 const TiendaAddPersonal = ({
   ModalTiendaAddPersonalAbierto,
@@ -14,7 +14,7 @@ const TiendaAddPersonal = ({
   const [Trabajadores, setTrabajadores] = useState([]);
 
   useEffect(() => {
-    FetchTrabajadoresDiferentes(id, setTrabajadores);
+    updateUsuarioTienda(id, setTrabajadores);
   },[]);
 
   return (
@@ -38,7 +38,7 @@ const TiendaAddPersonal = ({
         labelAlign="center"
         id="formulariaddpersonal"
         onFinish={async (values) => {
-          await AddUsuarioTienda(id,values)
+          await updateUsuarioTienda(id,values)
           handleAddExitoso()
         }}
       >

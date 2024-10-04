@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Col, Popconfirm, Table, notification } from "antd";
-import {
-  FetchDataTablaTrabajadores,
-} from "../../../Shared/api/Funciones_Fetch";
+import { Button, Row, Col, Popconfirm, Table } from "antd";
+import { getUsuarios } from "../../../Shared/api/Usuario";
 
 const Tabla_Trabajadores = ({
   tipo_trabajador,
@@ -129,9 +127,9 @@ const Tabla_Trabajadores = ({
   }
 
   useEffect(() => {
-    FetchDataTablaTrabajadores(tipo_trabajador, SetTabla_datos);
+    getUsuarios(tipo_trabajador, SetTabla_datos);
     if (Refrescar) {
-      FetchDataTablaTrabajadores(tipo_trabajador, SetTabla_datos);
+      getUsuarios(tipo_trabajador, SetTabla_datos);
     }
   }, [tipo_trabajador, Refrescar]);
 

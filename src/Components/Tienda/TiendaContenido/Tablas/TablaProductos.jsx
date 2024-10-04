@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getProductosTienda } from "../../../../Shared/api/Fucniones_Tienda";
+import { getProductosTienda } from "../../../../Shared/api/Producto";
 import { deleteProductoById } from "../../../../Shared/api/Producto";
 import ModalAddProducto from "../../TiendaModales/ModalAddProducto";
 
@@ -98,7 +98,7 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
                   okText="Confirmar"
                   cancelText="NO"
                   onConfirm= {() => {
-                    deleteProductoById(record.producto_id, reload, setReload)
+                    deleteProductoById(record.producto_id, id, reload, setReload)
                   }}
                 >
                 <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
