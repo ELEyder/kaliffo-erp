@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
+import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
+import { getUsuarios, deleteUsuario } from "../../../Shared/api/Usuario";
 import { Button, Row, Col, Popconfirm, Table } from "antd";
-import { getUsuarios } from "../../../Shared/api/Usuario";
 
-const Tabla_Trabajadores = ({
+const TrabajadoresTable = ({
   tipo_trabajador,
-  Refrescar,
-  editar,
-  incidencias,
+  reload,
+  setReload,
   eliminar,
 }) => {
   const [tabla_datos, SetTabla_datos] = useState([]);
-
+  const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
+  const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
+  const [id, setId] = useState(null);
+  
   const columnas = [
     {
       title: "Nombre",
@@ -77,7 +81,8 @@ const Tabla_Trabajadores = ({
               type="primary"
               onClick={(e) =>{
                 e.stopPropagation()
-                editar(record.usuario_id)
+                setId(record.usuario_id)
+                setOpenUpdateUsuario(true)
               }}
               block
               >
@@ -85,7 +90,11 @@ const Tabla_Trabajadores = ({
               </Button>
             </Col>
             <Col>
-              <Button style={{ background: "#ffdf5e", color: "black" }} onClick={() => incidencias(record.usuario_id)} block>
+              <Button style={{ background: "#ffdf5e", color: "black" }} onClick={(e) => {
+                e.stopPropagation()
+                incidencias(record.usuario_id)}
+              }
+              block>
                 Incidencias
               </Button>
             </Col>
@@ -96,7 +105,7 @@ const Tabla_Trabajadores = ({
                 okText="Confirmar"
                 onConfirm={(e) =>{
                   e.stopPropagation();
-                  eliminar(record.usuario_id)
+                  deleteUsuario(record.usuario_id)
                 }} 
                 cancelText="NO"
               >
@@ -128,10 +137,7 @@ const Tabla_Trabajadores = ({
 
   useEffect(() => {
     getUsuarios(tipo_trabajador, SetTabla_datos);
-    if (Refrescar) {
-      getUsuarios(tipo_trabajador, SetTabla_datos);
-    }
-  }, [tipo_trabajador, Refrescar]);
+  }, [tipo_trabajador, reload]);
 
   return (
     <>
@@ -151,8 +157,24 @@ const Tabla_Trabajadores = ({
           }
         })}
       />
+      <UpdateUsuarioModal
+        openModal={openUpdateUsuario}
+        closeModal={setOpenUpdateUsuario}
+        tipoTrabajador={tipo_trabajador}
+        reload={reload}
+        setReload={setReload}
+        id={id}
+      />
+
+      <AddIncidenciaModal
+        openModal={openAddIncidencia}
+        closeModal={setOpenAddIncidencia}
+        reload={reload}
+        setReload={setReload}
+        id={id}
+      />
     </>
   );
 };
 
-export default Tabla_Trabajadores;
+export default TrabajadoresTable;

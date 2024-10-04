@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Col, ConfigProvider, DatePicker, Form, Input, Modal, Row, Select } from "antd";
+import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import { fetchTiendas, manejonumeros, manejotexto } from "../../../Shared/api/Funciones_Fetch";
 import { addUsuario } from "../../../Shared/api/Usuario";
 
 
-const Modal_añadir = ({
-  ModalAñadirAbierto,
-  closeModalAñadir,
-  tipo_trabajador,
-  AñadidoExitoso
+const AddUsuarioModal = ({
+  openModal,
+  closeModal,
+  tipoTrabajador,
+  reload,
+  setReload,
 }) => {
 
     const[tiendas,setTiendas]=useState([])
@@ -16,20 +17,20 @@ const Modal_añadir = ({
     const[form] = Form.useForm()
 
     useEffect(()=>{
-        if(tipo_trabajador==="ventas"){
+        if(tipoTrabajador==="ventas"){
             fetchTiendas(setTiendas)
         }
-        form.setFieldsValue({tipo_trabajadorh:tipo_trabajador})
-    },[tipo_trabajador, form])
+        form.setFieldsValue({tipo_trabajadorh:tipoTrabajador})
+    },[tipoTrabajador, form])
 
 
 
   return (
     <Modal
       getContainer={false}
-      title={`Añadir nuevo trabajador de ${tipo_trabajador}`}
-      open={ModalAñadirAbierto}
-      onCancel={closeModalAñadir}
+      title={`Añadir nuevo trabajador de ${tipoTrabajador}`}
+      open={openModal}
+      onCancel={() => closeModal(false)}
       style={{textTransform:"uppercase"}}
       okText="Añadir"
       onOk={form.submit}
@@ -46,8 +47,9 @@ const Modal_añadir = ({
       id="formulariocrear"
       onFinish={async(values)=>{
         await addUsuario(values)
+        setReload(!reload)
+        closeModal(false)
         form.resetFields()
-        AñadidoExitoso()
       }}>
 
         <Form.Item
@@ -187,7 +189,7 @@ const Modal_añadir = ({
 
             <Col span={14} className="gutter-row">
 
-                {tipo_trabajador==="ventas"?
+                {tipoTrabajador==="ventas"?
                 (
                     <Form.Item
                     name="tienda_id"
@@ -222,4 +224,4 @@ const Modal_añadir = ({
   );
 };
 
-export default Modal_añadir;
+export default AddUsuarioModal;

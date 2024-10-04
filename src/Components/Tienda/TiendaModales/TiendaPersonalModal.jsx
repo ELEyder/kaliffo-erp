@@ -1,8 +1,8 @@
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { getTiendas } from "../../../Shared/api/Tienda";
-import { CargarEditar,editar } from "../../../Shared/api/Funciones_Fetch";
-
+import { CargarEditar } from "../../../Shared/api/Funciones_Fetch";
+import { updateUsuario } from "../../../Shared/api/Usuario";
 const TiendaPersonalModal = ({
   ModalPersonalTiendaAbierto,
   closeModalPersonalTiendaAbierto,
@@ -41,7 +41,7 @@ const TiendaPersonalModal = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await editar(values, valoresO);
+          await updateUsuario(values, valoresO);
           handleEditarExitoso();
         }}
       >

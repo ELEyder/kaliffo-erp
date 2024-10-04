@@ -43,37 +43,7 @@ export const CargarEditar = async (id, form,seteadorO) => {
   }
 };
 
-export const editar = async (values, originales) => {
 
-  const valoresnuevos={}
-
-  for (const key in originales) {
-    if (key === "fecha_nacimientoE") {
-      if (values["fecha_nacimientoE"]) {
-        values["fecha_nacimientoE"] = moment(values["fecha_nacimientoE"]).format("YYYY-MM-DD");
-      }
-    }
-
-    if (values[key] !== originales[key]) {
-      if (values[key] !== undefined) {
-        valoresnuevos[key] = values[key];
-      }
-    }
-  }
-
-  try {
-    const response = await fetch(`http://localhost:3000/usuario/update/${values.usuario_id}`,{
-      method:"PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(valoresnuevos),
-    })
-  } catch (error) {
-    console.log(error)
-  }
-
-};
 
 export const AñadirIncidencia = async (values) => {
   const Incidencia = {
@@ -95,19 +65,7 @@ export const AñadirIncidencia = async (values) => {
   }
 };
 
-export const EliminarUsuario = async (id, refrescar) => {
-  try {
-    const response = await fetch(`http://localhost:3000/usuario/delete/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    return true
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 export const GetReporteUsuario = async (id) => {
   try {

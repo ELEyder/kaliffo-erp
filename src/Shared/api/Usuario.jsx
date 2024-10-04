@@ -1,4 +1,5 @@
 import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
 export const addUsuario = async (values) => {
     const rol = dTipos[values.tipo_trabajadorh];
@@ -14,13 +15,11 @@ export const addUsuario = async (values) => {
         rol,
     };
     if (rol === 1) {
-        Trabajador = Trabajador.map(data => {
-            return {
-                ...data,
-                tienda_id: values.tienda_id,
-            }
-        })
-    }
+      Trabajador = {
+          ...Trabajador,
+          tienda_id: values.tienda_id,
+      };
+  }
   
     try {
       const response = await fetch(`http://localhost:3000/usuario/create`, {
@@ -30,9 +29,11 @@ export const addUsuario = async (values) => {
         },
         body: JSON.stringify(Trabajador),
       });
-      showNotificationAdd("Usuario añadido exitosamente", "")
+      showNotificationAdd("Usuario añadido exitosamente")
+      console.log(response)
     } catch (error) {
       console.log(error);
+      showNotificationError("Error al añadir el usuario")
     }
   };
 
@@ -43,6 +44,38 @@ export const getUsuarioById = async (id, setUsuario) => {
     console.log(usuarioData)
 }
 
+export const updateUsuario = async (values, originales) => {
+  const valoresnuevos={}
+  for (const key in originales) {
+    if (key === "fecha_nacimientoE") {
+      if (values["fecha_nacimientoE"]) {
+        values["fecha_nacimientoE"] = moment(values["fecha_nacimientoE"]).format("YYYY-MM-DD");
+      }
+    }
+
+    if (values[key] !== originales[key]) {
+      if (values[key] !== undefined) {
+        valoresnuevos[key] = values[key];
+      }
+    }
+  }
+  try {
+    const response = await fetch(`http://localhost:3000/usuario/update/${values.usuario_id}`,{
+      method:"PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(valoresnuevos),
+    })
+    console.log(response)
+    showNotificationUpdate("Usuario actualizado exitosamente")
+  } catch (error) {
+    console.log(error)
+    showNotificationError("Error al actualizar el usuario")
+  }
+
+};
+
 export const deleteUsuario = async (id, refrescar) => {
   try {
     const response = await fetch(`http://localhost:3000/usuario/delete/${id}`, {
@@ -52,16 +85,16 @@ export const deleteUsuario = async (id, refrescar) => {
       },
     });
     console.log(response)
+    showNotificationDelete("Usuario eliminado")
     return true
 
   } catch (error) {
     console.log(error);
+    showNotificationError("Error al eliminar el usuario")
   }
 };
 
 export const getUsuarios = async (tipo, Seteador) => {
-  const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
-
   try {
     const response = await fetch(`http://localhost:3000/usuario?rol=${dTipos[tipo]}`);
     const trabajadores = await response.json();
@@ -107,8 +140,10 @@ export const updateUsuarioTienda = async (idTienda, values) => {
           }),
         }
       );
+    showNotificationUpdate("Usuario actualizado exitosamente")
   } catch (error) {
     console.log(error);
+    showNotificationError("Error al actualizar usuario")
   }
 };
 

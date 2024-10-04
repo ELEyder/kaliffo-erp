@@ -4,7 +4,7 @@ import { AñadirIncidencia } from "../../../Shared/api/Funciones_Fetch";
 
 const { TextArea } = Input;
 
-const Modal_incidencias = ({ModalIncidenciasAbierto,closeModalIncidencias,id,IncidenciaExitosa}) =>{
+const AddIncidenciaModal = ({ModalIncidenciasAbierto,closeModalIncidencias,id,IncidenciaExitosa}) =>{
     
     const [form] = Form.useForm()
 
@@ -86,4 +86,4 @@ const Modal_incidencias = ({ModalIncidenciasAbierto,closeModalIncidencias,id,Inc
 
 }
 
-export default Modal_incidencias
+export default AddIncidenciaModal

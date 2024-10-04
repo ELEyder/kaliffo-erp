@@ -1,32 +1,42 @@
 import { CheckCircleOutlined, CloseCircleOutlined, PlusCircleOutlined, StopOutlined } from '@ant-design/icons';
-export const showNotificationAdd = (msg, description) => {
-    return({
+import {notification} from "antd"
+
+export const showNotificationAdd = (msg, description = null) => {
+    notification.success({
         message: msg,
         description: description,
-        icon: <PlusCircleOutlined style={{ color: '#108ee9' }} />,
-    })
+        // icon: <PlusCircleOutlined style={{ color: '#108ee9' }} />,
+        placement: 'topRight',
+        duration: 3,
+      });
 }
 
-export const showNotificationError = (msg, description) => {
-    return({
+export const showNotificationError = (msg, description = null) => {
+    notification.error({
         message: msg,
         description: description,
-        icon: <CloseCircleOutlined style={{ color: '#108ee9' }} />,
-    })
+        // icon: <PlusCircleOutlined style={{ color: '#108ee9' }} />,
+        duration: 3,
+        placement: 'topRight',
+      });
 }
 
-export const showNotificationUpdate = (msg, description) => {
-    return({
+export const showNotificationUpdate = (msg, description = null) => {
+    notification.info({
         message: msg,
         description: description,
-        icon: <CheckCircleOutlined style={{ color: '#108ee9' }} />,
-    })
+        // icon: <PlusCircleOutlined style={{ color: '#108ee9' }} />,
+        duration: 3,
+        placement: 'topRight',
+      });
 }
 
-export const showNotificationDelete = (msg, description) => {
-    return({
+export const showNotificationDelete = (msg, description = null) => {
+    notification.warning({
         message: msg,
         description: description,
-        icon: <StopOutlined style={{ color: 'rgb(245, 66, 66)' }} />,
-    })
+        // icon: <PlusCircleOutlined style={{ color: '#108ee9' }} />,
+        duration: 3,
+        placement: 'topRight',
+      });
 }
