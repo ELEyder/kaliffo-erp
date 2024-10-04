@@ -2,7 +2,7 @@
   import { FileAddOutlined } from '@ant-design/icons';
   import React from "react";
   import { useState, useEffect } from 'react'
-  import { getIncidenciasById, deleteIncidenciaById } from "../../../../Shared/api/Incidencia";
+  import { getIncidenciasById, deleteIncidenciaById } from "../../../Shared/api/Incidencia";
   import Modal_editar_incidencia from "../Modals/Modal_editar_incidencia";
   import Modal_add_incidencia from "../Modals/Modal_add_incidencia";
 

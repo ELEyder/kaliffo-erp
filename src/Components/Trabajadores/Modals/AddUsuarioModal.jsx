@@ -203,8 +203,8 @@ const AddUsuarioModal = ({
                     >
                         <Select options={tiendas.map(tienda => ({
                             value:tienda.tienda_id,
-                            label: tienda.tienda.tienda,
-                            key:tienda.tienda_id,
+                            label: tienda.tienda,
+                            key: tienda.tienda_id,
                         }))}/>
                     </Form.Item>
                 ):null}
