@@ -5,7 +5,7 @@ export const evitarnumeros = (texto) => {
 };
 
 export const evitarletras = (texto) => {
-  return texto.replace(/[a-zA-Z]/g, "");
+  return texto.replace(/[a-zA-Z.,]/g, "");
 };
 
 export const manejotexto = (form, nombre) => (event) => {
@@ -15,8 +15,6 @@ export const manejotexto = (form, nombre) => (event) => {
 export const manejonumeros = (form, nombre) => (event) => {
   form.setFieldsValue({ [nombre]: evitarletras(event.target.value) });
 };
-
-
 
 
 

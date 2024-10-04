@@ -1,6 +1,8 @@
 import { CheckCircleOutlined, CloseCircleOutlined, PlusCircleOutlined, StopOutlined } from '@ant-design/icons';
 import {notification} from "antd"
 
+const audio = new Audio('/audio/notification.mp3');
+
 export const showNotificationAdd = (msg, description = null) => {
     notification.success({
         message: msg,
@@ -9,6 +11,7 @@ export const showNotificationAdd = (msg, description = null) => {
         placement: 'topRight',
         duration: 3,
       });
+      audio.play();
 }
 
 export const showNotificationError = (msg, description = null) => {
@@ -19,6 +22,8 @@ export const showNotificationError = (msg, description = null) => {
         duration: 3,
         placement: 'topRight',
       });
+      audio.play();
+
 }
 
 export const showNotificationUpdate = (msg, description = null) => {
@@ -29,6 +34,8 @@ export const showNotificationUpdate = (msg, description = null) => {
         duration: 3,
         placement: 'topRight',
       });
+      audio.play();
+
 }
 
 export const showNotificationDelete = (msg, description = null) => {
@@ -39,4 +46,6 @@ export const showNotificationDelete = (msg, description = null) => {
         duration: 3,
         placement: 'topRight',
       });
+      audio.play();
+
 }

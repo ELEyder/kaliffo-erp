@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
 const incidencias = ["Familiar", "Salud", "Personal"]
 
 export const addIncidencia = async (id, data) => {

@@ -1,9 +1,8 @@
-import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
-export const addUsuario = async (values) => {
-    const rol = dTipos[values.tipo_trabajadorh];
-  
+export const addUsuario = async (tipoTrabajador, values) => {
+    const rol = dTipos[tipoTrabajador];
     let Trabajador = {
         nombre: values.nombre,
         ap_paterno: values.ap_paterno,
@@ -11,8 +10,9 @@ export const addUsuario = async (values) => {
         fecha_nacimiento: values.fecha_nacimiento.format("YYYY-MM-DD"),
         dni: values.dni,
         telefono: values.telefono,
+        sueldo: values.sueldo,
         contraseña: "124",
-        rol,
+        rol: rol,
     };
     if (rol === 1) {
       Trabajador = {
@@ -20,7 +20,6 @@ export const addUsuario = async (values) => {
           tienda_id: values.tienda_id,
       };
   }
-  
     try {
       const response = await fetch(`http://localhost:3000/usuario/create`, {
         method: "POST",
