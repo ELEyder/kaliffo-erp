@@ -1,6 +1,7 @@
 import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+const incidencias = ["Familiar", "Salud", "Personal"]
 
-export const addIncidencia = async (id, data, reload, setReload) => {
+export const addIncidencia = async (id, data) => {
     const Incidencia = {
         tipo : data.tipo,
         descripcion : data.descripcion,
@@ -15,11 +16,10 @@ export const addIncidencia = async (id, data, reload, setReload) => {
         body : JSON.stringify(Incidencia),
     })
     console.log(response)
-    setReload(reload == true ? false : true)
+    showNotificationAdd("Incidencia añadida correctamente")
 }
 
 export const getIncidenciasById = async (id, setIncidencias) => {
-    const incidencias = ["Familiar", "Salud", "Personal"]
     const response = await fetch(`http://localhost:3000/incidencia?usuario_id=${id}`)
     const incidenciasData = await response.json()
     console.log(incidenciasData)
@@ -38,7 +38,7 @@ export const getIncidenciasById = async (id, setIncidencias) => {
     console.log(detallesConNuevoParametro)
 }
 
-export const updateIncidenciaById = async (id, values, reload, setReload, api) => {
+export const updateIncidenciaById = async (id, values, reload, setReload) => {
     const incidencia = {
         tipo : values.tipo,
         descripcion : values.descripcion,
@@ -52,11 +52,11 @@ export const updateIncidenciaById = async (id, values, reload, setReload, api) =
         body: JSON.stringify(incidencia),
     })
     setReload(reload == true ? false : true)
-    api.open(showNotificationUpdate("Incidencia actualizada", `ID: ${id}`))
+    showNotificationUpdate("Incidencia actualizada", `ID: ${id}`)
     console.log(response)
 }
 
-export const deleteIncidenciaById = async (id, reload, setReload, api) => {
+export const deleteIncidenciaById = async (id, reload, setReload) => {
     const response = await fetch(`http://localhost:3000/incidencia/delete/${id}`, {
         method: "DELETE",
         headers: {
@@ -64,6 +64,6 @@ export const deleteIncidenciaById = async (id, reload, setReload, api) => {
         },
     })
     setReload(reload == true ? false : true)
-    api.open(showNotificationDelete("Incidencia borrada", ""))
+    showNotificationDelete("Incidencia borrada")
     console.log(response)
 }

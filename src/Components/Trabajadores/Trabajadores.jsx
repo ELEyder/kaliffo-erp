@@ -9,25 +9,12 @@ import { Divider, FloatButton } from "antd";
 const Trabajadores = () => {
   const { tipo_trabajador } = useParams();
   const [openAddUsuario, setOpenAddUsuario] = useState(false);
-
   const [reload, setReload] = useState(false);
 
   const tiposValidos = ["ventas", "talleres", "miscelaneos", "costureros"];
   if (tipo_trabajador && !tiposValidos.includes(tipo_trabajador)) {
     return <Navigate to="/error" />;
   }
-
-  const refrescarTabla = () => {
-    setReload(true);
-    setTimeout(() => setReload(false), 500);
-  };
-
-  const eliminar = async (id) => {
-    const eliminado = await deleteUsuario(id);
-    if (eliminado) {
-      refrescarTabla();
-    }
-  };
 
   return (
     <Plantilla>
@@ -39,7 +26,6 @@ const Trabajadores = () => {
         tipo_trabajador={tipo_trabajador}
         reload={reload}
         setReload={setReload}
-        eliminar={eliminar}
       />
 
       <FloatButton tooltip="Añadir Nuevo" onClick={() => setOpenAddUsuario(true)} />

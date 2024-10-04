@@ -8,8 +8,8 @@ const TrabajadoresTable = ({
   tipo_trabajador,
   reload,
   setReload,
-  eliminar,
 }) => {
+
   const [tabla_datos, SetTabla_datos] = useState([]);
   const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
   const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
@@ -19,7 +19,7 @@ const TrabajadoresTable = ({
     {
       title: "Nombre",
       key: "nombre",
-      render: (text, record) =>
+      render: (record) =>
         `${record.nombre} ${record.ap_paterno} ${record.ap_materno}`,
       align: "center",
     },
@@ -73,7 +73,7 @@ const TrabajadoresTable = ({
       dataIndex: "",
       key: "x",
       align: "center",
-      render: (text, record) => {
+      render: (record) => {
         return (
           <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
             <Col>
@@ -92,7 +92,8 @@ const TrabajadoresTable = ({
             <Col>
               <Button style={{ background: "#ffdf5e", color: "black" }} onClick={(e) => {
                 e.stopPropagation()
-                incidencias(record.usuario_id)}
+                setId(record.usuario_id)
+                setOpenAddIncidencia(true)}
               }
               block>
                 Incidencias

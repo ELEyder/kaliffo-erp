@@ -1,26 +1,31 @@
 import React,{useEffect,useState} from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { AñadirIncidencia } from "../../../Shared/api/Funciones_Fetch";
+import { addIncidencia } from "../../../Shared/api/Incidencia";
 
 const { TextArea } = Input;
 
-const AddIncidenciaModal = ({ModalIncidenciasAbierto,closeModalIncidencias,id,IncidenciaExitosa}) =>{
+const AddIncidenciaModal = ({
+    openModal,
+    closeModal,
+    reload,
+    setReload,
+    id,
+}) =>{
     
     const [form] = Form.useForm()
 
     useEffect(()=>{
-        if(id){
-            console.log(id)
-            form.setFieldsValue({usuario_id:id})
-        }
+        console.log(id)
     },[id,form])
 
     return(
         <Modal
             getContainer={false}
             title={"Nueva Incidencia"}
-            open={ModalIncidenciasAbierto}
-            onCancel={closeModalIncidencias}
+            open={openModal}
+            onCancel={()=> {
+                closeModal(false)
+            }}
             okText="Añadir"
             style={{textAlign:"center",textTransform:"uppercase"}}
             onOk={form.submit}
@@ -36,9 +41,10 @@ const AddIncidenciaModal = ({ModalIncidenciasAbierto,closeModalIncidencias,id,In
                 labelAlign="center"
                 id="formularioinicidencias"
                 onFinish={async(values)=>{
-                    await AñadirIncidencia(values)
-                    form.resetFields(["tipo", "descripcion"]);
-                    IncidenciaExitosa()
+                    addIncidencia(id, values)
+                    setReload(!reload)
+                    closeModal(false)
+                    form.resetFields();
                 }}
                 >
                     <Form.Item
@@ -51,9 +57,9 @@ const AddIncidenciaModal = ({ModalIncidenciasAbierto,closeModalIncidencias,id,In
                         }
                     ]}>
                         <Select options={[
-                            {value:"1",label:"Incidencia Familiar"},
-                            {value:"2",label:"Incidencia Laboral"},
-                            {value:"3",label:"Otros"}
+                            {value:"1",label:"Familiar"},
+                            {value:"2",label:"Salud"},
+                            {value:"3",label:"Personal"}
                         ]}/>
                     </Form.Item>
 
@@ -71,13 +77,6 @@ const AddIncidenciaModal = ({ModalIncidenciasAbierto,closeModalIncidencias,id,In
                         />
 
                     </Form.Item>
-
-                    <Form.Item
-                    name="usuario_id"
-                    noStyle>
-                        <Input type="hidden"/>
-                    </Form.Item>
-
 
                 </Form>
 
