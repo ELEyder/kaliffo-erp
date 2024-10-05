@@ -23,7 +23,6 @@ export const showNotificationError = (msg, description = null) => {
         placement: 'topRight',
       });
       audio.play();
-
 }
 
 export const showNotificationUpdate = (msg, description = null) => {
@@ -35,17 +34,15 @@ export const showNotificationUpdate = (msg, description = null) => {
         placement: 'topRight',
       });
       audio.play();
-
 }
 
 export const showNotificationDelete = (msg, description = null) => {
     notification.warning({
         message: msg,
         description: description,
-        // icon: <PlusCircleOutlined style={{ color: '#108ee9' }} />,
+        icon: <CloseCircleOutlined style={{ color: '#ff4d4f' }} />,
         duration: 3,
         placement: 'topRight',
       });
       audio.play();
-
 }

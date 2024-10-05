@@ -36,6 +36,7 @@ const AddUsuarioModal = ({
       width={500}
     >
       <Form
+      autoComplete={"false"}
         style={{ maxWidth: 500, margin: "0 auto" }}
         size="large"
         form={form}
