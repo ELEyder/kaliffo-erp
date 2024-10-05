@@ -1,6 +1,6 @@
 import { Card, List,Button } from "antd";
 import React,{useState,useEffect}from "react";
-import { getTienda } from "../../../Shared/api/Tienda";
+import { getTiendaById } from "../../../Shared/api/Tienda";
 
 const TiendaCard = ({id,refrescarSideCard1}) =>{
 
@@ -8,7 +8,7 @@ const TiendaCard = ({id,refrescarSideCard1}) =>{
   const [tienda, setTienda] = useState([]);
 
   useEffect(() => {
-    getTienda(id, setTienda);
+    getTiendaById(id, setTienda);
   }, [id,refrescarSideCard1]);
 
 

@@ -6,14 +6,17 @@ import { getProductoById } from "../../../Shared/api/Producto";
 const ProductoInfo = () =>{
   const { id } = useParams();
   const [producto, setProducto] = useState([]);
+
   useEffect(() => {
     getProductoById(id, setProducto);
   }, [id]);
+
   const imgSrc = `/img/${producto.producto_id}.png`;
           
   const handleError = (e) => {
     e.target.src = '/img/generic.png';
   };
+
     return(
         <Card
         style={{ maxwidth: 300, textAlign: "center", margin: "auto" } }
@@ -24,9 +27,9 @@ const ProductoInfo = () =>{
         <List
           itemLayout="horizontal"
           dataSource={[
-            { title: "STOCK TOTAL", value: producto.stockGeneral },
-            { title: "PRECIO", value: producto.precio },
-            { title: "COLORES", value: "13,287" },
+            { title: "STOCK TOTAL", value: producto.stockTotal },
+            { title: "PRECIO", value: producto.precioBase },
+            { title: "COLORES", value: "Sin Datos" },
           ]}
           renderItem={(item) => (
             <List.Item>

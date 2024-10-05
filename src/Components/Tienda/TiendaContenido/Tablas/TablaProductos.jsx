@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getProductosTienda } from "../../../../Shared/api/Producto";
+import { getProductosByTienda } from "../../../../Shared/api/Producto";
 import { deleteProductoById } from "../../../../Shared/api/Producto";
 import ModalAddProducto from "../../TiendaModales/ModalAddProducto";
 
@@ -120,7 +120,7 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
     }
 
   useEffect(() => {
-    getProductosTienda(id,setproductostienda)
+    getProductosByTienda(id,setproductostienda)
   }, [id, reload]);
 
   return (

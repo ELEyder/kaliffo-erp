@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getProductosTiendas } from "../../../../Shared/api/Producto";
+import { getColoresByProducto } from "../../../Shared/api/Color";
 
 const ProductoColores = ({ id }) =>{
     const columns=[
@@ -16,17 +16,17 @@ const ProductoColores = ({ id }) =>{
             dataIndex: "stock",
             key: "stock",
             align:"center",
-            render(text, record) {
-              let backgroundColor = text >= 50 ? 'green' : '#FCFB77';
-              backgroundColor = text < 20 ? '#f54242' : backgroundColor;
-              let color = backgroundColor == '#FCFB77' ? 'black' : 'white'; 
-                return {
-                  props: {
-                      style: { background: backgroundColor, padding: "10px"}  
-                  },
-                  children: <p style={{color: color, margin: 0}}>{text}</p>
-                };
-              }
+            onCell: (record) => ({
+                style: {
+                  background: record.stock >= 50
+                    ? 'green' 
+                    : record.stock <= 20
+                    ? '#f54242' 
+                    : '#FCFB77',
+                  color: record.stock <= 20 || record.stock >=  50 ? "white" : "black",
+                  padding: "10px"
+                }
+              }),
         },
         {
             title: "Precio",
@@ -72,10 +72,10 @@ const ProductoColores = ({ id }) =>{
     ]
 
 
-    const [tabla, setTabla] = useState();
+    const [tabla, setTabla] = useState([]);
 
     useEffect(() => {
-        getProductosTiendas(id , setTabla);
+        getColoresByProducto(id , setTabla);
       }, [id]);
 
     return(
@@ -83,7 +83,7 @@ const ProductoColores = ({ id }) =>{
          <Table
          ali
         columns={columns}
-        dataSource={tabla}
+        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
         >
 
         </Table>

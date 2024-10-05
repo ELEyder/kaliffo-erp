@@ -19,14 +19,27 @@ export const addTienda = async (values) => {
 
 }
 
-export const getTienda = async (id, seteador) => {
+export const getTiendaById = async (id, setTienda) => {
     const response = await fetch(`http://localhost:3000/tienda/${id}`);
-    const TiendaData = await response.json();
-    seteador(TiendaData);
+    const data = await response.json();
+    setTienda(data);
 };
 
-export const getTiendas = async (setTienda) => {
+export const getTiendas = async (setTiendas) => {
     const response = await fetch(`http://localhost:3000/tienda`)
-    const productosData= await response.json()
-    setTienda(productosData)
+    const data = await response.json()
+    setTiendas(data)
 }
+
+export const getTiendasByProducto = async (id, setTiendas) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/tienda?producto_id=${id}`
+      );
+      const data = await response.json();
+      setTiendas(data);
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
+  };

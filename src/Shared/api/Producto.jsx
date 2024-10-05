@@ -16,13 +16,13 @@ export const addProducto = async (values) => {
     } catch (error) {
         console.log(error)
     }
-
 }
 
 export const getProductoById = async (id, setProducto) => {
     const response = await fetch(`http://localhost:3000/producto/${id}`)
     const productoData= await response.json()
-    setProducto(productoData)
+    console.log(productoData[0])
+    setProducto(productoData[0])
 }
 
 export const deleteProductoById = async (id, id_Tienda, reload, setReload) => {
@@ -36,25 +36,13 @@ export const deleteProductoById = async (id, id_Tienda, reload, setReload) => {
     console.log(response)
 }
 
-export const getProductosTienda = async (id, seteador) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/producto?tienda_id=${id}`
-      );
-      const data = await response.json();
-      seteador(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
 export const getProductos = async (seteador) => {
     const response = await fetch(`http://localhost:3000/producto`)
     const productosData= await response.json()
     seteador(productosData)
 }
 
-export const getProductosTiendas = async (id, setTabla) => {
+export const getProductosByTienda = async (id, setTabla) => {
     const response = await fetch(`http://localhost:3000/producto/tienda/${id}`)
     const productoData= await response.json()
 
@@ -63,7 +51,7 @@ export const getProductosTiendas = async (id, setTabla) => {
         ...detalle,
         precio: productoData.precio
       }));
-
+    console.log(detallesConNuevoParametro)
     setTabla(detallesConNuevoParametro)
 }
 
