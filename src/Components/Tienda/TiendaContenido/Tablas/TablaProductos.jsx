@@ -40,8 +40,8 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
     },
     {
       title: "Precio",
-      key:"precio",
-      dataIndex:"precio",
+      key:"precioBase",
+      dataIndex:"precioBase",
       align:"center",
       render: (text) =>
         `S/ ${text}`,
