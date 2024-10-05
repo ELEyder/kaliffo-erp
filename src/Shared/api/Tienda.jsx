@@ -30,4 +30,3 @@ export const getTiendas = async (setTienda) => {
     const productosData= await response.json()
     setTienda(productosData)
 }
-

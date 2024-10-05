@@ -13,7 +13,7 @@ const TrabajadoresTable = ({
   const [tabla_datos, SetTabla_datos] = useState([]);
   const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
   const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(1);
   
   const columnas = [
     {

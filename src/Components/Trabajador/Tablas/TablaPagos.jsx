@@ -2,7 +2,7 @@ import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
 import { SmileOutlined } from '@ant-design/icons';
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getPagosById, deletePagoById } from "../../../../Shared/api/Pago";
+import { getPagosById, deletePagoById } from "../../../Shared/api/Pago";
 import Modal_add_pago from "../Modals/Modal_add_pago";
 
 const TablaPagos = ({ id }) =>{

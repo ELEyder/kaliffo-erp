@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Col, DatePicker, Form, Input, Modal, Row, Select, notification } from "antd";
-import { CargarEditar, manejonumeros, fetchTiendas,manejotexto } from "../../../Shared/api/Funciones_Fetch";
+import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
+import { CargarEditar, manejonumeros , manejotexto } from "../../../Shared/api/Funciones_Fetch";
 import { updateUsuario } from "../../../Shared/api/Usuario";
+import { getTiendas } from "../../../Shared/api/Tienda";
 
 const UpdateUsuarioModal = ({
   openModal,
@@ -13,22 +14,19 @@ const UpdateUsuarioModal = ({
 }) => {
 
   const [form] = Form.useForm();
-  const [api, ] = Form.useForm();
-  const[tiendas,setTiendas]=useState([])
-  const[valoresO,setValoresO] = useState({})
+  const[tiendas, setTiendas] = useState([])
+  const[valoresO, setValoresO] = useState({})
   
   useEffect(() => {
-    if(id){
-      CargarEditar(id,form,setValoresO)
-      form.setFieldsValue({usuario_id:id})
-      if(tipoTrabajador==="ventas"){
-        fetchTiendas(setTiendas)
-    }
+    CargarEditar(id,form,setValoresO)
+    if(tipoTrabajador==="ventas"){
+      getTiendas(setTiendas)
     }
   }, [id]);
 
   return (
     <Modal
+      forceRender 
       getContainer={false}
       title={`Editar Trabajador de ${tipoTrabajador}`}
       open={openModal}
@@ -47,7 +45,7 @@ const UpdateUsuarioModal = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await updateUsuario(values,valoresO)
+          await updateUsuario(id, values,valoresO)
           setReload(!reload)
           closeModal(false)
         }}
@@ -198,7 +196,7 @@ const UpdateUsuarioModal = ({
                   style={{textAlign:"center"}}
                   options={tiendas.map((tienda) => ({
                     value: tienda.tienda_id,
-                    label: tienda.tienda.tienda,
+                    label: tienda.tienda,
                     key: tienda.tienda_id,
                   }))}
                 />

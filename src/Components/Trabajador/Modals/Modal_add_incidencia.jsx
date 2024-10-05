@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Select, ConfigProvider, DatePicker, Form, Input, Modal } from "antd";
-import { addIncidencia } from "../../../../Shared/api/Incidencia"
+import { addIncidencia } from "../../../Shared/api/Incidencia"
 const { Option } = Select;
 
 const Modal_add_incidencia = ({

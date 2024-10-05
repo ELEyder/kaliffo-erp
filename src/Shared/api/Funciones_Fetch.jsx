@@ -6,7 +6,7 @@ export const evitarnumeros = (texto) => {
 
 
 export const evitarletras = (texto) => {
-  return texto.replace(/[a-zA-Z]/g, "");
+  return texto.replace(/[a-zA-Z.,]/g, "");
 };
 
 export const manejotexto = (form, nombre) => (event) => {
@@ -15,12 +15,6 @@ export const manejotexto = (form, nombre) => (event) => {
 
 export const manejonumeros = (form, nombre) => (event) => {
   form.setFieldsValue({ [nombre]: evitarletras(event.target.value) });
-};
-
-export const fetchTiendas = async (seteador) => {
-  const query = await fetch(`http://localhost:3000/tienda`);
-  const tiendasdata = await query.json();
-  seteador(tiendasdata);
 };
 
 
@@ -68,22 +62,4 @@ export const AñadirIncidencia = async (values) => {
 
 
 
-export const GetReporteUsuario = async (id) => {
-  try {
-    const response = await fetch(`http://localhost:3000/usuario/reporte/${id}`, {
-      method: "GET",
-    });
-
-    if (!response.ok) {
-      throw new Error("Error al obtener el PDF");
-    }
-
-    const pdf = await response.blob();
-
-    const url = window.URL.createObjectURL(pdf);
-    window.open(url);
-  } catch (error) {
-    console.log("Error:", error);
-  }
-};
 

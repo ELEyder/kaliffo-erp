@@ -14,12 +14,9 @@ const AddIncidenciaModal = ({
     
     const [form] = Form.useForm()
 
-    useEffect(()=>{
-        console.log(id)
-    },[id,form])
-
     return(
         <Modal
+            forceRender
             getContainer={false}
             title={"Nueva Incidencia"}
             open={openModal}

@@ -2,7 +2,7 @@ import { Card, List,Button } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUsuarioById } from "../../../Shared/api/Usuario";
-import { GetReporteUsuario } from "../../../Shared/api/Funciones_Fetch";
+import { getReporteUsuario } from "../../../Shared/api/Reporte";
 
 const TrabajadorInfo = () =>{
   const { id } = useParams();
@@ -12,7 +12,6 @@ const TrabajadorInfo = () =>{
   }, [id]);
 
   const imgSrc = `/img/usuarios/${usuario.usuario_id}.png`;
-          
   const handleError = (e) => {
     e.target.src = '/img/usuarios/1.png';
   };
@@ -34,12 +33,12 @@ const TrabajadorInfo = () =>{
           ]}
           renderItem={(item) => (
             <List.Item>
-              <b>{item.title}</b>
+              <b style={{ textAlign: 'left', marginRight: "5px" }}>{item.title}</b>
               <a style={{ float: "right" }}>{item.value}</a>
             </List.Item>
           )}
         />
-       <Button type="primary" onClick={() => GetReporteUsuario(id)} block>
+       <Button type="primary" onClick={() => getReporteUsuario(id)} block>
           Obtener reporte
         </Button>
 

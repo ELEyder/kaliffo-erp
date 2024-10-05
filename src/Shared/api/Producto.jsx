@@ -55,7 +55,7 @@ export const getProductos = async (seteador) => {
 }
 
 export const getProductosTiendas = async (id, setTabla) => {
-    const response = await fetch(`http://localhost:3000/producto/${id}`)
+    const response = await fetch(`http://localhost:3000/producto/tienda/${id}`)
     const productoData= await response.json()
 
     // Talla por defecto
