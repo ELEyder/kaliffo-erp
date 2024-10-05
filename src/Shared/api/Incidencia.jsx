@@ -24,7 +24,7 @@ export const getIncidenciasById = async (id, setIncidencias) => {
     const incidenciasData = await response.json()
     console.log(incidenciasData)
     let count = 0
-    const detallesConNuevoParametro = incidenciasData.map(detalle => {
+    const detallesConNuevoParametro = incidenciasData.map(detalle => { 
         const fecha_creacion = new Date(detalle.fecha_creacion);
         count = count + 1
         return {

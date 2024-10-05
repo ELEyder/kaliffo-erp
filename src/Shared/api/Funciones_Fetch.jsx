@@ -1,8 +1,9 @@
 import moment from "moment";
 
 export const evitarnumeros = (texto) => {
-  return texto.replace(/\d/g, "");
+  return texto.replace(/[^a-zA-Z ]/g, ""); // Permitir solo letras y espacios
 };
+
 
 export const evitarletras = (texto) => {
   return texto.replace(/[a-zA-Z.,]/g, "");

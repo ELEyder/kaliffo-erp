@@ -44,11 +44,11 @@ const Productos_cards = ({ refrescar }) => {
               >
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Precio: S/${producto.precio}`}
+                  title={`Precio: S/${producto.precioBase}`}
                 />
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Stock general: ${producto.stock}`}
+                  title={`Stock general: ${producto.stockTotal}`}
                 />
               </Card>
             </Col>
