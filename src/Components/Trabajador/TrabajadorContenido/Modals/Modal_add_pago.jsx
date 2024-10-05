@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Select, ConfigProvider, DatePicker, Form, Input, Modal, Row } from "antd";
-import { addPago } from "../../../../Shared/Funciones/Pago"
+import { Select, ConfigProvider, DatePicker, Form, Input, Modal, Row, notification } from "antd";
+import { SmileOutlined } from '@ant-design/icons';
+import { addPago } from "../../../../Shared/api/Pago"
+
 const { Option } = Select;
 
 const Modal_add_pago = ({
@@ -10,6 +12,8 @@ const Modal_add_pago = ({
   setReload,
   idUsuario
 }) => {
+    const [api, contextHolder] = notification.useNotification(); 
+  
     const[form] = Form.useForm()
 
   return (

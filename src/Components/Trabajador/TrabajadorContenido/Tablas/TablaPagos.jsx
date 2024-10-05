@@ -1,10 +1,20 @@
-import { Table, Button, Popconfirm, Row, Col } from "antd";
+import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
+import { SmileOutlined } from '@ant-design/icons';
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getPagosById, deletePagoById } from "../../../../Shared/Funciones/Pago";
+import { getPagosById, deletePagoById } from "../../../../Shared/api/Pago";
 import Modal_add_pago from "../Modals/Modal_add_pago";
 
 const TablaPagos = ({ id }) =>{
+
+  const [api, contextHolder] = notification.useNotification(); 
+  const [tabla, setTabla] = useState([]);
+  const [reload, setReload] = useState(false);
+  const [ModalAddPagoOpen, setModalAddPagoOpen] = useState(false);
+  useEffect(() => {
+      getPagosById(id , setTabla, api);
+    }, [id, reload]);
+
     const columns=[
         {
           title: "Monto Pagado",
@@ -76,7 +86,7 @@ const TablaPagos = ({ id }) =>{
                               okText="Confirmar"
                               cancelText="NO"
                               onConfirm={(e) => {
-                                deletePagoById(record.pago_id, reload, setReload)
+                                deletePagoById(record.pago_id, reload, setReload, api)
                               }}
                           >
                               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -87,16 +97,10 @@ const TablaPagos = ({ id }) =>{
           }
         },
     ]
-    const [tabla, setTabla] = useState([]);
-    const [reload, setReload] = useState(false);
-    const [ModalAddPagoOpen, setModalAddPagoOpen] = useState(false);
-
-    useEffect(() => {
-        getPagosById(id , setTabla);
-      }, [id, reload]);
 
     return(
        <>
+       {contextHolder}
          <Table
          ali
         columns={columns}

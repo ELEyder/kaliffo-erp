@@ -1,7 +1,8 @@
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import React, { useEffect, useState } from "react";
-import { manejonumeros,manejotexto,fetchTiendas, CargarEditar,editar } from "../../../Shared/Funciones/Funciones_Fetch";
-
+import { getTiendas } from "../../../Shared/api/Tienda";
+import { CargarEditar } from "../../../Shared/api/Funciones_Fetch";
+import { updateUsuario } from "../../../Shared/api/Usuario";
 const TiendaPersonalModal = ({
   ModalPersonalTiendaAbierto,
   closeModalPersonalTiendaAbierto,
@@ -16,7 +17,7 @@ const TiendaPersonalModal = ({
     if(id_personal){
         CargarEditar(id_personal,form,setValoresO)
         form.setFieldsValue({usuario_id:id_personal})
-        fetchTiendas(setTiendas)
+        getTiendas(setTiendas)
     }
   },[id_personal])
 
@@ -40,7 +41,7 @@ const TiendaPersonalModal = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await editar(values, valoresO);
+          await updateUsuario(values, valoresO);
           handleEditarExitoso();
         }}
       >
@@ -55,7 +56,7 @@ const TiendaPersonalModal = ({
             },
           ]}
         >
-          <Input onChange={manejotexto(form, "nombreE")} />
+          <Input/>
         </Form.Item>
 
         <Row
@@ -79,7 +80,7 @@ const TiendaPersonalModal = ({
                 },
               ]}
             >
-              <Input onChange={manejotexto(form, "ap_paternoE")} />
+              <Input />
             </Form.Item>
           </Col>
 
@@ -94,7 +95,7 @@ const TiendaPersonalModal = ({
                 },
               ]}
             >
-              <Input onChange={manejotexto(form, "ap_maternoE")} />
+              <Input />
             </Form.Item>
           </Col>
         </Row>
@@ -138,7 +139,6 @@ const TiendaPersonalModal = ({
               <Input
                 maxLength={9}
                 showCount
-                onChange={manejonumeros(form, "telefonoE")}
               />
             </Form.Item>
           </Col>
@@ -169,7 +169,6 @@ const TiendaPersonalModal = ({
                 maxLength={8}
                 style={{ textAlign: "center" }}
                 showCount
-                onChange={manejonumeros(form, "dniE")}
               />
             </Form.Item>
           </Col>

@@ -1,6 +1,6 @@
 import { Card, List,Button } from "antd";
 import React,{useState,useEffect}from "react";
-import { getTienda } from "../../../Shared/Funciones/Fucniones_Tienda";
+import { getTienda } from "../../../Shared/api/Tienda";
 
 const TiendaCard = ({id,refrescarSideCard1}) =>{
 

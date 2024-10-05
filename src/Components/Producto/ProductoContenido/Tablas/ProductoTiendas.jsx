@@ -1,13 +1,13 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getProductoTiendas } from "../../../../Shared/Funciones/Producto";
+import { getProductosTiendas } from "../../../../Shared/api/Producto";
 
 const ProductoTiendas = ( { id } ) =>{
     const [tabla, setTabla] = useState([]);
 
     useEffect(() => {
-        getProductoTiendas(id , setTabla);
+        getProductosTiendas(id , setTabla);
       }, [id]);
     
     const columns=[

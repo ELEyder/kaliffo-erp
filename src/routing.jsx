@@ -1,5 +1,5 @@
 import { Route,Routes } from "react-router-dom";
-import Trabajadores_main from "./Components/Trabajadores/Trabajadores_main";
+import Trabajadores from "./Components/Trabajadores/Trabajadores";
 import Trabajador_main from "./Components/Trabajador/Trabajador_main";
 import Tiendas_main from "./Components/Tiendas/Tiendas_Main";
 import Tienda_main from "./Components/Tienda/Tienda_main";
@@ -10,8 +10,8 @@ import { notification } from 'antd'
 export const Routing = () =>{
     return(
         <Routes>
-            <Route path="/" element={<Trabajadores_main/>}/>
-            <Route path="/trabajadores/:tipo_trabajador" element={<Trabajadores_main/>}/>
+            <Route path="/" element={<Trabajadores/>}/>
+            <Route path="/trabajadores/:tipo_trabajador" element={<Trabajadores/>}/>
             <Route path="/trabajador/:id" element={<Trabajador_main/>}/>
             <Route path="/tiendas" element={<Tiendas_main/>}/>
             <Route path="/tienda/:id" element={<Tienda_main />}/>

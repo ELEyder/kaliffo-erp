@@ -1,7 +1,7 @@
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getProductoTiendas } from "../../../../Shared/Funciones/Producto";
+import { getProductosTiendas } from "../../../../Shared/api/Producto";
 
 const ProductoColores = ({ id }) =>{
     const columns=[
@@ -75,7 +75,7 @@ const ProductoColores = ({ id }) =>{
     const [tabla, setTabla] = useState();
 
     useEffect(() => {
-        getProductoTiendas(id , setTabla);
+        getProductosTiendas(id , setTabla);
       }, [id]);
 
     return(

@@ -1,6 +1,6 @@
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 import React from "react";
-import { addProducto } from "../../../Shared/Funciones/Producto";
+import { addProducto } from "../../../Shared/api/Producto";
 
 const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso }) => {
   const [form] = Form.useForm();

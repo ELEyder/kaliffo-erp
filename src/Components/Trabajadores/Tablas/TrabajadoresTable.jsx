@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Col, Popconfirm, Table, notification } from "antd";
-import {
-  FetchDataTablaTrabajadores,
-} from "../../../Shared/Funciones/Funciones_Fetch";
+import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
+import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
+import { getUsuarios, deleteUsuario } from "../../../Shared/api/Usuario";
+import { Button, Row, Col, Popconfirm, Table } from "antd";
 
-const Tabla_Trabajadores = ({
+const TrabajadoresTable = ({
   tipo_trabajador,
-  Refrescar,
-  editar,
-  incidencias,
-  eliminar,
+  reload,
+  setReload,
 }) => {
-  const [tabla_datos, SetTabla_datos] = useState([]);
 
+  const [tabla_datos, SetTabla_datos] = useState([]);
+  const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
+  const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
+  const [id, setId] = useState(null);
+  
   const columnas = [
     {
       title: "Nombre",
       key: "nombre",
-      render: (text, record) =>
+      render: (record) =>
         `${record.nombre} ${record.ap_paterno} ${record.ap_materno}`,
       align: "center",
     },
@@ -71,7 +73,7 @@ const Tabla_Trabajadores = ({
       dataIndex: "",
       key: "x",
       align: "center",
-      render: (text, record) => {
+      render: (record) => {
         return (
           <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
             <Col>
@@ -79,7 +81,8 @@ const Tabla_Trabajadores = ({
               type="primary"
               onClick={(e) =>{
                 e.stopPropagation()
-                editar(record.usuario_id)
+                setId(record.usuario_id)
+                setOpenUpdateUsuario(true)
               }}
               block
               >
@@ -87,7 +90,12 @@ const Tabla_Trabajadores = ({
               </Button>
             </Col>
             <Col>
-              <Button style={{ background: "#ffdf5e", color: "black" }} onClick={() => incidencias(record.usuario_id)} block>
+              <Button style={{ background: "#ffdf5e", color: "black" }} onClick={(e) => {
+                e.stopPropagation()
+                setId(record.usuario_id)
+                setOpenAddIncidencia(true)}
+              }
+              block>
                 Incidencias
               </Button>
             </Col>
@@ -98,7 +106,7 @@ const Tabla_Trabajadores = ({
                 okText="Confirmar"
                 onConfirm={(e) =>{
                   e.stopPropagation();
-                  eliminar(record.usuario_id)
+                  deleteUsuario(record.usuario_id)
                 }} 
                 cancelText="NO"
               >
@@ -129,11 +137,8 @@ const Tabla_Trabajadores = ({
   }
 
   useEffect(() => {
-    FetchDataTablaTrabajadores(tipo_trabajador, SetTabla_datos);
-    if (Refrescar) {
-      FetchDataTablaTrabajadores(tipo_trabajador, SetTabla_datos);
-    }
-  }, [tipo_trabajador, Refrescar]);
+    getUsuarios(tipo_trabajador, SetTabla_datos);
+  }, [tipo_trabajador, reload]);
 
   return (
     <>
@@ -153,8 +158,24 @@ const Tabla_Trabajadores = ({
           }
         })}
       />
+      <UpdateUsuarioModal
+        openModal={openUpdateUsuario}
+        closeModal={setOpenUpdateUsuario}
+        tipoTrabajador={tipo_trabajador}
+        reload={reload}
+        setReload={setReload}
+        id={id}
+      />
+
+      <AddIncidenciaModal
+        openModal={openAddIncidencia}
+        closeModal={setOpenAddIncidencia}
+        reload={reload}
+        setReload={setReload}
+        id={id}
+      />
     </>
   );
 };
 
-export default Tabla_Trabajadores;
+export default TrabajadoresTable;

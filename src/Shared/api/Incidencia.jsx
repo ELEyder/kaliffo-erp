@@ -1,4 +1,7 @@
-export const addIncidencia = async (id, data, reload, setReload) => {
+import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "./Notifications"
+const incidencias = ["Familiar", "Salud", "Personal"]
+
+export const addIncidencia = async (id, data) => {
     const Incidencia = {
         tipo : data.tipo,
         descripcion : data.descripcion,
@@ -13,16 +16,15 @@ export const addIncidencia = async (id, data, reload, setReload) => {
         body : JSON.stringify(Incidencia),
     })
     console.log(response)
-    setReload(reload == true ? false : true)
+    showNotificationAdd("Incidencia añadida correctamente")
 }
 
 export const getIncidenciasById = async (id, setIncidencias) => {
-    const incidencias = ["Familiar", "Salud", "Personal"]
-    const response = await fetch(`http://localhost:3000/incidencia?usuario_id="${id}"`)
-    // const response = await fetch(`http://localhost:3000/incidencia/`)
-    const productoData= await response.json()
+    const response = await fetch(`http://localhost:3000/incidencia?usuario_id=${id}`)
+    const incidenciasData = await response.json()
+    console.log(incidenciasData)
     let count = 0
-    const detallesConNuevoParametro = productoData.map(detalle => {
+    const detallesConNuevoParametro = incidenciasData.map(detalle => { 
         const fecha_creacion = new Date(detalle.fecha_creacion);
         count = count + 1
         return {
@@ -50,6 +52,7 @@ export const updateIncidenciaById = async (id, values, reload, setReload) => {
         body: JSON.stringify(incidencia),
     })
     setReload(reload == true ? false : true)
+    showNotificationUpdate("Incidencia actualizada", `ID: ${id}`)
     console.log(response)
 }
 
@@ -61,5 +64,6 @@ export const deleteIncidenciaById = async (id, reload, setReload) => {
         },
     })
     setReload(reload == true ? false : true)
+    showNotificationDelete("Incidencia borrada")
     console.log(response)
 }

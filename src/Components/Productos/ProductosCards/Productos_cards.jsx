@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CargarProductos } from "../../../Shared/Funciones/Funciones_Productos";
+import { getProductos } from "../../../Shared/api/Producto";
 import { Button, Card, Col, Row, Divider } from "antd";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,7 @@ const Productos_cards = ({ refrescar }) => {
   const [productos, setTiendas] = useState([]);
 
   useEffect(() => {
-    CargarProductos(setTiendas);
+    getProductos(setTiendas);
   }, [refrescar]);
 
   return (
@@ -44,11 +44,11 @@ const Productos_cards = ({ refrescar }) => {
               >
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Precio: S/${producto.precio}`}
+                  title={`Precio: S/${producto.precioBase}`}
                 />
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Stock general: ${producto.stock}`}
+                  title={`Stock general: ${producto.stockTotal}`}
                 />
               </Card>
             </Col>

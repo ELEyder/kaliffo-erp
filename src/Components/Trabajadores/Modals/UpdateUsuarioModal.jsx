@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { CargarEditar, manejonumeros, fetchTiendas,manejotexto, editar } from "../../../Shared/Funciones/Funciones_Fetch";
+import { Col, DatePicker, Form, Input, Modal, Row, Select, notification } from "antd";
+import { CargarEditar, manejonumeros, fetchTiendas,manejotexto } from "../../../Shared/api/Funciones_Fetch";
+import { updateUsuario } from "../../../Shared/api/Usuario";
 
-const Modal_editar = ({
-  ModalEditarAbierto,
-  closeModalEditar,
-  tipo_trabajador,
+const UpdateUsuarioModal = ({
+  openModal,
+  closeModal,
+  tipoTrabajador,
+  reload,
+  setReload,
   id,
-  EdicionExitosa
 }) => {
 
   const [form] = Form.useForm();
+  const [api, ] = Form.useForm();
   const[tiendas,setTiendas]=useState([])
   const[valoresO,setValoresO] = useState({})
   
@@ -18,18 +21,18 @@ const Modal_editar = ({
     if(id){
       CargarEditar(id,form,setValoresO)
       form.setFieldsValue({usuario_id:id})
-      if(tipo_trabajador==="ventas"){
+      if(tipoTrabajador==="ventas"){
         fetchTiendas(setTiendas)
     }
     }
-  }, [tipo_trabajador,id]);
+  }, [id]);
 
   return (
     <Modal
       getContainer={false}
-      title={`Editar Trabajador de ${tipo_trabajador}`}
-      open={ModalEditarAbierto}
-      onCancel={closeModalEditar}
+      title={`Editar Trabajador de ${tipoTrabajador}`}
+      open={openModal}
+      onCancel={() => closeModal(false)}
       okText="Guardar"
       onOk={form.submit}
       style={{textTransform:"uppercase"}}
@@ -44,8 +47,9 @@ const Modal_editar = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await editar(values,valoresO)
-          EdicionExitosa()
+          await updateUsuario(values,valoresO)
+          setReload(!reload)
+          closeModal(false)
         }}
       >
         <Form.Item
@@ -179,7 +183,7 @@ const Modal_editar = ({
           </Col>
 
           <Col span={14} className="gutter-row">
-            {tipo_trabajador === "ventas" ? (
+            {tipoTrabajador === "ventas" ? (
               <Form.Item
                 name="tienda_id"
                 label="Tienda Asignada"
@@ -211,4 +215,4 @@ const Modal_editar = ({
   );
 };
 
-export default Modal_editar;
+export default UpdateUsuarioModal;

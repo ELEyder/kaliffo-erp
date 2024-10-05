@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getusuariosTienda } from "../../../../Shared/Funciones/Fucniones_Tienda";
+import { getUsuariosTienda } from "../../../../Shared/api/Usuario";
+import { deleteUsuario } from "../../../../Shared/api/Usuario";
 import TiendaPersonalModal from "../../TiendaModales/TiendaPersonalModal";
-import { EliminarUsuario } from "../../../../Shared/Funciones/Funciones_Fetch";
 import TiendaAddPersonal from "../../TiendaModales/TiendaAddPersonal";
 
 const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
@@ -60,9 +60,9 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
   }
 
   useEffect(() => {
-    getusuariosTienda(id, setusuariostienda);
+    getUsuariosTienda(id, setusuariostienda);
     if (Refrescar) {
-      getusuariosTienda(id, setusuariostienda);
+      getUsuariosTienda(id, setusuariostienda);
       setRefrescar(false); 
     }
   }, [id, Refrescar]);
@@ -119,6 +119,9 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
                 description="DESEA ELIMINAR A"
                 okText="Confirmar"
                 cancelText="NO"
+                onConfirm={() => {
+                  deleteUsuario(record.usuario_id, refrescarTabla)
+                }}
               >
               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
               </Popconfirm>

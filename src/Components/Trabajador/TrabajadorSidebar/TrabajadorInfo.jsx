@@ -1,8 +1,8 @@
 import { Card, List,Button } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUsuarioById } from "../../../Shared/Funciones/Funciones_Usuario";
-import { GetReporteUsuario } from "../../../Shared/Funciones/Funciones_Fetch";
+import { getUsuarioById } from "../../../Shared/api/Usuario";
+import { GetReporteUsuario } from "../../../Shared/api/Funciones_Fetch";
 
 const TrabajadorInfo = () =>{
   const { id } = useParams();
