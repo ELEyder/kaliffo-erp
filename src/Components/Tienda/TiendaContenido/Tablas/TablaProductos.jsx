@@ -4,6 +4,7 @@ import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 import { getProductosByTienda } from "../../../../Shared/api/Producto";
 import { deleteProductoById } from "../../../../Shared/api/Producto";
+import TiendaDetalleProducto from "../../TiendaModales/TiendaDetalleProducto"
 import ModalAddProducto from "../../TiendaModales/ModalAddProducto";
 
 
@@ -12,6 +13,9 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
   const[productostienda,setproductostienda] = useState([])
   const[reload,setReload] = useState(false)
   const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)
+  const[OpenTiendaDetalleProducto,setOpenTiendaDetalleProducto] = useState(false)
+  const[idp,setIdP] = useState(0)
+  const[nombreProducto,setNombreProducto] = useState(0)
 
   const columns = [
     {
@@ -22,9 +26,9 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
     },
     {
       title: "Stock",
-      key: "stockTotal",
+      key: "stock",
       align: "center",
-      dataIndex:"stockTotal",
+      dataIndex:"stock",
       defaultSortOrder: "ascend",
       onCell: (record) => ({
           style: {
@@ -73,8 +77,10 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
       render:(text,record) =>{
         return(
           <Button type="primary" block
-          onClick={() => {
-            navigate(`/producto/${record.producto_id}`)
+          onClick= {() => {
+            setIdP(record.producto_id)
+            setNombreProducto(record.nombre)
+            setOpenTiendaDetalleProducto(true)
           }}
           >+</Button>
         )
@@ -89,7 +95,8 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
           return (
             <Row gutter={[8, 8]} justify="center" align="middle">
               <Col>
-                <Button type="primary" block>Editar</Button>
+                <Button type="primary" block
+                >Editar</Button>
               </Col>
               <Col>
                 <Popconfirm
@@ -138,6 +145,14 @@ const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
       ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
       closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}
       id={id}
+      />
+
+      <TiendaDetalleProducto
+      openModal = {OpenTiendaDetalleProducto}
+      closeModal={setOpenTiendaDetalleProducto}
+      id={id}
+      idp={idp}
+      nombreProducto={nombreProducto}
       />
     </>
   );

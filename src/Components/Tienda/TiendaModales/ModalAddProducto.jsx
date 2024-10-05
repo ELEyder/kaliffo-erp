@@ -89,6 +89,8 @@ const ModalAddProducto = ({
   return (
     <>
       <Modal
+        forceRender
+        getContainer={false}
         title="Formulario Dinámico"
         open={ModalProductoAddTiendaAbierto}
         onCancel={handleCancel}

@@ -52,7 +52,7 @@ const TrabajadoresTable = ({
       key: "total_incidencias",
       defaultSortOrder: "ascend",
       sorter: {
-        compare: (a, b) => a.telefono.localeCompare(b.total_incidencias),
+        compare: (a, b) => a.total_incidencias.localeCompare(b.total_incidencias),
         multiple: 2,
       },
       align: "center",
@@ -63,7 +63,7 @@ const TrabajadoresTable = ({
       key: "sueldo",
       defaultSortOrder: "ascend",
       sorter: {
-        compare: (a, b) => a.telefono.localeCompare(b.telefono),
+        compare: (a, b) => a.sueldo.localeCompare(b.sueldo),
         multiple: 2,
       },
       align: "center",

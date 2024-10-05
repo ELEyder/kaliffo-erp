@@ -14,11 +14,12 @@ const TiendaAddPersonal = ({
   const [Trabajadores, setTrabajadores] = useState([]);
 
   useEffect(() => {
-    updateUsuarioTienda(id, setTrabajadores);
+    getTrabajadoresDiferentes(id, setTrabajadores);
   },[]);
 
   return (
     <Modal
+      forceRender
       getContainer={false}
       title={`Añadir nuevo trabajador`}
       open={ModalTiendaAddPersonalAbierto}

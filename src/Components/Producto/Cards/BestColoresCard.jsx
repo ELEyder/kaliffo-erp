@@ -2,7 +2,7 @@ import React from "react";
 import { Card, List } from "antd";
 import { useParams } from "react-router-dom";
 
-const ProductoLista = () =>{
+const BestColoresCard = () =>{
     return(
         <Card
         style={{ maxwidth: 300, margin: "auto" , textAlign: "center" }}
@@ -26,4 +26,4 @@ const ProductoLista = () =>{
     )
 }
 
-export default ProductoLista
+export default BestColoresCard

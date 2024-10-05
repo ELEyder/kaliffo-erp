@@ -3,12 +3,13 @@ import { Button, Modal, Table,Flex,Popconfirm } from "antd";
 import { getProductoTiendaDetalle } from "../../../Shared/api/Tienda";
 
 const TiendaDetalleProducto = ({
-  ModalTiendaDetalleProducto,
-  closeModalTiendaDetalleProducto,
+  openModal,
+  closeModal,
   id,
   idp,
+  nombreProducto
 }) => {
-  const [productoDetalle, setproductoDetalle] = useState({}); 
+  const [productoDetalle, setproductoDetalle] = useState([]); 
 
   useEffect(() => {
     if (idp) {
@@ -19,12 +20,13 @@ const TiendaDetalleProducto = ({
   const columns = [
     {
         title: "Color",
-        key: "color",
+        key: "color_nombre",
+        dataIndex:"color_nombre",
         align: "center",
         render: (text, record) => {
           return (
             <>
-              {record.nombre}
+              {record.color_nombre}
             </>
           );
         },
@@ -87,10 +89,13 @@ const TiendaDetalleProducto = ({
 
   return (
     <Modal
+      forceRender
       getContainer={false}
-      title={`${productoDetalle.nombre}`}
-      open={ModalTiendaDetalleProducto}
-      onCancel={closeModalTiendaDetalleProducto}
+      title={nombreProducto}
+      open={openModal}
+      onCancel={() => {
+        closeModal(false)
+      }}
       style={{ textTransform: "uppercase" }}
       okText="Guardar"
       centered={true}
@@ -101,7 +106,7 @@ const TiendaDetalleProducto = ({
           columns={columns}
           pagination={{ pageSize: 4 }}
           bordered
-          dataSource={productoDetalle.detalles} // Usar detalles como dataSource
+          dataSource={productoDetalle} // Usar detalles como dataSource
           rowKey={(record) => record.productoDetalle_id} // Usar el ID correcto
         />
       </>

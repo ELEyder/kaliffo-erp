@@ -1,14 +1,17 @@
-import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getColoresByProducto } from "../../../Shared/api/Color";
+import { Table, Button, Popconfirm, Row, Col } from "antd";
 
-const ProductoColores = ({ id }) =>{
+const ProductoColoresTable = () =>{
+    const { id } = useParams();
+
     const columns=[
         {
-            title: "Tienda",
-            dataIndex: "tienda",
-            key: "tienda",
+            title: "Color",
+            dataIndex: "color_nombre",
+            key: "color_nombre",
             align:"center",
         },
         {
@@ -16,6 +19,10 @@ const ProductoColores = ({ id }) =>{
             dataIndex: "stock",
             key: "stock",
             align:"center",
+            sorter: {
+                compare: (a, b) => a.stock - b.stock,
+                multiple: 2,
+            },
             onCell: (record) => ({
                 style: {
                   background: record.stock >= 50
@@ -29,19 +36,12 @@ const ProductoColores = ({ id }) =>{
               }),
         },
         {
-            title: "Precio",
-            dataIndex: "precio",
-            key: "precio",
-            align:"center",
-            
-        },
-        {
             title: "Ver más",
             key: "verMas",
             align:"center",
             render:(text,record) =>{
                 return(
-                  <Button type="primary" block>+</Button>
+                  <Button type="primary" style={{width: "55px"}}>+</Button>
                 )
               },
         },
@@ -49,11 +49,12 @@ const ProductoColores = ({ id }) =>{
             title: "Opciones",
             key: "opciones",
             align:"center",
+            width: '300px',
             render:(text,record) =>{
               return (
                   <Row gutter={[8, 8]} justify="center" align="middle">
                       <Col>
-                          <Button type="primary" block>Editar</Button>
+                          <Button type="primary">Editar</Button>
                       </Col>
                       <Col>
                           <Popconfirm
@@ -71,9 +72,7 @@ const ProductoColores = ({ id }) =>{
         },
     ]
 
-
     const [tabla, setTabla] = useState([]);
-
     useEffect(() => {
         getColoresByProducto(id , setTabla);
       }, [id]);
@@ -91,4 +90,4 @@ const ProductoColores = ({ id }) =>{
     )
 }
 
-export default ProductoColores
+export default ProductoColoresTable

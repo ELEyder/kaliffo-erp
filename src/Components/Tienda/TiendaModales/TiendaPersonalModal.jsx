@@ -23,6 +23,7 @@ const TiendaPersonalModal = ({
 
   return (
     <Modal
+      forceRender
       getContainer={false}
       title={`Añadir nuevo trabajador`}
       open={ModalPersonalTiendaAbierto}

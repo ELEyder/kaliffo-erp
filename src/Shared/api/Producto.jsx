@@ -45,14 +45,8 @@ export const getProductos = async (seteador) => {
 export const getProductosByTienda = async (id, setTabla) => {
     const response = await fetch(`http://localhost:3000/producto/tienda/${id}`)
     const productoData= await response.json()
-
-    // Talla por defecto
-    const detallesConNuevoParametro = productoData.detalles.map(detalle => ({
-        ...detalle,
-        precio: productoData.precio
-      }));
-    console.log(detallesConNuevoParametro)
-    setTabla(detallesConNuevoParametro)
+    console.log(productoData)
+    setTabla(productoData)
 }
 
 export const getProductosNuevos = async(id,seteador) =>{

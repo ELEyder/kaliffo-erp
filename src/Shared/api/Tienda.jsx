@@ -43,3 +43,16 @@ export const getTiendasByProducto = async (id, setTiendas) => {
       console.log(error);
     }
   };
+
+  export const getProductoTiendaDetalle = async (id,idp, setTiendas) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/producto/detalle/${idp}?id_tienda=${id}`
+      );
+      const data = await response.json();
+      setTiendas(data);
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
+  };

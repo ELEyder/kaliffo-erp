@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import { getTallasByProducto } from "../../../Shared/api/Talla";
 
-const ProductoTallas = ({ id }) =>{
+const ProductoTallasTable = ({ id }) =>{
     const columns=[
         {
             title: "Tienda",
@@ -91,4 +91,4 @@ const ProductoTallas = ({ id }) =>{
     )
 }
 
-export default ProductoTallas
+export default ProductoTallasTable

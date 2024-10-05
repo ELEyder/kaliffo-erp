@@ -156,5 +156,6 @@ export const getUsuariosTienda = async (id, seteador) => {
   } catch (error) {
     console.log(error);
   }
+  
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from 'react-router-dom'
 import Plantilla from "../../Shared/Plantilla"
 import ProductoInfoCard from "./Cards/ProductoInfoCard"
 import BestColoresCard from "./Cards/BestColoresCard"
@@ -8,14 +7,13 @@ import ProductoTallasTable from "./Tablas/ProductoTallasTable"
 import ProductoColoresTable from "./Tablas/ProductoColoresTable"
 import { Col, Divider, Row, Tabs } from "antd";
 
-const Producto_main = () => {
-  const { id } = useParams();
+const Producto = () => {
     
   const items = [
     {
       key: '1',
       label: 'Tiendas',
-      children: <ProductoTiendasTable id={ id }/>,
+      children: <ProductoTiendasTable/>,
     },
     {
       key: '2',
@@ -49,4 +47,4 @@ const Producto_main = () => {
     );
   };
 
-export default Producto_main
+export default Producto

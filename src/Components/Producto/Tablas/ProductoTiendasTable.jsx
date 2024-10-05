@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import { getTiendasByProducto } from "../../../Shared/api/Tienda";
 
-const ProductoTiendas = ( { id } ) =>{
+const ProductoTiendasTable = ( { id } ) =>{
     const [tabla, setTabla] = useState([]);
 
     useEffect(() => {
@@ -93,4 +93,4 @@ const ProductoTiendas = ( { id } ) =>{
     )
 }
 
-export default ProductoTiendas
+export default ProductoTiendasTable

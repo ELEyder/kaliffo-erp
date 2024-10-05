@@ -11,7 +11,7 @@
 
       const columns=[
           {
-              title: "Id",
+              title: "N°",
               dataIndex: "id",
               key: "id",
               align:"center",
