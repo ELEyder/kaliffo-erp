@@ -1,9 +1,9 @@
 export const addProducto = async (values) => {
     let Producto = {
         nombre:values.nombre,
-        precio:values.precio,
+        precioBase:values.precioBase,
         descuento:values.descuento,
-        detalles:[]
+        stockTotal:0
     }
     try {
         const response = await fetch(`http://localhost:3000/producto/create`,{

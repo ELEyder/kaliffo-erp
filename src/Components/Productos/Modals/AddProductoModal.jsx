@@ -2,15 +2,15 @@ import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 import React from "react";
 import { addProducto } from "../../../Shared/api/Producto";
 
-const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso }) => {
+const AddProductoModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
-
+  
   return (
     <Modal
       getContainer={false}
       title={"Nuevo Producto"}
-      open={ModalAñadirAbierto}
-      onCancel={closeModalAñadir}
+      open={openModal}
+      onCancel={()=>closeModal(false)}
       okText="Añadir"
       onOk={form.submit}
       centered={true}
@@ -26,7 +26,8 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
         onFinish={async (values) =>{
             await addProducto(values)
             form.resetFields()
-            añadidoexitoso()
+            reload()
+            closeModal(false)
         }}
       >
         <Form.Item
@@ -46,8 +47,8 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
         <Row gutter={16} style={{gap : "20px"}}>
           <Form.Item
             style={{ marginLeft: 10 }}
-            name="precio"
-            label="Precio"
+            name="precioBase"
+            label="Precio Base"
             rules={[
               {
                 type:"number",
@@ -78,4 +79,4 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
   );
 };
 
-export default Modal_añadir;
+export default AddProductoModal;

@@ -6,7 +6,7 @@ import InfoTiendaCard from "./Cards/InfoTiendaCard";
 import BestTiendasCard from "./Cards/BestTiendasCard";
 import TiendaContenidoMain from "./TiendaContenido/TiendaContenidoMain";
 
-const Tienda_main = () => {
+const Tienda = () => {
   const { id } = useParams();
   const [refrescarSideCard1, setrefrescarSideCard1] = useState(false);
 
@@ -45,4 +45,4 @@ const Tienda_main = () => {
   );
 };
 
-export default Tienda_main;
+export default Tienda;

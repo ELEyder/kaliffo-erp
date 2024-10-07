@@ -2,7 +2,7 @@ import { Card, List,Button } from "antd";
 import React,{useState,useEffect}from "react";
 import { getTiendaById } from "../../../Shared/api/Tienda";
 
-const TiendaCard = ({id,refrescarSideCard1}) =>{
+const InfoTiendaCard = ({id,refrescarSideCard1}) =>{
 
 
   const [tienda, setTienda] = useState([]);
@@ -41,4 +41,4 @@ const TiendaCard = ({id,refrescarSideCard1}) =>{
     )
 }
 
-export default TiendaCard
+export default InfoTiendaCard

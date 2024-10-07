@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { getProductos } from "../../../Shared/api/Producto";
-import { Button, Card, Col, Row, Divider } from "antd";
 import { Link } from "react-router-dom";
+import AddProductoModal from "../Modals/AddProductoModal";
+import { getProductos } from "../../../Shared/api/Producto";
+import { Card, Col, Row, FloatButton } from "antd";
 
 const {Meta} = Card
 
 
-const Productos_cards = ({ refrescar }) => {
+const ProductosCards = () => {
+
   const [productos, setTiendas] = useState([]);
+  const [OpenAddProductoModal,setOpenAddProductoModal] = useState(false)
+  const [reload, setReload] = useState(false)
+  const imgError = (e) => {
+    e.target.src = '/img/generic.png';
+  };
 
   useEffect(() => {
     getProductos(setTiendas);
-  }, [refrescar]);
+  }, [reload]);
 
   return (
     <>
-      <Divider style={{textTransform: "uppercase"}}>
-        Productos: {productos.length}
-      </Divider>
       <Row gutter={16}>
         {productos.map((producto, index) => {
-          const imgSrc = `/img/${producto.producto_id}.png`;
-          
-          const handleError = (e) => {
-            e.target.src = '/img/generic.png';
-          };
-
           return (
             <Col key={index} span={6} style={{ margin: "0 0 24px 0", textAlign: "center" }}>
               <Card
@@ -35,9 +33,9 @@ const Productos_cards = ({ refrescar }) => {
                 ]}
                 cover={
                   <img
-                    src={imgSrc}
+                    src={`/img/${producto.producto_id}.png`}
                     alt={producto.nombre}
-                    onError={handleError}
+                    onError={imgError}
                     style={{ width: '100%', height: 'auto' }}
                   />
                 }
@@ -55,8 +53,16 @@ const Productos_cards = ({ refrescar }) => {
           );
         })}
       </Row>
+
+      <FloatButton tooltip="Añadir Producto" onClick={()=>setOpenAddProductoModal(true)}/>
+
+      <AddProductoModal
+        openModal = {OpenAddProductoModal}
+        closeModal={setOpenAddProductoModal}
+        reload = {()=>setReload(!reload)}
+      />
     </>
   );
 };
 
-export default Productos_cards;
+export default ProductosCards;

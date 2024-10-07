@@ -48,6 +48,27 @@ const Items=[
         key:"sub4",
         icon:<CoffeeOutlined/>,
         label:(<Link to={"/productos"} style={{textDecoration:"none"}} >Productos</Link>)
+    },
+    {
+        key:"sub5",
+        label:"Ventas",
+        icon:<BookOutlined /> ,
+        children:[
+            {
+                key:"5",
+                icon:<UserOutlined />,
+                label:(
+                    <Link to="/Ventas" style={{textDecoration:"none"}}>Boletas</Link>
+                ),
+            },
+            {
+                key:"6",
+                icon:<UserOutlined />,
+                label:(
+                    <Link to="/Ventas" style={{textDecoration:"none"}}>Facturas</Link>
+                ),
+            },
+        ]
     }
 
     

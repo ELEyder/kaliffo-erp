@@ -3,7 +3,7 @@ import Trabajadores from "./Components/Trabajadores/Trabajadores";
 import Trabajador from "./Components/Trabajador/Trabajador";
 import Tiendas_main from "./Components/Tiendas/Tiendas_Main";
 import Tienda from "./Components/Tienda/Tienda";
-import Productos_main from "./Components/Productos/Productos_main";
+import Productos from "./Components/Productos/Productos";
 import Producto from "./Components/Producto/Producto";
 import ErrorPagina from "./Components/Error/ErrorPagina"
 
@@ -15,7 +15,7 @@ export const Routing = () =>{
             <Route path="/trabajador/:id" element={<Trabajador/>}/>
             <Route path="/tiendas" element={<Tiendas_main/>}/>
             <Route path="/tienda/:id" element={<Tienda />}/>
-            <Route path="/productos/" element={<Productos_main />}/>
+            <Route path="/productos/" element={<Productos />}/>
             <Route path="/producto/:id" element={<Producto />}/>
             <Route path="/error" element={<ErrorPagina />} />
         </Routes>
