@@ -2,7 +2,7 @@ import { Button, Flex, Table, Popconfirm } from "antd";
 import React, { useEffect, useState } from "react";
 import { getProductosTienda } from "../../../Shared/Funciones/Tienda";
 import TiendaAddProductos from "../TiendaModales/TiendaAddProductos";
-import TiendaDetalleProducto from "../TiendaModales/TiendaDetalleProducto";
+import TiendaDetalleProducto from "./TiendaModales/TiendaDetalleProducto";
 
 const TiendaProductos = ({ id, handlerefrescarSideCard1 }) => {
   const [productosTienda, setProductosTienda] = useState([]);

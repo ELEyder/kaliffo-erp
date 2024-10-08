@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Form, Input, Button, Space, Select, Card } from 'antd';
-import { CloseOutlined } from "@ant-design/icons";
 import { getColoresProductos, getProductosNuevos } from "../../../Shared/api/Producto";
 
 const { Option } = Select;
@@ -10,25 +9,38 @@ const ModalAddProducto = ({
   closeModalProductoAddTiendaAbierto,
   id,
 }) => {
-  
-  const [form] = Form.useForm();
-  const [cards, setCards] = useState([{ id: Date.now(), entries: [{ key: Date.now(), data: ['', '', ''] }] }]);
+  const [cont, setCont] = useState(1)
+  const [form1] = Form.useForm()
+  const [form2] = Form.useForm()
+  const [form3] = Form.useForm()
+  const [form4] = Form.useForm()
+  const [form5] = Form.useForm()
+  const [forms, setForms] = useState([
+    form1, form2, form3 ,form4 , form5
+  ])
+
+  const [cards, setCards] = useState([{ id: 0, entries: [{ key: 0, data: ['', '', ''] }] }]);
   const [productos, setProductos] = useState([]);
   const [colores, setColores] = useState({});
 
   useEffect(() => {
     getProductosNuevos(id, setProductos);
-  }, [id]);
+  }, [cards, id]);
 
   const handleCancel = () => {
     closeModalProductoAddTiendaAbierto(false);
     // Reset form and cards when closing the modal
-    form.resetFields();
-    setCards([{ id: Date.now(), entries: [{ key: Date.now(), data: ['', '', ''] }] }]);
+    for (const form of forms) {
+      form.resetFields();
+    }
+    setCont(1)
+    setCards([{ id: 0, entries: [{ key: Date.now(), data: ['', '', ''] }] }]);
   };
 
   const addCard = () => {
-    setCards([...cards, { id: Date.now(), entries: [{ key: Date.now(), data: ['', '', ''] }] }]);
+    const newId = cont;
+    setCards([...cards, { id: newId, entries: [{ key: Date.now(), data: ['', '', ''] }] }]);
+    console.log(cont)
   };
 
   const removeCard = (cardId) => {
@@ -36,9 +48,9 @@ const ModalAddProducto = ({
   };
 
   const addEntry = (cardId) => {
-    setCards(cards.map(card => 
+    setCards(cards.map(card =>
       card.id === cardId ? 
-      { ...card, entries: [...card.entries, { key: Date.now(), data: ['', '', ''] }] } 
+      { ...card, entries: [...card.entries, { key: card.entries.length - 1, data: ['', '', ''] }] } 
       : card
     ));
   };
@@ -86,6 +98,14 @@ const ModalAddProducto = ({
     handleCancel();
   };
 
+  const enviarData = () => {
+    let dataArray = []
+    for (const form of forms) {
+      let data = form.getFieldsValue()
+      dataArray.push(data)
+    }
+    console.log(dataArray)
+  }
   return (
     <>
       <Modal
@@ -100,15 +120,17 @@ const ModalAddProducto = ({
           Añadir Más Tarjetas
         </Button>
 
-        {cards.map(card => (
+        {cards.map((card) => {
+          return (
           <Card key={card.id} style={{ marginBottom: 16 }}>
-            <Form form={form} onFinish={onFinish} layout="vertical">
+            <Form form={forms[card.id]} onFinish={onFinish} layout="vertical">
               <Form.Item 
-                name={`name_${card.id}`} 
+                name={`producto_id`} 
                 label="Nombre" 
                 rules={[{ required: true, message: 'Por favor, selecciona un nombre' }]}
               >
-                <Select onChange={(value) => handleNameChange(value, card.id)} placeholder="Selecciona un nombre">
+                <Select
+                onChange={(value) => handleNameChange(value, card.id)} placeholder="Selecciona un nombre">
                   {productos.map(producto => (
                     <Select.Option key={producto.producto_id} value={producto.producto_id}>
                       {producto.nombre}
@@ -120,13 +142,16 @@ const ModalAddProducto = ({
               <div>
                 {card.entries.map(entry => (
                   <Space key={entry.key} style={{ display: 'flex', marginBottom: 8 }} align="baseline">
-                    <Form.Item>
+                    <Form.Item
+                    name={`color_id_${entry.key}`}
+                    >
                       <Select
+                        
                         onChange={(value) => handleInputChange(card.id, entry.key, 0, value)} 
                         placeholder="Selecciona un dato 1" 
                         required 
                       >
-                        {colores[form.getFieldValue(`name_${card.id}`)]?.map(color => (
+                        {colores[forms[card.id]?.getFieldValue(`producto_id`)]?.map(color => (
                           <Select.Option key={color.color_id} value={color.color_id}>
                             {color.nombre}
                           </Select.Option>
@@ -167,10 +192,10 @@ const ModalAddProducto = ({
               </Form.Item>
             </Form>
           </Card>
-        ))}
+        )})}
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" onClick={enviarData}>
             Enviar
           </Button>
         </Form.Item>

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { getProductosByTienda } from "../../../Shared/api/Producto";
+import { deleteProductoById } from "../../../Shared/api/Producto";
+import TiendaDetalleProducto from "../Modals/TiendaDetalleProducto"
+import ModalAddProducto from "../Modals/ModalAddProducto";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getProductosByTienda } from "../../../../Shared/api/Producto";
-import { deleteProductoById } from "../../../../Shared/api/Producto";
-import TiendaDetalleProducto from "../../TiendaModales/TiendaDetalleProducto"
-import ModalAddProducto from "../../TiendaModales/ModalAddProducto";
 
 
-const TiendaProductos = ({ id,handlerefrescarSideCard1 }) => {
-  const navigate = useNavigate();
+const TiendaProductos = () => {
+
+  const { id } = useParams();
+
   const[productostienda,setproductostienda] = useState([])
   const[reload,setReload] = useState(false)
   const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)

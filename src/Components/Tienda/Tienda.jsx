@@ -1,23 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Plantilla from "../../Shared/Plantilla";
-import { useParams } from "react-router-dom";
-import { Col, Divider, Row } from "antd";
 import InfoTiendaCard from "./Cards/InfoTiendaCard";
-import BestTiendasCard from "./Cards/BestTiendasCard";
-import TiendaContenidoMain from "./TiendaContenido/TiendaContenidoMain";
+import BestProductosCard from "./Cards/BestProductosCard";
+import TablaProductos from "./Tablas/TablaProductos";
+import TablaPersonal from "./Tablas/PersonalTable"
+import { Col, Divider, Row, Tabs } from "antd";
 
 const Tienda = () => {
-  const { id } = useParams();
-  const [refrescarSideCard1, setrefrescarSideCard1] = useState(false);
 
-  const handlerefrescarSideCard1 = () => {
-    setrefrescarSideCard1(true);
-    setTimeout(() => setrefrescarSideCard1(false), 500);
-  };
+  const items = [
+    {
+      key: '1',
+      label: 'Productos',
+      children: <TablaProductos/>,
+    },
+    {
+      key: '2',
+      label: 'Personal',
+      children: <TablaPersonal/>,
+    },
+    {
+      key: '3',
+      label: 'Pagos',
+      children: 'Content of Tab Pane 3',
+    },
+  ];
 
   return (
     <Plantilla>
-      <Divider></Divider>
+      <Divider/>
       <Row
         gutter={{
           xs: 8,
@@ -27,20 +38,15 @@ const Tienda = () => {
         }}
       >
         <Col className="gutter-row" span={8}>
-          <InfoTiendaCard
-          id={id}
-          refrescarSideCard1={refrescarSideCard1}
-          />
-          <BestTiendasCard/>
+          <InfoTiendaCard/>
+          <Divider/>
+          <BestProductosCard/>
         </Col>
         <Col className="gutter-row" span={16}>
-          <TiendaContenidoMain
-          id={id}
-          handlerefrescarSideCard1={handlerefrescarSideCard1}
-          />
+          <Tabs defaultActiveKey="1" items={items} />
         </Col>
       </Row>
-      <Divider></Divider>
+      <Divider/>
     </Plantilla>
   );
 };

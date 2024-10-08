@@ -3,31 +3,31 @@ import React, { useEffect, useState } from "react";
 import { getTiendas } from "../../../Shared/api/Tienda";
 import { CargarEditar } from "../../../Shared/api/Funciones_Fetch";
 import { updateUsuario } from "../../../Shared/api/Usuario";
-const TiendaPersonalModal = ({
-  ModalPersonalTiendaAbierto,
-  closeModalPersonalTiendaAbierto,
-  id_personal,
-  handleEditarExitoso,
+const UpdateUsuarioModal = ({
+  openModal,
+  closeModal,
+  id,
+  reload,
 }) => {
+
   const [form] = Form.useForm();
   const [tiendas,setTiendas] = useState([])
   const[valoresO,setValoresO] = useState({})
 
   useEffect(()=>{
-    if(id_personal){
-        CargarEditar(id_personal,form,setValoresO)
-        form.setFieldsValue({usuario_id:id_personal})
+    if(id){
+        CargarEditar(id,form,setValoresO)
         getTiendas(setTiendas)
     }
-  },[id_personal])
+  },[id])
 
   return (
     <Modal
       forceRender
       getContainer={false}
       title={`Añadir nuevo trabajador`}
-      open={ModalPersonalTiendaAbierto}
-      onCancel={closeModalPersonalTiendaAbierto}
+      open={openModal}
+      onCancel={closeModal}
       style={{ textTransform: "uppercase" }}
       onOk={form.submit}
       okText="Guardar"
@@ -42,8 +42,9 @@ const TiendaPersonalModal = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await updateUsuario(values, valoresO);
-          handleEditarExitoso();
+          await updateUsuario(id, values, valoresO);
+          closeModal();
+          reload()
         }}
       >
         <Form.Item
@@ -197,12 +198,9 @@ const TiendaPersonalModal = ({
           </Col>
         </Row>
 
-        <Form.Item name="usuario_id" noStyle>
-          <Input type="hidden" />
-        </Form.Item>
       </Form>
     </Modal>
   );
 };
 
-export default TiendaPersonalModal;
+export default UpdateUsuarioModal;

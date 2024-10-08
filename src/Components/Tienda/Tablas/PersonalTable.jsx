@@ -1,27 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
+import TiendaAddPersonal from "../Modals/TiendaAddPersonal";
+import { getUsuariosTienda, deleteUsuario } from "../../../Shared/api/Usuario";
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
-import { getUsuariosTienda } from "../../../../Shared/api/Usuario";
-import { deleteUsuario } from "../../../../Shared/api/Usuario";
-import TiendaPersonalModal from "../../TiendaModales/TiendaPersonalModal";
-import TiendaAddPersonal from "../../TiendaModales/TiendaAddPersonal";
 
-const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
+const PersonalTable = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [usuariostienda, setusuariostienda] = useState([]);
-  const [id_personal, setIDPersonal] = useState(null);
+  const [idPersonal, setIdPersonal] = useState(null);
   const [Refrescar, setRefrescar] = useState(false);
+  const [reload, setReload] = useState(false);
 
-  const [ModalPersonalTiendaAbierto, setModalPersonalTiendaAbierto] = useState(false);
+  const [OpenModalUpdate, setOpenModalUpdate] = useState(false);
   const [ModalTiendaAddPersonalAbierto,setModalTiendaAddPersonalAbierto] = useState(false)
-
-
-  const showModalPersonalTiendaAbierto = (id_personal) => {
-    setIDPersonal(id_personal);
-    setModalPersonalTiendaAbierto(true);
-  };
+  const [OpenAddPersonalModal,setOpenAddPersonalModal] = useState(false)
 
   const closeModalPersonalTiendaAbierto = () => {
     setModalPersonalTiendaAbierto(false);
@@ -29,7 +25,7 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
   };
 
   const showModalTiendaAddPersonalAbierto = () =>{
-    setModalTiendaAddPersonalAbierto(true)
+    
   }
 
   const closeModalTiendaAddPersonalAbierto = () =>{
@@ -38,12 +34,6 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
 
   const refrescarTabla = () => {
     setRefrescar(true);
-  };
-
-  const handleEditarExitoso = () => {
-    closeModalPersonalTiendaAbierto();
-    refrescarTabla();
-    handlerefrescarSideCard1()
   };
 
   const handleAddExitoso = () => {
@@ -61,17 +51,13 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
 
   useEffect(() => {
     getUsuariosTienda(id, setusuariostienda);
-    if (Refrescar) {
-      getUsuariosTienda(id, setusuariostienda);
-      setRefrescar(false); 
-    }
-  }, [id, Refrescar]);
+  }, [id, reload]);
 
   const columns = [
     {
       title: "Nombre",
       key: "nombre",
-      render: (text, record) =>
+      render: (record) =>
         `${record.nombre} ${record.ap_paterno} ${record.ap_materno}`,
       align: "center",
     },
@@ -89,14 +75,14 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
     },
     {
       title:"Ver mas",
-      dataIndex:"",
-      key:"f",
+      dataIndex: "usuario_id",
+      key:"verMas",
       align:"center",
-      render:(text,record) =>{
+      render:(text) =>{
         return(
           <Button type="primary" block
           onClick={() => {
-            navigate(`/trabajador/${record.usuario_id}`)
+            navigate(`/trabajador/${text}`)
           }}
           >+</Button>
         )
@@ -104,14 +90,17 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
     },
     {
       title: "Opciones",
-      dataIndex: "",
-      key: "x",
+      dataIndex: "usuario_id",
+      key: "opciones",
       align: "center",
-      render: (text, record) => {
+      render: (text) => {
         return (
           <Row gutter={[8, 8]} justify="center" align="middle">
             <Col>
-                <Button type="primary" block onClick={() => showModalPersonalTiendaAbierto(record.usuario_id)}>Editar</Button>
+                <Button type="primary" block onClick={() => {
+                  setIdPersonal(text)
+                  setOpenModalUpdate(true)
+                  }}>Editar</Button>
             </Col>
             <Col>
               <Popconfirm
@@ -120,7 +109,8 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
                 okText="Confirmar"
                 cancelText="NO"
                 onConfirm={() => {
-                  deleteUsuario(record.usuario_id, refrescarTabla)
+                  deleteUsuario(text)
+                  setReload(!reload)
                 }}
               >
               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -135,7 +125,7 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
   return (
     <>
 
-      <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => showModalTiendaAddPersonalAbierto()} type="primary" icon={<FileAddOutlined />}/>
+      <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => setOpenAddPersonalModal(true)} type="primary" icon={<FileAddOutlined />}/>
 
       <Table
         columns={columns}
@@ -145,22 +135,22 @@ const TiendaPersonal = ({ id,handlerefrescarSideCard1 }) => {
         rowKey={(record) => record.usuario_id}
       />
 
-      <TiendaPersonalModal
-        ModalPersonalTiendaAbierto={ModalPersonalTiendaAbierto}
-        closeModalPersonalTiendaAbierto={closeModalPersonalTiendaAbierto}
-        id_personal={id_personal}
-        handleEditarExitoso={handleEditarExitoso}
+      <UpdateUsuarioModal
+        openModal={OpenModalUpdate}
+        closeModal={()=>setOpenModalUpdate(false)}
+        id={idPersonal}
+        reload={() => setReload(!reload)}
       />
 
       <TiendaAddPersonal
-        ModalTiendaAddPersonalAbierto={ModalTiendaAddPersonalAbierto}
-        closeModalTiendaAddPersonalAbierto={closeModalTiendaAddPersonalAbierto}
+        openModal={OpenAddPersonalModal}
+        closeModal={() => setOpenAddPersonalModal(false)}
         id={id}
-        handleAddExitoso={handleAddExitoso}
+        reload={() => setReload(!reload)}
       />
 
     </>
   );
 };
 
-export default TiendaPersonal;
+export default PersonalTable;

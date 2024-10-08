@@ -75,7 +75,8 @@ export const updateUsuario = async (id, values, originales) => {
 
 };
 
-export const deleteUsuario = async (id, refrescar) => {
+export const deleteUsuario = async (id) => {
+  console.log(id)
   try {
     const response = await fetch(`http://localhost:3000/usuario/delete/${id}`, {
       method: "DELETE",
@@ -146,13 +147,14 @@ export const updateUsuarioTienda = async (idTienda, values) => {
   }
 };
 
-export const getUsuariosTienda = async (id, seteador) => {
+export const getUsuariosTienda = async (id, setTabla) => {
   try {
     const response = await fetch(
       `http://localhost:3000/usuario?tienda_id=${id}`
     );
     const data = await response.json();
-    seteador(data);
+    console.log(data)
+    setTabla(data);
   } catch (error) {
     console.log(error);
   }

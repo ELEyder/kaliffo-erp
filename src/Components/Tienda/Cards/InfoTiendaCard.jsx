@@ -1,15 +1,17 @@
-import { Card, List,Button } from "antd";
 import React,{useState,useEffect}from "react";
+import { useParams } from "react-router-dom";
 import { getTiendaById } from "../../../Shared/api/Tienda";
+import { Card, List,Button } from "antd";
 
-const InfoTiendaCard = ({id,refrescarSideCard1}) =>{
+const InfoTiendaCard = () =>{
 
+  const { id } = useParams();
 
   const [tienda, setTienda] = useState([]);
 
   useEffect(() => {
     getTiendaById(id, setTienda);
-  }, [id,refrescarSideCard1]);
+  }, [id]);
 
 
     return(
@@ -22,7 +24,7 @@ const InfoTiendaCard = ({id,refrescarSideCard1}) =>{
         <List
           itemLayout="horizontal"
           dataSource={[
-            { title: "STOCK TOTAL", value: `${tienda.total_stock}` },
+            { title: "STOCK TOTAL", value: tienda.total_stock == null ? '0' : `${tienda.total_stock}` },
             { title: "Ventas Totales", value: `12`  },
             { title: "Personal asignado", value: `${tienda.total_usuarios}` },
           ]}

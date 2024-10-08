@@ -2,7 +2,7 @@ import React from "react";
 import { Card, List,Button } from "antd";
 
 
-const BestTiendasCard = () =>{
+const BestProductosCard = () =>{
     return(
         <Card
         style={{ maxwidth: 300, margin: "auto", textAlign: "center" }}
@@ -26,4 +26,4 @@ const BestTiendasCard = () =>{
     )
 }
 
-export default BestTiendasCard
+export default BestProductosCard
