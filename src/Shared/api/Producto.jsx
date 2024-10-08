@@ -1,3 +1,5 @@
+import { showNotificationAdd, showNotificationError } from "../Notifications"
+
 export const addProducto = async (values) => {
   let Producto = {
     nombre: values.nombre,
@@ -56,6 +58,7 @@ export const getProductosNuevos = async (id, seteador) => {
     );
     const data = await response.json();
     seteador(data);
+    console.log(data)
   } catch (error) {
     console.log(error)
   }
@@ -65,12 +68,12 @@ export const getColoresProductos = async (value, setColores) => {
   try {
     const response = await fetch(`http://localhost:3000/producto/colores/${value}`);
     const data = await response.json();
+    console.log(`Dato devolvido por http://localhost:3000/producto/colores/${value}`)
+    console.log(data)
     setColores(prevColores => ({
       ...prevColores,
-      [value]: data
-    }));
-    console.log(response)
-    console.log(data)
+      [value] : data
+  }))
   } catch (error) {
     console.log("Error al obtener los colores del producto:", error);
   }
@@ -88,22 +91,22 @@ export const getProductoTiendaDetalle = async (id, idp, setData) => {
   }
 }
 
-export const addProductoDetalle = async (tiendaId, values) => {
-  let Producto = {
-    nombre: values.nombre,
-    precioBase: values.precioBase,
-    descuento: values.descuento,
-    stockTotal: 0
-  }
+export const addProductoDetalle = async (tiendaId, Producto) => {
   try {
     const response = await fetch(`http://localhost:3000/producto/create/detalle?tienda_id=${tiendaId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(Producto),
+      body: JSON.stringify(Producto)
     })
+    console.log(response)
+    if (response.ok)
+    showNotificationAdd("Producto Añadido Correctamente")
+    else
+    showNotificationError("Error al añadir el producto", "Para mas información, revisa la consola")
   } catch (error) {
+    showNotificationError("Error al añadir el producto", "Para mas información, revisa la consola")
     console.log(error)
   }
 }

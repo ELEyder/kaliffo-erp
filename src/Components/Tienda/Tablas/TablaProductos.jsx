@@ -14,7 +14,7 @@ const TiendaProductos = () => {
 
   const[productostienda,setproductostienda] = useState([])
   const[reload,setReload] = useState(false)
-  const[ModalProductoAddTiendaAbierto,setModalProductoAddTiendaAbierto] = useState(false)
+  const[OpenAddProductoModal,setOpenAddProductoModal] = useState(false)
   const[OpenTiendaDetalleProducto,setOpenTiendaDetalleProducto] = useState(false)
   const[idp,setIdP] = useState(0)
   const[nombreProducto,setNombreProducto] = useState(0)
@@ -119,14 +119,6 @@ const TiendaProductos = () => {
       
     },
   ];
-  
-    const showModalProductoAddTiendaAbierto = () =>{
-      setModalProductoAddTiendaAbierto(true)
-    }
-
-    const closeModalProductoAddTiendaAbierto = () =>{
-      setModalProductoAddTiendaAbierto(false)
-    }
 
   useEffect(() => {
     getProductosByTienda(id,setproductostienda)
@@ -141,12 +133,13 @@ const TiendaProductos = () => {
       rowKey={(record) => record.producto_id}
       ></Table>
 
-      <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => showModalProductoAddTiendaAbierto()} type="primary" icon={<FileAddOutlined />}/>
+      <FloatButton tooltip="Añadir Nuevo Producto" onClick={() => setOpenAddProductoModal(true)} type="primary" icon={<FileAddOutlined />}/>
 
       <ModalAddProducto
-      ModalProductoAddTiendaAbierto={ModalProductoAddTiendaAbierto}
-      closeModalProductoAddTiendaAbierto={closeModalProductoAddTiendaAbierto}
+      openModal = {OpenAddProductoModal}
+      closeModal={() => setOpenAddProductoModal(false)}
       id={id}
+      reload={()=>setReload(!reload)}
       />
 
       <TiendaDetalleProducto
