@@ -23,8 +23,6 @@ const ModalAddProducto = ({
 
   const addColor = async (value) => {
     await getColoresProductos(value, setColores);
-    console.log("Los colores son")
-    console.log(JSON.stringify(colores, null, 2))
   }
   return (
     <>
@@ -37,13 +35,13 @@ const ModalAddProducto = ({
         footer={null}
       >
         <Form
-      labelCol={{ span: 6 }}
-      wrapperCol={{ span: 18 }}
-      form={form}
-      name="addProductos"
-      style={{ maxWidth: 600 }}
-      autoComplete="off"
-      initialValues={{ items: [{}] }}
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 18 }}
+          form={form}
+          name="addProductos"
+          style={{ maxWidth: 600 }}
+          autoComplete="off"
+          initialValues={{ items: [{}] }}
     >
       <Form.List name="items">
         {(fields, { add, remove }) => (
@@ -132,6 +130,8 @@ const ModalAddProducto = ({
           const values = form.getFieldsValue().items
           console.log(values)
           await addProductoDetalle(id, values)
+          getProductosNuevos(id, setProductos)
+          form.resetFields()
           reload()
           closeModal()
         }} type="primary">Crear</Button>

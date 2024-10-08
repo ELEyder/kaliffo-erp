@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationError } from "../Notifications"
+import { showNotificationAdd, showNotificationDelete, showNotificationError } from "../Notifications"
 
 export const addProducto = async (values) => {
   let Producto = {
@@ -34,6 +34,7 @@ export const deleteProductoById = async (id, id_Tienda, reload, setReload) => {
       "Content-Type": "application/json"
     }
   })
+  showNotificationDelete("Producto Eliminado")
   setReload(!reload)
   console.log(response)
 }
