@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Form, Input, Modal, Select, notification } from "antd";
+import {Form, Input, Modal, Select } from "antd";
 import { updateIncidenciaById } from "../../../Shared/api/Incidencia";
 const { Option } = Select;
 const Modal_editar_incidencia = ({
@@ -11,19 +11,18 @@ const Modal_editar_incidencia = ({
 }) => {
 
   const [form] = Form.useForm();
-  const [api, contextHolder] = notification.useNotification(); 
 
   useEffect(() => {
     form.setFieldsValue({
       descripcion: values.descripcion,
-      tipo: values.tipo + '',
+      tipo: values.tipo ,
     });
   }, [values]);
 
   return (
     <>
-    {contextHolder}    
     <Modal
+    forceRender
       getContainer={false}
       title={`Editar Trabajador de ${tipo_trabajador}`}
       open={ModalEditarAbierto}

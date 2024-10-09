@@ -14,6 +14,7 @@ const Modal_add_incidencia = ({
 
   return (
     <Modal
+    forceRender
       getContainer={false}
       title={`Añadir nueva incidencia`}
       open={ModalAddOpen}
