@@ -5,3 +5,4 @@ export const getColoresByProducto = async (id, setTallas) => {
     console.log(data)
     console.log(id)
 }
+

@@ -55,7 +55,7 @@ export const getProductosByTienda = async (id, setTabla) => {
 export const getProductosNuevos = async (id, seteador) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/producto/lose/${id}`
+      `http://localhost:3000/producto?loose_id=${id}`
     );
     const data = await response.json();
     seteador(data);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table,Flex,Popconfirm } from "antd";
 import { getProductoDetalle } from "../../../Shared/api/Producto";
+import TallaDetalleModal from "./TallaDetalleModal";
 
 const ProductoDetalleModal = ({
   openModal,
@@ -9,6 +10,8 @@ const ProductoDetalleModal = ({
   idp,
   nombreProducto
 }) => {
+
+  const[OpenTallaDetalleModal,setOpenTallaDetalleModal] = useState(false)
   const [productoDetalle, setproductoDetalle] = useState([]); 
 
   useEffect(() => {
@@ -55,7 +58,7 @@ const ProductoDetalleModal = ({
         align:"center",
         render:(text,record)=>{
             return(
-                <Button>+</Button>
+                <Button onClick={()=>setOpenTallaDetalleModal(true)}>+</Button>
             )
         }
     },
@@ -93,6 +96,7 @@ const ProductoDetalleModal = ({
   ];
 
   return (
+    <>
     <Modal
       forceRender
       getContainer={false}
@@ -116,6 +120,15 @@ const ProductoDetalleModal = ({
         />
       </>
     </Modal>
+
+      <TallaDetalleModal
+      openModal = {OpenTallaDetalleModal}
+      closeModal={()=>setOpenTallaDetalleModal(false)}
+      id={id}
+      idp={idp}
+      nombreProducto={nombreProducto}
+      />
+      </>
   );
 };
 
