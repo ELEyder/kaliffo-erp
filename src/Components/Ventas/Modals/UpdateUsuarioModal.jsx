@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { CargarEditar, manejonumeros , manejotexto } from "../../../Shared/api/Funciones_Fetch";
+import { CargarEditar } from "../../../Shared/api/Funciones_Fetch";
 import { updateUsuario } from "../../../Shared/api/Usuario";
 import { getTiendas } from "../../../Shared/api/Tienda";
 
@@ -60,7 +60,7 @@ const UpdateUsuarioModal = ({
             },
           ]}
         >
-          <Input onChange={manejotexto(form, "nombreE")} />
+          <Input />
         </Form.Item>
 
         <Row
@@ -84,7 +84,7 @@ const UpdateUsuarioModal = ({
                 },
               ]}
             >
-              <Input onChange={manejotexto(form, "ap_paternoE")} />
+              <Input />
             </Form.Item>
           </Col>
 
@@ -99,7 +99,7 @@ const UpdateUsuarioModal = ({
                 },
               ]}
             >
-              <Input onChange={manejotexto(form, "ap_maternoE")} />
+              <Input />
             </Form.Item>
           </Col>
         </Row>
@@ -142,9 +142,7 @@ const UpdateUsuarioModal = ({
             >
               <Input
                 maxLength={9}
-                showCount
-                onChange={manejonumeros(form, "telefonoE")}
-              />
+                showCount />
             </Form.Item>
           </Col>
         </Row>
@@ -173,9 +171,7 @@ const UpdateUsuarioModal = ({
               <Input
                 maxLength={8}
                 style={{textAlign:"center"}}
-                showCount
-                onChange={manejonumeros(form, "dniE")}
-              />
+                showCount />
             </Form.Item>
           </Col>
 

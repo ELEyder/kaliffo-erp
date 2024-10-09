@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { CargarEditar, manejonumeros , manejotexto } from "../../../Shared/api/Funciones_Fetch";
+import { CargarEditar} from "../../../Shared/api/Funciones_Fetch";
 import { updateUsuario } from "../../../Shared/api/Usuario";
 import { getTiendas } from "../../../Shared/api/Tienda";
 
@@ -57,7 +57,7 @@ const UpdateUsuarioModal = ({
               message: "Nombres requeridos",
             },
           ]}>
-          <Input onChange={manejotexto(form, "nombreE")} />
+          <Input />
         </Form.Item>
         <Row
           justify="space-around"
@@ -78,7 +78,7 @@ const UpdateUsuarioModal = ({
                   message: "Apellido Paterno Requerido",
                 },
               ]}>
-              <Input onChange={manejotexto(form, "ap_paternoE")} />
+              <Input />
             </Form.Item>
           </Col>
           <Col span={12} className="gutter-row">
@@ -91,7 +91,7 @@ const UpdateUsuarioModal = ({
                   message: "Apellido Materno Requerido",
                 },
               ]}>
-              <Input onChange={manejotexto(form, "ap_maternoE")} />
+              <Input />
             </Form.Item>
           </Col>
         </Row>
@@ -130,7 +130,7 @@ const UpdateUsuarioModal = ({
               <Input
                 maxLength={9}
                 showCount
-                onChange={manejonumeros(form, "telefonoE")} />
+                />
             </Form.Item>
           </Col>
         </Row>
@@ -156,8 +156,7 @@ const UpdateUsuarioModal = ({
               <Input
                 maxLength={8}
                 style={{textAlign:"center"}}
-                showCount
-                onChange={manejonumeros(form, "dniE")} />
+                showCount/>
             </Form.Item>
           </Col>
           <Col span={14} className="gutter-row">

@@ -1,24 +1,5 @@
 import moment from "moment";
 
-export const evitarnumeros = (texto) => {
-  return texto.replace(/[^a-zA-Z ]/g, ""); // Permitir solo letras y espacios
-};
-
-
-export const evitarletras = (texto) => {
-  return texto.replace(/[a-zA-Z.,]/g, "");
-};
-
-export const manejotexto = (form, nombre) => (event) => {
-  form.setFieldsValue({ [nombre]: evitarnumeros(event.target.value) });
-};
-
-export const manejonumeros = (form, nombre) => (event) => {
-  form.setFieldsValue({ [nombre]: evitarletras(event.target.value) });
-};
-
-
-
 export const CargarEditar = async (id, form,seteadorO) => {
   try {
     const response = await fetch(`http://localhost:3000/usuario/${id}`);
