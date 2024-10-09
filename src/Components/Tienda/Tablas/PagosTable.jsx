@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
+import { deletePagoById, getPagosById } from "../../../Shared/api/Pago";
 import DetallesProductoModal from "../Modals/DetallesProductoModal"
 import AddProductoModal from "../Modals/AddProductoModal";
-import { getProductosByTienda, deleteProductoById } from "../../../Shared/api/Producto";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 
 
-const ProductosTable = () => {
+const PagosTable
+ = () => {
 
   const { id } = useParams();
 
@@ -19,90 +20,42 @@ const ProductosTable = () => {
   const[nombreProducto,setNombreProducto] = useState(0)
 
   useEffect(() => {
-    getProductosByTienda(id,setproductostienda)
+    getPagosById(id,setproductostienda)
   }, [id, reload]);
 
   const columns = [
     {
-      title: "Producto",
-      key: "nombre",
-      dataIndex:"nombre",
+      title: "Monto Pagado",
+      key: "montoPagado",
+      dataIndex:"montoPagado",
       align: "center",
     },
     {
-      title: "Stock",
-      key: "stock",
+      title: "Monto Faltante",
+      key: "montoFaltante",
+      dataIndex:"montoFaltante",
       align: "center",
-      dataIndex:"stock",
-      defaultSortOrder: "ascend",
-      onCell: (record) => ({
-          style: {
-            background: record.stock >= 50 
-              ? 'green' 
-              : record.stock <= 20
-              ? '#f54242' 
-              : '#FCFB77',  
-            color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
-            padding: "10px"
-          }
-        })
     },
     {
-      title: "Precio",
-      key:"precioBase",
-      dataIndex:"precioBase",
-      align:"center",
-      render: (text) =>
-        `S/ ${text}`,
+      title: "Fecha",
+      key: "fecha",
+      dataIndex:"fecha",
+      align: "center",
     },
     {
-      title: "Descuento",
-      dataIndex:"descuento",
-      key:"descuento",
-      align:"center",
-      onCell: (record) => ({
-        style: {
-          background: record.descuento <= 10 
-            ? 'green' 
-            : record.descuento >= 20
-            ? '#f54242' 
-            : '#FCFB77',  
-          color: record.descuento <= 10 || record.descuento >= 20 ? "white" : "black",
-          padding: "10px"
-        }
-      }),
-      render: (text) =>
-        `${text}%`,
-    },
-    {
-      title:"Ver mas",
-      dataIndex:"",
-      key:"f",
-      align:"center",
-      render:(text,record) =>{
-        return(
-          <Button type="primary" block
-          onClick= {() => {
-            setIdP(record.producto_id)
-            setNombreProducto(record.nombre)
-            setOpenTiendaDetalleProducto(true)
-          }}
-          >+</Button>
-        )
-      }
+      title: "Estado",
+      key: "estado",
+      dataIndex:"estado",
+      align: "center",
     },
     {
       title: "Opciones",
-      dataIndex:"",
-      key:"x",
+      dataIndex:"pago_id",
+      key:"opciones",
       align:"center",
-      render:(record) =>{
+      render:(text) =>{
           return (
             <Row gutter={[8, 8]} justify="center" align="middle">
-              <Col>
-                <Button type="primary" block
-                >Editar</Button>
-              </Col>
               <Col>
                 <Popconfirm
                   title="ELIMINAR"
@@ -110,8 +63,8 @@ const ProductosTable = () => {
                   okText="Confirmar"
                   cancelText="NO"
                   onConfirm= {() => {
-                    deleteProductoById(record.producto_id, id, reload, setReload)
-                    getProductosByTienda(id,setproductostienda)
+                    deletePagoById(id)
+                    setReload(!reload)
                   }}
                 >
                 <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -153,4 +106,4 @@ const ProductosTable = () => {
   );
 };
 
-export default ProductosTable;
+export default PagosTable;

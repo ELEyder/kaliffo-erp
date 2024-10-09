@@ -23,8 +23,8 @@ export const addProducto = async (values) => {
 export const getProductoById = async (id, setProducto) => {
   const response = await fetch(`http://localhost:3000/producto/${id}`)
   const productoData = await response.json()
-  console.log(productoData[0])
-  setProducto(productoData[0])
+  console.log(productoData)
+  setProducto(productoData)
 }
 
 export const deleteProductoById = async (id, id_Tienda, reload, setReload) => {
@@ -46,7 +46,7 @@ export const getProductos = async (seteador) => {
 }
 
 export const getProductosByTienda = async (id, setTabla) => {
-  const response = await fetch(`http://localhost:3000/producto/tienda/${id}`)
+  const response = await fetch(`http://localhost:3000/producto?tienda_id=${id}`)
   const productoData = await response.json()
   console.log(productoData)
   setTabla(productoData)

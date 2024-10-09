@@ -16,8 +16,8 @@ export const getVentas = async (tipo, setTablaDatos) => {
             "tiendaId" : 123145143,
         },
         {
-            "id": 1,
-            "codigo": 0,
+            "id": 2,
+            "codigo": 2,
             "tipo": 1,
             "fechaVenta": "2024-09-12",
             "cantidad": 2,
@@ -28,20 +28,6 @@ export const getVentas = async (tipo, setTablaDatos) => {
             "RUC" : 123145143,
             "tiendaId" : 123145143,
         },
-        {
-            "id": 1,
-            "codigo": 0,
-            "tipo": 1,
-            "fechaVenta": "2024-09-12",
-            "cantidad": 2,
-            "totalBruto": 2,
-            "totalNeto": 2,
-            "IGV": 2,
-            "tipoPago": "Tarjeta de crédito",
-            "RUC" : 123145143,
-            "tiendaId" : 123145143,
-        },
-
     ];
     setTablaDatos(Ventas)
 }

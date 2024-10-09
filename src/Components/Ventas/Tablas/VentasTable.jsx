@@ -86,10 +86,10 @@ const VentasTable = ({ reload }) => {
     },
     {
       title: "Opciones",
-      dataIndex: "",
-      key: "x",
+      dataIndex: "codigo",
+      key: "opciones",
       align: "center",
-      render: (record) => {
+      render: (text) => {
         return (
           <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
             <Col>
@@ -99,7 +99,7 @@ const VentasTable = ({ reload }) => {
                 okText="Confirmar"
                 onConfirm={(e) =>{
                   e.stopPropagation();
-                  deleteVenta(record.usuario_id)
+                  deleteVenta(text)
                 }} 
                 cancelText="NO"
               >
@@ -120,7 +120,11 @@ const VentasTable = ({ reload }) => {
   ];
 
   return (
+    
     <>
+    {
+      
+    }
       <Table
         columns={columnas}
         pagination={{ pageSize: 5 }}

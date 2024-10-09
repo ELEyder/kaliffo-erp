@@ -25,7 +25,7 @@ export const getPagosById = async (id, setPago)  => {
     const detallesConNuevoParametro = pagoData.map(detalle => {
         return {
             ...detalle,
-            estado: estados[detalle.estado], // Añadir el tipo de incidencia
+            estado: estados[detalle.estado],
         };
     });
     setPago(detallesConNuevoParametro)
@@ -43,7 +43,7 @@ export const updatePagoById = async (id, reload, setReload) => {
     console.log(response)
 }
 
-export const deletePagoById = async (id, reload, setReload, api) => {
+export const deletePagoById = async (id) => {
     const response = await fetch(`http://localhost:3000/pago/delete/${id}`, {
         method: "DELETE",
         headers: {

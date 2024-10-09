@@ -4,6 +4,7 @@ import InfoTiendaCard from "./Cards/InfoTiendaCard";
 import BestProductosCard from "./Cards/BestProductosCard";
 import ProductosTable from "./Tablas/ProductosTable";
 import PersonalTable from "./Tablas/PersonalTable"
+import PagosTable from "./Tablas/PagosTable";
 import { Col, Divider, Row, Tabs } from "antd";
 
 const Tienda = () => {
@@ -22,7 +23,7 @@ const Tienda = () => {
     {
       key: '3',
       label: 'Pagos',
-      children: 'Content of Tab Pane 3',
+      children: <PagosTable/>,
     },
   ];
 
