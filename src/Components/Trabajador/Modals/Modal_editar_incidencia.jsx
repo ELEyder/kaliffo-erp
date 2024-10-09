@@ -7,7 +7,6 @@ const Modal_editar_incidencia = ({
   setModalEditarAbierto,
   tipo_trabajador,
   reload,
-  setReload,
   values
 }) => {
 
@@ -45,7 +44,8 @@ const Modal_editar_incidencia = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async () => {
-          updateIncidenciaById(values.incidencia_id, form.getFieldsValue() , reload, setReload,api)
+          updateIncidenciaById(values.incidencia_id, form.getFieldsValue())
+          reload()
           setModalEditarAbierto(false)
         }}
       >

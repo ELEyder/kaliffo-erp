@@ -115,8 +115,7 @@
           ModalEditarAbierto = {ModalEditarAbierto}
           setModalEditarAbierto = {setModalEditarAbierto}
           setReload = {setReload}
-          reload = {reload}
-          values = {incidencia}
+          reload = {()=>setReload(!reload)}
           />
           <Modal_add_incidencia
           ModalAddOpen = {ModalAddIncidenciaOpen}

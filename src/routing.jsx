@@ -19,7 +19,7 @@ export const Routing = () =>{
             <Route path="/productos/" element={<Productos />}/>
             <Route path="/producto/:id" element={<Producto />}/>
             <Route path="/ventas/:tipo" element={<Ventas />}/>
-            <Route path="/error" element={<ErrorPagina />} />
+            <Route path="*" element={<ErrorPagina />} />
         </Routes>
     )
 }

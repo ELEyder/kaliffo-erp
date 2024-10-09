@@ -38,7 +38,7 @@ export const getIncidenciasById = async (id, setIncidencias) => {
     console.log(detallesConNuevoParametro)
 }
 
-export const updateIncidenciaById = async (id, values, reload, setReload) => {
+export const updateIncidenciaById = async (id, values) => {
     const incidencia = {
         tipo : values.tipo,
         descripcion : values.descripcion,
@@ -51,7 +51,6 @@ export const updateIncidenciaById = async (id, values, reload, setReload) => {
         },
         body: JSON.stringify(incidencia),
     })
-    setReload(reload == true ? false : true)
     showNotificationUpdate("Incidencia actualizada", `ID: ${id}`)
     console.log(response)
 }

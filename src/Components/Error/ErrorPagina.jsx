@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 const ErrorPagina = () =>{
     return(
         <Plantilla>
-            <h1>ERROR</h1>
+            <h1>Error al cargar la ruta</h1>
         </Plantilla>
     )
 }

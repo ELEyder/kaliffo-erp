@@ -94,7 +94,7 @@ const TrabajadoresTable = ({ reload }) => {
               }
               block
               >
-                Incidencias
+                + Incidencias
               </Button>
             </Col>
             <Col>
