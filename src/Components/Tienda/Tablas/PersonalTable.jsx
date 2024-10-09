@@ -98,7 +98,7 @@ const PersonalTable = () => {
         columns={columns}
         pagination={{ pageSize: 5 }}
         bordered
-        dataSource={[...usuariostienda]}
+        dataSource={usuariostienda.map((item, index) => ({ ...item, key: index }))}
         rowKey={(record) => record.usuario_id}
       />
 

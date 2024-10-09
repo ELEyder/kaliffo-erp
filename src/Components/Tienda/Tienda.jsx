@@ -4,7 +4,7 @@ import InfoTiendaCard from "./Cards/InfoTiendaCard";
 import BestProductosCard from "./Cards/BestProductosCard";
 import ProductosTable from "./Tablas/ProductosTable";
 import PersonalTable from "./Tablas/PersonalTable"
-import PagosTable from "./Tablas/PagosTable";
+import VentasTable from "./Tablas/VentasTable";
 import { Col, Divider, Row, Tabs } from "antd";
 
 const Tienda = () => {
@@ -22,8 +22,8 @@ const Tienda = () => {
     },
     {
       key: '3',
-      label: 'Pagos',
-      children: <PagosTable/>,
+      label: 'Ventas',
+      children: <VentasTable/>,
     },
   ];
 

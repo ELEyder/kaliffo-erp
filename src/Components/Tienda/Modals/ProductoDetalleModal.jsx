@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, Table,Flex,Popconfirm } from "antd";
 import { getProductoDetalle } from "../../../Shared/api/Producto";
 
-const DetallesProductoModal = ({
+const ProductoDetalleModal = ({
   openModal,
   closeModal,
   id,
@@ -31,19 +31,24 @@ const DetallesProductoModal = ({
           );
         },
       },
-    {
-      title: "Stock",
-      key: "stock",
-      dataIndex:"stock",
-      align: "center",
-      render: (text, record) => {
-        return (
-          <>
-            {record.stock}
-          </>
-        );
+      {
+        title: "Stock",
+        key: "stock",
+        align: "center",
+        dataIndex:"stock",
+        defaultSortOrder: "ascend",
+        onCell: (record) => ({
+            style: {
+              background: record.stock >= 50 
+                ? 'green' 
+                : record.stock <= 20
+                ? '#f54242' 
+                : '#FCFB77',  
+              color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
+              padding: "10px"
+            }
+          })
       },
-    },
     {
         title:"Ver mas",
         key:"x",
@@ -114,4 +119,4 @@ const DetallesProductoModal = ({
   );
 };
 
-export default DetallesProductoModal;
+export default ProductoDetalleModal;

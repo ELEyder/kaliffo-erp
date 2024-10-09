@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import DetallesProductoModal from "../Modals/DetallesProductoModal"
+import DetallesProductoModal from "../Modals/ProductoDetalleModal"
 import AddProductoModal from "../Modals/AddProductoModal";
 import { getProductosByTienda, deleteProductoById } from "../../../Shared/api/Producto";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
@@ -76,14 +76,14 @@ const ProductosTable = () => {
     },
     {
       title:"Ver mas",
-      dataIndex:"",
-      key:"f",
+      dataIndex:"producto_id",
+      key:"vermas",
       align:"center",
-      render:(text,record) =>{
+      render:(text, record) =>{
         return(
           <Button type="primary" block
           onClick= {() => {
-            setIdP(record.producto_id)
+            setIdP(text)
             setNombreProducto(record.nombre)
             setOpenTiendaDetalleProducto(true)
           }}
@@ -129,7 +129,7 @@ const ProductosTable = () => {
       <Table columns={columns}
       pagination={{ pageSize: 5 }}
       bordered
-      dataSource={[...productostienda]}
+      dataSource={productostienda.map((item, index) => ({ ...item, key: index }))}
       rowKey={(record) => record.producto_id}
       />
 
