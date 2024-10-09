@@ -1,7 +1,7 @@
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { getTiendas } from "../../../Shared/api/Tienda";
-import { CargarEditar } from "../../../Shared/api/Funciones_Fetch";
+import { setUpdateUsuario } from "../../../Shared/api/Usuario";
 import { updateUsuario } from "../../../Shared/api/Usuario";
 const UpdateUsuarioModal = ({
   openModal,
@@ -16,8 +16,8 @@ const UpdateUsuarioModal = ({
 
   useEffect(()=>{
     if(id){
-        CargarEditar(id,form,setValoresO)
-        getTiendas(setTiendas)
+      setUpdateUsuario(id,form,setValoresO)
+      getTiendas(setTiendas)
     }
   },[id])
 
