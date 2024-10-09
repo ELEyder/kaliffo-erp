@@ -3,11 +3,11 @@ import { Form, Modal, Select } from "antd";
 import { Link } from "react-router-dom";
 import { updateUsuarioTienda, getTrabajadoresDiferentes } from "../../../Shared/api/Usuario";
 
-const TiendaAddPersonal = ({
-  ModalTiendaAddPersonalAbierto,
-  closeModalTiendaAddPersonalAbierto,
+const AddUsuarioModal = ({
+  openModal,
+  closeModal,
   id,
-  handleAddExitoso
+  reload
 }) => {
   const [form] = Form.useForm();
 
@@ -22,8 +22,8 @@ const TiendaAddPersonal = ({
       forceRender
       getContainer={false}
       title={`Añadir nuevo trabajador`}
-      open={ModalTiendaAddPersonalAbierto}
-      onCancel={closeModalTiendaAddPersonalAbierto}
+      open={openModal}
+      onCancel={closeModal}
       style={{ textTransform: "uppercase" }}
       onOk={form.submit}
       okText="Guardar"
@@ -40,7 +40,8 @@ const TiendaAddPersonal = ({
         id="formulariaddpersonal"
         onFinish={async (values) => {
           await updateUsuarioTienda(id,values)
-          handleAddExitoso()
+          reload()
+          closeModal()
         }}
       >
 
@@ -83,4 +84,4 @@ const TiendaAddPersonal = ({
   );
 };
 
-export default TiendaAddPersonal;
+export default AddUsuarioModal;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, Table,Flex,Popconfirm } from "antd";
 import { getProductoTiendaDetalle } from "../../../Shared/api/Tienda";
 
-const TiendaDetalleProducto = ({
+const DetallesProductoModal = ({
   openModal,
   closeModal,
   id,
@@ -114,4 +114,4 @@ const TiendaDetalleProducto = ({
   );
 };
 
-export default TiendaDetalleProducto;
+export default DetallesProductoModal;

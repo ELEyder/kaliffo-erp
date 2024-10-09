@@ -34,7 +34,8 @@ const UpdateUsuarioModal = ({
       onOk={form.submit}
       style={{textTransform:"uppercase"}}
       centered={true}
-      width={500}>
+      width={500}
+    >
       <Form
         style={{ maxWidth: 500, margin: "0 auto" }}
         size="large"
@@ -46,7 +47,8 @@ const UpdateUsuarioModal = ({
           await updateUsuario(id, values,valoresO)
           reload()
           closeModal(false)
-        }}>
+        }}
+      >
         <Form.Item
           style={{ marginTop: 20 }}
           name="nombre"
@@ -56,9 +58,11 @@ const UpdateUsuarioModal = ({
               required: true,
               message: "Nombres requeridos",
             },
-          ]}>
+          ]}
+        >
           <Input onChange={manejotexto(form, "nombreE")} />
         </Form.Item>
+
         <Row
           justify="space-around"
           align="middle"
@@ -67,7 +71,8 @@ const UpdateUsuarioModal = ({
             sm: 16,
             md: 24,
             lg: 32,
-          }}>
+          }}
+        >
           <Col span={12} className="gutter-row">
             <Form.Item
               name="ap_paterno"
@@ -77,10 +82,12 @@ const UpdateUsuarioModal = ({
                   required: true,
                   message: "Apellido Paterno Requerido",
                 },
-              ]}>
+              ]}
+            >
               <Input onChange={manejotexto(form, "ap_paternoE")} />
             </Form.Item>
           </Col>
+
           <Col span={12} className="gutter-row">
             <Form.Item
               name="ap_materno"
@@ -90,11 +97,13 @@ const UpdateUsuarioModal = ({
                   required: true,
                   message: "Apellido Materno Requerido",
                 },
-              ]}>
+              ]}
+            >
               <Input onChange={manejotexto(form, "ap_maternoE")} />
             </Form.Item>
           </Col>
         </Row>
+
         <Row
           justify="space-around"
           align="middle"
@@ -103,7 +112,8 @@ const UpdateUsuarioModal = ({
             sm: 16,
             md: 24,
             lg: 32,
-          }}>
+          }}
+        >
           <Col span={12} className="gutter-row">
             <Form.Item
               label="Fecha Nacimiento"
@@ -113,10 +123,12 @@ const UpdateUsuarioModal = ({
                   required: true,
                   message: "Fecha Nacimiento requerido",
                 },
-              ]}>
+              ]}
+            >
               <DatePicker format={"YYYY-MM-DD"} placeholder="YYYY-MM-DD" />
             </Form.Item>
           </Col>
+
           <Col span={12} className="gutter-row">
             <Form.Item
               name="telefono"
@@ -126,14 +138,17 @@ const UpdateUsuarioModal = ({
                   required: true,
                   message: "Telefono Requerido",
                 },
-              ]}>
+              ]}
+            >
               <Input
                 maxLength={9}
                 showCount
-                onChange={manejonumeros(form, "telefonoE")} />
+                onChange={manejonumeros(form, "telefonoE")}
+              />
             </Form.Item>
           </Col>
         </Row>
+
         <Row
           justify="space-around"
           align="middle"
@@ -142,7 +157,8 @@ const UpdateUsuarioModal = ({
             sm: 16,
             md: 24,
             lg: 32,
-          }}>
+          }}
+        >
           <Col span={10}  className="gutter-row">
             <Form.Item
               name="dni"
@@ -152,14 +168,17 @@ const UpdateUsuarioModal = ({
                   required: true,
                   message: "DNI requerido",
                 },
-              ]}>
+              ]}
+            >
               <Input
                 maxLength={8}
                 style={{textAlign:"center"}}
                 showCount
-                onChange={manejonumeros(form, "dniE")} />
+                onChange={manejonumeros(form, "dniE")}
+              />
             </Form.Item>
           </Col>
+
           <Col span={14} className="gutter-row">
             {tipoTrabajador === "ventas" ? (
               <Form.Item
@@ -170,18 +189,21 @@ const UpdateUsuarioModal = ({
                     required: true,
                     message: "Tienda Asignada",
                   },
-                ]}>
+                ]}
+              >
                 <Select
                   style={{textAlign:"center"}}
                   options={tiendas.map((tienda) => ({
                     value: tienda.tienda_id,
                     label: tienda.tienda,
                     key: tienda.tienda_id,
-                  }))}/>
+                  }))}
+                />
               </Form.Item>
             ) : null}
           </Col>
         </Row>
+
         <Form.Item name="usuario_id" noStyle>
           <Input type="hidden" />
         </Form.Item>

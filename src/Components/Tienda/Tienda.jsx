@@ -2,8 +2,8 @@ import React from "react";
 import Plantilla from "../../Shared/Plantilla";
 import InfoTiendaCard from "./Cards/InfoTiendaCard";
 import BestProductosCard from "./Cards/BestProductosCard";
-import TablaProductos from "./Tablas/TablaProductos";
-import TablaPersonal from "./Tablas/PersonalTable"
+import ProductosTable from "./Tablas/ProductosTable";
+import PersonalTable from "./Tablas/PersonalTable"
 import { Col, Divider, Row, Tabs } from "antd";
 
 const Tienda = () => {
@@ -12,12 +12,12 @@ const Tienda = () => {
     {
       key: '1',
       label: 'Productos',
-      children: <TablaProductos/>,
+      children: <ProductosTable/>,
     },
     {
       key: '2',
       label: 'Personal',
-      children: <TablaPersonal/>,
+      children: <PersonalTable/>,
     },
     {
       key: '3',

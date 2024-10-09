@@ -1,6 +1,6 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import { addIncidencia } from "../../../Shared/api/Incidencia";
-import { Form, Input, Modal, Select } from "antd";
 
 const { TextArea } = Input;
 
@@ -26,7 +26,9 @@ const AddIncidenciaModal = ({
             style={{textAlign:"center",textTransform:"uppercase"}}
             onOk={form.submit}
             centered={true}
-            width={500}>
+            width={500}
+            >
+
                 <Form
                 style={{maxWidth:500,margin:"0 auto"}}
                 size="large"
@@ -39,7 +41,8 @@ const AddIncidenciaModal = ({
                     reload()
                     closeModal(false)
                     form.resetFields();
-                }}>
+                }}
+                >
                     <Form.Item
                     name="tipo"
                     label="Tipo"
@@ -65,11 +68,17 @@ const AddIncidenciaModal = ({
                             message:"Descripcion Requerida"
                         }
                     ]}>
-                        <TextArea autoSize={{ minRows: 2, maxRows: 6 }} />
+                        <TextArea
+                            autoSize={{ minRows: 2, maxRows: 6 }}
+                        />
+
                     </Form.Item>
+
                 </Form>
+
         </Modal>
     )
+
 }
 
 export default AddIncidenciaModal

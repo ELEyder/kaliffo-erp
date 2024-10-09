@@ -5,9 +5,11 @@ import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
 import { getUsuarios, deleteUsuario } from "../../../Shared/api/Usuario";
 import { Button, Row, Col, Popconfirm, Table } from "antd";
 
-const TrabajadoresTable = ({ reload }) => {
-
+const TrabajadoresTable = ({
+  reload,
+}) => {
   const { tipo_trabajador } = useParams();
+
   const [tabla_datos, SetTabla_datos] = useState([]);
   const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
   const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);

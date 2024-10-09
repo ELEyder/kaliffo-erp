@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
-import TiendaAddPersonal from "../Modals/TiendaAddPersonal";
+import AddUsuarioModal from "../Modals/AddUsuarioModal";
 import { getUsuariosTienda, deleteUsuario } from "../../../Shared/api/Usuario";
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
@@ -10,47 +10,15 @@ const PersonalTable = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [usuariostienda, setusuariostienda] = useState([]);
+  const [usuariostienda, setUsuariostienda] = useState([]);
   const [idPersonal, setIdPersonal] = useState(null);
-  const [Refrescar, setRefrescar] = useState(false);
   const [reload, setReload] = useState(false);
 
   const [OpenModalUpdate, setOpenModalUpdate] = useState(false);
-  const [ModalTiendaAddPersonalAbierto,setModalTiendaAddPersonalAbierto] = useState(false)
-  const [OpenAddPersonalModal,setOpenAddPersonalModal] = useState(false)
-
-  const closeModalPersonalTiendaAbierto = () => {
-    setModalPersonalTiendaAbierto(false);
-    setIDPersonal(null);
-  };
-
-  const showModalTiendaAddPersonalAbierto = () =>{
-    
-  }
-
-  const closeModalTiendaAddPersonalAbierto = () =>{
-    setModalTiendaAddPersonalAbierto(false)
-  }
-
-  const refrescarTabla = () => {
-    setRefrescar(true);
-  };
-
-  const handleAddExitoso = () => {
-    closeModalTiendaAddPersonalAbierto();
-    refrescarTabla();
-    handlerefrescarSideCard1()
-  };
-
-  const eliminar = (id) =>{
-    if(EliminarUsuario(id)){
-      refrescarTabla()
-      handlerefrescarSideCard1()
-    }
-  }
+  const [OpenAddUsuarioModal,setOpenAddUsuarioModal] = useState(false)
 
   useEffect(() => {
-    getUsuariosTienda(id, setusuariostienda);
+    getUsuariosTienda(id, setUsuariostienda);
   }, [id, reload]);
 
   const columns = [
@@ -124,8 +92,7 @@ const PersonalTable = () => {
 
   return (
     <>
-
-      <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => setOpenAddPersonalModal(true)} type="primary" icon={<FileAddOutlined />}/>
+      <FloatButton tooltip="Añadir Nuevo Personal" onClick={() => setOpenAddUsuarioModal(true)} type="primary" icon={<FileAddOutlined />}/>
 
       <Table
         columns={columns}
@@ -142,13 +109,12 @@ const PersonalTable = () => {
         reload={() => setReload(!reload)}
       />
 
-      <TiendaAddPersonal
-        openModal={OpenAddPersonalModal}
-        closeModal={() => setOpenAddPersonalModal(false)}
+      <AddUsuarioModal
+        openModal={OpenAddUsuarioModal}
+        closeModal={() => setOpenAddUsuarioModal(false)}
         id={id}
         reload={() => setReload(!reload)}
       />
-
     </>
   );
 };

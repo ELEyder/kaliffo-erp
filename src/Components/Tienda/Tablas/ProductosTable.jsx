@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { getProductosByTienda } from "../../../Shared/api/Producto";
 import { deleteProductoById } from "../../../Shared/api/Producto";
-import TiendaDetalleProducto from "../Modals/TiendaDetalleProducto"
-import ModalAddProducto from "../Modals/ModalAddProducto";
+import DetallesProductoModal from "../Modals/DetallesProductoModal"
+import AddProductoModal from "../Modals/AddProductoModal";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 
 
-const TiendaProductos = () => {
+const ProductosTable = () => {
 
   const { id } = useParams();
 
@@ -18,6 +18,10 @@ const TiendaProductos = () => {
   const[OpenTiendaDetalleProducto,setOpenTiendaDetalleProducto] = useState(false)
   const[idp,setIdP] = useState(0)
   const[nombreProducto,setNombreProducto] = useState(0)
+
+  useEffect(() => {
+    getProductosByTienda(id,setproductostienda)
+  }, [id, reload]);
 
   const columns = [
     {
@@ -108,6 +112,7 @@ const TiendaProductos = () => {
                   cancelText="NO"
                   onConfirm= {() => {
                     deleteProductoById(record.producto_id, id, reload, setReload)
+                    getProductosByTienda(id,setproductostienda)
                   }}
                 >
                 <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -120,10 +125,6 @@ const TiendaProductos = () => {
     },
   ];
 
-  useEffect(() => {
-    getProductosByTienda(id,setproductostienda)
-  }, [id, reload]);
-
   return (
     <> 
       <Table columns={columns}
@@ -131,18 +132,18 @@ const TiendaProductos = () => {
       bordered
       dataSource={[...productostienda]}
       rowKey={(record) => record.producto_id}
-      ></Table>
+      />
 
       <FloatButton tooltip="Añadir Nuevo Producto" onClick={() => setOpenAddProductoModal(true)} type="primary" icon={<FileAddOutlined />}/>
 
-      <ModalAddProducto
+      <AddProductoModal
       openModal = {OpenAddProductoModal}
       closeModal={() => setOpenAddProductoModal(false)}
       id={id}
       reload={()=>setReload(!reload)}
       />
 
-      <TiendaDetalleProducto
+      <DetallesProductoModal
       openModal = {OpenTiendaDetalleProducto}
       closeModal={setOpenTiendaDetalleProducto}
       id={id}
@@ -153,4 +154,4 @@ const TiendaProductos = () => {
   );
 };
 
-export default TiendaProductos;
+export default ProductosTable;

@@ -109,6 +109,7 @@ export const getUsuarios = async (tipo, Seteador) => {
         }
       Seteador(trabajadores);
     })
+    console.log(trabajadores)
   } catch (error) {
     console.error("Error fetching data:", error);
   }

@@ -6,7 +6,7 @@ import FormItem from "antd/es/form/FormItem";
 
 const { Option } = Select;
 
-const ModalAddProducto = ({
+const AddProductoModal = ({
   openModal,
   closeModal,
   id,
@@ -117,13 +117,13 @@ const ModalAddProducto = ({
         )}
       </Form.List>
 
-      {/* <Form.Item noStyle shouldUpdate>
+      <Form.Item noStyle shouldUpdate>
         {() => (
           <Typography>
-            <pre>{JSON.stringify(form.getFieldsValue(), null, 2)}</pre>
+            <pre>{JSON.stringify(form.getFieldsValue().items, null, 2)}</pre>
           </Typography>
         )}
-      </Form.Item> */}
+      </Form.Item>
 
       <FormItem>
         <Button onClick={ async ()=> {
@@ -142,4 +142,4 @@ const ModalAddProducto = ({
   );
 };
 
-export default ModalAddProducto;
+export default AddProductoModal;
