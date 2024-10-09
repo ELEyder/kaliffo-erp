@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { setUpdateUsuario} from "../../../Shared/api/Usuario";
-import { updateUsuario } from "../../../Shared/api/Usuario";
+import { setUpdateUsuario, updateUsuario } from "../../../Shared/api/Usuario";
 import { getTiendas } from "../../../Shared/api/Tienda";
 
 const UpdateUsuarioModal = ({

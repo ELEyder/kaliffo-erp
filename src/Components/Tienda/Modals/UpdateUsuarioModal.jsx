@@ -1,8 +1,7 @@
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { getTiendas } from "../../../Shared/api/Tienda";
-import { setUpdateUsuario } from "../../../Shared/api/Usuario";
-import { updateUsuario } from "../../../Shared/api/Usuario";
+import { setUpdateUsuario, updateUsuario } from "../../../Shared/api/Usuario";
 const UpdateUsuarioModal = ({
   openModal,
   closeModal,
