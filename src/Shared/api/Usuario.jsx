@@ -1,4 +1,6 @@
 import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
+import moment from "moment";
+
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
 export const addUsuario = async (tipoTrabajador, values) => {
@@ -162,3 +164,21 @@ export const getUsuariosTienda = async (id, setTabla) => {
   
 };
 
+export const setUpdateUsuario = async (id, form,seteadorO) => {
+  try {
+    const response = await fetch(`http://localhost:3000/usuario/${id}`);
+    const data = await response.json();
+    seteadorO(data)
+    form.setFieldsValue({
+      ["nombre"]: data.nombre,
+      ["ap_paterno"]: data.ap_paterno,
+      ["ap_materno"]: data.ap_materno,
+      ["telefono"]: data.telefono,
+      ["dni"]: data.dni,
+      ["fecha_nacimiento"]: moment(data.fecha_nacimiento),
+      ["tienda_id"]:data.tienda_id
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
