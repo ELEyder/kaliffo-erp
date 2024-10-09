@@ -16,3 +16,14 @@
 .ant-table-cell {
     padding: 10px !important;
 }
+
+/* Botones */
+.btn-incidencia {
+    background: #ffdf5e;
+    color: black
+}
+
+.btn-incidencia:hover {
+    background: #ffdf5e !important;
+    color: black !important;
+}

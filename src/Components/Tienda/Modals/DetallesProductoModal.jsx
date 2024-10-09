@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table,Flex,Popconfirm } from "antd";
-import { getProductoTiendaDetalle } from "../../../Shared/api/Tienda";
+import { getProductoDetalle } from "../../../Shared/api/Producto";
 
 const DetallesProductoModal = ({
   openModal,
@@ -13,7 +13,7 @@ const DetallesProductoModal = ({
 
   useEffect(() => {
     if (idp) {
-      getProductoTiendaDetalle(id, idp, setproductoDetalle);
+      getProductoDetalle(id, idp, setproductoDetalle);
     }
   }, [idp]);
 

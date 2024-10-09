@@ -58,14 +58,14 @@ const Items=[
                 key:"5",
                 icon:<UserOutlined />,
                 label:(
-                    <Link to="/Ventas" style={{textDecoration:"none"}}>Boletas</Link>
+                    <Link to="/ventas/boleta" style={{textDecoration:"none"}}>Boletas</Link>
                 ),
             },
             {
                 key:"6",
                 icon:<UserOutlined />,
                 label:(
-                    <Link to="/Ventas" style={{textDecoration:"none"}}>Facturas</Link>
+                    <Link to="/ventas/factura" style={{textDecoration:"none"}}>Facturas</Link>
                 ),
             },
         ]

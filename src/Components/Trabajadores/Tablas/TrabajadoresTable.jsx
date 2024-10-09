@@ -82,18 +82,18 @@ const TrabajadoresTable = ({ reload }) => {
                 setId(record.usuario_id)
                 setOpenUpdateUsuario(true)
               }}
-              block
-              >
+              block>
                 Editar
               </Button>
             </Col>
             <Col>
-              <Button style={{ background: "#ffdf5e", color: "black" }} onClick={(e) => {
+              <Button className="btn-incidencia" onClick={(e) => {
                 e.stopPropagation()
                 setId(record.usuario_id)
                 setOpenAddIncidencia(true)}
               }
-              block>
+              block
+              >
                 Incidencias
               </Button>
             </Col>

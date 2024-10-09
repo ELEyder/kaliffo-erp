@@ -34,7 +34,7 @@ export const getTiendas = async (setTiendas) => {
 export const getTiendasByProducto = async (id, setTiendas) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/tienda?producto_id=${id}`
+        `http://localhost:3000/producto/detalle/${id}?tipo=tienda`
       );
       const data = await response.json();
       setTiendas(data);
@@ -44,15 +44,3 @@ export const getTiendasByProducto = async (id, setTiendas) => {
     }
   };
 
-  export const getProductoTiendaDetalle = async (id,idp, setTiendas) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/producto/detalle/${idp}?id_tienda=${id}`
-      );
-      const data = await response.json();
-      setTiendas(data);
-      console.log(data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
