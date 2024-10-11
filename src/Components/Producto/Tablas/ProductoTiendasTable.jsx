@@ -3,7 +3,9 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import { getTiendasByProducto } from "../../../Shared/api/Tienda";
 
-const ProductoTiendasTable = ({ id }) => {
+const ProductoTiendasTable = () => {
+
+  const [id, setId] = useState(1)
   const [tabla, setTabla] = useState([]);
 
   useEffect(() => {
@@ -19,8 +21,8 @@ const ProductoTiendasTable = ({ id }) => {
     },
     {
       title: "Stock Total",
-      dataIndex: "total_stock",
-      key: "total_stock",
+      dataIndex: "STOCK",
+      key: "STOCK",
       align: "center",
       onCell: (record) => ({
         style: {
@@ -33,13 +35,6 @@ const ProductoTiendasTable = ({ id }) => {
           padding: "10px"
         }
       }),
-    },
-    {
-      title: "Precio",
-      dataIndex: "precio",
-      key: "precio",
-      align: "center",
-
     },
     {
       title: "Ver más",

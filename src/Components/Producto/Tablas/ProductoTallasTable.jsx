@@ -3,18 +3,20 @@ import React from "react";
 import { useState, useEffect } from 'react'
 import { getTallasByProducto } from "../../../Shared/api/Talla";
 
-const ProductoTallasTable = ({ id }) =>{
+const ProductoTallasTable = () =>{
+  const [id, setId] = useState(1)
+
     const columns=[
         {
-            title: "Tienda",
-            dataIndex: "tienda",
-            key: "tienda",
+            title: "Talla",
+            dataIndex: "talla",
+            key: "talla",
             align:"center",
         },
         {
-            title: "Stock",
-            dataIndex: "stock",
-            key: "stock",
+            title: "Cantidad",
+            dataIndex: "cantidad",
+            key: "cantidad",
             align:"center",
             onCell: (record) => ({
                 style: {
@@ -27,13 +29,6 @@ const ProductoTallasTable = ({ id }) =>{
                   padding: "10px"
                 }
               }),
-        },
-        {
-            title: "Precio",
-            dataIndex: "precio",
-            key: "precio",
-            align:"center",
-            
         },
         {
             title: "Ver más",

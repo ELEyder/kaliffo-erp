@@ -34,7 +34,7 @@ export const getTiendas = async (setTiendas) => {
 export const getTiendasByProducto = async (id, setTiendas) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/producto/detalle/${id}?tipo=tienda`
+        `http://localhost:3000/producto/detalle/${id}?tipo=tiendas`
       );
       const data = await response.json();
       setTiendas(data);
