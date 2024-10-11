@@ -77,7 +77,7 @@ export const updateUsuario = async (id, values, originales) => {
 
 };
 
-export const deleteUsuario = async (id) => {
+export const deleteUsuarioById = async (id, values) => {
   console.log(id)
   try {
     const response = await fetch(`http://localhost:3000/usuario/delete/${id}`, {

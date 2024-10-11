@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationDelete, showNotificationError } from "../Notifications"
+import { showNotificationAdd, showNotificationDelete, showNotificationError, showNotificationUpdate } from "../Notifications"
 
 export const addProducto = async (values) => {
   let Producto = {
@@ -27,7 +27,36 @@ export const getProductoById = async (id, setProducto) => {
   setProducto(productoData)
 }
 
-export const deleteProductoById = async (id, id_Tienda, reload, setReload) => {
+export const updateProducto = async (id, values) => {
+  const producto = {
+    nombre  : values.nombre,
+    precio : values.precioBase,
+    descuento : values.descuento,
+}
+  const response = await fetch(`http://localhost:3000/producto/update/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(producto),
+  })
+  showNotificationUpdate("Producto Actualizado")
+  console.log(JSON.stringify(producto))
+  console.log(response)
+}
+
+export const deleteProductoById = async (id, values) => {
+  const response = await fetch(`http://localhost:3000/producto/delete/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  showNotificationDelete("Producto Eliminado")
+  console.log(response)
+}
+
+export const deleteProductoByTienda = async (id, id_Tienda, reload, setReload) => {
   const response = await fetch(`http://localhost:3000/producto/delete/${id}?id_tienda=${id_Tienda}`, {
     method: "DELETE",
     headers: {
@@ -42,6 +71,7 @@ export const deleteProductoById = async (id, id_Tienda, reload, setReload) => {
 export const getProductos = async (seteador) => {
   const response = await fetch(`http://localhost:3000/producto`)
   const productosData = await response.json()
+  console.log(productosData)
   seteador(productosData)
 }
 
@@ -119,6 +149,21 @@ export const getProductoDetalle = async (id,idp, setTiendas) => {
     );
     const data = await response.json();
     setTiendas(data);
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setUpdateUsuario = async (id, form) => {
+  try {
+    const response = await fetch(`http://localhost:3000/producto/${id}`);
+    const data = await response.json();
+    form.setFieldsValue({
+      ["nombre"]: data.nombre,
+      ["precioBase"]: data.precioBase,
+      ["descuento"]: data.descuento,
+    });
     console.log(data)
   } catch (error) {
     console.log(error);

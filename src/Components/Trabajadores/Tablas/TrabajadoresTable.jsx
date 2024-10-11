@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
 import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
-import { getUsuarios, deleteUsuario } from "../../../Shared/api/Usuario";
+import { getUsuarios, deleteUsuarioById } from "../../../Shared/api/Usuario";
 import { Button, Row, Col, Popconfirm, Table } from "antd";
 
 const TrabajadoresTable = ({ reload }) => {
@@ -104,7 +104,7 @@ const TrabajadoresTable = ({ reload }) => {
                 okText="Confirmar"
                 onConfirm={(e) =>{
                   e.stopPropagation();
-                  deleteUsuario(record.usuario_id)
+                  deleteUsuarioById(record.usuario_id)
                 }} 
                 cancelText="NO"
               >

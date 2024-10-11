@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import DetallesProductoModal from "../Modals/ProductoDetalleModal"
 import AddProductoModal from "../Modals/AddProductoModal";
-import { getProductosByTienda, deleteProductoById } from "../../../Shared/api/Producto";
+import { getProductosByTienda, deleteProductoByTienda } from "../../../Shared/api/Producto";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 
@@ -110,7 +110,8 @@ const ProductosTable = () => {
                   okText="Confirmar"
                   cancelText="NO"
                   onConfirm= {() => {
-                    deleteProductoById(record.producto_id, id, reload, setReload)
+                    deleteProductoByTienda(record.producto_id, id)
+                    setReload(!reload)
                     getProductosByTienda(id,setproductostienda)
                   }}
                 >

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
 import AddUsuarioModal from "../Modals/AddUsuarioModal";
-import { getUsuariosTienda, deleteUsuario } from "../../../Shared/api/Usuario";
+import { getUsuariosTienda, deleteUsuarioById } from "../../../Shared/api/Usuario";
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 
@@ -77,7 +77,7 @@ const PersonalTable = () => {
                 okText="Confirmar"
                 cancelText="NO"
                 onConfirm={() => {
-                  deleteUsuario(text)
+                  deleteUsuarioById(text)
                   setReload(!reload)
                 }}
               >

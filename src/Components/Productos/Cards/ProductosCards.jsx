@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import AddProductoModal from "../Modals/AddProductoModal";
+import DeleteProductoModal from "../Modals/DeleteProductoModal";
+import UpdateProductoModal from "../Modals/UpdateProductoModal"
 import { getProductos } from "../../../Shared/api/Producto";
-import { Card, Col, Row, FloatButton, Button, Popconfirm } from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+import { Card, Col, Row, FloatButton, Popconfirm } from "antd";
 
 const {Meta} = Card
 
 
 const ProductosCards = () => {
 
+  const [id, setId] = useState(0)
   const [productos, setTiendas] = useState([]);
   const [OpenAddProductoModal,setOpenAddProductoModal] = useState(false)
+  const [OpenUpdateProducto,setOpenUpdateProducto] = useState(false)
+  const [OpenDeleteProducto,setOpenDeleteProducto] = useState(false)
   const [reload, setReload] = useState(false)
   const imgError = (e) => {
     e.target.src = '/img/generic.png';
@@ -29,49 +35,30 @@ const ProductosCards = () => {
               <Card
                 title={producto.nombre}
                 actions={[
-                  <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
-            <Col>
-              <Button
-              type="primary"
-              onClick={(e) =>{
-                e.stopPropagation()
-                setId(record.usuario_id)
-                setOpenUpdateUsuario(true)
-              }}
-              block>
-                Editar
-              </Button>
-            </Col>
-            <Col>
-            <Button
-              to={`/producto/${producto.producto_id}`}
-              block>
-                Ver Más
-              </Button>
-            </Col>
-            <Col>
-              <Popconfirm
-                title="ELIMINAR"
-                description="DESEA ELIMINAR A"
-                okText="Confirmar"
-                onConfirm={(e) =>{
-                  e.stopPropagation();
-                  deleteUsuario(record.usuario_id)
-                }} 
-                cancelText="NO"
-              >
-                <Button block style={{ background: "#f54242", color: "white" }}
-                danger
-                onClick={(e) =>{
-                  e.stopPropagation();
-                }} 
-                >
-                  Eliminar
-                </Button>
-              </Popconfirm>
-            </Col>
-          </Row>
-
+                  <div >
+                  <EditOutlined key="edit" onClick={(e) =>{
+                    e.stopPropagation()
+                    setId(producto.producto_id)
+                    setOpenUpdateProducto(true)
+                  }}/>
+                  </div>,
+                  <Link to={`/producto/${producto.producto_id}`}>
+                    <EyeOutlined key="view" />
+                  </Link>,
+                  <div >
+                  <Popconfirm
+                  title="ELIMINAR"
+                  description="DESEA ELIMINAR A"
+                  okText="Confirmar"
+                  onConfirm={(e) =>{
+                    e.stopPropagation();
+                    setId(producto.producto_id)
+                    setOpenDeleteProducto(true)
+                  }} 
+                  cancelText="NO"
+                  ><DeleteOutlined  key="delete" />
+                  </Popconfirm>
+                  </div>,
                 ]}
                 cover={
                   <img
@@ -101,6 +88,18 @@ const ProductosCards = () => {
       <AddProductoModal
         openModal = {OpenAddProductoModal}
         closeModal={setOpenAddProductoModal}
+        reload = {()=>setReload(!reload)}
+      />
+      <UpdateProductoModal
+        openModal = {OpenUpdateProducto}
+        closeModal={setOpenUpdateProducto}
+        id = {id}
+        reload = {()=>setReload(!reload)}
+      />
+      <DeleteProductoModal
+        openModal = {OpenDeleteProducto}
+        closeModal={setOpenDeleteProducto}
+        id = {id}
         reload = {()=>setReload(!reload)}
       />
     </>
