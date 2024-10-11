@@ -1,9 +1,12 @@
 import React,{useState} from "react";
-import { Menu } from "antd";
+import { Divider, Menu } from "antd";
 import { Link } from "react-router-dom";
 import {BookOutlined,UserOutlined,CoffeeOutlined,HarmonyOSOutlined} from '@ant-design/icons';
 
 const Items=[
+    {
+        label:<Divider style={{color:"white"}}>ADMINISTRATIVO</Divider>
+    },
     {
         key:"sub1",
         label:"Trabajadores",
@@ -69,7 +72,31 @@ const Items=[
                 ),
             },
         ]
-    }
+    },
+    {
+        label:<Divider style={{color:"white"}}>Logistico</Divider>
+    },
+    {
+        key:"sub6",
+        label:"Mover Mercaderia",
+        icon:<BookOutlined /> ,
+        children:[
+            {
+                key:"7",
+                icon:<UserOutlined />,
+                label:(
+                    <Link to="/ventas/boleta" style={{textDecoration:"none"}}>Mover Mercaderia</Link>
+                ),
+            },
+            {
+                key:"8",
+                icon:<UserOutlined />,
+                label:(
+                    <Link to="/ventas/factura" style={{textDecoration:"none"}}>Historial</Link>
+                ),
+            },
+        ]
+    },
 
     
 ]
