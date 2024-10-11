@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddTiendaModal from "../Modals/AddTiendaModal";
 import { getTiendas } from "../../../Shared/api/Tienda";
-import { Card, Col, Row, FloatButton } from "antd";
+import DeleteTiendaModal from "../Modals/DeleteTiendaModal";
+import UpdateTiendaModal from "../Modals/UpdateTiendaModal"
+import { Card, Col, Row, FloatButton, Popconfirm } from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 const {Meta} = Card
 
@@ -11,6 +14,9 @@ const Tiendas_cards = () => {
   const [tiendas, setTiendas] = useState([]);
   const [reload, setReload] =useState(true)
   const [OpenAddTienda, setOpenAddTienda] = useState(false);
+  const [OpenUpdateTienda, setOpenUpdateTienda] = useState(false);
+  const [OpenDeleteTienda, setOpenDeleteTienda] = useState(false);
+  const [id, setId] = useState(0);
 
   useEffect(() => {
     getTiendas(setTiendas);
@@ -27,9 +33,30 @@ const Tiendas_cards = () => {
             </div>
           }
           actions={[
-            <>
-              <Link to={`/tienda/${tienda.tienda_id}`}>VER MAS</Link>
-            </>
+            <div >
+            <EditOutlined key="edit" onClick={(e) =>{
+              e.stopPropagation()
+              setId(tienda.tienda_id)
+              setOpenUpdateTienda(true)
+            }}/>
+            </div>,
+            <Link to={`/tienda/${tienda.tienda_id}`}>
+              <EyeOutlined key="view" />
+            </Link>,
+            <div >
+            <Popconfirm
+            title="ELIMINAR"
+            description="DESEA ELIMINAR A"
+            okText="Confirmar"
+            onConfirm={(e) =>{
+              e.stopPropagation();
+              setId(tienda.tienda_id)
+              setOpenDeleteTienda(true)
+            }} 
+            cancelText="NO"
+            ><DeleteOutlined  key="delete" />
+            </Popconfirm>
+            </div>,
           ]}>
             <Meta
             title={
@@ -54,6 +81,18 @@ const Tiendas_cards = () => {
         openModal={OpenAddTienda}
         closeModal={() => setOpenAddTienda(false)} 
         reload={()=>setReload(!reload)}
+      />
+      <UpdateTiendaModal
+        openModal = {OpenUpdateTienda}
+        closeModal={() => setOpenUpdateTienda(false)} 
+        id = {id}
+        reload = {()=>setReload(!reload)}
+      />
+      <DeleteTiendaModal
+        openModal = {OpenDeleteTienda}
+        closeModal={() => setOpenDeleteTienda(false)} 
+        id = {id}
+        reload = {()=>setReload(!reload)}
       />
     </>
   );

@@ -8,7 +8,6 @@ const Tiendas_main = () => {
     <Plantilla>
       <Divider>TIENDAS</Divider>
       <TiendasCards />
-
     </Plantilla>
   );
 };

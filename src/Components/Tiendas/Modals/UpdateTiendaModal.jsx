@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
-import { updateProducto } from "../../../Shared/api/Producto";
-import { setUpdateUsuario } from "../../../Shared/api/Producto";
+import { updateTienda, setUpdateTienda } from "../../../Shared/api/Tienda";
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 
 const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
   const [form] = Form.useForm();
 
   useEffect(()=>{
-    setUpdateUsuario(id,form)
+    setUpdateTienda(id,form)
   },[id])
 
   return (
     <Modal
     forceRender
       getContainer={false}
-      title={"Actualizar Producto"}
+      title={"Actualizar Tienda"}
       open={openModal}
       onCancel={()=>closeModal(false)}
       okText="Añadir"
@@ -30,14 +29,12 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
         id="formulariocrear"
         layout="vertical"
         onFinish={async (values) =>{
-            await updateProducto(id, values)
-            form.resetFields()
+            await updateTienda(id, values)
             reload()
             closeModal(false)
         }}
       >
         <Form.Item
-          style={{ marginTop: 20 }}
           name="nombre"
           label="Nombre del Producto"
           rules={[
@@ -49,37 +46,31 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
         >
           <Input />
         </Form.Item>
-
-        <Row gutter={16} style={{gap : "20px"}}>
           <Form.Item
-            style={{ marginLeft: 10 }}
-            name="precioBase"
-            label="Precio Base"
+            name="direccion"
+            label="Direccion"
             rules={[
               {
-                type:"number",
+                type:"text",
                 required: true,
-                message: "Precio requerido",
+                message: "Direccion requerida",
               },
             ]}
           >
-            <InputNumber placeholder="S/"/>
+            <Input/>
           </Form.Item>
           <Form.Item
-            name="descuento"
-            label="Descuento"
+            name="telefono"
+            label="Telefono"
             rules={[
               {
-                type:"number",
                 required: true,
                 message: "Descuento requerido",
               },
             ]}
           >
-            <InputNumber placeholder="%" />
+            <Input maxLength={9}/>
           </Form.Item>
-  
-        </Row>
       </Form>
     </Modal>
   );

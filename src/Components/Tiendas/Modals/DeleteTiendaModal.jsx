@@ -1,6 +1,6 @@
 import { Form, Input, Modal } from "antd";
 import React from "react";
-import { deleteProductoById } from "../../../Shared/api/Producto";
+import { deleteTiendaById } from "../../../Shared/api/Tienda";
 const UpdateUsuarioModal = ({
   openModal,
   closeModal,
@@ -32,7 +32,7 @@ const UpdateUsuarioModal = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await deleteProductoById(id, values);
+          await deleteTiendaById(id, values);
           closeModal();
           reload()
         }}
