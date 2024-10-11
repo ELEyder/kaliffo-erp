@@ -4,10 +4,8 @@ import { addIncidencia } from "../../../Shared/api/Incidencia"
 const { Option } = Select;
 
 const Modal_add_incidencia = ({
-  ModalAddOpen,
-  setModalAddOpen,
-  reload,
-  setReload,
+  openModal,
+  closeModal,
   idUsuario
 }) => {
     const[form] = Form.useForm()
@@ -17,9 +15,9 @@ const Modal_add_incidencia = ({
     forceRender
       getContainer={false}
       title={`Añadir nueva incidencia`}
-      open={ModalAddOpen}
+      open={openModal}
       onCancel={() => {
-        setModalAddOpen(false)
+        closeModal(false)
       }}
       style={{textTransform:"uppercase"}}
       okText="Añadir"
@@ -36,9 +34,9 @@ const Modal_add_incidencia = ({
       labelAlign="center"
       id="formulariocrear"
       onFinish={async(values)=>{
-        await addIncidencia(idUsuario, values, reload, setReload)
+        await addIncidencia(idUsuario, values)
         form.resetFields()
-        setModalAddOpen(false)
+        closeModal()
       }}>
 
         <Form.Item
