@@ -1,11 +1,12 @@
-import { Table, Button, Popconfirm, Row, Col } from "antd";
 import React from "react";
+import { useParams } from "react-router-dom"
+import { Table, Button, Popconfirm, Row, Col } from "antd";
 import { useState, useEffect } from 'react'
 import { getTiendasByProducto } from "../../../Shared/api/Tienda";
 
 const ProductoTiendasTable = () => {
 
-  const [id, setId] = useState(1)
+  const { id } = useParams()
   const [tabla, setTabla] = useState([]);
 
   useEffect(() => {

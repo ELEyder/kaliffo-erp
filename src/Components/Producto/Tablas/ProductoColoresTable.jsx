@@ -5,7 +5,8 @@ import { getColoresByProducto } from "../../../Shared/api/Color";
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 
 const ProductoColoresTable = () => {
-  const { id } = useParams();
+
+  const { id } = useParams()
 
   const [tabla, setTabla] = useState([]);
   useEffect(() => {
