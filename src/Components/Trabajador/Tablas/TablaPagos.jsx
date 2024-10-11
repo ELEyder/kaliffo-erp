@@ -7,12 +7,12 @@ import Modal_add_pago from "../Modals/Modal_add_pago";
 
 const TablaPagos = ({ id }) =>{
 
-  const [api, contextHolder] = notification.useNotification(); 
   const [tabla, setTabla] = useState([]);
   const [reload, setReload] = useState(false);
   const [ModalAddPagoOpen, setModalAddPagoOpen] = useState(false);
+
   useEffect(() => {
-      getPagosById(id , setTabla, api);
+      getPagosById(id , setTabla);
     }, [id, reload]);
 
     const columns=[
@@ -86,7 +86,8 @@ const TablaPagos = ({ id }) =>{
                               okText="Confirmar"
                               cancelText="NO"
                               onConfirm={(e) => {
-                                deletePagoById(record.pago_id, reload, setReload, api)
+                                deletePagoById(record.pago_id)
+                                setReload(!reload)
                               }}
                           >
                               <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -100,7 +101,6 @@ const TablaPagos = ({ id }) =>{
 
     return(
        <>
-       {contextHolder}
          <Table
          ali
         columns={columns}

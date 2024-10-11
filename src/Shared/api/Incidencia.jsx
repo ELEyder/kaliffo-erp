@@ -55,14 +55,13 @@ export const updateIncidenciaById = async (id, values) => {
     console.log(response)
 }
 
-export const deleteIncidenciaById = async (id, reload, setReload) => {
+export const deleteIncidenciaById = async (id) => {
     const response = await fetch(`http://localhost:3000/incidencia/delete/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
     })
-    setReload(reload == true ? false : true)
     showNotificationDelete("Incidencia borrada")
     console.log(response)
 }

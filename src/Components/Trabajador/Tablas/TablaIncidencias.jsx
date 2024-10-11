@@ -7,7 +7,16 @@
   import Modal_add_incidencia from "../Modals/Modal_add_incidencia";
 
   const TablaIncidencias = ({ id }) =>{
-  const [api, contextHolder] = notification.useNotification(); 
+
+    const [tabla, setTabla] = useState([]);
+    const [incidencia, setIncidencia] = useState([]);
+    const [reload, setReload] = useState(false);
+    const [ModalEditarAbierto, setModalEditarAbierto] = useState(false);
+    const [ModalAddIncidenciaOpen, setModalAddIncidenciaOpen] = useState(false);
+
+    useEffect(() => {
+      getIncidenciasById(id , setTabla);
+      }, [id, reload]);
 
       const columns=[
           {
@@ -70,11 +79,13 @@
                         <Col>
                             <Popconfirm
                                 title="ELIMINAR"
-                                description="DESEA ELIMINAR A"
+                                description="DESEA ELIMINAR ESTA INCIDENCIA"
                                 okText="Confirmar"
                                 cancelText="NO"
-                                onConfirm={(e) => {
-                                  deleteIncidenciaById(record.incidencia_id, reload, setReload, api)
+                                onConfirm={() => {
+                                  console.log("Borrado")
+                                  deleteIncidenciaById(record.incidencia_id)
+                                  setReload(!reload)
                                 }}
                             >
                                 <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
@@ -86,19 +97,10 @@
           },
       ]
 
-      const [tabla, setTabla] = useState([]);
-      const [incidencia, setIncidencia] = useState([]);
-      const [reload, setReload] = useState(false);
-      const [ModalEditarAbierto, setModalEditarAbierto] = useState(false);
-      const [ModalAddIncidenciaOpen, setModalAddIncidenciaOpen] = useState(false);
 
-      useEffect(() => {
-        getIncidenciasById(id , setTabla);
-        }, [id, reload]);
 
       return(
         <>
-        {contextHolder}
         <Row justify = "end">
           </Row>
           <Table
@@ -109,7 +111,7 @@
 
           </Table>
           
-          <FloatButton tooltip="Añadir Nuevo Pago" onClick={() => setModalAddIncidenciaOpen(true)} type="primary" icon={<FileAddOutlined />}/>
+          <FloatButton tooltip="Añadir Nueva Incidencia" onClick={() => setModalAddIncidenciaOpen(true)} type="primary" icon={<FileAddOutlined />}/>
 
           <Modal_editar_incidencia
           ModalEditarAbierto = {ModalEditarAbierto}
@@ -119,10 +121,9 @@
           values = {incidencia}
           />
           <Modal_add_incidencia
-          ModalAddOpen = {ModalAddIncidenciaOpen}
-          setModalAddOpen = {setModalAddIncidenciaOpen}
-          setReload = {setReload}
-          reload = {reload}
+          openModal = {ModalAddIncidenciaOpen}
+          closeModal = {() => setModalAddIncidenciaOpen(false)}
+          reload = {() => setReload(!reload)}
           idUsuario = {id}
           />
 
