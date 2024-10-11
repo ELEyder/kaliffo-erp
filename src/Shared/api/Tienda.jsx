@@ -1,3 +1,4 @@
+import { showNotificationAdd, showNotificationDelete } from "../Notifications"
 export const addTienda = async (values) => {
     let Tienda = {
         tienda:values.tienda,
@@ -13,6 +14,7 @@ export const addTienda = async (values) => {
             },
             body: JSON.stringify(Tienda),
         })
+        showNotificationAdd("Tienda añadida correctamente")
     } catch (error) {
         console.log(error)
     }

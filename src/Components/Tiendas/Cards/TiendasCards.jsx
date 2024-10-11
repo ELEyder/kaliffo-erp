@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { getTiendas } from "../../../Shared/api/Tienda";
-import { Button, Card, Col, Row } from "antd";
 import { Link } from "react-router-dom";
+import AddTiendaModal from "../Modals/AddTiendaModal";
+import { getTiendas } from "../../../Shared/api/Tienda";
+import { Card, Col, Row, FloatButton } from "antd";
 
 const {Meta} = Card
 
 
-const Tiendas_cards = ({ refrescar }) => {
+const Tiendas_cards = () => {
   const [tiendas, setTiendas] = useState([]);
+  const [reload, setReload] =useState(true)
+  const [OpenAddTienda, setOpenAddTienda] = useState(false);
 
   useEffect(() => {
     getTiendas(setTiendas);
-  }, [refrescar]);
+  }, [reload]);
 
   return (
+    <>
     <Row gutter={16}>
       {tiendas.map((tienda, index) => (
         <Col key={index} span={8}>
@@ -43,6 +47,15 @@ const Tiendas_cards = ({ refrescar }) => {
         </Col>
       ))}
     </Row>
+
+    <FloatButton tooltip="Añadir" onClick={() => setOpenAddTienda(true)}/>
+
+    <AddTiendaModal 
+        openModal={OpenAddTienda}
+        closeModal={() => setOpenAddTienda(false)} 
+        reload={()=>setReload(!reload)}
+      />
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import { Form, Modal, Input } from "antd";
 import React from "react";
 import { addTienda } from "../../../Shared/api/Tienda";
 
-const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso }) => {
+const AddTiendaModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
 
   return (
@@ -10,8 +10,8 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
       getContainer={false}
       title={"Nueva Tienda"}
       style={{textAlign:"center",textTransform:"uppercase"}}
-      open={ModalAñadirAbierto}
-      onCancel={closeModalAñadir}
+      open={openModal}
+      onCancel={closeModal}
       okText="Añadir"
       onOk={form.submit}
       centered={true}
@@ -27,7 +27,8 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
         onFinish={async (values) =>{
             await addTienda(values)
             form.resetFields()
-            añadidoexitoso()
+            closeModal()
+            reload()
         }}
       >
         <Form.Item
@@ -78,4 +79,4 @@ const Modal_añadir = ({ ModalAñadirAbierto, closeModalAñadir,añadidoexitoso 
   );
 };
 
-export default Modal_añadir;
+export default AddTiendaModal;
