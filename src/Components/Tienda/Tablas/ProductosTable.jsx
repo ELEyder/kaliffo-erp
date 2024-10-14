@@ -134,8 +134,6 @@ const ProductosTable = () => {
       rowKey={(record) => record.producto_id}
       />
 
-      <FloatButton tooltip="Añadir Nuevo Producto" onClick={() => setOpenAddProductoModal(true)} type="primary" icon={<FileAddOutlined />}/>
-
       <AddProductoModal
       openModal = {OpenAddProductoModal}
       closeModal={() => setOpenAddProductoModal(false)}

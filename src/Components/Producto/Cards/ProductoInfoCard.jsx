@@ -35,7 +35,7 @@ const ProductoInfoCard = () => {
             dataSource={[
               { title: "STOCK TOTAL", value: producto.stockTotal },
               { title: "PRECIO", value: producto.precioBase },
-              { title: "COLORES", value: "Sin Datos" },
+              { title: "COLORES", value: producto.cantidad_colores },
             ]}
             renderItem={(item) => (
               <List.Item>

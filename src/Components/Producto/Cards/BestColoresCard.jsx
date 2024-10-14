@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 const BestColoresCard = () =>{
     return(
         <Card
-        style={{ maxwidth: 300, margin: "auto" , textAlign: "center" }}
+        style={{ maxWidth: 300, margin: "auto" , textAlign: "center" }}
         title="COLORES MAS VENDIDOS"
       >
         <List

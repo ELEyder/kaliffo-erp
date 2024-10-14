@@ -145,7 +145,7 @@ export const addProductoDetalle = async (tiendaId, Producto) => {
 export const getProductoDetalle = async (id,idp, setTiendas) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/producto/detalle/${idp}?id_tienda=${id}&tipo=colores`
+      `http://localhost:3000/producto/detalle/${idp}?tipo=colores&tienda_id=${id}`
     );
     const data = await response.json();
     setTiendas(data);

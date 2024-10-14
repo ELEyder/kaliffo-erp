@@ -35,17 +35,17 @@ const ProductosCards = () => {
               <Card
                 title={producto.nombre}
                 actions={[
-                  <div >
-                  <EditOutlined key="edit" onClick={(e) =>{
+                  <div className={"card-update"} onClick={(e) =>{
                     e.stopPropagation()
                     setId(producto.producto_id)
                     setOpenUpdateProducto(true)
-                  }}/>
+                  }}>
+                  <EditOutlined key="edit" color="white"/>
                   </div>,
-                  <Link to={`/producto/${producto.producto_id}`}>
-                    <EyeOutlined key="view" />
+                  <Link className={"card-view"} to={`/producto/${producto.producto_id}`}>
+                    <EyeOutlined style={{color: "white"}} key="view" />
                   </Link>,
-                  <div >
+
                   <Popconfirm
                   title="ELIMINAR"
                   description="DESEA ELIMINAR A"
@@ -56,9 +56,12 @@ const ProductosCards = () => {
                     setOpenDeleteProducto(true)
                   }} 
                   cancelText="NO"
-                  ><DeleteOutlined  key="delete" />
+                  >
+                    <div className={"card-delete"}>
+                    <DeleteOutlined  key="delete" />
+                    </div>
                   </Popconfirm>
-                  </div>,
+                  ,
                 ]}
                 cover={
                   <img

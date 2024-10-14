@@ -76,9 +76,6 @@ const ProductoDetalleModal = ({
               style={{ width: "100%" }}
               className="opciones-botones"
             >
-              <Button type="primary" block>
-                Editar
-              </Button>
               <Popconfirm
                 title="ELIMINAR"
                 description="DESEA ELIMINAR A"

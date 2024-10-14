@@ -43,7 +43,7 @@ const ProductoTiendasTable = () => {
       align: "center",
       render: (text, record) => {
         return (
-          <Button type="primary" block>+</Button>
+          <Button type="primary" style={{ width: "55px" }}>+</Button>
         )
       },
     },
