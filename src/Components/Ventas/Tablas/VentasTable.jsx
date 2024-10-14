@@ -120,11 +120,7 @@ const VentasTable = ({ reload }) => {
   ];
 
   return (
-    
     <>
-    {
-      
-    }
       <Table
         columns={columnas}
         pagination={{ pageSize: 5 }}
@@ -148,7 +144,6 @@ const VentasTable = ({ reload }) => {
         reload={reload}
         id={id}
       />
-
       <AddIncidenciaModal
         openModal={openAddIncidencia}
         closeModal={setOpenAddIncidencia}

@@ -234,5 +234,4 @@ const AddUsuarioModal = ({
     </Modal>
   );
 };
-
 export default AddUsuarioModal;

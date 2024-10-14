@@ -10,9 +10,7 @@ const AddIncidenciaModal = ({
     reload,
     id,
 }) =>{
-    
     const [form] = Form.useForm()
-
     return(
         <Modal
             forceRender
@@ -41,44 +39,30 @@ const AddIncidenciaModal = ({
                     reload()
                     closeModal(false)
                     form.resetFields();
-                }}
-                >
+                }}>
                     <Form.Item
                     name="tipo"
                     label="Tipo"
-                    rules={[
-                        {
+                    rules={[{
                             required:true,
                             message:"Tipo requerido"
-                        }
-                    ]}>
+                        }]}>
                         <Select options={[
                             {value:"1",label:"Familiar"},
                             {value:"2",label:"Salud"},
                             {value:"3",label:"Personal"}
                         ]}/>
                     </Form.Item>
-
                     <Form.Item
                     name="descripcion"
                     label="Descripcion"
-                    rules={[
-                        {
+                    rules={[{
                             required:true,
                             message:"Descripcion Requerida"
-                        }
-                    ]}>
-                        <TextArea
-                            autoSize={{ minRows: 2, maxRows: 6 }}
-                        />
-
+                        }]}>
+                        <TextArea autoSize={{ minRows: 2, maxRows: 6 }}/>
                     </Form.Item>
-
                 </Form>
-
         </Modal>
-    )
-
-}
-
+    )}
 export default AddIncidenciaModal

@@ -173,19 +173,15 @@ const UpdateUsuarioModal = ({
                 showCount />
             </Form.Item>
           </Col>
-
           <Col span={14} className="gutter-row">
             {tipoTrabajador === "ventas" ? (
               <Form.Item
                 name="tienda_id"
                 label="Tienda Asignada"
-                rules={[
-                  {
+                rules={[{
                     required: true,
                     message: "Tienda Asignada",
-                  },
-                ]}
-              >
+                  }]}>
                 <Select
                   style={{textAlign:"center"}}
                   options={tiendas.map((tienda) => ({
@@ -198,7 +194,6 @@ const UpdateUsuarioModal = ({
             ) : null}
           </Col>
         </Row>
-
         <Form.Item name="usuario_id" noStyle>
           <Input type="hidden" />
         </Form.Item>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Plantilla from "../../Shared/Plantilla";
 import AddUsuarioModal from "./Modals/AddUsuarioModal"
 import VentasTable from "./Tablas/VentasTable";
