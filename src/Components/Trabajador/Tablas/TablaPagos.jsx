@@ -3,13 +3,13 @@ import { PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { useState, useEffect } from 'react'
 import { getPagosById, deletePagoById } from "../../../Shared/api/Pago";
-import Modal_add_pago from "../Modals/Modal_add_pago";
+import AddPagoModal from "../Modals/AddPagoModal";
 
 const TablaPagos = ({ id }) =>{
 
   const [tabla, setTabla] = useState([]);
   const [reload, setReload] = useState(false);
-  const [ModalAddPagoOpen, setModalAddPagoOpen] = useState(false);
+  const [OpenAddPago, setOpenAddPago] = useState(false);
 
   useEffect(() => {
       getPagosById(id , setTabla);
@@ -121,13 +121,12 @@ const TablaPagos = ({ id }) =>{
             right: "60px",
           }}
           tooltip={"Añadir Pago"}
-          
+          onClick={()=>setOpenAddPago(true)}
         />
-        <Modal_add_pago
-          ModalAddOpen = {ModalAddPagoOpen}
-          setModalAddOpen = {setModalAddPagoOpen}
-          setReload = {setReload}
-          reload = {reload}
+        <AddPagoModal
+          openModal = {OpenAddPago}
+          closeModal = {()=>setOpenAddPago(false)}
+          reload = {()=>setReload(!reload)}
           idUsuario = {id}
           />
        </>
