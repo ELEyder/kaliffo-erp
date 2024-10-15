@@ -63,16 +63,24 @@ export const getVentasByTienda = async (id, setTablaDatos) => {
 }
 
 export const getVentaById = async (id, setTablaDatos) => {
-    const datos = [
-        {
-            "nombre": "Producto1",
-            "codigo": "A001",
-            "cantidad": 10,
-            "precio_u": 25.50,
-            "preciototal": 255.00,
-            "igv": 45.90,
-            "neto": 300.90
-          }
-    ];
-    setTablaDatos(datos)
+    const response = await fetch(`http://localhost:3000/venta/${id}`)
+    const usuarioData= await response.json()
+    let count = 0
+    const detallesConNuevoParametro = usuarioData.detalles.map(detalle => { 
+        count = count + 1
+        const fecha_creacion = new Date(detalle.fecha);
+        return {
+            ...detalle,
+            tipoPago: metodosPago[detalle.tipoPago - 1],
+            precioTotal: detalle.cantidad * detalle.precioUnitario,
+            tipoVenta: tipoVenta[detalle.tipoVenta - 1],
+            fecha: fecha_creacion.toLocaleDateString("es-ES"),
+            id: count,
+        };
+    });
+    usuarioData.tienda = tienda[usuarioData.tienda_id]
+    usuarioData.tipoPago = metodosPago[usuarioData.tipoPago]
+    usuarioData.detalles = detallesConNuevoParametro
+    console.log(usuarioData)
+    setTablaDatos(usuarioData)
 }

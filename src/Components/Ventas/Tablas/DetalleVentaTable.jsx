@@ -6,7 +6,8 @@ import { getVentas, deleteVenta } from "../../../Shared/api/Ventas";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 import { getVentaById } from "../../../Shared/api/Ventas";
 const DetalleVentaTable = ({
-  id
+  id,
+  data
 }) => {
   const [tablaDatos, setTablaDatos] = useState([]);
   
@@ -35,15 +36,23 @@ const DetalleVentaTable = ({
       },
       {
         title: "Precio Unitario",
-        dataIndex: "precio_u",
-        key: "precio_u",
+        dataIndex: "precioUnitario",
+        key: "precioUnitario",
         align: "center",
+        render: (text) =>{
+          return (
+            `S/${text}`
+          )}
       },
       {
         title: "Precio Total",
-        dataIndex: "preciototal",
-        key: "preciototal",
+        dataIndex: "precioTotal",
+        key: "precioTotal",
         align: "center",
+        render: (text) =>{
+          return (
+            `S/${text}`
+          )}
       },
       {
         title: "IGV",
@@ -53,9 +62,13 @@ const DetalleVentaTable = ({
       },
       {
         title: "Neto",
-        dataIndex: "neto",
-        key: "neto",
+        dataIndex: "precioNeto",
+        key: "precioNeto",
         align: "center",
+        render: (text) =>{
+          return (
+            `S/${text}`
+          )}
       },
   ];
 
@@ -63,7 +76,7 @@ const DetalleVentaTable = ({
     <>
       <Table
         columns={columnas}
-        dataSource={tablaDatos.map((item, index) => ({ ...item, key: index }))}
+        dataSource={tablaDatos?.detalles?.map((item, index) => ({ ...item, key: index }))}
         rowKey={(record) => record.id}
         bordered
       />

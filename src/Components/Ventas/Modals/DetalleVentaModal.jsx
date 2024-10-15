@@ -12,7 +12,7 @@ const DetalleVentaModal = ({
 }) => {
   const { tipoVenta } = useParams()
   const [form] = Form.useForm()
-  const [venta, setVenta] = useState([])
+  const [venta, setVenta] = useState(["detalles"])
 
   useEffect(() => {
     getVentaById(id, setVenta)
@@ -22,7 +22,7 @@ const DetalleVentaModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={`Añadir nueva ${tipoVenta}`}
+      title={`${tipoVenta} ${id}`}
       open={openModal}
       onCancel={closeModal}
       style={{ textTransform: "uppercase" }}
@@ -45,9 +45,9 @@ const DetalleVentaModal = ({
               <List
               itemLayout="horizontal"
               dataSource={[
-                { title: `Tienda 1`, value: "001-129381"},
-                { title: `RUC`, value: "1238129083"},
-                { title: `Pago en efectivo`, value: "s/100"},
+                { title: venta.tienda , value: venta.codigo},
+                { title: `RUC`, value: venta.ruc},
+                { title: venta.tipoPago , value: `S/${venta.totalNeto}`},
               ]}
               renderItem={(item) => (
                 <List.Item>
@@ -64,9 +64,9 @@ const DetalleVentaModal = ({
               itemLayout="horizontal"
               dataSource={[
                 { title: "Cantidad", value: "Sin Datos" },
-                { title: "Total Bruto", value: "Sin Datos" },
-                { title: "IGV", value: "Sin Datos" },
-                { title: "Total Neto", value: "Sin Datos" },
+                { title: "Total Bruto", value: `S/${venta.totalBruto}` },
+                { title: "IGV", value: `S/${venta.totalIgv}` },
+                { title: "Total Neto", value: `S/${venta.totalNeto}` },
               ]}
               renderItem={(item) => (
                 <List.Item>

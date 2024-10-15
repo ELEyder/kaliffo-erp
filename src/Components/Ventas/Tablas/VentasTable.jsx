@@ -7,7 +7,7 @@ import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
 const VentasTable = () => {
   const { tipo } = useParams();
-  const [id, setId] = useState(0);
+  const [id, setId] = useState(1);
   const [tablaDatos, setTablaDatos] = useState([]);
   const [OpenAddVentaModal, setOpenAddVentaModal] = useState(false);
   const [OpenDetalleVentaModal, setOpenDetalleVentaModal] = useState(false);
