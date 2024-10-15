@@ -1,5 +1,5 @@
-import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
-import { SmileOutlined } from '@ant-design/icons';
+import { Table, Button, Popconfirm, Row, Col, FloatButton } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { useState, useEffect } from 'react'
 import { getPagosById, deletePagoById } from "../../../Shared/api/Pago";
@@ -110,7 +110,19 @@ const TablaPagos = ({ id }) =>{
 
         </Table>
 
-
+        <FloatButton
+          icon={<PlusOutlined />}
+          style={{
+            backgroundColor: "#28a745",
+            color: "white",
+            border: "none",
+            position: "fixed",
+            top: "120px",
+            right: "60px",
+          }}
+          tooltip={"Añadir Pago"}
+          
+        />
         <Modal_add_pago
           ModalAddOpen = {ModalAddPagoOpen}
           setModalAddOpen = {setModalAddPagoOpen}

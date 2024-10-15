@@ -16,12 +16,6 @@ const DetalleVentaTable = ({
 
   const columnas = [
       {
-        title: "Nº",
-        dataIndex: "id",
-        key: "id",
-        align: "center",
-      },
-      {
         title: "Nombre",
         dataIndex: "nombre",
         key: "nombre",

@@ -32,14 +32,14 @@ const VentasTable = () => {
     },
     {
       title: "Tipo de Venta",
-      dataIndex: "tipo",
-      key: "tipo",
+      dataIndex: "tipoVenta",
+      key: "tipoVenta",
       align: "center",
     },
     {
       title: "Fecha de Venta",
-      dataIndex: "fechaVenta",
-      key: "fechaVenta",
+      dataIndex: "fecha",
+      key: "fecha",
       align: "center",
     },
     {
@@ -62,8 +62,8 @@ const VentasTable = () => {
     },
     {
       title: "IGV",
-      dataIndex: "IGV",
-      key: "IGV",
+      dataIndex: "totalIgv",
+      key: "totalIgv",
       align: "center",
     },
     {
@@ -74,15 +74,15 @@ const VentasTable = () => {
     },
     {
       title: "RUC",
-      dataIndex: "RUC",
-      key: "RUC",
+      dataIndex: "ruc",
+      key: "ruc",
       align: "center",
     },
     {
       title: "Tienda",
-      dataIndex: "tiendaId",
-      key: "tiendaId",
-      align: "tiendaId",
+      dataIndex: "tienda_id",
+      key: "tienda_id",
+      align: "center",
     },
 
   ];
