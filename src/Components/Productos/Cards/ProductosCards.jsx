@@ -90,18 +90,18 @@ const ProductosCards = () => {
 
       <AddProductoModal
         openModal = {OpenAddProductoModal}
-        closeModal={setOpenAddProductoModal}
+        closeModal={() => setOpenAddProductoModal(false)}
         reload = {()=>setReload(!reload)}
       />
       <UpdateProductoModal
         openModal = {OpenUpdateProducto}
-        closeModal={setOpenUpdateProducto}
+        closeModal={() => setOpenUpdateProducto(false)}
         id = {id}
         reload = {()=>setReload(!reload)}
       />
       <DeleteProductoModal
         openModal = {OpenDeleteProducto}
-        closeModal={setOpenDeleteProducto}
+        closeModal={() => setOpenDeleteProducto(false)}
         id = {id}
         reload = {()=>setReload(!reload)}
       />

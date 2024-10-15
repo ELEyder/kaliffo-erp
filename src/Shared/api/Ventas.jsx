@@ -71,3 +71,19 @@ export const getVentasByTienda = async (id, setTablaDatos) => {
     ];
     setTablaDatos(datos)
 }
+
+export const getVentaById = async (id, setTablaDatos) => {
+    const Ventas = [
+        {
+            "id": 1,
+            "nombre": "Producto1",
+            "codigo": "A001",
+            "cantidad": 10,
+            "precio_u": 25.50,
+            "preciototal": 255.00,
+            "igv": 45.90,
+            "neto": 300.90
+          }
+    ];
+    setTablaDatos(Ventas)
+}

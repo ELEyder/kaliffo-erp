@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Col, DatePicker, Form, Input, Modal, Row, Select, InputNumber } from "antd";
 import { onlyDecimalKey , onlyNumberKey , onlyLettersKey, onlyDecimalInput, onlyNumberInput, onlyLettersInput, preventPaste } from "../../../Shared/Tools";
 import { addUsuario } from "../../../Shared/api/Usuario";
 import { getTiendas } from "../../../Shared/api/Tienda";
 
-
-const AddUsuarioModal = ({
+const AddVentaModal = ({
   openModal,
   closeModal,
   tipoTrabajador,
   reload,
   setReload,
 }) => {
-
+  const { tipoVenta } = useParams()
   const [form] = Form.useForm()
   const [tiendas, setTiendas] = useState([])
 
@@ -26,7 +26,7 @@ const AddUsuarioModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={`Añadir nuevo trabajador de ${tipoTrabajador}`}
+      title={`Añadir nueva ${tipoVenta}`}
       open={openModal}
       onCancel={() => closeModal(false)}
       style={{ textTransform: "uppercase" }}
@@ -51,7 +51,7 @@ const AddUsuarioModal = ({
         }}>
         <Form.Item
           style={{ marginTop: 20 }}
-          name="nombre"
+          name="Código tipo fecha"
           label="Nombres"
           rules={[
             {
@@ -234,4 +234,4 @@ const AddUsuarioModal = ({
     </Modal>
   );
 };
-export default AddUsuarioModal;
+export default AddVentaModal;

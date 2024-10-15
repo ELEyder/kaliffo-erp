@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
-import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
+import DetalleVentaModal from "../Modals/DetalleVentaModal";
+import AddVentaModal from "../Modals/AddVentaModal"
 import { getVentas, deleteVenta } from "../../../Shared/api/Ventas";
-import { Button, Row, Col, Popconfirm, Table } from "antd";
+import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
-const VentasTable = ({ reload }) => {
+const VentasTable = () => {
   const { tipo } = useParams();
-
+  const [id, setId] = useState(0);
   const [tablaDatos, setTablaDatos] = useState([]);
-  const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
-  const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
-  const [id, setId] = useState(1);
+  const [OpenAddVentaModal, setOpenAddVentaModal] = useState(false);
+  const [OpenDetalleVentaModal, setOpenDetalleVentaModal] = useState(false);
+  const [reload, setReload] = useState(false);
   
   useEffect(() => {
     getVentas(tipo, setTablaDatos);
@@ -84,39 +84,7 @@ const VentasTable = ({ reload }) => {
       key: "tiendaId",
       align: "tiendaId",
     },
-    {
-      title: "Opciones",
-      dataIndex: "codigo",
-      key: "opciones",
-      align: "center",
-      render: (text) => {
-        return (
-          <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
-            <Col>
-              <Popconfirm
-                title="ELIMINAR"
-                description="DESEA ELIMINAR A"
-                okText="Confirmar"
-                onConfirm={(e) =>{
-                  e.stopPropagation();
-                  deleteVenta(text)
-                }} 
-                cancelText="NO"
-              >
-                <Button block style={{ background: "#f54242", color: "white" }}
-                danger
-                onClick={(e) =>{
-                  e.stopPropagation();
-                }} 
-                >
-                  Eliminar
-                </Button>
-              </Popconfirm>
-            </Col>
-          </Row>
-        );
-      },
-    },
+
   ];
 
   return (
@@ -130,24 +98,26 @@ const VentasTable = ({ reload }) => {
         className="tabla_trabajadores"
         onRow={(record) => ({
           onClick: () => {
-            window.location.href = `/trabajador/${record.usuario_id}`
+            setId(record.id)
+            setOpenDetalleVentaModal(true)
           },
           style: {
             cursor: "pointer",
           }
         })}
       />
-      <UpdateUsuarioModal
-        openModal={openUpdateUsuario}
-        closeModal={setOpenUpdateUsuario}
+      <FloatButton tooltip="Añadir Nuevo" onClick={() => setOpenAddUsuario(true)} />
+
+      <AddVentaModal
+        openModal={OpenAddVentaModal}
+        closeModal={()=>setOpenAddVentaModal(false)}
         tipoTrabajador={tipo}
         reload={reload}
-        id={id}
+        setReload={setReload}
       />
-      <AddIncidenciaModal
-        openModal={openAddIncidencia}
-        closeModal={setOpenAddIncidencia}
-        reload={reload}
+      <DetalleVentaModal
+        openModal={OpenDetalleVentaModal}
+        closeModal={() => setOpenDetalleVentaModal(false)}
         id={id}
       />
     </>
