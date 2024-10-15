@@ -5,7 +5,7 @@ import DeleteProductoModal from "../Modals/DeleteProductoModal";
 import UpdateProductoModal from "../Modals/UpdateProductoModal"
 import { getProductos } from "../../../Shared/api/Producto";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-import { Card, Col, Row, FloatButton, Popconfirm } from "antd";
+import { Card, Col, Row, FloatButton, Popconfirm, Tooltip } from "antd";
 
 const {Meta} = Card
 
@@ -35,17 +35,20 @@ const ProductosCards = () => {
               <Card
                 title={producto.nombre}
                 actions={[
-                  <div className={"card-update"} onClick={(e) =>{
+                  <Tooltip title="Editar Producto"
+                  className={"card-update"}
+                  onClick={(e) =>{
                     e.stopPropagation()
                     setId(producto.producto_id)
                     setOpenUpdateProducto(true)
                   }}>
                   <EditOutlined key="edit" color="white"/>
-                  </div>,
-                  <Link className={"card-view"} to={`/producto/${producto.producto_id}`}>
-                    <EyeOutlined style={{color: "white"}} key="view" />
-                  </Link>,
-
+                  </Tooltip>,
+                  <Tooltip title="Ver Detalles" className={"card-view"}>
+                    <Link to={`/producto/${producto.producto_id}`}>
+                      <EyeOutlined style={{color: "white"}} key="view" />
+                    </Link>
+                  </Tooltip>,
                   <Popconfirm
                   title="ELIMINAR"
                   description="DESEA ELIMINAR A"
@@ -57,9 +60,9 @@ const ProductosCards = () => {
                   }} 
                   cancelText="NO"
                   >
-                    <div className={"card-delete"}>
-                    <DeleteOutlined  key="delete" />
-                    </div>
+                    <Tooltip title="Eliminar Producto" className={"card-delete"}>
+                    <DeleteOutlined  key="delete" style={{color: "white"}} />
+                    </Tooltip>
                   </Popconfirm>
                   ,
                 ]}

@@ -35,6 +35,10 @@ const VentasTable = () => {
       dataIndex: "tipoVenta",
       key: "tipoVenta",
       align: "center",
+      sorter: {
+        compare: (a, b) => a.tipoVenta.localeCompare(b.tipoVenta),
+        multiple: 2,
+      },
     },
     {
       title: "Fecha de Venta",
@@ -47,6 +51,10 @@ const VentasTable = () => {
       dataIndex: "cantidad",
       key: "cantidad",
       align: "center",
+      sorter: {
+        compare: (a, b) => a.cantidad.localeCompare(b.cantidad),
+        multiple: 2,
+      },
     },
     {
       title: "Total Bruto",
@@ -59,6 +67,10 @@ const VentasTable = () => {
       dataIndex: "totalNeto",
       key: "totalNeto",
       align: "center",
+      sorter: {
+        compare: (a, b) => a.totalNeto.localeCompare(b.totalNeto),
+        multiple: 2,
+      },
     },
     {
       title: "IGV",
@@ -71,6 +83,20 @@ const VentasTable = () => {
       dataIndex: "tipoPago",
       key: "tipoPago",
       align: "center",
+      onCell: (record) => ({
+        style: {
+          background: record.tipoPago === "Efectivo" 
+            ? '#248304' 
+            : record.tipoPago === "Yape" 
+            ? '#8522a3' 
+            : '#6fceea',
+          color: record.tipoPago === "Transferencia" ? "black" : "white",
+        }
+      }),
+      sorter: {
+        compare: (a, b) => a.tipoPago.localeCompare(b.tipoPago),
+        multiple: 2,
+      },
     },
     {
       title: "RUC",
@@ -80,8 +106,8 @@ const VentasTable = () => {
     },
     {
       title: "Tienda",
-      dataIndex: "tienda_id",
-      key: "tienda_id",
+      dataIndex: "tienda",
+      key: "tienda",
       align: "center",
     },
 
@@ -91,7 +117,7 @@ const VentasTable = () => {
     <>
       <Table
         columns={columnas}
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 7 }}
         dataSource={tablaDatos.map((item, index) => ({ ...item, key: index }))}
         rowKey={(record) => record.id}
         bordered

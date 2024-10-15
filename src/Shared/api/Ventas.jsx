@@ -14,6 +14,7 @@ export const getVentas = async (tipo, setTablaDatos) => {
             ...detalle,
             tipoPago: metodosPago[detalle.tipoPago - 1],
             tipoVenta: tipoVenta[detalle.tipoVenta - 1],
+            tienda: tienda[detalle.tienda_id - 1],
             fecha: fecha_creacion.toLocaleDateString("es-ES"),
             id: count,
         };

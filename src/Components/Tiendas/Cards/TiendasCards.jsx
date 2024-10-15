@@ -4,7 +4,7 @@ import AddTiendaModal from "../Modals/AddTiendaModal";
 import { getTiendas } from "../../../Shared/api/Tienda";
 import DeleteTiendaModal from "../Modals/DeleteTiendaModal";
 import UpdateTiendaModal from "../Modals/UpdateTiendaModal"
-import { Card, Col, Row, FloatButton, Popconfirm } from "antd";
+import { Card, Col, Row, FloatButton, Popconfirm, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 const {Meta} = Card
@@ -33,16 +33,20 @@ const Tiendas_cards = () => {
             </div>
           }
           actions={[
-            <div className={"card-update"} onClick={(e) =>{
-              e.stopPropagation()
-              setId(tienda.tienda_id)
-              setOpenUpdateTienda(true)
-            }}>
-            <EditOutlined key="edit" color="white"/>
-            </div>,
-            <Link className={"card-view"} to={`/tienda/${tienda.tienda_id}`}>
+            <Tooltip title="Editar Tienda"
+            className={"card-update"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setId(tienda.tienda_id);
+                  setOpenUpdateTienda(true);
+                }}>
+                <EditOutlined style={{ color: "black" }} />
+            </Tooltip>,
+            <Tooltip title="Ver Detalles" className={"card-view"}>
+            <Link to={`/tienda/${tienda.tienda_id}`}>
             <EyeOutlined style={{color: "white"}} key="view" />
-            </Link>,
+            </Link>
+            </Tooltip>,
 
             <Popconfirm
             title="ELIMINAR"
@@ -55,9 +59,9 @@ const Tiendas_cards = () => {
             }} 
             cancelText="NO"
             >
-              <div className={"card-delete"}>
-              <DeleteOutlined  key="delete" />
-              </div>
+              <Tooltip title="Eliminar Tienda" className={"card-delete"}>
+              <DeleteOutlined  key="delete" style={{color: "white"}} />
+              </Tooltip>
             </Popconfirm>
             ,
           ]}
