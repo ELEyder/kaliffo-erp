@@ -98,7 +98,6 @@ const TrabajadoresTable = () => {
                 e.stopPropagation()
                 setId(record.usuario_id)
                 setOpenAddIncidencia(true)
-                setReload(!reload)
               }}
               block
               >
@@ -177,14 +176,14 @@ const TrabajadoresTable = () => {
         openModal={openUpdateUsuario}
         closeModal={setOpenUpdateUsuario}
         tipoTrabajador={tipo_trabajador}
-        reload={reload}
+        reload={()=> setReload(!reload)}
         id={id}
       />
 
       <AddIncidenciaModal
         openModal={openAddIncidencia}
         closeModal={setOpenAddIncidencia}
-        reload={reload}
+        reload={()=> setReload(!reload)}
         id={id}
       />
     </>

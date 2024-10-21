@@ -35,7 +35,6 @@ const TablaHorario = ({ id }) =>{
           key: "horas_trabajadas",
           align:"center",
           onCell: (record) => {
-            console.log(record.min_trabajadas)
             let backgroundColor = record.min_trabajadas >= 540 ? 'green' : '#FCFB77';
             backgroundColor = record.min_trabajadas <= 300 ? '#f54242' : backgroundColor;
             let color = backgroundColor === '#FCFB77' ? 'black' : 'white';

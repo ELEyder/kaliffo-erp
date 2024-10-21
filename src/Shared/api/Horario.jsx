@@ -1,3 +1,5 @@
+import { showNotification } from "../Notifications";
+
 export const getHorarioById = async (id, setHorario) => {
     try {
         const response = await fetch(`http://localhost:3000/asistencia?usuario_id=${id}`, {
@@ -48,6 +50,6 @@ export const deleteHorarioById = async (id, reload, setReload, api) => {
         },
     })
     setReload(reload == true ? false : true)
-    api.open(showNotificationDelete("Horario Eliminado"))
     console.log(response)
+    showNotification("delete","Horario Eliminado")
 }
