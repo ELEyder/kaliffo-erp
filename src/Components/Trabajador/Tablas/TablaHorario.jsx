@@ -31,17 +31,13 @@ const TablaHorario = ({ id }) =>{
         },
         {
           title: "Horas Trabajadas",
-          dataIndex: "min_trabajados",
-          key: "min_trabajados",
+          dataIndex: "horas_trabajadas",
+          key: "horas_trabajadas",
           align:"center",
-          render: (text) => {
-            return (
-                <p style={{ margin: 0 }}>{text/60}</p>
-            );
-         },
           onCell: (record) => {
-            let backgroundColor = record.min_trabajados >= 540 ? 'green' : '#FCFB77';
-            backgroundColor = record.min_trabajados <= 300 ? '#f54242' : backgroundColor;
+            console.log(record.min_trabajadas)
+            let backgroundColor = record.min_trabajadas >= 540 ? 'green' : '#FCFB77';
+            backgroundColor = record.min_trabajadas <= 300 ? '#f54242' : backgroundColor;
             let color = backgroundColor === '#FCFB77' ? 'black' : 'white';
               return {
                   style: {
