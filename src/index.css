@@ -54,3 +54,8 @@ p {
 /* .ant-tabs-content-holder {
     max-width: 700px !important;
 } */
+
+.ant-card { 
+    border-radius: 15px;
+    overflow: hidden
+}

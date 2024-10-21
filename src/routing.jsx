@@ -6,6 +6,8 @@ import Tienda from "./Components/Tienda/Tienda";
 import Productos from "./Components/Productos/Productos";
 import Producto from "./Components/Producto/Producto";
 import Ventas from "./Components/Ventas/Ventas"
+import Telas from "./Components/Telas/Telas"
+import Tela from "./Components/Tela/Tela"
 import ErrorPagina from "./Components/Error/ErrorPagina"
 
 export const Routing = () =>{
@@ -19,6 +21,8 @@ export const Routing = () =>{
             <Route path="/productos/" element={<Productos />}/>
             <Route path="/producto/:id" element={<Producto />}/>
             <Route path="/ventas/:tipoVenta" element={<Ventas />}/>
+            <Route path="/almacen/telas" element={<Telas />}/>
+            <Route path="/almacen/tela/:id" element={<Tela />}/>
             <Route path="*" element={<ErrorPagina />} />
         </Routes>
     )

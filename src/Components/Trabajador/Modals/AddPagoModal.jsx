@@ -65,11 +65,6 @@ const AddPagoModal = ({
         picker="week" // Establece el selector como "semana"
         format="YYYY-MM-DD" // Formato de fecha
       />
-      {selectedDate && (
-        <p>
-          Semana seleccionada: {selectedDate.format("YYYY-MM-DD")} - {selectedDate.clone().endOf('week').format("YYYY-MM-DD")}
-        </p>
-      )}
             </Form.Item>
           </Col>
           <Col span={9}>

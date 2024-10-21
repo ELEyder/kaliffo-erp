@@ -24,7 +24,7 @@ const Sidebar_main = () => {
   return (
     <>
     <Sider
-      width={200}
+      width={250}
       style={{ background: "#162b4e", textAlign: "center" }}
       breakpoint="lg"
       collapsedWidth="0"

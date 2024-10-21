@@ -74,7 +74,7 @@ const Items=[
         ]
     },
     {
-        label:<Divider style={{color:"white"}}>Logistico</Divider>
+        label:<Divider style={{color:"white"}}>LOGÍSTICO</Divider>
     },
     {
         key:"sub6",
@@ -96,6 +96,14 @@ const Items=[
                 ),
             },
         ]
+    },
+    {
+        label:<Divider style={{color:"white"}}>PRODUCCIÓN</Divider>
+    },
+    {
+        key:"AlmacenTelas",
+        label:(<Link to={"/almacen/telas"} style={{textDecoration:"none"}} >Almacen de Telas</Link>),
+        icon:<BookOutlined /> ,
     },
 
     
