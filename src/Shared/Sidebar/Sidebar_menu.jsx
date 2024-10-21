@@ -101,11 +101,15 @@ const Items=[
         label:<Divider style={{color:"white"}}>PRODUCCIÓN</Divider>
     },
     {
-        key:"AlmacenTelas",
+        key:"almacenTelas",
         label:(<Link to={"/almacen/telas"} style={{textDecoration:"none"}} >Almacen de Telas</Link>),
         icon:<BookOutlined /> ,
     },
-
+    {
+        key:"lotes",
+        label:(<Link to={"/lotes"} style={{textDecoration:"none"}} >Lotes</Link>),
+        icon:<BookOutlined /> ,
+    },
     
 ]
 

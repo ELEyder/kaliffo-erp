@@ -59,3 +59,39 @@ p {
     border-radius: 15px;
     overflow: hidden
 }
+.loteIcons {
+    margin: 20px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Necesario para posicionar la línea */
+  }
+
+  .loteIcons::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Centra la línea verticalmente */
+    left: 0;
+    right: 0;
+    height: 2px; /* Grosor de la línea */
+    background-color: gray; /* Color de la línea */
+    z-index: 0; /* Coloca la línea detrás de los hijos */
+  }
+
+  .loteIcon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: white; /* Opcional para asegurarse de que los hijos no se superpongan con la línea */
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 50%;
+    z-index: 1; /* Coloca los hijos por encima de la línea */
+  }
+
+  .svgLote {
+    width: 25px;
+  }
