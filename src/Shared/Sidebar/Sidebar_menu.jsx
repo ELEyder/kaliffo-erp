@@ -5,7 +5,7 @@ import {BookOutlined,UserOutlined,CoffeeOutlined,HarmonyOSOutlined} from '@ant-d
 
 const Items=[
     {
-        label:<Divider style={{color:"white"}}>ADMINISTRATIVO</Divider>
+        label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>ADMINISTRATIVO</div>
     },
     {
         key:"sub1",
@@ -74,7 +74,7 @@ const Items=[
         ]
     },
     {
-        label:<Divider style={{color:"white"}}>LOGÍSTICO</Divider>
+        label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>LOGÍSTICO</div>
     },
     {
         key:"sub6",
@@ -98,7 +98,7 @@ const Items=[
         ]
     },
     {
-        label:<Divider style={{color:"white"}}>PRODUCCIÓN</Divider>
+        label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>PRODUCCIÓN</div>
     },
     {
         key:"almacenTelas",

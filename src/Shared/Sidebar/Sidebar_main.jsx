@@ -8,30 +8,17 @@ const { Title } =Typography
 
 
 const Sidebar_main = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [icon, setIcon] = useState(<LeftOutlined />);
-  const [style, setStyle] = useState({ position: 'absolute', top: '16px', left: '216px', transition: 'ease 0.2s'});
-
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-    setIcon(collapsed ? <LeftOutlined /> : <RightOutlined />);
-    setStyle(prevStyle => ({
-      ...prevStyle,
-      left: collapsed ? '216px' : '16px'
-    }));
-  };
-
   return (
     <>
     <Sider
       width={250}
-      style={{ background: "#162b4e", textAlign: "center" }}
       breakpoint="lg"
       collapsedWidth="0"
-      collapsed={collapsed}
     >
-      <Avatar size={64} icon={<UserOutlined />} />
-      <Title level={4} style={{ color: "white" }}>Tienda 1</Title>
+      <div style={{ background: "#162b4e", textAlign: "center" }}>
+        <Avatar size={64} icon={<UserOutlined />} />
+        <Title level={4} style={{ color: "white" }}>Tienda 1</Title>
+      </div>
       <Sidebar_menu/>
 
     </Sider>
