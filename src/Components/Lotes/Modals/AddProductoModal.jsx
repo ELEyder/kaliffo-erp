@@ -32,48 +32,17 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
       >
         <Form.Item
           style={{ marginTop: 20 }}
-          name="nombre"
-          label="Nombre del Producto"
+          name="password"
+          label="Contraseña"
           rules={[
             {
               required: true,
-              message: "Nombre requerido",
+              message: "Contraseña requerido",
             },
           ]}
         >
           <Input />
         </Form.Item>
-
-        <Row gutter={16} style={{gap : "20px"}}>
-          <Form.Item
-            style={{ marginLeft: 10 }}
-            name="precioBase"
-            label="Precio Base"
-            rules={[
-              {
-                type:"number",
-                required: true,
-                message: "Precio requerido",
-              },
-            ]}
-          >
-            <InputNumber placeholder="S/"/>
-          </Form.Item>
-          <Form.Item
-            name="descuento"
-            label="Descuento"
-            rules={[
-              {
-                type:"number",
-                required: true,
-                message: "Descuento requerido",
-              },
-            ]}
-          >
-            <InputNumber placeholder="%" />
-          </Form.Item>
-  
-        </Row>
       </Form>
     </Modal>
   );

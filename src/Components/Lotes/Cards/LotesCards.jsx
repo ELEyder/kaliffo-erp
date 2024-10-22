@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import AddProductoModal from "../Modals/AddProductoModal";
 import { getProductos } from "../../../Shared/api/Producto";
-import { Card, Flex, Row, FloatButton, Timeline, Tooltip } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { Card, Flex, FloatButton, Tooltip } from "antd";
 
 const {Meta} = Card
 
@@ -65,7 +66,7 @@ const LotesCards = () => {
         })}
             </Flex>
 
-      <FloatButton tooltip="Añadir Producto" onClick={()=>setOpenAddProductoModal(true)}/>
+      <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={()=>setOpenAddProductoModal(true)}/>
 
       <AddProductoModal
         openModal = {OpenAddProductoModal}

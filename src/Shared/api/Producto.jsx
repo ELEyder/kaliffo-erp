@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationDelete, showNotificationError, showNotificationUpdate } from "../Notifications"
+import { showNotification, showNotificationAdd, showNotificationDelete, showNotificationError, showNotificationUpdate } from "../Notifications"
 
 export const addProducto = async (values) => {
   let Producto = {
@@ -56,15 +56,14 @@ export const deleteProductoById = async (id, values) => {
   console.log(response)
 }
 
-export const deleteProductoByTienda = async (id, id_Tienda, reload, setReload) => {
+export const deleteProductoByTienda = async (id, id_Tienda) => {
   const response = await fetch(`http://localhost:3000/producto/delete/${id}?id_tienda=${id_Tienda}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"
     }
   })
-  showNotificationDelete("Producto Eliminado")
-  setReload(!reload)
+  showNotification("delete","Producto Eliminado")
   console.log(response)
 }
 
