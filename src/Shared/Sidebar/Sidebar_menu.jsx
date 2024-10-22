@@ -97,6 +97,12 @@ const Items=[
             },
         ]
     },
+    {
+        key:"sub7",
+        icon:<CoffeeOutlined/>,
+        label:(<Link to={"/compras"} style={{textDecoration:"none"}} >Compras</Link>)
+    },
+    
 
     
 ]
