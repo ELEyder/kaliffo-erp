@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Select, Button, Card, Form, Input, Space, Typography } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import { getProductosNuevos, addProductoDetalle } from "../../../Shared/api/Producto";
 import FormItem from "antd/es/form/FormItem";
-import { getTiposTela } from "../../../Shared/api/Tela";
+import { getEmpresas} from "../../../Shared/api/Empresa";
+import { getTiposTela, addTelas } from "../../../Shared/api/Tela";
+import { Modal, AutoComplete, Button, Card, Form, Input, Select, Typography, DatePicker } from 'antd';
 
 const { Option } = Select;
 
@@ -14,11 +14,12 @@ const AddTelasModal = ({
 }) => {
   
   const [form] = Form.useForm();
-  const [productos, setProductos] = useState([])
+  const [empresas, setEmpresas] = useState([]);
   const [tiposTela, setTiposTela] = useState([]);
 
   useEffect(()=> {
     getTiposTela(setTiposTela)
+    getEmpresas(setEmpresas);
   }, [reload])
 
   return (
@@ -46,7 +47,7 @@ const AddTelasModal = ({
             {fields.map((field) => (
               <Card
                 size="small"
-                title={`Item ${field.name + 1}`}
+                title={`Tela ${field.name + 1}`}
                 key={field.key}
                 extra={
                   <CloseOutlined
@@ -56,21 +57,21 @@ const AddTelasModal = ({
                   />
                 }
               >
-                <Form.Item label="Tipo de Tela" name={[field.name, 'producto_id']} rules={[
+                <Form.Item label="Tipo de Tela" name={[field.name, 'tipo']} rules={[
                     {
                       required: true,
                       message: "Tipo requerido",
                     },
                   ]}>
-                  <Select>
+                  <AutoComplete>
                     {
-                      tiposTela.map(tipo =>{
+                      tiposTela.map((tipo, index) =>{
                         return (
-                          <Option key={tipo.id} value={tipo.id}>{tipo.nombre}</Option>
+                          <Option key={index} value={tipo.tipo}>{tipo.tipo}</Option>
                         )
                       })
                     }
-                  </Select>
+                  </AutoComplete>
                 </Form.Item>
                 <Form.Item
                   name={[field.name, 'metraje']}
@@ -97,8 +98,8 @@ const AddTelasModal = ({
                   <Input />
                 </Form.Item>
                 <Form.Item
-                  name={[field.name, 'empresa']}
-                  label="Empresa de Compra"
+                  name={[field.name, 'empresa_compra']}
+                  label="Empresa"
                   rules={[
                     {
                       required: true,
@@ -106,7 +107,27 @@ const AddTelasModal = ({
                     },
                   ]}
                 >
-                  <Input />
+                  <AutoComplete>
+                    {
+                      empresas.map((tipo, index) =>{
+                        return (
+                          <Option key={index} value={tipo.empresa_compra}>{tipo.empresa_compra}</Option>
+                        )
+                      })
+                    }
+                  </AutoComplete>
+                </Form.Item>
+                <Form.Item
+                  name={[field.name, 'fecha_compra']}
+                  label="Fecha"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Fecha requerida",
+                    },
+                  ]}
+                >
+                  <DatePicker />
                 </Form.Item>
               </Card>
             ))}
@@ -130,8 +151,7 @@ const AddTelasModal = ({
         <Button onClick={ async ()=> {
           const values = form.getFieldsValue().items
           console.log(values)
-          await addProductoDetalle(values)
-          getProductosNuevos(setProductos)
+          await addTelas(values)
           form.resetFields()
           reload()
           closeModal()

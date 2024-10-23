@@ -66,29 +66,22 @@ export const getTelas = async (setData) => {
     setProducto(Telas)
   }
   
-  export const getTiposTela = async (setProducto) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    const Telas = [
-        {
-          id: 1,
-          nombre: "Premium",
-        },
-        {
-          id: 2,
-          nombre: "Clásica",
-        },
-      ];
-    // const productoData = await response.json()
-    // console.log(productoData)
-    setProducto(Telas)
+  export const getTiposTela = async (setTelas) => {
+    const response = await fetch(`http://localhost:3000/telas/tipo`)
+    const data = await response.json()
+    console.log(data)
+    setTelas(data)
   }
 
-  export const addTela = async (values) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    // const productoData = await response.json()
-    // console.log(productoData)
-    values["fecha"] = Date.now()
-    console.log(values)
+  export const addTelas = async (values) => {
+    const response = await fetch(`http://localhost:3000/telas/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values)
+    })
+    console.log(response)
     showNotificationAdd("Tela agregada")
   }
   

@@ -4,6 +4,7 @@
 .cardTela {
     width: 220px;
     text-align: center;
+    cursor: pointer;
 }
 .body {
     position: relative;
