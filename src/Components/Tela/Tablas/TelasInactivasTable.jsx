@@ -5,12 +5,12 @@ import { getTelasInactivas } from "../../../Shared/api/Tela";
 
 const TelasInactivasTable = () => {
 
-  const { id } = useParams()
+  const { tipo } = useParams()
   const [tabla, setTabla] = useState([]);
 
   useEffect(() => {
-    getTelasInactivas(setTabla);
-  }, [id]);
+    getTelasInactivas(tipo, setTabla);
+  }, [tipo]);
 
   const columns = [
       {
@@ -33,14 +33,14 @@ const TelasInactivasTable = () => {
       },
       {
         title: "Empresa Compra",
-        dataIndex: "empresaCompra",
-        key: "empresaCompra",
+        dataIndex: "empresa_compra",
+        key: "empresa_compra",
         align: "center",
       },
       {
         title: "Fecha de Compra",
-        dataIndex: "fechaCompra",
-        key: "fechaCompra",
+        dataIndex: "fecha_compra",
+        key: "fecha_compra",
         align: "center",
       },
     {

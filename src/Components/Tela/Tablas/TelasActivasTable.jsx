@@ -5,12 +5,12 @@ import { getTelasActivas } from "../../../Shared/api/Tela";
 
 const TelasActivasTable = () => {
 
-  const { id } = useParams()
+  const { tipo } = useParams()
   const [tabla, setTabla] = useState([]);
 
   useEffect(() => {
-    getTelasActivas(setTabla);
-  }, [id]);
+    getTelasActivas(tipo, setTabla);
+  }, [tipo]);
 
   const columns = [
       {
@@ -33,14 +33,14 @@ const TelasActivasTable = () => {
       },
       {
         title: "Empresa Compra",
-        dataIndex: "empresaCompra",
-        key: "empresaCompra",
+        dataIndex: "empresa_compra",
+        key: "empresa_compra",
         align: "center",
       },
       {
         title: "Fecha de Compra",
-        dataIndex: "fechaCompra",
-        key: "fechaCompra",
+        dataIndex: "fecha_compra",
+        key: "fecha_compra",
         align: "center",
       },
     {
