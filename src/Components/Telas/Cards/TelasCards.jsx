@@ -6,7 +6,7 @@ import DeleteProductoModal from "../Modals/DeleteProductoModal";
 import UpdateProductoModal from "../Modals/UpdateProductoModal"
 import { getTelas} from "../../../Shared/api/Tela";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-import { Card, Col, Row, List, FloatButton, Tooltip } from "antd";
+import { Card, Flex, List, FloatButton, Tooltip } from "antd";
 
 const {Meta} = Card
 
@@ -26,37 +26,21 @@ const TelasCards = () => {
 
   return (
     <>
-      <Row gutter={16}>
-        {telas.map((tela, index) => {
-          return (
-            <Col key={index} span={5} style={{ margin: "0 0 24px 0", textAlign: "center" }}>
-              <Card
-                title="SIN DATOS"
-                actions={[
-                  <Tooltip title="Ver Detalles" className={"card-view"}>
-                    {/* <Link to={`/tela/${tela.tela}`}> */}
-                    <Link to={`/almacen/tela/1`}>
-                      <EyeOutlined style={{color: "white"}} key="view" />
-                    </Link>
-                  </Tooltip>,
-                ]}
-              >
-                <List
-                  itemLayout="horizontal"
-                  dataSource={[
-                    { title: "STOCK DE ROLLOS", value: tela.stock },
-                  ]}
-                  renderItem={(item) => (
-                    <List.Item>
-                      <b>{item.title}</b>
-                      <span style={{ float: "right" }}>{item.value}</span>
-                    </List.Item>
-                  )}/>
-              </Card>
-            </Col>
-          );
+    <link rel="stylesheet" href="/css/tela/card.css" />
+    <Flex wrap gap="middle" justify={'space-evenly'}>
+    {telas.map((tela, index) => {
+      return(
+
+            <Card title={tela.tipo} className="cardTela">
+              <p>Stock por tela</p>
+              <div className="body">      
+                <img src="/svg/tela/box.svg" alt="" className="box"/>
+                <p className="number">{tela.STOCK}</p>
+              </div>
+               </Card>
+      )
         })}
-      </Row>
+    </Flex>
 
       <FloatButton tooltip="Añadir Tela" onClick={()=>setOpenAddTela(true)}/>
 

@@ -59,26 +59,18 @@ p {
     border-radius: 15px;
     overflow: hidden
 }
-.loteIcons {
+.cardLoteIcons {
+    max-width: 500px;
     margin: 20px 0 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Necesario para posicionar la línea */
+    position: relative;
   }
 
-  .loteIcons::before {
-    content: "";
-    position: absolute;
-    top: 50%; /* Centra la línea verticalmente */
-    left: 0;
-    right: 0;
-    height: 2px; /* Grosor de la línea */
-    background-color: gray; /* Color de la línea */
-    z-index: 0; /* Coloca la línea detrás de los hijos */
-  }
 
-  .loteIcon {
+
+  .cardLoteIcon {
     width: 50px;
     height: 50px;
     display: flex;
@@ -92,6 +84,61 @@ p {
     z-index: 1; /* Coloca los hijos por encima de la línea */
   }
 
-  .svgLote {
+  .cardSvgLote {
     width: 25px;
   }
+
+  .loteIcons {
+    margin: auto;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .loteIcon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: white; /* Opcional para asegurarse de que los hijos no se superpongan con la línea */
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 50%;
+    z-index: 1; /* Coloca los hijos por encima de la línea */
+  }
+
+  .svgLote {
+    width: 40px;
+  }
+
+
+  .cardLoteIcons::before,
+  .loteIcons::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Centra la línea verticalmente */
+    left: 0;
+    right: 0;
+    height: 2px; /* Grosor de la línea */
+    background-color: gray; /* Color de la línea */
+    z-index: 0; /* Coloca la línea detrás de los hijos */
+  }
+.status {
+    background-color: #56f856;
+    width: 100%;
+    padding: 40px;
+    border: black solid 4px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+  .status img {
+    padding: 20px;
+    width: 200px;
+}

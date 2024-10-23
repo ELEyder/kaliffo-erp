@@ -1,9 +1,41 @@
 import { showNotificationAdd } from "../Notifications"
-export const getTelas = async (setData) => {
-    const response = await fetch(`http://localhost:3000/telas/`)
-    const data = await response.json()
-    console.log(data)
-    setData(data)
+export const getCorte = async (id, setData) => {
+    const response = await fetch(`http://localhost:3000/cortes/1`)
+    const Telas = [
+        {
+          "taller": "Taller A",
+          "producto": "Jeans Slim Fit",
+          "cantidad": 120,
+          "talla": "M",
+          "tela": "Denim",
+          "metraje": 150.5,
+          "merma": 2.5,
+          "neto": 148
+        },
+        {
+          "taller": "Taller B",
+          "producto": "Jeans Regular",
+          "cantidad": 80,
+          "talla": "L",
+          "tela": "Denim Stretch",
+          "metraje": 100.0,
+          "merma": 1.8,
+          "neto": 98.2
+        },
+        {
+          "taller": "Taller C",
+          "producto": "Jeans Skinny",
+          "cantidad": 60,
+          "talla": "S",
+          "tela": "Denim Ligero",
+          "metraje": 75.3,
+          "merma": 1.0,
+          "neto": 74.3
+        }
+      ]
+    const productoData = await response.json()
+    console.log(productoData)
+    setData(productoData)
   }
   
   export const getTelasActivas = async (setProducto) => {
