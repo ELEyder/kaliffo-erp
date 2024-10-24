@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
-import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
+import DetalleVentaModal from "../Modals/DetalleVentaModal";
+import AddVentaModal from "../Modals/AddVentaModal"
 import { getVentas, deleteVenta } from "../../../Shared/api/Ventas";
-import { Button, Row, Col, Popconfirm, Table } from "antd";
+import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
-const VentasTable = ({ reload }) => {
+const VentasTable = () => {
   const { tipo } = useParams();
-
-  const [tablaDatos, setTablaDatos] = useState([]);
-  const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
-  const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
   const [id, setId] = useState(1);
+  const [tablaDatos, setTablaDatos] = useState([]);
+  const [OpenAddVentaModal, setOpenAddVentaModal] = useState(false);
+  const [OpenDetalleVentaModal, setOpenDetalleVentaModal] = useState(false);
+  const [reload, setReload] = useState(false);
   
   useEffect(() => {
     getVentas(tipo, setTablaDatos);
@@ -32,14 +32,18 @@ const VentasTable = ({ reload }) => {
     },
     {
       title: "Tipo de Venta",
-      dataIndex: "tipo",
-      key: "tipo",
+      dataIndex: "tipoVenta",
+      key: "tipoVenta",
       align: "center",
+      sorter: {
+        compare: (a, b) => a.tipoVenta.localeCompare(b.tipoVenta),
+        multiple: 2,
+      },
     },
     {
       title: "Fecha de Venta",
-      dataIndex: "fechaVenta",
-      key: "fechaVenta",
+      dataIndex: "fecha",
+      key: "fecha",
       align: "center",
     },
     {
@@ -47,6 +51,10 @@ const VentasTable = ({ reload }) => {
       dataIndex: "cantidad",
       key: "cantidad",
       align: "center",
+      sorter: {
+        compare: (a, b) => a.cantidad.localeCompare(b.cantidad),
+        multiple: 2,
+      },
     },
     {
       title: "Total Bruto",
@@ -59,11 +67,15 @@ const VentasTable = ({ reload }) => {
       dataIndex: "totalNeto",
       key: "totalNeto",
       align: "center",
+      sorter: {
+        compare: (a, b) => a.totalNeto.localeCompare(b.totalNeto),
+        multiple: 2,
+      },
     },
     {
       title: "IGV",
-      dataIndex: "IGV",
-      key: "IGV",
+      dataIndex: "totalIgv",
+      key: "totalIgv",
       align: "center",
     },
     {
@@ -71,83 +83,67 @@ const VentasTable = ({ reload }) => {
       dataIndex: "tipoPago",
       key: "tipoPago",
       align: "center",
+      onCell: (record) => ({
+        style: {
+          background: record.tipoPago === "Efectivo" 
+            ? '#248304' 
+            : record.tipoPago === "Yape" 
+            ? '#8522a3' 
+            : '#6fceea',
+          color: record.tipoPago === "Transferencia" ? "black" : "white",
+        }
+      }),
+      sorter: {
+        compare: (a, b) => a.tipoPago.localeCompare(b.tipoPago),
+        multiple: 2,
+      },
     },
     {
       title: "RUC",
-      dataIndex: "RUC",
-      key: "RUC",
+      dataIndex: "ruc",
+      key: "ruc",
       align: "center",
     },
     {
       title: "Tienda",
-      dataIndex: "tiendaId",
-      key: "tiendaId",
-      align: "tiendaId",
-    },
-    {
-      title: "Opciones",
-      dataIndex: "codigo",
-      key: "opciones",
+      dataIndex: "tienda",
+      key: "tienda",
       align: "center",
-      render: (text) => {
-        return (
-          <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
-            <Col>
-              <Popconfirm
-                title="ELIMINAR"
-                description="DESEA ELIMINAR A"
-                okText="Confirmar"
-                onConfirm={(e) =>{
-                  e.stopPropagation();
-                  deleteVenta(text)
-                }} 
-                cancelText="NO"
-              >
-                <Button block style={{ background: "#f54242", color: "white" }}
-                danger
-                onClick={(e) =>{
-                  e.stopPropagation();
-                }} 
-                >
-                  Eliminar
-                </Button>
-              </Popconfirm>
-            </Col>
-          </Row>
-        );
-      },
     },
+
   ];
 
   return (
     <>
       <Table
         columns={columnas}
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 7 }}
         dataSource={tablaDatos.map((item, index) => ({ ...item, key: index }))}
         rowKey={(record) => record.id}
         bordered
         className="tabla_trabajadores"
         onRow={(record) => ({
           onClick: () => {
-            window.location.href = `/trabajador/${record.usuario_id}`
+            setId(record.id)
+            setOpenDetalleVentaModal(true)
           },
           style: {
             cursor: "pointer",
           }
         })}
       />
-      <UpdateUsuarioModal
-        openModal={openUpdateUsuario}
-        closeModal={setOpenUpdateUsuario}
+      <FloatButton tooltip="Añadir Nuevo" onClick={() => setOpenAddUsuario(true)} />
+
+      <AddVentaModal
+        openModal={OpenAddVentaModal}
+        closeModal={()=>setOpenAddVentaModal(false)}
         tipoTrabajador={tipo}
         reload={reload}
-        id={id}
+        setReload={setReload}
       />
-      <AddIncidenciaModal
-        openModal={openAddIncidencia}
-        closeModal={setOpenAddIncidencia}
-        reload={reload}
+      <DetalleVentaModal
+        openModal={OpenDetalleVentaModal}
+        closeModal={() => setOpenDetalleVentaModal(false)}
         id={id}
       />
     </>

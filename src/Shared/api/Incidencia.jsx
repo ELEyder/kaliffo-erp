@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
+import { showNotification, showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
 const incidencias = ["Familiar", "Salud", "Personal"]
 
 export const addIncidencia = async (id, data) => {
@@ -16,7 +16,7 @@ export const addIncidencia = async (id, data) => {
         body : JSON.stringify(Incidencia),
     })
     console.log(response)
-    showNotificationAdd("Incidencia añadida correctamente")
+    showNotification("add","Incidencia añadida correctamente")
 }
 
 export const getIncidenciasById = async (id, setIncidencias) => {
@@ -51,7 +51,7 @@ export const updateIncidenciaById = async (id, values) => {
         },
         body: JSON.stringify(incidencia),
     })
-    showNotificationUpdate("Incidencia actualizada", `ID: ${id}`)
+    showNotification("update","Incidencia actualizada")
     console.log(response)
 }
 
@@ -62,6 +62,6 @@ export const deleteIncidenciaById = async (id) => {
           "Content-Type": "application/json",
         },
     })
-    showNotificationDelete("Incidencia borrada")
+    showNotification("delete", "Incidencia borrada")
     console.log(response)
 }

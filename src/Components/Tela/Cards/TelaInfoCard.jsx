@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductoById } from "../../../Shared/api/Producto";
 
-const ProductoInfoCard = () => {
+const TelaInfoCard = () => {
   const { id } = useParams();
   const [producto, setProducto] = useState([]);
 
@@ -11,31 +11,17 @@ const ProductoInfoCard = () => {
     getProductoById(id, setProducto);
   }, [id]);
 
-  const imgSrc = `/img/${producto.producto_id}.png`;
-
-  const handleError = (e) => {
-    e.target.src = '/img/generic.png';
-  };
-
   return (
     <>
       {producto && (
         <Card
           style={{ maxWidth: 300, textAlign: "center", margin: "auto" }}
-          title={producto.nombre}
+          title={"PREMIUM"}
         >
-          <img
-            alt="example"
-            src={imgSrc}
-            onError={handleError} // Maneja el error de la imagen
-            style={{ width: "100%", height: "auto" }} // Asegúrate de que la imagen se ajuste al contenedor
-          />
           <List
             itemLayout="horizontal"
             dataSource={[
               { title: "STOCK TOTAL", value: producto.stockTotal },
-              { title: "PRECIO", value: producto.precioBase },
-              { title: "COLORES", value: producto.cantidad_colores },
             ]}
             renderItem={(item) => (
               <List.Item>
@@ -50,4 +36,4 @@ const ProductoInfoCard = () => {
   );
 }
 
-export default ProductoInfoCard
+export default TelaInfoCard

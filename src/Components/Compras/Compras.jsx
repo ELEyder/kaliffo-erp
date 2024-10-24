@@ -6,26 +6,13 @@ import TablaCompras from "./Tablas/TablaCompras";
 import AddCompraModal from "./Modals/AddCompraModal";
 
 const Compras = () => {
-
-    const [openAddCompra,setopenAddCompra] = useState(false)
-    const [reload, setReload] = useState(false);
-
   return (
     <Plantilla>
       <Divider style={{ textTransform: "uppercase" }}>
         COMPRAS
       </Divider>
       
-      <TablaCompras reload={reload}/>
-
-      <FloatButton tooltip="Añadir Nuevo" onClick={()=>setopenAddCompra(true)} /> 
-
-      <AddCompraModal 
-        openModal={openAddCompra}
-        closeModal={setopenAddCompra}
-        reload={reload}
-        setReload={setReload}
-      />
+      <TablaCompras reload={()=>setReload(!reload)}/>
 
     </Plantilla>
   );

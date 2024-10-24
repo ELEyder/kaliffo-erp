@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
+import { showNotification, showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
 import moment from "moment";
 
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
@@ -69,15 +69,15 @@ export const updateUsuario = async (id, values, originales) => {
       body: JSON.stringify(valoresnuevos),
     })
     console.log(response)
-    showNotificationUpdate("Usuario actualizado exitosamente")
+    showNotification("update","Usuario actualizado exitosamente")
   } catch (error) {
     console.log(error)
-    showNotificationError("Error al actualizar el usuario")
+    showNotification("error","Error al actualizar el usuario")
   }
 
 };
 
-export const deleteUsuarioById = async (id, values) => {
+export const deleteUsuarioById = async (id) => {
   console.log(id)
   try {
     const response = await fetch(`http://localhost:3000/usuario/delete/${id}`, {
@@ -87,16 +87,16 @@ export const deleteUsuarioById = async (id, values) => {
       },
     });
     console.log(response)
-    showNotificationDelete("Usuario eliminado")
+    showNotification("delete","Usuario eliminado")
     return true
 
   } catch (error) {
     console.log(error);
-    showNotificationError("Error al eliminar el usuario")
+    showNotification("error","Error al eliminar el usuario")
   }
 };
 
-export const getUsuarios = async (tipo, Seteador) => {
+export const getUsuarios = async (tipo, setData) => {
   try {
     const response = await fetch(`http://localhost:3000/usuario?rol=${dTipos[tipo]}`);
     const trabajadores = await response.json();
@@ -109,8 +109,8 @@ export const getUsuarios = async (tipo, Seteador) => {
         } else {
           console.warn('Elemento no es un objeto:', trabajador);
         }
-      Seteador(trabajadores);
-    })
+      })
+    setData(trabajadores);
     console.log(trabajadores)
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -143,10 +143,10 @@ export const updateUsuarioTienda = async (idTienda, values) => {
           }),
         }
       );
-    showNotificationUpdate("Usuario actualizado exitosamente")
+    showNotification("update","Usuario actualizado exitosamente")
   } catch (error) {
     console.log(error);
-    showNotificationError("Error al actualizar usuario")
+    showNotification("error", "Error al actualizar usuario")
   }
 };
 

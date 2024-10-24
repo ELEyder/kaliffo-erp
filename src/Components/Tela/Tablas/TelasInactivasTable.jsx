@@ -1,51 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { Table, Button, Popconfirm, Row, Col } from "antd";
-import { getTallasByProducto } from "../../../Shared/api/Talla";
+import { getTelasInactivas } from "../../../Shared/api/Tela";
 
-const ProductoTallasTable = () => {
+const TelasInactivasTable = () => {
 
   const { id } = useParams()
   const [tabla, setTabla] = useState([]);
 
   useEffect(() => {
-    getTallasByProducto(id, setTabla);
+    getTelasInactivas(setTabla);
   }, [id]);
 
   const columns = [
-    {
-      title: "Talla",
-      dataIndex: "talla",
-      key: "talla",
-      align: "center",
-    },
-    {
-      title: "Cantidad",
-      dataIndex: "cantidad",
-      key: "cantidad",
-      align: "center",
-      onCell: (record) => ({
-        style: {
-          background: record.stock >= 50
-            ? 'green'
-            : record.stock <= 20
-              ? '#f54242'
-              : '#FCFB77',
-          color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
-          padding: "10px"
-        }
-      }),
-    },
-    {
-      title: "Ver más",
-      key: "verMas",
-      align: "center",
-      render: (text, record) => {
-        return (
-          <Button type="primary" style={{ width: "55px" }}>+</Button>
-        )
+      {
+        title: "N",
+        dataIndex: "n",
+        key: "n",
+        align: "center",
       },
-    },
+      {
+        title: "Metraje",
+        dataIndex: "metraje",
+        key: "metraje",
+        align: "center",
+      },
+      {
+        title: "Artículo",
+        dataIndex: "articulo",
+        key: "articulo",
+        align: "center",
+      },
+      {
+        title: "Empresa Compra",
+        dataIndex: "empresaCompra",
+        key: "empresaCompra",
+        align: "center",
+      },
+      {
+        title: "Fecha de Compra",
+        dataIndex: "fechaCompra",
+        key: "fechaCompra",
+        align: "center",
+      },
     {
       title: "Opciones",
       key: "opciones",
@@ -53,9 +50,6 @@ const ProductoTallasTable = () => {
       render: (text, record) => {
         return (
           <Row gutter={[8, 8]} justify="center" align="middle">
-            <Col>
-              <Button type="primary" block>Editar</Button>
-            </Col>
             <Col>
               <Popconfirm
                 title="ELIMINAR"
@@ -83,4 +77,4 @@ const ProductoTallasTable = () => {
   )
 }
 
-export default ProductoTallasTable
+export default TelasInactivasTable

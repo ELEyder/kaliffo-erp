@@ -1,15 +1,15 @@
-import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
-import { SmileOutlined } from '@ant-design/icons';
+import { Table, Button, Popconfirm, Row, Col, FloatButton } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { useState, useEffect } from 'react'
 import { getPagosById, deletePagoById } from "../../../Shared/api/Pago";
-import Modal_add_pago from "../Modals/Modal_add_pago";
+import AddPagoModal from "../Modals/AddPagoModal";
 
 const TablaPagos = ({ id }) =>{
 
   const [tabla, setTabla] = useState([]);
   const [reload, setReload] = useState(false);
-  const [ModalAddPagoOpen, setModalAddPagoOpen] = useState(false);
+  const [OpenAddPago, setOpenAddPago] = useState(false);
 
   useEffect(() => {
       getPagosById(id , setTabla);
@@ -110,12 +110,23 @@ const TablaPagos = ({ id }) =>{
 
         </Table>
 
-
-        <Modal_add_pago
-          ModalAddOpen = {ModalAddPagoOpen}
-          setModalAddOpen = {setModalAddPagoOpen}
-          setReload = {setReload}
-          reload = {reload}
+        <FloatButton
+          icon={<PlusOutlined />}
+          style={{
+            backgroundColor: "#28a745",
+            color: "white",
+            border: "none",
+            position: "fixed",
+            top: "120px",
+            right: "60px",
+          }}
+          tooltip={"Añadir Pago"}
+          onClick={()=>setOpenAddPago(true)}
+        />
+        <AddPagoModal
+          openModal = {OpenAddPago}
+          closeModal = {()=>setOpenAddPago(false)}
+          reload = {()=>setReload(!reload)}
           idUsuario = {id}
           />
        </>

@@ -33,12 +33,12 @@ const Producto = () => {
           Detalles del Producto
         </Divider>
         <Row  gutter={24}>
-            <Col span={8}>
+            <Col span={10}>
               <ProductoInfoCard/>
               <Divider></Divider>
               <BestColoresCard/>
             </Col>
-            <Col span={16}>
+            <Col span={12}>
               <Tabs defaultActiveKey="1" items={items} />
             </Col>
         </Row>

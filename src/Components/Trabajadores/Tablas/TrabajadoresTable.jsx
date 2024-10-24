@@ -2,17 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
 import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
+import AddUsuarioModal from "../Modals/AddUsuarioModal"
 import { getUsuarios, deleteUsuarioById } from "../../../Shared/api/Usuario";
-import { Button, Row, Col, Popconfirm, Table } from "antd";
+import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
-const TrabajadoresTable = ({ reload }) => {
+const TrabajadoresTable = () => {
 
   const { tipo_trabajador } = useParams();
   const [tabla_datos, SetTabla_datos] = useState([]);
   const [openAddIncidencia, setOpenAddIncidencia] = useState(false);
   const [openUpdateUsuario, setOpenUpdateUsuario] = useState(false);
+  const [openAddUsuario, setOpenAddUsuario] = useState(false);
   const [id, setId] = useState(1);
-  
+  const [reload, setReload] = useState(false);
+
+  useEffect(() => {
+    getUsuarios(tipo_trabajador, SetTabla_datos);
+  }, [tipo_trabajador, reload]);
+
   const columnas = [
     {
       title: "Nombre",
@@ -90,8 +97,8 @@ const TrabajadoresTable = ({ reload }) => {
               <Button className="btn-incidencia" onClick={(e) => {
                 e.stopPropagation()
                 setId(record.usuario_id)
-                setOpenAddIncidencia(true)}
-              }
+                setOpenAddIncidencia(true)
+              }}
               block
               >
                 + Incidencias
@@ -105,6 +112,7 @@ const TrabajadoresTable = ({ reload }) => {
                 onConfirm={(e) =>{
                   e.stopPropagation();
                   deleteUsuarioById(record.usuario_id)
+                  setReload(!reload)
                 }} 
                 cancelText="NO"
               >
@@ -112,6 +120,7 @@ const TrabajadoresTable = ({ reload }) => {
                 danger
                 onClick={(e) =>{
                   e.stopPropagation();
+                  setReload(!reload)
                 }} 
                 >
                   Eliminar
@@ -134,12 +143,12 @@ const TrabajadoresTable = ({ reload }) => {
     });
   }
 
-  useEffect(() => {
-    getUsuarios(tipo_trabajador, SetTabla_datos);
-  }, [tipo_trabajador, reload]);
+
 
   return (
     <>
+      <FloatButton tooltip="Añadir Nuevo" onClick={() => setOpenAddUsuario(true)} />
+
       <Table
         columns={columnas}
         pagination={{ pageSize: 5 }}
@@ -156,18 +165,25 @@ const TrabajadoresTable = ({ reload }) => {
           }
         })}
       />
+      <AddUsuarioModal
+        openModal={openAddUsuario}
+        closeModal={setOpenAddUsuario}
+        tipoTrabajador={tipo_trabajador}
+        reload={reload}
+        setReload={setReload}
+      />
       <UpdateUsuarioModal
         openModal={openUpdateUsuario}
         closeModal={setOpenUpdateUsuario}
         tipoTrabajador={tipo_trabajador}
-        reload={reload}
+        reload={()=> setReload(!reload)}
         id={id}
       />
 
       <AddIncidenciaModal
         openModal={openAddIncidencia}
         closeModal={setOpenAddIncidencia}
-        reload={reload}
+        reload={()=> setReload(!reload)}
         id={id}
       />
     </>

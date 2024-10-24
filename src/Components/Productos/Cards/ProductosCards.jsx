@@ -5,7 +5,7 @@ import DeleteProductoModal from "../Modals/DeleteProductoModal";
 import UpdateProductoModal from "../Modals/UpdateProductoModal"
 import { getProductos } from "../../../Shared/api/Producto";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-import { Card, Col, Row, FloatButton, Popconfirm } from "antd";
+import { Card, Col, Row, FloatButton, Popconfirm, Tooltip } from "antd";
 
 const {Meta} = Card
 
@@ -35,17 +35,20 @@ const ProductosCards = () => {
               <Card
                 title={producto.nombre}
                 actions={[
-                  <div >
-                  <EditOutlined key="edit" onClick={(e) =>{
+                  <Tooltip title="Editar Producto"
+                  className={"card-update"}
+                  onClick={(e) =>{
                     e.stopPropagation()
                     setId(producto.producto_id)
                     setOpenUpdateProducto(true)
-                  }}/>
-                  </div>,
-                  <Link to={`/producto/${producto.producto_id}`}>
-                    <EyeOutlined key="view" />
-                  </Link>,
-                  <div >
+                  }}>
+                  <EditOutlined key="edit" color="white"/>
+                  </Tooltip>,
+                  <Tooltip title="Ver Detalles" className={"card-view"}>
+                    <Link to={`/producto/${producto.producto_id}`}>
+                      <EyeOutlined style={{color: "white"}} key="view" />
+                    </Link>
+                  </Tooltip>,
                   <Popconfirm
                   title="ELIMINAR"
                   description="DESEA ELIMINAR A"
@@ -56,9 +59,12 @@ const ProductosCards = () => {
                     setOpenDeleteProducto(true)
                   }} 
                   cancelText="NO"
-                  ><DeleteOutlined  key="delete" />
+                  >
+                    <Tooltip title="Eliminar Producto" className={"card-delete"}>
+                    <DeleteOutlined  key="delete" style={{color: "white"}} />
+                    </Tooltip>
                   </Popconfirm>
-                  </div>,
+                  ,
                 ]}
                 cover={
                   <img
@@ -87,18 +93,18 @@ const ProductosCards = () => {
 
       <AddProductoModal
         openModal = {OpenAddProductoModal}
-        closeModal={setOpenAddProductoModal}
+        closeModal={() => setOpenAddProductoModal(false)}
         reload = {()=>setReload(!reload)}
       />
       <UpdateProductoModal
         openModal = {OpenUpdateProducto}
-        closeModal={setOpenUpdateProducto}
+        closeModal={() => setOpenUpdateProducto(false)}
         id = {id}
         reload = {()=>setReload(!reload)}
       />
       <DeleteProductoModal
         openModal = {OpenDeleteProducto}
-        closeModal={setOpenDeleteProducto}
+        closeModal={() => setOpenDeleteProducto(false)}
         id = {id}
         reload = {()=>setReload(!reload)}
       />

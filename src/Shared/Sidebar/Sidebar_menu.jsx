@@ -5,7 +5,7 @@ import {BookOutlined,UserOutlined,CoffeeOutlined,HarmonyOSOutlined} from '@ant-d
 
 const Items=[
     {
-        label:<Divider style={{color:"white"}}>ADMINISTRATIVO</Divider>
+        label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>ADMINISTRATIVO</div>
     },
     {
         key:"sub1",
@@ -74,7 +74,7 @@ const Items=[
         ]
     },
     {
-        label:<Divider style={{color:"white"}}>Logistico</Divider>
+        label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>LOGÍSTICO</div>
     },
     {
         key:"sub6",
@@ -98,12 +98,23 @@ const Items=[
         ]
     },
     {
-        key:"sub7",
         icon:<CoffeeOutlined/>,
         label:(<Link to={"/compras"} style={{textDecoration:"none"}} >Compras</Link>)
     },
-    
+    {
 
+        label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>PRODUCCIÓN</div>
+    },
+    {
+        key:"sub7",
+        label:(<Link to={"/almacen/telas"} style={{textDecoration:"none"}} >Almacen de Telas</Link>),
+        icon:<BookOutlined /> ,
+    },
+    {
+        key:"lotes",
+        label:(<Link to={"/lotes"} style={{textDecoration:"none"}} >Lotes</Link>),
+        icon:<BookOutlined /> ,
+    },
     
 ]
 

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button, Row, Col, Popconfirm, Table } from "antd";
-import { getCompras } from "../../../Shared/api/Compras";
+import { Button, Row, Col, Popconfirm, Table,FloatButton } from "antd";
+import { eliminarcompra, getCompras } from "../../../Shared/api/Compras";
+import AddCompraModal from "../Modals/AddCompraModal";
+import DetallesComprasModal from "../Modals/DetallesComprasModal";
 
-const TablaCompras = ({ reload }) => {
+const TablaCompras = () => {
   const [tabla_datos, SetTabla_datos] = useState([]);
+  const [idCompra,setIdCompra]= useState(null)
+  const [openDetalleCompras, setopenDetalleCompras] = useState(false);
+  const [openAddCompra, setopenAddCompra] = useState(false);
+  const [reload, setReload] = useState(false);
 
   const columnas = [
     {
@@ -22,11 +28,6 @@ const TablaCompras = ({ reload }) => {
       title: "Fecha Compra",
       dataIndex: "fecha_compra",
       key: "fecha_compra",
-      defaultSortOrder: "ascend",
-      sorter: {
-        compare: (a, b) => a.dni.localeCompare(b.dni),
-        multiple: 1,
-      },
       align: "center",
       responsive: ["sm"],
     },
@@ -34,11 +35,6 @@ const TablaCompras = ({ reload }) => {
       title: "Cantidad",
       dataIndex: "cantidad",
       key: "cantidad",
-      defaultSortOrder: "ascend",
-      sorter: {
-        compare: (a, b) => a.telefono.localeCompare(b.telefono),
-        multiple: 2,
-      },
       align: "center",
     },
     {
@@ -47,11 +43,26 @@ const TablaCompras = ({ reload }) => {
       key: "total",
       defaultSortOrder: "ascend",
       sorter: {
-        compare: (a, b) =>
-          a.total_incidencias.localeCompare(b.total_incidencias),
+        compare: (a, b) => a.total.localeCompare(b.total),
         multiple: 2,
       },
       align: "center",
+    },
+    {
+      title:"Detalle",
+      dataIndex:"",
+      key:"f",
+      align:"center",
+      render:(record)=>{
+        return(
+          <Button type="primary"
+          onClick={(e)=>{
+            e.stopPropagation()
+            setIdCompra(record.compra_id)
+            setopenDetalleCompras(true)
+          }}>+</Button>
+        )
+      }
     },
     {
       title: "Opciones",
@@ -86,7 +97,8 @@ const TablaCompras = ({ reload }) => {
                 okText="Confirmar"
                 onConfirm={(e) => {
                   e.stopPropagation();
-                  deleteUsuarioById(record.usuario_id);
+                  eliminarcompra(record.compra_id)
+                  setReload(!reload)
                 }}
                 cancelText="NO"
               >
@@ -96,6 +108,7 @@ const TablaCompras = ({ reload }) => {
                   danger
                   onClick={(e) => {
                     e.stopPropagation();
+                    setReload(!reload)
                   }}
                 >
                   Eliminar
@@ -109,19 +122,42 @@ const TablaCompras = ({ reload }) => {
   ];
 
   useEffect(() => {
-    getCompras(SetTabla_datos)
+    getCompras(SetTabla_datos);
   }, [reload]);
 
   return (
     <>
+      <FloatButton
+        tooltip="Añadir Nuevo"
+        onClick={() => setopenAddCompra(true)}
+      />
+
       <Table
         columns={columnas}
         pagination={{ pageSize: 5 }}
-        dataSource={tabla_datos.map((item, index) => ({ ...item, key: index }))}
+        dataSource={tabla_datos.map((item, index) => ({
+          ...item,
+          key: item.compra_id,
+        }))}
         rowKey={(record) => record.compra_id}
         bordered
         className="tabla_trabajadores"
       />
+
+      <AddCompraModal
+        openModal={openAddCompra}
+        closeModal={setopenAddCompra}
+        reload={reload}
+        setReload={setReload}
+      />
+
+      <DetallesComprasModal 
+        openModal={openDetalleCompras}
+        closeModal={setopenDetalleCompras}
+        reload={()=>setReload(!reload)}
+        idC={idCompra}
+      />
+
     </>
   );
 };
