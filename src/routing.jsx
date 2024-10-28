@@ -11,6 +11,7 @@ import Tela from "./Components/Tela/Tela"
 import Lotes from "./Components/Lotes/Lotes"
 import Lote from "./Components/Lote/Lote"
 import ErrorPagina from "./Components/Error/ErrorPagina"
+import Compras from "./Components/Compras/Compras";
 
 export const Routing = () =>{
     return(
@@ -22,6 +23,8 @@ export const Routing = () =>{
             <Route path="/tienda/:id" element={<Tienda />}/>
             <Route path="/productos/" element={<Productos />}/>
             <Route path="/producto/:id" element={<Producto />}/>
+            <Route path="/ventas/:tipo" element={<Ventas />}/>
+            <Route path="/compras" element={<Compras/>}/>
             <Route path="/ventas/:tipoVenta" element={<Ventas />}/>
             <Route path="/almacen/telas" element={<Telas />}/>
             <Route path="/almacen/tela/:tipo" element={<Tela />}/>
