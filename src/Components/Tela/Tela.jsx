@@ -2,7 +2,7 @@ import React from "react";
 import Plantilla from "../../Shared/Plantilla"
 import TelasActivasTable from "./Tablas/TelasActivasTable"
 import TelasInactivasTable from "./Tablas/TelasInactivasTable"
-import { Col, Divider, Row, Tabs } from "antd";
+import { Divider, Tabs } from "antd";
 
 const Tela = () => {
     

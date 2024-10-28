@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { Table, Button, Popconfirm, Row, Col } from "antd";
-import { getTelasActivas } from "../../../Shared/api/Tela";
+import { deleteTelaById, getTelasActivas } from "../../../Shared/api/Tela";
 
 const TelasActivasTable = () => {
 
   const { tipo } = useParams()
   const [tabla, setTabla] = useState([]);
+  const [reload, setReaload] = useState(true);
 
   useEffect(() => {
     getTelasActivas(tipo, setTabla);
-  }, [tipo]);
+  }, [tipo, reload]);
 
   const columns = [
       {
@@ -45,20 +46,22 @@ const TelasActivasTable = () => {
       },
     {
       title: "Opciones",
+      dataIndex: "tela_id",
       key: "opciones",
       align: "center",
-      render: (text, record) => {
+      render: (text) => {
         return (
           <Row gutter={[8, 8]} justify="center" align="middle">
-            <Col>
-              <Button type="primary" block>Editar</Button>
-            </Col>
             <Col>
               <Popconfirm
                 title="ELIMINAR"
                 description="DESEA ELIMINAR A"
                 okText="Confirmar"
                 cancelText="NO"
+                onConfirm={()=> {
+                  deleteTelaById(text)
+                  setReaload(!reload)
+                }}
               >
                 <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
               </Popconfirm>
@@ -68,7 +71,6 @@ const TelasActivasTable = () => {
       }
     },
   ]
-
   return (
     <>
       <Table

@@ -4,7 +4,7 @@ import LotesCards from "./Cards/LotesCards";
 import { Divider } from "antd";
 
 
-const Productos = () =>{
+const Lotes = () =>{
 
     return(
         <Plantilla>
@@ -17,4 +17,4 @@ const Productos = () =>{
     )
 }
 
-export default Productos
+export default Lotes

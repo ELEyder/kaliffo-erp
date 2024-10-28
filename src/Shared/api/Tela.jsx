@@ -1,4 +1,4 @@
-import { showNotificationAdd } from "../Notifications"
+import { showNotification } from "../Notifications"
 export const getTelas = async (setData) => {
   const response = await fetch(`http://localhost:3000/telas/`)
   const data = await response.json()
@@ -54,5 +54,13 @@ export const addTelas = async (values) => {
     body: JSON.stringify(values)
   })
   console.log(response)
-  showNotificationAdd("Tela agregada")
+  showNotification("add", "Tela agregada")
+}
+
+export const deleteTelaById = async (id) =>{
+  const response = await fetch(`http://localhost:3000/telas/desactivar/${id}`, {
+    method: "PUT",
+  })
+  console.log(response)
+  showNotification("delete","Tela agregada")
 }
