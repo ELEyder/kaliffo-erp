@@ -14,12 +14,12 @@ const CorteTable = () => {
     const columns = [
         {
             key: 'taller',
-            dataIndex: 'taller',
+            dataIndex: 'taller_id',
             title: 'Taller',
         },
         {
             key: 'producto',
-            dataIndex: 'producto',
+            dataIndex: 'producto_id',
             title: 'Producto',
         },
         {
@@ -34,12 +34,12 @@ const CorteTable = () => {
         },
         {
             key: 'tela',
-            dataIndex: 'tela',
+            dataIndex: 'tipo_tela',
             title: 'Tela',
         },
         {
             key: 'metraje',
-            dataIndex: 'metraje',
+            dataIndex: 'metraje_asignado',
             title: 'Metraje',
         },
         {

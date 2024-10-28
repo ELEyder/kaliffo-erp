@@ -19,7 +19,7 @@ const TelasCards = () => {
   return (
     <>
     <link rel="stylesheet" href="/css/tela/card.css" />
-    <Flex wrap gap="middle" justify={'space-evenly'}>
+    <Flex wrap gap="middle">
     {telas.map((tela, index) => {
       return(
 

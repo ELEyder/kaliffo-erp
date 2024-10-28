@@ -139,16 +139,21 @@ const AddTelasModal = ({
         )}
       </Form.List>
 
-      <Form.Item noStyle shouldUpdate>
+      {/* <Form.Item noStyle shouldUpdate>
         {() => (
           <Typography>
             <pre>{JSON.stringify(form.getFieldsValue().items, null, 2)}</pre>
           </Typography>
         )}
-      </Form.Item>
+      </Form.Item> */}
 
       <FormItem>
-        <Button onClick={ async ()=> {
+        <Button style= {
+          {
+            marginTop: "10px"
+          }
+        }
+         onClick={ async ()=> {
           const values = form.getFieldsValue().items
           console.log(values)
           await addTelas(values)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import AddProductoModal from "../Modals/AddProductoModal";
+import AddLoteModal from "../Modals/AddLoteModal";
 import { getLotes } from "../../../Shared/api/Lote";
 import { PlusOutlined } from "@ant-design/icons";
 import { Card, Flex, FloatButton, Tooltip } from "antd";
@@ -10,7 +10,6 @@ const {Meta} = Card
 
 const LotesCards = () => {
 
-  const [id, setId] = useState(0)
   const [lotes, setLotes] = useState([]);
   const [OpenAddProductoModal,setOpenAddProductoModal] = useState(false)
   const [reload, setReload] = useState(false)
@@ -21,7 +20,7 @@ const LotesCards = () => {
 
   return (
     <>
-        <Flex wrap gap="middle" justify={'space-evenly'}>
+        <Flex wrap gap="middle">
 
         {lotes.map((lote, index) => {
           var status = lote.estado
@@ -30,7 +29,7 @@ const LotesCards = () => {
           for (var i = 0; i < 4-status; i++) colors.push("white")
           console.log(colors)
           return (
-            <Link to={`/lote/${lote.producto_id}`} style={{ textDecoration: 'none' }}>
+            <Link to={`/lote/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
               <Card
               style={{
                 width: "300px"
@@ -78,10 +77,8 @@ const LotesCards = () => {
           );
         })}
             </Flex>
-
       <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={()=>setOpenAddProductoModal(true)}/>
-
-      <AddProductoModal
+      <AddLoteModal
         openModal = {OpenAddProductoModal}
         closeModal={() => setOpenAddProductoModal(false)}
         reload = {()=>setReload(!reload)}
@@ -89,5 +86,4 @@ const LotesCards = () => {
     </>
   );
 };
-
 export default LotesCards;

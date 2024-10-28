@@ -1,8 +1,8 @@
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 import React from "react";
-import { addProducto } from "../../../Shared/api/Producto";
+import { addLote } from "../../../Shared/api/Lote";
 
-const AddProductoModal = ({ openModal, closeModal, reload }) => {
+const AddLoteModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
   
   return (
@@ -24,7 +24,7 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
         id="formulariocrear"
         layout="vertical"
         onFinish={async (values) =>{
-            await addProducto(values)
+            await addLote(values)
             form.resetFields()
             reload()
             closeModal(false)
@@ -48,4 +48,4 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
   );
 };
 
-export default AddProductoModal;
+export default AddLoteModal;
