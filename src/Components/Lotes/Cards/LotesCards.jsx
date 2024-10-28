@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import AddProductoModal from "../Modals/AddProductoModal";
-import { getProductos } from "../../../Shared/api/Producto";
-import { Card, Flex, Row, FloatButton, Timeline, Tooltip } from "antd";
+import { getLotes } from "../../../Shared/api/Lote";
+import { PlusOutlined } from "@ant-design/icons";
+import { Card, Flex, FloatButton, Tooltip } from "antd";
 
 const {Meta} = Card
 
@@ -10,62 +11,75 @@ const {Meta} = Card
 const LotesCards = () => {
 
   const [id, setId] = useState(0)
-  const [productos, setTiendas] = useState([]);
+  const [lotes, setLotes] = useState([]);
   const [OpenAddProductoModal,setOpenAddProductoModal] = useState(false)
   const [reload, setReload] = useState(false)
 
   useEffect(() => {
-    getProductos(setTiendas);
+    getLotes(setLotes);
   }, [reload]);
 
   return (
     <>
         <Flex wrap gap="middle" justify={'space-evenly'}>
 
-        {productos.map((producto, index) => {
+        {lotes.map((lote, index) => {
+          var status = lote.estado
+          var colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"]
+          var colors = Array(status + 1).fill(colors[status]);
+          for (var i = 0; i < 4-status; i++) colors.push("white")
+          console.log(colors)
           return (
+            <Link to={`/lote/${lote.producto_id}`} style={{ textDecoration: 'none' }}>
               <Card
               style={{
                 width: "300px"
               }}
-                title={'Lote 1'}
+                title={`Lote ${lote.lote_id}`}
+              onClick={ () =>
+                console.log(lote)
+              }
               >
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Fecha Inicio: S/${producto.precioBase}`}
+                  title={`Fecha de Creación: ${lote.fecha_creacion}`}
                 />
                 <Meta
                   style={{ textAlign: "left" }}
-                  title={`Stock general: ${producto.stockTotal}`}
+                  title={`Cantidad Total: ${lote.cantidad_total}`}
                 />
-                  <div className="loteIcons">
+                  <div className="cardLoteIcons">
                     <Tooltip title="Corte">
-                    <div className="loteIcon">
-                      <img className="svgLote" src="/img/lote/1.svg" alt="" />
+                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[1]}}>
+                      <img className="cardSvgLote" src="/svg/lote/1.svg" alt="" />
                     </div>
                     </Tooltip>
                     <Tooltip title="Lavandería">
-                    <div className="loteIcon">
-                      <img className="svgLote" src="/img/lote/2.svg" alt="" />
+                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[2]}}>
+
+                      <img className="cardSvgLote" src="/svg/lote/2.svg" alt="" />
                     </div>
                     </Tooltip>
                     <Tooltip title="Taller">
-                    <div className="loteIcon">
-                      <img className="svgLote" src="/img/lote/3.svg" alt="" />
+                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[3]}}>
+
+                      <img className="cardSvgLote" src="/svg/lote/3.svg" alt="" />
                     </div>
                     </Tooltip>
                     <Tooltip title="Almacen">
-                    <div className="loteIcon">
-                      <img className="svgLote" src="/img/lote/4.svg" alt="" />
+                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[4]}}>
+
+                      <img className="cardSvgLote" src="/svg/lote/4.svg" alt="" />
                     </div>
                     </Tooltip>
                   </div>
               </Card>
+              </Link>
           );
         })}
             </Flex>
 
-      <FloatButton tooltip="Añadir Producto" onClick={()=>setOpenAddProductoModal(true)}/>
+      <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={()=>setOpenAddProductoModal(true)}/>
 
       <AddProductoModal
         openModal = {OpenAddProductoModal}

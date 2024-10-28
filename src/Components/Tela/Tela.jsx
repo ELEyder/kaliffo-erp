@@ -1,6 +1,5 @@
 import React from "react";
 import Plantilla from "../../Shared/Plantilla"
-import TelaInfoCard from "./Cards/TelaInfoCard"
 import TelasActivasTable from "./Tablas/TelasActivasTable"
 import TelasInactivasTable from "./Tablas/TelasInactivasTable"
 import { Col, Divider, Row, Tabs } from "antd";
@@ -25,14 +24,7 @@ const Tela = () => {
         <Divider style={{textTransform: "uppercase"}}>
           Detalles de la tela
         </Divider>
-        <Row  gutter={24}>
-            <Col span={10}>
-              <TelaInfoCard/>
-            </Col>
-            <Col span={12}>
-              <Tabs defaultActiveKey="1" items={items} />
-            </Col>
-        </Row>
+        <Tabs defaultActiveKey="1" items={items} />
       </Plantilla>
     );
   };

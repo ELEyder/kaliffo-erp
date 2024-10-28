@@ -1,6 +1,6 @@
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 import React from "react";
-import { addTela  } from "../../../Shared/api/Tela";
+import { addTelas  } from "../../../Shared/api/Tela";
 
 const AddProductoModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();

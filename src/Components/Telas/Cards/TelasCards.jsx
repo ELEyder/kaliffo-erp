@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
-import AddTelaModal from "../Modals/AddTelaModal";
+import { useNavigate } from 'react-router-dom';
 import AddTelasModal from "../Modals/AddTelasModal";
-import DeleteProductoModal from "../Modals/DeleteProductoModal";
-import UpdateProductoModal from "../Modals/UpdateProductoModal"
 import { getTelas} from "../../../Shared/api/Tela";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-import { Card, Col, Row, List, FloatButton, Tooltip } from "antd";
-
-const {Meta} = Card
-
+import { Card, Flex, FloatButton } from "antd";
 
 const TelasCards = () => {
-
-  const [id, setId] = useState(0)
+  const navigate = useNavigate(); 
   const [telas, setTelas] = useState([]);
   const [OpenAddTela,setOpenAddTela] = useState(false)
   const [OpenUpdateProducto,setOpenUpdateProducto] = useState(false)
@@ -26,54 +18,27 @@ const TelasCards = () => {
 
   return (
     <>
-      <Row gutter={16}>
-        {telas.map((tela, index) => {
-          return (
-            <Col key={index} span={5} style={{ margin: "0 0 24px 0", textAlign: "center" }}>
-              <Card
-                title="SIN DATOS"
-                actions={[
-                  <Tooltip title="Ver Detalles" className={"card-view"}>
-                    {/* <Link to={`/tela/${tela.tela}`}> */}
-                    <Link to={`/almacen/tela/1`}>
-                      <EyeOutlined style={{color: "white"}} key="view" />
-                    </Link>
-                  </Tooltip>,
-                ]}
-              >
-                <List
-                  itemLayout="horizontal"
-                  dataSource={[
-                    { title: "STOCK DE ROLLOS", value: tela.stock },
-                  ]}
-                  renderItem={(item) => (
-                    <List.Item>
-                      <b>{item.title}</b>
-                      <span style={{ float: "right" }}>{item.value}</span>
-                    </List.Item>
-                  )}/>
-              </Card>
-            </Col>
-          );
+    <link rel="stylesheet" href="/css/tela/card.css" />
+    <Flex wrap gap="middle" justify={'space-evenly'}>
+    {telas.map((tela, index) => {
+      return(
+
+            <Card key={index} title={tela.tipo} className="cardTela" onClick={() => navigate(`/almacen/tela/${tela.tipo}`)}>
+              <p>Stock por tela</p>
+              <div className="body">      
+                <img src="/svg/tela/box.svg" alt="" className="box"/>
+                <p className="number">{tela.STOCK}</p>
+              </div>
+               </Card>
+      )
         })}
-      </Row>
+    </Flex>
 
       <FloatButton tooltip="Añadir Tela" onClick={()=>setOpenAddTela(true)}/>
 
       <AddTelasModal
         openModal = {OpenAddTela}
         closeModal={() => setOpenAddTela(false)}
-        reload = {()=>setReload(!reload)}
-      />
-      <UpdateProductoModal
-        openModal = {OpenUpdateProducto}
-        closeModal={() => setOpenUpdateProducto(false)}
-        id = {id}
-        reload = {()=>setReload(!reload)}
-      />
-      <DeleteProductoModal
-        openModal = {OpenDeleteProducto}
-        closeModal={() => setOpenDeleteProducto(false)}
         reload = {()=>setReload(!reload)}
       />
     </>

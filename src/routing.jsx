@@ -9,6 +9,7 @@ import Ventas from "./Components/Ventas/Ventas"
 import Telas from "./Components/Telas/Telas"
 import Tela from "./Components/Tela/Tela"
 import Lotes from "./Components/Lotes/Lotes"
+import Lote from "./Components/Lote/Lote"
 import ErrorPagina from "./Components/Error/ErrorPagina"
 import Compras from "./Components/Compras/Compras";
 
@@ -26,8 +27,9 @@ export const Routing = () =>{
             <Route path="/compras" element={<Compras/>}/>
             <Route path="/ventas/:tipoVenta" element={<Ventas />}/>
             <Route path="/almacen/telas" element={<Telas />}/>
-            <Route path="/almacen/tela/:id" element={<Tela />}/>
+            <Route path="/almacen/tela/:tipo" element={<Tela />}/>
             <Route path="/lotes" element={<Lotes />}/>
+            <Route path="/lote/:id" element={<Lote />}/>
             <Route path="*" element={<ErrorPagina />} />
         </Routes>
     )

@@ -1,106 +1,58 @@
 import { showNotificationAdd } from "../Notifications"
-export const getTelas = async (setProducto) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    const Telas = [{
-        id : "1",
-        nombre : "Sin datos",
-        tipo : "Sin datos",
-        stock : "Sin datos"
-    },
-    {
-        id : "1",
-        nombre : "Sin datos",
-        tipo : "Sin datos",
-        stock : "Sin datos"
-    }]
-    // const productoData = await response.json()
-    // console.log(productoData)
-    setProducto(Telas)
-  }
-  
-  export const getTelasActivas = async (setProducto) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    const Telas = [
-        {
-          n: 1,
-          metraje: "5m",
-          articulo: "Tela de Jean",
-          empresaCompra: "Textiles S.A.",
-          fechaCompra: "2024-10-17",
-        },
-        {
-          n: 2,
-          metraje: "10m",
-          articulo: "Cierre Metálico",
-          empresaCompra: "Accesorios SRL",
-          fechaCompra: "2024-09-30",
-        },
-        {
-          n: 3,
-          metraje: "15m",
-          articulo: "Botones de Metal",
-          empresaCompra: "Metalurgica Peruana",
-          fechaCompra: "2024-09-25",
-        }
-      ];
-    // const productoData = await response.json()
-    // console.log(productoData)
-    setProducto(Telas)
-  }
-  
-  export const getTelasInactivas = async (setProducto) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    const Telas = [
-        {
-          n: 1,
-          metraje: "5m",
-          articulo: "Tela de Jean",
-          empresaCompra: "Textiles S.A.",
-          fechaCompra: "2024-10-17",
-        },
-        {
-          n: 2,
-          metraje: "10m",
-          articulo: "Cierre Metálico",
-          empresaCompra: "Accesorios SRL",
-          fechaCompra: "2024-09-30",
-        },
-        {
-          n: 3,
-          metraje: "15m",
-          articulo: "Botones de Metal",
-          empresaCompra: "Metalurgica Peruana",
-          fechaCompra: "2024-09-25",
-        }
-      ];
-    // const productoData = await response.json()
-    // console.log(productoData)
-    setProducto(Telas)
-  }
-  
-  export const getTiposTela = async (setProducto) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    const Telas = [
-        {
-          id: 1,
-          nombre: "Premium",
-        },
-        {
-          id: 2,
-          nombre: "Clásica",
-        },
-      ];
-    // const productoData = await response.json()
-    // console.log(productoData)
-    setProducto(Telas)
-  }
+export const getTelas = async (setData) => {
+  const response = await fetch(`http://localhost:3000/telas/`)
+  const data = await response.json()
+  console.log(data)
+  setData(data)
+}
+export const getTelasActivas = async (tipo,setData) => {
+  const response = await fetch(`http://localhost:3000/telas/${tipo}?estado=1`)
+  var data = await response.json()
+  var count = 0
+  data = data.map(tela => { 
+    const fecha_compra = new Date(tela.fecha_compra);
+    count = count + 1
+    return {
+        ...tela,
+        fecha_compra: fecha_compra.toLocaleDateString("es-ES"),
+        n: count,
+    };
+});
+  console.log(data)
+  setData(data)
+}
+export const getTelasInactivas = async (tipo,setData) => {
+  const response = await fetch(`http://localhost:3000/telas/${tipo}?estado=2`)
+  var data = await response.json()
+  var count = 0
+  data = data.map(tela => { 
+    const fecha_compra = new Date(tela.fecha_compra);
+    count = count + 1
+    return {
+        ...tela,
+        fecha_compra: fecha_compra.toLocaleDateString("es-ES"),
+        n: count,
+    };
+});
+  console.log(data)
+  setData(data)
+}
 
-  export const addTela = async (values) => {
-    // const response = await fetch(`http://localhost:3000/telas/`)
-    // const productoData = await response.json()
-    // console.log(productoData)
-    values["fecha"] = Date.now()
-    console.log(values)
-    showNotificationAdd("Tela agregada")
-  }
-  
+export const getTiposTela = async (setTelas) => {
+  const response = await fetch(`http://localhost:3000/telas/tipo`)
+  const data = await response.json()
+  console.log(data)
+  setTelas(data)
+}
+
+export const addTelas = async (values) => {
+  const response = await fetch(`http://localhost:3000/telas/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values)
+  })
+  console.log(response)
+  showNotificationAdd("Tela agregada")
+}

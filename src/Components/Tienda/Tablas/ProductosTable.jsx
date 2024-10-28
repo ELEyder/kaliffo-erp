@@ -100,10 +100,6 @@ const ProductosTable = () => {
           return (
             <Row gutter={[8, 8]} justify="center" align="middle">
               <Col>
-                <Button type="primary" block
-                >Editar</Button>
-              </Col>
-              <Col>
                 <Popconfirm
                   title="ELIMINAR"
                   description="DESEA ELIMINAR A"

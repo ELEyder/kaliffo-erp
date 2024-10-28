@@ -132,7 +132,6 @@ const VentasTable = () => {
           }
         })}
       />
-      <FloatButton tooltip="Añadir Nuevo" onClick={() => setOpenAddUsuario(true)} />
 
       <AddVentaModal
         openModal={OpenAddVentaModal}

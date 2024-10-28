@@ -4,7 +4,7 @@ import AddTiendaModal from "../Modals/AddTiendaModal";
 import { getTiendas } from "../../../Shared/api/Tienda";
 import DeleteTiendaModal from "../Modals/DeleteTiendaModal";
 import UpdateTiendaModal from "../Modals/UpdateTiendaModal"
-import { Card, Col, Row, FloatButton, Popconfirm, Tooltip } from "antd";
+import { Card, Flex, Row, FloatButton, Popconfirm, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 
 const {Meta} = Card
@@ -24,10 +24,9 @@ const Tiendas_cards = () => {
 
   return (
     <>
-    <Row gutter={16}>
+    <Flex gap={"small"} justify="space-evenly" gutter={16}>
       {tiendas.map((tienda, index) => (
-        <Col key={index} span={8}>
-          <Card style={{textAlign:"center"}} title={
+          <Card style={{textAlign:"center", width: "300px"}} title={
             <div style={{marginTop:"10px"}}>
               <h3 style={{fontSize:"20px",fontWeight:"bold"}}>{tienda.tienda}</h3>
             </div>
@@ -50,8 +49,9 @@ const Tiendas_cards = () => {
 
             <Popconfirm
             title="ELIMINAR"
-            description="DESEA ELIMINAR A"
+            description="DESEA ELIMINAR ESTA TIENDA"
             okText="Confirmar"
+            placement="bottom"
             onConfirm={(e) =>{
               e.stopPropagation();
               setId(tienda.tienda_id)
@@ -79,9 +79,8 @@ const Tiendas_cards = () => {
               </>
             }/>
           </Card>
-        </Col>
       ))}
-    </Row>
+    </Flex>
 
     <FloatButton tooltip="Añadir" onClick={() => setOpenAddTienda(true)}/>
 
