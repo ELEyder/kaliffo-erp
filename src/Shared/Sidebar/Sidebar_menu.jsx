@@ -98,10 +98,15 @@ const Items=[
         ]
     },
     {
+        icon:<CoffeeOutlined/>,
+        label:(<Link to={"/compras"} style={{textDecoration:"none"}} >Compras</Link>)
+    },
+    {
+
         label:<div style={{color:"white", alignItems: "end", fontWeight: "500", fontSize:"16px"}}>PRODUCCIÓN</div>
     },
     {
-        key:"almacenTelas",
+        key:"sub7",
         label:(<Link to={"/almacen/telas"} style={{textDecoration:"none"}} >Almacen de Telas</Link>),
         icon:<BookOutlined /> ,
     },
