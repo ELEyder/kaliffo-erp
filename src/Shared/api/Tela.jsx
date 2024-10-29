@@ -22,7 +22,7 @@ export const getTelasActivas = async (tipo,setData) => {
   setData(data)
 }
 export const getTelasInactivas = async (tipo,setData) => {
-  const response = await fetch(`http://localhost:3000/telas/${tipo}?estado=2`)
+  const response = await fetch(`http://localhost:3000/telas/${tipo}?estado=0`)
   var data = await response.json()
   var count = 0
   data = data.map(tela => { 

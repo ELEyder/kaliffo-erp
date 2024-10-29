@@ -5,14 +5,13 @@ import { getLotes } from "../../../Shared/api/Lote";
 import { PlusOutlined } from "@ant-design/icons";
 import { Card, Flex, FloatButton, Tooltip } from "antd";
 
-const {Meta} = Card
-
+const { Meta } = Card;
 
 const LotesCards = () => {
-
   const [lotes, setLotes] = useState([]);
-  const [OpenAddProductoModal,setOpenAddProductoModal] = useState(false)
-  const [reload, setReload] = useState(false)
+  const [openAddProductoModal, setOpenAddProductoModal] = useState(false);
+  const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     getLotes(setLotes);
@@ -20,70 +19,42 @@ const LotesCards = () => {
 
   return (
     <>
-        <Flex wrap gap="middle">
+      <Flex wrap gap="middle">
+        {lotes.map((lote) => {
+          const statusColors = Array(lote.estado + 1).fill(colors[lote.estado]);
+          statusColors.push(...Array(4 - lote.estado).fill("white"));
 
-        {lotes.map((lote, index) => {
-          var status = lote.estado
-          var colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"]
-          var colors = Array(status + 1).fill(colors[status]);
-          for (var i = 0; i < 4-status; i++) colors.push("white")
-          console.log(colors)
           return (
-            <Link to={`/lote/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
+            <Link key={lote.lote_id} to={`/lote/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
               <Card
-              style={{
-                width: "300px"
-              }}
+                style={{ width: "300px" }}
                 title={`Lote ${lote.lote_id}`}
-              onClick={ () =>
-                console.log(lote)
-              }
+                onClick={() => console.log(lote)}
               >
-                <Meta
-                  style={{ textAlign: "left" }}
-                  title={`Fecha de Creación: ${lote.fecha_creacion}`}
-                />
-                <Meta
-                  style={{ textAlign: "left" }}
-                  title={`Cantidad Total: ${lote.cantidad_total}`}
-                />
-                  <div className="cardLoteIcons">
-                    <Tooltip title="Corte">
-                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[1]}}>
-                      <img className="cardSvgLote" src="/svg/lote/1.svg" alt="" />
-                    </div>
+                <Meta title={`Fecha de Creación: ${lote.fecha_creacion}`} />
+                <Meta title={`Cantidad Total: ${lote.cantidad_total}`} />
+                <div className="cardLoteIcons">
+                  {["Corte", "Lavandería", "Taller", "Almacen"].map((title, index) => (
+                    <Tooltip key={index} title={title}>
+                      <div className="cardLoteIcon" style={{ backgroundColor: statusColors[index + 1] }}>
+                        <img className="cardSvgLote" src={`/svg/lote/${index + 1}.svg`} alt={title} />
+                      </div>
                     </Tooltip>
-                    <Tooltip title="Lavandería">
-                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[2]}}>
-
-                      <img className="cardSvgLote" src="/svg/lote/2.svg" alt="" />
-                    </div>
-                    </Tooltip>
-                    <Tooltip title="Taller">
-                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[3]}}>
-
-                      <img className="cardSvgLote" src="/svg/lote/3.svg" alt="" />
-                    </div>
-                    </Tooltip>
-                    <Tooltip title="Almacen">
-                    <div className={`cardLoteIcon`} style={{backgroundColor: colors[4]}}>
-
-                      <img className="cardSvgLote" src="/svg/lote/4.svg" alt="" />
-                    </div>
-                    </Tooltip>
-                  </div>
+                  ))}
+                </div>
               </Card>
-              </Link>
+            </Link>
           );
         })}
-            </Flex>
-      <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={()=>setOpenAddProductoModal(true)}/>
+      </Flex>
+      <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={() => setOpenAddProductoModal(true)} />
       <AddLoteModal
-        openModal = {OpenAddProductoModal}
+        openModal={openAddProductoModal}
         closeModal={() => setOpenAddProductoModal(false)}
-        reload = {()=>setReload(!reload)}
+        reload={() => setReload(!reload)}
       />
     </>
   );
 };
+
 export default LotesCards;

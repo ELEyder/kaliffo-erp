@@ -4,9 +4,8 @@ import Plantilla from "../../Shared/Plantilla";
 import TimeLine from "./TimeLine/TimeLine";
 import CorteTable from "./Tables/CorteTable";
 import Status from "./Status/Status";
-import { Divider, Row, Col, FloatButton} from "antd";
+import { Divider, Row, Col } from "antd";
 const Lote = () => {
-    const { id } = useParams()
     return(
         <Plantilla>
             <Divider>DETALLES DEL LOTE</Divider>
@@ -19,9 +18,6 @@ const Lote = () => {
                     <Status/>
                 </Col>
             </Row>
-            <FloatButton 
-            style={{ insetInlineStart: 270 }}
-            tooltip="Añadir Detalle"/>
         </Plantilla>
     )
 }
