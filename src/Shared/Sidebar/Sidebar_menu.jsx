@@ -37,12 +37,13 @@ const Items=[
                 key:"4",
                 icon:<UserOutlined /> ,
                 label:(
-                    <Link to="/trabajadores/tipo/costureros" style={{textDecoration:"none"}}>Costureros</Link>
+                    <Link to="/trabajadores/costureros" style={{textDecoration:"none"}}>Costureros</Link>
                 ),
             }
         ]
     },
     {
+        
         key:"sub2",
         icon:<HarmonyOSOutlined />,
         label:(<Link to={"/tiendas"} style={{textDecoration:"none"}} >Tiendas</Link>)
