@@ -16,28 +16,28 @@ const Items=[
                 key:"1",
                 icon:<UserOutlined />,
                 label:(
-                    <Link to="/trabajadores/ventas" style={{textDecoration:"none"}}>Vendedores</Link>
+                    <Link to="/trabajadores/tipo/ventas" style={{textDecoration:"none"}}>Vendedores</Link>
                 ),
             },
             {
                 key:"2",
                 icon:<UserOutlined /> ,
                 label:(
-                    <Link to="/trabajadores/talleres" style={{textDecoration:"none"}}>Talleres</Link>
+                    <Link to="/trabajadores/tipo/talleres" style={{textDecoration:"none"}}>Talleres</Link>
                 ),
             },
             {
                 key:"3",
                 icon:<UserOutlined /> ,
                 label:(
-                    <Link to="/trabajadores/miscelaneos" style={{textDecoration:"none"}}>Miscelaneos</Link>
+                    <Link to="/trabajadores/tipo/miscelaneos" style={{textDecoration:"none"}}>Miscelaneos</Link>
                 ),
             },
             {
                 key:"4",
                 icon:<UserOutlined /> ,
                 label:(
-                    <Link to="/trabajadores/costureros" style={{textDecoration:"none"}}>Costureros</Link>
+                    <Link to="/trabajadores/tipo/costureros" style={{textDecoration:"none"}}>Costureros</Link>
                 ),
             }
         ]
