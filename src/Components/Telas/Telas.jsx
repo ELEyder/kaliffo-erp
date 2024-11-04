@@ -7,12 +7,12 @@ import { Divider } from "antd";
 const Telas = () =>{
 
     return(
-        <Plantilla>
+        <>
             <Divider style={{textTransform: "uppercase"}}>
                 Telas
             </Divider>
             <TelasCards/> 
-        </Plantilla>
+        </>
     )
 }
 

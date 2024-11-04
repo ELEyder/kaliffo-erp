@@ -9,12 +9,10 @@ const Ventas = () => {
   const { tipo } = useParams();
 
   return (
-    <Plantilla>
+    <>
       <Divider style={{textTransform: "uppercase"}}> {tipo} </Divider>
-
       <VentasTable/>
-
-    </Plantilla>
+    </>
   );
 };
 

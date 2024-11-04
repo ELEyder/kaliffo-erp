@@ -7,14 +7,12 @@ import AddCompraModal from "./Modals/AddCompraModal";
 
 const Compras = () => {
   return (
-    <Plantilla>
+    <>
       <Divider style={{ textTransform: "uppercase" }}>
         COMPRAS
       </Divider>
-      
       <TablaCompras reload={()=>setReload(!reload)}/>
-
-    </Plantilla>
+    </>
   );
 };
 

@@ -12,9 +12,7 @@ function App() {
   return (
     <ConfigProvider locale={locale}>
       <Router>
-        <Plantilla>
-          <Routing />
-        </Plantilla>
+        <Routing />
       </Router>
     </ConfigProvider>
   )

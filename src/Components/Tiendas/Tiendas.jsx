@@ -5,10 +5,10 @@ import { Divider } from "antd";
 
 const Tiendas_main = () => {
   return (
-    <Plantilla>
+    <>
       <Divider>TIENDAS</Divider>
       <TiendasCards />
-    </Plantilla>
+    </>
   );
 };
 

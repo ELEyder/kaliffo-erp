@@ -7,13 +7,13 @@ import { Divider } from "antd";
 const Lotes = () =>{
 
     return(
-        <Plantilla>
+        <>
             <Divider style={{textTransform: "uppercase"}}>
                 Lotes
             </Divider>
             <LotesCards/>
             <Divider/>
-        </Plantilla>
+        </>
     )
 }
 

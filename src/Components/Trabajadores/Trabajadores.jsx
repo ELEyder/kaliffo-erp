@@ -13,7 +13,7 @@ const Trabajadores = () => {
   }
 
   return (
-    <Plantilla>
+    <>
       <Divider style={{textTransform: "uppercase"}}>
         {tipo_trabajador}
       </Divider>
@@ -21,11 +21,7 @@ const Trabajadores = () => {
       <TrabajadoresTable
         reload={() => setReload(!reload)}
       />
-
-
-
-
-    </Plantilla>
+    </>
   );
 };
 
