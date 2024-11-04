@@ -19,7 +19,7 @@ const ProductosCards = () => {
   const [OpenDeleteProducto,setOpenDeleteProducto] = useState(false)
   const [reload, setReload] = useState(false)
   const imgError = (e) => {
-    e.target.src = '/img/generic.png';
+    e.target.src = '/img/productos/generic.png';
   };
 
   useEffect(() => {

@@ -5,13 +5,16 @@ import locale from 'antd/locale/es_ES';
 import dayjs from 'dayjs';
 import 'dayjs/locale/es'; 
 import { ConfigProvider } from 'antd';
+import Plantilla from "./Shared/Plantilla";
 dayjs.locale('es')
 
 function App() {
   return (
     <ConfigProvider locale={locale}>
       <Router>
-        <Routing />
+        <Plantilla>
+          <Routing />
+        </Plantilla>
       </Router>
     </ConfigProvider>
   )
