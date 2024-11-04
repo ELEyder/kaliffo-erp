@@ -1,5 +1,4 @@
 import React from "react";
-import Plantilla from "../../Shared/Plantilla";
 import TiendasCards from "./Cards/TiendasCards";
 import { Divider } from "antd";
 

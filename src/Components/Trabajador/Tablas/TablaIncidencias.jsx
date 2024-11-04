@@ -83,7 +83,6 @@
                                 okText="Confirmar"
                                 cancelText="NO"
                                 onConfirm={() => {
-                                  console.log("Borrado")
                                   deleteIncidenciaById(record.incidencia_id)
                                   setReload(!reload)
                                 }}

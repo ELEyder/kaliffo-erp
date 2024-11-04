@@ -1,4 +1,4 @@
-import { showNotification, showNotificationAdd, showNotificationDelete, showNotificationError, showNotificationUpdate } from "../Notifications"
+import { showNotification } from "../Notifications"
 
 export const addProducto = async (values) => {
   let Producto = {
@@ -16,14 +16,13 @@ export const addProducto = async (values) => {
       body: JSON.stringify(Producto),
     })
   } catch (error) {
-    console.log(error)
+    showNotification("error", "Error al añadir producto", error)
   }
 }
 
 export const getProductoById = async (id, setProducto) => {
   const response = await fetch(`http://localhost:3000/producto/${id}`)
   const productoData = await response.json()
-  console.log(productoData)
   setProducto(productoData)
 }
 
@@ -40,9 +39,7 @@ export const updateProducto = async (id, values) => {
     },
     body: JSON.stringify(producto),
   })
-  showNotificationUpdate("Producto Actualizado")
-  console.log(JSON.stringify(producto))
-  console.log(response)
+  showNotification("update", "Producto Actualizado")
 }
 
 export const deleteProductoById = async (id, values) => {
@@ -52,8 +49,7 @@ export const deleteProductoById = async (id, values) => {
       "Content-Type": "application/json"
     }
   })
-  showNotificationDelete("Producto Eliminado")
-  console.log(response)
+  showNotification("delete","Producto Eliminado")
 }
 
 export const deleteProductoByTienda = async (id, id_Tienda) => {
@@ -64,33 +60,29 @@ export const deleteProductoByTienda = async (id, id_Tienda) => {
     }
   })
   showNotification("delete","Producto Eliminado")
-  console.log(response)
 }
 
 export const getProductos = async (seteador) => {
   const response = await fetch(`http://localhost:3000/producto`)
   const productosData = await response.json()
-  console.log(productosData)
   seteador(productosData)
 }
 
 export const getProductosByTienda = async (id, setTabla) => {
   const response = await fetch(`http://localhost:3000/producto?tienda_id=${id}`)
   const productoData = await response.json()
-  console.log(productoData)
   setTabla(productoData)
 }
 
-export const getProductosNuevos = async (id, seteador) => {
+export const getProductosNuevos = async (id, setData) => {
   try {
     const response = await fetch(
       `http://localhost:3000/producto?loose_id=${id}`
     );
     const data = await response.json();
-    seteador(data);
-    console.log(data)
+    setData(data);
   } catch (error) {
-    console.log(error)
+    setData([]);
   }
 }
 
@@ -98,14 +90,12 @@ export const getColoresProductos = async (value, setColores) => {
   try {
     const response = await fetch(`http://localhost:3000/producto/colores/${value}`);
     const data = await response.json();
-    console.log(`Dato devolvido por http://localhost:3000/producto/colores/${value}`)
-    console.log(data)
     setColores(prevColores => ({
       ...prevColores,
       [value] : data
   }))
   } catch (error) {
-    console.log("Error al obtener los colores del producto:", error);
+    showNotification("error","Error al obtener los colores del producto", error)
   }
 };
 
@@ -117,7 +107,7 @@ export const getProductoTiendaDetalle = async (id, idp, setData) => {
     const data = await response.json();
     setData(data);
   } catch (error) {
-    console.log(error)
+    showNotification("error","Error al obtener los detalles del producto por tienda", error)
   }
 }
 
@@ -130,14 +120,9 @@ export const addProductoDetalle = async (tiendaId, Producto) => {
       },
       body: JSON.stringify(Producto)
     })
-    console.log(response)
-    if (response.ok)
-    showNotificationAdd("Producto Añadido Correctamente")
-    else
-    showNotificationError("Error al añadir el producto", "Para mas información, revisa la consola")
+    showNotification("add","Producto Añadido Correctamente")
   } catch (error) {
-    showNotificationError("Error al añadir el producto", "Para mas información, revisa la consola")
-    console.log(error)
+    showNotification("error","Error al añadir el producto", "Para mas información, revisa la consola")
   }
 }
 
@@ -148,9 +133,8 @@ export const getProductoDetalle = async (id,idp, setTiendas) => {
     );
     const data = await response.json();
     setTiendas(data);
-    console.log(data)
   } catch (error) {
-    console.log(error);
+    showNotification("error","Error al obtener los detalles del producto", error)
   }
 };
 
@@ -163,8 +147,7 @@ export const setUpdateUsuario = async (id, form) => {
       ["precioBase"]: data.precioBase,
       ["descuento"]: data.descuento,
     });
-    console.log(data)
   } catch (error) {
-    console.log(error);
+    showNotification("error","Error al obtener los datos", error)
   }
 };

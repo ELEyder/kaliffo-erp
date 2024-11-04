@@ -30,11 +30,9 @@ export const addUsuario = async (tipoTrabajador, values) => {
         },
         body: JSON.stringify(Trabajador),
       });
-      showNotificationAdd("Usuario añadido exitosamente")
-      console.log(response)
+      showNotification("add","Usuario añadido exitosamente")
     } catch (error) {
-      console.log(error);
-      showNotificationError("Error al añadir el usuario")
+      showNotification("error","Error al añadir el usuario")
     }
   };
 
@@ -42,7 +40,6 @@ export const getUsuarioById = async (id, setUsuario) => {
     const response = await fetch(`http://localhost:3000/usuario/${id}`)
     const usuarioData= await response.json()
     setUsuario(usuarioData)
-    console.log(usuarioData)
 }
 
 export const updateUsuario = async (id, values, originales) => {
@@ -68,17 +65,14 @@ export const updateUsuario = async (id, values, originales) => {
       },
       body: JSON.stringify(valoresnuevos),
     })
-    console.log(response)
     showNotification("update","Usuario actualizado exitosamente")
   } catch (error) {
-    console.log(error)
     showNotification("error","Error al actualizar el usuario")
   }
 
 };
 
 export const deleteUsuarioById = async (id) => {
-  console.log(id)
   try {
     const response = await fetch(`http://localhost:3000/usuario/delete/${id}`, {
       method: "DELETE",
@@ -86,12 +80,10 @@ export const deleteUsuarioById = async (id) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(response)
     showNotification("delete","Usuario eliminado")
     return true
 
   } catch (error) {
-    console.log(error);
     showNotification("error","Error al eliminar el usuario")
   }
 };
@@ -111,7 +103,6 @@ export const getUsuarios = async (tipo, setData) => {
         }
       })
     setData(trabajadores);
-    console.log(trabajadores)
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -145,7 +136,6 @@ export const updateUsuarioTienda = async (idTienda, values) => {
       );
     showNotification("update","Usuario actualizado exitosamente")
   } catch (error) {
-    console.log(error);
     showNotification("error", "Error al actualizar usuario")
   }
 };
@@ -156,10 +146,9 @@ export const getUsuariosTienda = async (id, setTabla) => {
       `http://localhost:3000/usuario?tienda_id=${id}`
     );
     const data = await response.json();
-    console.log(data)
     setTabla(data);
   } catch (error) {
-    console.log(error);
+    showNotification("error", "Error al obtener los usuarios por tienda")
   }
   
 };
@@ -179,6 +168,6 @@ export const setUpdateUsuario = async (id, form,seteadorO) => {
       ["tienda_id"]:data.tienda_id
     });
   } catch (error) {
-    console.log(error);
+    showNotification("error", "Error al obtener el usuario")
   }
 };

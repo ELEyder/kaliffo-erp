@@ -155,7 +155,6 @@ const AddTelasModal = ({
         }
          onClick={ async ()=> {
           const values = form.getFieldsValue().items
-          console.log(values)
           await addTelas(values)
           form.resetFields()
           reload()

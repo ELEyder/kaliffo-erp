@@ -19,7 +19,6 @@ export const getVentas = async (tipo, setTablaDatos) => {
             id: count,
         };
     });
-    console.log(detallesConNuevoParametro)
     setTablaDatos(detallesConNuevoParametro)
 }
 
@@ -82,6 +81,5 @@ export const getVentaById = async (id, setTablaDatos) => {
     usuarioData.tienda = tienda[usuarioData.tienda_id]
     usuarioData.tipoPago = metodosPago[usuarioData.tipoPago]
     usuarioData.detalles = detallesConNuevoParametro
-    console.log(usuarioData)
     setTablaDatos(usuarioData)
 }

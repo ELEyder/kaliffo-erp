@@ -1,3 +1,5 @@
+import { showNotification } from "../Notifications";
+
 export const getReporteUsuario = async (id) => {
     try {
       const response = await fetch(`http://localhost:3000/usuario/reporte/${id}`, {
@@ -5,7 +7,7 @@ export const getReporteUsuario = async (id) => {
       });
   
       if (!response.ok) {
-        console.log("Error al obtener el PDF");
+        showNotification("error","Error al obtener el PDF");
       }
   
       const pdf = await response.blob();
@@ -13,7 +15,7 @@ export const getReporteUsuario = async (id) => {
       const url = window.URL.createObjectURL(pdf);
       window.open(url);
     } catch (error) {
-      console.log("Error:", error);
+        showNotification("error","Error al obtener el PDF", error);
     }
   };
   

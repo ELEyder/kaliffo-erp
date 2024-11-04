@@ -2,7 +2,6 @@ import { showNotification } from "../Notifications"
 export const getTelas = async (setData) => {
   const response = await fetch(`http://localhost:3000/telas/`)
   const data = await response.json()
-  console.log(data)
   setData(data)
 }
 export const getTelasActivas = async (tipo,setData) => {
@@ -18,7 +17,6 @@ export const getTelasActivas = async (tipo,setData) => {
         n: count,
     };
 });
-  console.log(data)
   setData(data)
 }
 export const getTelasInactivas = async (tipo,setData) => {
@@ -34,14 +32,12 @@ export const getTelasInactivas = async (tipo,setData) => {
         n: count,
     };
 });
-  console.log(data)
   setData(data)
 }
 
 export const getTiposTela = async (setTelas) => {
   const response = await fetch(`http://localhost:3000/telas/tipo`)
   const data = await response.json()
-  console.log(data)
   setTelas(data)
 }
 
@@ -53,7 +49,6 @@ export const addTelas = async (values) => {
     },
     body: JSON.stringify(values)
   })
-  console.log(response)
   showNotification("add", "Tela agregada")
 }
 
@@ -61,6 +56,5 @@ export const deleteTelaById = async (id) =>{
   const response = await fetch(`http://localhost:3000/telas/desactivar/${id}`, {
     method: "PUT",
   })
-  console.log(response)
   showNotification("delete","Tela agregada")
 }

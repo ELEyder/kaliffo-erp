@@ -14,7 +14,6 @@ export const addPago = async (id, data, reload, setReload, api) => {
         body : JSON.stringify(Pago),
     })
     api.open(showNotificationAdd("Pago añadido",""))
-    console.log(response)
     setReload(reload == true ? false : true)
 }
 
@@ -29,7 +28,6 @@ export const getPagosById = async (id, setPago)  => {
         };
     });
     setPago(detallesConNuevoParametro)
-    console.log(detallesConNuevoParametro)
 }
 
 export const updatePagoById = async (id, reload, setReload) => {
@@ -40,7 +38,6 @@ export const updatePagoById = async (id, reload, setReload) => {
         },
     })
     setReload(!reload)
-    console.log(response)
 }
 
 export const deletePagoById = async (id) => {
@@ -52,5 +49,4 @@ export const deletePagoById = async (id) => {
     })
     setReload(!reload)
     api.open(showNotificationDelete("Pago eliminado",""))
-    console.log(response)
 }

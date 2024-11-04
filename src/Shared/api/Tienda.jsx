@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationDelete, showNotificationUpdate } from "../Notifications"
+import { showNotification } from "../Notifications"
 export const addTienda = async (values) => {
     let Tienda = {
         tienda:values.tienda,
@@ -14,9 +14,8 @@ export const addTienda = async (values) => {
             },
             body: JSON.stringify(Tienda),
         })
-        showNotificationAdd("Tienda añadida correctamente")
+        showNotification("add","Tienda añadida correctamente")
     } catch (error) {
-        console.log(error)
     }
 
 }
@@ -40,9 +39,7 @@ export const updateTienda = async (id, values) => {
     },
     body: JSON.stringify(Tienda),
   })
-  showNotificationUpdate("Producto Actualizado")
-  console.log(JSON.stringify(Tienda))
-  console.log(response)
+  showNotification("update","Producto Actualizado")
 }
 
 export const deleteTiendaById = async (id, values) => {
@@ -52,14 +49,12 @@ export const deleteTiendaById = async (id, values) => {
       "Content-Type": "application/json"
     }
   })
-  showNotificationDelete("Producto Eliminado")
-  console.log(response)
+  showNotification("delete", "Producto Eliminado")
 }
 
 export const getTiendas = async (setTiendas) => {
     const response = await fetch(`http://localhost:3000/tienda`)
     const data = await response.json()
-    console.log(data)
     setTiendas(data)
 }
 
@@ -70,9 +65,8 @@ export const getTiendasByProducto = async (id, setTiendas) => {
       );
       const data = await response.json();
       setTiendas(data);
-      console.log(data)
     } catch (error) {
-      console.log(error);
+      showNotification("error", "Error al obtener las tiendas")
     }
   };
 
@@ -85,8 +79,7 @@ export const getTiendasByProducto = async (id, setTiendas) => {
         ["direccion"]: data.direccion,
         ["telefono"]: data.telefono,
       });
-      console.log(data)
     } catch (error) {
-      console.log(error);
+      showNotification("error", "Error al obtener las tiendas")
     }
   };

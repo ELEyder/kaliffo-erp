@@ -11,7 +11,6 @@ export const getComprasDetalle = async(setCompraDetalle,id) =>{
     const response = await fetch(`http://localhost:3000/compras/detalle/${id}`)
     const compraData = await response.json()
     setCompraDetalle(compraData)
-    console.log(compraData)
 }
 
 export const getEmpresas = async (setEmpresas) =>{
@@ -47,7 +46,6 @@ export const addCompra = async (values) =>{
           });
           showNotificationAdd("Compra añadida exitosamente")
     } catch (error) {
-        console.log(error)
         showNotificationAdd("Error al añadir la compra")
     }
 }
@@ -60,12 +58,10 @@ export const eliminarcompra = async(compra_id) =>{
             "Content-Type": "application/json",
           },
         });
-        console.log(response)
         showNotificationDelete("delete","Usuario eliminado")
         return true
     
       } catch (error) {
-        console.log(error);
         showNotificationError("error","Error al eliminar el usuario")
       }
 }

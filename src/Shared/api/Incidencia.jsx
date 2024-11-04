@@ -7,7 +7,6 @@ export const addIncidencia = async (id, data) => {
         descripcion : data.descripcion,
         usuario_id : Number(id)
     }
-    console.log(Incidencia)
     const response = await fetch(`http://localhost:3000/incidencia/create`, {
         method : "POST",
         headers : {
@@ -15,14 +14,12 @@ export const addIncidencia = async (id, data) => {
         },
         body : JSON.stringify(Incidencia),
     })
-    console.log(response)
     showNotification("add","Incidencia añadida correctamente")
 }
 
 export const getIncidenciasById = async (id, setIncidencias) => {
     const response = await fetch(`http://localhost:3000/incidencia?usuario_id=${id}`)
     const incidenciasData = await response.json()
-    console.log(incidenciasData)
     let count = 0
     const detallesConNuevoParametro = incidenciasData.map(detalle => { 
         const fecha_creacion = new Date(detalle.fecha_creacion);
@@ -35,7 +32,6 @@ export const getIncidenciasById = async (id, setIncidencias) => {
         };
     });
     setIncidencias(detallesConNuevoParametro)
-    console.log(detallesConNuevoParametro)
 }
 
 export const updateIncidenciaById = async (id, values) => {
@@ -43,7 +39,6 @@ export const updateIncidenciaById = async (id, values) => {
         tipo : values.tipo,
         descripcion : values.descripcion,
     }
-    console.log(incidencia)
     const response = await fetch(`http://localhost:3000/incidencia/update/${id}`, {
         method: "PUT",
         headers: {
@@ -52,7 +47,6 @@ export const updateIncidenciaById = async (id, values) => {
         body: JSON.stringify(incidencia),
     })
     showNotification("update","Incidencia actualizada")
-    console.log(response)
 }
 
 export const deleteIncidenciaById = async (id) => {
@@ -63,5 +57,4 @@ export const deleteIncidenciaById = async (id) => {
         },
     })
     showNotification("delete", "Incidencia borrada")
-    console.log(response)
 }

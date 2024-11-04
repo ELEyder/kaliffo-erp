@@ -19,9 +19,6 @@ const AddPagoModal = ({
       setSelectedDate(date);
       const startOfWeek = date.startOf('week'); // Primer día de la semana
       const endOfWeek = date.endOf('week'); // Último día de la semana
-      console.log("Fecha seleccionada:", date.format("YYYY-MM-DD"));
-      console.log("Inicio de la semana:", startOfWeek.format("YYYY-MM-DD"));
-      console.log("Fin de la semana:", endOfWeek.format("YYYY-MM-DD"));
     }
   };
   return (

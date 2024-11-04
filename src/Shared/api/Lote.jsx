@@ -1,4 +1,5 @@
 import { showNotification } from "../Notifications"
+
 export const getLotes = async (setData) => {
   try {
     const response = await fetch(`http://localhost:3000/lotes`);
@@ -20,7 +21,14 @@ export const getLotes = async (setData) => {
       const response = await fetch(`http://localhost:3000/lotes/create`, {
           method : "POST",
       })
-      console.log(response)
       showNotification("add","Lote añadido correctamente")
 
   }
+
+  export const changeStatus = async () => {
+    const response = await fetch(`http://localhost:3000/lotes/sgte/1`, {
+        method : "POST",
+    })
+    showNotification("add","Estado pasasdo")
+
+}

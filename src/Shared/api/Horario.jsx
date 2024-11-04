@@ -23,7 +23,6 @@ export const getHorarioById = async (id, setHorario) => {
               fecha: fecha
             };
           });
-        console.log(asistenciasNormalizadas);
     
         setHorario(asistenciasNormalizadas);
       } catch (error) {
@@ -39,7 +38,6 @@ export const updateHorarioById = async (id, reload, setReload) => {
         },
     })
     setReload(reload == true ? false : true)
-    console.log(response)
 }
 
 export const deleteHorarioById = async (id, reload, setReload, api) => {
@@ -50,6 +48,5 @@ export const deleteHorarioById = async (id, reload, setReload, api) => {
         },
     })
     setReload(reload == true ? false : true)
-    console.log(response)
     showNotification("delete","Horario Eliminado")
 }

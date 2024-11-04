@@ -1,9 +1,9 @@
 import { Form, Modal, Select, Input, InputNumber, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
-import { addCorte } from "../../../Shared/api/Corte";
-import { getUsuarios } from "../../../Shared/api/Usuario";
-import { getProductos } from "../../../Shared/api/Producto";
-import { getTelas } from "../../../Shared/api/Tela";
+import { addCorte } from "../../../../Shared/api/Corte";
+import { getUsuarios } from "../../../../Shared/api/Usuario";
+import { getProductos } from "../../../../Shared/api/Producto";
+import { getTelas } from "../../../../Shared/api/Tela";
 import { useParams } from "react-router-dom";
 const { Option } = Select;
 

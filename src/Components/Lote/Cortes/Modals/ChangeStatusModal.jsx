@@ -1,29 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Modal, Select, Button, Card, Form, Input, Space, Typography } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
-import { getColoresProductos, getProductosNuevos, addProductoDetalle } from "../../../Shared/api/Producto";
-import FormItem from "antd/es/form/FormItem";
+import { Form, Modal, Select, Input, Button, Card, Typography } from "antd";
+import { getCorte } from "../../../../Shared/api/Corte";
 
+import { CloseOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 const { Option } = Select;
 
-const AddProductoModal = ({
-  openModal,
-  closeModal,
-  id,
-  reload
-}) => {
-  
+const ChangeStatusModal = ({ openModal, closeModal }) => {
   const [form] = Form.useForm();
-  const [productos, setProductos] = useState([])
-  const [colores, setColores] = useState({});
+  const { id } = useParams();
+  const [ lote_id, setId ] = useState(0);
+  const [data, setData] = useState([]);
 
-  useEffect(()=> {
-    getProductosNuevos(id, setProductos)
-  }, [id])
+  useEffect(() => {
+    getCorte(id, setData);
+  }, [id]);
 
-  const addColor = async (value) => {
-    await getColoresProductos(value, setColores);
-  }
   return (
     <>
       <Modal
@@ -59,17 +51,6 @@ const AddProductoModal = ({
                   />
                 }
               >
-                <Form.Item label="Producto" name={[field.name, 'producto_id']}>
-                  <Select onChange={addColor}>
-                    {
-                      productos.map(producto =>{
-                        return (
-                          <Option key={producto.producto_id} value={producto.producto_id}>{producto.nombre}</Option>
-                        )
-                      })
-                    }
-                  </Select>
-                </Form.Item>
 
                 {/* Nest Form.List */}
                 <Form.Item label="detalle">
@@ -125,7 +106,7 @@ const AddProductoModal = ({
         )}
       </Form.Item>
 
-      <FormItem>
+      <Form.Item>
         <Button onClick={ async ()=> {
           const values = form.getFieldsValue().items
           await addProductoDetalle(id, values)
@@ -134,11 +115,11 @@ const AddProductoModal = ({
           reload()
           closeModal()
         }} type="primary">Crear</Button>
-      </FormItem>
+      </Form.Item>
     </Form>
       </Modal>
     </>
   );
 };
 
-export default AddProductoModal;
+export default ChangeStatusModal;

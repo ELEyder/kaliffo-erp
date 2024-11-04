@@ -26,7 +26,7 @@ const Tiendas_cards = () => {
     <>
     <Flex gap={"small"} justify="space-evenly" gutter={16}>
       {tiendas.map((tienda, index) => (
-          <Card style={{textAlign:"center", width: "300px"}} title={
+          <Card key={index} style={{textAlign:"center", width: "300px"}} title={
             <div style={{marginTop:"10px"}}>
               <h3 style={{fontSize:"20px",fontWeight:"bold"}}>{tienda.tienda}</h3>
             </div>

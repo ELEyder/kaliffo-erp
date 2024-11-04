@@ -25,11 +25,10 @@ const LotesCards = () => {
           statusColors.push(...Array(4 - lote.estado).fill("white"));
 
           return (
-            <Link key={lote.lote_id} to={`/lote/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
+            <Link key={lote.lote_id} to={`/lotes/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{ width: "300px" }}
                 title={`Lote ${lote.lote_id}`}
-                onClick={() => console.log(lote)}
               >
                 <Meta title={`Fecha de Creación: ${lote.fecha_creacion}`} />
                 <Meta title={`Cantidad Total: ${lote.cantidad_total}`} />

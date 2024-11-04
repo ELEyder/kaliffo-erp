@@ -7,7 +7,4 @@ export const getTallasByProducto = async (id, setTallas) => {
 export const getTallaDetalle = async (id, setTallas) => {
     const response = await fetch(`http://localhost:3000/producto/talla/${id}`)
     const data = await response.json()
-    setTallas(data)
-    console.log(data)
-    console.log(id)
-}
+    setTallas(data)}
