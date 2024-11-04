@@ -29,6 +29,12 @@ export const getLotes = async (setData) => {
     const response = await fetch(`http://localhost:3000/lotes/sgte/1`, {
         method : "POST",
     })
-    showNotification("add","Estado pasasdo")
+    showNotification("add","Estado pasado")
 
+}
+
+export const getFase = async (id, data) => {
+  const response = await fetch(`http://localhost:3000/lotes`);
+  const data = await response.json();
+  setData(data);
 }

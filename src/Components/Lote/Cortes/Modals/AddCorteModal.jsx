@@ -62,8 +62,8 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
             >
               <Select>
                 {talleres.map((taller, index) => (
-                  <Option key={index} value={taller.usurio_id}>
-                    {taller.nombre} {taller.ap_paterno} {taller.ap_materno}
+                  <Option key={index} value={taller.usuario_id}>
+                    {taller.usuario_id} {taller.nombre} {taller.ap_paterno} {taller.ap_materno}
                   </Option>
                 ))}
               </Select>
@@ -114,7 +114,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
             >
               <Select>
                 {telas.map((tela, index) => (
-                  <Option key={index} value={tela.tela_id}>
+                  <Option key={index} value={tela.tipo}>
                     {tela.tipo}
                   </Option>
                 ))}

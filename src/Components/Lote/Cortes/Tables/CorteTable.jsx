@@ -31,7 +31,7 @@ const CorteTable = () => {
         tooltip="Añadir Detalle"
       />
 
-      <Table dataSource={data} columns={columns} rowKey="tipo_tela" />
+      <Table dataSource={data} columns={columns} rowKey="corte_id" />
 
       <AddCorteModal
         openModal={openAddModal}

@@ -1,5 +1,5 @@
-import { Form, Modal, Select, Input, Button, Card, Typography } from "antd";
-import { getCorte } from "../../../../Shared/api/Corte";
+import { Form, Modal, Select, Input, Button, Card, Typography, Space, InputNumber } from "antd";
+import { getChangeCorte } from "../../../../Shared/api/Corte";
 
 import { CloseOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from "react";
@@ -9,11 +9,10 @@ const { Option } = Select;
 const ChangeStatusModal = ({ openModal, closeModal }) => {
   const [form] = Form.useForm();
   const { id } = useParams();
-  const [ lote_id, setId ] = useState(0);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getCorte(id, setData);
+    getChangeCorte(id, setData, form);
   }, [id]);
 
   return (
@@ -31,69 +30,26 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
           wrapperCol={{ span: 18 }}
           form={form}
           name="addProductos"
-          style={{ maxWidth: 600 }}
+          style={{ maxWidth: 600, display: "flex",flexDirection: 'row'}}
           autoComplete="off"
-          initialValues={{ items: [{}] }}
     >
       <Form.List name="items">
-        {(fields, { add, remove }) => (
+        {(fields) => (
           <div style={{ display: 'flex', rowGap: 16, flexDirection: 'column' }}>
-            {fields.map((field) => (
+            {data.map((field, index) => (
               <Card
                 size="small"
-                title={`Item ${field.name + 1}`}
-                key={field.key}
-                extra={
-                  <CloseOutlined
-                    onClick={() => {
-                      remove(field.name);
-                    }}
-                  />
-                }
+                title={`Corte ${field.corte_id}`}
+                key={index}
               >
-
-                {/* Nest Form.List */}
-                <Form.Item label="detalle">
-                  <Form.List name={[field.name, 'detalle']}>
-                    {(subFields, subOpt) => (
-                      <div style={{ display: 'flex', flexDirection: 'column', rowGap: 16 }}>
-                        {subFields.map((subField) => (
-                          <Space key={subField.key}>
-                            <Form.Item noStyle name={[subField.name, 'color_id']}>
-                            <Select placeholder="Elije un color">
-                            {colores[form.getFieldValue().items[field.name].producto_id]?.map(color => (
-                              <Select.Option key={color.color_id} value={color.color_id}>
-                                {color.nombre}  
-                              </Select.Option>
-                            )) || <Select.Option disabled>Sin Colores</Select.Option>}
-                            </Select>
-                            </Form.Item>
-                            <Form.Item noStyle name={[subField.name, 'talla']}>
-                              <Input placeholder="Talla" />
-                            </Form.Item>
-                            <Form.Item noStyle name={[subField.name, 'stock']}>
-                              <Input placeholder="Stock" />
-                            </Form.Item>
-                            <CloseOutlined
-                              onClick={() => {
-                                subOpt.remove(subField.name);
-                              }}
-                            />
-                          </Space>
-                        ))}
-                        <Button type="dashed" onClick={() => subOpt.add()} block>
-                          + Add Sub Item
-                        </Button>
-                      </div>
-                    )}
-                  </Form.List>
+                <Form.Item label="corte_id " name={[index, 'corte_id']}>
+                  <InputNumber max={field.corte_id}/>
+                </Form.Item>
+                <Form.Item label="cantidad_enviada" name={[index, 'cantidad_enviada']}>
+                  <InputNumber max={field.cantidad_enviada}/>
                 </Form.Item>
               </Card>
             ))}
-
-            <Button type="dashed" onClick={() => add()} block>
-              + Add Item
-            </Button>
           </div>
         )}
       </Form.List>
@@ -109,10 +65,8 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
       <Form.Item>
         <Button onClick={ async ()=> {
           const values = form.getFieldsValue().items
-          await addProductoDetalle(id, values)
-          getProductosNuevos(id, setProductos)
+          console.log(values)
           form.resetFields()
-          reload()
           closeModal()
         }} type="primary">Crear</Button>
       </Form.Item>
