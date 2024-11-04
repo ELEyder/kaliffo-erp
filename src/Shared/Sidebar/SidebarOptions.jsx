@@ -37,7 +37,7 @@ const Items=[
                 key:"4",
                 icon:<UserOutlined /> ,
                 label:(
-                    <Link to="/trabajadores/costureros" style={{textDecoration:"none"}}>Costureros</Link>
+                    <Link to="/trabajadores/tipo/costureros" style={{textDecoration:"none"}}>Costureros</Link>
                 ),
             }
         ]
@@ -108,7 +108,7 @@ const Items=[
     },
     {
         key:"sub7",
-        label:(<Link to={"/almacen/telas"} style={{textDecoration:"none"}} >Almacen de Telas</Link>),
+        label:(<Link to={"/telas"} style={{textDecoration:"none"}} >Almacen de Telas</Link>),
         icon:<BookOutlined /> ,
     },
     {

@@ -23,7 +23,7 @@ const TelasCards = () => {
     {telas.map((tela, index) => {
       return(
 
-            <Card key={index} title={tela.tipo} className="cardTela" onClick={() => navigate(`/almacen/tela/${tela.tipo}`)}>
+            <Card key={index} title={tela.tipo} className="cardTela" onClick={() => navigate(`/telas/${tela.tipo}`)}>
               <p>Stock por tela</p>
               <div className="body">      
                 <img src="/svg/tela/box.svg" alt="" className="box"/>

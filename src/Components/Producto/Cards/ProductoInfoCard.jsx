@@ -11,10 +11,10 @@ const ProductoInfoCard = () => {
     getProductoById(id, setProducto);
   }, [id]);
 
-  const imgSrc = `/img/${producto.producto_id}.png`;
+  const imgSrc = `/img/productos/${producto.producto_id}.png`;
 
   const handleError = (e) => {
-    e.target.src = '/img/generic.png';
+    e.target.src = '/img/productos/generic.png';
   };
 
   return (

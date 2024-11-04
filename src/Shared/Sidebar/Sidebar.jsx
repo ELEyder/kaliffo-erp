@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UserOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Layout, Avatar, Typography, FloatButton } from 'antd';
-import Sidebar_menu from "./Sidebar_menu";
+import Sidebar_menu from "./SidebarOptions";
 
 const { Sider } = Layout;
 const { Title } =Typography

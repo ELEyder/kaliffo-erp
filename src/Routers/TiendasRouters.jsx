@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Tiendas from './Tiendas';
-import Tienda from './Tienda';
+import Tiendas from '../Components/Tiendas/Tiendas';
+import Tienda from '../Components/Tienda/Tienda';
 
 const TiendasRoutes = () => (
     <Routes>

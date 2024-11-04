@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Layout } from "antd";
-import Sidebar_main from "./Sidebar/Sidebar_main";
+import Sidebar_main from "./Sidebar/Sidebar";
 import Header_main from "./Header/Header_main";
 import PropTypes from "prop-types";
 import Footer_main from "./Footer/Footer_main";

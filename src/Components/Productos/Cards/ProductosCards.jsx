@@ -45,7 +45,7 @@ const ProductosCards = () => {
                   <EditOutlined key="edit" color="white"/>
                   </Tooltip>,
                   <Tooltip title="Ver Detalles" className={"card-view"}>
-                    <Link to={`/producto/${producto.producto_id}`}>
+                    <Link to={`/productos/${producto.producto_id}`}>
                       <EyeOutlined style={{color: "white"}} key="view" />
                     </Link>
                   </Tooltip>,
@@ -68,7 +68,7 @@ const ProductosCards = () => {
                 ]}
                 cover={
                   <img
-                    src={`/img/${producto.producto_id}.png`}
+                    src={`/img/productos/${producto.producto_id}.png`}
                     alt={producto.nombre}
                     onError={imgError}
                     style={{ width: '100%', height: 'auto' }}

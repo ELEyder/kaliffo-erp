@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import Tiendas from './Tiendas';
-import Tienda from './Tienda';
+import Telas from '../Components/Telas/Telas';
+import Tela from '../Components/Tela/Tela';
 
-const TiendasRoutes = () => (
+const TelasRouters = () => (
     <Routes>
-        <Route path="/" element={<Tiendas />} />
-        <Route path="/:id" element={<Tienda />} />
+        <Route path="/" element={<Telas />} />
+        <Route path="/:tipo" element={<Tela />} />
     </Routes>
 );
 
-export default TiendasRoutes;
+export default TelasRouters;

@@ -1,12 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import Tiendas from './Tiendas';
-import Tienda from './Tienda';
+import Lotes from '../Components/Lotes/Lotes';
+import Lote from '../Components/Lote/Lote';
 
-const TiendasRoutes = () => (
+
+const LotesRouters = () => (
     <Routes>
-        <Route path="/" element={<Tiendas />} />
-        <Route path="/:id" element={<Tienda />} />
+        <Route path="/" element={<Lotes />} />
+        <Route path="/:id" element={<Lote />} />
     </Routes>
 );
 
-export default TiendasRoutes;
+export default LotesRouters;

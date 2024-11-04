@@ -158,7 +158,7 @@ const TrabajadoresTable = () => {
         className="tabla_trabajadores"
         onRow={(record) => ({
           onClick: () => {
-            window.location.href = `/trabajador/${record.usuario_id}`
+            window.location.href = `/trabajadores/${record.usuario_id}`
           },
           style: {
             cursor: "pointer",

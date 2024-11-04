@@ -1,4 +1,4 @@
-import { Routing } from './Routers/routing'
+import { Routing } from './routing'
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css'
 import locale from 'antd/locale/es_ES'; 
