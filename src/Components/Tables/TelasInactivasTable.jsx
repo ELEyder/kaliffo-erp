@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { Table, Button, Popconfirm, Row, Col } from "antd";
-import { deleteTelaById, getTelasInactivas } from "../../Shared/api/Tela";
+import { deleteTelaById, getTelasInactivas } from "../../API/Tela";
 
 const TelasInactivasTable = () => {
 

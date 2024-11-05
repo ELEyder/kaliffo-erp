@@ -1,4 +1,4 @@
-import { showNotification } from "../Notifications";
+import { showNotification } from "../Shared/Notifications"
 
 export const getHorarioById = async (id, setHorario) => {
     try {

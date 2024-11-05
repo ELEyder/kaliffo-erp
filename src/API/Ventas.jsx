@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationDelete, showNotificationError } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
 const metodosPago = ["Efectivo", "Yape", "Transefencia"]
 const tipoVenta = ["Por Mayor", "Por Menor"]
 const tienda = ["Almacen", "Tienda 1", "Tienda 2"]
@@ -23,11 +23,11 @@ export const getVentas = async (tipo, setTablaDatos) => {
 }
 
 export const SearchVenta = async (id) => {
-    showNotificationDelete("Venta eliminada")
+    showNotification("delete", "Venta eliminada")
 }
 
 export const deleteVenta = async (id) => {
-    showNotificationDelete("Venta eliminada")
+    showNotification("delete", "Venta eliminada")
 }
 
 export const getVentasByTienda = async (id, setTablaDatos) => {

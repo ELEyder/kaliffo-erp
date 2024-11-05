@@ -2,7 +2,7 @@ import { Table, Button, Popconfirm, Row, Col, notification } from "antd";
 import { useParams } from 'react-router-dom'
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getHorarioById, deleteHorarioById} from "../../Shared/api/Horario";
+import { getHorarioById, deleteHorarioById} from "../../API/Horario";
 
 const TablaHorario = () =>{
   const { id } = useParams();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Select } from "antd";
 import { Link } from "react-router-dom";
-import { updateUsuarioTienda, getTrabajadoresDiferentes } from "../../Shared/api/Usuario";
+import { updateUsuarioTienda, getTrabajadoresDiferentes } from "../../API/Usuario";
 
 const AddPersonalModal = ({
   openModal,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getComprasDetalle } from "../../Shared/api/Compras";
+import { getComprasDetalle } from "../../API/Compras";
 import { Modal, Form, Row, Col, Card, Input, Divider } from "antd";
 
 const DetallesComprasModal = ({ openModal, closeModal, idC }) => {

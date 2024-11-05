@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import { getVentasByTienda } from "../../Shared/api/Ventas";
+import { getVentasByTienda } from "../../API/Ventas";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
 const PagosTable

@@ -1,9 +1,9 @@
 import { Form, Modal, Select, Input, InputNumber, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
-import { addCorte } from "../../Shared/api/Corte";
-import { getUsuarios } from "../../Shared/api/Usuario";
-import { getProductos } from "../../Shared/api/Producto";
-import { getTelas } from "../../Shared/api/Tela";
+import { addCorte } from "../../API/Corte";
+import { getUsuarios } from "../../API/Usuario";
+import { getProductos } from "../../API/Producto";
+import { getTelas } from "../../API/Tela";
 import { useParams } from "react-router-dom";
 const { Option } = Select;
 
@@ -28,8 +28,8 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
   const calculateNeto = (newMerma, newMetraje) => {
     const mermaFactor = 1 + newMerma / 100;
     const calculatedNeto = newMetraje * mermaFactor;
-    setNeto(calculatedNeto);
-    form.setFieldsValue({ neto: calculatedNeto });
+    setNeto(calculatedNeto.toFixed(2));
+    form.setFieldsValue({ neto: calculatedNeto.toFixed(2) });
   };
 
   return (

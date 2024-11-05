@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { updateTienda, setUpdateTienda } from "../../Shared/api/Tienda";
+import { updateTienda, setUpdateTienda } from "../../API/Tienda";
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 
 const UpdateProductoModal = ({ openModal, closeModal, id, reload, values }) => {

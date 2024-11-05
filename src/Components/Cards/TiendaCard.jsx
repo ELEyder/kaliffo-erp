@@ -1,6 +1,6 @@
 import React,{useState,useEffect}from "react";
 import { useParams } from "react-router-dom";
-import { getTiendaById } from "../../Shared/api/Tienda";
+import { getTiendaById } from "../../API/Tienda";
 import { Card, List,Button } from "antd";
 
 const TiendaCard = () =>{

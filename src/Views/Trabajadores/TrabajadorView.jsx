@@ -17,11 +17,15 @@ const Trabajador = () => {
     return (
       <>
         <Divider>Detalles del Usuario</Divider>
-        <Row  gutter={24}>
-            <Col span={8}>
+        <Row  gutter={40} style={{display: "flex", justifyContent: "center"}}>
+            <Col>
               <TrabajadorInfoCard/>
+              <Divider></Divider>
             </Col>
-            <Col span={16}>
+            <Col xs={24}
+              sm={20}
+              md={15}
+              xl={12}>
               <Tabs defaultActiveKey="1" items={items} />
             </Col>
         </Row>

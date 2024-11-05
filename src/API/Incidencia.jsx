@@ -1,4 +1,5 @@
-import { showNotification } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
+
 const incidencias = ["Familiar", "Salud", "Personal"]
 
 export const addIncidencia = async (id, data) => {

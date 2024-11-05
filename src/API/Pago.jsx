@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
 
 export const addPago = async (id, data, reload, setReload, api) => {
     const Pago = {
@@ -13,7 +13,7 @@ export const addPago = async (id, data, reload, setReload, api) => {
         },
         body : JSON.stringify(Pago),
     })
-    api.open(showNotificationAdd("Pago añadido",""))
+    api.open(showNotification("add", "Pago añadido"))
     setReload(reload == true ? false : true)
 }
 
@@ -48,5 +48,5 @@ export const deletePagoById = async (id) => {
         },
     })
     setReload(!reload)
-    api.open(showNotificationDelete("Pago eliminado",""))
+    api.open(showNotification("delete", "Pago eliminado"))
 }

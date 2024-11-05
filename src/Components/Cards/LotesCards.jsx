@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import AddLoteModal from "../Modals/AddLoteModal";
-import { getLotes } from "../../Shared/api/Lote";
+import { getLotes } from "../../API/Lote";
 import { PlusOutlined } from "@ant-design/icons";
 import { Card, Flex, FloatButton, Tooltip } from "antd";
 

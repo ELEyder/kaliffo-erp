@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
 import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
 import AddUsuarioModal from "../Modals/AddUsuarioModal"
-import { getUsuarios, deleteUsuarioById } from "../../Shared/api/Usuario";
+import { getUsuarios, deleteUsuarioById } from "../../API/Usuario";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
 const TrabajadoresTable = () => {

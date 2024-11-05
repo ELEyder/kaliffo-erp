@@ -1,6 +1,6 @@
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 import React from "react";
-import { addLote } from "../../Shared/api/Lote";
+import { addLote } from "../../API/Lote";
 
 const AddLoteModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();

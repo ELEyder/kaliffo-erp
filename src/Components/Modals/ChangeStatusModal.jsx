@@ -1,5 +1,5 @@
 import { Form, Modal, Select, Input, Button, Card, Typography, Space, InputNumber } from "antd";
-import { getChangeCorte } from "../../Shared/api/Corte";
+import { getChangeCorte } from "../../API/Corte";
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

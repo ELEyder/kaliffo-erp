@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddTiendaModal from "../Modals/AddTiendaModal";
-import { getTiendas } from "../../Shared/api/Tienda";
+import { getTiendas } from "../../API/Tienda";
 import DeleteTiendaModal from "../Modals/DeleteTiendaModal";
 import UpdateTiendaModal from "../Modals/UpdateTiendaModal"
 import { Card, Flex, FloatButton, Popconfirm, Tooltip } from "antd";

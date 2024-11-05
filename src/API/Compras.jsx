@@ -1,4 +1,4 @@
-import { showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
 import moment from "moment";
 
 export const getCompras = async (setCompras) =>{
@@ -44,9 +44,9 @@ export const addCompra = async (values) =>{
             },
             body: JSON.stringify(compra),
           });
-          showNotificationAdd("Compra añadida exitosamente")
+          showNotification("add","Compra añadida exitosamente")
     } catch (error) {
-        showNotificationAdd("Error al añadir la compra")
+      showNotification("error","Error al añadir la compra")
     }
 }
 
@@ -58,10 +58,10 @@ export const eliminarcompra = async(compra_id) =>{
             "Content-Type": "application/json",
           },
         });
-        showNotificationDelete("delete","Usuario eliminado")
+        showNotification("delete","Usuario eliminado")
         return true
     
       } catch (error) {
-        showNotificationError("error","Error al eliminar el usuario")
+        showNotification("error","Error al eliminar el usuario")
       }
 }

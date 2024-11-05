@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, FloatButton } from "antd";
 import { useParams } from "react-router-dom";
-import { getCorte } from "../../Shared/api/Corte";
+import { getCorte } from "../../API/Corte";
 import AddCorteModal from "../Modals/AddCorteModal";
 
 const CortesTable = () => {

@@ -1,4 +1,5 @@
-import { showNotification } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
+
 export const addTienda = async (values) => {
     let Tienda = {
         tienda:values.tienda,

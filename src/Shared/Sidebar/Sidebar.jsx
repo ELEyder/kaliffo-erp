@@ -10,14 +10,16 @@ const { Title } =Typography
 const Sidebar_main = () => {
   return (
     <>
+    <link rel="stylesheet" href="/css/shared/sidebar.css"/>
     <Sider
       width={250}
       breakpoint="lg"
+      className="sidebar"
       collapsedWidth="0"
     >
-      <div style={{ background: "#162b4e", textAlign: "center" }}>
+      <div className="sidebar-header">
         <Avatar size={64} icon={<UserOutlined />} />
-        <Title level={4} style={{ color: "white" }}>Tienda 1</Title>
+        <Title level={4} >Tienda 1</Title>
       </div>
       <Sidebar_menu/>
 

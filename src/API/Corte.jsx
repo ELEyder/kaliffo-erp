@@ -1,4 +1,4 @@
-import { showNotification } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
 
 export const getCorte = async (id, setData) => {
     const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)

@@ -2,7 +2,7 @@ import React, { useState , useEffect} from "react";
 import CortesTable from "../../Components/Tables/CortesTable";
 import TimeLine from "../../Components/TimeLine/TimeLine";
 import Status from "../../Components/Status/Status";
-import { getFase } from "../../Shared/api/Lote";
+import { getFase } from "../../API/Lote";
 import { Divider } from "antd";
 import { useParams } from "react-router-dom";
 

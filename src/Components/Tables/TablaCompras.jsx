@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Row, Col, Popconfirm, Table,FloatButton } from "antd";
-import { eliminarcompra, getCompras } from "../../Shared/api/Compras";
+import { eliminarcompra, getCompras } from "../../API/Compras";
 import AddCompraModal from "../Modals/AddCompraModal";
 import DetallesComprasModal from "../Modals/DetallesComprasModal";
 

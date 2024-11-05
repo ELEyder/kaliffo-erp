@@ -1,6 +1,6 @@
 import { Form, Modal, Input } from "antd";
 import React from "react";
-import { addTienda } from "../../Shared/api/Tienda";
+import { addTienda } from "../../API/Tienda";
 
 const AddTiendaModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();

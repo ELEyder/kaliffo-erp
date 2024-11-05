@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import DetalleVentaModal from "../Modals/DetalleVentaModal";
 import AddVentaModal from "../Modals/AddVentaModal"
-import { getVentas, deleteVenta } from "../../Shared/api/Ventas";
+import { getVentas, deleteVenta } from "../../API/Ventas";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
 const VentasTipoTable = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { addIncidencia } from "../../Shared/api/Incidencia";
+import { addIncidencia } from "../../API/Incidencia";
 import { Form, Input, Modal, Select } from "antd";
 
 const { TextArea } = Input;

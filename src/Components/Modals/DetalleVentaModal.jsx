@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Form, Modal, List, Card, Row, Col , Divider} from "antd";
 import { onlyDecimalKey , onlyNumberKey , onlyLettersKey, onlyDecimalInput, onlyNumberInput, onlyLettersInput, preventPaste } from "../../Shared/Tools";
-import { getVentaById } from "../../Shared/api/Ventas";
+import { getVentaById } from "../../API/Ventas";
 import DetalleVentaTable from "../Tables/DetalleVentaTable";
 
 const DetalleVentaModal = ({

@@ -1,4 +1,4 @@
-import { showNotification, showNotificationAdd, showNotificationError, showNotificationUpdate, showNotificationDelete } from "../Notifications"
+import { showNotification } from "../Shared/Notifications"
 import moment from "moment";
 
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };

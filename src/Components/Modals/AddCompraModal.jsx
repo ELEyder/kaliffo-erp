@@ -15,8 +15,8 @@ import {
   AutoComplete,
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { getTiendas } from "../../Shared/api/Tienda";
-import { addCompra, getEmpresas, getProductos } from "../../Shared/api/Compras";
+import { getTiendas } from "../../API/Tienda";
+import { addCompra, getEmpresas, getProductos } from "../../API/Compras";
 
 const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
   const [form] = Form.useForm();

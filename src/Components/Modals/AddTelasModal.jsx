@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CloseOutlined } from '@ant-design/icons';
 import FormItem from "antd/es/form/FormItem";
-import { getEmpresas} from "../../Shared/api/Empresa";
-import { getTiposTela, addTelas } from "../../Shared/api/Tela";
+import { getEmpresas} from "../../API/Empresa";
+import { getTiposTela, addTelas } from "../../API/Tela";
 import { Modal, AutoComplete, Button, Card, Form, Input, Select, Typography, DatePicker } from 'antd';
 
 const { Option } = Select;

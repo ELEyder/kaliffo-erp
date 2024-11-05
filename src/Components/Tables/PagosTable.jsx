@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getPagosById, deletePagoById } from "../../Shared/api/Pago";
+import { getPagosById, deletePagoById } from "../../API/Pago";
 import AddPagoModal from "../Modals/AddPagoModal";
 
 const TablaPagos = () =>{

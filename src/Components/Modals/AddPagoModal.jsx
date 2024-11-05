@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Select, Col, DatePicker, Form, Input, Modal, Row, notification } from "antd";
 import { SmileOutlined } from '@ant-design/icons';
-import { addPago } from "../../Shared/api/Pago"
+import { addPago } from "../../API/Pago"
 
 const { RangePicker } = DatePicker;
 const AddPagoModal = ({

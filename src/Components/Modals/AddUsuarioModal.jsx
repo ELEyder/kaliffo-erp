@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select, InputNumber } from "antd";
 import { onlyDecimalKey , onlyNumberKey , onlyLettersKey, onlyDecimalInput, onlyNumberInput, onlyLettersInput, preventPaste } from "../../Shared/Tools";
-import { addUsuario } from "../../Shared/api/Usuario";
-import { getTiendas } from "../../Shared/api/Tienda";
+import { addUsuario } from "../../API/Usuario";
+import { getTiendas } from "../../API/Tienda";
 
 
 const AddUsuarioModal = ({

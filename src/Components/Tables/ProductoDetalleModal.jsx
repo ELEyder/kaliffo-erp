@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table,Flex,Popconfirm } from "antd";
-import { getProductoDetalle } from "../../Shared/api/Producto";
+import { getProductoDetalle } from "../../API/Producto";
 import TallaDetalleModal from "./TallaDetalleModal";
 
 const ProductoDetalleModal = ({
