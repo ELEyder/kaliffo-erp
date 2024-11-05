@@ -18,36 +18,13 @@ p {
     /* Color de fondo para filas impares */
 }
 
-/* Botones */
-.btn-incidencia {
-    background: #ffdf5e;
-    color: black
-}
 
-.btn-incidencia:hover {
-    background: #ffdf5e !important;
-    color: black !important;
-}
 
 li {
     margin: 0 !important;
 }
 
-.card-update {
-    background-color: rgb(255, 253, 105);
-    color: black;
-    padding: 5px 0 ;
-}
-.card-view {
-    background-color: rgb(47, 72, 216);
-    color: white;
-    padding: 5px 0 ;
-}
-.card-delete {
-    background-color: rgb(224, 61, 61);
-    color: white;
-    padding: 5px 0 ;
-}
+
 
 p {
     margin: 0 !important;
