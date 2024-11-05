@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import Lotes from '../Components/Lotes/Lotes';
-import Lote from '../Components/Lote/Lote';
+import LotesView from '../Views/Lotes/LotesView';
+import LoteView from '../Views/Lotes/LoteView';
 
 
 const LotesRouters = () => (
     <Routes>
-        <Route path="/" element={<Lotes />} />
-        <Route path="/:id" element={<Lote />} />
+        <Route path="/" element={<LotesView />} />
+        <Route path="/:id" element={<LoteView />} />
     </Routes>
 );
 

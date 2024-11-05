@@ -1,8 +1,8 @@
 import { Route,Routes } from "react-router-dom";
-import Trabajadores from "./Components/Trabajadores/Trabajadores";
-import Ventas from "./Components/Ventas/Ventas"
-import ErrorPagina from "./Components/Error/ErrorPagina"
-import Compras from "./Components/Compras/Compras";
+import LoginView from "./Views/Login/LoginView";
+import Ventas from "./Views/Ventas/Ventas"
+import ErrorView from "./Views/Error/ErrorView"
+import ComprasView from "./Views/Compras/ComprasView";
 import TrabajadoresRouters from "./Routers/TrabajadoresRouters";
 import TiendasRouters from "./Routers/TiendasRouters";
 import ProductosRouters from "./Routers/ProductosRouters";
@@ -14,7 +14,7 @@ export const Routing = () =>{
     return(
         <Routes>
             {/* Login */}
-            <Route path="/" element={<Trabajadores/>}/>
+            <Route path="/" element={<LoginView/>}/>
             <Route element={<Plantilla />}>
                 {/* Administrativo */}
                 <Route path="/trabajadores/*" element={<TrabajadoresRouters/>}/>
@@ -22,13 +22,13 @@ export const Routing = () =>{
                 <Route path="/productos/*" element={<ProductosRouters />}/>
                 <Route path="/ventas/:tipo" element={<Ventas />}/>
                 {/* Logístico */}
-                <Route path="/compras" element={<Compras/>}/>
+                <Route path="/compras" element={<ComprasView/>}/>
                 {/* Producción */}
                 <Route path="/telas/*" element={<TelasRouters />}/>
                 <Route path="/lotes/*" element={<LotesRouters />}/>
             </Route>
             {/* Error */}
-            <Route path="*" element={<ErrorPagina />} />
+            <Route path="*" element={<ErrorView />} />
         </Routes>
     )
 }

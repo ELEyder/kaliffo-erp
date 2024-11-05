@@ -33,8 +33,8 @@ export const getLotes = async (setData) => {
 
 }
 
-export const getFase = async (id, data) => {
+export const getFase = async (id, setData) => {
   const response = await fetch(`http://localhost:3000/lotes`);
   const data = await response.json();
-  setData(data);
+  setData("cortes");
 }

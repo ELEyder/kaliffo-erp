@@ -1,3 +1,8 @@
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .correct {
     background-color: rgb(157, 255, 189);
     /* Color de fondo para filas pares */
