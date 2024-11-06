@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Table, FloatButton } from "antd";
+import { Table, FloatButton, Row, Col, Popconfirm, Button } from "antd";
 import { useParams } from "react-router-dom";
-import { getCorte } from "../../API/Corte";
+import { getCorte, deleteCorte } from "../../API/Corte";
 import AddCorteModal from "../Modals/AddCorteModal";
 
 const CortesTable = () => {
@@ -21,6 +21,27 @@ const CortesTable = () => {
     { key: 'talla', dataIndex: 'talla', title: 'Talla' },
     { key: 'tela', dataIndex: 'tipo_tela', title: 'Tela' },
     { key: 'metraje', dataIndex: 'metraje_asignado', title: 'Metraje' },
+    { title: "Opciones", key: "opciones", align:"center",
+      render:(text,record) =>{
+        return (
+            <Row gutter={[8, 8]} justify="center" align="middle">
+                <Col>
+                    <Popconfirm
+                        title="ELIMINAR"
+                        description="DESEA ELIMINAR ESTA INCIDENCIA"
+                        okText="Confirmar"
+                        cancelText="NO"
+                        onConfirm={() => {
+                          deleteCorte(record.corte_id)
+                          setReload(!reload)
+                        }}>
+                        <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+                    </Popconfirm>
+                </Col>
+            </Row>
+        );
+    }
+  },
   ];
 
   return (
@@ -28,7 +49,7 @@ const CortesTable = () => {
       <FloatButton
         style={{ insetInlineStart: 270 }}
         onClick={() => setOpenAddModal(true)}
-        tooltip="Añadir Detalle"
+        tooltip="Añadir Corte"
       />
 
       <Table dataSource={data} columns={columns} rowKey="corte_id" />

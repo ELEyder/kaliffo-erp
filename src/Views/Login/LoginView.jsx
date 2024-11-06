@@ -1,6 +1,6 @@
 import { Button, Input, Form } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 const LoginView = () =>{
 
     const [form] = Form.useForm()
@@ -20,9 +20,11 @@ const LoginView = () =>{
                     <Input/>
                 </Form.Item>
             </Form>
-            <Button type="primary">
-                <Link to="/trabajadores/tipo/ventas" style={{textDecoration:"none"}}>Kaliffo</Link>
-            </Button>
+            <Link to="/trabajadores/tipo/ventas">
+                <Button type="primary">
+                    Ingresar
+                </Button>
+            </Link>
         </div>
     </>
     )
