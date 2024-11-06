@@ -24,7 +24,7 @@ const UpdateUsuarioModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={`Añadir nuevo trabajador`}
+      title={`Editar trabajador`}
       open={openModal}
       onCancel={closeModal}
       style={{ textTransform: "uppercase" }}

@@ -32,7 +32,7 @@ const Trabajador = () => {
     return (
       <Plantilla>
         <Divider style={{textTransform: "uppercase"}}>
-          Detalles del Usuario
+          Detalles del Trabajador
         </Divider>
         <Row  gutter={24}>
             <Col span={8}>
