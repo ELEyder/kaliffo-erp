@@ -27,15 +27,26 @@ div.yeti {
     overflow: hidden;
 }
 
-.bounce-animation {
-    animation: bounce 3s forwards; /* 'forwards' hace que el estado final de la animación se mantenga */
+.down-animation {
+    animation: down 0.5s forwards;
 }
 
-@keyframes bounce {
+.up-animation {
+    animation: up 0.5s forwards;
+}
+@keyframes down {
     0% {
-        transform: translateY(0); /* Empieza en su posición original */
+        transform: translateY(0);
     }
     100% {
-        transform: translateY(50px); /* Baja 10px */
+        transform: translateY(50px);
+    }
+}
+@keyframes up {
+    0% {
+        transform: translateY(50px);
+    }
+    100% {
+        transform: translateY(0);
     }
 }

@@ -1,10 +1,9 @@
 import * as React from "react"
-const Yeti = (props) => (
+const Yeti = ({ isFocused }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
     viewBox="0 0 50 50.564"
-    {...props}
   >
     <g transform="translate(-54.3 -94.458) scale(.9547)">
       <ellipse
@@ -195,7 +194,7 @@ const Yeti = (props) => (
       />
       <g
       id="brazoDerecho"
-      className="bounce-animation"
+      className={isFocused ? 'down-animation' : 'up-animation'}
         >
       <g
         style={{
@@ -294,7 +293,11 @@ const Yeti = (props) => (
         transform="matrix(-.2758 -.08852 -.08852 .2758 119.164 124.159)"
       />
       </g>
-      
+      <g
+        id="brazoIzquierdo"
+        className={isFocused ? 'down-animation' : 'up-animation'}
+      >
+
       <path
         d="M29.003 16.9a4.864 4.864 0 0 0-4.875 4.875V39.87c0 2.7 2.174 4.875 4.875 4.875h15.094c2.7 0 4.875-2.174 4.875-4.875v-8.954h27.854c3.24 0 5.85-1.562 5.85-3.501 0-1.94-2.61-3.502-5.85-3.502H62.778a3.048 3.048 0 0 1-1.098.208H42.163v-.208h20.615c1.283-.493 2.2-1.824 2.2-3.402 0-2-1.471-3.61-3.298-3.61H42.135Z"
         style={{
@@ -392,6 +395,8 @@ const Yeti = (props) => (
         }}
         transform="rotate(-14.862 492.2 -118.187) scale(.29398)"
       />
+      </g>
+
       <ellipse
         cx={83.063}
         cy={125.422}
