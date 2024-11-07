@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import Tiendas from './Tiendas';
-import Tienda from './Tienda';
+import TiendasView from '../Views/Tiendas/TiendasView';
+import TiendaView from '../Views/Tiendas/TiendaView';
 
 const TiendasRoutes = () => (
     <Routes>
-        <Route path="/" element={<Tiendas />} />
-        <Route path="/:id" element={<Tienda />} />
+        <Route path="/" element={<TiendasView />} />
+        <Route path="/:id" element={<TiendaView />} />
     </Routes>
 );
 

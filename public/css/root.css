@@ -1,0 +1,49 @@
+:root {
+    --color-1: #FFCF69;
+    --color-2: #1CB3C4;
+    --color-3: #BE2C5D;
+    --color-dark: #1A0935;
+    --color-dark-2: #100029;
+    --color-white: #f0f2f5;
+    --font: "Poppins", sans-serif;
+}
+
+/* Botones */
+.btn-incidencia,
+.btn-incidencia:hover {
+    background: var(--color-1) !important;
+    border: var(--color-1) !important;
+    color: black !important;
+    font-weight: 500 !important;
+}
+
+.ant-btn-primary,
+.ant-btn-primary:hover {
+    background: var(--color-2) !important;
+    color: white !important;
+    font-weight: 500 !important;
+}
+
+.ant-btn-dangerous,
+.ant-btn-dangerous:hover {
+    background: var(--color-3) !important;
+    border: var(--color-3) !important;
+    font-weight: 500 !important;
+    color: white
+}
+/* Botones Card*/
+.card-update {
+    background-color: var(--color-1);
+    color: black;
+    padding: 5px 0 ;
+}
+.card-view {
+    background-color: var(--color-2);
+    color: black;
+    padding: 5px 0 ;
+}
+.card-delete {
+    background-color: var(--color-3);
+    color: black;
+    padding: 5px 0 ;
+}

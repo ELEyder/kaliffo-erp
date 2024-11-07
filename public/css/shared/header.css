@@ -1,0 +1,11 @@
+.ant-layout-header {
+    background-color: var(--color-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+h1.ant-typography {
+    font-family: var(--font);
+    color: white;
+    margin: 0;
+}
