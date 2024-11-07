@@ -7,27 +7,57 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es'; 
 import { ConfigProvider } from 'antd';
 import LoadingScreen from './Components/Loading/LoadingScreen';
+import "@/assets/css/root.css"
 dayjs.locale('es')
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  const root = document.documentElement;
+  const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color').trim();
+
   useEffect(() => {
-    // Escucha el evento `load` del navegador, que se dispara cuando toda la página ha terminado de cargar
-    window.onload = () => {
-      setLoading(false); // Oculta la pantalla de carga cuando la página se ha cargado completamente
-    };
+    // Establecer un temporizador para ocultar la pantalla de carga después de 3 segundos (3000 ms)
+    const timer = setTimeout(() => {
+      setLoading(false); // Oculta la pantalla de carga
+    }, 500);
+
+    // Limpiar el temporizador cuando el componente se desmonte
     return () => {
-      window.onload = null;
+      clearTimeout(timer);
     };
-  }, []);
+  }, []); 
   if (loading) {
     return <LoadingScreen />;
   }
 
   return (
     <>
-    <link rel="stylesheet" href="/css/root.css" />
-    <ConfigProvider locale={locale}>
+    <ConfigProvider
+      theme={{
+        components: {
+          Layout: {
+            siderBg: primaryColor,
+            triggerBg: primaryColor,
+          },
+          Menu: {
+            itemBg: primaryColor,
+            itemHoverBg: "skyblue",
+            itemColor: "black",
+            itemColor: "red",
+            itemSelectedBg: "blue",
+            itemSelectedColor: "green",
+            itemActiveBg: "pink",
+            itemHoverColor: "gray",
+            subMenuItemBg: "yellow",
+            subMenuItemBorderRadius: 0,
+          },
+        },
+        token: {
+          // colorPrimary: primaryColor,
+        },
+      }}
+      locale={locale}>
       <Router>
         <Routing />
       </Router>

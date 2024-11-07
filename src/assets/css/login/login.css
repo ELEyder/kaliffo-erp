@@ -1,4 +1,4 @@
-body {
+.body-login {
     background-color: black;
     background-image: url("/img/bg/login.gif");
     background-repeat: no-repeat;
@@ -10,7 +10,7 @@ body {
     align-items: center;
     height: 100vh;
 }
-.content {
+.content-login {
     background-color: white;
     padding: 40px 20px;
     border-radius: 10px;
@@ -28,11 +28,11 @@ div.yeti {
 }
 
 .down-animation {
-    animation: down 0.5s forwards;
+    animation: down 0.2s forwards;
 }
 
 .up-animation {
-    animation: up 0.5s forwards;
+    animation: up 0.2s forwards;
 }
 
 .eyes {
@@ -58,9 +58,9 @@ div.yeti {
 
 @keyframes eyes {
     0%, 10% {
-        ry: 0.782; /* Ojos abiertos (valor inicial de ry) */
+        ry: 0.782;
     }
     5% {
-        ry: 0.1; /* Ojos cerrados (disminuye el valor de ry) */
+        ry: 0.1;
     }
 }

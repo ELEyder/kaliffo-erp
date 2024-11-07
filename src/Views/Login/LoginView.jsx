@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Yeti from "../../Components/svg/Yeti";
+import "@/assets/css/login/login.css"
 const LoginView = () =>{
 
     const [form] = Form.useForm()
@@ -12,8 +13,8 @@ const LoginView = () =>{
 
     return(
     <>
-        <link rel="stylesheet" href="css/login/login.css" />
-        <div className="content">
+    <div className="body-login">
+        <div className="content-login">
             <Form form={form} layout="vertical">
                 <h2>Iniciar Sesión</h2>
                 <div className="yeti">
@@ -35,6 +36,7 @@ const LoginView = () =>{
                 </Button>
             </Link>
         </div>
+    </div>
     </>
     )
 }

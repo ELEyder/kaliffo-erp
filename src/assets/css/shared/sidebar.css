@@ -1,0 +1,10 @@
+.sidebar-header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+}

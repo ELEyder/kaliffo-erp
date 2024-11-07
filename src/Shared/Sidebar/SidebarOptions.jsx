@@ -132,11 +132,10 @@ const SidebarOptions = () => {
 
   return (
     <>
-    <link rel="stylesheet" href="/css/shared/sidebar.css"/>
     <Menu
       mode="inline"
-      theme="dark"
       items={Items}
+      defaultSelectedKeys={['sub1']}
     />
     </>
   )
