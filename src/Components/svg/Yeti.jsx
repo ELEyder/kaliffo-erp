@@ -149,6 +149,8 @@ const Yeti = ({ isFocused }) => (
         }}
       />
       <ellipse
+        id="eye"
+        className='eyes'
         cx={79.653}
         cy={122.242}
         rx={0.799}
@@ -177,6 +179,8 @@ const Yeti = ({ isFocused }) => (
         }}
       />
       <ellipse
+      id="eye"
+      className='eyes'
         cx={86.658}
         cy={122.158}
         rx={0.799}

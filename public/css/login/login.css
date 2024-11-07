@@ -34,6 +34,11 @@ div.yeti {
 .up-animation {
     animation: up 0.5s forwards;
 }
+
+.eyes {
+    animation: eyes 3s infinite;
+    transform-origin: center center;
+}
 @keyframes down {
     0% {
         transform: translateY(0);
@@ -48,5 +53,14 @@ div.yeti {
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+@keyframes eyes {
+    0%, 100% {
+        ry: 0.782; /* Ojos abiertos (valor inicial de ry) */
+    }
+    50% {
+        ry: 0.1; /* Ojos cerrados (disminuye el valor de ry) */
     }
 }
