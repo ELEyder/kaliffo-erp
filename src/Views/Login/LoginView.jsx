@@ -1,18 +1,21 @@
 import { Button, Input, Form } from "antd";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import Yeti from "../../Components/svg/Yeti";
 const LoginView = () =>{
 
     const [form] = Form.useForm()
+
     return(
     <>
         <link rel="stylesheet" href="css/login/login.css" />
         <div className="content">
             <Form form={form} layout="vertical">
-                <div className="monkey">
-                    
+                <h2>Iniciar Sesión</h2>
+                <div className="yeti">
+                    <Yeti/>
                 </div>
-                <h1>Iniciar Sesión</h1>
                 <Form.Item name="username" label="Username">
                     <Input/>
                 </Form.Item>

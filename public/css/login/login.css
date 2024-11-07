@@ -1,5 +1,9 @@
 body {
-    background-color: var(--color-dark-2);
+    background-color: black;
+    background-image: url("/img/bg/login.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,11 +12,30 @@ body {
 }
 .content {
     background-color: white;
-    padding: 20px;
+    padding: 40px 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     text-align: center;
+}
+
+div.yeti {
+    margin: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.bounce-animation {
+    animation: bounce 3s forwards; /* 'forwards' hace que el estado final de la animación se mantenga */
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0); /* Empieza en su posición original */
+    }
+    100% {
+        transform: translateY(50px); /* Baja 10px */
+    }
 }
