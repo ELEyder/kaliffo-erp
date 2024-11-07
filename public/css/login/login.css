@@ -57,10 +57,10 @@ div.yeti {
 }
 
 @keyframes eyes {
-    0%, 100% {
+    0%, 10% {
         ry: 0.782; /* Ojos abiertos (valor inicial de ry) */
     }
-    50% {
+    5% {
         ry: 0.1; /* Ojos cerrados (disminuye el valor de ry) */
     }
 }
