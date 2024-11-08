@@ -11,7 +11,9 @@ const TrabajadorInfo = () =>{
   useEffect(() => {
     getUsuarioById(id, setUsuario);
   }, [id]);
-
+  const [images, setImages] = useState([
+    "eyder1.jpg", "eyder2.jpg", "eyder3.jpg", "eyder4.jpg", "eyder5.gif",
+  ]);
     return(
         <Card
         style={{ width: 300, textAlign: "center" } }
@@ -20,7 +22,7 @@ const TrabajadorInfo = () =>{
           <Image
           width={"100%"}
           height={'auto'}
-          src={"https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"}
+          src={usuario.nombre==="Rodrigo" ? `/img/usuarios/rodrigo.jpg` : usuario.nombre==="Pablo" ? `/img/usuarios/pablo.jpg` : usuario.nombre==="Eyder" ? `/img/usuarios/${images[Math.floor(Math.random() * 5)]}` : `/img/usuarios/${usuario.usuario_id}.jpg`}
           fallback="/img/usuarios/0.jpg"
         />
       }

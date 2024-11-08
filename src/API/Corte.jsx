@@ -6,17 +6,14 @@ export const getCorte = async (id, setData) => {
       
       if (!response.ok) {
         if (response.status === 404) {
-          console.error(`Corte con ID ${id} no encontrado (404).`)
           setData([])
           return
         }
-        throw new Error(`Error de servidor: ${response.status}`)
       }
   
       const data = await response.json()
       setData(data)
     } catch (error) {
-      console.error('Error al obtener el corte:', error)
       setData([])
     }
   }
