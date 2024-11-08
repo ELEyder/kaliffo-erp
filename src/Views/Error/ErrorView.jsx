@@ -6,7 +6,7 @@ const ErrorView = () =>{
         <>
         <div className="body-error">
             <div className="content">
-                <img src="/public/img/bg/error-3.gif" alt="" />
+                <img class="img-error"src="/public/img/bg/error-3.gif" alt="" />
                 <h1><span className="text">4</span>04</h1>
                 <h2><span className="text">|</span> Página no encontrada</h2>
                 <Link to={"trabajadores/tipo/ventas"}>Ir a la página principal</Link>

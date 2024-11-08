@@ -42,6 +42,9 @@ function App() {
             triggerBg: bg,
             bodyBg :bg2
           },
+          List: {
+            colorText: "white",
+          },
           Table: {
             colorBgContainer: bg,
             colorText: "white",
@@ -51,11 +54,9 @@ function App() {
             headerSortHoverBg: bg2,
             headerBg: bg2,
             headerColor: "white",
-            headerSortActiveBg: bg2,
             headerSplitColor: bg2,
           },
           Menu: {
-
             itemBg: bg,
             groupTitleColor: color1,
             itemHoverBg: bg2,
@@ -76,6 +77,7 @@ function App() {
             colorText: "white",
             extraColor: "white",
             colorTextDescription: "white",
+            borderRadiusLG: 15,
             colorTextHeading: "white",
           },
           Divider: {

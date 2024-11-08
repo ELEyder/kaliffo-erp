@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUsuarioById } from "../../API/Usuario";
 import { getReporteUsuario } from "../../API/Reporte";
+const {Meta} = Card
 
 const TrabajadorInfo = () =>{
   const { id } = useParams();
@@ -24,6 +25,9 @@ const TrabajadorInfo = () =>{
         />
       }
         >
+          <Meta
+            title={<p>DNI: {usuario.dni}</p>}
+            />
         <List
           itemLayout="horizontal"
           dataSource={[
