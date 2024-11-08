@@ -45,7 +45,14 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.ant-list-items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px !important;
+}
+.ant-list-item {
+    padding: 0 0 0 0 !important;
+}
 .ant-empty-image svg ellipse {
     fill: var(--bg) !important;
 }
@@ -59,3 +66,4 @@ p {
 .ant-empty-description {
     color: white !important
 }
+

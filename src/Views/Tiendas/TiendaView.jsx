@@ -17,10 +17,10 @@ const TiendaView = () => {
     <>
       <Divider/>
       <Row gutter={24}>
-        <Col span={8}>
+        <Col span={6}>
           <TiendaCard/>
         </Col>
-        <Col span={16}>
+        <Col span={18}>
           <Tabs defaultActiveKey="1" items={items} />
         </Col>
       </Row>

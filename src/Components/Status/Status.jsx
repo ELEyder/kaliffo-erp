@@ -2,33 +2,54 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChangeStatusModal from "../Modals/ChangeStatusModal"
 import { Card } from "antd";
-import { getStatusCorte } from "../../API/Corte";
-import { changeStatus } from "../../API/Lote"
+import { getStatusCorte, changeStatusCorte } from "../../API/Corte";
+import { getStatusLavanderia, changeStatusLavanderia } from "../../API/Lavanderia";
+import { getFase } from "../../API/Lote";
+import "@/assets/css/status/status.css"
 
-const Status = () => {
+const Status = ({reload}) => {
     const [ OpenChangeStatus, setOpenChangeStatus ] = useState(false);
-    const [ statusCorte, setStatusCorte ] = useState(false);
-  const { id } = useParams();
-
+    const [ status, setStatus ] = useState(false);
+    const [ fase, setFase ] = useState(0);
+    const { id } = useParams();
+  const getStatus = async () => {
+    getFase(id, setFase)
+    if (fase == 1) {
+      getStatusCorte(id, setStatus);
+    }
+    if (fase == 2) {
+      getStatusLavanderia(id, setStatus);
+    }
+  }
     useEffect(() => {
-        getStatusCorte(id, setStatusCorte);
-      }, [id]);
+      getStatus()
+      }, [reload]);
 
       const eventStatus = async () => {
-        if (statusCorte == 1 || statusCorte == 2) {
-            await changeStatus(id)
-            await getStatusCorte(id, setStatusCorte);
-        } else if (statusCorte == 3) {
+        if (fase == 1) {
+          if (status == 1 || status == 2) {
+            await changeStatusCorte(id)
+            await getStatus();
+        } else if (status == 3) {
             setOpenChangeStatus(true)
         }
+        }
+        if (fase == 2) {
+          if (status == 1 || status == 2) {
+            await changeStatusLavanderia(id)
+            await getStatus();
+        } else if (status == 3) {
+            setOpenChangeStatus(true)
+        }
+        }
+        
       } 
     return(
         <>
-        <link rel="stylesheet" href="/css/status/status.css" />
-        <Card className={`status status-${statusCorte}`} onClick={eventStatus}>
-            <img src="/svg/status/play.svg" alt="" />
+        <div className={`status status-${status}`} onClick={eventStatus}>
+            <img className="status-icon" src="/svg/status/play.svg" alt="" />
             <h1>Iniciar</h1>
-        </Card>
+        </div>
 
         <ChangeStatusModal
         openModal={OpenChangeStatus}

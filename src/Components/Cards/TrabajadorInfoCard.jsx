@@ -25,9 +25,9 @@ const TrabajadorInfo = () =>{
         />
       }
         >
-          <Meta
-            title={<p>DNI: {usuario.dni}</p>}
-            />
+            {/* <Meta
+              title={<p>Más información</p>}
+              /> */}
         <List
           itemLayout="horizontal"
           dataSource={[

@@ -45,6 +45,9 @@ function App() {
           List: {
             colorText: "white",
           },
+          Tabs: {
+            colorText: "white",
+          },
           Table: {
             colorBgContainer: bg,
             colorText: "white",

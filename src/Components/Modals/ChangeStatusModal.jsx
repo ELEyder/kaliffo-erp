@@ -3,7 +3,7 @@ import { getChangeCorte } from "../../API/Corte";
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { changeStatus } from "../../API/Lote";
+import { changeStatusCorte } from "../../API/Corte";
 
 const ChangeStatusModal = ({ openModal, closeModal }) => {
   const [form] = Form.useForm();
@@ -64,7 +64,7 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
       <Form.Item>
         <Button onClick={ async ()=> {
           const values = form.getFieldsValue().items
-          await changeStatus(id, values)
+          await changeStatusCorte(id, values)
           console.log(values)
           form.resetFields()
           closeModal()

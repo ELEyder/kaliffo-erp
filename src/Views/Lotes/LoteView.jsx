@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from "react";
 import CortesTable from "../../Components/Tables/CortesTable";
+import LavanderiaTable from "../../Components/Tables/LavanderiaTable";
 import TimeLine from "../../Components/TimeLine/TimeLine";
 import Status from "../../Components/Status/Status";
 import { getFase } from "../../API/Lote";
@@ -10,17 +11,18 @@ import { useParams } from "react-router-dom";
 const Lote = () => {
   const { id } = useParams();
   const [fase, setFase] = useState(0);
+  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     getFase(id, setFase);
-  }, [id]);
+  }, [reload]);
 
   let contenido;
   if (fase == 1) {
     contenido = <CortesTable />;
   }
   if (fase == 2) {
-    contenido = <CortesTable />;
+    contenido = <LavanderiaTable />;
   }
   return (
     <>
@@ -31,7 +33,7 @@ const Lote = () => {
           {contenido}
         </Col>
         <Col span={6}>
-          <Status/>
+          <Status reload={()=> setReload(!reload)}/>
         </Col>
       </Row>
     </>
