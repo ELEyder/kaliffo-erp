@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import DetalleVentaModal from "../Modals/DetalleVentaModal";
 import AddVentaModal from "../Modals/AddVentaModal"
 import { getVentas, deleteVenta } from "../../API/Ventas";
-import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
+import { Button, Row, Col, Popconfirm, Table, Empty  } from "antd";
 
 const VentasTipoTable = () => {
   const { tipo } = useParams();

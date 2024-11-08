@@ -16,7 +16,7 @@
 .number {
     position: absolute;
     font-weight: 500;
-    top: 45%; /* Ajusta la posición vertical */
+    top: 40%; /* Ajusta la posición vertical */
     left: 60%; /* Ajusta la posición horizontal */
     font-size: 20px; /* Ajusta el tamaño del texto */
     padding: 10px; /* Espaciado alrededor del texto */

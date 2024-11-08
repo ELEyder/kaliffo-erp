@@ -30,7 +30,8 @@ const Tiendas_cards = () => {
     <>
     <Flex wrap gap={"middle"} justify="space-evenly" gutter={16}>
       {tiendas.map((tienda, index) => (
-          <Card key={index} title={ tienda.tienda } style={{ width: 300 }}
+        <Link to={`/tiendas/${tienda.tienda_id}`} style={{ textDecoration: 'none' }}>
+          <Card hoverable key={index} title={ tienda.tienda } style={{ width: 300, overflow: "hidden"}}
           actions={[
             <Tooltip title="Editar Tienda"
             className={"card-update"}
@@ -40,14 +41,15 @@ const Tiendas_cards = () => {
                   setValues(tienda)
                   setOpenUpdateTienda(true);
                 }}>
-                <EditOutlined style={{ color: "black" }} />
+                <div>
+                  <EditOutlined style={{ color: "white" }} />
+                </div>
             </Tooltip>,
             <Tooltip title="Ver Detalles" className={"card-view"}>
-            <Link to={`/tiendas/${tienda.tienda_id}`}>
-            <EyeOutlined style={{color: "white"}} key="view" />
-            </Link>
+              <Link to={`/tiendas/${tienda.tienda_id}`}>
+                <EyeOutlined style={{color: "white"}} key="view" />
+              </Link>
             </Tooltip>,
-
             <Popconfirm
             title="ELIMINAR"
             description="DESEA ELIMINAR ESTA TIENDA"
@@ -61,7 +63,9 @@ const Tiendas_cards = () => {
             cancelText="NO"
             >
               <Tooltip title="Eliminar Tienda" className={"card-delete"}>
-              <DeleteOutlined  key="delete" style={{color: "white"}} />
+                <div>
+                  <DeleteOutlined  key="delete" style={{color: "white"}} />
+                </div>
               </Tooltip>
             </Popconfirm>
             ,
@@ -76,6 +80,8 @@ const Tiendas_cards = () => {
               </>
             }/>
           </Card>
+          </Link>
+
       ))}
     </Flex>
 

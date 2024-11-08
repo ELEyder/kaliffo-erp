@@ -18,8 +18,8 @@ const Sidebar_main = () => {
       collapsedWidth="0"
     >
       <div className="sidebar-header">
-        <Avatar size={64} icon={<UserOutlined />} />
-        <Title level={4} >Tienda 1</Title>
+        {/* <Avatar size={64} icon={<UserOutlined />} />
+        <Title level={4} >Tienda 1</Title> */}
       </div>
       <Sidebar_menu/>
 

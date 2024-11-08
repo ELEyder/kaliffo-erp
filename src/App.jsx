@@ -14,15 +14,16 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   const root = document.documentElement;
-  const primaryColor = getComputedStyle(root).getPropertyValue('--primary-color').trim();
+  const bg = getComputedStyle(root).getPropertyValue('--bg').trim();
+  const bg2 = getComputedStyle(root).getPropertyValue('--bg-2').trim();
+  const color1 = getComputedStyle(root).getPropertyValue('--color-1').trim();
+  const color2 = getComputedStyle(root).getPropertyValue('--color-2').trim();
 
   useEffect(() => {
-    // Establecer un temporizador para ocultar la pantalla de carga después de 3 segundos (3000 ms)
     const timer = setTimeout(() => {
-      setLoading(false); // Oculta la pantalla de carga
+      setLoading(false);
     }, 500);
 
-    // Limpiar el temporizador cuando el componente se desmonte
     return () => {
       clearTimeout(timer);
     };
@@ -37,20 +38,49 @@ function App() {
       theme={{
         components: {
           Layout: {
-            siderBg: primaryColor,
-            triggerBg: primaryColor,
+            siderBg: bg,
+            triggerBg: bg,
+            bodyBg :bg2
+          },
+          Table: {
+            colorBgContainer: bg,
+            colorText: "white",
+            borderColor: "black",
+            headerBorderRadius: "black",
+            headerSortActiveBg: bg2,
+            headerSortHoverBg: bg2,
+            headerBg: bg2,
+            headerColor: "white",
+            headerSortActiveBg: bg2,
+            headerSplitColor: bg2,
           },
           Menu: {
-            itemBg: primaryColor,
-            itemHoverBg: "skyblue",
-            itemColor: "black",
-            itemColor: "red",
-            itemSelectedBg: "blue",
-            itemSelectedColor: "green",
-            itemActiveBg: "pink",
-            itemHoverColor: "gray",
-            subMenuItemBg: "yellow",
+
+            itemBg: bg,
+            groupTitleColor: color1,
+            itemHoverBg: bg2,
+            itemHoverColor: color1,
+            itemColor: "white",
+            itemSelectedBg: bg2,
+            itemSelectedColor: color1,
+            itemActiveBg: bg2,
+            subMenuItemBg: bg,
             subMenuItemBorderRadius: 0,
+          },
+          Card: {
+            borderColor: "black",
+            headerBg: bg,
+            colorBgContainer: bg,
+            colorBorderSecondary: bg2,
+            lineWidth: 2,
+            colorText: "white",
+            extraColor: "white",
+            colorTextDescription: "white",
+            colorTextHeading: "white",
+          },
+          Divider: {
+            colorSplit: "gray",
+            colorTextHeading: "white",
           },
         },
         token: {

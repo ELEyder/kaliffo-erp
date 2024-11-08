@@ -1,5 +1,5 @@
 .ant-layout-header {
-    background-color: var(--color-dark);
+    background-color: var(--bg);
     display: flex;
     align-items: center;
     justify-content: center;

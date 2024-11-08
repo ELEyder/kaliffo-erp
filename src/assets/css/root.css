@@ -1,11 +1,13 @@
 :root {
-    --primary-color: #FFCF69;
-    --color-1: #FFCF69;
-    --color-2: #1CB3C4;
-    --color-3: #BE2C5D;
+    --bg: #131931;
+    --bg-2: #0e1122;
+    --color-1: #2fb0f5;
+    --color-2: #6d60dd;
+    --color-3: #e04cbd;
     --color-dark: #1A0935;
     --color-dark-2: #100029;
     --color-white: #f0f2f5;
+    --color-danger: #ff4040;
     --font: "Poppins", sans-serif;
 }
 
@@ -18,33 +20,42 @@
     font-weight: 500 !important;
 }
 
-.ant-btn-primary,
-.ant-btn-primary:hover {
-    background: var(--color-2) !important;
-    color: white !important;
-    font-weight: 500 !important;
-}
-
-.ant-btn-dangerous,
-.ant-btn-dangerous:hover {
-    background: var(--color-3) !important;
-    border: var(--color-3) !important;
-    font-weight: 500 !important;
-    color: white
-}
 /* Botones Card*/
 .card-update {
     background-color: var(--color-1);
-    color: black;
     padding: 5px 0 ;
 }
+
 .card-view {
     background-color: var(--color-2);
-    color: black;
     padding: 5px 0 ;
 }
+
 .card-delete {
-    background-color: var(--color-3);
-    color: black;
+    background-color: var(--color-danger);
     padding: 5px 0 ;
+}
+
+li {
+    margin: 0 !important;
+}
+
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ant-empty-image svg ellipse {
+    fill: var(--bg) !important;
+}
+
+.ant-empty-image svg path {
+    stroke: white !important;
+    stroke-width: 2px !important;
+    fill: var(--bg) !important;
+}
+
+.ant-empty-description {
+    color: white !important
 }
