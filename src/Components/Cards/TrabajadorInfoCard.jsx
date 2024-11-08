@@ -20,7 +20,7 @@ const TrabajadorInfo = () =>{
           <Image
           width={"100%"}
           height={'auto'}
-          src={`/img/usuarios/${usuario.usuario_id}.png`}
+          src={"https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png"}
           fallback="/img/usuarios/0.jpg"
         />
       }

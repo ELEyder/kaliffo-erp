@@ -8,7 +8,7 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
   return (
     <Modal
       getContainer={false}
-      title={"Nuevo Producto"}
+      title={"Nuevo Lote"}
       open={openModal}
       onCancel={()=>closeModal(false)}
       okText="Añadir"
@@ -21,7 +21,7 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
         size="large"
         form={form}
         labelAlign="center"
-        id="formulariocrear"
+        id="formulariocrear" 
         layout="vertical"
         onFinish={async (values) =>{
             await addLote(values)
