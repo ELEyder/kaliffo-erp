@@ -1,39 +1,3 @@
-/* p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.correct {
-    background-color: rgb(157, 255, 189);
-}
-
-.incorrect {
-    background-color: rgb(245, 255, 157);
-}
-
-.danger {
-    background-color: rgb(255, 157, 157);
-}
-
-
-
-li {
-    margin: 0 !important;
-}
-
-
-
-p {
-    margin: 0 !important;
-}
-.ant-tabs-content-holder {
-    max-width: 700px !important;
-}
-
-.ant-card { 
-    border-radius: 15px;
-    overflow: hidden
-}
 .cardLoteIcons {
     max-width: 500px;
     margin: 20px 0 0 0;
@@ -41,11 +5,11 @@ p {
     justify-content: space-between;
     align-items: center;
     position: relative;
-  }
+}
 
 
 
-  .cardLoteIcon {
+.cardLoteIcon {
     width: 50px;
     height: 50px;
     display: flex;
@@ -57,42 +21,44 @@ p {
     border: 1px solid black;
     border-radius: 50%;
     z-index: 1;
-  }
+}
 
-  .cardSvgLote {
+.cardSvgLote {
     width: 25px;
-  }
+    margin: 0;
 
-  .loteIcons {
+}
+
+.loteIcons {
     margin: auto;
     margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-  }
+}
 
-  .loteIcon {
+.loteIcon {
     width: 80px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: white; 
+    background-color: white;
     padding: 5px;
     border: 1px solid black;
     border-radius: 50%;
     z-index: 1;
-  }
+}
 
-  .svgLote {
+.svgLote {
     width: 40px;
-  }
+}
 
 
-  .cardLoteIcons::before,
-  .loteIcons::before {
+.cardLoteIcons::before,
+.loteIcons::before {
     content: "";
     position: absolute;
     top: 50%;
@@ -101,5 +67,4 @@ p {
     height: 2px;
     background-color: gray;
     z-index: 0;
-  }
-  */
+}

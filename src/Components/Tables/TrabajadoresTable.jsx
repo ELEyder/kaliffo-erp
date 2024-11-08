@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
 import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
 import AddUsuarioModal from "../Modals/AddUsuarioModal"
@@ -14,7 +14,7 @@ const TrabajadoresTable = () => {
   const [OpenAddIncidencia, setOpenAddIncidencia] = useState(false);
   const [OpenUpdateUsuario, setOpenUpdateUsuario] = useState(false);
   const [reload, setReload] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     getUsuarios(tipo_trabajador, SetTabla_datos);
   }, [tipo_trabajador, reload]);
@@ -125,7 +125,7 @@ const TrabajadoresTable = () => {
         rowKey={"usuario_id"}
         onRow={(record) => ({
           onClick: () => {
-            window.location.href = `/trabajadores/${record.usuario_id}`
+            navigate(`/trabajadores/${record.usuario_id}`);
           },
           style: {
             cursor: "pointer",

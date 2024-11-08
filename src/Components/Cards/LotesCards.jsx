@@ -4,6 +4,7 @@ import AddLoteModal from "../Modals/AddLoteModal";
 import { getLotes } from "../../API/Lote";
 import { PlusOutlined } from "@ant-design/icons";
 import { Card, Flex, FloatButton, Tooltip } from "antd";
+import "@/assets/css/telas/telas.css"
 
 const { Meta } = Card;
 

@@ -1,23 +1,33 @@
 import { Button, Input, Form } from "antd";
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Yeti from "../../Components/svg/Yeti";
+import "@/assets/css/login/login.css"
 const LoginView = () =>{
 
     const [form] = Form.useForm()
+
+    const [isFocused, setIsFocused] = useState(true);
+
+
     return(
     <>
-        <link rel="stylesheet" href="css/login/login.css" />
-        <div className="content">
+    <div className="body-login">
+        <div className="content-login">
             <Form form={form} layout="vertical">
-                <div className="monkey">
-                    
+                <h2>Iniciar Sesión</h2>
+                <div className="yeti">
+                    <Yeti isFocused={isFocused}/>
                 </div>
-                <h1>Iniciar Sesión</h1>
                 <Form.Item name="username" label="Username">
-                    <Input/>
+                    <Input />
                 </Form.Item>
                 <Form.Item name="password" label="Password">
-                    <Input/>
+                    <Input
+                    onFocus={() => setIsFocused(false)}
+                    onBlur={() => setIsFocused(true)}
+                    />
                 </Form.Item>
             </Form>
             <Link to="/trabajadores/tipo/ventas">
@@ -26,6 +36,7 @@ const LoginView = () =>{
                 </Button>
             </Link>
         </div>
+    </div>
     </>
     )
 }

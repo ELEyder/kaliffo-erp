@@ -7,27 +7,89 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es'; 
 import { ConfigProvider } from 'antd';
 import LoadingScreen from './Components/Loading/LoadingScreen';
+import "@/assets/css/root.css"
 dayjs.locale('es')
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  const root = document.documentElement;
+  const bg = getComputedStyle(root).getPropertyValue('--bg').trim();
+  const bg2 = getComputedStyle(root).getPropertyValue('--bg-2').trim();
+  const color1 = getComputedStyle(root).getPropertyValue('--color-1').trim();
+  const color2 = getComputedStyle(root).getPropertyValue('--color-2').trim();
+
   useEffect(() => {
-    // Escucha el evento `load` del navegador, que se dispara cuando toda la página ha terminado de cargar
-    window.onload = () => {
-      setLoading(false); // Oculta la pantalla de carga cuando la página se ha cargado completamente
-    };
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
     return () => {
-      window.onload = null;
+      clearTimeout(timer);
     };
-  }, []);
+  }, []); 
   if (loading) {
     return <LoadingScreen />;
   }
 
   return (
     <>
-    <link rel="stylesheet" href="/css/root.css" />
-    <ConfigProvider locale={locale}>
+    <ConfigProvider
+      theme={{
+        components: {
+          Layout: {
+            siderBg: bg,
+            triggerBg: bg,
+            bodyBg :bg2
+          },
+          List: {
+            colorText: "white",
+          },
+          Table: {
+            colorBgContainer: bg,
+            colorText: "white",
+            borderColor: "black",
+            headerBorderRadius: "black",
+            headerSortActiveBg: bg2,
+            headerSortHoverBg: bg2,
+            headerBg: bg2,
+            headerColor: "white",
+            headerSplitColor: bg2,
+          },
+          Menu: {
+            itemBg: bg,
+            groupTitleColor: color1,
+            itemHoverBg: bg2,
+            itemHoverColor: color1,
+            itemColor: "white",
+            itemSelectedBg: bg2,
+            itemSelectedColor: color1,
+            itemActiveBg: bg2,
+            subMenuItemBg: bg,
+            subMenuItemBorderRadius: 0,
+          },
+          Card: {
+            borderColor: "black",
+            headerBg: bg,
+            colorBgContainer: bg,
+            colorBorderSecondary: bg2,
+            lineWidth: 2,
+            colorText: "white",
+            extraColor: "white",
+            colorTextDescription: "white",
+            borderRadiusLG: 15,
+            colorTextHeading: "white",
+          },
+          Divider: {
+            colorSplit: "gray",
+            colorTextHeading: "white",
+          },
+        },
+        token: {
+          // colorPrimary: primaryColor,
+        },
+      }}
+      locale={locale}>
       <Router>
         <Routing />
       </Router>
