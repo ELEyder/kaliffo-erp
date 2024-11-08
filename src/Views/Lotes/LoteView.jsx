@@ -3,7 +3,7 @@ import CortesTable from "../../Components/Tables/CortesTable";
 import TimeLine from "../../Components/TimeLine/TimeLine";
 import Status from "../../Components/Status/Status";
 import { getFase } from "../../API/Lote";
-import { Divider } from "antd";
+import { Divider, Row, Col } from "antd";
 import { useParams } from "react-router-dom";
 
 
@@ -16,15 +16,24 @@ const Lote = () => {
   }, [id]);
 
   let contenido;
-  if (fase === "cortes") {
+  if (fase == 1) {
+    contenido = <CortesTable />;
+  }
+  if (fase == 2) {
     contenido = <CortesTable />;
   }
   return (
     <>
       <Divider>DETALLES DEL LOTE</Divider>
       <TimeLine></TimeLine>
-      {contenido}
-      <Status/>
+      <Row>
+        <Col span={18}>
+          {contenido}
+        </Col>
+        <Col span={6}>
+          <Status/>
+        </Col>
+      </Row>
     </>
   )
 }

@@ -3,7 +3,7 @@ import { getChangeCorte } from "../../API/Corte";
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-const { Option } = Select;
+import { changeStatus } from "../../API/Lote";
 
 const ChangeStatusModal = ({ openModal, closeModal }) => {
   const [form] = Form.useForm();
@@ -29,7 +29,7 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
           wrapperCol={{ span: 18 }}
           form={form}
           name="addProductos"
-          style={{ maxWidth: 600, display: "flex",flexDirection: 'row'}}
+          style={{ maxWidth: 600, display: "flex",flexDirection: 'column'}}
           autoComplete="off"
     >
       <Form.List name="items">
@@ -44,8 +44,8 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
                 <Form.Item label="corte_id " name={[index, 'corte_id']}>
                   <InputNumber max={field.corte_id}/>
                 </Form.Item>
-                <Form.Item label="cantidad_enviada" name={[index, 'cantidad_enviada']}>
-                  <InputNumber max={field.cantidad_enviada}/>
+                <Form.Item label="cantidad_recibida" name={[index, 'cantidad_recibida']}>
+                  <InputNumber max={field.cantidad_recibida}/>
                 </Form.Item>
               </Card>
             ))}
@@ -53,17 +53,18 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
         )}
       </Form.List>
 
-      <Form.Item noStyle shouldUpdate>
+      {/* <Form.Item noStyle shouldUpdate>
         {() => (
           <Typography>
             <pre>{JSON.stringify(form.getFieldsValue().items, null, 2)}</pre>
           </Typography>
         )}
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item>
         <Button onClick={ async ()=> {
           const values = form.getFieldsValue().items
+          await changeStatus(id, values)
           console.log(values)
           form.resetFields()
           closeModal()

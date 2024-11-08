@@ -105,18 +105,3 @@ p {
     background-color: gray; /* Color de la línea */
     z-index: 0; /* Coloca la línea detrás de los hijos */
   }
-.status {
-    background-color: #56f856;
-    width: 100%;
-    padding: 40px;
-    border: black solid 4px;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-  .status img {
-    padding: 20px;
-    width: 200px;
-}

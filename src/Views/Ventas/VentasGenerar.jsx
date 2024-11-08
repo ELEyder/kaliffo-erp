@@ -1,70 +1,138 @@
 import React from "react";
-import { Card, Col, Divider, Form, Input, Row,InputNumber } from "antd";
+import { Card, Col, Divider, Form, Input, Row, InputNumber, DatePicker } from "antd";
 
 const GenerarVentas = () => {
+
+  const fecha_cruda = new Date();
+
   return (
     <>
-      <Divider style={{ textTransform: "uppercase" }}>Boleta</Divider>
+      <Divider orientation="center" style={{ textTransform: "uppercase", fontSize: "1.2rem" }}>Boleta</Divider>
 
-      <Form>
-
+      <Form size="large" labelAlign="left" id="formulariocrear" layout="vertical">
         <Row gutter={24} style={{ textAlign: "center" }}>
-
-          <Col span={17}>
-
+          <Col span={12}>
             <Card
-              title="Datos Tienda"
+              title="Datos de la Tienda"
+              bordered
               style={{
-                width: "100%",
-                border: "solid 1px",
+                height: "300px", 
+                overflowY: "auto", 
                 textAlign: "center",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                padding: "10px",
               }}
             >
-              <Row gutter={16}>
-
+              <Row gutter={8}>
                 <Col span={12}>
                   <Form.Item
-                    label="Tienda"
-                    name="tienda"
+                    label="Código"
+                    name="codigo"
                     rules={[{ required: true, message: "Obligatorio" }]}
                   >
-                    
-                    <Input></Input>
+                    <Input readOnly placeholder="Código" />
                   </Form.Item>
                 </Col>
 
+                <Col span={12}>
+                  <Form.Item
+                    label="Fecha"
+                    name="fecha"
+                    rules={[{ required: true, message: "Obligatorio" }]}
+                  >
+                    <DatePicker readOnly defaultValue={fecha_cruda} />
+                  </Form.Item>
+                </Col>
               </Row>
-            </Card>
 
+              <Row gutter={8}>
+                <Col span={12}>
+                  <Form.Item
+                    label="DNI"
+                    name="dni"
+                    rules={[{ required: true, message: "Obligatorio" }]}
+                  >
+                    <Input readOnly placeholder="DNI" />
+                  </Form.Item>
+                </Col>
+
+                <Col span={12}>
+                  <Form.Item
+                    label="Nombre"
+                    name="nombre"
+                    rules={[{ required: true, message: "Obligatorio" }]}
+                  >
+                    <Input readOnly placeholder="Nombre" />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              <Form.Item
+                label="Teléfono"
+                name="telefono"
+                rules={[{ required: true, message: "Obligatorio" }]}
+              >
+                <Input readOnly placeholder="Teléfono" />
+              </Form.Item>
+            </Card>
           </Col>
-        
-          <Col span={7} style={{ textAlign: "center" }}>
-            
+
+          <Col span={12}>
             <Card
-              title="Datos Total"
+              title="Datos del Total"
+              bordered
               style={{
-                width: "100%",
-                border: "solid 1px",
+                height: "300px", 
+                overflowY: "auto", 
                 textAlign: "center",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                padding: "10px",
               }}
             >
-              <Form.Item label="Cantidad" name="cantidad_total">
-                <InputNumber placeholder="Cantidad" style={{ width: "100%" }} readOnly />
+              <Form.Item label="Tipo de Pago" name="tipo_pago">
+                <InputNumber
+                  placeholder="Tipo de Pago"
+                  style={{ width: "100%" }}
+                  readOnly
+                />
               </Form.Item>
-              <Form.Item label="Total" name="total_neto">
-                <InputNumber placeholder="Total" style={{ width: "100%" }} readOnly />
+
+              <Form.Item label="Cantidad Total" name="cantidad_total">
+                <InputNumber
+                  placeholder="Cantidad Total"
+                  style={{ width: "100%" }}
+                  readOnly
+                />
+              </Form.Item>
+
+              <Form.Item label="Total Bruto" name="total_bruto">
+                <InputNumber
+                  placeholder="Total Bruto"
+                  style={{ width: "100%" }}
+                  readOnly
+                />
+              </Form.Item>
+
+              <Form.Item label="IGV Total" name="IGV_total">
+                <InputNumber
+                  placeholder="IGV Total"
+                  style={{ width: "100%" }}
+                  readOnly
+                />
+              </Form.Item>
+
+              <Form.Item label="Total Neto" name="total_neto">
+                <InputNumber
+                  placeholder="Total Neto"
+                  style={{ width: "100%" }}
+                  readOnly
+                />
               </Form.Item>
             </Card>
-
           </Col>
-
         </Row>
-        
-        <Divider style={{borderColor:"black"}}/>
 
-        
-
-
+        <Divider style={{ borderColor: "black", marginTop: "20px" }} />
       </Form>
     </>
   );
