@@ -23,7 +23,7 @@ const UpdateIncidenciaModal = ({
     <Modal
     forceRender
       getContainer={false}
-      title={`Editar Trabajador`}
+      title={`Editar Incidencia`}
       open={openModal}
       onCancel={closeModal}
       okText="Guardar"

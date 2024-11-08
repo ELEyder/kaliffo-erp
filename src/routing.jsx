@@ -9,6 +9,7 @@ import ProductosRouters from "./Routers/ProductosRouters";
 import TelasRouters from "./Routers/TelasRouters";
 import LotesRouters from "./Routers/LotesRouters";
 import Plantilla from "./Shared/Plantilla";
+import GenerarVentas from "./Views/Ventas/VentasGenerar";
 
 export const Routing = () =>{
     return(
@@ -26,6 +27,8 @@ export const Routing = () =>{
                 {/* Producción */}
                 <Route path="/telas/*" element={<TelasRouters />}/>
                 <Route path="/lotes/*" element={<LotesRouters />}/>
+                {/* VENTAS */}
+                <Route path="/gVenta/:tipo" element={<GenerarVentas/>} />
             </Route>
             {/* Error */}
             <Route path="*" element={<ErrorView />} />

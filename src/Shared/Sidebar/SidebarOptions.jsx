@@ -126,6 +126,39 @@ const Items = [
       },
     ]
   },
+  {
+    key: 'VENTAS',
+    label: 'VENTAS',
+    type: 'group',
+    children: [
+      {
+        key: "sub8",
+        label:"Generar Venta",
+        icon: <BookOutlined />,
+        children:[
+          {
+            key:"9",
+            icon:<BookOutlined/>,
+            label: (
+              <Link to="/gVenta/boleta" style={{ textDecoration: "none" }}>Boleta</Link>
+            )
+          },
+          {
+            key:"10",
+            icon:<BookOutlined/>,
+            label: (
+              <Link to="/gVenta/factura" style={{ textDecoration: "none" }}>Factura</Link>
+            )
+          }
+        ]
+      },
+      {
+        key: "lotes",
+        label: (<Link to={"/lotes"} style={{ textDecoration: "none" }} >Devoluciones</Link>),
+        icon: <BookOutlined />,
+      },
+    ]
+  },
 ]
 
 const SidebarOptions = () => {
