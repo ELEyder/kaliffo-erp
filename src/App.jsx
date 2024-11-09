@@ -49,7 +49,8 @@ function App() {
             colorBgContainer: color2,
             textHoverBg: 'white',
             colorText: 'white',
-            borderColor: color2
+            borderColor: color2,
+            colorSplit: color2
           },
           List: {
             colorText: "white",

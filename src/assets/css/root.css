@@ -69,3 +69,11 @@ p {
 .ant-input-show-count-suffix {
     color: white !important
 }
+
+.ant-picker-panel-layout {
+    background-color: var(--bg);
+}
+
+.ant-picker-now-btn{
+    text-decoration: none;
+}
