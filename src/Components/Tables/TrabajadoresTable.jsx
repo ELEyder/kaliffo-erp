@@ -91,8 +91,7 @@ const TrabajadoresTable = () => {
                 }}
                 cancelText="NO"
               >
-                <Button block style={{ background: "#f54242", color: "white" }}
-                  danger
+                <Button block type="primary" danger
                   onClick={(e) => {
                     e.stopPropagation();
                     setReload(!reload)

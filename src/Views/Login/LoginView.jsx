@@ -24,7 +24,7 @@ const LoginView = () =>{
                     <Input />
                 </Form.Item>
                 <Form.Item name="password" label="Password">
-                    <Input
+                    <Input.Password
                     onFocus={() => setIsFocused(false)}
                     onBlur={() => setIsFocused(true)}
                     />

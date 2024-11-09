@@ -14,10 +14,9 @@
 /* Botones */
 .btn-incidencia,
 .btn-incidencia:hover {
-    background: var(--color-1) !important;
-    border: var(--color-1) !important;
-    color: black !important;
-    font-weight: 500 !important;
+    background: var(--color-2) !important;
+    border: var(--color-2) !important;
+    color: white !important;
 }
 
 /* Botones Card*/
@@ -67,3 +66,6 @@ p {
     color: white !important
 }
 
+.ant-input-show-count-suffix {
+    color: white !important
+}

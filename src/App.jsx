@@ -18,6 +18,7 @@ function App() {
   const bg2 = getComputedStyle(root).getPropertyValue('--bg-2').trim();
   const color1 = getComputedStyle(root).getPropertyValue('--color-1').trim();
   const color2 = getComputedStyle(root).getPropertyValue('--color-2').trim();
+  const danger = getComputedStyle(root).getPropertyValue('--color-danger').trim();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -42,6 +43,14 @@ function App() {
             triggerBg: bg,
             bodyBg :bg2
           },
+          Button: {
+            colorPrimary: color1,
+            colorError: danger,
+            colorBgContainer: color2,
+            textHoverBg: 'white',
+            colorText: 'white',
+            borderColor: color2
+          },
           List: {
             colorText: "white",
           },
@@ -58,6 +67,35 @@ function App() {
             headerBg: bg2,
             headerColor: "white",
             headerSplitColor: bg2,
+          },
+          Modal: {
+            contentBg: bg,
+            titleColor: 'white',
+            headerBg: bg,
+          },
+          Form: {
+            labelColor: 'white',
+          },
+          Input: {
+            colorBgContainer: bg2,
+            colorBorder: 'black',
+            colorText: 'white',
+            colorTextPlaceholder: 'white'
+
+          },
+          DatePicker: {
+            colorBgContainer: bg2,
+            colorBorder: 'black',
+            colorText: 'white',
+            colorTextPlaceholder: 'white'
+
+          },
+          Select: {
+            colorBgContainer: bg2,
+            colorBorder: 'black',
+            optionSelectedBg: bg2,
+            colorBgElevated: bg,
+            colorText: 'white'
           },
           Menu: {
             itemBg: bg,
@@ -89,7 +127,8 @@ function App() {
           },
         },
         token: {
-          // colorPrimary: primaryColor,
+          colorPrimary: color1,
+          colorError: danger
         },
       }}
       locale={locale}>
