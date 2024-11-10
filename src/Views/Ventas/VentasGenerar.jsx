@@ -1,9 +1,10 @@
 import React from "react";
+import moment from "moment";
 import { Card, Col, Divider, Form, Input, Row, InputNumber, DatePicker } from "antd";
 
 const GenerarVentas = () => {
 
-  const fecha_cruda = new Date();
+  const dateFormat = 'YYYY/MM/DD';
 
   return (
     <>
@@ -40,7 +41,7 @@ const GenerarVentas = () => {
                     name="fecha"
                     rules={[{ required: true, message: "Obligatorio" }]}
                   >
-                    <DatePicker readOnly defaultValue={fecha_cruda} />
+                    <DatePicker defaultValue={moment()} format={dateFormat} />
                   </Form.Item>
                 </Col>
               </Row>
