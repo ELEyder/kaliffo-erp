@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import TrabajadoresView from '../../Views/Trabajadores/TrabajadoresView';
-import TrabajadorView from '../../Views/Trabajadores/TrabajadorView';
+import TrabajadoresView from '@V/Administrativo/Trabajadores/TrabajadoresView';
+import TrabajadorView from '@V/Administrativo/Trabajadores/TrabajadorView';
 
 
 const TrabajadoresRouters = () => (

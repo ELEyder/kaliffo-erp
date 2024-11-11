@@ -1,6 +1,6 @@
 import React from "react";
-import TelasActivasTable from "../../Components/Tables/TelasActivasTable"
-import TelasInactivasTable from "../../Components/Tables/TelasInactivasTable"
+import TelasActivasTable from "@C/Tables/TelasActivasTable"
+import TelasInactivasTable from "@C/Tables/TelasInactivasTable"
 import { Divider, Tabs } from "antd";
 
 const Tela = () => {

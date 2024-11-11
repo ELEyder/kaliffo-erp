@@ -1,5 +1,5 @@
 import * as React from "react"
-const Yeti = ({ isFocused }) => (
+const Yeti = ({styles, isFocused }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -198,7 +198,7 @@ const Yeti = ({ isFocused }) => (
       />
       <g
       id="brazoDerecho"
-      className={isFocused ? 'down-animation' : 'up-animation'}
+      className={isFocused ? styles.downAnimation : styles.upAnimation}
         >
       <g
         style={{
@@ -299,7 +299,7 @@ const Yeti = ({ isFocused }) => (
       </g>
       <g
         id="brazoIzquierdo"
-        className={isFocused ? 'down-animation' : 'up-animation'}
+        className={isFocused ? styles.downAnimation : styles.upAnimation}
       >
 
       <path

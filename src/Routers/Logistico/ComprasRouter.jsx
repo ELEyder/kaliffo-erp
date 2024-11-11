@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import ComprasView from "../../Views/Compras/ComprasView";
+import ComprasView from "@V/Compras/ComprasView";
 
 
 const ComprasRouter = () => (

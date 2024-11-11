@@ -1,8 +1,8 @@
 import React, { useState , useEffect} from "react";
-import CortesTable from "../../Components/Tables/CortesTable";
-import LavanderiaTable from "../../Components/Tables/LavanderiaTable";
-import TimeLine from "../../Components/TimeLine/TimeLine";
-import Status from "../../Components/Status/Status";
+import CortesTable from "@C/Tables/CortesTable";
+import LavanderiaTable from "@C/Tables/LavanderiaTable";
+import TimeLine from "@C/TimeLine/TimeLine";
+import Status from "@C/Status/Status";
 import { getFase } from "../../API/Lote";
 import { Divider, Row, Col } from "antd";
 import { useParams } from "react-router-dom";

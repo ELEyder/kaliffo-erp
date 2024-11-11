@@ -1,30 +1,29 @@
-import { Button, Input, Form } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Yeti from "../../Components/svg/Yeti";
-import "@/assets/css/login/login.css"
+import { Button, Input, Form } from "antd";
+import Yeti from "@C/svg/Yeti";
+import styles from './LoginView.module.css'
+
 const LoginView = () =>{
 
     const [form] = Form.useForm()
-
     const [isFocused, setIsFocused] = useState(true);
-
 
     return(
     <>
-    <div className="body-login">
-        <div className="content-login">
+    <div className={styles.body}>
+        <div className={styles.content}>
             <Form form={form} layout="vertical">
-                <h2>Iniciar Sesión</h2>
-                <div className="yeti">
-                    <Yeti isFocused={isFocused}/>
+                <h2 className={styles.title}>Iniciar Sesión</h2>
+                <div className={styles.yeti}>
+                    <Yeti styles={styles} isFocused={isFocused}/>
                 </div>
-                <Form.Item name="username" label="Username">
-                    <Input />
+                <Form.Item name="username" label="Username:">
+                    <Input autoComplete="username"/>
                 </Form.Item>
                 <Form.Item name="password" label="Password">
                     <Input.Password
+                    autoComplete="current-password"
                     onFocus={() => setIsFocused(false)}
                     onBlur={() => setIsFocused(true)}
                     />

@@ -14,23 +14,17 @@ import GenerarVentas from "./Views/Ventas/VentasGenerar";
 export const Routing = () =>{
     return(
         <Routes>
-            {/* Login */}
             <Route path="/" element={<LoginView/>}/>
             <Route element={<Plantilla />}>
-                {/* Administrativo */}
                 <Route path="/trabajadores/*" element={<TrabajadoresRouters/>}/>
                 <Route path="/tiendas/*" element={<TiendasRouters/>}/>
                 <Route path="/productos/*" element={<ProductosRouters />}/>
                 <Route path="/ventas/:tipo" element={<Ventas />}/>
-                {/* Logístico */}
                 <Route path="/compras" element={<ComprasView/>}/>
-                {/* Producción */}
                 <Route path="/telas/*" element={<TelasRouters />}/>
                 <Route path="/lotes/*" element={<LotesRouters />}/>
-                {/* VENTAS */}
                 <Route path="/gVenta/:tipo" element={<GenerarVentas/>} />
             </Route>
-            {/* Error */}
             <Route path="*" element={<ErrorView />} />
         </Routes>
     )

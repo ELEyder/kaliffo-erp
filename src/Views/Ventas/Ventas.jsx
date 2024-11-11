@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import VentasTipoTable from "../../Components/Tables/VentasTipoTable";
+import VentasTipoTable from "@C/Tables/VentasTipoTable";
 import { Divider } from "antd";
 
 const Ventas = () => {

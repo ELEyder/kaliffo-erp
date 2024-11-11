@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider } from "antd";
-import TablaCompras from "../../Components/Tables/TablaCompras";
+import TablaCompras from "@C/Tables/TablaCompras";
 
 const ComprasView = () => {
   return (

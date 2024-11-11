@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import ProductosView from '../../Views/Productos/ProductosView';
-import ProductoView from '../../Views/Productos/ProductoView';
+import ProductosView from '@V/Administrativo/Productos/ProductosView';
+import ProductoView from '@V/Administrativo/Productos/ProductoView';
 
 const ProductosRouters = () => (
     <Routes>

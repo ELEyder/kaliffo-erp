@@ -133,7 +133,7 @@ function App() {
         },
       }}
       locale={locale}>
-      <Router>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routing />
       </Router>
     </ConfigProvider>

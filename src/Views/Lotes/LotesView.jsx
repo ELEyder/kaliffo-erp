@@ -1,5 +1,5 @@
 import React from "react";
-import LotesCards from "../../Components/Cards/LotesCards";
+import LotesCards from "@C/Cards/LotesCards";
 import { Divider } from "antd";
 import "@/assets/css/lotes/lotes.css"
 
