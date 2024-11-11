@@ -1,5 +1,4 @@
 import { showNotification } from "../Shared/Notifications"
-import moment from "moment";
 
 export const getCompras = async (setCompras) =>{
     const response = await fetch(`http://localhost:3000/compras`)

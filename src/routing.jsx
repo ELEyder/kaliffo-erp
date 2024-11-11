@@ -1,11 +1,11 @@
 import { Route,Routes } from "react-router-dom";
 import LoginView from "./Views/Login/LoginView";
+import TrabajadoresRouters from "./Routers/Administrativo/TrabajadoresRouters";
+import TiendasRouters from "./Routers/Administrativo/TiendasRouters";
+import ProductosRouters from "./Routers/Administrativo/ProductosRouters";
 import Ventas from "./Views/Ventas/Ventas"
 import ErrorView from "./Views/Error/ErrorView"
 import ComprasView from "./Views/Compras/ComprasView";
-import TrabajadoresRouters from "./Routers/TrabajadoresRouters";
-import TiendasRouters from "./Routers/TiendasRouters";
-import ProductosRouters from "./Routers/ProductosRouters";
 import TelasRouters from "./Routers/TelasRouters";
 import LotesRouters from "./Routers/LotesRouters";
 import Plantilla from "./Shared/Plantilla";

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css'
 import locale from 'antd/locale/es_ES'; 
-import dayjs from 'dayjs';
 import { ConfigProvider } from 'antd';
 import LoadingScreen from './Components/Loading/LoadingScreen';
 import "@/assets/css/root.css"
