@@ -6,7 +6,7 @@ import DeleteTiendaModal from "../Modals/DeleteTiendaModal";
 import UpdateTiendaModal from "../Modals/UpdateTiendaModal"
 import { Card, Flex, FloatButton, Popconfirm, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-
+import styles from './TiendasCards.module.css'
 const {Meta} = Card
 
 

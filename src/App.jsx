@@ -69,6 +69,11 @@ function App() {
             headerColor: "white",
             headerSplitColor: bg2,
           },
+          Pagination: {
+            itemBg: bg,
+            itemActiveBg: bg,
+            colorText: 'white',
+          },
           Modal: {
             contentBg: bg,
             titleColor: 'white',
@@ -121,11 +126,16 @@ function App() {
             colorTextDescription: "white",
             borderRadiusLG: 15,
             colorTextHeading: "white",
+            actionsLiMargin: 0
           },
           Divider: {
             colorSplit: "gray",
             colorTextHeading: "white",
           },
+          Popconfirm : {
+            colorText: 'white',
+            colorTextHeading: 'white'
+          }
         },
         token: {
           colorPrimary: color1,

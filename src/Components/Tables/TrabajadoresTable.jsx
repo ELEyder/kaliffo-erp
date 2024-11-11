@@ -6,18 +6,18 @@ import AddUsuarioModal from "../Modals/AddUsuarioModal"
 import { getUsuarios, deleteUsuarioById } from "../../API/Usuario";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
-const TrabajadoresTable = () => {
-  const { tipo_trabajador } = useParams();
+const TrabajadoresTable = ({tipo}) => {
+
   const [id, setId] = useState(1);
-  const [tabla_datos, SetTabla_datos] = useState([]);
+  const [data, setData] = useState([]);
   const [OpenAddUsuario, setOpenAddUsuario] = useState(false);
   const [OpenAddIncidencia, setOpenAddIncidencia] = useState(false);
   const [OpenUpdateUsuario, setOpenUpdateUsuario] = useState(false);
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    getUsuarios(tipo_trabajador, SetTabla_datos);
-  }, [tipo_trabajador, reload]);
+    getUsuarios(tipo, setData);
+  }, [tipo, reload]);
 
   const columnas = [
     {
@@ -59,37 +59,29 @@ const TrabajadoresTable = () => {
           <Row gutter={[8, 8]} justify="center" align="middle" className="opciones-botones">
             <Col>
               <Button
-                type="primary"
-                onClick={(e) => {
+                type="primary" block onClick={(e) => {
                   e.stopPropagation()
                   setId(text)
                   setOpenUpdateUsuario(true)
-                }}
-                block>
-                Editar
-              </Button>
+                }}>Editar</Button>
             </Col>
             <Col>
-              <Button className="btn-incidencia" onClick={(e) => {
+              <Button className="btn-incidencia" block onClick={(e) => {
                 e.stopPropagation()
                 setId(text)
                 setOpenAddIncidencia(true)
-              }}
-                block>
-                + Incidencias
-              </Button>
+              }}>+ Incidencias</Button>
             </Col>
             <Col>
               <Popconfirm
-                title="ELIMINAR"
-                description="DESEA ELIMINAR A"
+                title="¿ELIMINAR?" description="¿Estas seguro de eliminar este usuario?"
                 okText="Confirmar"
                 onConfirm={(e) => {
                   e.stopPropagation();
                   deleteUsuarioById(text)
                   setReload(!reload)
                 }}
-                cancelText="NO"
+                cancelText="Cancelar"
               >
                 <Button block type="primary" danger
                   onClick={(e) => {
@@ -107,7 +99,7 @@ const TrabajadoresTable = () => {
     },
   ];
 
-  if (tipo_trabajador === "ventas") {
+  if (tipo === "ventas") {
     columnas.splice(3, 0, {
       title: "Tienda", dataIndex: "tienda", key: "tienda", align: "center",
     });
@@ -120,7 +112,7 @@ const TrabajadoresTable = () => {
       <Table
         columns={columnas}
         pagination={{ pageSize: 5 }}
-        dataSource={tabla_datos}
+        dataSource={data}
         rowKey={"usuario_id"}
         onRow={(record) => ({
           onClick: () => {
@@ -134,14 +126,14 @@ const TrabajadoresTable = () => {
       <AddUsuarioModal
         openModal={OpenAddUsuario}
         closeModal={()=>setOpenAddUsuario(false)}
-        tipoTrabajador={tipo_trabajador}
+        tipoTrabajador={tipo}
         reload={reload}
         setReload={setReload}
       />
       <UpdateUsuarioModal
         openModal={OpenUpdateUsuario}
         closeModal={()=>setOpenUpdateUsuario(false)}
-        tipoTrabajador={tipo_trabajador}
+        tipoTrabajador={tipo}
         reload={() => setReload(!reload)}
         id={id}
       />

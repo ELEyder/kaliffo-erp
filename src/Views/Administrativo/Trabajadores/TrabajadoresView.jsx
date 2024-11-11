@@ -4,18 +4,18 @@ import TrabajadoresTable from "@C/Tables/TrabajadoresTable";
 import { Divider } from "antd";
 
 const Trabajadores = () => {
-  const { tipo_trabajador } = useParams();
+  const { tipo } = useParams();
 
   const tiposValidos = ["ventas", "talleres", "miscelaneos", "costureros"];
 
-  if (tipo_trabajador && !tiposValidos.includes(tipo_trabajador)) {
+  if (!tiposValidos.includes(tipo)) {
     return <Navigate to="/error" />;
   }
 
   return (
     <>
-      <Divider style={{textTransform: "uppercase"}}>{tipo_trabajador}</Divider>
-      <TrabajadoresTable/>
+      <Divider style={{textTransform: "uppercase"}}>{tipo}</Divider>
+      <TrabajadoresTable tipo={tipo}/>
     </>
   );
 };

@@ -38,9 +38,7 @@ body {
   padding: 5px 0 ;
 }
 
-li {
-  margin: 0 !important;
-}
+
 
 p {
 white-space: nowrap;
@@ -89,4 +87,8 @@ text-overflow: ellipsis;
 
 .ant-modal-close-x {
   color: white; /* O el color que prefieras */
+}
+
+.ant-popover-inner {
+  background-color: var(--bg) !important;
 }
