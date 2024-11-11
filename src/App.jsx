@@ -4,11 +4,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import './App.css'
 import locale from 'antd/locale/es_ES'; 
 import dayjs from 'dayjs';
-import 'dayjs/locale/es'; 
 import { ConfigProvider } from 'antd';
 import LoadingScreen from './Components/Loading/LoadingScreen';
 import "@/assets/css/root.css"
-dayjs.locale('es')
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,18 +18,18 @@ function App() {
   const color2 = getComputedStyle(root).getPropertyValue('--color-2').trim();
   const danger = getComputedStyle(root).getPropertyValue('--color-danger').trim();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 500);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 500);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []); 
-  if (loading) {
-    return <LoadingScreen />;
-  }
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, []); 
+  // if (loading) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <>
@@ -50,6 +48,9 @@ function App() {
             textHoverBg: 'white',
             colorText: 'white',
             borderColor: color2,
+            defaultHoverBorderColor: color2,
+            defaultBorderColor: color2,
+            defaultHoverColor: 'white',
             colorSplit: color2
           },
           List: {

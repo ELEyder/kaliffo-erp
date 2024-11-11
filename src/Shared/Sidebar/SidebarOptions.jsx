@@ -153,7 +153,7 @@ const Items = [
         ]
       },
       {
-        key: "lotes",
+        key: "devoluciones",
         label: (<Link to={"/lotes"} style={{ textDecoration: "none" }} >Devoluciones</Link>),
         icon: <BookOutlined />,
       },

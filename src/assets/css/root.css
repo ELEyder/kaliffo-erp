@@ -10,7 +10,10 @@
     --color-danger: #ff4040;
     --font: "Poppins", sans-serif;
 }
-
+body {
+    padding: 0;
+    margin: 0;
+}
 /* Botones */
 .btn-incidencia,
 .btn-incidencia:hover {
@@ -72,8 +75,18 @@ p {
 
 .ant-picker-panel-layout {
     background-color: var(--bg);
+    border: solid 2px var(--bg);
 }
 
 .ant-picker-now-btn{
     text-decoration: none;
 }
+
+.ant-picker-month-btn,
+.ant-picker-year-btn {
+    color: white !important;
+}
+
+.ant-modal-close-x {
+    color: white; /* O el color que prefieras */
+  }
