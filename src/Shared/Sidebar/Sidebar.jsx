@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { UserOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Layout, Avatar, Typography, FloatButton } from 'antd';
-import Sidebar_menu from "./SidebarOptions";
+import SidebarOptions from "./SidebarOptions";
 import "@/assets/css/shared/sidebar.css"
 
 const { Sider } = Layout;
 const { Title } =Typography
 
 
-const Sidebar_main = () => {
+const Sidebar_main = ({collapsed}) => {
   return (
+
     <>
-    <Sider
+      <Sider trigger={null} collapsible collapsed={collapsed}
       width={250}
       breakpoint="lg"
       className="sidebar"
@@ -21,7 +22,7 @@ const Sidebar_main = () => {
         {/* <Avatar size={64} icon={<UserOutlined />} />
         <Title level={4} >Tienda 1</Title> */}
       </div>
-      <Sidebar_menu/>
+      <SidebarOptions/>
 
     </Sider>
 
