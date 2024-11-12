@@ -12,7 +12,7 @@ const Sidebar_main = ({collapsed}) => {
   return (
 
     <>
-      <Sider trigger={null} collapsible collapsed={collapsed}
+      <Sider style={{ height: '100vh', overflowY: 'scroll', padding: '0'}} trigger={null} collapsible collapsed={collapsed}
       width={250}
       breakpoint="lg"
       className="sidebar"

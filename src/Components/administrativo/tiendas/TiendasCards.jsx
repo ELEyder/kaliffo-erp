@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddTiendaModal from "@CA/tiendas/AddTiendaModal";
-import { getTiendas } from "@AA/Tienda";
-import DeleteTiendaModal from "@CA/tiendas/DeleteTiendaModal";
-import UpdateTiendaModal from "@CA/tiendas/UpdateTiendaModal"
 import { Card, Flex, FloatButton, Popconfirm, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+
+import { getTiendas } from "@AA/Tienda";
+import AddTiendaModal from "@CA/tiendas/AddTiendaModal";
+import DeleteTiendaModal from "@CA/tiendas/DeleteTiendaModal";
+import UpdateTiendaModal from "@CA/tiendas/UpdateTiendaModal";
 
 const {Meta} = Card
 

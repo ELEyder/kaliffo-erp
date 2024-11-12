@@ -10,8 +10,8 @@ const { Content } = Layout;
 const Plantilla = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed}/>
+    <Layout style={{ height: "100vh" }}>
+      <Sidebar  collapsed={collapsed} setCollapsed={setCollapsed}/>
       <Layout>
         <Header_main collapsed={collapsed} setCollapsed={setCollapsed}/>
         <Content style={{ padding: "0 24px", height: 'calc(100vh - 64px - 70px)', overflowY: 'auto' }}>

@@ -10,6 +10,25 @@
   --color-danger: #ff4040;
   --font: "Poppins", sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* background: green; */
+  /* cursor: grab; */
+}
+
 body {
   padding: 0;
   margin: 0;

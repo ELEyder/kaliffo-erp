@@ -8,8 +8,7 @@ import AddProductoModal from "@CA/productos/AddProductoModal";
 import DeleteProductoModal from "@CA/productos/DeleteProductoModal";
 import UpdateProductoModal from "@CA/productos/UpdateProductoModal"
 
-const {Meta} = Card
-
+const { Meta } = Card
 
 const ProductosCards = () => {
 
@@ -29,8 +28,8 @@ const ProductosCards = () => {
       <Flex wrap gap={"middle"} justify="space-evenly" gutter={20}>
         {productos.map((producto, index) => {
           return (
-              <Card
-              style={{width: "300px"}}
+              <Card key={index}
+              style={{width: "300px", overflow: 'hidden'}}
                 title={producto.nombre}
                 actions={[
                   <Tooltip title="Editar Producto"
