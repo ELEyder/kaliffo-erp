@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { Card, Col, Divider, Form, Input, Row, InputNumber, DatePicker } from "antd";
 
-const GenerarVentas = () => {
+const GenerarVentaView = () => {
 
   const dateFormat = 'YYYY/MM/DD';
 
@@ -139,4 +139,4 @@ const GenerarVentas = () => {
   );
 };
 
-export default GenerarVentas;
+export default GenerarVentaView;

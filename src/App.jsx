@@ -85,7 +85,8 @@ function App() {
             colorBgContainer: bg2,
             colorBorder: 'black',
             colorText: 'white',
-            colorTextPlaceholder: 'white'
+            colorTextPlaceholder: 'white',
+            colorBgContainerDisabled: 'red'
 
           },
           DatePicker: {

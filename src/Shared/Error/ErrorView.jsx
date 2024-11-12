@@ -9,7 +9,7 @@ const ErrorView = () =>{
                 <img className={ styles.img } src="/public/img/bg/error-3.gif" alt="" />
                 <h1 className={ styles.text }><span className={ styles.text }>4</span>04</h1>
                 <h2 className={ styles.text }><span className={ styles.text }>|</span> Página no encontrada</h2>
-                <Link to={"/trabajadores/tipo/ventas"}>Ir a la página principal</Link>
+                <Link to={"/admin/trabajadores/tipo/ventas"}>Ir a la página principal</Link>
             </div>
         </div>
         </>

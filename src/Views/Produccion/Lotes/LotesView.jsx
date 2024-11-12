@@ -4,7 +4,7 @@ import { Divider } from "antd";
 import "@/assets/css/lotes/lotes.css"
 
 
-const Lotes = () =>{
+const LotesView = () =>{
 
     return(
         <>
@@ -17,4 +17,4 @@ const Lotes = () =>{
     )
 }
 
-export default Lotes
+export default LotesView
