@@ -6,7 +6,7 @@ const TiendasView = () => {
   return (
     <>
       <Divider>TIENDAS</Divider>
-      <TiendasCards />
+      <TiendasCards/>
     </>
   );
 };

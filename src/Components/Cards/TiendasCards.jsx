@@ -28,10 +28,9 @@ const Tiendas_cards = () => {
 
   return (
     <>
-    <Flex wrap gap={"middle"} justify="space-evenly" gutter={16}>
+    <Flex wrap gap={"middle"} justify="space-evenly" gutter={20}>
       {tiendas.map((tienda, index) => (
-        <Link to={`/tiendas/${tienda.tienda_id}`} style={{ textDecoration: 'none' }}>
-          <Card hoverable key={index} title={ tienda.tienda } style={{ width: 300, overflow: "hidden"}}
+          <Card key={index} title={ tienda.tienda } style={{ width: 300, overflow: "hidden"}}
           actions={[
             <Tooltip title="Editar Tienda"
             className={"card-update"}
@@ -51,8 +50,8 @@ const Tiendas_cards = () => {
               </Link>
             </Tooltip>,
             <Popconfirm
-            title="ELIMINAR"
-            description="DESEA ELIMINAR ESTA TIENDA"
+            title="¿ELIMINAR?"
+            description="¿Está seguro de eliminar esta tienda?"
             okText="Confirmar"
             placement="bottom"
             onConfirm={(e) =>{
@@ -60,7 +59,7 @@ const Tiendas_cards = () => {
               setId(tienda.tienda_id)
               setOpenDeleteTienda(true)
             }} 
-            cancelText="NO"
+            cancelText="Cancelar"
             >
               <Tooltip title="Eliminar Tienda" className={"card-delete"}>
                 <div>
@@ -80,8 +79,6 @@ const Tiendas_cards = () => {
               </>
             }/>
           </Card>
-          </Link>
-
       ))}
     </Flex>
 

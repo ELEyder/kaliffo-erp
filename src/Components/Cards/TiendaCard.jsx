@@ -30,7 +30,7 @@ const TiendaCard = () =>{
           ]}
           renderItem={(item) => (
             <List.Item>
-              <b>{item.title}</b>
+              <b style={{ textAlign: 'left', marginRight: "40px" }}>{item.title}</b>
               <a style={{ float: "right" }}>{item.value}</a>
             </List.Item>
           )}

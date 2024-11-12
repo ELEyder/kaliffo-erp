@@ -3,7 +3,7 @@ import TiendaCard from "@C/Cards/TiendaCard"
 import ProductosTable from "@C/Tables/ProductosTable"
 import PersonalTable from "@C/Tables/PersonalTable"
 import VentasTable from "@C/Tables/VentasTable"
-import { Col, Divider, Row, Tabs } from "antd";
+import { Col, Divider, Flex, Row, Tabs } from "antd";
 
 const TiendaView = () => {
 
@@ -16,15 +16,10 @@ const TiendaView = () => {
   return (
     <>
       <Divider/>
-      <Row gutter={24}>
-        <Col span={6}>
-          <TiendaCard/>
-        </Col>
-        <Col span={18}>
-          <Tabs defaultActiveKey="1" items={items} />
-        </Col>
-      </Row>
-      <Divider/>
+      <Flex wrap gap="small" vertical={false} justify={'space-evenly'} align="flex-start">
+        <TiendaCard/>
+        <Tabs defaultActiveKey="1" items={items} style={{ minWidth: '500px' }}/>
+      </Flex>
     </>
   );
 };
