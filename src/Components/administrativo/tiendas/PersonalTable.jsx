@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
-import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
-import AddPersonalModal from "../modals/AddPersonalModal";
-import { getUsuariosTienda, deleteUsuarioById } from "../../API/Usuario";
+import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
+import AddPersonalModal from "@CA/tiendas/AddPersonalModal";
+import { getUsuariosTienda, deleteUsuarioById } from '@AA/Usuario';
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 
@@ -102,7 +102,7 @@ const PersonalTable = () => {
         rowKey={(record) => record.usuario_id}
       />
 
-      <UpdateUsuarioModal
+      <UpdateTrabajadorModal
         openModal={OpenModalUpdate}
         closeModal={()=>setOpenModalUpdate(false)}
         id={idPersonal}

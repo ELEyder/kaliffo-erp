@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal"
-import UpdateUsuarioModal from "../Modals/UpdateUsuarioModal";
-import AddUsuarioModal from "../Modals/AddUsuarioModal"
-import { getUsuarios, deleteUsuarioById } from "../../API/Usuario";
+import { useNavigate } from "react-router-dom";
+import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"
+import UpdateUsuarioModal from "@CA/trabajadores/UpdateTrabajadorModal";
+import AddUsuarioModal from "@CA/trabajadores/AddTrabajadorModal"
+import { getUsuarios, deleteUsuarioById } from "@AA/Usuario";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
 const TrabajadoresTable = ({tipo}) => {

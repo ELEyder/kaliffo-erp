@@ -1,8 +1,8 @@
 import React from "react";
-import TiendaCard from "@C/Cards/TiendaCard"
-import ProductosTable from "@C/Tables/ProductosTable"
-import PersonalTable from "@C/Tables/PersonalTable"
-import VentasTable from "@C/Tables/VentasTable"
+import TiendaCard from "@CA/tiendas/TiendaCard"
+import ProductosTable from "@CA/tiendas/ProductosTable"
+import PersonalTable from "@CA/tiendas/PersonalTable"
+import VentasTable from "@CA/tiendas/VentasTable"
 import { Col, Divider, Flex, Row, Tabs } from "antd";
 
 const TiendaView = () => {

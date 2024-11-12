@@ -1,11 +1,11 @@
 import React, { useState , useEffect} from "react";
-import CortesTable from "@C/Tables/CortesTable";
-import LavanderiaTable from "@C/Tables/LavanderiaTable";
-import TimeLine from "@C/TimeLine/TimeLine";
-import Status from "@C/Status/Status";
-import { getFase } from "@A/prod/lote/Lote";
-import { Divider, Row, Col } from "antd";
 import { useParams } from "react-router-dom";
+import { Divider, Row, Col } from "antd";
+import CortesTable from "@CP/lotes/CortesTable";
+import LavanderiaTable from "@CP/lotes/LavanderiaTable";
+import TimeLine from "@CP/lotes/TimeLine";
+import Status from "@CP/lotes/Status";
+import { getFase } from "@AP/Lote";
 
 
 const Lote = () => {

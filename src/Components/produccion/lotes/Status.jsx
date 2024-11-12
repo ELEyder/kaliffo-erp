@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ChangeStatusModal from "../Modals/ChangeStatusModal"
-import { getStatusCorte, changeStatusCorte } from "@A/prod/lote/Corte";
-import { getStatusLavanderia, changeStatusLavanderia } from "@A/prod/lote/Lavanderia";
-import { getFase } from "@A/prod/lote/Lote";
+import ChangeStatusModal from "@CP/lotes/ChangeStatusModal"
+import { getStatusCorte, changeStatusCorte } from "@AP/Corte";
+import { getStatusLavanderia, changeStatusLavanderia } from "@AP/Lavanderia";
+import { getFase } from "@AP/Lote";
 import "@/assets/css/status/status.css"
 
 const Status = ({reload}) => {

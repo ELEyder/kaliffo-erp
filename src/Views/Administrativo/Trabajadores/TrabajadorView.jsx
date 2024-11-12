@@ -1,8 +1,8 @@
 import React from "react";
-import TrabajadorInfoCard from "@C/Cards/TrabajadorInfoCard";
-import IncidenciasTable from "@C/Tables/IncidenciasTable";
-import HorariosTable from "@C/Tables/HorariosTable"
-import PagosTable from "@C/Tables/PagosTable"
+import TrabajadorInfoCard from "@CA/trabajadores/TrabajadorInfoCard";
+import IncidenciasTable from "@CA/trabajadores/IncidenciasTable";
+import HorariosTable from "@CA/trabajadores/HorariosTable"
+import PagosTable from "@CA/trabajadores/PagosTable"
 import { Divider, Tabs, Flex } from "antd";
 
 const Trabajador = () => {

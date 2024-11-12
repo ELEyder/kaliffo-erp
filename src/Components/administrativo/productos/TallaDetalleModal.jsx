@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table, Row, Col ,Popconfirm } from "antd";
-import { getTallaDetalle } from "../../../API/Talla";
+import { getTallaDetalle } from "@AA/Talla";
 
 const TallaDetalleModal = ({
   openModal,

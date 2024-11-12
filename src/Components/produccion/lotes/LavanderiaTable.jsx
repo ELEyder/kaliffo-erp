@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Table, FloatButton, Row, Col, Popconfirm, Button } from "antd";
 import { useParams } from "react-router-dom";
-import { getCorte, deleteCorte } from "@A/prod/lote/Corte";
-import AddCorteModal from "../Modals/AddCorteModal";
+import { getCorte, deleteCorte } from "@AP/Corte";
+import AddCorteModal from "@CP/lotes/AddCorteModal";
 
 const LavanderiaTable = () => {
   const { id } = useParams();

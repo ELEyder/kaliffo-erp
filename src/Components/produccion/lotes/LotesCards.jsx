@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import AddLoteModal from "@C/Modals/AddLoteModal";
-import { getLotes } from "@A/prod/lote/Lote";
-import { PlusOutlined } from "@ant-design/icons";
 import { Card, Flex, FloatButton, Tooltip } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+
+import { getLotes } from "@AP/Lote";
+import AddLoteModal from "@CP/lotes/AddLoteModal";
 import "@/assets/css/telas/telas.css"
 
 const { Meta } = Card;

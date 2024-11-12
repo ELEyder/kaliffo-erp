@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { updateTienda, setUpdateTienda } from "../../API/Tienda";
-import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
+import { updateTienda } from "@AA/Tienda";
+import { Form, Modal, Input } from "antd";
 
 const UpdateProductoModal = ({ openModal, closeModal, id, reload, values }) => {
   const [form] = Form.useForm();

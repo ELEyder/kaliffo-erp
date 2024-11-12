@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button, Row, Col, Popconfirm, Table,FloatButton } from "antd";
-import { eliminarcompra, getCompras } from'@A/logi/Compras';
-import AddCompraModal from "@C/Modals/AddCompraModal";
-import DetallesComprasModal from "@C/Modals/DetallesComprasModal";
+import { eliminarcompra, getCompras } from'@AL/Compras';
+import AddCompraModal from "@CL/compras/AddCompraModal";
+import DetallesComprasModal from "@CL/compras/DetallesComprasModal";
 
 const TablaCompras = () => {
   const [tabla_datos, SetTabla_datos] = useState([]);

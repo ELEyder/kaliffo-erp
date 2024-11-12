@@ -1,8 +1,8 @@
 import { Card, List,Button, Image } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUsuarioById } from "../../API/Usuario";
-import { getReporteUsuario } from "../../../API/Reporte";
+import { getUsuarioById } from "@AA/Usuario";
+import { getReporteUsuario } from "@AA/Reporte";
 const {Meta} = Card
 
 const TrabajadorInfo = () =>{

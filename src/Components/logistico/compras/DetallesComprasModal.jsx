@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getComprasDetalle } from "@A/logi/Compras";
 import { Modal, Form, Row, Col, Card, Input, Divider } from "antd";
+
+import { getComprasDetalle } from "@AL/Compras";
 
 const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
   const [compraDetalle, setcompraDetalle] = useState(null); 

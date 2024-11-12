@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import AddTelasModal from "./AddTelasModal";
-import { getTelas} from "@A/prod/Tela";
+import { getTelas} from "@AP/Tela";
 import { Card, Flex, FloatButton } from "antd";
 
 const TelasCards = () => {

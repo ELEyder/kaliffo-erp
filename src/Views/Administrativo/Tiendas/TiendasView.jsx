@@ -1,5 +1,5 @@
 import React from "react";
-import TiendasCards from "@C/Cards/TiendasCards";
+import TiendasCards from "@CA/tiendas/TiendasCards";
 import { Divider } from "antd";
 
 const TiendasView = () => {

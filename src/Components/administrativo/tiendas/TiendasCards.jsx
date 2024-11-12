@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AddTiendaModal from "../Modals/AddTiendaModal";
-import { getTiendas } from "@A/Tienda";
-import DeleteTiendaModal from "../Modals/DeleteTiendaModal";
-import UpdateTiendaModal from "../Modals/UpdateTiendaModal"
+import AddTiendaModal from "@CA/tiendas/AddTiendaModal";
+import { getTiendas } from "@AA/Tienda";
+import DeleteTiendaModal from "@CA/tiendas/DeleteTiendaModal";
+import UpdateTiendaModal from "@CA/tiendas/UpdateTiendaModal"
 import { Card, Flex, FloatButton, Popconfirm, Tooltip } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 

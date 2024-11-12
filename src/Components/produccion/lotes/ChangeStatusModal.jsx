@@ -1,9 +1,8 @@
-import { Form, Modal, Select, Input, Button, Card, Typography, Space, InputNumber } from "antd";
-import { getChangeCorte } from "../../API/Corte";
-
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { changeStatusCorte } from "../../API/Corte";
+import { Form, Modal, Button, Card, InputNumber } from "antd";
+
+import { getChangeCorte, changeStatusCorte } from "@AP/Corte";
 
 const ChangeStatusModal = ({ openModal, closeModal }) => {
   const [form] = Form.useForm();

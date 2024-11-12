@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { getColoresByProducto } from "../../../API/Color";
+import { getColoresByProducto } from "@AA/Color";
 import { Table, Button, Popconfirm, Row, Col } from "antd";
 
 const ProductoColoresTable = () => {

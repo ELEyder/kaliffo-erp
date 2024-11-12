@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Form, Modal, List, Card, Row, Col , Divider} from "antd";
-import { getVentaById } from "@A/admi/Ventas";
-import DetalleVentaTable from "../Tables/DetalleVentaTable";
+import { getVentaById } from "@AA/Ventas";
+import DetalleVentaTable from "@CA/ventas/DetalleVentaTable";
 
 const DetalleVentaModal = ({
   openModal,

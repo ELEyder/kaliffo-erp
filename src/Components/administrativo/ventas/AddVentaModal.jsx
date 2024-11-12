@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, DatePicker, Form, Input, Modal, Row, Select, InputNumber } from "antd";
 import { onlyDecimalKey , onlyNumberKey , onlyLettersKey, onlyDecimalInput, onlyNumberInput, onlyLettersInput, preventPaste } from "../../../Shared/Tools";
-import { addUsuario } from "@A/admi/user/Usuario";
-import { getTiendas } from "@A/admi/Tienda";
+import { addUsuario } from "@AA/Usuario";
+import { getTiendas } from "@AA/Tienda";
 
 const AddVentaModal = ({
   openModal,

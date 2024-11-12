@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import DetallesProductoModal from "./ProductoDetalleModal"
-import AddProductoModal from "../Modals/AddProductosModal";
-import { getProductosByTienda, deleteProductoByTienda } from "../../API/Producto";
+
+import DetallesProductoModal from "@CA/productos/ProductoDetalleModal"
+import AddProductoModal from "@CA/productos/AddProductosModal";
+import { getProductosByTienda, deleteProductoByTienda } from "@AA/Producto";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
-import { FileAddOutlined } from "@ant-design/icons";
 
 
 const ProductosTable = () => {

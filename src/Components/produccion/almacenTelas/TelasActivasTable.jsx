@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { Table, Button, Popconfirm, Row, Col } from "antd";
-import { deleteTelaById, getTelasActivas } from "@A/prod/Tela";
+import { deleteTelaById, getTelasActivas } from "@AP/Tela";
 
 const TelasActivasTable = () => {
 

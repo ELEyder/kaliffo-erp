@@ -1,8 +1,8 @@
 import React from "react";
-import ProductoInfoCard from "@C/administrativo//ProductoInfoCard"
-import ProductoTiendasTable from "@C/Tables/ProductoTiendasTable"
-import ProductoTallasTable from "@C/Tables/ProductoTallasTable"
-import ProductoColoresTable from "@C/Tables/ProductoColoresTable"
+import ProductoInfoCard from "@C/administrativo/productos/ProductoInfoCard"
+import ProductoTiendasTable from "@CA/productos/ProductoTiendasTable"
+import ProductoTallasTable from "@CA/productos/ProductoTallasTable"
+import ProductoColoresTable from "@CA/productos/ProductoColoresTable"
 import { Col, Divider, Row, Tabs } from "antd";
 
 const ProductoView = () => {

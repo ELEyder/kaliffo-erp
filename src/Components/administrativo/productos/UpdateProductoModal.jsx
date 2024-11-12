@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { updateProducto } from "@A/admi/Producto";
-import { setUpdateUsuario } from "@A/admi/Producto";
+import { updateProducto } from "@AA/Producto";
+import { setUpdateUsuario } from "@AA/Producto";
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 
 const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {

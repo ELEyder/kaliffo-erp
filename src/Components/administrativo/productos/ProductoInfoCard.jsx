@@ -1,7 +1,7 @@
 import { Card, List, Button } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProductoById } from "@A/admi/Producto";
+import { getProductoById } from "@AA/Producto";
 
 const ProductoInfoCard = () => {
   const { id } = useParams();

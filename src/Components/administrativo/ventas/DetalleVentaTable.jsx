@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import DetalleVentaModal from "./DetalleVentaModal";
-import AddVentaModal from "../Modals/AddVentaModal"
-import { getVentas, deleteVenta } from "../../API/Ventas";
-import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
-import { getVentaById } from "../../API/Ventas";
+import { Table } from "antd";
+
+import { getVentaById } from "@AA/Ventas";
 const DetalleVentaTable = ({
   id,
   data

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import AddProductoModal from "./AddProductoModal";
-import DeleteProductoModal from "../Modals/DeleteProductoModal";
-import UpdateProductoModal from "../Modals/UpdateProductoModal"
-import { getProductos } from "@A/admi/Producto";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
 import { Card, Flex, FloatButton, Popconfirm, Tooltip , Image} from "antd";
+import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
+
+import { getProductos } from "@AA/Producto";
+import AddProductoModal from "@CA/productos/AddProductoModal";
+import DeleteProductoModal from "@CA/productos/DeleteProductoModal";
+import UpdateProductoModal from "@CA/productos/UpdateProductoModal"
 
 const {Meta} = Card
 

@@ -1,6 +1,8 @@
-import { Form, Input, Modal } from "antd";
 import React from "react";
-import { deleteProductoById } from "../../API/Producto";
+import { Form, Input, Modal } from "antd";
+
+import { deleteProductoById } from "@AA/Producto";
+
 const UpdateUsuarioModal = ({
   openModal,
   closeModal,

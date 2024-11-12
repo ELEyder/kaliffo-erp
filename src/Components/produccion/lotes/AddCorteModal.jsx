@@ -1,9 +1,9 @@
 import { Form, Modal, Select, Input, InputNumber, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
-import { addCorte } from "../../API/Corte";
-import { getUsuarios } from "../../API/Usuario";
-import { getProductos } from "../../API/Producto";
-import { getTelas } from "../../API/Tela";
+import { addCorte } from "@AP/Corte";
+import { getUsuarios } from "@AA/Usuario";
+import { getProductos } from "@AA/Producto";
+import { getTelas } from "@AP/Tela";
 import { useParams } from "react-router-dom";
 const { Option } = Select;
 

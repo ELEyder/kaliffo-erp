@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import { FileAddOutlined } from '@ant-design/icons';
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getIncidenciasById, deleteIncidenciaById } from "../../API/Incidencia";
-import UpdateIncidenciaModal from "../Modals/UpdateIncidenciaModal";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
+import { getIncidenciasById, deleteIncidenciaById } from "@AA/Incidencia";
+import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal";
+import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal";
 
 const TablaIncidencias = () => {
   const { id } = useParams();

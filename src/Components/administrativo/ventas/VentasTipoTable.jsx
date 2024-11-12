@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import DetalleVentaModal from "../Modals/DetalleVentaModal";
-import AddVentaModal from "../Modals/AddVentaModal"
-import { getVentas, deleteVenta } from "@A/admi/Ventas";
-import { Button, Row, Col, Popconfirm, Table, Empty  } from "antd";
+import DetalleVentaModal from "@CA/ventas/DetalleVentaModal";
+import AddVentaModal from "@CA/ventas/AddVentaModal"
+import { getVentas } from "@AA/Ventas";
+import { Table  } from "antd";
 
 const VentasTipoTable = () => {
   const { tipo } = useParams();

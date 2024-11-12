@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Select, Button, Card, Form, Input, Space, Typography } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import { getColoresProductos, getProductosNuevos, addProductoDetalle } from "../../API/Producto";
+
+import { getColoresProductos, getProductosNuevos, addProductoDetalle } from "@AA/Producto";
 import FormItem from "antd/es/form/FormItem";
 
 const { Option } = Select;

@@ -1,6 +1,6 @@
 import React,{useState,useEffect}from "react";
 import { useParams } from "react-router-dom";
-import { getTiendaById } from "@A/admi/Tienda";
+import { getTiendaById } from "@AA/Tienda";
 import { Card, List,Button } from "antd";
 
 const TiendaCard = () =>{

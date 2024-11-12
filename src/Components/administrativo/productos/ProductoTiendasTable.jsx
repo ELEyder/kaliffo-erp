@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom"
-import { Table, Button, Popconfirm, Row, Col } from "antd";
+import { Table, Button } from "antd";
 import { useState, useEffect } from 'react'
-import { getTiendasByProducto } from "@A/admi/Tienda";
+import { getTiendasByProducto } from "@AA/Tienda";
 
 const ProductoTiendasTable = () => {
 

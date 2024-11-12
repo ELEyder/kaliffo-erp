@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
-import TrabajadoresTable from "@C/Tables/TrabajadoresTable";
+import TrabajadoresTable from "@CA/trabajadores/TrabajadoresTable";
 import { Divider } from "antd";
 
 const Trabajadores = () => {

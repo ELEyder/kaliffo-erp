@@ -1,4 +1,4 @@
-import { showNotification } from "../Shared/Notifications"
+import { showNotification } from "@S/Notifications"
 
 export const addPago = async (id, data, reload, setReload) => {
     const Pago = {

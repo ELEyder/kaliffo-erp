@@ -1,5 +1,5 @@
 import React from "react";
-import TelasCards from "@C/Cards/TelasCards";
+import TelasCards from "@CP/almacenTelas/TelasCards";
 import { Divider } from "antd";
 
 
