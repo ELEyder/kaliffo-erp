@@ -10,6 +10,7 @@ export default defineConfig({
       '@C': path.resolve(__dirname, 'src/Components'),
       '@V': path.resolve(__dirname, 'src/Views'),
       '@A': path.resolve(__dirname, 'src/API'),
+      '@S': path.resolve(__dirname, 'src/Shared'),
     },
   },
 })

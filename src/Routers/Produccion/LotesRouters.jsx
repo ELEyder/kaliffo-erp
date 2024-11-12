@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import LotesView from '@V/Lotes/LotesView';
-import LoteView from '@V/Lotes/LoteView';
+import LotesView from '@V/Produccion/Lotes/LotesView';
+import LoteView from '@V/Produccion/Lotes/LoteView';
 
 
 const LotesRouters = () => (

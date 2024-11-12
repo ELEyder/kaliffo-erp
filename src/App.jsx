@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import './App.css'
 import locale from 'antd/locale/es_ES'; 
 import { ConfigProvider } from 'antd';
-import LoadingScreen from './Components/Loading/LoadingScreen';
+import LoadingScreen from '@S/Loading/LoadingScreen';
 
 function App() {
   const [loading, setLoading] = useState(true);

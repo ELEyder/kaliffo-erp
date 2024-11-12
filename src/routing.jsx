@@ -3,13 +3,13 @@ import LoginView from "./Shared/Login/LoginView";
 import TrabajadoresRouters from "./Routers/Administrativo/TrabajadoresRouters";
 import TiendasRouters from "./Routers/Administrativo/TiendasRouters";
 import ProductosRouters from "./Routers/Administrativo/ProductosRouters";
-import Ventas from "./Views/Administrativo/Ventas/Ventas"
+import VentasView from "@V/Administrativo/Ventas/VentasView"
 import ErrorView from "./Shared/Error/ErrorView"
-import ComprasView from "./Views/Logistico/Compras/ComprasView";
+import ComprasView from "@V/Logistico/Compras/ComprasView";
 import TelasRouters from "./Routers/Produccion/TelasRouters";
 import LotesRouters from "./Routers/Produccion/LotesRouters";
 import Plantilla from "./Shared/Plantilla";
-import GenerarVentas from "./Views/Administrativo/Ventas/VentasGenerar";
+import GenerarVentas from "@V/Administrativo/Ventas/VentasGenerar";
 import AdminRoutes from "./Routers/AdminRoutes";
 import LogiticoRouters from "./Routers/LogiticoRouters";
 import ProdRoutes from "./Routers/ProdRoutes";
@@ -26,7 +26,7 @@ export const Routing = () =>{
                 <Route path="/trabajadores/*" element={<TrabajadoresRouters/>}/>
                 <Route path="/tiendas/*" element={<TiendasRouters/>}/>
                 <Route path="/productos/*" element={<ProductosRouters />}/>
-                <Route path="/ventas/:tipo" element={<Ventas />}/>
+                <Route path="/ventas/:tipo" element={<VentasView />}/>
                 <Route path="/compras" element={<ComprasView/>}/>
                 <Route path="/telas/*" element={<TelasRouters />}/>
                 <Route path="/lotes/*" element={<LotesRouters />}/>

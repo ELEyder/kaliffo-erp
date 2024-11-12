@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import TelasView from '@V/Telas/TelasView';
-import TelaView from '@V/Telas/TelaView';
+import TelasView from '@V/Produccion/Telas/TelasView';
+import TelaView from '@V/Produccion/Telas/TelaView';
 
 const TelasRouters = () => (
     <Routes>

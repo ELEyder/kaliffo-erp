@@ -3,7 +3,7 @@ import CortesTable from "@C/Tables/CortesTable";
 import LavanderiaTable from "@C/Tables/LavanderiaTable";
 import TimeLine from "@C/TimeLine/TimeLine";
 import Status from "@C/Status/Status";
-import { getFase } from "../../API/Lote";
+import { getFase } from "@A/prod/lote/Lote";
 import { Divider, Row, Col } from "antd";
 import { useParams } from "react-router-dom";
 

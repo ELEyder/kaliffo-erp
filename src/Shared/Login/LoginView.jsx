@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Input, Form } from "antd";
-import Yeti from "@C/svg/Yeti";
+import Yeti from "@C/Yeti";
 import styles from './LoginView.module.css'
 
 const LoginView = () =>{
