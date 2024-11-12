@@ -1,16 +1,17 @@
 import React from "react";
-import moment from "moment";
+import { useParams } from "react-router-dom";
 import { Card, Col, Divider, Form, Input, Row, InputNumber, DatePicker } from "antd";
+import moment from "moment";
 
 const GenerarVentaView = () => {
 
   const dateFormat = 'YYYY/MM/DD';
 
+  const { tipo } = useParams();
   return (
     <>
-      <Divider orientation="center" style={{ textTransform: "uppercase", fontSize: "1.2rem" }}>Boleta</Divider>
-
-      <Form size="large" labelAlign="left" id="formulariocrear" layout="vertical">
+      <Divider style={{ textTransform: "uppercase", fontSize: "1.2rem" }}>{tipo}</Divider>
+      <Form initialValues={{ fecha: moment() }} size="large" labelAlign="left" id="formulariocrear" layout="vertical">
         <Row gutter={24} style={{ textAlign: "center" }}>
           <Col span={12}>
             <Card
@@ -41,7 +42,7 @@ const GenerarVentaView = () => {
                     name="fecha"
                     rules={[{ required: true, message: "Obligatorio" }]}
                   >
-                    <DatePicker defaultValue={moment()} format={dateFormat} />
+                    <DatePicker format={dateFormat} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -91,7 +92,7 @@ const GenerarVentaView = () => {
               }}
             >
               <Form.Item label="Tipo de Pago" name="tipo_pago">
-                <InputNumber
+                <Input
                   placeholder="Tipo de Pago"
                   style={{ width: "100%" }}
                   readOnly

@@ -4,7 +4,7 @@ import GenerarVentaView from '@V/Ventas/GenerarVenta/GenerarVentaView';
 
 const LotesRouters = () => (
     <Routes>
-        <Route path="/:id" element={<GenerarVentaView />} />
+        <Route path="/:tipo" element={<GenerarVentaView />} />
     </Routes>
 );
 

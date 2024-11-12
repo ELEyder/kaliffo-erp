@@ -87,7 +87,13 @@ function App() {
             colorText: 'white',
             colorTextPlaceholder: 'white',
             colorBgContainerDisabled: 'red'
-
+          },
+          InputNumber: {
+            colorBgContainer: bg2,
+            colorBorder: 'black',
+            colorText: 'white',
+            colorTextPlaceholder: 'white',
+            colorBgContainerDisabled: 'red'
           },
           DatePicker: {
             colorBgContainer: bg2,
