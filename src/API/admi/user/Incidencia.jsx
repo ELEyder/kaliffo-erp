@@ -1,4 +1,4 @@
-import { showNotification } from "../Shared/Notifications"
+import { showNotification } from "../../../Shared/Notifications"
 
 const incidencias = ["Familiar", "Salud", "Personal"]
 

@@ -9,6 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       '@C': path.resolve(__dirname, 'src/Components'),
       '@V': path.resolve(__dirname, 'src/Views'),
+      '@A': path.resolve(__dirname, 'src/API'),
     },
   },
 })

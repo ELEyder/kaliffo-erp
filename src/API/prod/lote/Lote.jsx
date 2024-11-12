@@ -1,5 +1,5 @@
-import { showNotification } from "../Shared/Notifications"
-import { getCorte } from "./Corte";
+import { showNotification } from "../../../Shared/Notifications"
+import { getCorte } from "../../Corte";
 export const getLotes = async (setData) => {
   try {
     const response = await fetch(`http://localhost:3000/lotes`);

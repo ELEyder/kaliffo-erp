@@ -5,7 +5,7 @@ import DeleteProductoModal from "../Modals/DeleteProductoModal";
 import UpdateProductoModal from "../Modals/UpdateProductoModal"
 import { getProductos } from "../../API/Producto";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons';
-import { Card, Col, Row, FloatButton, Popconfirm, Tooltip , Image} from "antd";
+import { Card, Flex, FloatButton, Popconfirm, Tooltip , Image} from "antd";
 
 const {Meta} = Card
 
@@ -25,11 +25,11 @@ const ProductosCards = () => {
 
   return (
     <>
-      <Row gutter={16}>
+      <Flex wrap gap={"middle"} justify="space-evenly" gutter={20}>
         {productos.map((producto, index) => {
           return (
-            <Col key={index} span={6} style={{ margin: "0 0 24px 0", textAlign: "center" }}>
               <Card
+              style={{width: "300px"}}
                 title={producto.nombre}
                 actions={[
                   <Tooltip title="Editar Producto"
@@ -81,10 +81,9 @@ const ProductosCards = () => {
                   title={`Stock general: ${producto.stockTotal}`}
                 />
               </Card>
-            </Col>
           );
         })}
-      </Row>
+      </Flex>
 
       <FloatButton tooltip="Añadir Producto" onClick={()=>setOpenAddProductoModal(true)}/>
 

@@ -1,4 +1,4 @@
-import { showNotification } from "../Shared/Notifications"
+import { showNotification } from "../../../Shared/Notifications"
 
 export const getCorte = async (id, setData) => {
     try {
@@ -6,17 +6,14 @@ export const getCorte = async (id, setData) => {
       
       if (!response.ok) {
         if (response.status === 404) {
-          console.error(`Corte con ID ${id} no encontrado (404).`)
           setData([])
           return
         }
-        throw new Error(`Error de servidor: ${response.status}`)
       }
   
       const data = await response.json()
       setData(data)
     } catch (error) {
-      console.error('Error al obtener el corte:', error)
       setData([])
     }
   }
@@ -83,7 +80,7 @@ export const getChangeCorte = async (id, setData, form) => {
     showNotification("delete", "Corte eliminado")
   }
 
-  export const getStatusLavanderia = async (id, setData) => {
+  export const getStatusCorte = async (id, setData) => {
     try {
       const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
       
@@ -98,16 +95,15 @@ export const getChangeCorte = async (id, setData, form) => {
   
       const data = await response.json()
       setData(data[0].estado)
-      setData(1)
     } catch (error) {
       console.error('Error al obtener el corte:', error)
       setData([])
     }
   }
 
-  export const changeStatusLavanderia = async (id, values=null) => {
+  export const changeStatusCorte = async (id, values=null) => {
     if (values == null) {
-      const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`)
+      const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
       console.log(response)
       values = await response.json();
     }
@@ -116,7 +112,7 @@ export const getChangeCorte = async (id, setData, form) => {
       detalles : values,
     }
     console.log(JSON.stringify(values))
-    const response = await fetch(`http://localhost:3000/lavanderia/sgte/lote/${id}`, {
+    const response = await fetch(`http://localhost:3000/cortes/sgte/lote/${id}`, {
         method : "PUT",
         headers : {
           "Content-Type" : "application/json"

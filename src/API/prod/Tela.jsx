@@ -1,4 +1,4 @@
-import { showNotification } from "../Shared/Notifications"
+import { showNotification } from "../../Shared/Notifications"
 
 export const getTelas = async (setData) => {
   const response = await fetch(`http://localhost:3000/telas/`)

@@ -1,4 +1,4 @@
-import { showNotification } from "../Shared/Notifications"
+import { showNotification } from "../../Shared/Notifications"
 
 export const getCompras = async (setCompras) =>{
     const response = await fetch(`http://localhost:3000/compras`)

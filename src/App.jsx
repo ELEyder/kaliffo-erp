@@ -5,7 +5,6 @@ import './App.css'
 import locale from 'antd/locale/es_ES'; 
 import { ConfigProvider } from 'antd';
 import LoadingScreen from './Components/Loading/LoadingScreen';
-import "@/assets/css/root.css"
 
 function App() {
   const [loading, setLoading] = useState(true);

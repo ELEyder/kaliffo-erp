@@ -1,4 +1,4 @@
-import { showNotification } from "../Shared/Notifications"
+import { showNotification } from "../../Shared/Notifications"
 const metodosPago = ["Efectivo", "Yape", "Transefencia"]
 const tipoVenta = ["Por Mayor", "Por Menor"]
 const tienda = ["Almacen", "Tienda 1", "Tienda 2"]
