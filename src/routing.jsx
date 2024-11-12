@@ -1,15 +1,9 @@
 import { Route,Routes } from "react-router-dom";
 import LoginView from "./Shared/Login/LoginView";
-import TrabajadoresRouters from "./Routers/Administrativo/TrabajadoresRouters";
-import TiendasRouters from "./Routers/Administrativo/TiendasRouters";
-import ProductosRouters from "./Routers/Administrativo/ProductosRouters";
-import VentasView from "@V/Administrativo/Ventas/VentasView"
 import ErrorView from "./Shared/Error/ErrorView"
-import ComprasView from "@V/Logistico/Compras/ComprasView";
-import TelasRouters from "./Routers/Produccion/TelasRouters";
-import LotesRouters from "./Routers/Produccion/LotesRouters";
 import Plantilla from "./Shared/Plantilla";
-import GenerarVentaRouters from "./Routers/Ventas/GenerarVentaRouters";
+
+import GenerarVentaRouters from "./Routers/GenerarVentaRouters";
 import AdminRoutes from "./Routers/AdminRoutes";
 import LogiticoRouters from "./Routers/LogiticoRouters";
 import ProdRoutes from "./Routers/ProdRoutes";
