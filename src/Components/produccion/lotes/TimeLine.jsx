@@ -1,9 +1,8 @@
 
 import React from "react";
-import { useParams } from "react-router-dom";
 import { Tooltip } from "antd";
 
-const TimeLine = () => {
+const TimeLine = ({fase}) => {
     return(
         <div className="loteIcons">
         <Tooltip title="Corte">

@@ -5,7 +5,7 @@ import { PlusOutlined } from "@ant-design/icons";
 
 import { getLotes } from "@AP/Lote";
 import AddLoteModal from "@CP/lotes/AddLoteModal";
-import "@/assets/css/telas/telas.css"
+import styles from './LotesCards.module.css'
 
 const { Meta } = Card;
 
@@ -25,7 +25,6 @@ const LotesCards = () => {
         {lotes.map((lote) => {
           const statusColors = Array(lote.estado + 1).fill(colors[lote.estado]);
           statusColors.push(...Array(4 - lote.estado).fill("white"));
-
           return (
             <Link key={lote.lote_id} to={`/prod/lotes/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
               <Card
@@ -34,11 +33,11 @@ const LotesCards = () => {
               >
                 <Meta title={`Fecha de Creación: ${lote.fecha_creacion}`} />
                 <Meta title={`Cantidad Total: ${lote.cantidad_total}`} />
-                <div className="cardLoteIcons">
+                <div className={styles.cardLoteIcons}>
                   {["Corte", "Lavandería", "Taller", "Almacen"].map((title, index) => (
                     <Tooltip key={index} title={title}>
-                      <div className="cardLoteIcon" style={{ backgroundColor: statusColors[index + 1] }}>
-                        <img className="cardSvgLote" src={`/svg/lote/${index + 1}.svg`} alt={title} />
+                      <div className={styles.cardLoteIcon} style={{ backgroundColor: statusColors[index + 1] }}>
+                        <img className={styles.cardSvgLote} src={`/svg/lote/${index + 1}.svg`} alt={title} />
                       </div>
                     </Tooltip>
                   ))}

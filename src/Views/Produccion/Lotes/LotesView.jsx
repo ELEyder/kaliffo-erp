@@ -8,11 +8,8 @@ const LotesView = () =>{
 
     return(
         <>
-            <Divider style={{textTransform: "uppercase"}}>
-                Lotes
-            </Divider>
+            <Divider style={{textTransform: "uppercase"}}> Lotes </Divider>
             <LotesCards/>
-            <Divider/>
         </>
     )
 }
