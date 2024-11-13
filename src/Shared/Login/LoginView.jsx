@@ -29,7 +29,7 @@ const LoginView = () =>{
                     />
                 </Form.Item>
             </Form>
-            <Link to="/trabajadores/tipo/ventas">
+            <Link to="/admin/trabajadores/tipo/ventas">
                 <Button type="primary">
                     Ingresar
                 </Button>
