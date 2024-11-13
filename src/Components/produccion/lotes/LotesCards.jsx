@@ -34,7 +34,7 @@ const LotesCards = () => {
                 <Meta title={`Fecha de Creación: ${lote.fecha_creacion}`} />
                 <Meta title={`Cantidad Total: ${lote.cantidad_total}`} />
                 <div className={styles.cardLoteIcons}>
-                  {["Corte", "Lavandería", "Taller", "Almacen"].map((title, index) => (
+                  {["Corte", "Lavandería", "Taller de Acabados Finales", "Almacen"].map((title, index) => (
                     <Tooltip key={index} title={title}>
                       <div className={styles.cardLoteIcon} style={{ backgroundColor: statusColors[index + 1] }}>
                         <img className={styles.cardSvgLote} src={`/svg/lote/${index + 1}.svg`} alt={title} />
