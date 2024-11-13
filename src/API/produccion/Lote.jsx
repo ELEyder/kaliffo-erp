@@ -1,5 +1,4 @@
 import { showNotification } from "../../Shared/Notifications"
-
 export const getLotes = async (setData) => {
   try {
     const response = await fetch(`http://localhost:3000/lotes`);
@@ -24,6 +23,8 @@ export const getLotes = async (setData) => {
       showNotification("add","Lote añadido correctamente")
       
   }
+
+  
 
 export const getFase = async (id, setData) => {
   const response = await fetch(`http://localhost:3000/lotes/${id}`);

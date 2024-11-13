@@ -7,6 +7,7 @@ import { ConfigProvider } from 'antd';
 import LoadingScreen from '@S/Loading/LoadingScreen';
 
 function App() {
+  
   const [loading, setLoading] = useState(true);
 
   const root = document.documentElement;
