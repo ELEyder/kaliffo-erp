@@ -1,23 +1,35 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { notification } from 'antd';
 
-const NotificationContext = createContext();
+const NotificationContext = createContext(undefined);
 
 export const NotificationProvider = ({ children }) => {
-  const openNotification = (type, message, description) => {
-    notification[type]({
-      message,
-      description,
+  const [api, contextHolder] = notification.useNotification();
+
+  // Definir la lógica para mostrar las notificaciones
+  const openNotification = (placement) => {
+    api.info({
+      message: `Notification ${placement}`,
+      description: 'Hello, Ant Design!',
+      placement,
     });
   };
 
+  const value = useMemo(() => ({ openNotification }), [api]);
+
   return (
-    <NotificationContext.Provider value={{ openNotification }}>
+    <NotificationContext.Provider value={value}>
+      {contextHolder}
       {children}
     </NotificationContext.Provider>
   );
 };
 
-export const useNotification = () => {
-  return useContext(NotificationContext);
+// Hook personalizado para usar el contexto
+export const useNotificationContext = () => {
+  const context = useContext(NotificationContext);
+  if (!context) {
+    throw new Error('useNotificationContext must be used within a NotificationProvider');
+  }
+  return context;
 };

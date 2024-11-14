@@ -4,7 +4,7 @@ import ChangeStatusModal from "@CP/lotes/ChangeStatusModal"
 import { getStatusCorte, changeStatusCorte } from "@AP/Corte";
 import { getStatusLavanderia, changeStatusLavanderia } from "@AP/Lavanderia";
 import { getFase } from "@AP/Lote";
-import "@/assets/css/status/status.css"
+import styles from './Status.module.css'
 
 const Status = ({reload}) => {
     const [ OpenChangeStatus, setOpenChangeStatus ] = useState(false);
@@ -19,13 +19,17 @@ const Status = ({reload}) => {
     if (fase == 2) {
       getStatusLavanderia(id, setStatus);
     }
+
   }
     useEffect(() => {
       getStatus()
       }, [reload]);
 
       const eventStatus = async () => {
-        if (fase == 1) {
+        if (status == 0){
+          alert("Agrega un elemento")
+        }
+        else if (fase == 1) {
           if (status == 1 || status == 2) {
             await changeStatusCorte(id)
             await getStatus();
@@ -33,7 +37,7 @@ const Status = ({reload}) => {
             setOpenChangeStatus(true)
         }
         }
-        if (fase == 2) {
+        else if (fase == 2) {
           if (status == 1 || status == 2) {
             await changeStatusLavanderia(id)
             await getStatus();
@@ -45,8 +49,8 @@ const Status = ({reload}) => {
       } 
     return(
         <>
-        <div className={`status status-${status}`} onClick={eventStatus}>
-            <img className="status-icon" src="/svg/status/play.svg" alt="" />
+        <div className={`${styles.status} ${styles[`status-${status}`]}`} onClick={eventStatus}>
+            <img className={styles.statusIcon} src="/svg/status/play.svg" alt="" />
             <h1>Iniciar</h1>
         </div>
 

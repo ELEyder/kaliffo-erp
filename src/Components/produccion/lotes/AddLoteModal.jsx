@@ -1,4 +1,4 @@
-import { Form, Modal, Input } from "antd";
+import { Form, Modal, Input, InputNumber } from "antd";
 import React from "react";
 import { addLote } from "@AP/Lote";
 
@@ -32,16 +32,29 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
       >
         <Form.Item
           style={{ marginTop: 20 }}
-          name="password"
-          label="Contraseña"
+          name="tipo_tela"
+          label="tipo_tela"
           rules={[
             {
               required: true,
-              message: "Contraseña requerido",
+              message: "tipo_tela requerido",
             },
           ]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          style={{ marginTop: 20 }}
+          name="metraje"
+          label="metraje"
+          rules={[
+            {
+              required: true,
+              message: "metraje requerido",
+            },
+          ]}
+        >
+          <InputNumber />
         </Form.Item>
       </Form>
     </Modal>

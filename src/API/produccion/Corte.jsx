@@ -83,21 +83,12 @@ export const getChangeCorte = async (id, setData, form) => {
   export const getStatusCorte = async (id, setData) => {
     try {
       const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
-      
-      if (!response.ok) {
-        if (response.status === 404) {
-          console.error(`Corte con ID ${id} no encontrado (404).`)
-          setData([])
-          return
-        }
-        throw new Error(`Error de servidor: ${response.status}`)
-      }
-  
       const data = await response.json()
+      if (data == []) return(setData(0))
       setData(data[0].estado)
     } catch (error) {
       console.error('Error al obtener el corte:', error)
-      setData([])
+      setData(0)
     }
   }
 
