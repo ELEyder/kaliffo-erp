@@ -1,143 +1,149 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { Card, Col, Divider, Form, Input, Row, InputNumber, DatePicker } from "antd";
-import moment from "moment";
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Row,
+  Typography,
+  Select,
+} from "antd";
 
-const GenerarVentaView = () => {
+const GenerarVentas = () => {
+  const { Title, Text } = Typography;
+  const [productos, setproductos] = useState({});
+  const [codigoBarras, setCodigoBarras] = useState("");
 
-  const dateFormat = 'YYYY/MM/DD';
+  useEffect(() => {
+    const escaner = (event) => {
+      if (event.key === "Enter") {
+        // Aquí puedes agregar la lógica para manejar el producto escaneado
+        document.getElementById("texto").innerHTML = codigoBarras;
+        setCodigoBarras("");
+      } else {
+        setCodigoBarras((prev) => prev + event.key);
+      }
+    };
 
-  const { tipo } = useParams();
+    document.addEventListener("keypress", escaner);
+
+    return () => {
+      document.removeEventListener("keypress", escaner);
+    };
+  }, [codigoBarras]);
+
   return (
     <>
-      <Divider style={{ textTransform: "uppercase", fontSize: "1.2rem" }}>{tipo}</Divider>
-      <Form initialValues={{ fecha: moment() }} size="large" labelAlign="left" id="formulariocrear" layout="vertical">
-        <Row gutter={24} style={{ textAlign: "center" }}>
-          <Col span={12}>
-            <Card
-              title="Datos de la Tienda"
-              bordered
-              style={{
-                height: "300px", 
-                overflowY: "auto", 
-                textAlign: "center",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                padding: "10px",
-              }}
-            >
-              <Row gutter={8}>
-                <Col span={12}>
-                  <Form.Item
-                    label="Código"
-                    name="codigo"
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
-                    <Input readOnly placeholder="Código" />
-                  </Form.Item>
-                </Col>
+      <Divider
+        orientation="center"
+        style={{
+          textTransform: "uppercase",
+          fontSize: "1.4rem",
+          fontWeight: "bold",
+          color: "#4A90E2",
+        }}
+      >
+        Boleta
+      </Divider>
 
-                <Col span={12}>
-                  <Form.Item
-                    label="Fecha"
-                    name="fecha"
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
-                    <DatePicker format={dateFormat} />
-                  </Form.Item>
-                </Col>
-              </Row>
-
-              <Row gutter={8}>
-                <Col span={12}>
-                  <Form.Item
-                    label="DNI"
-                    name="dni"
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
-                    <Input readOnly placeholder="DNI" />
-                  </Form.Item>
-                </Col>
-
-                <Col span={12}>
-                  <Form.Item
-                    label="Nombre"
-                    name="nombre"
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
-                    <Input readOnly placeholder="Nombre" />
-                  </Form.Item>
-                </Col>
-              </Row>
-
-              <Form.Item
-                label="Teléfono"
-                name="telefono"
-                rules={[{ required: true, message: "Obligatorio" }]}
+      <Form
+        size="large"
+        labelAlign="left"
+        id="formulariocrear"
+        layout="vertical"
+      >
+        <Row gutter={16}>
+          <Col span={16}>
+            <Row>
+              <Col span={24}>
+                <Title
+                  level={3}
+                  style={{
+                    backgroundColor: "#181c34",
+                    textAlign: "center",
+                    borderRadius: "10px",
+                    color: "#fff",
+                    padding: "10px 0",
+                  }}
+                >
+                  Productos
+                </Title>
+              </Col>
+              <Col
+                span={24}
+                style={{
+                  marginTop: "10px",
+                  fontSize: "1rem",
+                  textAlign: "center",
+                  color: "#333",
+                  maxHeight: "250px",
+                  overflowX: "hidden",
+                  overflowY: "auto",
+                }}
               >
-                <Input readOnly placeholder="Teléfono" />
-              </Form.Item>
-            </Card>
+                <span id="texto"></span>
+              </Col>
+              <Divider style={{ margin: "15px 0" }} />
+              <Col
+                span={24}
+                style={{
+                  fontSize: "0.9rem",
+                  color: "#555",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "10px",
+                  backgroundColor: "#f7f7f7",
+                  borderRadius: "8px",
+                  fontWeight: "bold",
+                }}
+              >
+                <Text>Cantidad: 10</Text>
+                <Text>Total Bruto: 12</Text>
+                <Text>Total IGV: 23</Text>
+                <Text>Total Neto: 100</Text>
+              </Col>
+            </Row>
           </Col>
-
-          <Col span={12}>
+          <Col span={1}>
+            <Divider
+              type="vertical"
+              style={{ height: "100%", borderColor: "#e0e0e0" }}
+            />
+          </Col>
+          <Col span={7}>
             <Card
-              title="Datos del Total"
-              bordered
-              style={{
-                height: "300px", 
-                overflowY: "auto", 
-                textAlign: "center",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                padding: "10px",
-              }}
+              size="small"
+              title={
+                <Title level={4} style={{ margin: "0 auto" }}>
+                  Datos del Cliente
+                </Title>
+              }
+              bordered={false}
             >
-              <Form.Item label="Tipo de Pago" name="tipo_pago">
-                <Input
-                  placeholder="Tipo de Pago"
-                  style={{ width: "100%" }}
-                  readOnly
-                />
+              <Form.Item label="DNI del Cliente">
+                <Input />
               </Form.Item>
-
-              <Form.Item label="Cantidad Total" name="cantidad_total">
-                <InputNumber
-                  placeholder="Cantidad Total"
-                  style={{ width: "100%" }}
-                  readOnly
-                />
+              <Form.Item label="Nombre del Cliente">
+                <Input />
               </Form.Item>
-
-              <Form.Item label="Total Bruto" name="total_bruto">
-                <InputNumber
-                  placeholder="Total Bruto"
-                  style={{ width: "100%" }}
-                  readOnly
-                />
-              </Form.Item>
-
-              <Form.Item label="IGV Total" name="IGV_total">
-                <InputNumber
-                  placeholder="IGV Total"
-                  style={{ width: "100%" }}
-                  readOnly
-                />
-              </Form.Item>
-
-              <Form.Item label="Total Neto" name="total_neto">
-                <InputNumber
-                  placeholder="Total Neto"
-                  style={{ width: "100%" }}
-                  readOnly
+              <Form.Item label="Tipo de Pago">
+                <Select
+                  style={{ textAlign: "center" }}
+                  defaultValue="1"
+                  options={[
+                    { value: "1", label: "Efectivo" },
+                    { value: "2", label: "Yape/Plin" },
+                    { value: "3", label: "Transferencia" },
+                  ]}
                 />
               </Form.Item>
             </Card>
           </Col>
         </Row>
-
-        <Divider style={{ borderColor: "black", marginTop: "20px" }} />
       </Form>
     </>
   );
 };
 
-export default GenerarVentaView;
+export default GenerarVentas;
