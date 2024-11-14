@@ -3,12 +3,8 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import './App.css'
 import locale from 'antd/locale/es_ES'; 
-import dayjs from 'dayjs';
-import 'dayjs/locale/es'; 
 import { ConfigProvider } from 'antd';
-import LoadingScreen from './Components/Loading/LoadingScreen';
-import "@/assets/css/root.css"
-dayjs.locale('es')
+import LoadingScreen from '@S/Loading/LoadingScreen';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -20,18 +16,18 @@ function App() {
   const color2 = getComputedStyle(root).getPropertyValue('--color-2').trim();
   const danger = getComputedStyle(root).getPropertyValue('--color-danger').trim();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 500);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 500);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []); 
-  if (loading) {
-    return <LoadingScreen />;
-  }
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, []); 
+  // if (loading) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <>
@@ -50,6 +46,9 @@ function App() {
             textHoverBg: 'white',
             colorText: 'white',
             borderColor: color2,
+            defaultHoverBorderColor: color2,
+            defaultBorderColor: color2,
+            defaultHoverColor: 'white',
             colorSplit: color2
           },
           List: {
@@ -68,6 +67,11 @@ function App() {
             headerBg: bg2,
             headerColor: "white",
             headerSplitColor: bg2,
+          },
+          Pagination: {
+            itemBg: bg,
+            itemActiveBg: bg,
+            colorText: 'white',
           },
           Modal: {
             contentBg: bg,
@@ -121,11 +125,16 @@ function App() {
             colorTextDescription: "white",
             borderRadiusLG: 15,
             colorTextHeading: "white",
+            actionsLiMargin: 0
           },
           Divider: {
             colorSplit: "gray",
             colorTextHeading: "white",
           },
+          Popconfirm : {
+            colorText: 'white',
+            colorTextHeading: 'white'
+          }
         },
         token: {
           colorPrimary: color1,
@@ -133,7 +142,7 @@ function App() {
         },
       }}
       locale={locale}>
-      <Router>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <Routing />
       </Router>
     </ConfigProvider>

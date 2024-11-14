@@ -1,105 +1,113 @@
-/* p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.correct {
-    background-color: rgb(157, 255, 189);
-}
-
-.incorrect {
-    background-color: rgb(245, 255, 157);
-}
-
-.danger {
-    background-color: rgb(255, 157, 157);
+:root {
+  --bg: #131931;
+  --bg-2: #0e1122;
+  --color-1: #2fb0f5;
+  --color-2: #6d60dd;
+  --color-3: #e04cbd;
+  --color-dark: #1A0935;
+  --color-dark-2: #100029;
+  --color-white: #f0f2f5;
+  --color-danger: #ff4040;
+  --font: "Poppins", sans-serif;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
 
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
 
-li {
-    margin: 0 !important;
+::-webkit-scrollbar-thumb {
+  background: var(--color-1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  /* background: green; */
+  /* cursor: grab; */
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+/* Botones */
+.btn-incidencia,
+.btn-incidencia:hover {
+  background: var(--color-2) !important;
+  border: var(--color-2) !important;
+  color: white !important;
+}
+
+/* Botones Card*/
+.card-update {
+  background-color: var(--color-1);
+  padding: 5px 0 ;
+}
+
+.card-view {
+  background-color: var(--color-2);
+  padding: 5px 0 ;
+}
+
+.card-delete {
+  background-color: var(--color-danger);
+  padding: 5px 0 ;
 }
 
 
 
 p {
-    margin: 0 !important;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
-.ant-tabs-content-holder {
-    max-width: 700px !important;
+.ant-list-items{
+  display: flex;
+  flex-direction: column;
+  gap: 20px !important;
+}
+.ant-list-item {
+  padding: 0 0 0 0 !important;
+}
+.ant-empty-image svg ellipse {
+  fill: var(--bg) !important;
 }
 
-.ant-card { 
-    border-radius: 15px;
-    overflow: hidden
+.ant-empty-image svg path {
+  stroke: white !important;
+  stroke-width: 2px !important;
+  fill: var(--bg) !important;
 }
-.cardLoteIcons {
-    max-width: 500px;
-    margin: 20px 0 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
 
+.ant-empty-description {
+  color: white !important
+}
 
+.ant-input-show-count-suffix {
+  color: white !important
+}
 
-  .cardLoteIcon {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: white;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 50%;
-    z-index: 1;
-  }
+.ant-picker-panel-layout {
+  background-color: var(--bg);
+  border: solid 2px var(--bg);
+}
 
-  .cardSvgLote {
-    width: 25px;
-  }
+.ant-picker-now-btn{
+  text-decoration: none;
+}
 
-  .loteIcons {
-    margin: auto;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
+.ant-picker-month-btn,
+.ant-picker-year-btn {
+  color: white !important;
+}
 
-  .loteIcon {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: white; 
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 50%;
-    z-index: 1;
-  }
+.ant-modal-close-x {
+  color: white; /* O el color que prefieras */
+}
 
-  .svgLote {
-    width: 40px;
-  }
-
-
-  .cardLoteIcons::before,
-  .loteIcons::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: gray;
-    z-index: 0;
-  }
-  */
+.ant-popover-inner {
+  background-color: var(--bg) !important;
+}
