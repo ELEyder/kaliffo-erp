@@ -1,8 +1,6 @@
-// AdminRoutes.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-// Importación de las vistas
 import VentasView from "@V/Administrativo/Ventas/VentasView";
 import TrabajadoresView from "@V/Administrativo/Trabajadores/TrabajadoresView";
 import TrabajadorView from "@V/Administrativo/Trabajadores/TrabajadorView";

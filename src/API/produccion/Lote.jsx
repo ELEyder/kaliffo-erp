@@ -16,15 +16,19 @@ export const getLotes = async (setData) => {
   }
 };
 
-  export const addLote = async () => {
+  export const addLote = async (values) => {
+
+    
       const response = await fetch(`http://localhost:3000/lotes/create`, {
           method : "POST",
+          headers : {
+            "Content-Type" : "application/json"
+          },
+          body: JSON.stringify(values)
       })
       showNotification("add","Lote añadido correctamente")
       
   }
-
-  
 
 export const getFase = async (id, setData) => {
   const response = await fetch(`http://localhost:3000/lotes/${id}`);

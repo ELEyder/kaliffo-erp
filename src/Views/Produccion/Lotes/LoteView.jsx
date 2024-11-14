@@ -21,13 +21,13 @@ const Lote = () => {
   if (fase == 1) {
     contenido = <CortesTable />;
   }
-  if (fase == 2) {
+  else if (fase == 2) {
     contenido = <LavanderiaTable />;
   }
   return (
     <>
       <Divider>DETALLES DEL LOTE</Divider>
-      <TimeLine></TimeLine>
+      <TimeLine fase={fase}></TimeLine>
       <Row>
         <Col span={18}>
           {contenido}

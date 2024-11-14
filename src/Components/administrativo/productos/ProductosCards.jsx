@@ -42,7 +42,7 @@ const ProductosCards = () => {
                   <EditOutlined key="edit" color="white"/>
                   </Tooltip>,
                   <Tooltip title="Ver Detalles" className={"card-view"}>
-                    <Link to={`/productos/${producto.producto_id}`}>
+                    <Link to={`/admin/productos/${producto.producto_id}`}>
                       <EyeOutlined style={{color: "white"}} key="view" />
                     </Link>
                   </Tooltip>,

@@ -58,7 +58,7 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
               },
             ]}
           >
-            <InputNumber placeholder="S/"/>
+            <InputNumber min={1} placeholder="S/"/>
           </Form.Item>
           <Form.Item
             name="descuento"
@@ -71,7 +71,7 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
               },
             ]}
           >
-            <InputNumber placeholder="%" />
+            <InputNumber min={1}  placeholder="%" />
           </Form.Item>
   
         </Row>

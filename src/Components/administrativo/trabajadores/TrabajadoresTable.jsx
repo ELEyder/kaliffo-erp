@@ -116,7 +116,7 @@ const TrabajadoresTable = ({tipo}) => {
         rowKey={"usuario_id"}
         onRow={(record) => ({
           onClick: () => {
-            navigate(`/trabajadores/${record.usuario_id}`);
+            navigate(`/admin/trabajadores/${record.usuario_id}`);
           },
           style: {
             cursor: "pointer",

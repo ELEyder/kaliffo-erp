@@ -4,7 +4,9 @@ import ComprasView from "@V/Logistico/Compras/ComprasView";
 
 const LogiticoRouters = () => (
     <Routes>
-        <Route path="/" element={<ComprasView />} />
+        <Route path="/historial" element={<ComprasView />} />
+        <Route path="/mover" element={<ComprasView />} />
+        <Route path="/compras" element={<ComprasView />} />
     </Routes>
 );
 

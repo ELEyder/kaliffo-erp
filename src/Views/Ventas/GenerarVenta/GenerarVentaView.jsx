@@ -12,7 +12,26 @@ import {
 
 const GenerarVentas = () => {
   const { Title, Text } = Typography;
+  const [productos, setproductos] = useState({});
+  const [codigoBarras, setCodigoBarras] = useState("");
 
+  useEffect(() => {
+    const escaner = (event) => {
+      if (event.key === "Enter") {
+        // Aquí puedes agregar la lógica para manejar el producto escaneado
+        document.getElementById("texto").innerHTML = codigoBarras;
+        setCodigoBarras("");
+      } else {
+        setCodigoBarras((prev) => prev + event.key);
+      }
+    };
+
+    document.addEventListener("keypress", escaner);
+
+    return () => {
+      document.removeEventListener("keypress", escaner);
+    };
+  }, [codigoBarras]);
 
   return (
     <>

@@ -45,7 +45,7 @@ const Tiendas_cards = () => {
                 </div>
             </Tooltip>,
             <Tooltip title="Ver Detalles" className={"card-view"}>
-              <Link to={`/tiendas/${tienda.tienda_id}`}>
+              <Link to={`/admin/tiendas/${tienda.tienda_id}`}>
                 <EyeOutlined style={{color: "white"}} key="view" />
               </Link>
             </Tooltip>,
