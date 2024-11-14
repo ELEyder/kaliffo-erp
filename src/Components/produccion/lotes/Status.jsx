@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChangeStatusModal from "@CP/lotes/ChangeStatusModal"
+import AddTaller from "@CP/lotes/AddTaller"
 import { getStatusCorte, changeStatusCorte } from "@AP/Corte";
 import { getStatusLavanderia, changeStatusLavanderia } from "@AP/Lavanderia";
 import { getFase } from "@AP/Lote";
@@ -8,6 +9,7 @@ import styles from './Status.module.css'
 
 const Status = ({reload}) => {
     const [ OpenChangeStatus, setOpenChangeStatus ] = useState(false);
+    const [ OpenAddTaller, setOpenAddTaller ] = useState(false);
     const [ status, setStatus ] = useState(false);
     const [ fase, setFase ] = useState(0);
     const { id } = useParams();
@@ -27,10 +29,13 @@ const Status = ({reload}) => {
 
       const eventStatus = async () => {
         if (status == 0){
-          alert("Agrega un elemento")
+          setOpenAddTaller(true)
         }
         else if (fase == 1) {
-          if (status == 1 || status == 2) {
+          if (status == 1){
+            setOpenAddTaller(true)
+          }
+          else if (status == 2) {
             await changeStatusCorte(id)
             await getStatus();
         } else if (status == 3) {
@@ -57,9 +62,13 @@ const Status = ({reload}) => {
         <ChangeStatusModal
         openModal={OpenChangeStatus}
         closeModal={()=>setOpenChangeStatus(false)}
-        >
+        />
+          
+        <AddTaller
+        openModal={OpenAddTaller}
+        closeModal={()=>setOpenAddTaller(false)}
+        />
 
-        </ChangeStatusModal>
         </>
     )
 }

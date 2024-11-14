@@ -1,40 +1,23 @@
-import { Form, Modal, Select, Input, InputNumber, Row, Col } from "antd";
-import React, { useEffect, useState } from "react";
+import { Form, Modal, Input, InputNumber, Button, Select } from "antd";
+import React, { useState, useEffect } from "react";
 import { addCorte } from "@AP/Corte";
-import { getUsuarios } from "@AA/Usuario";
 import { getProductos } from "@AA/Producto";
-import { getTelas } from "@AP/Tela";
-import { useParams } from "react-router-dom";
-const { Option } = Select;
+import { getUsuarios } from "@AA/Usuario";
 
 const AddCorteModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
-  const { id } = useParams();
-  const [ lote_id, setId ] = useState(0);
-  const [talleres, setTalleres] = useState([]);
   const [productos, setProductos] = useState([]);
-  const [telas, setTelas] = useState([]);
-  const [metraje, setMetraje] = useState(1);
-  const [merma, setMerma] = useState(1);
-  const [neto, setNeto] = useState(0);
+  const [talleres, setTalleres] = useState([]);
 
   useEffect(() => {
-    getUsuarios(2, setTalleres);
     getProductos(setProductos);
-    getTelas(setTelas);
-    setId(id)
-  }, [reload]);
-
-  const calculateNeto = (newMerma, newMetraje) => {
-    const mermaFactor = 1 + newMerma / 100;
-    const calculatedNeto = newMetraje * mermaFactor;
-    setNeto(calculatedNeto.toFixed(2));
-    form.setFieldsValue({ neto: calculatedNeto.toFixed(2) });
-  };
+    getUsuarios("talleres", setTalleres);
+  }, []);
 
   return (
     <Modal
-      title="Nuevo Producto"
+      getContainer={false}
+      title="Nuevo Lote"
       open={openModal}
       onCancel={() => closeModal(false)}
       okText="Añadir"
@@ -43,140 +26,82 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
       width={600}
     >
       <Form
+        style={{ margin: "0 auto" }}
+        size="large"
         form={form}
+        labelAlign="center"
         layout="vertical"
         onFinish={async (values) => {
-          await addCorte(lote_id, values);
+          await addCorte(values);
           form.resetFields();
           reload();
           closeModal(false);
         }}
-        size="large"
       >
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              name="taller"
-              label="Taller"
-              rules={[{ required: true, message: "Taller requerido" }]}
-            >
-              <Select>
-                {talleres.map((taller, index) => (
-                  <Option key={index} value={taller.usurio_id}>
-                    {taller.nombre} {taller.ap_paterno} {taller.ap_materno}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
+        <Form.Item
+          name="producto_id"
+          label="Producto"
+          rules={[
+            {
+              required: true,
+              message: "Producto es requerido",
+            },
+          ]}
+        >
+          <Select placeholder="Seleccione productos">
+            {productos.map((producto) => (
+              <Select.Option key={producto.producto_id} value={producto.producto_id}>
+                {producto.nombre}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
 
-          <Col span={12}>
-            <Form.Item
-              name="producto"
-              label="Producto"
-              rules={[{ required: true, message: "Producto requerido" }]}
-            >
-              <Select>
-                {productos.map((producto, index) => (
-                  <Option key={index} value={producto.producto_id}>
-                    {producto.nombre}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="cantidad"
-              label="Cantidad"
-              rules={[{ required: true, message: "Cantidad requerida" }]}
-            >
-              <Input type="number" placeholder="Ingresa la cantidad" />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="talla"
-              label="Talla"
-              rules={[{ required: true, message: "Talla requerida" }]}
-            >
-              <Input placeholder="Ingresa la talla" />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="tela"
-              label="Tela"
-              rules={[{ required: true, message: "Tela requerida" }]}
-            >
-              <Select>
-                {telas.map((tela, index) => (
-                  <Option key={index} value={tela.tela_id}>
-                    {tela.tipo}
-                  </Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="metraje"
-              label="Metraje"
-              rules={[{ required: true, message: "Metraje requerido" }]}
-            >
-              <Input
-                type="number"
-                placeholder="Ingresa el metraje asignado"
-                value={metraje}
-                onChange={(e) => {
-                  const newMetraje = parseFloat(e.target.value) || 0;
-                  setMetraje(newMetraje);
-                  calculateNeto(merma, newMetraje);
-                }}
-              />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="merma"
-              label="Merma"
-              rules={[{ required: true, message: "Merma requerida" }]}
-            >
-              <InputNumber
-                min={1}
-                max={50}
-                type="number"
-                placeholder="%"
-                value={merma}
-                onChange={(value) => {
-                  const newMerma = value || 0;
-                  setMerma(newMerma);
-                  calculateNeto(newMerma, metraje);
-                }}
-              />
-            </Form.Item>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="neto"
-              label="Neto"
-              rules={[{ required: true, message: "Neto requerido" }]}
-            >
-              <Input
-                readOnly
-                type="number"
-                placeholder="Ingresa el neto"
-                value={neto}
-              />
-            </Form.Item>
-          </Col>
-        </Row>
+        <Form.List name="detalles">
+          {(fields, { add, remove }) => (
+            <>
+              {fields.map((field) => (
+                <div key={field.key} style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                  <Form.Item
+                    name={[field.name, "cantidad_enviada"]}
+                    label="Cantidad Enviada"
+                    rules={[{ required: true, message: "Cantidad enviada es requerida" }]}
+                  >
+                    <InputNumber min={1} />
+                  </Form.Item>
+                  <Form.Item
+                    name={[field.name, "talla"]}
+                    label="Talla"
+                    rules={[{ required: true, message: "Talla es requerida" }]}
+                  >
+                    <InputNumber />
+                  </Form.Item>
+                  <Form.Item
+                    name={[field.name, "taller_id"]}
+                    label="Taller"
+                    rules={[{ required: true, message: "Taller ID es requerido" }]}
+                  >
+                    <Select placeholder="Seleccione el taller">
+                      {talleres.map((taller) => (
+                        <Select.Option key={taller.usuario_id} value={taller.usuario_id}>
+                          {`${taller.nombre} ${taller.ap_paterno} ${taller.ap_materno}`}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                  <Button type="danger" onClick={() => remove(field.name)}>
+                    Eliminar
+                  </Button>
+                </div>
+              ))}
+              <Form.Item>
+                <Button type="dashed" onClick={() => add()} block>
+                  Agregar Detalle
+                </Button>
+              </Form.Item>
+            </>
+          )}
+        </Form.List>
       </Form>
     </Modal>
   );
