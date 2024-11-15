@@ -1,9 +1,9 @@
 import React from 'react';
 import { Spin } from 'antd';
-import "@/assets/css/loading/loading.css"
+import styles from './LoadingScreen.module.css'
 const LoadingScreen = () => {
   return (
-    <div className="loading-screen">
+    <div className={styles.loadingScreen}>
       <h1>Loading</h1>
       <Spin size="large" tip="Loading..." />
     </div>
