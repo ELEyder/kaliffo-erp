@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from "react";
-import {
-  Card,
-  Col,
-  Divider,
-  Form,
-  Input,
-  Row,
-  Typography,
-  Select,
-} from "antd";
+import { useParams, Navigate } from "react-router-dom";
+import { Card, Col, Divider, Form, Input, Row, Typography, Select,Button } from "antd";
 
 const GenerarVentas = () => {
   const { Title, Text } = Typography;
   const [productos, setproductos] = useState({});
   const [codigoBarras, setCodigoBarras] = useState("");
 
+  const { tipo } = useParams();
+
   useEffect(() => {
     const escaner = (event) => {
       if (event.key === "Enter") {
-        // Aquí puedes agregar la lógica para manejar el producto escaneado
-        document.getElementById("texto").innerHTML = codigoBarras;
+        if (codigoBarras === "016485") {
+          setproductos((prevProductos) => ({
+            ...prevProductos,
+            "lectora de codigos": {
+              cantidad:
+                (prevProductos["lectora de codigos"]?.cantidad || 0) + 1,
+              precio: 20,
+              codigos: [
+                ...(prevProductos["lectora de codigos"]?.codigos || []),
+                codigoBarras,
+              ],
+            },
+          }));
+        }
+
         setCodigoBarras("");
       } else {
         setCodigoBarras((prev) => prev + event.key);
@@ -31,7 +38,18 @@ const GenerarVentas = () => {
     return () => {
       document.removeEventListener("keypress", escaner);
     };
-  }, [codigoBarras]);
+  }, [codigoBarras,tipo]);
+
+  const totalCantidad = Object.values(productos).reduce(
+    (acc, { cantidad }) => acc + cantidad,
+    0
+  );
+  const totalBruto = Object.values(productos).reduce(
+    (acc, { cantidad, precio }) => acc + cantidad * precio,
+    0
+  );
+  const totalIGV = Math.floor(totalBruto * 0.18, 2);
+  const totalNeto = totalBruto + totalIGV;
 
   return (
     <>
@@ -44,7 +62,7 @@ const GenerarVentas = () => {
           color: "#4A90E2",
         }}
       >
-        Boleta
+        {tipo === "boleta" ? <>Boleta</> : <>Factura</>}
       </Divider>
 
       <Form
@@ -82,7 +100,16 @@ const GenerarVentas = () => {
                   overflowY: "auto",
                 }}
               >
-                <span id="texto"></span>
+                <div id="productos_lista" style={{ color: "white" }}>
+                  {Object.entries(productos).map(([codigo, detalles]) => (
+                    <>
+                      <span
+                        key={codigo}
+                      >{`${codigo}: ${detalles.cantidad}`}</span>
+                      <br />
+                    </>
+                  ))}
+                </div>
               </Col>
               <Divider style={{ margin: "15px 0" }} />
               <Col
@@ -98,10 +125,10 @@ const GenerarVentas = () => {
                   fontWeight: "bold",
                 }}
               >
-                <Text>Cantidad: 10</Text>
-                <Text>Total Bruto: 12</Text>
-                <Text>Total IGV: 23</Text>
-                <Text>Total Neto: 100</Text>
+                <Text>Cantidad Total: {totalCantidad}</Text>
+                <Text>Total Bruto: {totalBruto}</Text>
+                <Text>IGV Total: {totalIGV}</Text>
+                <Text>Total Neto: {totalNeto}</Text>
               </Col>
             </Row>
           </Col>
@@ -115,15 +142,37 @@ const GenerarVentas = () => {
             <Card
               size="small"
               title={
-                <Title level={4} style={{ margin: "0 auto" }}>
+                <Title level={4} style={{ margin: "0 auto",color:"white",textAlign:"center" }}>
                   Datos del Cliente
                 </Title>
               }
               bordered={false}
             >
-              <Form.Item label="DNI del Cliente">
-                <Input />
-              </Form.Item>
+              {tipo === "boleta" ? (
+                <Form.Item label="DNI del Cliente">
+                  <Input
+                    count={{
+                      show: true,
+                      max: 8,
+                      strategy: (txt) => txt.length,
+                      exceedFormatter: (txt, { max }) =>
+                        txt.slice(0, max).join(""),
+                    }}
+                  />
+                </Form.Item>
+              ) : (
+                <Form.Item label="RUC del Cliente">
+                  <Input
+                    count={{
+                      show: true,
+                      max: 11,
+                      strategy: (txt) => txt.length,
+                      exceedFormatter: (txt, { max }) =>
+                        txt.slice(0, max).join(""),
+                    }}
+                  />
+                </Form.Item>
+              )}
               <Form.Item label="Nombre del Cliente">
                 <Input />
               </Form.Item>
@@ -139,6 +188,13 @@ const GenerarVentas = () => {
                 />
               </Form.Item>
             </Card>
+            {Object.keys(productos).length>=1?(
+              <div style={{marginTop:"10px"}}>
+                <Button type="primary" block>
+                  {tipo==="boleta"?<>Imprimir Boleta</>:<>Imprimir Factura</>}
+                </Button>
+              </div>
+            ):null}
           </Col>
         </Row>
       </Form>
