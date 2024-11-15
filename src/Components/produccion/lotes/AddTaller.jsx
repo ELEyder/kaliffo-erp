@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Form, Modal, Button, Card, InputNumber, Select } from "antd";
 
-import { getChangeCorte, changeStatusCorte } from "@AP/Corte";
+import { getAddTaller, changeStatusCorte } from "@AP/Corte";
 import { getUsuarios } from "@AA/Usuario";
 
-const AddTaller = ({ openModal, closeModal }) => {
-  const [form] = Form.useForm(); // Instancia creada correctamente
+const AddTaller = ({ openModal, closeModal, reload }) => {
+  const [form] = Form.useForm();
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [talleres, setTalleres] = useState([]);
 
   useEffect(() => {
     getUsuarios("talleres", setTalleres);
-    getChangeCorte(id, setData, form);
-  }, [id]);
+    getAddTaller(id, setData, form);
+  }, [reload]);
 
   return (
     <>
@@ -29,7 +29,7 @@ const AddTaller = ({ openModal, closeModal }) => {
         <Form
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 18 }}
-          form={form} // Asegúrate de que la instancia se pasa aquí
+          form={form}
           name="addTaller"
           style={{ maxWidth: 600, display: "flex", flexDirection: "column" }}
           autoComplete="off"
@@ -42,7 +42,7 @@ const AddTaller = ({ openModal, closeModal }) => {
                     <Form.Item label="corte_id" name={[index, "corte_id"]}>
                       <InputNumber max={field.corte_id} />
                     </Form.Item>
-                    <Form.Item label="taller" name={[index, "taller"]}>
+                    <Form.Item label="Taller" name={[index, "taller_id"]}>
                       <Select placeholder="Seleccione el taller">
                         {talleres.map((taller) => (
                           <Select.Option key={taller.usuario_id} value={taller.usuario_id}>
@@ -61,8 +61,10 @@ const AddTaller = ({ openModal, closeModal }) => {
             <Button
               onClick={async () => {
                 const values = form.getFieldsValue().items;
+                console.log("Taler Añadido:", values)
                 await changeStatusCorte(id, values);
                 form.resetFields();
+                reload();
                 closeModal();
               }}
               type="primary"

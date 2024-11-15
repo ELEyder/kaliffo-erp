@@ -103,7 +103,6 @@ export const getUsuarios = async (tipo, setData) => {
         }
       })
     setData(trabajadores);
-    console.log("API: 0" , trabajadores)
   } catch (error) {
     console.error("Error fetching data:", error);
   }

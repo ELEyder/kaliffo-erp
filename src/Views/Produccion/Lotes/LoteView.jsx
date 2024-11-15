@@ -5,24 +5,33 @@ import CortesTable from "@CP/lotes/CortesTable";
 import LavanderiaTable from "@CP/lotes/LavanderiaTable";
 import TimeLine from "@CP/lotes/TimeLine";
 import Status from "@CP/lotes/Status";
-import { getFase } from "@AP/Lote";
+import { getFaseLote } from "@AP/Lote";
+import { getStatusCorte } from "@AP/Corte";
+import { getStatusLavanderia } from "@AP/Lavanderia";
 
 
 const Lote = () => {
   const { id } = useParams();
   const [fase, setFase] = useState(0);
   const [reload, setReload] = useState(false);
+  const [statusCorte, setStatusCorte] = useState(0);
+  const [statusLavanderia, setStatusLavanderia] = useState(0);
 
   useEffect(() => {
-    getFase(id, setFase);
-  }, [reload]);
+    getFaseLote(id, setFase);
+    getStatusCorte(id, setStatusCorte)
+    getStatusLavanderia(id, setStatusLavanderia)
+  }, [reload, id, fase]);
 
   let contenido;
+  let status;
   if (fase == 1) {
-    contenido = <CortesTable />;
+    contenido = <CortesTable reload={reload} status={statusCorte} setReload={setReload}/>;
+    status = <Status fase={fase} status={statusCorte} reload={reload} setReload={setReload}/>
   }
   else if (fase == 2) {
-    contenido = <LavanderiaTable />;
+    contenido = <LavanderiaTable reload={reload} setReload={setReload}/>;
+    status = <Status fase={fase} status={statusLavanderia} reload={reload} setReload={setReload}/>
   }
   return (
     <>
@@ -33,7 +42,7 @@ const Lote = () => {
           {contenido}
         </Col>
         <Col span={6}>
-          <Status reload={()=> setReload(!reload)}/>
+          {status}
         </Col>
       </Row>
     </>

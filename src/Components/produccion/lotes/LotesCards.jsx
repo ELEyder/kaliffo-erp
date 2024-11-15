@@ -21,7 +21,7 @@ const LotesCards = () => {
 
   return (
     <>
-      <Flex wrap gap="middle">
+      <Flex wrap gap="middle" justify="center">
         {lotes.map((lote) => {
           const statusColors = Array(lote.estado + 1).fill(colors[lote.estado]);
           statusColors.push(...Array(4 - lote.estado).fill("white"));

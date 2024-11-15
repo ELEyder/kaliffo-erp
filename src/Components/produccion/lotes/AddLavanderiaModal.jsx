@@ -5,7 +5,7 @@ import { getProductos } from "@AA/Producto";
 import { getUsuarios } from "@AA/Usuario";
 import { useParams } from "react-router-dom";
 
-const AddCorteModal = ({ openModal, closeModal, reload }) => {
+const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
   const { id } = useParams();
   const [form] = Form.useForm();
   const [productos, setProductos] = useState([]);
@@ -33,7 +33,6 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
         labelAlign="center"
         layout="vertical"
         onFinish={async (values) => {
-          await addCorte(id, values);
           form.resetFields();
           reload();
           closeModal(false);
@@ -108,4 +107,4 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
   );
 };
 
-export default AddCorteModal;
+export default AddLavanderiaModal;

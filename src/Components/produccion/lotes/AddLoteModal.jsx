@@ -88,7 +88,7 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
             placeholder="Seleccione productos"
           >
             {productos?.map((producto, index) => (
-              <Select.Option key={index} value={producto.nombre}>
+              <Select.Option key={index} value={producto.producto_id}>
                 {producto.nombre}
               </Select.Option>
             ))}

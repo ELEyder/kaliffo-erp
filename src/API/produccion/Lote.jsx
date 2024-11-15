@@ -17,20 +17,27 @@ export const getLotes = async (setData) => {
 };
 
   export const addLote = async (values) => {
+    let productos = values.productos.join(",");
 
+    const Lote = {
+      tipo_tela : values.tipo_tela,
+      metraje : values.metraje,
+      productos : productos
+    }
       const response = await fetch(`http://localhost:3000/lotes/create`, {
           method : "POST",
           headers : {
             "Content-Type" : "application/json"
           },
-          body: JSON.stringify(values)
+          body: JSON.stringify(Lote)
       })
       showNotification("add","Lote añadido correctamente")
       
   }
 
-export const getFase = async (id, setData) => {
+export const getFaseLote = async (id, setData) => {
   const response = await fetch(`http://localhost:3000/lotes/${id}`);
   const data = await response.json();
+  console.log("Fase:" , data.estado)
   setData(data.estado);
 }

@@ -19,13 +19,13 @@ export const getCorte = async (id, setData) => {
   }
 
   export const addCorte = async (id, data) => {
-    console.log(JSON.stringify(Corte))
-    const response = await fetch(`http://localhost:3000/cortes/create/${id}`, {
+    console.log(data)
+    const response = await fetch(`http://localhost:3000/cortes/create/array/${id}`, {
         method : "POST",
         headers : {
             "Content-Type" : "application/json"
         },
-        body : JSON.stringify(Corte),
+        body : JSON.stringify(data),
     })
     console.log(response)
     showNotification("add", "Corte añadido")
@@ -38,8 +38,8 @@ export const getChangeCorte = async (id, setData, form) => {
     if (!response.ok) {
       if (response.status === 404) {
         console.error(`Corte con ID ${id} no encontrado (404).`);
-        setData([]);  // Establece un valor vacío en caso de 404
-        form.setFieldsValue({ items: [] });  // Restablece el formulario
+        setData([]);
+        form.setFieldsValue({ items: [] });
         return;
       }
       throw new Error(`Error de servidor: ${response.status}`);
@@ -47,7 +47,6 @@ export const getChangeCorte = async (id, setData, form) => {
 
     const data = await response.json();
 
-    // Mapeo de detalles, asignando "cantidad_recibida" con "cantidad_enviada"
     const detallesActualizados = data.map((detalle) => ({
       corte_id: detalle.corte_id,
       cantidad_recibida: detalle.cantidad_enviada,
@@ -62,24 +61,54 @@ export const getChangeCorte = async (id, setData, form) => {
   }
 };
 
+export const getAddTaller = async (id, setData, form) => {
+  try {
+    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`);
 
-  export const deleteCorte = async (id) => {
-    await fetch(`http://localhost:3000/cortes/desactivar/${id}`, {
-        method : "PUT",
-    })
-    showNotification("delete", "Corte eliminado")
+    if (!response.ok) {
+      if (response.status === 404) {
+        console.error(`Corte con ID ${id} no encontrado (404).`);
+        setData([]);
+        form.setFieldsValue({ items: [] });
+        return;
+      }
+      throw new Error(`Error de servidor: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const detallesActualizados = data.map((detalle) => ({
+      corte_id: detalle.corte_id,
+    }));
+
+    setData(detallesActualizados);
+    form.setFieldsValue({ items: detallesActualizados });
+  } catch (error) {
+    console.error('Error al obtener el corte:', error);
+    setData([]);
+    form.setFieldsValue({ items: [] });
+  }
+};
+  export const deleteCorte = async (id, estado) => {
+    if (estado !=1){
+      showNotification("error", "No se puede borrar cortes en proceso")
+    }  else {
+      await fetch(`http://localhost:3000/cortes/desactivar/${id}`, {
+          method : "PUT",
+      })
+      showNotification("delete", "Corte eliminado")
+    }
   }
 
   export const getStatusCorte = async (id, setData) => {
-    try {
       const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
       const data = await response.json()
-      if (data == []) return(setData(0))
-      setData(data[0].estado)
-    } catch (error) {
-      console.error('Error al obtener el corte:', error)
-      setData(0)
-    }
+      if (data.length == 0){
+        setData(0)
+      } else {
+        setData(data[0].estado)
+        console.log("Estado:", data[0].estado)
+      }
   }
 
   export const changeStatusCorte = async (id, values=null) => {
@@ -92,7 +121,7 @@ export const getChangeCorte = async (id, setData, form) => {
     let Lote = {
       detalles : values,
     }
-    console.log(JSON.stringify(values))
+    console.log(Lote)
     const response = await fetch(`http://localhost:3000/cortes/sgte/lote/${id}`, {
         method : "PUT",
         headers : {
