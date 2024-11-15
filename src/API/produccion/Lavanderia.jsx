@@ -1,26 +1,21 @@
 import { showNotification } from "../../Shared/Notifications"
 
-export const getCorte = async (id, setData) => {
+export const getLavanderia = async (id, setData) => {
   try {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
-
+    const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`)
     if (!response.ok) {
       if (response.status === 404) {
-        console.error(`Corte con ID ${id} no encontrado (404).`)
         setData([])
         return
       }
-      throw new Error(`Error de servidor: ${response.status}`)
     }
 
     const data = await response.json()
     setData(data)
   } catch (error) {
-    console.error('Error al obtener el corte:', error)
     setData([])
   }
 }
-
 export const addCorte = async (id, data) => {
   const Corte = {
     lote_id: Number(id),

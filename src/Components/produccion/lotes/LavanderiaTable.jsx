@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, FloatButton, Row, Col, Popconfirm, Button } from "antd";
 import { useParams } from "react-router-dom";
-import { getCorte, deleteCorte } from "@AP/Corte";
+import { getLavanderia } from "@AP/Lavanderia";
 import AddLavanderiaModal from "@CP/lotes/AddLavanderiaModal";
 
 const Lavanderia = ({ status, reload, setReload }) => {
@@ -10,7 +10,7 @@ const Lavanderia = ({ status, reload, setReload }) => {
   const [openAddModal, setOpenAddModal] = useState(false);
 
   useEffect(() => {
-    getCorte(id, setData);
+    getLavanderia(id, setData);
   }, [id, reload]);
 
   // Verificar si algún registro tiene estado === 1
