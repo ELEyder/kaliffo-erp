@@ -1,7 +1,7 @@
 import { Form, Modal, Input, InputNumber, Button, Select } from "antd";
 import React, { useState, useEffect } from "react";
 import { addCorte } from "@AP/Corte";
-import { getProductos } from "@AA/Producto";
+import { getProductoByLote } from "@AA/Producto";
 import { getUsuarios } from "@AA/Usuario";
 import { useParams } from "react-router-dom";
 
@@ -11,7 +11,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
   const [productos, setProductos] = useState([]);
   const [talleres, setTalleres] = useState([]);
   useEffect(() => {
-    getProductos(setProductos);
+    getProductoByLote(id, setProductos)
     getUsuarios("talleres", setTalleres);
   }, []);
 
