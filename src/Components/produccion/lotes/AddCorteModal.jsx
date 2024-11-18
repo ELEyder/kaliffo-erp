@@ -80,7 +80,6 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
                   <Form.Item
                     name={[field.name, "taller_id"]}
                     label="Taller"
-                    rules={[{ required: true, message: "Taller ID es requerido" }]}
                   >
                     <Select placeholder="Seleccione el taller">
                       {talleres.map((taller) => (
