@@ -1,10 +1,11 @@
-.ant-layout-header {
-    background-color: var(--bg);
+
+.header {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
-h1.ant-typography {
+.title {
     font-family: var(--font);
     color: white;
     margin: 0;

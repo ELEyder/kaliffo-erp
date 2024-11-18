@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom'
 import { getColoresByProducto } from "@AA/Color";
-import { Table, Button, Popconfirm, Row, Col } from "antd";
+import { Table, Button } from "antd";
 
 const ProductoColoresTable = () => {
 

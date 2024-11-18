@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
-import { Card, Col, Divider, Form, Input, Row, Typography, Select,Button } from "antd";
+import {
+  Card,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Row,
+  Typography,
+  Select,
+  Button,
+} from "antd";
 
 const GenerarVentas = () => {
   const { Title, Text } = Typography;
@@ -25,7 +35,23 @@ const GenerarVentas = () => {
               ],
             },
           }));
+        } else if (codigoBarras === "78600027") {
+          setproductos((prevProductos) => ({
+            ...prevProductos,
+            "Caramelos": {
+              cantidad:
+                (prevProductos["Caramelos"]?.cantidad || 0) + 1,
+              precio: 12,
+              codigos: [
+                ...(prevProductos["Caramelos"]?.codigos || []),
+                codigoBarras,
+              ],
+            },
+          }));
         }
+
+        
+        
 
         setCodigoBarras("");
       } else {
@@ -38,7 +64,14 @@ const GenerarVentas = () => {
     return () => {
       document.removeEventListener("keypress", escaner);
     };
-  }, [codigoBarras,tipo]);
+  }, [codigoBarras, tipo]);
+
+  const eliminarProducto = (codigo) => {
+    setproductos((prevProductos) => {
+      const { [codigo]: _, ...resto } = prevProductos;
+      return resto;
+    });
+  };
 
   const totalCantidad = Object.values(productos).reduce(
     (acc, { cantidad }) => acc + cantidad,
@@ -102,12 +135,67 @@ const GenerarVentas = () => {
               >
                 <div id="productos_lista" style={{ color: "white" }}>
                   {Object.entries(productos).map(([codigo, detalles]) => (
-                    <>
-                      <span
-                        key={codigo}
-                      >{`${codigo}: ${detalles.cantidad}`}</span>
-                      <br />
-                    </>
+                    <Row
+                      gutter={[16, 16]}
+                      style={{
+                        margin: "10px 0",
+                        padding: "10px",
+                        backgroundColor: "#1e1e2f",
+                        borderRadius: "8px",
+                        alignItems: "center",
+                      }}
+                    >
+                      {/* Texto del producto */}
+                      <Col
+                        span={10}
+                        style={{ textAlign: "left", color: "#fff" }}
+                      >
+                        <span style={{ fontSize: "1rem", fontWeight: "bold" }}>
+                          {`${codigo}: ${detalles.cantidad}`}
+                        </span>
+                      </Col>
+
+                      {/* Input del precio */}
+                      <Col span={8}>
+                        <Form.Item style={{ margin: 0}}>
+                          <Input
+                            value={detalles.precio}
+                            onChange={(e) => {
+                              const nuevoPrecio = e.target.value;
+                              setproductos((prevProductos) => ({
+                                ...prevProductos,
+                                [codigo]: {
+                                  ...prevProductos[codigo],
+                                  precio: nuevoPrecio,
+                                },
+                              }));
+                            }}
+                            placeholder="Precio"
+                            style={{
+                              borderRadius: "5px",
+                              textAlign:"center",
+                              fontWeight:"bold"
+                            }}
+                          />
+                        </Form.Item>
+                      </Col>
+
+                      {/* Botón de eliminar */}
+                      <Col span={6}>
+                        <Button
+                          type="primary"
+                          danger
+                          onClick={() => eliminarProducto(codigo)}
+                          style={{
+                            width: "100%",
+                            fontWeight: "bold",
+                            borderRadius: "5px",
+                          }}
+                        >
+                          X
+                        </Button>
+                      </Col>
+                    </Row>
                   ))}
                 </div>
               </Col>
@@ -142,7 +230,14 @@ const GenerarVentas = () => {
             <Card
               size="small"
               title={
-                <Title level={4} style={{ margin: "0 auto",color:"white",textAlign:"center" }}>
+                <Title
+                  level={4}
+                  style={{
+                    margin: "0 auto",
+                    color: "white",
+                    textAlign: "center",
+                  }}
+                >
                   Datos del Cliente
                 </Title>
               }
@@ -188,13 +283,17 @@ const GenerarVentas = () => {
                 />
               </Form.Item>
             </Card>
-            {Object.keys(productos).length>=1?(
-              <div style={{marginTop:"10px"}}>
+            {Object.keys(productos).length >= 1 ? (
+              <div style={{ marginTop: "10px" }}>
                 <Button type="primary" block>
-                  {tipo==="boleta"?<>Imprimir Boleta</>:<>Imprimir Factura</>}
+                  {tipo === "boleta" ? (
+                    <>Imprimir Boleta</>
+                  ) : (
+                    <>Imprimir Factura</>
+                  )}
                 </Button>
               </div>
-            ):null}
+            ) : null}
           </Col>
         </Row>
       </Form>

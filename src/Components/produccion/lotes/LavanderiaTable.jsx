@@ -1,47 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { Table, FloatButton, Row, Col, Popconfirm, Button } from "antd";
 import { useParams } from "react-router-dom";
-import { getCorte, deleteCorte } from "@AP/Corte";
-import AddCorteModal from "@CP/lotes/AddCorteModal";
+import { getLavanderia } from "@AP/Lavanderia";
+import AddLavanderiaModal from "@CP/lotes/AddLavanderiaModal";
 
-const LavanderiaTable = () => {
+const Lavanderia = ({ status, reload, setReload }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [reload, setReload] = useState(false);
   const [openAddModal, setOpenAddModal] = useState(false);
 
   useEffect(() => {
-    getCorte(id, setData);
+    getLavanderia(id, setData);
   }, [id, reload]);
 
+  // Verificar si algún registro tiene estado === 1
+  const hasOptions = data.some(record => record.estado === 1);
+
+  // Definir columnas dinámicamente
   const columns = [
     { key: 'taller', dataIndex: 'taller', title: 'Taller' },
-    // { key: 'producto', dataIndex: 'nombre', title: 'Producto' },
-    // { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad' },
-    // { key: 'talla', dataIndex: 'talla', title: 'Talla' },
-    // { key: 'tela', dataIndex: 'tipo_tela', title: 'Tela' },
-    // { key: 'metraje', dataIndex: 'metraje_asignado', title: 'Metraje' },
-    { title: "Opciones", key: "opciones", align:"center",
-      render:(text,record) =>{
-        return (
-            <Row gutter={[8, 8]} justify="center" align="middle">
-                <Col>
-                    <Popconfirm
-                        title="ELIMINAR"
-                        description="DESEA ELIMINAR ESTA INCIDENCIA"
-                        okText="Confirmar"
-                        cancelText="NO"
-                        onConfirm={() => {
-                          deleteCorte(record.corte_id)
-                          setReload(!reload)
-                        }}>
-                        <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
-                    </Popconfirm>
-                </Col>
-            </Row>
-        );
-    }
-  },
+    { key: 'producto', dataIndex: 'nombre', title: 'Producto' },
+    { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad' },
+    { key: 'talla', dataIndex: 'talla', title: 'Talla' },
+    ...(hasOptions
+      ? [
+          {
+            title: "Opciones",
+            key: "opciones",
+            align: "center",
+            render: (text, record) => {
+              if (record.estado === 1) {
+                return (
+                  <Popconfirm
+                    title="ELIMINAR"
+                    description="DESEA ELIMINAR ESTE CORTE"
+                    okText="Confirmar"
+                    cancelText="NO"
+                    onConfirm={() => {
+                      deleteCorte(record.corte_id, record.estado);
+                      setReload(!reload);
+                    }}
+                  >
+                    <Button block style={{ background: "#f54242", color: "white" }} danger>
+                      Eliminar
+                    </Button>
+                  </Popconfirm>
+                );
+              }
+              return null;
+            },
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -54,7 +64,7 @@ const LavanderiaTable = () => {
 
       <Table dataSource={data} columns={columns} rowKey="corte_id" />
 
-      <AddCorteModal
+      <AddLavanderiaModal
         openModal={openAddModal}
         closeModal={() => setOpenAddModal(false)}
         reload={() => setReload(!reload)}
@@ -63,4 +73,4 @@ const LavanderiaTable = () => {
   );
 };
 
-export default LavanderiaTable;
+export default Lavanderia;

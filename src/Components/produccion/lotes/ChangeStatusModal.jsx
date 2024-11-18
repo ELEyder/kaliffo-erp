@@ -4,14 +4,14 @@ import { Form, Modal, Button, Card, InputNumber } from "antd";
 
 import { getChangeCorte, changeStatusCorte } from "@AP/Corte";
 
-const ChangeStatusModal = ({ openModal, closeModal }) => {
+const ChangeStatusModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
   const { id } = useParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     getChangeCorte(id, setData, form);
-  }, [id]);
+  }, [id, reload]);
 
   return (
     <>
@@ -66,6 +66,7 @@ const ChangeStatusModal = ({ openModal, closeModal }) => {
           await changeStatusCorte(id, values)
           console.log(values)
           form.resetFields()
+          reload()
           closeModal()
         }} type="primary">Crear</Button>
       </Form.Item>

@@ -4,30 +4,20 @@ import { Tooltip } from "antd";
 import styles from './TimeLine.module.css'
 
 const TimeLine = ({ fase }) => {
-    return (
-        <div className={styles.loteIcons}>
-            <Tooltip title="Corte">
-                <div className={styles.loteIcon}>
-                    <img className={styles.svgLote} src="/svg/lote/1.svg" alt="" />
-                </div>
-            </Tooltip>
-            <Tooltip title="Lavandería">
-                <div className={styles.loteIcon}>
-                    <img className={styles.svgLote} src="/svg/lote/2.svg" alt="" />
-                </div>
-            </Tooltip>
-            <Tooltip title="Taller de Acabados Finales">
-                <div className={styles.loteIcon}>
-                    <img className={styles.svgLote} src="/svg/lote/3.svg" alt="" />
-                </div>
-            </Tooltip>
-            <Tooltip title="Almacen">
-                <div className={styles.loteIcon}>
-                    <img className={styles.svgLote} src="/svg/lote/4.svg" alt="" />
-                </div>
-            </Tooltip>
-        </div>
-    )
+  const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];
+  const statusColors = Array(fase + 1).fill(colors[fase]);
+  statusColors.push(...Array(4 - fase).fill("white"));
+  return (
+    <div className={styles.loteIcons}>
+      {["Corte", "Lavandería", "Taller de Acabados Finales", "Almacen"].map((title, index) => (
+        <Tooltip key={index} title={title}>
+          <div className={styles.loteIcon} style={{ backgroundColor: statusColors[index + 1] }}>
+            <img className={styles.svgLote} src={`/svg/lote/${index + 1}.svg`} alt={title} />
+          </div>
+        </Tooltip>
+      ))}
+    </div>
+  )
 }
 
 export default TimeLine
