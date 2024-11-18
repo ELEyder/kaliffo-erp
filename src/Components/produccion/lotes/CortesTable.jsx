@@ -19,7 +19,7 @@ const CortesTable = ({ status, reload, setReload }) => {
   // Definir columnas dinámicamente
   const columns = [
     { key: 'taller', dataIndex: 'taller', title: 'Taller' },
-    { key: 'producto', dataIndex: 'nombre', title: 'Producto' },
+    { key: 'producto', dataIndex: 'producto', title: 'Producto' },
     { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad' },
     { key: 'talla', dataIndex: 'talla', title: 'Talla' },
     ...(hasOptions
