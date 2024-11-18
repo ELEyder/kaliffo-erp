@@ -151,3 +151,9 @@ export const setUpdateUsuario = async (id, form) => {
     showNotification("error","Error al obtener los datos", error)
   }
 };
+
+export const getProductoByLote = async (id, setData) => {
+  const response = await fetch(`http://localhost:3000/lotes/productos/${id}`)
+  const productoData = await response.json()
+  setData(productoData)
+}
