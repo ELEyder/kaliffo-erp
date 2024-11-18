@@ -50,7 +50,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
           ]}
         >
           <Select placeholder="Seleccione productos">
-            {productos.map((producto) => (
+            {productos?.map((producto) => (
               <Select.Option key={producto.producto_id} value={producto.producto_id}>
                 {producto.nombre}
               </Select.Option>
