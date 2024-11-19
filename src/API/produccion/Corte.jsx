@@ -77,12 +77,17 @@ export const getAddTaller = async (id, setData, form) => {
 
     const data = await response.json();
 
-    const detallesActualizados = data.map((detalle) => ({
+    const detallesActualizados = data.filter(detalle => detalle.taller == null).map((detalle) => ({
       corte_id: detalle.corte_id,
     }));
-
-    setData(detallesActualizados);
-    form.setFieldsValue({ items: detallesActualizados });
+    console.log("Detalles Actualizados:", detallesActualizados)
+    if (detallesActualizados.length == 0) {
+      setData([]);
+      form.setFieldsValue({ items: [] });
+    } else {
+      setData(detallesActualizados);
+      form.setFieldsValue({ items: detallesActualizados });
+    }
   } catch (error) {
     console.error('Error al obtener el corte:', error);
     setData([]);

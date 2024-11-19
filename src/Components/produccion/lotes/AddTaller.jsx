@@ -37,7 +37,7 @@ const AddTaller = ({ openModal, closeModal, reload }) => {
           <Form.List name="items">
             {(fields) => (
               <div style={{ display: "flex", rowGap: 16, flexDirection: "column" }}>
-                {data.map((field, index) => (
+                {data?.map((field, index) => (
                   <Card size="small" title={`Corte ${field.corte_id}`} key={index}>
                     <Form.Item label="corte_id" name={[index, "corte_id"]}>
                       <InputNumber max={field.corte_id} />
