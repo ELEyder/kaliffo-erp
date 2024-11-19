@@ -19,7 +19,14 @@ export const getCorte = async (id, setData) => {
   }
 
   export const addCorte = async (id, data) => {
-    console.log(data)
+    console.log("Data:", data)
+
+    data.detalles = data.detalles.map(detalle =>({
+      cantidad_enviada : detalle.cantidad_enviada,
+      talla : detalle.talla,
+      taller_id: detalle.taller_id !== undefined ? detalle.taller_id : null,
+    }))
+
     const response = await fetch(`http://localhost:3000/cortes/create/array/${id}`, {
         method : "POST",
         headers : {
@@ -77,8 +84,9 @@ export const getAddTaller = async (id, setData, form) => {
 
     const data = await response.json();
 
-    const detallesActualizados = data.filter(detalle => detalle.taller == null).map((detalle) => ({
+    const detallesActualizados = data.map((detalle) => ({
       corte_id: detalle.corte_id,
+      taller_id: detalle.taller_id,
     }));
     console.log("Detalles Actualizados:", detallesActualizados)
     if (detallesActualizados.length == 0) {

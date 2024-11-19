@@ -4,7 +4,6 @@ import { onlyDecimalKey , onlyNumberKey , onlyLettersKey, onlyDecimalInput, only
 import { addUsuario } from "@AA/Usuario";
 import { getTiendas } from "@AA/Tienda";
 
-
 const AddTrabajadorModal = ({
   openModal,
   closeModal,
@@ -26,6 +25,7 @@ const AddTrabajadorModal = ({
     <Modal
       forceRender
       getContainer={false}
+      style={{textTransform:"uppercase"}}
       title={`Añadir Nuevo Trabajador a ${tipoTrabajador}`}
       open={openModal}
       onCancel={closeModal}

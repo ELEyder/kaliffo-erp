@@ -4,3 +4,9 @@ export const getColoresByProducto = async (id, setTallas) => {
     setTallas(data)
 }
 
+export const getColores = async (setColores) => {
+    const response = await fetch(`http://localhost:3000/color`)
+    const data = await response.json()
+    setColores(data)
+}
+
