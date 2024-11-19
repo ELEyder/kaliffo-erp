@@ -9,7 +9,6 @@ const AddTiendaModal = ({ openModal, closeModal, reload }) => {
     <Modal
       getContainer={false}
       title={"Nueva Tienda"}
-      style={{textAlign:"center",textTransform:"uppercase"}}
       open={openModal}
       onCancel={closeModal}
       okText="Añadir"
@@ -66,6 +65,10 @@ const AddTiendaModal = ({ openModal, closeModal, reload }) => {
             {
               required: true,
               message: "Telefono Requerido",
+            },
+            {
+              pattern: /^[0-9]{9}$/,
+              message: 'Debe ser un número de exactamente 9 dígitos.',
             },
           ]}
         >
