@@ -16,25 +16,17 @@ export const getLavanderia = async (id, setData) => {
     setData([])
   }
 }
-export const addCorte = async (id, data) => {
-  const Corte = {
-    lote_id: Number(id),
-    taller_id: Number(data.taller),
-    producto_id: Number(data.producto),
-    cantidad_enviada: Number(data.cantidad),
-    talla: data.talla,
-    metraje_asignado: Number(data.metraje),
-    tipo_tela: data.tela,
-  };
-  const response = await fetch(`http://localhost:3000/cortes/create`, {
+export const addLavanderia = async (id, data) => {
+  console.log(data)
+  const response = await fetch(`http://localhost:3000/lavanderia/create/array/${id}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(Corte),
+    body: JSON.stringify(data),
   })
   console.log(response)
-  showNotification("add", "Corte añadido")
+  showNotification("add", "Lavanderia añadida")
 }
 
 export const getChangeCorte = async (id, setData, form) => {
@@ -44,8 +36,8 @@ export const getChangeCorte = async (id, setData, form) => {
     if (!response.ok) {
       if (response.status === 404) {
         console.error(`Corte con ID ${id} no encontrado (404).`)
-        setData([]);  // Establece un valor vacío en caso de 404
-        form.setFieldsValue({ items: [] });  // Restablece el formulario
+        setData([]);
+        form.setFieldsValue({ items: [] });
         return;
       }
       throw new Error(`Error de servidor: ${response.status}`);
