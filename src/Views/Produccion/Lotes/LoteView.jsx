@@ -16,6 +16,7 @@ const Lote = () => {
   const [reload, setReload] = useState(false);
   const [statusCorte, setStatusCorte] = useState(0);
   const [statusLavanderia, setStatusLavanderia] = useState(0);
+  const [statusTaller, setStatusTaller] = useState(0);
 
   useEffect(() => {
     getFaseLote(id, setFase);
@@ -32,6 +33,10 @@ const Lote = () => {
   else if (fase == 2) {
     contenido = <LavanderiaTable reload={reload} setReload={setReload}/>;
     status = <Status fase={fase} status={statusLavanderia} reload={reload} setReload={setReload}/>
+  }
+  else if (fase == 3) {
+    contenido = <Divider>Cortes</Divider>;
+    status = <Status fase={fase} status={statusTaller} reload={reload} setReload={setReload}/>
   }
   return (
     <>
