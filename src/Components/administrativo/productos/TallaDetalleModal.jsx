@@ -53,7 +53,7 @@ const TallaDetalleModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={nombreTalla}
+      title={"Tallas"}
       open={openModal}
       onCancel={() => closeModal()}
       style={{ textTransform: "uppercase" }}

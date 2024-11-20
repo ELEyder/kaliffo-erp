@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 
-import DetallesProductoModal from "@CA/productos/ProductoDetalleModal"
-import AddProductoModal from "@CA/productos/AddProductosModal";
+import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"
+// import AddProductosModal from "@CA/productos/AddProductosModal";
 import { getProductosByTienda, deleteProductoByTienda } from "@AA/Producto";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
@@ -24,7 +24,7 @@ const ProductosTable = () => {
 
   const columns = [
     {
-      title: "Producto",
+      title: "Productosa",
       key: "nombre",
       dataIndex:"nombre",
       align: "center",
@@ -91,34 +91,6 @@ const ProductosTable = () => {
         )
       }
     },
-    {
-      title: "Opciones",
-      dataIndex:"",
-      key:"x",
-      align:"center",
-      render:(record) =>{
-          return (
-            <Row gutter={[8, 8]} justify="center" align="middle">
-              <Col>
-                <Popconfirm
-                  title="ELIMINAR"
-                  description="DESEA ELIMINAR A"
-                  okText="Confirmar"
-                  cancelText="NO"
-                  onConfirm= {() => {
-                    deleteProductoByTienda(record.producto_id, id)
-                    setReload(!reload)
-                    getProductosByTienda(id,setproductostienda)
-                  }}
-                >
-                <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
-                </Popconfirm>
-              </Col>
-            </Row>
-          );
-      }
-      
-    },
   ];
 
   return (
@@ -129,15 +101,16 @@ const ProductosTable = () => {
       dataSource={productostienda.map((item, index) => ({ ...item, key: index }))}
       rowKey={(record) => record.producto_id}
       />
-
-      <AddProductoModal
+{/* 
+      <AddProductosModal
       openModal = {OpenAddProductoModal}
       closeModal={() => setOpenAddProductoModal(false)}
       id={id}
       reload={()=>setReload(!reload)}
-      />
+      /> 
+*/}
 
-      <DetallesProductoModal
+      <ProductoDetalleModal
       openModal = {OpenTiendaDetalleProducto}
       closeModal={setOpenTiendaDetalleProducto}
       id={id}

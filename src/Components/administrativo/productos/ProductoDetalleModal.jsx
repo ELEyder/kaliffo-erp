@@ -98,7 +98,7 @@ const ProductoDetalleModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={nombreProducto}
+      title={"Colores"}
       open={openModal}
       onCancel={() => {
         closeModal(false)
