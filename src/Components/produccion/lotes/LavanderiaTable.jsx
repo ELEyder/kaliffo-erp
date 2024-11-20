@@ -15,7 +15,7 @@ const Lavanderia = ({ status, reload, setReload }) => {
 
   const columns = [
     { key: 'lavanderia_asignada', dataIndex: 'lavanderia_asignada', title: 'Lavanderia' },
-    { key: 'producto', dataIndex: 'nombre', title: 'Producto' },
+    { key: 'producto', dataIndex: 'producto_nombre', title: 'Producto' },
     { key: 'color', dataIndex: 'nombre', title: 'Color' },
     { key: 'talla', dataIndex: 'talla', title: 'Talla' },
     { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad', sorter: (a, b) => a.cantidad_enviada - b.cantidad_enviada},

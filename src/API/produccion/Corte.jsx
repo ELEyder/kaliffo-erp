@@ -55,7 +55,7 @@ export const getChangeCorte = async (id, setData, form) => {
     const data = await response.json();
 
     const detallesActualizados = data.map((detalle) => ({
-      corte_id: detalle.corte_id,
+      id: detalle.corte_id,
       cantidad_recibida: detalle.cantidad_enviada,
     }));
 
@@ -124,12 +124,19 @@ export const getAddTaller = async (id, setData, form) => {
       }
   }
 
-  export const changeStatusCorte = async (id, values=null) => {
-    if (values == null) {
+  export const changeStatusCorte = async (id, data=null) => {
+    if (data == null) {
       const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
       console.log(response)
-      values = await response.json();
+      data = await response.json();
     }
+    
+    const values = data.map(detalle => {
+      return {
+        corte_id: detalle.id,
+        cantidad_recibida: detalle.cantidad_recibida,
+      };
+    });
 
     let Lote = {
       detalles : values,

@@ -29,9 +29,10 @@ export const addLavanderia = async (id, data) => {
   showNotification("add", "Lavanderia añadida")
 }
 
-export const getChangeCorte = async (id, setData, form) => {
+export const getChangeLavanderia = async (id, setData, form) => {
+  console.log(id)
   try {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
+    const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`)
 
     if (!response.ok) {
       if (response.status === 404) {
@@ -44,12 +45,10 @@ export const getChangeCorte = async (id, setData, form) => {
     }
 
     const data = await response.json();
-    let count = -1;
 
     const detallesConNuevoParametro = data.map(detalle => {
-      count += 1;
       return {
-        corte_id: detalle.corte_id,
+        id: detalle.lavanderia_id,
         cantidad_recibida: detalle.cantidad_enviada,
       };
     });
@@ -81,25 +80,53 @@ export const getStatusLavanderia = async (id, setData) => {
   }
 }
 
-export const changeStatusLavanderia = async (id, values = null) => {
-  if (values == null) {
-    const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`)
-    console.log(response)
-    values = await response.json();
-  }
+export const changeStatusLavanderia = async (id, data = null) => {
+  try {
+    if (data == null) {
+      // Realizando la solicitud GET si no se pasan datos
+      const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`);
+      
+      if (!response.ok) {
+        throw new Error(`Error al obtener datos: ${response.statusText}`);
+      }
+      
+      data = await response.json();
+    }
 
-  let Lote = {
-    detalles: values,
-  }
-  console.log(JSON.stringify(values))
-  const response = await fetch(`http://localhost:3000/lavanderia/sgte/lote/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(Lote),
-  })
-  console.log(response)
-  showNotification("add", "Estado pasado")
+    // Mapeando los datos para el PUT
+    const values = data.map(detalle => {
+      return {
+        lavanderia_id: detalle.id,
+        cantidad_recibida: detalle.cantidad_recibida,
+      };
+    });
 
-}
+    // Creando el objeto para enviar en el PUT
+    let Lote = {
+      detalles: values,
+    };
+
+    console.log("Lavanderia:", Lote);
+
+    // Realizando la solicitud PUT
+    const putResponse = await fetch(`http://localhost:3000/lavanderia/sgte/lote/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(Lote),
+    });
+
+    if (!putResponse.ok) {
+      throw new Error(`Error al actualizar estado: ${putResponse.statusText}`);
+    }
+
+    console.log(putResponse);
+
+    // Mostrar notificación
+    showNotification("add", "Estado pasado");
+  } catch (error) {
+    console.error("Error en la función changeStatusLavanderia:", error);
+    showNotification("error", `Error: ${error.message}`);
+  }
+};
