@@ -37,7 +37,7 @@ export const updateHorarioById = async (id, reload, setReload) => {
           "Content-Type": "application/json",
         },
     })
-    setReload(reload == true ? false : true)
+    setReload(!reload)
 }
 
 export const deleteHorarioById = async (id, reload, setReload) => {
@@ -47,6 +47,6 @@ export const deleteHorarioById = async (id, reload, setReload) => {
           "Content-Type": "application/json",
         },
     })
-    setReload(reload == true ? false : true)
+    setReload(!reload)
     showNotification("delete","Horario Eliminado")
 }
