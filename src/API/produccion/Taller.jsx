@@ -1,6 +1,6 @@
 import { showNotification } from "../../Shared/Notifications"
 
-export const getTaller = async (id, setData) => {
+export const getTallerByLote = async (id, setData) => {
   try {
     const response = await fetch(`http://localhost:3000/taller/lote/${id}`)
     if (!response.ok) {
