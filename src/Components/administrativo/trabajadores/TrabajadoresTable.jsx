@@ -110,6 +110,7 @@ const TrabajadoresTable = ({tipo}) => {
       <FloatButton tooltip="Añadir nuevo trabajador" onClick={() => setOpenAddUsuario(true)} />
 
       <Table
+        size="middle"
         columns={columnas}
         pagination={{ pageSize: 5 }}
         dataSource={data}

@@ -24,7 +24,8 @@ const AddPagoModal = ({
   return (
     <Modal
       getContainer={false}
-      title={`Añadir nueva incidencia`}
+      title={`AÑADIR NUEVO PAGO`}
+      styles={{header:{textAlign:"center"}}}
       open={openModal}
       onCancel={closeModal}
       style={{ textTransform: "uppercase" }}
@@ -46,66 +47,50 @@ const AddPagoModal = ({
           form.resetFields()
           setModalAddOpen(false)
         }}>
-        <Row gutter={24}>
-          <Col className="gutter-row">
+ <Row gutter={24}>
+          <Col span={12}>
             <Form.Item
               label="Fecha de Pago"
-              name="fecha_nacimiento"
-              rules={[
-                {
-                  required: true,
-                  message: "Fecha Nacimiento requerido"
-                }
-              ]}>
+              name="fecha_pago"
+              rules={[{ required: true, message: "Fecha de pago requerida" }]}
+            >
               <DatePicker
-        onChange={onChange}
-        picker="week" // Establece el selector como "semana"
-        format="YYYY-MM-DD" // Formato de fecha
-      />
+                picker="week"
+                format="YYYY-MM-DD"
+                style={{ width: "100%" }}
+              />
             </Form.Item>
           </Col>
-          <Col span={9}>
+
+          <Col span={12}>
             <Form.Item
-              name="descripcion"
               label="Horas Trabajadas"
-              rules={[
-                {
-                  required: true,
-                  message: "Descripción requerida"
-                },
-              ]}
+              name="horas_trabajadas"
+              rules={[{ required: true, message: "Horas trabajadas requeridas" }]}
             >
-              <Input disabled={true} />
-            </Form.Item>
-          </Col>
-          <Col span={9}>
-            <Form.Item
-              name="descripcion"
-              label="Pago por Hora"
-              rules={[
-                {
-                  required: true,
-                  message: "Descripción requerida"
-                },
-              ]}
-            >
-              <Input disabled={true}/>
+              <Input placeholder="Horas trabajadas" readOnly />
             </Form.Item>
           </Col>
         </Row>
+
         <Row gutter={24}>
-          <Col>
-          <Form.Item
-              name="descripcion"
-              label="Monto Pagado"
-              rules={[
-                {
-                  required: true,
-                  message: "Descripción requerida"
-                },
-              ]}
+          <Col span={12}>
+            <Form.Item
+              label="Pago por Hora"
+              name="pago_por_hora"
+              rules={[{ required: true, message: "Pago por hora requerido" }]}
             >
-              <Input />
+              <Input placeholder="Pago por hora" />
+            </Form.Item>
+          </Col>
+
+          <Col span={12}>
+            <Form.Item
+              label="Monto Pagado"
+              name="monto_pagado"
+              rules={[{ required: true, message: "Monto pagado requerido" }]}
+            >
+              <Input placeholder="Monto pagado" readOnly/>
             </Form.Item>
           </Col>
         </Row>

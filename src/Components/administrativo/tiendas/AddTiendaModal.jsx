@@ -8,7 +8,8 @@ const AddTiendaModal = ({ openModal, closeModal, reload }) => {
   return (
     <Modal
       getContainer={false}
-      title={"Nueva Tienda"}
+      title={"NUEVA TIENDA"}
+      styles={{header:{textAlign:"center"}}}
       open={openModal}
       onCancel={closeModal}
       okText="Añadir"

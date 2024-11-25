@@ -38,6 +38,7 @@ const menuItems = [
     label: "LOGÍSTICO",
     type: "group",
     children: [
+      {key:"logistico-almacen-productos", icon:<BookOutlined/>,label:<Link to="/logistico/almacen_productos">Almacen Productos</Link>},
       {
         key: "logistico-mover-mercaderia",
         label: "Mover Mercadería",

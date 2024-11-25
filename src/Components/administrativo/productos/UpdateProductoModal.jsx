@@ -6,17 +6,18 @@ import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
   const [form] = Form.useForm();
 
-  useEffect(()=>{
-    setUpdateUsuario(id,form)
-  },[id])
+  useEffect(() => {
+    setUpdateUsuario(id, form);
+  }, [id]);
 
   return (
     <Modal
-    forceRender
+      forceRender
       getContainer={false}
-      title={"Actualizar Producto"}
+      styles={{ header: { textAlign: "center" } }}
+      title={"ACTUALIZAR PRODUCTO"}
       open={openModal}
-      onCancel={()=>closeModal(false)}
+      onCancel={() => closeModal(false)}
       okText="Añadir"
       onOk={form.submit}
       centered={true}
@@ -29,11 +30,11 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
         labelAlign="center"
         id="formulariocrear"
         layout="vertical"
-        onFinish={async (values) =>{
-            await updateProducto(id, values)
-            form.resetFields()
-            reload()
-            closeModal(false)
+        onFinish={async (values) => {
+          await updateProducto(id, values);
+          form.resetFields();
+          reload();
+          closeModal(false);
         }}
       >
         <Form.Item
@@ -50,35 +51,49 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
           <Input />
         </Form.Item>
 
-        <Row gutter={16} style={{gap : "20px"}}>
-          <Form.Item
-            style={{ marginLeft: 10 }}
-            name="precioBase"
-            label="Precio Base"
-            rules={[
-              {
-                type:"number",
-                required: true,
-                message: "Precio requerido",
-              },
-            ]}
-          >
-            <InputNumber placeholder="S/"/>
-          </Form.Item>
-          <Form.Item
-            name="descuento"
-            label="Descuento"
-            rules={[
-              {
-                type:"number",
-                required: true,
-                message: "Descuento requerido",
-              },
-            ]}
-          >
-            <InputNumber placeholder="%" />
-          </Form.Item>
-  
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              name="precioBase"
+              label="Precio Base"
+              rules={[
+                {
+                  type: "number",
+                  required: true,
+                  message: "Precio requerido",
+                },
+              ]}
+            >
+              <InputNumber
+                formatter={(value) =>
+                  `S/. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={(value) => value?.replace(/S\/.\s?|,/g, "")}
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              name="descuento"
+              label="Descuento"
+              rules={[
+                {
+                  type: "number",
+                  required: true,
+                  message: "Descuento requerido",
+                },
+              ]}
+            >
+              <InputNumber
+                formatter={(value) => `${value}%`}
+                parser={(value) => value?.replace("%", "")}
+                min={1}
+                max={40}
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Col>
         </Row>
       </Form>
     </Modal>
