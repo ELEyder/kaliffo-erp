@@ -15,7 +15,9 @@ const AddIncidenciaModal = ({
     return (
         <Modal
             forceRender
-            title={"Añadir nueva incidencia"}
+            getContainer={false}
+            title={"AÑADIR NUEVA INCIDENCIA"}
+            styles={{header:{textAlign:"center"}}}
             open={openModal}
             onCancel={() => closeModal(false)}
             okText="Añadir"

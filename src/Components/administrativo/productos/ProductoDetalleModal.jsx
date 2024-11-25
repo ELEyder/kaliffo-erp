@@ -98,7 +98,8 @@ const ProductoDetalleModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={"Colores"}
+      styles={{header:{textAlign:"center"}}}
+      title={"COLORES"}
       open={openModal}
       onCancel={() => {
         closeModal(false)

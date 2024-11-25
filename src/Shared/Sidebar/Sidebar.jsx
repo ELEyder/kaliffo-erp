@@ -21,6 +21,7 @@ const Sidebar = ({collapsed}) => {
       <div className={styles.sidebarHeader}>
         {/* <Avatar size={64} icon={<UserOutlined />} />
         <Title level={4} >Tienda 1</Title> */}
+        <h1>Administrador</h1>
       </div>
       <Menu/>
     </Sider>

@@ -86,3 +86,10 @@ div.yeti {
         ry: 0.1;
     }
 }
+
+@media (max-width: 1390px) {
+    .content {
+        width: 270px;
+        padding: 30px;
+    }
+}

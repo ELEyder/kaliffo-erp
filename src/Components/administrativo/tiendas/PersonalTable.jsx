@@ -50,7 +50,7 @@ const PersonalTable = () => {
         return(
           <Button type="primary" block
           onClick={() => {
-            navigate(`/trabajador/${text}`)
+            navigate(`/admin/trabajadores/${text}`)
           }}
           >+</Button>
         )

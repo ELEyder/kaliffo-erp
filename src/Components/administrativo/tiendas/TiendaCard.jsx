@@ -13,10 +13,10 @@ const TiendaCard = () =>{
   }, [id]);
 
     return(
-        <Card title={tienda.tienda}
+        <Card styles={{header:{textAlign:"center",fontWeight:"bold",fontSize:"23px"}}} title={tienda.tienda}
         actions={[
-          <Button type="primary" block>
-          Obtener reporte
+          <Button type="primary" block style={{fontWeight:"bold"}}>
+          OBTENER REPORTE
         </Button>
         ]}>
         <List
