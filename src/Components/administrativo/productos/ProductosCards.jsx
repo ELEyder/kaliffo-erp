@@ -29,6 +29,7 @@ const ProductosCards = () => {
         {productos.map((producto, index) => {
           return (
               <Card key={index}
+              styles={{header:{textAlign:"center",fontWeight:"bold",fontSize:"20px"}}}
               style={{width: "300px", overflow: 'hidden'}}
                 title={producto.nombre}
                 actions={[
@@ -48,7 +49,7 @@ const ProductosCards = () => {
                   </Tooltip>,
                   <Popconfirm
                   title="ELIMINAR"
-                  description="DESEA ELIMINAR A"
+                  description="DESEA ELIMINAR ESTE PRODUCTO"
                   okText="Confirmar"
                   onConfirm={(e) =>{
                     e.stopPropagation();
@@ -73,11 +74,11 @@ const ProductosCards = () => {
                 }
               >
                 <Meta
-                  style={{ textAlign: "left" }}
+                  style={{ textAlign: "center",fontSize:"20px" }}
                   title={`Precio: S/${producto.precioBase}`}
                 />
                 <Meta
-                  style={{ textAlign: "left" }}
+                  style={{ textAlign: "center",fontWeight:"bold" }}
                   title={`Stock general: ${producto.stockTotal}`}
                 />
               </Card>

@@ -21,18 +21,18 @@ const AddTrabajadorModal = ({
     }
   }, [tipoTrabajador, form])
 
+
   return (
     <Modal
       forceRender
       getContainer={false}
-      style={{textTransform:"uppercase"}}
+      styles={{header:{textTransform:"uppercase",textAlign:"center"},body:{height:"430px"}}}
       title={`Añadir Nuevo Trabajador a ${tipoTrabajador}`}
       open={openModal}
       onCancel={closeModal}
       okText="Añadir"
       onOk={form.submit}
       centered={true}
-      width={500}
     >
       <Form
       autoComplete={"false"}
@@ -131,8 +131,10 @@ const AddTrabajadorModal = ({
                 }
               ]}>
               <DatePicker
-                placeholder="YYYY-MM-DD"
-                format={"YYYY-MM-DD"}
+                placement="bottomRight"
+                popupStyle={{ height: '257px' }}
+                placeholder="DD-MM-YYYY"
+                format={"DD-MM-YYYY"}
               />
             </Form.Item>
           </Col>
@@ -198,7 +200,6 @@ const AddTrabajadorModal = ({
               ]}
             >
               <Input
-              showCount
               onPaste={preventPaste}
               onKeyDown={onlyDecimalKey}
               onInput={onlyDecimalInput}

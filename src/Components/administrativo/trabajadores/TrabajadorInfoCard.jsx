@@ -1,4 +1,4 @@
-import { Card, List,Button, Image } from "antd";
+import { Card, List,Button, Image, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getUsuarioById } from "@AA/Usuario";
@@ -46,8 +46,9 @@ const TrabajadorInfo = () =>{
             </List.Item>
           )}
         />
-       <Button type="primary" onClick={() => getReporteUsuario(id)} block>
-          Obtener reporte
+        <Divider></Divider>
+       <Button type="primary" onClick={() => getReporteUsuario(id)} block style={{fontWeight:"bold"}}>
+          OBTENER REPORTE
         </Button>
 
       </Card>

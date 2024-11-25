@@ -26,11 +26,12 @@ const Tiendas_cards = () => {
     getTiendas(setTiendas);
   }, [reload]);
 
+
   return (
     <>
     <Flex wrap gap={"middle"} justify="space-evenly" gutter={20}>
       {tiendas.map((tienda, index) => (
-          <Card key={index} title={ tienda.tienda } style={{ width: 300, overflow: "hidden"}}
+          <Card key={index} title={ tienda.tienda } styles={{header:{textAlign:"center",fontSize:"22px"},body:{ textAlign:"center",width: 300, overflow: "hidden"}}}
           actions={[
             <Tooltip title="Editar Tienda"
             className={"card-update"}

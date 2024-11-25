@@ -1,15 +1,16 @@
 import React from "react";
-import { Form, Modal, Input, InputNumber, Row } from "antd";
+import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 
 import { addProducto } from "@AA/Producto";
 
 const AddProductoModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
-  
+
   return (
     <Modal
       getContainer={false}
-      title={"Nuevo Producto"}
+      styles={{header:{textAlign:"center"}}}
+      title={"NUEVO PRODUCTO"}
       open={openModal}
       onCancel={closeModal}
       okText="Añadir"
@@ -24,11 +25,11 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
         labelAlign="center"
         id="formulariocrear"
         layout="vertical"
-        onFinish={async (values) =>{
-            await addProducto(values)
-            form.resetFields()
-            reload()
-            closeModal()
+        onFinish={async (values) => {
+          await addProducto(values);
+          form.resetFields();
+          reload();
+          closeModal();
         }}
       >
         <Form.Item
@@ -45,35 +46,54 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
           <Input />
         </Form.Item>
 
-        <Row gutter={16} style={{gap : "20px"}}>
-          <Form.Item
-            style={{ marginLeft: 10 }}
-            name="precioBase"
-            label="Precio Base"
-            rules={[
-              {
-                type:"number",
-                required: true,
-                message: "Precio requerido",
-              },
-            ]}
-          >
-            <InputNumber min={1} placeholder="S/"/>
-          </Form.Item>
-          <Form.Item
-            name="descuento"
-            label="Descuento"
-            rules={[
-              {
-                type:"number",
-                required: true,
-                message: "Descuento requerido",
-              },
-            ]}
-          >
-            <InputNumber min={1}  placeholder="%" />
-          </Form.Item>
-  
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              name="precioBase"
+              label="Precio Base"
+              rules={[
+                {
+                  type: "number",
+                  required: true,
+                  message: "Precio requerido",
+                },
+              ]}
+            >
+              <InputNumber
+                min={1}
+                formatter={
+                  (value) =>
+                    `S/. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",") 
+                }
+                parser={
+                  (value) => value?.replace(/S\/.\s?|,/g, "") 
+                }
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Col>
+
+          <Col span={12}>
+            <Form.Item
+              name="descuento"
+              label="Descuento"
+              rules={[
+                {
+                  type: "number",
+                  required: true,
+                  message: "Descuento requerido",
+                },
+              ]}
+            >
+              <InputNumber
+                formatter={(value) => `${value}%`}
+                parser={(value) => value?.replace("%", "")}
+                min={1}
+                max={40}
+                style={{ width: "100%" }}
+              />
+            </Form.Item>
+          </Col>
         </Row>
       </Form>
     </Modal>

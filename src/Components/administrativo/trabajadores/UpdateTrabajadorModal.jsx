@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import { setUpdateUsuario, updateUsuario } from "@AA/Usuario";
 import { getTiendas } from "@AA/Tienda";
+import Title from "antd/es/skeleton/Title";
 
 const UpdateTrabajadorModal = ({
   openModal,
@@ -26,10 +27,11 @@ const UpdateTrabajadorModal = ({
     <Modal
       forceRender 
       getContainer={false}
-      title={`Editar Trabajador`}
+      title={`EDITAR TRABAJADOR`}
+      styles={{header:{textAlign:"center"}}}
       open={openModal}
       onCancel={closeModal}
-      okText="Confirmar"
+      okText="Guardar"
       onOk={form.submit}
       centered={true}
       width={500}>

@@ -17,7 +17,8 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload, values }) => {
     <Modal
     forceRender
       getContainer={false}
-      title={"Actualizar Tienda"}
+      title={"EDITAR TIENDA"}
+      styles={{header:{textAlign:"center"}}}
       open={openModal}
       onCancel={closeModal}
       okText="Confirmar"
