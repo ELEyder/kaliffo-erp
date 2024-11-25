@@ -13,45 +13,14 @@ const Lavanderia = ({ status, reload, setReload }) => {
     getLavanderia(id, setData);
   }, [id, reload]);
 
-  // Verificar si algún registro tiene estado === 1
-  const hasOptions = data.some(record => record.estado === 1);
-
-  // Definir columnas dinámicamente
   const columns = [
-    { key: 'taller', dataIndex: 'taller', title: 'Taller' },
-    { key: 'producto', dataIndex: 'nombre', title: 'Producto' },
-    { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad' },
+    { key: 'lavanderia_asignada', dataIndex: 'lavanderia_asignada', title: 'Lavanderia' },
+    { key: 'producto', dataIndex: 'producto_nombre', title: 'Producto' },
+    { key: 'color', dataIndex: 'nombre', title: 'Color' },
     { key: 'talla', dataIndex: 'talla', title: 'Talla' },
-    ...(hasOptions
-      ? [
-          {
-            title: "Opciones",
-            key: "opciones",
-            align: "center",
-            render: (text, record) => {
-              if (record.estado === 1) {
-                return (
-                  <Popconfirm
-                    title="ELIMINAR"
-                    description="DESEA ELIMINAR ESTE CORTE"
-                    okText="Confirmar"
-                    cancelText="NO"
-                    onConfirm={() => {
-                      deleteCorte(record.corte_id, record.estado);
-                      setReload(!reload);
-                    }}
-                  >
-                    <Button block style={{ background: "#f54242", color: "white" }} danger>
-                      Eliminar
-                    </Button>
-                  </Popconfirm>
-                );
-              }
-              return null;
-            },
-          },
-        ]
-      : []),
+    { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad', sorter: (a, b) => a.cantidad_enviada - b.cantidad_enviada},
+    { key: 'talla', dataIndex: 'talla', title: 'Talla' },
+    { key: 'fecha_envio', dataIndex: 'fecha_envio', title: 'Fecha de Envio' },
   ];
 
   return (

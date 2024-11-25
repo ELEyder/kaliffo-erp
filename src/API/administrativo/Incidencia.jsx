@@ -22,7 +22,7 @@ export const getIncidenciasById = async (id, setIncidencias) => {
     const response = await fetch(`http://localhost:3000/incidencia?usuario_id=${id}`)
     const incidenciasData = await response.json()
     let count = 0
-    const detallesConNuevoParametro = incidenciasData.map(detalle => { 
+    const incidencias = incidenciasData.map(detalle => { 
         const fecha_creacion = new Date(detalle.fecha_creacion);
         count = count + 1
         return {
@@ -32,7 +32,7 @@ export const getIncidenciasById = async (id, setIncidencias) => {
             id: count,
         };
     });
-    setIncidencias(detallesConNuevoParametro)
+    setIncidencias(incidencias)
 }
 
 export const updateIncidenciaById = async (id, values) => {

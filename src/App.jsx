@@ -44,7 +44,7 @@ function App() {
             colorPrimary: color1,
             colorError: danger,
             colorBgContainer: color2,
-            textHoverBg: 'white',
+            textHoverBg: bg,
             colorText: 'white',
             borderColor: color2,
             defaultHoverBorderColor: color2,

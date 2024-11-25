@@ -11,6 +11,7 @@ const HeaderMain = ({collapsed, setCollapsed}) => {
         <div className={styles.header}>
           <Button
               type="text"
+              className={styles.buttonSidebar}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setCollapsed(!collapsed)}
               style={{
@@ -19,7 +20,7 @@ const HeaderMain = ({collapsed, setCollapsed}) => {
                 height: 64,
               }}
             />
-          <h1 className={styles.title}>Kaliffo ERP</h1>
+          <h1 className={styles.title}>Kaliffo</h1>
         </div>
       </Header>
     </>

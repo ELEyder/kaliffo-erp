@@ -10,3 +10,12 @@
     color: white;
     margin: 0;
 }
+
+.buttonSidebar:hover {
+    background-color: black;
+}
+@media (max-width: 480px) {
+    .title {
+        display: none;
+    }
+}

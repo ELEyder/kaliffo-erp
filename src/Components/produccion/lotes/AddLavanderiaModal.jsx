@@ -1,34 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Form, Modal, Input, InputNumber, Button, Select } from "antd";
+import { Form, Modal, Input, InputNumber, Button, Select, Row, Col, Flex } from "antd";
 import { getCorte } from "@AP/Corte";
 import { getColores } from "@AA/Color";
-import { getUsuarios } from "@AA/Usuario";
-import { useParams } from "react-router-dom";
 import { addLavanderia } from "@AP/Lavanderia";
+import { useParams } from "react-router-dom";
 
 const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
   const { id } = useParams();
   const [form] = Form.useForm();
   const [cortes, setCortes] = useState([]);
   const [colores, setColores] = useState([]);
-  const [maxValues, setMaxValues] = useState({}); // Estado para los máximos dinámicos
+  const [maxValues, setMaxValues] = useState({}); // Estado para valores máximos dinámicos
 
   useEffect(() => {
     getCorte(id, setCortes);
     getColores(setColores);
   }, [id]);
 
-  // Manejar cambios en el corte seleccionado
   const handleCorteChange = (fieldKey, corteId) => {
     const corte = cortes.find((c) => c.corte_id === corteId);
     if (corte) {
-        setMaxValues((prev) => ({
-          ...prev,
-          [fieldKey]: corte.cantidad_restante || 0,
-        }));
-    }
-    else {
-      console.log("NO CORTES")
+      setMaxValues((prev) => ({
+        ...prev,
+        [fieldKey]: corte.cantidad_restante || 0,
+      }));
+      // Establecer el valor máximo en el campo de talla
+      form.setFieldsValue({
+        detalles: form.getFieldValue("detalles").map((detalle, index) =>
+          index === fieldKey ? { ...detalle, talla: corte.cantidad_restante } : detalle
+        ),
+      });
     }
   };
 
@@ -40,109 +41,121 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
       onOk={form.submit}
       okText="Añadir"
       centered
-      width={600}
-      getContainer={false}
+      width={800}
     >
       <Form
         form={form}
         layout="vertical"
         size="large"
-        labelAlign="center"
+        labelAlign="left"
         onFinish={async (values) => {
-          addLavanderia(id, values)
+          await addLavanderia(id, values);
           form.resetFields();
           reload();
           closeModal(false);
         }}
-        style={{ margin: "0 auto" }}
       >
         <Form.List name="detalles">
           {(fields, { add, remove }) => (
             <>
               {fields.map((field) => (
-                <div
-                  key={field.key}
-                  style={{
-                    display: "flex",
-                    gap: "10px",
-                    alignItems: "center",
-                  }}
-                >
-                  {/* Select para elegir el corte */}
-                  <Form.Item
-                    name={[field.name, "corte_id"]}
-                    label="Corte ID"
-                    rules={[
-                      { required: true, message: "Corte ID es requerido" },
-                    ]}
-                  >
-                    <Select
-                      placeholder="Seleccione corte"
+                <Flex gap={10} align="center" key={field}>
+
+                    <Form.Item
+                      name={[field.name, "corte_id"]}
+                      label="Corte"
+                      rules={[
+                        { required: true, message: "Seleccione un corte" },
+                      ]}
                     >
-                      {cortes.map((corte) => (
-                        <Select.Option key={corte.corte_id} value={corte.corte_id}>
-                          Corte {corte.corte_id}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  </Form.Item>
-
-                  <Form.Item
-                    name={[field.name, "talla"]}
-                    label="talla Enviada"
-                    rules={[
-                      { required: true, message: "talla es requerida" },
-                    ]}
-                  >
-                    <InputNumber
-                      min={1}
-                    />
-                  </Form.Item>
-
-                  {/* Select para elegir el color */}
-                  <Form.Item
-                    name={[field.name, "color_id"]}
-                    label="Color"
-                    rules={[
-                      { required: true, message: "Color es requerido" },
-                    ]}
-                  >
-                    <Select placeholder="Seleccione el color">
-                      {colores.map((color) => (
-                        <Select.Option key={color.nombre} value={color.nombre}>
-                          {color.nombre}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  </Form.Item>
-                  <Form.Item
-                    name={[field.name, "precio_unidad"]}
-                    label="precio_unidad"
-                    rules={[
-                      { required: true, message: "precio_unidad es requerida" },
-                    ]}
-                  >
-                    <InputNumber />
-                  </Form.Item>
-                  {/* Input para el nombre de la lavandería */}
-                  <Form.Item
-                    name={[field.name, "lavanderia_asignada"]}
-                    label="lavanderia_asignada"
-                    rules={[
-                      { required: true, message: "lavanderia_asignada es requerida" },
-                    ]}
-                  >
-                    <Input />
-                  </Form.Item>
-
-                  {/* Botón para eliminar el detalle */}
-                  <Button type="danger" onClick={() => remove(field.name)}>
-                    Eliminar
-                  </Button>
-                </div>
+                      <Select
+                        placeholder="Selecciona la prenda - talla"
+                        onChange={(value) =>
+                          handleCorteChange(field.name, value)
+                        }
+                      >
+                        {cortes.map((corte) => (
+                          <Select.Option
+                            key={corte.corte_id}
+                            value={corte.corte_id}
+                          >
+                            {corte.producto} - {corte.talla}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name={[field.name, "cantidad_enviada"]}
+                      label="cantidad"
+                      rules={[
+                        { required: true, message: "Ingrese la cantidad enviada" },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (value > 0) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(new Error("La cantidad enviada debe ser mayor a 0"));
+                          },
+                        }),
+                      ]}
+                    >
+                      <InputNumber
+                        min={0}
+                        max={maxValues[field.name] || 0}
+                        placeholder={`Máx: ${maxValues[field.name] || "-"}`}
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name={[field.name, "color_id"]}
+                      label="Color"
+                      rules={[
+                        { required: true, message: "Seleccione un color" },
+                      ]}
+                    >
+                      <Select placeholder="Selecciona el color">
+                        {colores.map((color) => (
+                          <Select.Option
+                            key={color.nombre}
+                            value={color.color_id}
+                          >
+                            {color.nombre}
+                          </Select.Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name={[field.name, "precio_unidad"]}
+                      label="Precio"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Ingrese el precio por unidad",
+                        },
+                      ]}
+                    >
+                      <InputNumber min={0} placeholder="Precio" />
+                    </Form.Item>
+                    <Form.Item
+                      name={[field.name, "lavanderia_asignada"]}
+                      label="Lavandería"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Ingrese la lavandería asignada",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Lavandería Asignada" />
+                    </Form.Item>
+                    <Button
+                      type="danger"
+                      onClick={() => remove(field.name)}
+                      block
+                    >
+                      Eliminar
+                    </Button>
+                </Flex>
               ))}
-
-              {/* Botón para agregar un nuevo detalle */}
               <Form.Item>
                 <Button type="dashed" onClick={() => add()} block>
                   Agregar Detalle
