@@ -1,61 +1,72 @@
+import apiClient from '../ApiClient';
 import { showNotification } from "../../Shared/Notifications"
 
 const incidencias = ["Familiar", "Salud", "Personal"]
 
-export const addIncidencia = async (id, data) => {
-    const Incidencia = {
-        tipo : data.tipo,
-        descripcion : data.descripcion,
-        usuario_id : Number(id)
+export const addIncidencia = async (data) => {
+    try {
+        const response = await apiClient.post('/incidencia/create', data, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (response.status === 201) {
+            showNotification("add", "Incidencia añadida correctamente");
+        }
+    } catch (error) {
+        console.error("Error al añadir la incidencia:", error);
     }
-    const response = await fetch(`http://localhost:3000/incidencia/create`, {
-        method : "POST",
-        headers : {
-            "Content-Type" : "application/json"
-        },
-        body : JSON.stringify(Incidencia),
-    })
-    showNotification("add","Incidencia añadida correctamente")
-}
+};
 
-export const getIncidenciasById = async (id, setIncidencias) => {
-    const response = await fetch(`http://localhost:3000/incidencia?usuario_id=${id}`)
-    const incidenciasData = await response.json()
-    let count = 0
-    const incidencias = incidenciasData.map(detalle => { 
-        const fecha_creacion = new Date(detalle.fecha_creacion);
-        count = count + 1
-        return {
+export const getIncidenciasByTrabajador = async (id, setIncidencias) => {
+    try {
+        const { data } = await apiClient.get(`/incidencia`, {
+            params: { usuario_id: id }
+        });
+
+        const incidenciasData = data.map((detalle, index) => ({
             ...detalle,
             incidencia: incidencias[detalle.tipo - 1],
-            fecha_creacion: fecha_creacion.toLocaleDateString("es-ES"),
-            id: count,
-        };
-    });
-    setIncidencias(incidencias)
-}
+            fecha_creacion: new Date(detalle.fecha_creacion).toLocaleDateString("es-ES"),
+            id: index + 1,
+        }));
+
+        setIncidencias(incidenciasData);
+
+    } catch (error) {
+        console.error("Error al obtener incidencias:", error);
+    }
+};
 
 export const updateIncidenciaById = async (id, values) => {
-    const incidencia = {
-        tipo : values.tipo,
-        descripcion : values.descripcion,
+    try {
+        const response = await apiClient.put(`/incidencia/update/${id}`, values, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.status === 200) {
+            showNotification("update", "Incidencia actualizada");
+        }
+
+    } catch (error) {
+        console.error("Error al actualizar incidencia:", error);
     }
-    const response = await fetch(`http://localhost:3000/incidencia/update/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(incidencia),
-    })
-    showNotification("update","Incidencia actualizada")
-}
+};
 
 export const deleteIncidenciaById = async (id) => {
-    const response = await fetch(`http://localhost:3000/incidencia/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-    })
-    showNotification("delete", "Incidencia borrada")
-}
+    try {
+        const response = await apiClient.delete(`/incidencia/delete/${id}`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.status === 200) {
+            showNotification("delete", "Incidencia borrada");
+        }
+    } catch (error) {
+        console.error("Error al eliminar incidencia:", error);
+    }
+};

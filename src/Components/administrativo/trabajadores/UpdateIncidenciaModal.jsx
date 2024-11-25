@@ -41,8 +41,8 @@ const UpdateIncidenciaModal = ({
         id="formularioeditar"
         onFinish={async () => {
           updateIncidenciaById(values.incidencia_id, form.getFieldsValue())
-          reload()
-          setModalEditarAbierto(false)
+          reload.current = !reload.current
+          closeModal()
         }}
       >
         <Form.Item

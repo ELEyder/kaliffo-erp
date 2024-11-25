@@ -7,9 +7,9 @@ const ProductoColoresTable = () => {
 
   const { id } = useParams()
 
-  const [tabla, setTabla] = useState([]);
+  const [data, setData] = useState([]);
   useEffect(() => {
-    getColoresByProducto(id, setTabla);
+    getColoresByProducto(id, setData);
   }, [id]);
   
   const columns = [
@@ -55,9 +55,8 @@ const ProductoColoresTable = () => {
   return (
     <>
       <Table
-        ali
         columns={columns}
-        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
+        dataSource={data}
       >
 
       </Table>
