@@ -133,7 +133,7 @@ const AddTelasModal = ({
             ))}
 
             <Button type="dashed" onClick={() => add()} block>
-              + Add Item
+              + Nueva Tela
             </Button>
           </div>
         )}

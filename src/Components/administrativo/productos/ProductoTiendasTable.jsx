@@ -4,9 +4,14 @@ import { Table, Button } from "antd";
 import { useState, useEffect } from 'react'
 import { getTiendasByProducto } from "@AA/Tienda";
 
+import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"
+
+
 const ProductoTiendasTable = () => {
 
   const { id } = useParams()
+  const[idT,setIdT] = useState(0)
+  const[OpenTiendaDetalleProducto,setOpenTiendaDetalleProducto] = useState(false)
   const [tabla, setTabla] = useState([]);
 
   useEffect(() => {
@@ -39,11 +44,15 @@ const ProductoTiendasTable = () => {
     },
     {
       title: "Ver más",
+      dataIndex:"tienda_id",
       key: "verMas",
       align: "center",
       render: (text, record) => {
         return (
-          <Button type="primary" style={{ width: "55px" }}>+</Button>
+          <Button type="primary" style={{ width: "55px" }} block onClick={()=>{
+            setIdT(text)
+            setOpenTiendaDetalleProducto(true)
+          }}>+</Button>
         )
       },
     },
@@ -57,6 +66,13 @@ const ProductoTiendasTable = () => {
         dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
       >
       </Table>
+
+      <ProductoDetalleModal
+      openModal = {OpenTiendaDetalleProducto}
+      closeModal={setOpenTiendaDetalleProducto}
+      id={idT}
+      idp={id}
+      />
     </>
   )
 }

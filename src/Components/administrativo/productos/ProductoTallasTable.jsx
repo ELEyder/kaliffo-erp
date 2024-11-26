@@ -3,10 +3,15 @@ import { useParams } from "react-router-dom"
 import { Table, Button } from "antd";
 import { getTallasByProducto } from "@AA/Talla";
 
+import ProductoDetalleTallasColoresModal from "@CA/productos/ProductoDetalleTallasColoresModal"
+
+
 const ProductoTallasTable = () => {
 
   const { id } = useParams()
   const [tabla, setTabla] = useState([]);
+  const[OpenProducoDetalleTallasColoresModal,setOpenProducoDetalleTallasColoresModal] = useState(false)
+  const [talla,setTalla] = useState("")
 
   useEffect(() => {
     getTallasByProducto(id, setTabla);
@@ -42,7 +47,11 @@ const ProductoTallasTable = () => {
       align: "center",
       render: (text, record) => {
         return (
-          <Button type="primary" style={{ width: "55px" }}>+</Button>
+          <Button type="primary" style={{ width: "55px" }} block
+          onClick={()=>{
+            setTalla(record.talla)
+            setOpenProducoDetalleTallasColoresModal(true)
+          }}>+</Button>
         )
       },
     },
@@ -55,6 +64,15 @@ const ProductoTallasTable = () => {
         columns={columns}
         dataSource={tabla.map((item, index) => ({ ...item, key: index }))} >
       </Table>
+
+
+      <ProductoDetalleTallasColoresModal 
+        openModal = {OpenProducoDetalleTallasColoresModal}
+        closeModal={setOpenProducoDetalleTallasColoresModal}
+        id={id}
+        talla={talla}
+      />
+
     </>
   )
 }
