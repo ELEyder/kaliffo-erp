@@ -1,7 +1,10 @@
 import { showNotification } from "../../Shared/Notifications"
 export const getLotes = async (setData) => {
   try {
-    const response = await fetch(`http://localhost:3000/lotes`);
+    const response = await fetch(`http://localhost:3000/lotes`, {
+      method: "GET",
+      credentials: "include",
+    });
     if (!response.ok) {
       throw new Error('Error fetching lotes');
     }
@@ -29,6 +32,7 @@ export const getLotes = async (setData) => {
           headers : {
             "Content-Type" : "application/json"
           },
+          
           body: JSON.stringify(Lote)
       })
       showNotification("add","Lote añadido correctamente")

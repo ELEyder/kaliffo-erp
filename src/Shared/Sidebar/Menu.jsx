@@ -10,7 +10,7 @@ const SidebarMenu = () => {
   const filterMenuItemsByRole = (items) => {
     const rolePermissions = {
       administrador: () => true,
-      ventas: (key) =>
+      venta: (key) =>
         [
           "group-administrativo",
           "administrativo-tiendas",

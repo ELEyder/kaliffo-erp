@@ -4,6 +4,7 @@ export const loginApi = async (values) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(values),
   })
   let data = await response.json()
