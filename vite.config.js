@@ -4,6 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: 'https://ELEyder.github.io/Kaliffo_Front,
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
