@@ -9,6 +9,7 @@ import LogiticoRouters from "./Routers/LogiticoRouters";
 import ProdRoutes from "./Routers/ProdRoutes";
 
 export const Routing = () =>{
+    
     return(
         <Routes>
             <Route path="/" element={<LoginView/>}/>

@@ -31,7 +31,6 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
     );
     const total = detalle.reduce((acc, curr) => acc + (curr?.total || 0), 0);
 
-    // Actualiza los valores en el formulario
     form.setFieldsValue({
       cantidad_total: cantidad,
       total_neto: total,
@@ -65,14 +64,12 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
         labelAlign="left"
         id="formulariocrear"
         onFinish={async (values) => {
-          await addCompra(values)
-          setReload(!reload)
-          closeModal(false)
-          form.resetFields()
+          await addCompra(values);
+          setReload(!reload);
+          closeModal(false);
+          form.resetFields();
         }}
-        initialValues={{
-          detalle: [{}],
-        }}
+        initialValues={{ detalle: [{}] }}
         onValuesChange={(changedValues, allValues) => {
           calculoTotal(allValues.detalle);
         }}
@@ -81,11 +78,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
           <Col span={17}>
             <Card
               title="Datos compra"
-              style={{
-                width: "100%",
-                border: "solid 1px",
-                textAlign: "center",
-              }}
+              style={{ width: "100%", textAlign: "center" }}
             >
               <Row gutter={16}>
                 <Col span={12}>
@@ -115,9 +108,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
                         label: empresa.empresa_proveedor,
                       }))}
                       filterOption={(inputValue, option) =>
-                        option?.value
-                          ?.toUpperCase()
-                          .indexOf(inputValue.toUpperCase()) !== -1
+                        option?.value?.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                       }
                     />
                   </Form.Item>
@@ -136,11 +127,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
           <Col span={7} style={{ textAlign: "center" }}>
             <Card
               title="Datos Total"
-              style={{
-                width: "100%",
-                border: "solid 1px",
-                textAlign: "center",
-              }}
+              style={{ width: "100%", textAlign: "center" }}
             >
               <Form.Item label="Cantidad" name="cantidad_total">
                 <InputNumber placeholder="Cantidad" style={{ width: "100%" }} readOnly />
@@ -180,9 +167,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
                         label: producto.producto,
                       }))}
                       filterOption={(inputValue, option) =>
-                        option?.value
-                          ?.toUpperCase()
-                          .indexOf(inputValue.toUpperCase()) !== -1
+                        option?.value?.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
                       }
                     />
                   </Form.Item>
