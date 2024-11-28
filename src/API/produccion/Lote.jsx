@@ -42,7 +42,10 @@ export const getLotes = async (setData) => {
   }
 
 export const getFaseLote = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/lotes/${id}`);
+  const response = await fetch(`http://localhost:3000/lotes/${id}`, {
+    method: "GET",
+    credentials: "include",
+  });
   const data = await response.json();
   console.log("Fase:" , data.estado)
   setData(data.estado);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChangeStatusModal from "@CP/lotes/ChangeStatusModal"
+import { changeStatusLavanderia } from "../../../API/produccion/Lavanderia";
 import AddTaller from "@CP/lotes/AddTaller"
 import styles from './Status.module.css'
 

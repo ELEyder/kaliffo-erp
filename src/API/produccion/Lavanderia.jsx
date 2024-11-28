@@ -20,6 +20,7 @@ export const addLavanderia = async (id, data) => {
   console.log(data)
   const response = await fetch(`http://localhost:3000/lavanderia/create/array/${id}`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json"
     },
@@ -70,7 +71,10 @@ export const deleteCorte = async (id) => {
 }
 
 export const getStatusLavanderia = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`)
+  const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`, {
+    method: "GET",
+    credentials: "include",
+  });
   const data = await response.json()
   if (data.length == 0) {
     setData(0)
@@ -84,7 +88,10 @@ export const changeStatusLavanderia = async (id, data = null) => {
   try {
     if (data == null) {
       // Realizando la solicitud GET si no se pasan datos
-      const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`);
+      const response = await fetch(`http://localhost:3000/lavanderia/lote/${id}`, {
+        method: "GET",
+        credentials: "include",
+      });
       
       if (!response.ok) {
         throw new Error(`Error al obtener datos: ${response.statusText}`);
@@ -96,7 +103,7 @@ export const changeStatusLavanderia = async (id, data = null) => {
     // Mapeando los datos para el PUT
     const values = data.map(detalle => {
       return {
-        lavanderia_id: detalle.id,
+        lavanderia_id: detalle.id || detalle.lavanderia_id,
         cantidad_recibida: detalle.cantidad_recibida,
       };
     });

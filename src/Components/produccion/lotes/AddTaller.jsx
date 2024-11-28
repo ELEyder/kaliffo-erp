@@ -21,7 +21,7 @@ const AddTaller = ({ openModal, closeModal, reload }) => {
       <Modal
         forceRender
         getContainer={false}
-        title="Formulario Dinámico"
+        title="Añadir taller al corte"
         open={openModal}
         onCancel={closeModal}
         footer={null}

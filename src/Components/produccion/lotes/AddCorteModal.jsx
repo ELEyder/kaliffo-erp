@@ -21,6 +21,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
       title="Nuevo Lote"
       open={openModal}
       onCancel={() => closeModal(false)}
+
       okText="Añadir"
       onOk={form.submit}
       centered
@@ -37,6 +38,9 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
           form.resetFields();
           reload();
           closeModal(false);
+        }}
+        initialValues={{
+          detalles: [{ cantidad_enviada: null, talla: null, taller_id: null }],
         }}
       >
         <Form.Item

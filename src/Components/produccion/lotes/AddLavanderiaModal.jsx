@@ -27,7 +27,7 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
       // Establecer el valor máximo en el campo de talla
       form.setFieldsValue({
         detalles: form.getFieldValue("detalles").map((detalle, index) =>
-          index === fieldKey ? { ...detalle, talla: corte.cantidad_restante } : detalle
+          index === fieldKey ? { ...detalle, talla: corte.talla } : detalle
         ),
       });
     }
