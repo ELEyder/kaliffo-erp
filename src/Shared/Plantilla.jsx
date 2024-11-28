@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { Layout } from "antd";
 import Sidebar from "./Sidebar/Sidebar";
 import HeaderMain from "./Header/HeaderMain";
 import Footer_main from "./Footer/Footer_main";
+import { useSession } from "../context/AuthProvider";
 
 const { Content } = Layout;
 
 const Plantilla = () => {
   const [collapsed, setCollapsed] = useState(false);
-  return (
+  const { user } = useSession();
+
+  return ( user ?
     <Layout style={{ height: "100vh" }}>
       <Sidebar  collapsed={collapsed} setCollapsed={setCollapsed}/>
       <Layout>
@@ -19,7 +22,8 @@ const Plantilla = () => {
         </Content>
         <Footer_main />
       </Layout>
-    </Layout>
+    </Layout> :
+    <Navigate to="/error"/>
   );
 };
 

@@ -1,11 +1,13 @@
-import { Table, Button, Popconfirm } from "antd";
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import React from "react";
-import { useState, useEffect } from 'react'
-import { getHorarioById, deleteHorarioById } from "@AA/Horario";
+import { Table, Button, Popconfirm } from "antd";
+
+import { getHorariosByTrabajador, deleteHorarioById } from "@AA/Horario";
 
 const TablaHorario = () => {
   const { id } = useParams();
+  const reloadRef = useRef(false);
+  const [data, setData] = useState([]);
 
   const columns = [
     {
@@ -26,29 +28,28 @@ const TablaHorario = () => {
       }
     },
     {
-      title: "Opciones", key: "opciones", align: "center",
-      render: (text, record) => {
+      title: "Opciones",dataIndex: "horario_id", key: "opciones", align: "center",
+      render: (text) => {
         return (
           <Popconfirm
             title="ELIMINAR"
             description="DESEA ELIMINAR A"
             okText="Confirmar"
             cancelText="NO"
-            onConfirm={(e) => {
-              deleteHorarioById(record.horario_id, reload, setReload, api)
+            onConfirm={() => {
+              deleteHorarioById(text)
+              reloadRef.current = !reloadRef.current
             }}>
-            <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+            <Button block type="primary" danger>Eliminar</Button>
           </Popconfirm>
         );
       }
     },
   ]
-  const [data, setData] = useState([]);
-  const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    getHorarioById(id, setData);
-  }, [id, reload]);
+    getHorariosByTrabajador(id, setData);
+  }, [id, reloadRef.current]);
 
   return (
     <>

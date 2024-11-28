@@ -11,8 +11,10 @@ const ProductoColoresTable = () => {
   const[detalle_ID,setdetalle_ID]=useState(0)
   const[OpenTallaDetalleModal,setOpenTallaDetalleModal] = useState(false)
   const [tabla, setTabla] = useState([]);
+
+  const [data, setData] = useState([]);
   useEffect(() => {
-    getColoresByProducto(id, setTabla);
+    getColoresByProducto(id, setData);
   }, [id]);
   
   const columns = [
@@ -61,9 +63,8 @@ const ProductoColoresTable = () => {
   return (
     <>
       <Table
-        ali
         columns={columns}
-        dataSource={tabla.map((item, index) => ({ ...item, key: index }))}
+        dataSource={data}
       >
       </Table>
 

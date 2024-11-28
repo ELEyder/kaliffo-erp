@@ -17,9 +17,10 @@ const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
       <Modal
         forceRender
         getContainer={false}
-        title={`Añadir nueva compra`}
+        title={`Detalles Compra ${idC}`}
         open={openModal}
         onCancel={() => closeModal(false)}
+        styles={{header:{textAlign:"center"}}}
         style={{ textTransform: "uppercase" }}
         okButtonProps={{ style: { display: "none" } }}
         centered={true}

@@ -1,22 +1,22 @@
-import { Table, Button, Popconfirm, FloatButton, Flex } from "antd";
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import { Table, Button, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from '@ant-design/icons';
-import React from "react";
-import { useState, useEffect } from 'react'
-import { getIncidenciasById, deleteIncidenciaById } from "@AA/Incidencia";
+
+import { getIncidenciasByTrabajador, deleteIncidenciaById } from "@AA/Incidencia";
 import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal";
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal";
 
 const TablaIncidencias = () => {
   const { id } = useParams();
   const [tabla, setTabla] = useState([]);
-  const [incidencia, setIncidencia] = useState([]);
   const [reload, setReload] = useState(false);
+  const [incidencia, setIncidencia] = useState({});
   const [ModalEditarAbierto, setModalEditarAbierto] = useState(false);
   const [ModalAddIncidenciaOpen, setModalAddIncidenciaOpen] = useState(false);
 
   useEffect(() => {
-    getIncidenciasById(id, setTabla);
+    getIncidenciasByTrabajador(id, setTabla);
   }, [id, reload]);
 
   const columns = [
@@ -41,64 +41,58 @@ const TablaIncidencias = () => {
       title: "Opciones", key: "opciones", align: "center",
       render: (text, record) => {
         return (
-          <Flex gap={'small'}>
+          <div style={{ display: 'flex', gap: '8px' }}>
             <Button type="primary"
               block
               onClick={() => {
-                setIncidencia(record)
-                setModalEditarAbierto(true)
+                setIncidencia(record);
+                setModalEditarAbierto(true);
               }}
             >
               Editar
             </Button>
             <Popconfirm
-              title="ELIMINAR"
-              description="DESEA ELIMINAR ESTA INCIDENCIA"
+              title="¿Estás seguro de que deseas eliminar esta incidencia?"
               okText="Confirmar"
-              cancelText="NO"
+              cancelText="Cancelar"
               onConfirm={() => {
-                deleteIncidenciaById(record.incidencia_id)
-                setReload(!reload)
-              }}>
-              <Button block style={{ background: "#f54242", color: "white" }} danger>Eliminar</Button>
+                deleteIncidenciaById(record.incidencia_id);
+                setReload(!reload);
+              }}
+            >
+              <Button block style={{ background: "#f54242", color: "white" }} danger>
+                Eliminar
+              </Button>
             </Popconfirm>
-          </Flex>
-
+          </div>
         );
       }
     },
-  ]
-
-
+  ];
 
   return (
     <>
       <Table
         columns={columns}
-        dataSource={tabla?.map((item, index) => ({ ...item, key: index }))}
+        dataSource={tabla?.map((item, index) => ({ ...item, key: item.incidencia_id }))}
         pagination={{ pageSize: 5 }}
-      >
-
-      </Table>
-
+      />
       <FloatButton tooltip="Añadir Nueva Incidencia" onClick={() => setModalAddIncidenciaOpen(true)} type="primary" icon={<FileAddOutlined />} />
 
       <UpdateIncidenciaModal
         openModal={ModalEditarAbierto}
         closeModal={() => setModalEditarAbierto(false)}
-        reload={() => setReload(!reload)}
+        reload={reload}
         values={incidencia}
       />
       <AddIncidenciaModal
         openModal={ModalAddIncidenciaOpen}
         closeModal={() => setModalAddIncidenciaOpen(false)}
-        reload={() => setReload(!reload)}
+        reload={reload}
         id={id}
       />
-
-
     </>
-  )
-}
+  );
+};
 
-export default TablaIncidencias
+export default TablaIncidencias;

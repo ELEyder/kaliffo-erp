@@ -17,7 +17,7 @@ const TelasCards = () => {
 
   return (
     <>
-      <Flex wrap gap="middle">
+      <Flex wrap gap="middle" align="start" justify="space-evenly">
         {telas.map((tela, index) => {
           return (
             <Card hoverable key={index} title={tela.tipo} className={styles.cardTela} onClick={() => navigate(`/prod/telas/${tela.tipo}`)}>
