@@ -13,16 +13,17 @@ import { getStatusLavanderia } from "@AP/Lavanderia";
 const Lote = () => {
   const { id } = useParams();
   const [fase, setFase] = useState(0);
+  const [faseTimeline,setfaseTimeline] = useState(0)
   const [reload, setReload] = useState(false);
   const [statusCorte, setStatusCorte] = useState(0);
   const [statusLavanderia, setStatusLavanderia] = useState(0);
   const [statusTaller, setStatusTaller] = useState(0);
 
   useEffect(() => {
-    getFaseLote(id, setFase);
+    getFaseLote(id, setFase,setfaseTimeline);
     getStatusCorte(id, setStatusCorte)
     getStatusLavanderia(id, setStatusLavanderia)
-  }, [reload, id, fase]);
+  }, [reload, id]);
 
   let contenido;
   let status;
@@ -38,11 +39,12 @@ const Lote = () => {
     contenido = <Divider>Cortes</Divider>;
     status = <Status fase={fase} status={statusTaller} reload={reload} setReload={setReload}/>
   }
+
   return (
     <>
       <Divider>DETALLES DEL LOTE</Divider>
-      <TimeLine fase={fase}></TimeLine>
-      <Row>
+      <TimeLine fase={fase} setFase={setFase} faseTimeline={faseTimeline}></TimeLine>
+      <Row gutter={16}>
         <Col span={18}>
           {contenido}
         </Col>

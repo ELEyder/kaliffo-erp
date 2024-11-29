@@ -28,10 +28,11 @@ const LotesCards = () => {
           return (
             <Link key={lote.lote_id} to={`/prod/lotes/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
               <Card
-                style={{ width: "300px" }}
-                title={`Lote ${lote.lote_id}`}
+                style={{ width: "300px",textAlign:"center" }}
+                title={`LOTE ${lote.lote_id}`}
               >
                 <Meta title={`Fecha de Creación: ${lote.fecha_creacion}`} />
+                <br/>
                 <Meta title={`Cantidad Total: ${lote.cantidad_total}`} />
                 <div className={styles.cardLoteIcons}>
                   {["Corte", "Lavandería", "Taller de Acabados Finales", "Almacen"].map((title, index) => (

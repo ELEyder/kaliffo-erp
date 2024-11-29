@@ -18,9 +18,11 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
   return (
     <Modal
       getContainer={false}
-      title="Nuevo Lote"
+      title="NUEVOS CORTES"
+      styles={{header:{textAlign:"center"}}}
       open={openModal}
       onCancel={() => closeModal(false)}
+
       okText="Añadir"
       onOk={form.submit}
       centered
@@ -37,6 +39,9 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
           form.resetFields();
           reload();
           closeModal(false);
+        }}
+        initialValues={{
+          detalles: [{ cantidad_enviada: null, talla: null, taller_id: null }],
         }}
       >
         <Form.Item
@@ -68,14 +73,14 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
                     label="Cantidad Enviada"
                     rules={[{ required: true, message: "Cantidad enviada es requerida" }]}
                   >
-                    <InputNumber min={1} />
+                    <InputNumber  style={{width:"100%"}} min={1} />
                   </Form.Item>
                   <Form.Item
                     name={[field.name, "talla"]}
                     label="Talla"
                     rules={[{ required: true, message: "Talla es requerida" }]}
                   >
-                    <InputNumber />
+                    <InputNumber  style={{width:"100%"}}/>
                   </Form.Item>
                   <Form.Item
                     name={[field.name, "taller_id"]}

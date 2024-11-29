@@ -177,7 +177,10 @@ export const setUpdateUsuario = async (id, form) => {
 };
 
 export const getProductoByLote = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/lotes/productos/${id}`)
+  const response = await fetch(`http://localhost:3000/lotes/productos/${id}`, {
+    method: "GET",
+    credentials: "include",
+  });
   const productoData = await response.json()
   setData(productoData)
 }

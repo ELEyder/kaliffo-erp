@@ -14,14 +14,24 @@ const CortesTable = ({ status, reload, setReload }) => {
   }, [id, reload]);
 
   // Verificar si algún registro tiene estado === 1
-  const hasOptions = data.some(record => record.estado === 1);
+  const hasOptions = data.some((record) => record.estado === 1);
 
   // Definir columnas dinámicamente
   const columns = [
-    { key: 'taller', dataIndex: 'taller', title: 'Taller' },
-    { key: 'producto', dataIndex: 'producto', title: 'Producto' },
-    { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad' },
-    { key: 'talla', dataIndex: 'talla', title: 'Talla' },
+    { key: "taller", dataIndex: "taller", title: "Taller", align: "center" },
+    {
+      key: "producto",
+      dataIndex: "producto",
+      title: "Producto",
+      align: "center",
+    },
+    {
+      key: "cantidad",
+      dataIndex: "cantidad_enviada",
+      title: "Cantidad",
+      align: "center",
+    },
+    { key: "talla", dataIndex: "talla", title: "Talla", align: "center" },
     ...(hasOptions
       ? [
           {
@@ -41,7 +51,11 @@ const CortesTable = ({ status, reload, setReload }) => {
                       setReload(!reload);
                     }}
                   >
-                    <Button block style={{ background: "#f54242", color: "white" }} danger>
+                    <Button
+                      block
+                      style={{ background: "#f54242", color: "white" }}
+                      danger
+                    >
                       Eliminar
                     </Button>
                   </Popconfirm>
@@ -56,11 +70,13 @@ const CortesTable = ({ status, reload, setReload }) => {
 
   return (
     <>
-      <FloatButton
-        style={{ insetInlineStart: 270 }}
-        onClick={() => setOpenAddModal(true)}
-        tooltip="Añadir Corte"
-      />
+      {hasOptions === 1 ? (
+        <FloatButton
+          style={{ insetInlineStart: 270 }}
+          onClick={() => setOpenAddModal(true)}
+          tooltip="Añadir Corte"
+        />
+      ) : null}
 
       <Table dataSource={data} columns={columns} rowKey="corte_id" />
 

@@ -18,8 +18,9 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
       getContainer={false}
       title={"Nuevo Lote"}
       open={openModal}
+      styles={{header:{textAlign:"center"}}}
       onCancel={() => closeModal(false)}
-      okText="Añadir"
+      okText="CREAR"
       onOk={form.submit}
       centered={true}
       width={400}
@@ -70,7 +71,7 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
             },
           ]}
         >
-          <InputNumber min={0} step={0.001} />
+          <InputNumber suffix="M" style={{width:"100%"}} min={0} step={0.001} />
         </Form.Item>
         <Form.Item
           style={{ marginTop: 20 }}

@@ -200,6 +200,7 @@ const AddTrabajadorModal = ({
               ]}
             >
               <Input
+              prefix="S/."
               onPaste={preventPaste}
               onKeyDown={onlyDecimalKey}
               onInput={onlyDecimalInput}

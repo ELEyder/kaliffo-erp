@@ -13,7 +13,6 @@ export const addUsuario = async (tipoTrabajador, values) => {
         dni: values.dni,
         telefono: values.telefono,
         sueldo: values.sueldo,
-        contraseña: "124",
         rol: rol,
     };
     if (rol === 1) {

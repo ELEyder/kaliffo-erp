@@ -1,6 +1,6 @@
 .status {
     background-color: white;
-    padding: 40px;
+    padding: 30px;
     border: black solid 4px;
     border-radius: 40px;
     display: flex;
@@ -12,6 +12,10 @@
   .status img {
     padding: 20px;
     width: 200px;
+}
+
+.status-0 {
+    background-color: #56f856;
 }
 
 .status-1 {

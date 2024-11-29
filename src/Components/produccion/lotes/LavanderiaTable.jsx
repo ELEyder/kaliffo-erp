@@ -14,13 +14,13 @@ const Lavanderia = ({ status, reload, setReload }) => {
   }, [id, reload]);
 
   const columns = [
-    { key: 'lavanderia_asignada', dataIndex: 'lavanderia_asignada', title: 'Lavanderia' },
-    { key: 'producto', dataIndex: 'producto_nombre', title: 'Producto' },
-    { key: 'color', dataIndex: 'nombre', title: 'Color' },
-    { key: 'talla', dataIndex: 'talla', title: 'Talla' },
-    { key: 'cantidad', dataIndex: 'cantidad_enviada', title: 'Cantidad', sorter: (a, b) => a.cantidad_enviada - b.cantidad_enviada},
-    { key: 'talla', dataIndex: 'talla', title: 'Talla' },
-    { key: 'fecha_envio', dataIndex: 'fecha_envio', title: 'Fecha de Envio' },
+    { key: 'lavanderia_asignada', dataIndex: 'lavanderia_asignada', title: 'Lavanderia', align: "center" },
+    { key: 'producto', dataIndex: 'producto_nombre', title: 'Producto', align: "center" },
+    { key: 'color', dataIndex: 'nombre', title: 'Color', align: "center" },
+    { key: 'talla', dataIndex: 'talla', title: 'Talla', align: "center" },
+    { key: 'cantidad', dataIndex: 'cantidad_enviada', align: "center",title: 'Cantidad', sorter: (a, b) => a.cantidad_enviada - b.cantidad_enviada},
+    { key: 'talla', dataIndex: 'talla', title: 'Talla', align: "center" },
+    { key: 'fecha_envio', dataIndex: 'fecha_envio', title: 'Fecha de Envio', align: "center" },
   ];
 
   return (
