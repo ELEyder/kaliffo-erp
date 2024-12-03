@@ -45,7 +45,7 @@ const Status = ({ fase, status, reload, setReload }) => {
     }
 
   }
-  const fasesText = ["Iniciar", "En Proceso", "Finalizado :v"]
+  const fasesText = ["Iniciar", "En Proceso", "Finalizado"]
   return (
     <>
       <div className={`${styles.status} ${styles[`status-${status}`]}`} onClick={eventStatus}>
