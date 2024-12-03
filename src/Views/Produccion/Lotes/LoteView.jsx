@@ -8,6 +8,8 @@ import Status from "@CP/lotes/Status";
 import { getFaseLote } from "@AP/Lote";
 import { getStatusCorte } from "@AP/Corte";
 import { getStatusLavanderia } from "@AP/Lavanderia";
+import { getStatusAcabado } from "@AP/Acabado";
+import TallerTable from "../../../Components/produccion/lotes/AcabadoTable";
 
 
 const Lote = () => {
@@ -17,14 +19,17 @@ const Lote = () => {
   const [reload, setReload] = useState(false);
   const [statusCorte, setStatusCorte] = useState(0);
   const [statusLavanderia, setStatusLavanderia] = useState(0);
-  const [statusTaller, setStatusTaller] = useState(0);
+  const [statusAcabado, setStatusAcabado] = useState(0);
 
   useEffect(() => {
-    getFaseLote(id, setFase,setfaseTimeline);
     getStatusCorte(id, setStatusCorte)
     getStatusLavanderia(id, setStatusLavanderia)
-  }, [reload, id]);
+    getStatusAcabado(id, setStatusAcabado)
+  }, [reload, id, fase]);
 
+  useEffect(()=> {
+    getFaseLote(id, setFase,setfaseTimeline);
+  }, [])
   let contenido;
   let status;
   if (fase == 1) {
@@ -36,15 +41,15 @@ const Lote = () => {
     status = <Status fase={fase} status={statusLavanderia} reload={reload} setReload={setReload}/>
   }
   else if (fase == 3) {
-    contenido = <Divider>Cortes</Divider>;
-    status = <Status fase={fase} status={statusTaller} reload={reload} setReload={setReload}/>
+    contenido = <TallerTable reload={reload} setReload={setReload}/>;
+    status = <Status fase={fase} status={statusAcabado} reload={reload} setReload={setReload}/>
   }
 
   return (
     <>
       <Divider>DETALLES DEL LOTE</Divider>
       <TimeLine fase={fase} setFase={setFase} faseTimeline={faseTimeline}></TimeLine>
-      <Row gutter={16}>
+      <Row>
         <Col span={18}>
           {contenido}
         </Col>

@@ -1,8 +1,8 @@
 import { showNotification } from "../../Shared/Notifications"
 
-export const getTallerByLote = async (id, setData) => {
+export const getAcabadoByLote = async (id, setData) => {
   try {
-    const response = await fetch(`http://localhost:3000/taller/lote/${id}`)
+    const response = await fetch(`http://localhost:3000/talleres/lote/${id}`)
     if (!response.ok) {
       if (response.status === 404) {
         setData([])
@@ -16,23 +16,25 @@ export const getTallerByLote = async (id, setData) => {
   }
 }
 
-export const addTaller = async (id, data) => {
-  const response = await fetch(`http://localhost:3000/taller/create/array/${id}`, {
+export const addAcabado = async (data) => {
+  const response = await fetch(`http://localhost:3000/talleres/create`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data),
   })
+  console.log(response)
+  console.log(data)
   showNotification("add", "Lavanderia añadida")
 }
 
-export const getChangeLavanderia = async (id, setData, form) => {
+export const getChangeAcabado = async (id, setData, form) => {
   try {
-    const response = await fetch(`http://localhost:3000/taller/lote/${id}`)
+    const response = await fetch(`http://localhost:3000/talleres/lote/${id}`)
     if (!response.ok) {
       if (response.status === 404) {
-        console.error(`Corte con ID ${id} no encontrado (404).`)
+        console.error(`Acabado con ID ${id} no encontrado (404).`)
         setData([]);
         form.setFieldsValue({ items: [] });
         return;
@@ -44,7 +46,7 @@ export const getChangeLavanderia = async (id, setData, form) => {
 
     const detallesConNuevoParametro = data.map(detalle => {
       return {
-        id: detalle.taller_id,
+        id: detalle.acabado_id,
         cantidad_recibida: detalle.cantidad_enviada,
       };
     });
@@ -59,14 +61,14 @@ export const getChangeLavanderia = async (id, setData, form) => {
 };
 
 export const deleteTaller = async (id) => {
-  await fetch(`http://localhost:3000/taller/desactivar/${id}`, {
+  await fetch(`http://localhost:3000/talleres/desactivar/${id}`, {
     method: "PUT",
   })
   showNotification("delete", "Corte eliminado")
 }
 
-export const getStatusTaller = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/taller/lote/${id}`)
+export const getStatusAcabado = async (id, setData) => {
+  const response = await fetch(`http://localhost:3000/talleres/lote/${id}`)
   const data = await response.json()
   if (data.length == 0) {
     setData(0)
@@ -76,10 +78,10 @@ export const getStatusTaller = async (id, setData) => {
   }
 }
 
-export const changeStatusTaller = async (id, data = null) => {
+export const changeStatusAcabado = async (id, data = null) => {
   try {
     if (data == null) {
-      const response = await fetch(`http://localhost:3000/taller/lote/${id}`);
+      const response = await fetch(`http://localhost:3000/talleres/lote/${id}`);
       
       if (!response.ok) {
         throw new Error(`Error al obtener datos: ${response.statusText}`);
@@ -90,7 +92,7 @@ export const changeStatusTaller = async (id, data = null) => {
 
     const values = data.map(detalle => {
       return {
-        taller_id: detalle.id,
+        acabado_id: detalle.id || detalle.acabado_id,
         cantidad_recibida: detalle.cantidad_recibida,
       };
     });
@@ -99,7 +101,8 @@ export const changeStatusTaller = async (id, data = null) => {
       detalles: values,
     };
 
-    const putResponse = await fetch(`http://localhost:3000/lavanderia/sgte/lote/${id}`, {
+    console.log("Lotes: ", Lote)
+    const putResponse = await fetch(`http://localhost:3000/talleres/sgte/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ChangeStatusModal from "@CP/lotes/ChangeStatusModal";
 import { changeStatusLavanderia } from "../../../API/produccion/Lavanderia";
-import AddTaller from "@CP/lotes/AddTaller";
-import styles from "./Status.module.css";
+import AddTaller from "@CP/lotes/AddTaller"
+import styles from './Status.module.css'
+import { changeStatusAcabado } from "../../../API/produccion/Acabado";
 
 const Status = ({ fase, status, reload, setReload }) => {
   const [OpenChangeStatus, setOpenChangeStatus] = useState(false);
@@ -17,12 +18,11 @@ const Status = ({ fase, status, reload, setReload }) => {
     // CORTE
     else if (fase == 1) {
       if (status == 1) {
-        setOpenAddTaller(true);
-      } else if (status == 2) {
-        setOpenChangeStatus(true);
-        setReload(!reload);
-      } else if (status == 3) {
-        setOpenChangeStatus(true);
+        setOpenAddTaller(true)
+      }
+      else if (status == 2) {
+        setOpenChangeStatus(true)
+        setReload(!reload)
       }
     }
     // LAVANDERIA
@@ -34,25 +34,23 @@ const Status = ({ fase, status, reload, setReload }) => {
         setOpenChangeStatus(true);
       }
     }
-  };
+    // ACABADOS
+    else if (fase == 3) {
+      if (status == 1) {
+        await changeStatusAcabado(id)
+        await setReload(!reload);
+      } else if (status == 2) {
+        setOpenChangeStatus(true)
+      }
+    }
+
+  }
+  const fasesText = ["Iniciar", "En Proceso", "Finalizado"]
   return (
     <>
-      <div
-        className={`${styles.status} ${styles[`status-${status}`]}`}
-        onClick={()=>{
-          if(status!=3){
-            eventStatus
-          }
-        }}
-      >
+      <div className={`${styles.status} ${styles[`status-${status}`]}`} onClick={eventStatus}>
         <img className={styles.statusIcon} src="/svg/status/play.svg" alt="" />
-        {status === 1 ? (
-          <h1>Inicio</h1>
-        ) : status === 2 ? (
-          <h1>Proceso</h1>
-        ) : status === 3 ? (
-          <h1>Finalizado</h1>
-        ) : <h1>Inicio</h1>}
+        <h1>{fasesText[status - 1]}</h1>
       </div>
 
       <ChangeStatusModal
@@ -60,6 +58,7 @@ const Status = ({ fase, status, reload, setReload }) => {
         closeModal={() => setOpenChangeStatus(false)}
         reload={() => setReload(!reload)}
         fase={fase}
+
       />
 
       <AddTaller
@@ -67,8 +66,9 @@ const Status = ({ fase, status, reload, setReload }) => {
         closeModal={() => setOpenAddTaller(false)}
         reload={() => setReload(!reload)}
       />
-    </>
-  );
-};
 
-export default Status;
+    </>
+  )
+}
+
+export default Status

@@ -15,6 +15,7 @@ import {
 
 import { getChangeCorte, changeStatusCorte } from "@AP/Corte";
 import { getChangeLavanderia, changeStatusLavanderia } from "@AP/Lavanderia";
+import { changeStatusAcabado, getChangeAcabado } from "../../../API/produccion/Acabado";
 
 const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
   const [form] = Form.useForm();
@@ -23,32 +24,36 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
   const [faseText, setFaseText] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (fase === 1) {
-          setFaseText("Corte");
-          await getChangeCorte(id, setData, form);
-        } else if (fase === 2) {
-          setFaseText("Lavandería");
-          await getChangeLavanderia(id, setData, form);
-        }
-      } catch (error) {
-        console.error("Error al cargar datos:", error);
-      }
-    };
-
-    fetchData();
-  }, [id, fase, reload]);
+    switch (fase){
+      case 1:
+        setFaseText("Corte")
+        getChangeCorte(id, setData, form);
+        break
+      case 2:
+        setFaseText("Lavanderia")
+        getChangeLavanderia(id,setData,form)
+        break
+      case 3:
+        setFaseText("Acabado")
+        getChangeAcabado(id,setData,form)
+        break
+    }
+  }, [id, reload]);
 
   const handleSubmit = async () => {
     try {
       const values = form.getFieldsValue().items;
-      console.log("Values:", values);
-
-      if (fase === 1) {
-        await changeStatusCorte(id, values);
-      } else if (fase === 2) {
-        await changeStatusLavanderia(id, values);
+      console.log("Values:", values)
+      switch (fase){
+        case 1:
+          changeStatusCorte(id, values);
+          break
+        case 2:
+          changeStatusLavanderia(id, values);
+          break
+        case 3:
+          changeStatusAcabado(id, values);
+          break
       }
 
       form.resetFields();

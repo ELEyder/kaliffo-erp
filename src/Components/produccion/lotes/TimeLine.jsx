@@ -2,11 +2,11 @@ import React from "react";
 import { Tooltip } from "antd";
 import styles from "./TimeLine.module.css";
 
-const TimeLine = ({ fase, setFase, faseTimeline }) => {
+const TimeLine = ({ fase, setFase,faseTimeline }) => {
   const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];
   const statusColors = Array(fase + 1).fill(colors[fase]);
   statusColors.push(...Array(4 - fase).fill("white"));
-  console.log(faseTimeline);
+
   return (
     <div className={styles.loteIcons}>
       {["Corte", "Lavandería", "Taller de Acabados Finales", "Almacen"].map(
