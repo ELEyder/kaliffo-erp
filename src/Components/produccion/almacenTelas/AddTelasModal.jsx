@@ -27,7 +27,8 @@ const AddTelasModal = ({
       <Modal
         forceRender
         getContainer={false}
-        title="Formulario Dinámico"
+        styles={{header:{textAlign:"center"}}}
+        title="AÑADIR TELAS"
         open={openModal}
         onCancel={closeModal}
         footer={null}
@@ -47,6 +48,7 @@ const AddTelasModal = ({
             {fields.map((field) => (
               <Card
                 size="small"
+                styles={{header:{textAlign:"center",fontSize:"20px"}}}
                 title={`Tela ${field.name + 1}`}
                 key={field.key}
                 extra={
@@ -133,7 +135,7 @@ const AddTelasModal = ({
             ))}
 
             <Button type="dashed" onClick={() => add()} block>
-              + Add Item
+              + Nueva Tela
             </Button>
           </div>
         )}

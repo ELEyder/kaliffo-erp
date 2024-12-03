@@ -41,6 +41,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
     getTiendas(setTiendas);
     getEmpresas(setEmpresas);
     getProductos(setProductos);
+    console.log(empresas)
   }, []);
 
   return (

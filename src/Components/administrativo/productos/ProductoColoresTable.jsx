@@ -3,9 +3,14 @@ import { useParams } from 'react-router-dom'
 import { getColoresByProducto } from "@AA/Color";
 import { Table, Button } from "antd";
 
+import TallaDetalleModal from "@CA/productos/TallaDetalleModal";
+
 const ProductoColoresTable = () => {
 
   const { id } = useParams()
+  const[detalle_ID,setdetalle_ID]=useState(0)
+  const[OpenTallaDetalleModal,setOpenTallaDetalleModal] = useState(false)
+  const [tabla, setTabla] = useState([]);
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -44,11 +49,14 @@ const ProductoColoresTable = () => {
       title: "Ver más",
       key: "verMas",
       align: "center",
-      render: () => {
-        return (
-          <Button type="primary" style={{ width: "55px" }}>+</Button>
+      render:(text,record)=>{
+        return(
+            <Button type="primary" style={{ width: "55px" }} block onClick={()=>{
+              setdetalle_ID(record.productoDetalle_id)
+              setOpenTallaDetalleModal(true)
+            }}>+</Button>
         )
-      },
+    }
     },
   ]
 
@@ -58,8 +66,13 @@ const ProductoColoresTable = () => {
         columns={columns}
         dataSource={data}
       >
-
       </Table>
+
+      <TallaDetalleModal
+      openModal = {OpenTallaDetalleModal}
+      closeModal={()=>setOpenTallaDetalleModal(false)}
+      idD={detalle_ID}
+      />
     </>
   )
 }

@@ -3,11 +3,13 @@ import { Button, Row, Col, Popconfirm, Table,FloatButton } from "antd";
 import { eliminarcompra, getCompras } from'@AL/Compras';
 import AddCompraModal from "@CL/compras/AddCompraModal";
 import DetallesComprasModal from "@CL/compras/DetallesComprasModal";
+import EditCompraModal from "@CL/compras/EditCompraModal";
 
 const TablaCompras = () => {
   const [tabla_datos, SetTabla_datos] = useState([]);
   const [idCompra,setIdCompra]= useState(null)
   const [openDetalleCompras, setopenDetalleCompras] = useState(false);
+  const [openEditarCompra, setopenEditarCompra] = useState(false);
   const [openAddCompra, setopenAddCompra] = useState(false);
   const [reload, setReload] = useState(false);
 
@@ -82,8 +84,8 @@ const TablaCompras = () => {
                 type="primary"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setId(record.usuario_id);
-                  setOpenUpdateUsuario(true);
+                  setIdCompra(record.compra_id);
+                  setopenEditarCompra(true);
                 }}
                 block
               >
@@ -154,6 +156,13 @@ const TablaCompras = () => {
       <DetallesComprasModal 
         openModal={openDetalleCompras}
         closeModal={setopenDetalleCompras}
+        reload={()=>setReload(!reload)}
+        idC={idCompra}
+      />
+
+      <EditCompraModal 
+        openModal={openEditarCompra}
+        closeModal={setopenEditarCompra}
         reload={()=>setReload(!reload)}
         idC={idCompra}
       />

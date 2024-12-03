@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ChangeStatusModal from "@CP/lotes/ChangeStatusModal"
+import ChangeStatusModal from "@CP/lotes/ChangeStatusModal";
 import { changeStatusLavanderia } from "../../../API/produccion/Lavanderia";
 import AddTaller from "@CP/lotes/AddTaller"
 import styles from './Status.module.css'
@@ -13,7 +13,7 @@ const Status = ({ fase, status, reload, setReload }) => {
 
   const eventStatus = async () => {
     if (status == 0) {
-      alert('agrega un elemento')
+      alert("agrega un elemento");
     }
     // CORTE
     else if (fase == 1) {
@@ -28,10 +28,10 @@ const Status = ({ fase, status, reload, setReload }) => {
     // LAVANDERIA
     else if (fase == 2) {
       if (status == 1) {
-        await changeStatusLavanderia(id)
+        await changeStatusLavanderia(id);
         await setReload(!reload);
       } else if (status == 2) {
-        setOpenChangeStatus(true)
+        setOpenChangeStatus(true);
       }
     }
     // ACABADOS

@@ -62,6 +62,7 @@ export const getChangeCorte = async (id, setData, form) => {
     const data = await response.json();
 
     const detallesActualizados = data.map((detalle) => ({
+      detallesCorte: detalle.taller + " | " + detalle.producto + " | " + detalle.talla ,
       id: detalle.corte_id,
       cantidad_recibida: detalle.cantidad_enviada,
     }));
@@ -95,6 +96,7 @@ export const getAddTaller = async (id, setData, form) => {
     const data = await response.json();
 
     const detallesActualizados = data.map((detalle) => ({
+      datos_corte: "Producto: "+detalle.producto+" | Cantidad: "+detalle.cantidad_enviada+" |  Talla:"+detalle.talla,
       corte_id: detalle.corte_id,
       taller_id: detalle.taller_id,
     }));

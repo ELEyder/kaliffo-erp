@@ -138,6 +138,30 @@ export const getProductoDetalle = async (id,idp, setTiendas) => {
   }
 };
 
+export const getProductoDetalleColorTalla = async (idD, setproductoTallasColores) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/producto/talla/${idD}`
+    );
+    const data = await response.json();
+    setproductoTallasColores(data);
+  } catch (error) {
+    showNotification("error","Error al obtener los detalles del producto", error)
+  }
+};
+
+export const getProductoDetalleTallaColor = async (id,talla, setproductoTallasColores) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/producto/detalle/${id}?tipo=tallas&talla=${talla}`
+    );
+    const data = await response.json();
+    setproductoTallasColores(data);
+  } catch (error) {
+    showNotification("error","Error al obtener los detalles del producto", error)
+  }
+};
+
 export const setUpdateUsuario = async (id, form) => {
   try {
     const response = await fetch(`http://localhost:3000/producto/${id}`);

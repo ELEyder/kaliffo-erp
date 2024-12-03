@@ -15,6 +15,7 @@ import TallerTable from "../../../Components/produccion/lotes/AcabadoTable";
 const Lote = () => {
   const { id } = useParams();
   const [fase, setFase] = useState(0);
+  const [faseTimeline,setfaseTimeline] = useState(0)
   const [reload, setReload] = useState(false);
   const [statusCorte, setStatusCorte] = useState(0);
   const [statusLavanderia, setStatusLavanderia] = useState(0);
@@ -27,7 +28,7 @@ const Lote = () => {
   }, [reload, id, fase]);
 
   useEffect(()=> {
-    getFaseLote(id, setFase);
+    getFaseLote(id, setFase,setfaseTimeline);
   }, [])
   let contenido;
   let status;
@@ -43,10 +44,11 @@ const Lote = () => {
     contenido = <TallerTable reload={reload} setReload={setReload}/>;
     status = <Status fase={fase} status={statusAcabado} reload={reload} setReload={setReload}/>
   }
+
   return (
     <>
       <Divider>DETALLES DEL LOTE</Divider>
-      <TimeLine fase={fase} setFase={setFase}></TimeLine>
+      <TimeLine fase={fase} setFase={setFase} faseTimeline={faseTimeline}></TimeLine>
       <Row>
         <Col span={18}>
           {contenido}

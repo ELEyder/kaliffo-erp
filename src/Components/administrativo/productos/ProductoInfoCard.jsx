@@ -1,4 +1,4 @@
-import { Card, List, Button } from "antd";
+import { Card, List, Button, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProductoById } from "@AA/Producto";
@@ -14,7 +14,7 @@ const ProductoInfoCard = () => {
   const imgSrc = `/img/productos/${producto.producto_id}.png`;
 
   const handleError = (e) => {
-    e.target.src = '/img/productos/generic.png';
+    e.target.src = "/img/productos/generic.png";
   };
 
   return (
@@ -44,10 +44,14 @@ const ProductoInfoCard = () => {
               </List.Item>
             )}
           />
+          <Divider></Divider>
+          <Button type="primary" block style={{ fontWeight: "bold" }}>
+            OBTENER REPORTE
+          </Button>
         </Card>
       )}
     </>
   );
-}
+};
 
-export default ProductoInfoCard
+export default ProductoInfoCard;

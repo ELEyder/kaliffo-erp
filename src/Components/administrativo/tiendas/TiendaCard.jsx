@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { getTiendaById } from "@AA/Tienda";
 import { Card, List,Button } from "antd";
 
+import { getReporteTienda } from "@AA/Reporte";
+
+
 const TiendaCard = () =>{
 
   const { id } = useParams();
@@ -15,7 +18,7 @@ const TiendaCard = () =>{
     return(
         <Card styles={{header:{textAlign:"center",fontWeight:"bold",fontSize:"23px"}}} title={tienda.tienda}
         actions={[
-          <Button type="primary" block style={{fontWeight:"bold"}}>
+          <Button onClick={()=>getReporteTienda(id)} type="primary" block style={{fontWeight:"bold"}}>
           OBTENER REPORTE
         </Button>
         ]}>

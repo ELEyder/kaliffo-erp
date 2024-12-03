@@ -13,6 +13,7 @@ const ProductoDetalleModal = ({
 }) => {
 
   const[OpenTallaDetalleModal,setOpenTallaDetalleModal] = useState(false)
+  const[detalle_ID,setdetalle_ID]=useState(0)
   const [productoDetalle, setproductoDetalle] = useState([]); 
 
   useEffect(() => {
@@ -59,38 +60,13 @@ const ProductoDetalleModal = ({
         align:"center",
         render:(text,record)=>{
             return(
-                <Button onClick={()=>setOpenTallaDetalleModal(true)}>+</Button>
+                <Button onClick={()=>{
+                  setdetalle_ID(record.productoDetalle_id)
+                  setOpenTallaDetalleModal(true)
+                }}>+</Button>
             )
         }
-    },
-    {
-        title: "Opciones",
-        dataIndex: "",
-        key: "f",
-        align: "center",
-        render: (text, record) => {
-          return (
-            <Flex
-              gap="small"
-              align="center"
-              horizontal="true"
-              style={{ width: "100%" }}
-              className="opciones-botones"
-            >
-              <Popconfirm
-                title="ELIMINAR"
-                description="DESEA ELIMINAR A"
-                okText="Confirmar"
-                cancelText="NO"
-              >
-                <Button block style={{ background: "#f54242", color: "white" }} danger>
-                  Eliminar
-                </Button>
-              </Popconfirm>
-            </Flex>
-          );
-        },
-      },
+    }
   ];
 
   return (
@@ -105,9 +81,9 @@ const ProductoDetalleModal = ({
         closeModal(false)
       }}
       style={{ textTransform: "uppercase" }}
-      okText="Guardar"
       centered={true}
       width={500}
+      footer={<Button onClick={() => closeModal(false)}>Cerrar</Button>}
     >
       <>
         <Table
@@ -123,9 +99,7 @@ const ProductoDetalleModal = ({
       <TallaDetalleModal
       openModal = {OpenTallaDetalleModal}
       closeModal={()=>setOpenTallaDetalleModal(false)}
-      id={id}
-      idp={idp}
-      nombreProducto={nombreProducto}
+      idD={detalle_ID}
       />
       </>
   );

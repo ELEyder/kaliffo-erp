@@ -25,6 +25,7 @@ const TelasActivasTable = () => {
         dataIndex: "metraje",
         key: "metraje",
         align: "center",
+        sorter: (a, b) => a.metraje - b.metraje,
       },
       {
         title: "Artículo",
