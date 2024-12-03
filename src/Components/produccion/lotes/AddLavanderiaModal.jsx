@@ -54,7 +54,7 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
       onOk={form.submit}
       okText="Añadir"
       centered
-      width={600}
+      width={550}
     >
       <Form
         form={form}

@@ -10,8 +10,6 @@ const Status = ({ fase, status, reload, setReload }) => {
   const [OpenAddTaller, setOpenAddTaller] = useState(false);
   const { id } = useParams();
 
-  console.log("ESTOY EN LA FASE:" + fase + "Y estado: " + status);
-
   const eventStatus = async () => {
     if (status == 0) {
       alert("agrega un elemento");
