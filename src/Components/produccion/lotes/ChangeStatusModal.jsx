@@ -4,6 +4,7 @@ import { Form, Modal, Button, Card, InputNumber, Typography } from "antd";
 
 import { getChangeCorte, changeStatusCorte } from "@AP/Corte";
 import { getChangeLavanderia, changeStatusLavanderia } from "@AP/Lavanderia";
+import { changeStatusAcabado, getChangeAcabado } from "../../../API/produccion/Acabado";
 
 const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
   const [form] = Form.useForm();
@@ -20,6 +21,10 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
         setFaseText("Lavanderia")
         getChangeLavanderia(id,setData,form)
         break
+      case 3:
+        setFaseText("Acabado")
+        getChangeAcabado(id,setData,form)
+        break
     }
   }, [id, reload]);
 
@@ -32,6 +37,9 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
           break
         case 2:
           changeStatusLavanderia(id, values);
+          break
+        case 3:
+          changeStatusAcabado(id, values);
           break
       }
       form.resetFields();

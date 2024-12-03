@@ -4,6 +4,7 @@ import ChangeStatusModal from "@CP/lotes/ChangeStatusModal"
 import { changeStatusLavanderia } from "../../../API/produccion/Lavanderia";
 import AddTaller from "@CP/lotes/AddTaller"
 import styles from './Status.module.css'
+import { changeStatusAcabado } from "../../../API/produccion/Acabado";
 
 const Status = ({ fase, status, reload, setReload }) => {
   const [OpenChangeStatus, setOpenChangeStatus] = useState(false);
@@ -22,8 +23,6 @@ const Status = ({ fase, status, reload, setReload }) => {
       else if (status == 2) {
         setOpenChangeStatus(true)
         setReload(!reload)
-      } else if (status == 3) {
-        setOpenChangeStatus(true)
       }
     }
     // LAVANDERIA
@@ -34,32 +33,42 @@ const Status = ({ fase, status, reload, setReload }) => {
       } else if (status == 2) {
         setOpenChangeStatus(true)
       }
+    }
+    // ACABADOS
+    else if (fase == 3) {
+      if (status == 1) {
+        await changeStatusAcabado(id)
+        await setReload(!reload);
+      } else if (status == 2) {
+        setOpenChangeStatus(true)
+      }
+    }
+
   }
+  const fasesText = ["Iniciar", "En Proceso", "Finalizado :v"]
+  return (
+    <>
+      <div className={`${styles.status} ${styles[`status-${status}`]}`} onClick={eventStatus}>
+        <img className={styles.statusIcon} src="/svg/status/play.svg" alt="" />
+        <h1>{fasesText[status - 1]}</h1>
+      </div>
 
-}
-return (
-  <>
-    <div className={`${styles.status} ${styles[`status-${status}`]}`} onClick={eventStatus}>
-      <img className={styles.statusIcon} src="/svg/status/play.svg" alt="" />
-      <h1>Iniciar</h1>
-    </div>
+      <ChangeStatusModal
+        openModal={OpenChangeStatus}
+        closeModal={() => setOpenChangeStatus(false)}
+        reload={() => setReload(!reload)}
+        fase={fase}
 
-    <ChangeStatusModal
-      openModal={OpenChangeStatus}
-      closeModal={() => setOpenChangeStatus(false)}
-      reload={() => setReload(!reload)}
-      fase={fase}
+      />
 
-    />
+      <AddTaller
+        openModal={OpenAddTaller}
+        closeModal={() => setOpenAddTaller(false)}
+        reload={() => setReload(!reload)}
+      />
 
-    <AddTaller
-      openModal={OpenAddTaller}
-      closeModal={() => setOpenAddTaller(false)}
-      reload={() => setReload(!reload)}
-    />
-
-  </>
-)
+    </>
+  )
 }
 
 export default Status
