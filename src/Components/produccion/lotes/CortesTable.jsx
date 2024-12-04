@@ -15,7 +15,6 @@ const CortesTable = ({ status, reload, setReload }) => {
 
   // Verificar si algún registro tiene estado === 1
   const hasOptions = data.some((record) => record.estado === 1);
-
   // Definir columnas dinámicamente
   const columns = [
     { key: "taller", dataIndex: "taller", title: "Taller", align: "center" },
@@ -67,10 +66,9 @@ const CortesTable = ({ status, reload, setReload }) => {
         ]
       : []),
   ];
-
   return (
     <>
-      {hasOptions === 1 ? (
+      {status == 0 || status == 1 ? (
         <FloatButton
           style={{ insetInlineStart: 270 }}
           onClick={() => setOpenAddModal(true)}

@@ -72,7 +72,7 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
           {(fields, { add, remove }) => (
             <>
               {fields.map((field) => (
-                <>
+                <div key={field}>
                   <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                     <Col span={12}>
                       <Form.Item
@@ -191,7 +191,7 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
                   >
                     Eliminar
                   </Button>
-                </>
+                </div>
               ))}
               <Form.Item>
                 <Button type="dashed" onClick={() => add()} block>
