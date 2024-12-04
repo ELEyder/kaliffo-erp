@@ -29,9 +29,10 @@ const Lote = () => {
 
   useEffect(()=> {
     getFaseLote(id, setFase,setfaseTimeline);
-  }, [])
+  }, [reload])
   let contenido;
   let status;
+
   if (fase == 1) {
     contenido = <CortesTable reload={reload} status={statusCorte} setReload={setReload}/>;
     status = <Status fase={fase} status={statusCorte} reload={reload} setReload={setReload}/>
