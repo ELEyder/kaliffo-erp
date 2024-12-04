@@ -36,7 +36,6 @@ const ProductosCards = () => {
                   <Tooltip title="Editar Producto"
                   className={"card-update"}
                   onClick={(e) =>{
-                    e.stopPropagation()
                     setId(producto.producto_id)
                     setOpenUpdateProducto(true)
                   }}>

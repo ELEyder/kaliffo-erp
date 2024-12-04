@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { updateProducto } from "@AA/Producto";
-import { setUpdateUsuario } from "@AA/Producto";
+import { setUpdateProducto } from "@AA/Producto";
 import { Form, Modal, Input, InputNumber, Row, Col } from "antd";
 
 const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
-    setUpdateUsuario(id, form);
-  }, [id]);
+    setUpdateProducto(id, form);
+  }, [id, reload]);
 
   return (
     <Modal
@@ -58,17 +58,14 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
               label="Precio Base"
               rules={[
                 {
-                  type: "number",
                   required: true,
                   message: "Precio requerido",
                 },
               ]}
             >
               <InputNumber
-                formatter={(value) =>
-                  `S/. ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value?.replace(/S\/.\s?|,/g, "")}
+                formatter={(value) => `S/. ${value || ""}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                parser={(value) => value?.replace(/[^\d.-]/g, "")}
                 style={{ width: "100%" }}
               />
             </Form.Item>

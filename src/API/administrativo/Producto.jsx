@@ -25,7 +25,7 @@ export const getProductoById = async (id, setProducto) => {
 export const updateProducto = async (id, values) => {
   const Producto = {
     nombre  : values.nombre,
-    precio : values.precioBase,
+    precioBase : values.precioBase,
     descuento : values.descuento,
   }
   try{
@@ -122,3 +122,18 @@ export const getProductoByLote = async (id, setProductos) => {
   const response = await apiClient.get(`/lotes/productos/${id}`)
   setProductos(response.data)
 }
+
+// Prepara el actualizar producto http://localhost:3000/producto/1
+export const setUpdateProducto = async (id, form) => {
+  try {
+    const response = await apiClient.get(`/producto/${id}`);
+    const data = response.data;
+    form.setFieldsValue({
+      ["nombre"]: data.nombre,
+      ["precioBase"]: data.precioBase,
+      ["descuento"]: data.descuento,
+    });
+  } catch (error) {
+    console.log("Error al obtener los detalles del producto para el formulario", error);
+  }
+};

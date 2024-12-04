@@ -3,7 +3,7 @@ import apiClient from '../ApiClient';
 
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
-// Añadir un nuevo usuario
+// Añadir un nuevo usuario http://localhost:3000/usuario/create
 export const addUsuario = async (tipoTrabajador, values) => {
   const rol = dTipos[tipoTrabajador];
   let Trabajador = {
@@ -26,13 +26,12 @@ export const addUsuario = async (tipoTrabajador, values) => {
 
   try {
     await apiClient.post(`/usuario/create`, Trabajador);
-    console.log("Usuario añadido exitosamente");
   } catch (error) {
     console.log("Error al añadir el usuario");
   }
 };
 
-// Obtener usuario por ID
+// Obtener usuario por ID http://localhost:3000/usuario/1
 export const getUsuarioById = async (id, setUsuario) => {
   try {
     const response = await apiClient.get(`/usuario/${id}`);
@@ -42,42 +41,38 @@ export const getUsuarioById = async (id, setUsuario) => {
   }
 };
 
-// Actualizar un usuario
+// Actualizar un usuario http://localhost:3000/usuario/update/1
 export const updateUsuario = async (id, values, originales) => {
-  const valoresnuevos = {};
-  for (const key in originales) {
-    if (key === "fecha_nacimientoE") {
-      if (values["fecha_nacimientoE"]) {
-        values["fecha_nacimientoE"] = moment(values["fecha_nacimientoE"]).format("YYYY-MM-DD");
-      }
-    }
-
-    if (values[key] !== originales[key]) {
-      if (values[key] !== undefined) {
-        valoresnuevos[key] = values[key];
-      }
-    }
+  // Convertir fecha si existe y es diferente
+  if (values.fecha_nacimientoE) {
+    values.fecha_nacimientoE = moment(values.fecha_nacimientoE).format("YYYY-MM-DD");
   }
+
+  // Filtrar valores que han cambiado y no son undefined
+  const valoresnuevos = Object.keys(values).reduce((nuevos, key) => {
+    if (values[key] !== originales[key] && values[key] !== undefined) {
+      nuevos[key] = values[key];
+    }
+    return nuevos;
+  }, {});
 
   try {
     await apiClient.put(`/usuario/update/${id}`, valoresnuevos);
-    console.log("Usuario actualizado exitosamente");
   } catch (error) {
-    console.log("Error al actualizar el usuario", error);
+    console.error("Error al actualizar el usuario", error);
   }
 };
 
-// Eliminar usuario por ID
+// Eliminar usuario por ID http://localhost:3000/usuario/delete/1
 export const deleteUsuarioById = async (id) => {
   try {
     await apiClient.delete(`/usuario/delete/${id}`);
-    return true;
   } catch (error) {
     console.log("Error al eliminar el usuario", error);
   }
 };
 
-// Obtener usuarios por rol
+// Obtener usuarios por rol http://localhost:3000/usuario?rol=ventas
 export const getUsuarios = async (tipo, setData) => {
   try {
     const response = await apiClient.get(`/usuario?rol=${dTipos[tipo]}`);
@@ -99,7 +94,7 @@ export const getUsuarios = async (tipo, setData) => {
   }
 };
 
-// Obtener trabajadores diferentes a los asignados a una tienda
+// Obtener trabajadores diferentes a los asignados a una tienda http://localhost:3000/usuario?rol=1&antiTienda_id=1
 export const getTrabajadoresDiferentes = async (id, Seteador) => {
   try {
     const response = await apiClient.get(`/usuario?rol=1&antiTienda_id=${id}`);
