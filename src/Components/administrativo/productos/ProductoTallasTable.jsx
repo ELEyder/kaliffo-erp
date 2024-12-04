@@ -10,7 +10,7 @@ const ProductoTallasTable = () => {
 
   const { id } = useParams()
   const [tabla, setTabla] = useState([]);
-  const[OpenProducoDetalleTallasColoresModal,setOpenProducoDetalleTallasColoresModal] = useState(false)
+  const[OpenProductoDetalleTallasColoresModal,setOpenProductoDetalleTallasColoresModal] = useState(false)
   const [talla,setTalla] = useState("")
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const ProductoTallasTable = () => {
           <Button type="primary" style={{ width: "55px" }} block
           onClick={()=>{
             setTalla(record.talla)
-            setOpenProducoDetalleTallasColoresModal(true)
+            setOpenProductoDetalleTallasColoresModal(true)
           }}>+</Button>
         )
       },
@@ -67,8 +67,8 @@ const ProductoTallasTable = () => {
 
 
       <ProductoDetalleTallasColoresModal 
-        openModal = {OpenProducoDetalleTallasColoresModal}
-        closeModal={setOpenProducoDetalleTallasColoresModal}
+        openModal = {OpenProductoDetalleTallasColoresModal}
+        closeModal={setOpenProductoDetalleTallasColoresModal}
         id={id}
         talla={talla}
       />

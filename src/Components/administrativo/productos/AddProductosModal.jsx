@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Modal, Select, Button, Card, Form, Input, Space, Typography } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 
-import { getColoresProductos, getProductosNuevos, addProductoDetalle } from "@AA/Producto";
+import { getProductosNuevos, addProductoDetalle } from "@AA/Producto";
+import { getColoresProductos } from '@AA/Color'
 import FormItem from "antd/es/form/FormItem";
 
 const { Option } = Select;
 
-const AddProductoModal = ({
+const AddProductosModal = ({
   openModal,
   closeModal,
   id,
@@ -142,4 +143,4 @@ const AddProductoModal = ({
   );
 };
 
-export default AddProductoModal;
+export default AddProductosModal;
