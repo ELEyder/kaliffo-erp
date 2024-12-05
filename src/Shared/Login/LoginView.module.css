@@ -61,6 +61,14 @@ div.yeti {
     animation: eyes 3s infinite;
     transform-origin: center center;
 }
+
+.viewPaswword {
+    animation: view 0.2s forwards;
+}
+
+.noViewPassword {
+    animation: noView 0.2s forwards;
+}
 @keyframes down {
     0% {
         transform: translateY(0);
@@ -84,6 +92,24 @@ div.yeti {
     }
     5% {
         ry: 0.1;
+    }
+}
+
+@keyframes view {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes noView {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(2deg);
     }
 }
 
