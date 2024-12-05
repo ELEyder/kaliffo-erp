@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --no-color --no-prefix --raw \"node public/js/server.js\" \"vite\"",
+    "dev": "concurrently --no-color --no-prefix --raw \"vite\"",
+    "dev2": "concurrently --no-color --no-prefix --raw \"node public/js/server.js\" \"vite\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
