@@ -1,61 +1,96 @@
-import { showNotification } from "../../Shared/Notifications"
+import { showNotification } from "../../Shared/Notifications";
+import apiClient from "../../apiClient"; // Asegúrate de importar apiClient correctamente
 
+// Obtener todas las telas
 export const getTelas = async (setData) => {
-  const response = await fetch(`http://localhost:3000/telas/`)
-  const data = await response.json()
-  setData(data)
-}
-export const getTelasActivas = async (tipo,setData) => {
-  const response = await fetch(`http://localhost:3000/telas/${tipo}?estado=1`)
-  var data = await response.json()
-  var count = 0
-  data = data.map(tela => { 
-    const fecha_compra = new Date(tela.fecha_compra);
-    count = count + 1
-    return {
-        ...tela,
-        fecha_compra: fecha_compra.toLocaleDateString("es-ES"),
-        n: count,
-    };
-});
-  setData(data)
-}
-export const getTelasInactivas = async (tipo,setData) => {
-  const response = await fetch(`http://localhost:3000/telas/${tipo}?estado=0`)
-  var data = await response.json()
-  var count = 0
-  data = data.map(tela => { 
-    const fecha_compra = new Date(tela.fecha_compra);
-    count = count + 1
-    return {
-        ...tela,
-        fecha_compra: fecha_compra.toLocaleDateString("es-ES"),
-        n: count,
-    };
-});
-  setData(data)
-}
+  try {
+    const response = await apiClient.get(`/telas/`);
+    setData(response.data);
+  } catch (error) {
+    console.error("Error al obtener las telas:", error);
+    showNotification("error", "Error al obtener las telas");
+  }
+};
 
+// Obtener telas activas por tipo
+export const getTelasActivas = async (tipo, setData) => {
+  try {
+    const response = await apiClient.get(`/telas/${tipo}`, {
+      params: { estado: 1 },
+    });
+
+    let count = 0;
+    const data = response.data.map((tela) => {
+      const fecha_compra = new Date(tela.fecha_compra);
+      count += 1;
+      return {
+        ...tela,
+        fecha_compra: fecha_compra.toLocaleDateString("es-ES"),
+        n: count,
+      };
+    });
+
+    setData(data);
+  } catch (error) {
+    console.error("Error al obtener telas activas:", error);
+    showNotification("error", "Error al obtener telas activas");
+  }
+};
+
+// Obtener telas inactivas por tipo
+export const getTelasInactivas = async (tipo, setData) => {
+  try {
+    const response = await apiClient.get(`/telas/${tipo}`, {
+      params: { estado: 0 },
+    });
+
+    let count = 0;
+    const data = response.data.map((tela) => {
+      const fecha_compra = new Date(tela.fecha_compra);
+      count += 1;
+      return {
+        ...tela,
+        fecha_compra: fecha_compra.toLocaleDateString("es-ES"),
+        n: count,
+      };
+    });
+
+    setData(data);
+  } catch (error) {
+    console.error("Error al obtener telas inactivas:", error);
+    showNotification("error", "Error al obtener telas inactivas");
+  }
+};
+
+// Obtener tipos de tela
 export const getTiposTela = async (setTelas) => {
-  const response = await fetch(`http://localhost:3000/telas/tipo`)
-  const data = await response.json()
-  setTelas(data)
-}
+  try {
+    const response = await apiClient.get(`/telas/tipo`);
+    setTelas(response.data);
+  } catch (error) {
+    console.error("Error al obtener tipos de tela:", error);
+    showNotification("error", "Error al obtener tipos de tela");
+  }
+};
 
+// Agregar una nueva tela
 export const addTelas = async (values) => {
-  const response = await fetch(`http://localhost:3000/telas/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(values)
-  })
-  showNotification("add", "Tela agregada")
-}
+  try {
+    await apiClient.post(`/telas/create`, values);
+    showNotification("add", "Tela agregada correctamente");
+  } catch (error) {
+    console.error("Error al agregar la tela:", error);
+    showNotification("error", "Error al agregar la tela");
+  }
+};
 
-export const deleteTelaById = async (id) =>{
-  const response = await fetch(`http://localhost:3000/telas/desactivar/${id}`, {
-    method: "PUT",
-  })
-  showNotification("delete","Tela agregada")
-}
+// Desactivar (eliminar lógicamente) tela por ID
+export const deleteTelaById = async (id) => {
+  try {
+    await apiClient.put(`/telas/desactivar/${id}`);
+    showNotification("delete", "Tela desactivada correctamente");
+  } catch (error) {
+    console.error("Error al desactivar la tela:", error);
+    showNotification("error", "Error al desactivar la tela");
+  }
+};

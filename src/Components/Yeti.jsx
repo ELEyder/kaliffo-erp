@@ -1,5 +1,5 @@
 import * as React from "react"
-const Yeti = ({styles, isFocused }) => (
+const Yeti = ({styles, isFocused, isPasswordVisible }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -150,7 +150,7 @@ const Yeti = ({styles, isFocused }) => (
       />
       <ellipse
         id="eye"
-        className='eyes'
+        className={styles.eyes}
         cx={79.653}
         cy={122.242}
         rx={0.799}
@@ -180,7 +180,7 @@ const Yeti = ({styles, isFocused }) => (
       />
       <ellipse
       id="eye"
-      className='eyes'
+      className={styles.eyes}
         cx={86.658}
         cy={122.158}
         rx={0.799}
@@ -232,6 +232,8 @@ const Yeti = ({styles, isFocused }) => (
               strokeWidth: 0.999999,
               strokeOpacity: 1,
             }}
+          className={styles.viewPaswword}
+
           />
           <rect
             width={3.243}
@@ -265,6 +267,8 @@ const Yeti = ({styles, isFocused }) => (
               strokeWidth: 0.999999,
               strokeOpacity: 1,
             }}
+          className={styles.viewPaswword}
+
           />
           <rect
             width={2.995}
