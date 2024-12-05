@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
 import AddPersonalModal from "@CA/tiendas/AddPersonalModal";
-import { getUsuariosTienda, deleteUsuarioById } from '@AA/Usuario';
+import { getTrabajadoresTienda, deleteTrabajadorById } from '@AA/Usuario';
 import { Table, Button, Row, Col, Popconfirm, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons";
 
@@ -15,10 +15,10 @@ const PersonalTable = () => {
   const [reload, setReload] = useState(false);
 
   const [OpenModalUpdate, setOpenModalUpdate] = useState(false);
-  const [OpenAddUsuarioModal,setOpenAddUsuarioModal] = useState(false)
+  const [OpenaddTrabajadorModal,setOpenaddTrabajadorModal] = useState(false)
 
   useEffect(() => {
-    getUsuariosTienda(id, setUsuariostienda);
+    getTrabajadoresTienda(id, setUsuariostienda);
   }, [id, reload]);
 
   const columns = [
@@ -77,7 +77,7 @@ const PersonalTable = () => {
                 okText="Confirmar"
                 cancelText="NO"
                 onConfirm={() => {
-                  deleteUsuarioById(text)
+                  deleteTrabajadorById(text)
                   setReload(!reload)
                 }}
               >
@@ -92,7 +92,7 @@ const PersonalTable = () => {
 
   return (
     <>
-      <FloatButton tooltip="Añadir Nuevo Personal" onClick={() => setOpenAddUsuarioModal(true)} type="primary" icon={<FileAddOutlined />}/>
+      <FloatButton tooltip="Añadir Nuevo Personal" onClick={() => setOpenaddTrabajadorModal(true)} type="primary" icon={<FileAddOutlined />}/>
 
       <Table
         columns={columns}
@@ -110,8 +110,8 @@ const PersonalTable = () => {
       />
 
       <AddPersonalModal
-        openModal={OpenAddUsuarioModal}
-        closeModal={() => setOpenAddUsuarioModal(false)}
+        openModal={OpenaddTrabajadorModal}
+        closeModal={() => setOpenaddTrabajadorModal(false)}
         id={id}
         reload={() => setReload(!reload)}
       />

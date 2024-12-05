@@ -1,7 +1,7 @@
 import { Card, List,Button, Image, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getUsuarioById } from "@AA/Usuario";
+import { getTrabajadorById } from "@AA/Usuario";
 import { getReporteUsuario } from "@AA/Reporte";
 const {Meta} = Card
 
@@ -9,7 +9,7 @@ const TrabajadorInfo = () =>{
   const { id } = useParams();
   const [usuario, setUsuario] = useState([]);
   useEffect(() => {
-    getUsuarioById(id, setUsuario);
+    getTrabajadorById(id, setUsuario);
   }, [id]);
   const [images, setImages] = useState([
     "eyder1.jpg", "eyder2.jpg", "eyder3.jpg", "eyder4.jpg", "eyder5.gif",

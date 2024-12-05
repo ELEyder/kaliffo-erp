@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Select } from "antd";
 import { Link } from "react-router-dom";
-import { updateUsuarioTienda, getTrabajadoresDiferentes } from "@AA/Usuario";
+import { updateTrabajadorTienda, getTrabajadoresDiferentes } from "@AA/Usuario";
 
 const AddPersonalModal = ({
   openModal,
@@ -39,7 +39,7 @@ const AddPersonalModal = ({
         labelAlign="center"
         id="formulariaddpersonal"
         onFinish={async (values) => {
-          await updateUsuarioTienda(id,values)
+          await updateTrabajadorTienda(id,values)
           reload()
           closeModal()
         }}

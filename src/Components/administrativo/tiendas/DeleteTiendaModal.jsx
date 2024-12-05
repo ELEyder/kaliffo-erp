@@ -1,7 +1,7 @@
 import { Form, Input, Modal } from "antd";
 import React from "react";
 import { deleteTiendaById } from "@AA/Tienda";
-const UpdateUsuarioModal = ({
+const updateTrabajadorModal = ({
   openModal,
   closeModal,
   id,
@@ -55,4 +55,4 @@ const UpdateUsuarioModal = ({
   );
 };
 
-export default UpdateUsuarioModal;
+export default updateTrabajadorModal;

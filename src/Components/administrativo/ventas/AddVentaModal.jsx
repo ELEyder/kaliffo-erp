@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, DatePicker, Form, Input, Modal, Row, Select, InputNumber } from "antd";
 import { onlyDecimalKey , onlyNumberKey , onlyLettersKey, onlyDecimalInput, onlyNumberInput, onlyLettersInput, preventPaste } from "../../../Shared/Tools";
-import { addUsuario } from "@AA/Usuario";
+import { addTrabajador } from "@AA/Usuario";
 import { getTiendas } from "@AA/Tienda";
 
 const AddVentaModal = ({
@@ -44,7 +44,7 @@ const AddVentaModal = ({
         labelAlign="center"
         id="formulariocrear"
         onFinish={async (values) => {
-          await addUsuario(tipoTrabajador, values)
+          await addTrabajador(tipoTrabajador, values)
           setReload(!reload)
           closeModal(false)
           form.resetFields()

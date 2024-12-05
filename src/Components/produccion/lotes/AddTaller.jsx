@@ -13,7 +13,7 @@ import {
 } from "antd";
 
 import { getAddTaller, changeStatusCorte } from "@AP/Corte";
-import { getUsuarios } from "@AA/Usuario";
+import { getTrabajadores } from "@AA/Usuario";
 
 const AddTaller = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
@@ -24,7 +24,7 @@ const AddTaller = ({ openModal, closeModal, reload }) => {
 
   // Efecto para cargar datos iniciales
   useEffect(() => {
-    getUsuarios("talleres", setTalleres);
+    getTrabajadores("talleres", setTalleres);
     getAddTaller(id, setData, form);
   }, [id, reload]);
 
