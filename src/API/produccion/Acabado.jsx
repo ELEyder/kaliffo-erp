@@ -78,7 +78,7 @@ export const getStatusAcabado = async (id, setData) => {
   }
 }
 
-export const changeStatusAcabado = async (id, data = null) => {
+export const changeStatusAcabado = async (id, data = null, params = null) => {
   try {
     if (data == null) {
       const response = await fetch(`http://localhost:3000/talleres/lote/${id}`);
@@ -101,8 +101,9 @@ export const changeStatusAcabado = async (id, data = null) => {
       detalles: values,
     };
 
-    console.log("Lotes: ", Lote)
-    const putResponse = await fetch(`http://localhost:3000/talleres/sgte/${id}`, {
+    console.log("acabados: ", Lote)
+    console.log("params: ", params)
+    const putResponse = await fetch(`http://localhost:3000/talleres/sgte/${id}?${params}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

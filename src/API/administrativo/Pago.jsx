@@ -1,52 +1,42 @@
-import { showNotification } from "@S/Notifications"
+import apiClient from '../ApiClient';
 
-export const addPago = async (id, data, reload, setReload) => {
-    const Pago = {
-        tipo : data.tipo,
-        descripcion : data.descripcion,
-        usuario_id : Number(id)
+// Añadir pago a trabajador http://localhost:3000/pago/create (No creado)
+export const addPago = async (id, data) => {
+    try {
+      const Pago = {
+        tipo: data.tipo,
+        descripcion: data.descripcion,
+        usuario_id: Number(id),
+      };
+      await apiClient.post(`/pago/create`, Pago);
+    } catch (error) {
+      console.error("Error al añadir el pago:", error);
     }
-    const response = await fetch(`http://localhost:3000/incidencia/create`, {
-        method : "POST",
-        headers : {
-            "Content-Type" : "application/json"
-        },
-        body : JSON.stringify(Pago),
-    })
-    showNotification("add", "Pago añadido")
-    setReload(reload == true ? false : true)
+  };
+
+// Extrae pago por trabajador http://localhost:3000/pago/1
+export const getPagosByTrabajador = async (id, setPagos)  => {
+    try{
+        const estados = ["Pagado", "En Proceso"]
+        const response = await apiClient.get(`/pago/${id}`)
+        const pagos = response.data
+        const pagosNormalizados = pagos.map(detalle => {
+            return {
+                ...detalle,
+                estado: estados[detalle.estado],
+            };
+        });
+        setPagos(pagosNormalizados)
+    } catch (error) {
+      console.error(`Error al obtener los pagos del trabajador ${id}:`, error);
+    }
 }
 
-export const getPagosById = async (id, setPago)  => {
-    const estados = ["Pagado", "En Proceso"]
-    const response = await fetch(`http://localhost:3000/pago/${id}`)
-    const pagoData= await response.json()
-    const detallesConNuevoParametro = pagoData.map(detalle => {
-        return {
-            ...detalle,
-            estado: estados[detalle.estado],
-        };
-    });
-    setPago(detallesConNuevoParametro)
-}
-
-export const updatePagoById = async (id, reload, setReload) => {
-    const response = await fetch(`http://localhost:3000/pago/update/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-    })
-    setReload(!reload)
-}
-
+// Elimina un pago http://localhost:3000/pago/delete/1
 export const deletePagoById = async (id) => {
-    const response = await fetch(`http://localhost:3000/pago/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-    })
-    setReload(!reload)
-    showNotification("delete", "Pago eliminado")
+    try{
+        await apiClient.delete(`http://localhost:3000/pago/delete/${id}`)
+    } catch (error) {
+        console.error("Error al eliminar el pago:", error);
+    }
 }

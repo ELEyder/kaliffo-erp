@@ -28,7 +28,10 @@ const HeaderMain = ({collapsed, setCollapsed}) => {
               type="text"
               className={styles.buttonSidebar}
               icon={<LogoutOutlined />}
-              onClick={() => logout()}
+              onClick={() => {
+                logout()
+                navigate
+              }}
               style={{
                 fontSize: '16px',
                 width: 64,

@@ -28,7 +28,7 @@ const Lote = () => {
   }, [reload, id, fase]);
 
   useEffect(()=> {
-    getFaseLote(id, setFase,setfaseTimeline);
+    getFaseLote(id, setFase, setfaseTimeline);
   }, [reload])
   let contenido;
   let status;

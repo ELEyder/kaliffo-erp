@@ -1,6 +1,6 @@
 import apiClient from '../ApiClient';
-import { showNotification } from "../../Shared/Notifications"
 
+// Extrae los horarios de un trabajador http://localhost:3000/asistencia?usuario_id=1
 export const getHorariosByTrabajador = async (id, setHorario) => {
   try {
     const { data } = await apiClient.get(`/asistencia?usuario_id=${id}`);
@@ -21,18 +21,11 @@ export const getHorariosByTrabajador = async (id, setHorario) => {
   }
 };
 
+// Elimina un horario http://localhost:3000/asistencia/delete/1
 export const deleteHorarioById = async (id) => {
   try {
-    const response = await apiClient.delete(`/asistencia/delete/${id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.status !== 200) {
-      showNotification("error", `Error al eliminar asistencia: ${response.statusText}`)
-    }
-  } catch (error) {
-    showNotification("error", `Error al eliminar asistencia: ${error.message}`)
+    await apiClient.delete(`/asistencia/delete/${id}`);
+  } catch {
+    console.error(`Error al eliminar el horario con el ID ${id}:`, error);
   }
 };

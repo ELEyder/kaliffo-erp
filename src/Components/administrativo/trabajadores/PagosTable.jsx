@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { useState, useEffect } from 'react'
-import { getPagosById, deletePagoById } from "@AA/Pago";
+import { getPagosByTrabajador, deletePagoById } from "@AA/Pago";
 import AddPagoModal from "@CA/trabajadores/AddPagoModal";
 
 const TablaPagos = () => {
@@ -14,7 +14,7 @@ const TablaPagos = () => {
   const [OpenAddPago, setOpenAddPago] = useState(false);
 
   useEffect(() => {
-    getPagosById(id, setTabla);
+    getPagosByTrabajador(id, setTabla);
   }, [id, reload]);
 
   const columns = [

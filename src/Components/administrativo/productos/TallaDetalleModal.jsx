@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table, Row, Col, Popconfirm } from "antd";
-import { getProductoDetalleColorTalla } from "@AA/Producto";
+import { getTallasColoresProductos } from "@AA/Producto";
 
 const TallaDetalleModal = ({
   openModal,
@@ -11,7 +11,7 @@ const TallaDetalleModal = ({
   const [tallaDetalle, setTallaDetalle] = useState([]);
 
   useEffect(() => {
-    getProductoDetalleColorTalla(idD, setTallaDetalle);
+    getTallasColoresProductos(idD, setTallaDetalle);
   }, [idD]);
 
   const columns = [

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Table, Flex, Popconfirm } from "antd";
 
-import { getProductoDetalleTallaColor } from "@AA/Producto";
+import { getTallasColoresProductos } from "@AA/Producto";
 
-const ProducoDetalleTallasColoresModal = ({
+const ProductoDetalleTallasColoresModal = ({
   openModal,
   closeModal,
   id,
@@ -13,7 +13,7 @@ const ProducoDetalleTallasColoresModal = ({
 
   useEffect(() => {
     if (talla) {
-      getProductoDetalleTallaColor(id, talla, setproductoTallasColores);
+      getTallasColoresProductos(id, talla, setproductoTallasColores);
     }
   }, [talla]);
 
@@ -81,4 +81,4 @@ const ProducoDetalleTallasColoresModal = ({
   );
 };
 
-export default ProducoDetalleTallasColoresModal
+export default ProductoDetalleTallasColoresModal

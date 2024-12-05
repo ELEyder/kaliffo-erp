@@ -32,7 +32,7 @@ const UpdateUsuarioModal = ({
         form={form}
         layout="vertical"
         labelAlign="center"
-        id="formularioeditar"
+        id="deleteProductoModal"
         onFinish={async (values) => {
           await deleteProductoById(id, values);
           closeModal();
@@ -40,17 +40,15 @@ const UpdateUsuarioModal = ({
         }}
       >
             <Form.Item
-              name="password"
-              label="Password"
+              name="campo"
+              label="Escribe ACEPTO para continuar"
               rules={[
                 {
                   required: true,
-                  message: "Contraseña Requerida",
+                  message: "Campo requerido",
                 },
               ]}>
-              <Input
-              type="password"
-              />
+              <Input/>
             </Form.Item>
       </Form>
     </Modal>

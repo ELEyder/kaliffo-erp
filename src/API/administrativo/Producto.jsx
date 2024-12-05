@@ -1,5 +1,6 @@
-import { showNotification } from "../../Shared/Notifications"
+import apiClient from '../ApiClient';
 
+// Añadir un producto http://localhost:3000/producto/create
 export const addProducto = async (values) => {
   let Producto = {
     nombre: values.nombre,
@@ -8,179 +9,131 @@ export const addProducto = async (values) => {
     stockTotal: 0
   }
   try {
-    const response = await fetch(`http://localhost:3000/producto/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Producto),
-    })
+    await apiClient.post(`/producto/create`, Producto)
   } catch (error) {
-    showNotification("error", "Error al añadir producto", error)
+    console.log(`Error al añadir un nuevo producto:`,error);
   }
 }
 
+// Obtener un producto por su ID http://localhost:3000/producto/1
 export const getProductoById = async (id, setProducto) => {
-  const response = await fetch(`http://localhost:3000/producto/${id}`)
-  const productoData = await response.json()
-  setProducto(productoData)
+  const response = await apiClient.get(`/producto/${id}`)
+  setProducto(response.data)
 }
 
+// Actualiza un producto http://localhost:3000/producto/update/1
 export const updateProducto = async (id, values) => {
-  const producto = {
+  const Producto = {
     nombre  : values.nombre,
-    precio : values.precioBase,
+    precioBase : values.precioBase,
     descuento : values.descuento,
-}
-  const response = await fetch(`http://localhost:3000/producto/update/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(producto),
-  })
-  showNotification("update", "Producto Actualizado")
+  }
+  try{
+    await apiClient.put(`/producto/update/${id}`, Producto)
+  } catch (error) {
+    console.log(`Error al actualizar el producto con ID ${id}:`, error);
+  }
 }
 
+// Eliminar un producto http://localhost:3000/producto/delete/1
 export const deleteProductoById = async (id, values) => {
-  const response = await fetch(`http://localhost:3000/producto/delete/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  showNotification("delete","Producto Eliminado")
-}
-
-export const deleteProductoByTienda = async (id, id_Tienda) => {
-  const response = await fetch(`http://localhost:3000/producto/delete/${id}?id_tienda=${id_Tienda}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  showNotification("delete","Producto Eliminado")
-}
-
-export const getProductos = async (seteador) => {
-  const response = await fetch(`http://localhost:3000/producto`)
-  const productosData = await response.json()
-  seteador(productosData)
-}
-
-export const getProductosByTienda = async (id, setTabla) => {
-  const response = await fetch(`http://localhost:3000/producto?tienda_id=${id}`)
-  const productoData = await response.json()
-  setTabla(productoData)
-}
-
-export const getProductosNuevos = async (id, setData) => {
+  if (values.campo != "ACEPTO") return
   try {
-    const response = await fetch(
-      `http://localhost:3000/producto?loose_id=${id}`
-    );
-    const data = await response.json();
-    setData(data);
+    await apiClient.put(`/producto/desactivar/${id}`)
   } catch (error) {
-    setData([]);
+    console.log(`Error al eliminar el producto ID ${id}:`, error)
   }
 }
 
-export const getColoresProductos = async (value, setColores) => {
+// Obtener los productos http://localhost:3000/producto
+export const getProductos = async (setProductos) => {
   try {
-    const response = await fetch(`http://localhost:3000/producto/colores/${value}`);
-    const data = await response.json();
-    setColores(prevColores => ({
-      ...prevColores,
-      [value] : data
-  }))
+    const response = await apiClient.get(`/producto`)
+    setProductos(response.data)
   } catch (error) {
-    showNotification("error","Error al obtener los colores del producto", error)
+    console.log(`Error al obtener los productos:`, error)
   }
-};
-
-export const getProductoTiendaDetalle = async (id, idp, setData) => {
+}
+ 
+// Obtener los productos de una tienda http://localhost:3000/producto?tienda_id=1
+export const getProductosByTienda = async (id, setProductos) => {
   try {
-    const response = await fetch(
-      `http://localhost:3000/producto/${idp}?tienda_id=${id}`
-    );
-    const data = await response.json();
-    setData(data);
+    const response = await apiClient.get(`/producto?tienda_id=${id}`)
+    setProductos(response.data)
   } catch (error) {
-    showNotification("error","Error al obtener los detalles del producto por tienda", error)
+    console.log(`Error al obtener los productos de la tienda ID ${id}:`, error)
   }
 }
 
+// Obtener los productos nuevos a agregar http://localhost:3000/producto?loose_id=1 (Descontinuado)
+export const getProductosNuevos = async (id, setProductos) => {
+  try {
+    const response = await apiClient.get(`/producto?loose_id=${id}`);
+    setProductos(response.data);
+  } catch (error) {
+    console.log(`Error al obtener los productos nuevos de la tienda ID ${id}:`, error)
+  }
+}
+
+// Añade el detalle a los productos http://localhost:3000/producto/create/detalle?tienda_id=1 (Descontinuado)
 export const addProductoDetalle = async (tiendaId, Producto) => {
   try {
-    const response = await fetch(`http://localhost:3000/producto/create/detalle?tienda_id=${tiendaId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Producto)
-    })
-    showNotification("add","Producto Añadido Correctamente")
+    await apiClient.post(`/producto/create/detalle?tienda_id=${tiendaId}`, Producto)
   } catch (error) {
-    showNotification("error","Error al añadir el producto", "Para mas información, revisa la consola")
+    console.log(`Error al añadir detaller a los productos de la tienda ID ${tiendaId}:`, error)
   }
 }
 
-export const getProductoDetalle = async (id,idp, setTiendas) => {
+// Obtiene los detalles de un producto (Stock por colores de un producto en una tienda)
+// http://localhost:3000/producto/detalle/1?tipo=colores&tienda_id=1
+export const getColoresDetalleProducto = async (id,idp, setDetalles) => {
   try {
-    const response = await fetch(
-      `http://localhost:3000/producto/detalle/${idp}?tipo=colores&tienda_id=${id}`
-    );
-    const data = await response.json();
-    setTiendas(data);
+    const response = await apiClient.get(`/producto/detalle/${idp}?tipo=colores&tienda_id=${id}`);
+    setDetalles(response.data);
   } catch (error) {
-    showNotification("error","Error al obtener los detalles del producto", error)
+    console.log(`Error al obtener los colores detallados del producto ID ${idp} de la tienda ID ${id}:`, error)
   }
 };
 
-export const getProductoDetalleColorTalla = async (idD, setproductoTallasColores) => {
+// Obtiene los detalles de un producto (Stock por talla de los colores (funcion anterior))
+// http://localhost:3000/producto/talla/1
+export const getTallasColoresProductos = async (idD, setTallas) => {
   try {
-    const response = await fetch(
-      `http://localhost:3000/producto/talla/${idD}`
-    );
-    const data = await response.json();
-    setproductoTallasColores(data);
+    const response = await apiClient.get(`/producto/talla/${idD}`);
+    setTallas(response.data);
   } catch (error) {
-    showNotification("error","Error al obtener los detalles del producto", error)
+    console.log(`Error al obtener las tallas de los colores del producto detalle ${idD}:`, error)
   }
 };
 
-export const getProductoDetalleTallaColor = async (id,talla, setproductoTallasColores) => {
+// Obtiene los colores por talla por producto
+// http://localhost:3000/producto/detalle/1?tipo=tallas&talla=32
+export const getColoresTallaProducto = async (id,talla, setColores) => {
   try {
-    const response = await fetch(
-      `http://localhost:3000/producto/detalle/${id}?tipo=tallas&talla=${talla}`
-    );
-    const data = await response.json();
-    setproductoTallasColores(data);
+    const response = await apiClient.get(`/producto/detalle/${id}?tipo=tallas&talla=${talla}`);
+    setColores(response.data);
   } catch (error) {
-    showNotification("error","Error al obtener los detalles del producto", error)
+    console.log(`Error al obtener los colores de la talla ${talla} del producto ID ${id}:`, error)
   }
 };
 
-export const setUpdateUsuario = async (id, form) => {
+// Obtiene los productos de un Lote http://localhost:3000/lotes/productos/1
+export const getProductoByLote = async (id, setProductos) => {
+  const response = await apiClient.get(`/lotes/productos/${id}`)
+  setProductos(response.data)
+}
+
+// Prepara el actualizar producto http://localhost:3000/producto/1
+export const setUpdateProducto = async (id, form) => {
   try {
-    const response = await fetch(`http://localhost:3000/producto/${id}`);
-    const data = await response.json();
+    const response = await apiClient.get(`/producto/${id}`);
+    const data = response.data;
     form.setFieldsValue({
       ["nombre"]: data.nombre,
       ["precioBase"]: data.precioBase,
       ["descuento"]: data.descuento,
     });
   } catch (error) {
-    showNotification("error","Error al obtener los datos", error)
+    console.log("Error al obtener los detalles del producto para el formulario", error);
   }
 };
-
-export const getProductoByLote = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/lotes/productos/${id}`, {
-    method: "GET",
-    credentials: "include",
-  });
-  const productoData = await response.json()
-  setData(productoData)
-}
