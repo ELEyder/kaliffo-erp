@@ -8,7 +8,7 @@ export const loginApi = async (values) => {
     body: JSON.stringify(values),
   })
   let data = await response.json()
-  if (response.ok){
+  if (response.ok) {
     console.log(data)
   } else {
     data = {}
@@ -17,4 +17,4 @@ export const loginApi = async (values) => {
     ok: response.ok,
     userData: data
   }
-  }
+}
