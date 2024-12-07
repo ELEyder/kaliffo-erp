@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"
-import updateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
-import addTrabajadorModal from "@CA/trabajadores/AddTrabajadorModal"
+import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
+import AddTrabajadorModal from "@CA/trabajadores/AddTrabajadorModal"
 import { getTrabajadores, deleteTrabajadorById } from "@AA/Usuario";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
@@ -114,7 +114,7 @@ const TrabajadoresTable = ({tipo}) => {
         columns={columnas}
         pagination={{ pageSize: 5 }}
         dataSource={data}
-        rowKey={"usuario_id"}
+        rowKey={"trabajador_id"}
         onRow={(record) => ({
           onClick: () => {
             navigate(`/admin/trabajadores/${record.usuario_id}`);
@@ -124,14 +124,14 @@ const TrabajadoresTable = ({tipo}) => {
           }
         })}
       />
-      <addTrabajadorModal
+      <AddTrabajadorModal
         openModal={OpenaddTrabajador}
         closeModal={()=>setOpenaddTrabajador(false)}
         tipoTrabajador={tipo}
         reload={reload}
         setReload={setReload}
       />
-      <updateTrabajadorModal
+      <UpdateTrabajadorModal
         openModal={OpenupdateTrabajador}
         closeModal={()=>setOpenupdateTrabajador(false)}
         tipoTrabajador={tipo}
