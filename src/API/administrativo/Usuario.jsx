@@ -1,5 +1,5 @@
 import moment from "moment";
-import apiClient from '../ApiClient';
+import apiClient from '../apiClient';
 
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
@@ -72,7 +72,7 @@ export const deleteTrabajadorById = async (id) => {
   }
 };
 
-// Obtener Trabajadors por rol http://localhost:3000/Trabajador?rol=ventas
+// Obtener Trabajadors por rol http://localhost:3000/Trabajador?rol=1
 export const getTrabajadores = async (tipo, setData) => {
   try {
     const response = await apiClient.get(`/Trabajador?rol=${dTipos[tipo]}`);

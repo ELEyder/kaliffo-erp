@@ -12,7 +12,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
   const [talleres, setTalleres] = useState([]);
   useEffect(() => {
     getProductoByLote(id, setProductos)
-    getTrabajadores("talleres", setTalleres);
+    getTrabajadores("2", setTalleres);
   }, []);
 
   return (
@@ -56,7 +56,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
         >
           <Select placeholder="Seleccione productos">
             {productos?.map((producto) => (
-              <Select.Option key={producto.producto_id} value={producto.producto_id}>
+              <Select.Option key={`producto_${producto.producto_id}`} value={producto.producto_id}>
                 {producto.nombre}
               </Select.Option>
             ))}
@@ -88,7 +88,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
                   >
                     <Select placeholder="Seleccione el taller">
                       {talleres.map((taller) => (
-                        <Select.Option key={taller.usuario_id} value={taller.usuario_id}>
+                        <Select.Option key={`taller_${taller.trabajador_id}`} value={taller.trabajador_id}>
                           {`${taller.nombre} ${taller.ap_paterno} ${taller.ap_materno}`}
                         </Select.Option>
                       ))}

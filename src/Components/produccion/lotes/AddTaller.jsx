@@ -96,8 +96,8 @@ const AddTaller = ({ openModal, closeModal, reload }) => {
                         <Select placeholder="Seleccione el taller">
                           {talleres.map((taller) => (
                             <Select.Option
-                              key={taller.usuario_id}
-                              value={taller.usuario_id}
+                              key={`taller_${taller.trabajador_id}`}
+                              value={taller.trabajador_id}
                             >
                               {`${taller.nombre} ${taller.ap_paterno} ${taller.ap_materno}`}
                             </Select.Option>

@@ -1,4 +1,4 @@
-import apiClient from '../ApiClient';
+import apiClient from '../apiClient';
 
 // Obtener reporte de un usuario http://localhost:3000/usuario/reporte/1
 export const getReporteUsuario = async (id) => {
