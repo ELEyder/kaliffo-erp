@@ -13,9 +13,8 @@ const AcabadoTable = ({ reload }) => {
 
   const columns = [
     { key: 'acabado_id', dataIndex: 'acabado_id', title: 'Acabado' },
-    { key: 'lote_id', dataIndex: 'lote_id', title: 'Lote' },
-    { key: 'lavanderia_id', dataIndex: 'lavanderia_id', title: 'Lavanderia' },
-    { key: 'color_id', dataIndex: 'color_id', title: 'Color' },
+    { key: 'codigo', dataIndex: 'codigo', title: 'Código' },
+    { key: 'talla', dataIndex: 'talla', title: 'Talla' },
     { key: 'cantidad_enviada', dataIndex: 'cantidad_enviada', title: 'Cantidad Enviada' }
   ];
 
