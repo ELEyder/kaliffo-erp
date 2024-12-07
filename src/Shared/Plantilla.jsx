@@ -23,7 +23,7 @@ const Plantilla = () => {
         <Footer_main />
       </Layout>
     </Layout> :
-    <Navigate to="/error"/>
+    <Navigate to="/"/>
   );
 };
 
