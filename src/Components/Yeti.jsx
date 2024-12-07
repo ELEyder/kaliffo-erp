@@ -232,7 +232,7 @@ const Yeti = ({styles, isFocused, isPasswordVisible }) => (
               strokeWidth: 0.999999,
               strokeOpacity: 1,
             }}
-          className={styles.viewPaswword}
+          className={isPasswordVisible ? styles.viewPaswword: styles.noViewPassword}
 
           />
           <rect
@@ -267,7 +267,7 @@ const Yeti = ({styles, isFocused, isPasswordVisible }) => (
               strokeWidth: 0.999999,
               strokeOpacity: 1,
             }}
-          className={styles.viewPaswword}
+          className={isPasswordVisible ? styles.viewPaswword: styles.noViewPassword}
 
           />
           <rect
