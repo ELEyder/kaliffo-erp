@@ -1,20 +1,17 @@
+import apiClient from '../apiClient';
+
 export const loginApi = async (values) => {
-  const response = await fetch("http://localhost:3000/usuario/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify(values),
-  })
-  let data = await response.json()
-  if (response.ok) {
-    console.log(data)
-  } else {
-    data = {}
+  try {
+    const response = await apiClient.post("/usuario/login", values);
+
+    return {
+      ok: true,
+      userData: response.data,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      userData: {},
+    };
   }
-  return {
-    ok: response.ok,
-    userData: data
-  }
-}
+};
