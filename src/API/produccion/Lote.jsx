@@ -1,5 +1,5 @@
 import { showNotification } from "../../Shared/Notifications";
-import apiClient from "../../apiClient";
+import apiClient from "../ApiClient";
 
 // Eliminar Lote por ID
 export const deleteLoteById = async (id) => {
