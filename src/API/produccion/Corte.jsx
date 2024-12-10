@@ -1,68 +1,54 @@
-import { showNotification } from "../../Shared/Notifications"
+import apiClient from '../apiClient';
+import { showNotification } from "../../Shared/Notifications";
 
+/**
+ * Obtiene los datos de un corte por lote ID.
+ * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ */
 export const getCorte = async (id, setData) => {
   try {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`, {
-      method: "GET",
-      credentials: "include",
-    });
+    const response = await apiClient.get(`/cortes/lote/${id}`, { withCredentials: true });
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        setData([])
-        return
-      }
-    }
-
-    const data = await response.json()
-    setData(data)
+    setData(response.data || []);
   } catch (error) {
-    setData([])
+    if (error.response?.status === 404) {
+      setData([]);
+    } else {
+      console.error("Error al obtener el corte:", error);
+      setData([]);
+    }
   }
-}
+};
 
+/**
+ * Agrega un nuevo corte para un lote específico.
+ * URL de ejemplo: http://localhost:3000/cortes/create/array/1
+ */
 export const addCorte = async (id, data) => {
-  console.log("Data:", data)
-
   data.detalles = data.detalles.map(detalle => ({
     cantidad_enviada: detalle.cantidad_enviada,
     talla: detalle.talla,
-    taller_id: detalle.taller_id !== undefined ? detalle.taller_id : null,
-  }))
+    taller_id: detalle.taller_id ?? null,
+  }));
 
-  const response = await fetch(`http://localhost:3000/cortes/create/array/${id}`, {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data),
-  })
-  console.log(response)
-  showNotification("add", "Corte añadido")
-}
+  try {
+    await apiClient.post(`/cortes/create/array/${id}`, data, { withCredentials: true });
+    showNotification("add", "Corte añadido");
+  } catch (error) {
+    console.error("Error al añadir el corte:", error);
+  }
+};
 
+/**
+ * Actualiza un corte para su visualización y manipulación en un formulario.
+ * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ */
 export const getChangeCorte = async (id, setData, form) => {
   try {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`, {
-      method: "GET",
-      credentials: "include",
-    });
+    const response = await apiClient.get(`/cortes/lote/${id}`, { withCredentials: true });
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        console.error(`Corte con ID ${id} no encontrado (404).`);
-        setData([]);
-        form.setFieldsValue({ items: [] });
-        return;
-      }
-      throw new Error(`Error de servidor: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    const detallesActualizados = data.map((detalle) => ({
-      detallesCorte: detalle.taller + " | " + detalle.producto + " | " + detalle.talla ,
+    const detallesActualizados = response.data.map(detalle => ({
+      detallesCorte: `${detalle.taller} | ${detalle.producto} | ${detalle.talla}`,
       id: detalle.corte_id,
       cantidad_recibida: detalle.cantidad_enviada,
     }));
@@ -70,128 +56,110 @@ export const getChangeCorte = async (id, setData, form) => {
     setData(detallesActualizados);
     form.setFieldsValue({ items: detallesActualizados });
   } catch (error) {
-    console.error('Error al obtener el corte:', error);
+    console.error("Error al obtener el corte:", error);
     setData([]);
     form.setFieldsValue({ items: [] });
   }
 };
 
+/**
+ * Obtiene datos para agregar un taller a un corte existente.
+ * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ */
 export const getAddTaller = async (id, setData, form) => {
   try {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`, {
-      method: "GET",
-      credentials: "include",
-    });
+    const response = await apiClient.get(`/cortes/lote/${id}`, { withCredentials: true });
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        console.error(`Corte con ID ${id} no encontrado (404).`);
-        setData([]);
-        form.setFieldsValue({ items: [] });
-        return;
-      }
-      throw new Error(`Error de servidor: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    const detallesActualizados = data.map((detalle) => ({
-      datos_corte: "Producto: "+detalle.producto+" | Cantidad: "+detalle.cantidad_enviada+" |  Talla:"+detalle.talla,
+    const detallesActualizados = response.data.map(detalle => ({
+      datos_corte: `Producto: ${detalle.producto} | Cantidad: ${detalle.cantidad_enviada} | Talla: ${detalle.talla}`,
       corte_id: detalle.corte_id,
       taller_id: detalle.taller_id,
     }));
-    if (detallesActualizados.length == 0) {
-      setData([]);
-      form.setFieldsValue({ items: [] });
-    } else {
-      setData(detallesActualizados);
-      form.setFieldsValue({ items: detallesActualizados });
-    }
+
+    setData(detallesActualizados.length > 0 ? detallesActualizados : []);
+    form.setFieldsValue({ items: detallesActualizados.length > 0 ? detallesActualizados : [] });
   } catch (error) {
-    console.error('Error al obtener el corte:', error);
+    console.error("Error al obtener el corte:", error);
     setData([]);
     form.setFieldsValue({ items: [] });
   }
 };
+
+/**
+ * Desactiva un corte por su ID si no está en proceso.
+ * URL de ejemplo: http://localhost:3000/cortes/desactivar/1
+ */
 export const deleteCorte = async (id, estado) => {
-  if (estado != 1) {
-    showNotification("error", "No se puede borrar cortes en proceso")
-  } else {
-    await fetch(`http://localhost:3000/cortes/desactivar/${id}`, {
-      method: "PUT",
-    })
-    showNotification("delete", "Corte eliminado")
+  if (estado !== 1) {
+    showNotification("error", "No se puede borrar cortes en proceso");
+    return;
   }
-}
 
+  try {
+    await apiClient.put(`/cortes/desactivar/${id}`);
+    showNotification("delete", "Corte eliminado");
+  } catch (error) {
+    console.error("Error al eliminar el corte:", error);
+  }
+};
+
+/**
+ * Obtiene el estado de un corte para un lote específico.
+ * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ */
 export const getStatusCorte = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/cortes/lote/${id}`, {
-    method: "GET",
-    credentials: "include",
-  });
-  const data = await response.json()
-  if (data.length == 0) {
-    setData(0)
-  } else {
-    setData(data[0].estado)
-    console.log("Estado:", data[0].estado)
-  }
-}
+  try {
+    const response = await apiClient.get(`/cortes/lote/${id}`, { withCredentials: true });
 
+    if (response.data.length === 0) {
+      setData(0);
+    } else {
+      setData(response.data[0].estado);
+    }
+  } catch (error) {
+    console.error("Error al obtener el estado del corte:", error);
+    setData(0);
+  }
+};
+
+/**
+ * Cambia el estado de un corte para un lote específico.
+ * URL de ejemplo: http://localhost:3000/cortes/sgte/lote/1
+ */
 export const changeStatusCorte = async (id, data = null) => {
-  if (data == null) {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`, {
-      method: "GET",
-      credentials: "include",
-    });
-    console.log(response)
-    data = await response.json();
-  }
+  try {
+    if (!data) {
+      const response = await apiClient.get(`/cortes/lote/${id}`, { withCredentials: true });
+      data = response.data;
+    }
 
-  const values = data.map(detalle => {
-    return {
-      corte_id: detalle.id ? detalle.id : detalle.corte_id,
+    const values = data.map(detalle => ({
+      corte_id: detalle.id || detalle.corte_id,
       cantidad_recibida: detalle.cantidad_recibida,
-      taller_id : detalle.taller_id
-    };
-  });
+      taller_id: detalle.taller_id,
+    }));
 
-  let Lote = {
-    detalles: values,
+    await apiClient.put(`/cortes/sgte/lote/${id}`, { detalles: values }, { withCredentials: true });
+    showNotification("add", "Estado pasado");
+  } catch (error) {
+    console.error("Error al cambiar el estado del corte:", error);
   }
-  console.log(Lote)
-  const response = await fetch(`http://localhost:3000/cortes/sgte/lote/${id}`, {
-    method: "PUT",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(Lote),
-  })
-  console.log(response)
-  showNotification("add", "Estado pasado")
+};
 
-}
-
+/**
+ * Envía los datos de un taller para un lote específico.
+ * URL de ejemplo: http://localhost:3000/cortes/sgte/lote/1
+ */
 export const getTaller = async (id, values = null) => {
-  if (values == null) {
-    const response = await fetch(`http://localhost:3000/cortes/lote/${id}`)
-    console.log(response)
-    values = await response.json();
-  }
+  try {
+    if (!values) {
+      const response = await apiClient.get(`/cortes/lote/${id}`);
+      values = response.data;
+    }
 
-  let Lote = {
-    detalles: values,
+    await apiClient.put(`/cortes/sgte/lote/${id}`, { detalles: values });
+    showNotification("add", "Estado pasado");
+  } catch (error) {
+    console.error("Error al enviar los datos del taller:", error);
   }
-  console.log(JSON.stringify(values))
-  const response = await fetch(`http://localhost:3000/cortes/sgte/lote/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(Lote),
-  })
-  console.log(response)
-  showNotification("add", "Estado pasado")
-
-}
+};
