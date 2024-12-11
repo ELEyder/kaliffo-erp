@@ -10,6 +10,10 @@
     align-items: center;
     height: 100vh;
 }
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
 .content {
     background-color: #000000ef;
     backdrop-filter: blur(5px);
@@ -23,15 +27,31 @@
 }
 .title {
     color: white;
+    margin: 10px 0 0 0;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
 .label {
-    color: black;
+    color: white;
     text-align: left;
 }
 .input {
     color: black;
+    width: 100%;
+    padding: 10px;
     background-color: #e6e6e6;
     border-color: #bdbdbd;
+    box-sizing: border-box;
+    outline: none;
+
 }
 .input:hover,
 .input:focus {
@@ -43,6 +63,19 @@ spam.input:focus {
     background-color: #e6e6e6;
     border-color: #bdbdbd;
 }
+
+.passwordWrapper {
+    display: flex;
+    width: 100%;
+}
+
+.submitButton {
+    background-color: var(--color-1);
+    padding: 10px;
+    outline: none;
+    border: none;
+}
+
 div.yeti {
     margin: 20px;
     border-radius: 50%;
@@ -97,21 +130,22 @@ div.yeti {
 
 @keyframes view {
     0% {
-        transform: rotate(0deg);
+        transform: translateY(0px); /* Comienza en la posición inicial */
     }
     100% {
-        transform: rotate(2deg);
+        transform: translateY(4px); /* Se mueve 1px hacia abajo */
     }
 }
 
 @keyframes noView {
     0% {
-        transform: rotate(0deg);
+        transform: translateY(4px); /* Comienza 1px abajo */
     }
     100% {
-        transform: rotate(2deg);
+        transform: translateY(0px); /* Vuelve a la posición inicial */
     }
 }
+
 
 @media (max-width: 1390px) {
     .content {

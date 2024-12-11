@@ -13,7 +13,7 @@ import {
 } from "antd";
 
 import { getAddTaller, changeStatusCorte } from "@AP/Corte";
-import { getUsuarios } from "@AA/Usuario";
+import { getTrabajadores } from "@AA/Usuario";
 
 const AddTaller = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm();
@@ -24,7 +24,7 @@ const AddTaller = ({ openModal, closeModal, reload }) => {
 
   // Efecto para cargar datos iniciales
   useEffect(() => {
-    getUsuarios("talleres", setTalleres);
+    getTrabajadores("talleres", setTalleres);
     getAddTaller(id, setData, form);
   }, [id, reload]);
 
@@ -96,8 +96,8 @@ const AddTaller = ({ openModal, closeModal, reload }) => {
                         <Select placeholder="Seleccione el taller">
                           {talleres.map((taller) => (
                             <Select.Option
-                              key={taller.usuario_id}
-                              value={taller.usuario_id}
+                              key={`taller_${taller.trabajador_id}`}
+                              value={taller.trabajador_id}
                             >
                               {`${taller.nombre} ${taller.ap_paterno} ${taller.ap_materno}`}
                             </Select.Option>

@@ -1,5 +1,5 @@
 import { showNotification } from "../../Shared/Notifications";
-import apiClient from "../ApiClient";
+import apiClient from "../apiClient";
 
 // Obtener todas las telas
 export const getTelas = async (setData) => {

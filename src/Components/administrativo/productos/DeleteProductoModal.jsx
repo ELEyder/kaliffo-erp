@@ -3,7 +3,7 @@ import { Form, Input, Modal } from "antd";
 
 import { deleteProductoById } from "@AA/Producto";
 
-const UpdateUsuarioModal = ({
+const updateTrabajadorModal = ({
   openModal,
   closeModal,
   id,
@@ -55,4 +55,4 @@ const UpdateUsuarioModal = ({
   );
 };
 
-export default UpdateUsuarioModal;
+export default updateTrabajadorModal;

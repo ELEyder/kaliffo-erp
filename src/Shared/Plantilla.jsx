@@ -11,20 +11,20 @@ const { Content } = Layout;
 const Plantilla = () => {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useSession();
+  const usernames = ["administrador", "venta", "produccion"]
+  return (user && usernames.includes(user.rol ?? '')) ?
+  <Layout style={{ height: "100vh" }}>
+    <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+    <Layout>
+      <HeaderMain collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Content style={{ padding: "0 24px", height: 'calc(100vh - 64px - 70px)', overflowY: 'auto' }}>
+        <Outlet />
+      </Content>
+      <Footer_main />
+    </Layout>
+  </Layout> :
+  <Navigate to="/" />;
 
-  return ( user ?
-    <Layout style={{ height: "100vh" }}>
-      <Sidebar  collapsed={collapsed} setCollapsed={setCollapsed}/>
-      <Layout>
-        <HeaderMain collapsed={collapsed} setCollapsed={setCollapsed}/>
-        <Content style={{ padding: "0 24px", height: 'calc(100vh - 64px - 70px)', overflowY: 'auto' }}>
-          <Outlet />
-        </Content>
-        <Footer_main />
-      </Layout>
-    </Layout> :
-    <Navigate to="/error"/>
-  );
 };
 
 export default Plantilla;

@@ -1,10 +1,10 @@
 import moment from "moment";
-import apiClient from '../ApiClient';
+import apiClient from '../apiClient';
 
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
-// Añadir un nuevo trabajador http://localhost:3000/trabajador/create
-export const addtrabajador = async (tipoTrabajador, values) => {
+// Añadir un nuevo Trabajador http://localhost:3000/Trabajador/create
+export const addTrabajador = async (tipoTrabajador, values) => {
   const rol = dTipos[tipoTrabajador];
   let Trabajador = {
     nombre: values.nombre,
@@ -25,24 +25,24 @@ export const addtrabajador = async (tipoTrabajador, values) => {
   }
 
   try {
-    await apiClient.post(`/trabajador/create`, Trabajador);
+    await apiClient.post(`/Trabajador/create`, Trabajador);
   } catch (error) {
-    console.log("Error al añadir el trabajador");
+    console.log("Error al añadir el Trabajador");
   }
 };
 
-// Obtener trabajador por ID http://localhost:3000/trabajador/1
-export const gettrabajadorById = async (id, settrabajador) => {
+// Obtener Trabajador por ID http://localhost:3000/Trabajador/1
+export const getTrabajadorById = async (id, setTrabajador) => {
   try {
-    const response = await apiClient.get(`/trabajador/${id}`);
-    settrabajador(response.data);
+    const response = await apiClient.get(`/Trabajador/${id}`);
+    setTrabajador(response.data);
   } catch (error) {
-    console.log("Error al obtener el trabajador", error);
+    console.log("Error al obtener el Trabajador", error);
   }
 };
 
-// Actualizar un trabajador http://localhost:3000/trabajador/update/1
-export const updatetrabajador = async (id, values, originales) => {
+// Actualizar un Trabajador http://localhost:3000/Trabajador/update/1
+export const updateTrabajador = async (id, values, originales) => {
   // Convertir fecha si existe y es diferente
   if (values.fecha_nacimientoE) {
     values.fecha_nacimientoE = moment(values.fecha_nacimientoE).format("YYYY-MM-DD");
@@ -57,79 +57,79 @@ export const updatetrabajador = async (id, values, originales) => {
   }, {});
 
   try {
-    await apiClient.put(`/trabajador/update/${id}`, valoresnuevos);
+    await apiClient.put(`/Trabajador/update/${id}`, valoresnuevos);
   } catch (error) {
-    console.error("Error al actualizar el trabajador", error);
+    console.error("Error al actualizar el Trabajador", error);
   }
 };
 
-// Eliminar trabajador por ID http://localhost:3000/trabajador/delete/1
-export const deletetrabajadorById = async (id) => {
+// Eliminar Trabajador por ID http://localhost:3000/Trabajador/delete/1
+export const deleteTrabajadorById = async (id) => {
   try {
-    await apiClient.delete(`/trabajador/delete/${id}`);
+    await apiClient.delete(`/Trabajador/delete/${id}`);
   } catch (error) {
-    console.log("Error al eliminar el trabajador", error);
+    console.log("Error al eliminar el Trabajador", error);
   }
 };
 
-// Obtener trabajadors por rol http://localhost:3000/trabajador?rol=ventas
-export const gettrabajadors = async (tipo, setData) => {
+// Obtener Trabajadors por rol http://localhost:3000/Trabajador?rol=1
+export const getTrabajadores = async (tipo, setData) => {
   try {
-    const response = await apiClient.get(`/trabajador?rol=${dTipos[tipo]}`);
-    const trabajadores = response.data;
+    const response = await apiClient.get(`/Trabajador?rol=${dTipos[tipo]}`);
+    const Trabajadores = response.data;
 
-    trabajadores.forEach(trabajador => {
-      if (typeof trabajador === 'object' && trabajador !== null) {
-        if (trabajador.tienda_id === null) {
-          trabajador.tienda_id = 0;
-          trabajador.tienda = "Sin asignar";
+    Trabajadores.forEach(Trabajador => {
+      if (typeof Trabajador === 'object' && Trabajador !== null) {
+        if (Trabajador.tienda_id === null) {
+          Trabajador.tienda_id = 0;
+          Trabajador.tienda = "Sin asignar";
         }
       } else {
-        console.warn('Elemento no es un objeto:', trabajador);
+        console.warn('Elemento no es un objeto:', Trabajador);
       }
     });
-    setData(trabajadores);
+    setData(Trabajadores);
   } catch (error) {
-    console.log("Error al obtener los trabajadors", error);
+    console.log("Error al obtener los Trabajadors", error);
   }
 };
 
-// Obtener trabajadores diferentes a los asignados a una tienda http://localhost:3000/trabajador?rol=1&antiTienda_id=1
+// Obtener Trabajadores diferentes a los asignados a una tienda http://localhost:3000/Trabajador?rol=1&antiTienda_id=1
 export const getTrabajadoresDiferentes = async (id, Seteador) => {
   try {
-    const response = await apiClient.get(`/trabajador?rol=1&antiTienda_id=${id}`);
+    const response = await apiClient.get(`/Trabajador?rol=1&antiTienda_id=${id}`);
     Seteador(response.data);
   } catch (error) {
-    console.log("Error al obtener los trabajadores", error);
+    console.log("Error al obtener los Trabajadores", error);
   }
 };
 
-// Actualizar trabajador asignado a una tienda
-export const updatetrabajadorTienda = async (idTienda, values) => {
+// Actualizar Trabajador asignado a una tienda
+export const updateTrabajadorTienda = async (idTienda, values) => {
   try {
-    await apiClient.put(`/trabajador/update/${values.personal}`, {
+    await apiClient.put(`/Trabajador/update/${values.personal}`, {
       tienda_id: idTienda,
     });
-    console.log("trabajador actualizado exitosamente");
+    console.log("Trabajador actualizado exitosamente");
   } catch (error) {
-    console.log("Error al actualizar trabajador", error);
+    console.log("Error al actualizar Trabajador", error);
   }
 };
 
-// Obtener trabajadors por tienda
-export const gettrabajadorsTienda = async (id, setTabla) => {
+// Obtener Trabajadors por tienda
+export const getTrabajadoresTienda = async (id, setTabla) => {
   try {
-    const response = await apiClient.get(`/trabajador?tienda_id=${id}`);
+    const response = await apiClient.get(`/Trabajador?tienda_id=${id}`);
     setTabla(response.data);
   } catch (error) {
-    console.log("Error al obtener los trabajadors por tienda", error);
+    console.log("Error al obtener los Trabajadors por tienda", error);
   }
 };
 
-// Completar formulario de actualización de trabajador
-export const setUpdatetrabajador = async (id, form, seteadorO) => {
+// Completar formulario de actualización de Trabajador
+export const setUpdateTrabajador = async (id, form, seteadorO) => {
   try {
-    const response = await apiClient.get(`/trabajador/${id}`);
+    const response = await apiClient.get(`/Trabajador/${id}`);
     const data = response.data;
     seteadorO(data);
     form.setFieldsValue({
@@ -142,6 +142,6 @@ export const setUpdatetrabajador = async (id, form, seteadorO) => {
       ["tienda_id"]: data.tienda_id,
     });
   } catch (error) {
-    console.log("Error al obtener los detalles del trabajador", error);
+    console.log("Error al obtener los detalles del Trabajador", error);
   }
 };

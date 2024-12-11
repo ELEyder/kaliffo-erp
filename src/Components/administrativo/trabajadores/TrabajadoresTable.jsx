@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"
-import UpdateUsuarioModal from "@CA/trabajadores/UpdateTrabajadorModal";
-import AddUsuarioModal from "@CA/trabajadores/AddTrabajadorModal"
-import { getUsuarios, deleteUsuarioById } from "@AA/Usuario";
+import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
+import AddTrabajadorModal from "@CA/trabajadores/AddTrabajadorModal"
+import { getTrabajadores, deleteTrabajadorById } from "@AA/Usuario";
 import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
 
 const TrabajadoresTable = ({tipo}) => {
 
   const [id, setId] = useState(1);
   const [data, setData] = useState([]);
-  const [OpenAddUsuario, setOpenAddUsuario] = useState(false);
+  const [OpenaddTrabajador, setOpenaddTrabajador] = useState(false);
   const [OpenAddIncidencia, setOpenAddIncidencia] = useState(false);
-  const [OpenUpdateUsuario, setOpenUpdateUsuario] = useState(false);
+  const [OpenupdateTrabajador, setOpenupdateTrabajador] = useState(false);
   const [reload, setReload] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    getUsuarios(tipo, setData);
+    getTrabajadores(tipo, setData);
   }, [tipo, reload]);
 
   const columnas = [
@@ -62,7 +62,7 @@ const TrabajadoresTable = ({tipo}) => {
                 type="primary" block onClick={(e) => {
                   e.stopPropagation()
                   setId(text)
-                  setOpenUpdateUsuario(true)
+                  setOpenupdateTrabajador(true)
                 }}>Editar</Button>
             </Col>
             <Col>
@@ -78,7 +78,7 @@ const TrabajadoresTable = ({tipo}) => {
                 okText="Confirmar"
                 onConfirm={(e) => {
                   e.stopPropagation();
-                  deleteUsuarioById(text)
+                  deleteTrabajadorById(text)
                   setReload(!reload)
                 }}
                 cancelText="Cancelar"
@@ -107,14 +107,14 @@ const TrabajadoresTable = ({tipo}) => {
 
   return (
     <>
-      <FloatButton tooltip="Añadir nuevo trabajador" onClick={() => setOpenAddUsuario(true)} />
+      <FloatButton tooltip="Añadir nuevo trabajador" onClick={() => setOpenaddTrabajador(true)} />
 
       <Table
         size="middle"
         columns={columnas}
         pagination={{ pageSize: 5 }}
         dataSource={data}
-        rowKey={"usuario_id"}
+        rowKey={"trabajador_id"}
         onRow={(record) => ({
           onClick: () => {
             navigate(`/admin/trabajadores/${record.usuario_id}`);
@@ -124,16 +124,16 @@ const TrabajadoresTable = ({tipo}) => {
           }
         })}
       />
-      <AddUsuarioModal
-        openModal={OpenAddUsuario}
-        closeModal={()=>setOpenAddUsuario(false)}
+      <AddTrabajadorModal
+        openModal={OpenaddTrabajador}
+        closeModal={()=>setOpenaddTrabajador(false)}
         tipoTrabajador={tipo}
         reload={reload}
         setReload={setReload}
       />
-      <UpdateUsuarioModal
-        openModal={OpenUpdateUsuario}
-        closeModal={()=>setOpenUpdateUsuario(false)}
+      <UpdateTrabajadorModal
+        openModal={OpenupdateTrabajador}
+        closeModal={()=>setOpenupdateTrabajador(false)}
         tipoTrabajador={tipo}
         reload={() => setReload(!reload)}
         id={id}

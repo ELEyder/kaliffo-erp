@@ -1,123 +1,109 @@
-import { showNotification } from "../../Shared/Notifications"
+import { showNotification } from "../../Shared/Notifications";
+import apiClient from "../apiClient";
 
+// Obtener acabados por lote
 export const getAcabadoByLote = async (id, setData) => {
   try {
-    const response = await fetch(`http://localhost:3000/talleres/lote/${id}`)
-    if (!response.ok) {
-      if (response.status === 404) {
-        setData([])
-        return
-      }
-    }
-    const data = await response.json()
-    setData(data)
+    const response = await apiClient.get(`/talleres/lote/${id}`);
+    setData(response.data);
   } catch (error) {
-    setData([])
+    if (error.response && error.response.status === 404) {
+      setData([]);
+    } else {
+      console.error("Error al obtener acabados por lote:", error);
+      setData([]);
+    }
   }
-}
+};
 
+// Añadir acabado
 export const addAcabado = async (data) => {
-  const response = await fetch(`http://localhost:3000/talleres/create`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data),
-  })
-  console.log(response)
-  console.log(data)
-  showNotification("add", "Lavanderia añadida")
-}
+  try {
+    await apiClient.post(`/talleres/create`, data);
+    showNotification("add", "Lavandería añadida correctamente");
+  } catch (error) {
+    console.error("Error al añadir acabado:", error);
+    showNotification("error", "Error al añadir la lavandería");
+  }
+};
 
+// Obtener y cambiar detalles de acabado
 export const getChangeAcabado = async (id, setData, form) => {
   try {
-    const response = await fetch(`http://localhost:3000/talleres/lote/${id}`)
-    if (!response.ok) {
-      if (response.status === 404) {
-        console.error(`Acabado con ID ${id} no encontrado (404).`)
-        setData([]);
-        form.setFieldsValue({ items: [] });
-        return;
-      }
-      throw new Error(`Error de servidor: ${response.status}`);
-    }
+    const response = await apiClient.get(`/talleres/lote/${id}`);
+    const data = response.data;
 
-    const data = await response.json();
-
-    const detallesConNuevoParametro = data.map(detalle => {
-      return {
-        id: detalle.acabado_id,
-        cantidad_recibida: detalle.cantidad_enviada,
-      };
-    });
+    const detallesConNuevoParametro = data.map((detalle) => ({
+      id: detalle.acabado_id,
+      cantidad_recibida: detalle.cantidad_enviada,
+    }));
 
     setData(detallesConNuevoParametro);
     form.setFieldsValue({ items: detallesConNuevoParametro });
   } catch (error) {
-    console.error('Error al obtener el corte:', error);
-    setData([]);
-    form.setFieldsValue({ items: [] });
+    if (error.response && error.response.status === 404) {
+      console.error(`Acabado con ID ${id} no encontrado (404).`);
+      setData([]);
+      form.setFieldsValue({ items: [] });
+    } else {
+      console.error("Error al obtener detalles de acabado:", error);
+      setData([]);
+      form.setFieldsValue({ items: [] });
+    }
   }
 };
 
+// Desactivar (eliminar lógicamente) taller por ID
 export const deleteTaller = async (id) => {
-  await fetch(`http://localhost:3000/talleres/desactivar/${id}`, {
-    method: "PUT",
-  })
-  showNotification("delete", "Corte eliminado")
-}
-
-export const getStatusAcabado = async (id, setData) => {
-  const response = await fetch(`http://localhost:3000/talleres/lote/${id}`)
-  const data = await response.json()
-  if (data.length == 0) {
-    setData(0)
-  } else {
-    setData(data[0].estado)
-    console.log("Estado:", data[0].estado)
+  try {
+    await apiClient.put(`/talleres/desactivar/${id}`);
+    showNotification("delete", "Corte eliminado correctamente");
+  } catch (error) {
+    console.error("Error al eliminar el taller:", error);
+    showNotification("error", "Error al eliminar el corte");
   }
-}
+};
 
+// Obtener estado del acabado
+export const getStatusAcabado = async (id, setData) => {
+  try {
+    const response = await apiClient.get(`/talleres/lote/${id}`);
+    const data = response.data;
+
+    if (data.length === 0) {
+      setData(0);
+    } else {
+      setData(data[0].estado);
+      console.log("Estado:", data[0].estado);
+    }
+  } catch (error) {
+    console.error("Error al obtener estado del acabado:", error);
+    setData(0);
+  }
+};
+
+// Cambiar estado del acabado
 export const changeStatusAcabado = async (id, data = null, params = null) => {
   try {
-    if (data == null) {
-      const response = await fetch(`http://localhost:3000/talleres/lote/${id}`);
-      
-      if (!response.ok) {
-        throw new Error(`Error al obtener datos: ${response.statusText}`);
-      }
-      
-      data = await response.json();
+    if (!data) {
+      const response = await apiClient.get(`/talleres/lote/${id}`);
+      data = response.data;
     }
 
-    const values = data.map(detalle => {
-      return {
-        acabado_id: detalle.id || detalle.acabado_id,
-        cantidad_recibida: detalle.cantidad_recibida,
-      };
+    const values = data.map((detalle) => ({
+      acabado_id: detalle.id || detalle.acabado_id,
+      cantidad_recibida: detalle.cantidad_recibida,
+    }));
+
+    const Lote = { detalles: values };
+
+    await apiClient.put(`/talleres/sgte/${id}`, Lote, {
+      params,
     });
 
-    let Lote = {
-      detalles: values,
-    };
-
-    console.log("acabados: ", Lote)
-    console.log("params: ", params)
-    const putResponse = await fetch(`http://localhost:3000/talleres/sgte/${id}?${params}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Lote),
-    });
-
-    if (!putResponse.ok) {
-      throw new Error(`Error al actualizar estado: ${putResponse.statusText}`);
-    }
-
-    showNotification("add", "Estado pasado");
+    showNotification("add", "Estado actualizado correctamente");
   } catch (error) {
-    console.error("Error en la función changeStatusLavanderia:", error);
+    console.error("Error al cambiar estado del acabado:", error);
     showNotification("error", `Error: ${error.message}`);
   }
 };

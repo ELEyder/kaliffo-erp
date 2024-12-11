@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { setUpdateUsuario, updateUsuario } from "@AA/Usuario";
+import { setUpdateTrabajador, updateTrabajador } from "@AA/Usuario";
 import { getTiendas } from "@AA/Tienda";
 import Title from "antd/es/skeleton/Title";
 
@@ -17,7 +17,7 @@ const UpdateTrabajadorModal = ({
   const[valoresO, setValoresO] = useState({})
   
   useEffect(() => {
-    setUpdateUsuario(id,form,setValoresO)
+    setUpdateTrabajador(id,form,setValoresO)
     if(tipoTrabajador==="ventas"){
       getTiendas(setTiendas)
     }
@@ -43,7 +43,7 @@ const UpdateTrabajadorModal = ({
         labelAlign="center"
         id="formularioeditar"
         onFinish={async (values) => {
-          await updateUsuario(id, values,valoresO)
+          await updateTrabajador(id, values,valoresO)
           reload()
           closeModal(false)
         }}>
