@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Row, Col, Popconfirm, Table,FloatButton } from "antd";
-import { eliminarcompra, getCompras } from'@AL/Compras';
+import { eliminarCompra, getCompras } from'@AL/Compras';
 import AddCompraModal from "@CL/compras/AddCompraModal";
 import DetallesComprasModal from "@CL/compras/DetallesComprasModal";
 import EditCompraModal from "@CL/compras/EditCompraModal";
@@ -99,7 +99,7 @@ const TablaCompras = () => {
                 okText="Confirmar"
                 onConfirm={(e) => {
                   e.stopPropagation();
-                  eliminarcompra(record.compra_id)
+                  eliminarCompra(record.compra_id)
                   setReload(!reload)
                 }}
                 cancelText="NO"
