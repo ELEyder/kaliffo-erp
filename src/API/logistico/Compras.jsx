@@ -1,97 +1,122 @@
-import { showNotification } from "../../Shared/Notifications"
+import apiClient from '../apiClient';
+import { showNotification } from "../../Shared/Notifications";
 
-export const getCompras = async (setCompras) =>{
-    const response = await fetch(`http://localhost:3000/compras`)
-    const comprasData = await response.json()
-    setCompras(comprasData)
-}
+/**
+ * Obtiene la lista de compras y actualiza el estado.
+ * URL de ejemplo: http://localhost:3000/compras
+ */
+export const getCompras = async (setCompras) => {
+  try {
+    const { data } = await apiClient.get("/compras");
+    setCompras(data);
+  } catch (error) {
+    console.error("Error al obtener las compras:", error);
+  }
+};
 
-export const getComprasDetalle = async(setCompraDetalle,id) =>{
-    const response = await fetch(`http://localhost:3000/compras/detalle/${id}`)
-    const compraData = await response.json()
-    setCompraDetalle(compraData)
-}
+/**
+ * Obtiene el detalle de una compra por su ID y actualiza el estado.
+ * URL de ejemplo: http://localhost:3000/compras/detalle/1
+ */
+export const getComprasDetalle = async (setCompraDetalle, id) => {
+  try {
+    const { data } = await apiClient.get(`/compras/detalle/${id}`);
+    setCompraDetalle(data);
+  } catch (error) {
+    console.error("Error al obtener el detalle de la compra:", error);
+  }
+};
 
-export const getEmpresas = async (setEmpresas) =>{
-    const response = await fetch(`http://localhost:3000/compras/empresas`)
-    const empresasData = await response.json()
-    setEmpresas(empresasData)
-}
+/**
+ * Obtiene la lista de empresas y actualiza el estado.
+ * URL de ejemplo: http://localhost:3000/compras/empresas
+ */
+export const getEmpresas = async (setEmpresas) => {
+  try {
+    const { data } = await apiClient.get("/compras/empresas");
+    setEmpresas(data);
+  } catch (error) {
+    console.error("Error al obtener las empresas:", error);
+  }
+};
 
-export const getProductos = async (setProductos) =>{
-    const response = await fetch(`http://localhost:3000/compras/productos`)
-    const productosData = await response.json()
-    setProductos(productosData)
-}
+/**
+ * Obtiene la lista de productos y actualiza el estado.
+ * URL de ejemplo: http://localhost:3000/compras/productos
+ */
+export const getProductos = async (setProductos) => {
+  try {
+    const { data } = await apiClient.get("/compras/productos");
+    setProductos(data);
+  } catch (error) {
+    console.error("Error al obtener los productos:", error);
+  }
+};
 
-export const addCompra = async (values) =>{
-    
-    let compra ={
-        empresa_proveedor:values.empresa,
-        fecha_compra:values.fecha_compra,
-        cantidad:values.cantidad_total,
-        total:values.total_neto,
-        tienda_id:values.tienda,
-        detalle:values.detalle
-    }
+/**
+ * Agrega una nueva compra al servidor.
+ * URL de ejemplo: http://localhost:3000/compras/create
+ */
+export const addCompra = async (values) => {
+  const compra = {
+    empresa_proveedor: values.empresa,
+    fecha_compra: values.fecha_compra,
+    cantidad: values.cantidad_total,
+    total: values.total_neto,
+    tienda_id: values.tienda,
+    detalle: values.detalle,
+  };
 
-    try {
-        const response = await fetch(`http://localhost:3000/compras/create`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(compra),
-          });
-          showNotification("add","Compra añadida exitosamente")
-    } catch (error) {
-      showNotification("error","Error al añadir la compra")
-    }
-}
+  try {
+    await apiClient.post("/compras/create", compra);
+    showNotification("add", "Compra añadida exitosamente");
+  } catch (error) {
+    showNotification("error", "Error al añadir la compra");
+  }
+};
 
-export const eliminarcompra = async(compra_id) =>{
-    try {
-        const response = await fetch(`http://localhost:3000/compras/delete/${compra_id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        showNotification("delete","Usuario eliminado")
-        return true
-    
-      } catch (error) {
-        showNotification("error","Error al eliminar el usuario")
-      }
-}
+/**
+ * Elimina una compra por su ID.
+ * URL de ejemplo: http://localhost:3000/compras/delete/1
+ */
+export const eliminarCompra = async (compra_id) => {
+  try {
+    await apiClient.delete(`/compras/delete/${compra_id}`);
+    showNotification("delete", "Compra eliminada exitosamente");
+    return true;
+  } catch (error) {
+    showNotification("error", "Error al eliminar la compra");
+  }
+};
 
+/**
+ * Actualiza una compra por su ID con los valores nuevos.
+ * URL de ejemplo: http://localhost:3000/compras/update/1
+ */
 export const updateCompra = async (id, values, originales) => {
   const valoresNuevos = {};
 
-
   for (const key in originales) {
-    if (values[key] !== originales[key]) {
-      if (values[key] !== undefined) {
-        valoresNuevos[key] = values[key];
-        if (key === "detalle") {
-          valoresNuevos.detalle = [];
-          for (let i = 0; i < originales.detalle.length; i++) {
-            const originalDetalle = originales.detalle[i];
-            const nuevoDetalle = values.detalle[i];
+    if (values[key] !== originales[key] && values[key] !== undefined) {
+      valoresNuevos[key] = values[key];
+      if (key === "detalle") {
+        valoresNuevos.detalle = [];
+        for (let i = 0; i < originales.detalle.length; i++) {
+          const originalDetalle = originales.detalle[i];
+          const nuevoDetalle = values.detalle[i];
+          const detalleCambios = {};
 
-            const detalleCambios = {};
-            for (const detalleKey in originalDetalle) {
-              if (nuevoDetalle[detalleKey] !== originalDetalle[detalleKey]) {
-                detalleCambios[detalleKey] = nuevoDetalle[detalleKey];
-              }
+          for (const detalleKey in originalDetalle) {
+            if (nuevoDetalle[detalleKey] !== originalDetalle[detalleKey]) {
+              detalleCambios[detalleKey] = nuevoDetalle[detalleKey];
             }
+          }
 
-            if (Object.keys(detalleCambios).length > 0) {
-              valoresNuevos.detalle.push({
-                compraDetalle_id: originalDetalle.compraDetalle_id, 
-                ...detalleCambios, 
-              });
-            }
+          if (Object.keys(detalleCambios).length > 0) {
+            valoresNuevos.detalle.push({
+              compraDetalle_id: originalDetalle.compraDetalle_id,
+              ...detalleCambios,
+            });
           }
         }
       }
@@ -99,15 +124,9 @@ export const updateCompra = async (id, values, originales) => {
   }
 
   try {
-    const response = await fetch(`http://localhost:3000/compras/update/${id}`,{
-      method:"PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(valoresNuevos),
-    })
-    showNotification("update","Compra actualizada exitosamente")
+    await apiClient.put(`/compras/update/${id}`, valoresNuevos);
+    showNotification("update", "Compra actualizada exitosamente");
   } catch (error) {
-    showNotification("error","Error al actualizar la compra")
+    showNotification("error", "Error al actualizar la compra");
   }
 };
