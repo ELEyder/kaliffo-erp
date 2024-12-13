@@ -12,7 +12,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
   const [talleres, setTalleres] = useState([]);
   useEffect(() => {
     getProductoByLote(id, setProductos)
-    getTrabajadores("2", setTalleres);
+    getTrabajadores("talleres", setTalleres);
   }, []);
 
   return (

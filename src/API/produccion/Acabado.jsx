@@ -4,7 +4,7 @@ import apiClient from "../apiClient";
 // Obtener acabados por lote
 export const getAcabadoByLote = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/talleres/lote/${id}`);
+    const response = await apiClient.get(`/taller/lote/${id}`);
     setData(response.data);
   } catch (error) {
     if (error.response && error.response.status === 404) {
@@ -19,7 +19,7 @@ export const getAcabadoByLote = async (id, setData) => {
 // Añadir acabado
 export const addAcabado = async (data) => {
   try {
-    await apiClient.post(`/talleres/create`, data);
+    await apiClient.post(`/taller/create`, data);
     showNotification("add", "Lavandería añadida correctamente");
   } catch (error) {
     console.error("Error al añadir acabado:", error);
@@ -30,7 +30,7 @@ export const addAcabado = async (data) => {
 // Obtener y cambiar detalles de acabado
 export const getChangeAcabado = async (id, setData, form) => {
   try {
-    const response = await apiClient.get(`/talleres/lote/${id}`);
+    const response = await apiClient.get(`/taller/lote/${id}`);
     const data = response.data;
 
     const detallesConNuevoParametro = data.map((detalle) => ({
@@ -56,7 +56,7 @@ export const getChangeAcabado = async (id, setData, form) => {
 // Desactivar (eliminar lógicamente) taller por ID
 export const deleteTaller = async (id) => {
   try {
-    await apiClient.put(`/talleres/desactivar/${id}`);
+    await apiClient.put(`/taller/desactivar/${id}`);
     showNotification("delete", "Corte eliminado correctamente");
   } catch (error) {
     console.error("Error al eliminar el taller:", error);
@@ -67,7 +67,7 @@ export const deleteTaller = async (id) => {
 // Obtener estado del acabado
 export const getStatusAcabado = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/talleres/lote/${id}`);
+    const response = await apiClient.get(`/taller/lote/${id}`);
     const data = response.data;
 
     if (data.length === 0) {
@@ -86,7 +86,7 @@ export const getStatusAcabado = async (id, setData) => {
 export const changeStatusAcabado = async (id, data = null, params = null) => {
   try {
     if (!data) {
-      const response = await apiClient.get(`/talleres/lote/${id}`);
+      const response = await apiClient.get(`/taller/lote/${id}`);
       data = response.data;
     }
 
@@ -97,7 +97,7 @@ export const changeStatusAcabado = async (id, data = null, params = null) => {
 
     const Lote = { detalles: values };
 
-    await apiClient.put(`/talleres/sgte/${id}`, Lote, {
+    await apiClient.put(`/taller/sgte/${id}`, Lote, {
       params,
     });
 

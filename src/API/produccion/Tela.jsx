@@ -4,7 +4,7 @@ import apiClient from "../apiClient";
 // Obtener todas las telas
 export const getTelas = async (setData) => {
   try {
-    const response = await apiClient.get(`/telas/`);
+    const response = await apiClient.get(`/tela/`);
     setData(response.data);
   } catch (error) {
     console.error("Error al obtener las telas:", error);
@@ -15,7 +15,7 @@ export const getTelas = async (setData) => {
 // Obtener telas activas por tipo
 export const getTelasActivas = async (tipo, setData) => {
   try {
-    const response = await apiClient.get(`/telas/${tipo}`, {
+    const response = await apiClient.get(`/tela/${tipo}`, {
       params: { estado: 1 },
     });
 
@@ -40,7 +40,7 @@ export const getTelasActivas = async (tipo, setData) => {
 // Obtener telas inactivas por tipo
 export const getTelasInactivas = async (tipo, setData) => {
   try {
-    const response = await apiClient.get(`/telas/${tipo}`, {
+    const response = await apiClient.get(`/tela/${tipo}`, {
       params: { estado: 0 },
     });
 
@@ -65,7 +65,7 @@ export const getTelasInactivas = async (tipo, setData) => {
 // Obtener tipos de tela
 export const getTiposTela = async (setTelas) => {
   try {
-    const response = await apiClient.get(`/telas/tipo`);
+    const response = await apiClient.get(`/tela/tipo`);
     setTelas(response.data);
   } catch (error) {
     console.error("Error al obtener tipos de tela:", error);
@@ -76,7 +76,7 @@ export const getTiposTela = async (setTelas) => {
 // Agregar una nueva tela
 export const addTelas = async (values) => {
   try {
-    await apiClient.post(`/telas/create`, values);
+    await apiClient.post(`/tela/create`, values);
     showNotification("add", "Tela agregada correctamente");
   } catch (error) {
     console.error("Error al agregar la tela:", error);
@@ -87,7 +87,7 @@ export const addTelas = async (values) => {
 // Desactivar (eliminar lógicamente) tela por ID
 export const deleteTelaById = async (id) => {
   try {
-    await apiClient.put(`/telas/desactivar/${id}`);
+    await apiClient.put(`/tela/desactivar/${id}`);
     showNotification("delete", "Tela desactivada correctamente");
   } catch (error) {
     console.error("Error al desactivar la tela:", error);
