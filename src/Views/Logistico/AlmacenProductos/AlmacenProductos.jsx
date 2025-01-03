@@ -5,10 +5,12 @@ import AlmacenProductosCards from "@CL/AlmacenProductos/AlmacenProductosCards";
 const AlmacenProductos = () => {
   return (
     <>
+      {/* Encabezado con un divisor estilizado */}
       <Divider style={{ textTransform: "uppercase" }}>
         Almacen Productos
       </Divider>
-      <AlmacenProductosCards/>
+      {/* Componente que muestra las tarjetas de productos en el almacén */}
+      <AlmacenProductosCards />
     </>
   );
 };

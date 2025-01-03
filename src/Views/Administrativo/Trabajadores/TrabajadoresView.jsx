@@ -4,18 +4,23 @@ import TrabajadoresTable from "@CA/trabajadores/TrabajadoresTable";
 import { Divider } from "antd";
 
 const Trabajadores = () => {
+  // Obtiene el tipo desde los parámetros de la URL
   const { tipo } = useParams();
 
+  // Lista de tipos válidos para verificar
   const tiposValidos = ["ventas", "talleres", "miscelaneos", "costureros"];
 
+  // Redirige a una página de error si el tipo no es válido
   if (!tiposValidos.includes(tipo)) {
     return <Navigate to="/error" />;
   }
 
   return (
     <>
-      <Divider style={{textTransform: "uppercase"}}>{tipo}</Divider>
-      <TrabajadoresTable tipo={tipo}/>
+      {/* Divisor estilizado que muestra el tipo */}
+      <Divider style={{ textTransform: "uppercase" }}>{tipo}</Divider>
+      {/* Tabla que muestra los trabajadores según el tipo */}
+      <TrabajadoresTable tipo={tipo} />
     </>
   );
 };

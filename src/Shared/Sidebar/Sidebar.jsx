@@ -1,37 +1,40 @@
 import React, { useState } from "react";
 import { UserOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { Layout, Avatar, Typography, FloatButton } from 'antd';
-import Menu from "./Menu";
-import styles from './Sidebar.module.css'
-import { useSession } from "../../context/AuthProvider";
+import Menu from "./Menu"; // Componente de menú
+import styles from './Sidebar.module.css' // Estilos CSS para el Sidebar
+import { useSession } from "../../context/AuthProvider"; // Hook para acceder al estado de sesión
 
-const { Sider } = Layout;
-const { Title } =Typography
+const { Sider } = Layout; // Usamos el componente Sider de Ant Design para el sidebar
+const { Title } = Typography; // Usamos el componente Title de Ant Design para el título
 
-
-const Sidebar = ({collapsed}) => {
-  const { user, login, logout } = useSession();
+const Sidebar = ({ collapsed }) => {
+  const { user, login, logout } = useSession(); // Extraemos los datos del usuario y funciones de login/logout desde el contexto
 
   return (
-
     <>
-      <Sider style={{ height: '100vh', overflowY: 'scroll', padding: '0'}} trigger={null} collapsible collapsed={collapsed}
-      width={250}
-      breakpoint="lg"
-      className="sidebar"
-      collapsedWidth="0"
-    >
-      <div className={styles.sidebarHeader}>
-        <h1>{user.rol}</h1>
-      </div>
-      <Menu/>
-    </Sider>
+      {/* Sidebar usando el componente Sider de Ant Design */}
+      <Sider
+        style={{ height: '100vh', overflowY: 'scroll', padding: '0' }} // Estilo de la altura y el scroll
+        trigger={null} // Desactivamos el trigger para colapsar
+        collapsible // Hace que el sidebar sea colapsable
+        collapsed={collapsed} // Determina si el sidebar está colapsado o no
+        width={250} // Establece el ancho cuando el sidebar no está colapsado
+        breakpoint="lg" // Define el tamaño para el punto de ruptura (cuando cambia el layout)
+        className="sidebar" // Clases personalizadas
+        collapsedWidth="0" // Establece el ancho cuando el sidebar está colapsado
+      >
+        {/* Cabecera del Sidebar */}
+        <div className={styles.sidebarHeader}>
+          {/* Mostrar el rol del usuario autenticado */}
+          <h1>{user.rol}</h1>
+        </div>
 
+        {/* Renderiza el componente Menu con los elementos de navegación */}
+        <Menu />
+      </Sider>
     </>
-
   );
 };
 
 export default Sidebar;
-
-

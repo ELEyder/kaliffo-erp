@@ -2,15 +2,17 @@ import React from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import { BookOutlined, UserOutlined, CoffeeOutlined, HarmonyOSOutlined } from "@ant-design/icons";
-import { useSession } from "../../context/AuthProvider";
+import { useSession } from "../../context/AuthProvider"; // Hook para obtener información del usuario autenticado
 
 const SidebarMenu = () => {
-  const { user } = useSession();
+  const { user } = useSession(); // Obtiene el usuario autenticado desde el contexto
 
+  // Función que filtra los elementos del menú según el rol del usuario
   const filterMenuItemsByRole = (items) => {
     const rolePermissions = {
-      administrador: () => true,
+      administrador: () => true, // Los administradores tienen acceso a todo
       venta: (key) =>
+        // Rol de "venta" tiene acceso a estos elementos específicos
         [
           "group-administrativo",
           "administrativo-tiendas",
@@ -27,10 +29,10 @@ const SidebarMenu = () => {
           "ventas-generar",
           "ventas-generar-boleta",
           "ventas-generar-factura",
-
           "ventas-devoluciones",
         ].includes(key),
       produccion: (key) =>
+        // Rol de "producción" tiene acceso a estos elementos específicos
         [
           "group-logistico",
           "logistico-almacen-productos",
@@ -42,21 +44,22 @@ const SidebarMenu = () => {
         ].includes(key),
     };
 
-    // Función para validar acceso según el rol
+    // Función para validar acceso según el rol del usuario
     const hasAccess = rolePermissions[user.rol] || (() => false);
 
     return items
-      .filter((item) => hasAccess(item.key)) // Filtrar elementos principales
+      .filter((item) => hasAccess(item.key)) // Filtra los elementos principales según el acceso del rol
       .map((item) => {
-        // Filtrar hijos si existen xd
+        // Si hay hijos, filtra también los hijos
         if (item.children) {
           const filteredChildren = filterMenuItemsByRole(item.children);
-          return { ...item, children: filteredChildren };
+          return { ...item, children: filteredChildren }; // Retorna los elementos con los hijos filtrados
         }
-        return item;
+        return item; // Si no tiene hijos, simplemente retorna el item
       });
   };
 
+  // Definición de los elementos del menú
   const menuItems = [
     {
       key: "group-administrativo",
@@ -133,8 +136,9 @@ const SidebarMenu = () => {
     },
   ];
 
-  const filteredMenuItems = filterMenuItemsByRole(menuItems);
+  const filteredMenuItems = filterMenuItemsByRole(menuItems); // Filtra los items del menú según el rol del usuario
 
+  // Renderiza el menú filtrado
   return <Menu mode="inline" items={filteredMenuItems} defaultSelectedKeys={["group-administrativo"]} />;
 };
 
