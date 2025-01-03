@@ -80,8 +80,8 @@ const TiendasCards = () => {
               title={<p>TELEFONO: {tienda.telefono}</p>} // Mostrar teléfono de la tienda
               description={
                 <>
-                  <p>STOCK: {tienda.total_stock}</p> // Mostrar el stock total
-                  <p>DIRECCION: {tienda.direccion}</p> // Mostrar la dirección de la tienda
+                  <p>STOCK: {tienda.total_stock ?? '0'}</p>
+                  <p>DIRECCION: {tienda.direccion}</p>
                 </>
               }
             />

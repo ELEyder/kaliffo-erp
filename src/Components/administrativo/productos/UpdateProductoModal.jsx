@@ -49,7 +49,7 @@ const UpdateProductoModal = ({ openModal, closeModal, id, reload }) => {
             message: "Nombre requerido", // Mensaje de error si la validación falla
           }]}
         >
-          <Input /> {/* Campo de texto para el nombre del producto */}
+          <Input />
         </Form.Item>
 
         {/* Fila para el precio y el descuento */}

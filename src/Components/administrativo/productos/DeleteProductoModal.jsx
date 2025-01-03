@@ -51,7 +51,7 @@ const DeleteProductoModal = ({
             },
           ]}
         >
-          <Input /> {/* Campo de texto donde el usuario debe escribir */}
+          <Input />
         </Form.Item>
       </Form>
     </Modal>

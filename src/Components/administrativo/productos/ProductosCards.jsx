@@ -65,7 +65,7 @@ const ProductosCards = () => {
                     width={"100%"}
                     height={'auto'}
                     src={`/img/productos/${producto.producto_id}.png`}
-                    fallback="data:image/png;base64,iVBORw0KGgoAAAANS...Q==" // Imagen por defecto si no se encuentra la imagen
+                    fallback="https://i.pinimg.com/736x/a1/cd/44/a1cd44f6617beebb9794877ef59082a1.jpg" // Imagen por defecto si no se encuentra la imagen
                   />
                 }
               >
