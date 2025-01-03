@@ -1,83 +1,115 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
-
-import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"
-import { getProductosByTienda } from "@AA/Producto";
-import { Button, Table } from "antd";
-
+import React, { useEffect, useState } from "react"; // Importaciones de React
+import { useParams } from 'react-router-dom'; // Hooks de React Router para los parámetros de la URL
+import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para mostrar los detalles de un producto
+import { getProductosByTienda } from "@AA/Producto"; // Función API para obtener los productos de una tienda específica
+import { Button, Table } from "antd"; // Componentes de Ant Design
 
 const ProductosTable = () => {
+  const { id } = useParams(); // Extraer el ID de la tienda desde los parámetros de la URL
 
-  const { id } = useParams();
+  const [productostienda, setproductostienda] = useState([]); // Estado para almacenar los productos de la tienda
+  const [reload, setReload] = useState(false); // Estado para disparar la recarga de datos
+  const [OpenTiendaDetalleProducto, setOpenTiendaDetalleProducto] = useState(false); // Estado para controlar la visibilidad del modal de detalles del producto
+  const [idp, setIdP] = useState(0); // Estado para almacenar el ID del producto seleccionado para el modal
+  const [nombreProducto, setNombreProducto] = useState(''); // Estado para almacenar el nombre del producto seleccionado para el modal
 
-  const[productostienda,setproductostienda] = useState([])
-  const[reload,setReload] = useState(false)
-  const[OpenTiendaDetalleProducto,setOpenTiendaDetalleProducto] = useState(false)
-  const[idp,setIdP] = useState(0)
-  const[nombreProducto,setNombreProducto] = useState(0)
-
+  // Obtener los productos de la tienda cuando el componente se monta o cuando cambia el estado de recarga
   useEffect(() => {
-    getProductosByTienda(id,setproductostienda)
-  }, [id, reload]);
+    getProductosByTienda(id, setproductostienda); // Obtener los productos de la tienda según el ID
+  }, [id, reload]); // Las dependencias incluyen el ID de la tienda y el estado de recarga
 
+  // Definir las columnas para la tabla de productos
   const columns = [
-    { title: "Productosa", key: "nombre", dataIndex:"nombre", align: "center" },
     {
-      title: "Stock", key: "stock", align: "center", dataIndex:"stock", defaultSortOrder: "ascend",
-      onCell: (record) => ({
-          style: {
-            background: record.stock >= 50 ? 'green' :
-            record.stock <= 20 ? '#f54242' :
-            '#FCFB77',  
-            color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
-            padding: "10px"
-          }})
+      title: "Producto", // Título de la columna para el nombre del producto
+      key: "nombre",
+      dataIndex: "nombre", // Mapear la columna al campo "nombre" en los datos
+      align: "center", // Alinear el texto al centro
     },
-    { title: "Precio", key:"precioBase", dataIndex:"precioBase", align:"center", render: (text) => `S/ ${text}` },
-    { title: "Descuento", dataIndex:"descuento", key:"descuento", align:"center",render: (text) => `${text}%`,
+    {
+      title: "Stock", // Título de la columna para el stock
+      key: "stock", 
+      align: "center",
+      dataIndex: "stock", // Mapear la columna al campo "stock" en los datos
+      defaultSortOrder: "ascend", // Orden de clasificación por defecto
+      // Estilo de la celda basado en los niveles de stock
       onCell: (record) => ({
         style: {
-          background: record.descuento <= 10 ? 'green' :
-          record.descuento >= 20 ? '#f54242' :
-          '#FCFB77',  
-          color: record.descuento <= 10 || record.descuento >= 20 ? "white" : "black",
-          padding: "10px"
-        }}),
+          background: record.stock >= 50 ? 'green' : // Verde para stock >= 50
+            record.stock <= 20 ? '#f54242' : // Rojo para stock <= 20
+            '#FCFB77', // Amarillo para stock intermedio
+          color: record.stock <= 20 || record.stock >= 50 ? "white" : "black", // Ajustar el color del texto basado en el stock
+          padding: "10px",
+        },
+      }),
     },
     {
-      title:"Ver mas", dataIndex:"producto_id", key:"vermas", align:"center",
-      render:(text, record) =>{
-        return(
+      title: "Precio", // Título de la columna para el precio
+      key: "precioBase", 
+      dataIndex: "precioBase", // Mapear la columna al campo "precioBase" en los datos
+      align: "center",
+      render: (text) => `S/ ${text}`, // Formatear el precio como "S/ [precio]"
+    },
+    {
+      title: "Descuento", // Título de la columna para el descuento
+      dataIndex: "descuento", 
+      key: "descuento", 
+      align: "center",
+      render: (text) => `${text}%`, // Mostrar el descuento como porcentaje
+      // Estilo de la celda basado en el nivel de descuento
+      onCell: (record) => ({
+        style: {
+          background: record.descuento <= 10 ? 'green' : // Verde para descuento <= 10%
+            record.descuento >= 20 ? '#f54242' : // Rojo para descuento >= 20%
+            '#FCFB77', // Amarillo para descuento intermedio
+          color: record.descuento <= 10 || record.descuento >= 20 ? "white" : "black", // Ajustar el color del texto basado en el descuento
+          padding: "10px",
+        },
+      }),
+    },
+    {
+      title: "Ver más", // Título de la columna para el botón "Ver más"
+      dataIndex: "producto_id", 
+      key: "vermas", 
+      align: "center",
+      // Renderizar el botón de "Ver más" para cada producto
+      render: (text, record) => {
+        return (
           <Button type="primary" block
-          onClick= {() => {
-            setIdP(text)
-            setNombreProducto(record.nombre)
-            setOpenTiendaDetalleProducto(true)
-          }}
-          >+</Button>
-        )
-      }
+            onClick={() => {
+              setIdP(text); // Establecer el ID del producto seleccionado
+              setNombreProducto(record.nombre); // Establecer el nombre del producto seleccionado
+              setOpenTiendaDetalleProducto(true); // Abrir el modal de detalles del producto
+            }}
+          >
+            +
+          </Button>
+        );
+      },
     },
   ];
 
   return (
-    <> 
-      <Table columns={columns}
-      pagination={{ pageSize: 5 }}
-      bordered
-      dataSource={productostienda.map((item, index) => ({ ...item, key: index }))}
-      rowKey={(record) => record.producto_id}
+    <>
+      {/* Tabla que muestra la lista de productos para la tienda seleccionada */}
+      <Table 
+        columns={columns} // Pasar la definición de columnas
+        pagination={{ pageSize: 5 }} // Establecer paginación con 5 elementos por página
+        bordered // Añadir borde a la tabla
+        dataSource={productostienda.map((item, index) => ({ ...item, key: index }))} // Mapear los datos con claves únicas
+        rowKey={(record) => record.producto_id} // Definir la clave única de cada fila
       />
 
+      {/* Modal para mostrar los detalles del producto */}
       <ProductoDetalleModal
-      openModal = {OpenTiendaDetalleProducto}
-      closeModal={setOpenTiendaDetalleProducto}
-      id={id}
-      idp={idp}
-      nombreProducto={nombreProducto}
+        openModal={OpenTiendaDetalleProducto} // Visibilidad del modal
+        closeModal={setOpenTiendaDetalleProducto} // Función para cerrar el modal
+        id={id} // Pasar el ID de la tienda
+        idp={idp} // Pasar el ID del producto seleccionado
+        nombreProducto={nombreProducto} // Pasar el nombre del producto seleccionado
       />
     </>
   );
 };
 
-export default ProductosTable;
+export default ProductosTable; // Exportar el componente ProductosTable
