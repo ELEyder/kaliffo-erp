@@ -42,12 +42,13 @@ const AlmacenProductosCards = () => {
                 >
                   <EditOutlined key="edit" color="white" />
                 </Tooltip>,
-                <Tooltip title="Ver Detalles" className={"card-view"}>
-                  {/* Aquí se podría agregar un enlace para ver los detalles */}
-                </Tooltip>,
+                // <Tooltip title="Ver Detalles" className={"card-view"}>
+                //   {/* Aquí se podría agregar un enlace para ver los detalles */}
+                // </Tooltip>,
                 <Popconfirm
                   title="ELIMINAR"
                   description="DESEA ELIMINAR A"
+                  placement="bottom"
                   okText="Confirmar"
                   onConfirm={(e) => {
                     e.stopPropagation();

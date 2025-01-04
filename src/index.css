@@ -11,6 +11,11 @@
   --font: "Poppins", sans-serif;
 }
 
+body {
+  background-color: var(--bg-2);
+  position: relative;
+  width: 100vh;
+}
 ::-webkit-scrollbar {
   width: 12px;
 }

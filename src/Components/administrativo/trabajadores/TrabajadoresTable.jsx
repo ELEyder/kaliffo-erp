@@ -4,7 +4,7 @@ import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal";
 import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
 import AddTrabajadorModal from "@CA/trabajadores/AddTrabajadorModal";
 import { getTrabajadores, deleteTrabajadorById } from "@AA/Usuario";
-import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
+import { Button, Flex, Popconfirm, Table, FloatButton } from "antd";
 
 const TrabajadoresTable = ({ tipo }) => {
   // Estados para manejar datos y modales
@@ -64,11 +64,9 @@ const TrabajadoresTable = ({ tipo }) => {
       key: "usuario_id",
       align: "center",
       render: (text) => (
-        <Row gutter={[8, 8]} justify="center" align="middle">
-          <Col>
+        <Flex gap='small' justify="center" align="middle" wrap="wrap">
             <Button
               type="primary"
-              block
               onClick={(e) => {
                 e.stopPropagation();
                 setId(text);
@@ -77,20 +75,15 @@ const TrabajadoresTable = ({ tipo }) => {
             >
               Editar
             </Button>
-          </Col>
-          <Col>
             <Button
-              block
               onClick={(e) => {
                 e.stopPropagation();
                 setId(text);
                 setOpenAddIncidencia(true);
               }}
             >
-              + Incidencias
+              + Incidencia
             </Button>
-          </Col>
-          <Col>
             <Popconfirm
               title="¿ELIMINAR?"
               description="¿Estás seguro de eliminar este usuario?"
@@ -103,7 +96,6 @@ const TrabajadoresTable = ({ tipo }) => {
               }}
             >
               <Button
-                block
                 type="primary"
                 danger
                 onClick={(e) => e.stopPropagation()}
@@ -111,20 +103,15 @@ const TrabajadoresTable = ({ tipo }) => {
                 Eliminar
               </Button>
             </Popconfirm>
-          </Col>
-        </Row>
+        </Flex>
       ),
     },
   ];
 
   // Agregar columna específica si el tipo es "ventas"
   if (tipo === "ventas") {
-    columnas.splice(3, 0, {
-      title: "Tienda",
-      dataIndex: "tienda",
-      key: "tienda",
-      align: "center",
-    });
+    columnas.splice(3, 0,
+      { title: "Tienda" , dataIndex: "tienda" , key: "tienda", align: "center" });
   }
 
   return (
@@ -137,7 +124,6 @@ const TrabajadoresTable = ({ tipo }) => {
 
       {/* Tabla de trabajadores */}
       <Table
-        size="middle"
         columns={columnas}
         pagination={{ pageSize: 5 }}
         dataSource={data}
@@ -146,6 +132,7 @@ const TrabajadoresTable = ({ tipo }) => {
           onClick: () => navigate(`/admin/trabajadores/${record.trabajador_id}`),
           style: { cursor: "pointer" },
         })}
+        scroll={{ x: 'min-content' }}
       />
 
       {/* Modales */}

@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom'; // Importamos Navigate y Ou
 import { Layout } from "antd"; // Importamos Layout de Ant Design
 import Sidebar from "./Sidebar/Sidebar"; // Importamos el componente Sidebar
 import HeaderMain from "./Header/HeaderMain"; // Importamos el componente HeaderMain
-import Footer_main from "./Footer/Footer_main"; // Importamos el componente Footer_main
+import FooterMain from "./Footer/FooterMain"; // Importamos el componente Footer_main
 import { useSession } from "../context/AuthProvider"; // Importamos el hook useSession para acceder a los datos de sesión del usuario
 
 const { Content } = Layout; // Desestructuramos Content de Layout
@@ -25,7 +25,7 @@ const Plantilla = () => {
         <Content style={{ padding: "0 24px", height: 'calc(100vh - 64px - 70px)', overflowY: 'auto' }}>
           <Outlet /> {/* Aquí se renderizan las rutas hijas */}
         </Content>
-        <Footer_main /> {/* Footer */}
+        <FooterMain /> {/* Footer */}
       </Layout>
     </Layout>
   ) : (

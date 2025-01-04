@@ -2,7 +2,6 @@ import React from "react"; // Importar React
 import { addIncidencia } from "@AA/Incidencia"; // Función para agregar una incidencia
 import { Form, Input, Modal, Select } from "antd"; // Componentes de Ant Design
 
-const { TextArea } = Input; // Desestructurar TextArea de Input para permitir texto multilínea
 
 const AddIncidenciaModal = ({
     openModal, // Estado para controlar la visibilidad del modal
@@ -64,7 +63,7 @@ const AddIncidenciaModal = ({
                     label="Descripcion" // Etiqueta para el campo
                     rules={[{ required: true, message: "Descripcion Requerida" }]} // Regla de validación: campo requerido
                 >
-                    <TextArea autoSize={{ minRows: 2, maxRows: 6 }} />
+                    <Input.TextArea autoSize={{ minRows: 2, maxRows: 6 }} />
                 </Form.Item>
 
             </Form>

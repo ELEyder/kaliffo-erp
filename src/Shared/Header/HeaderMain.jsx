@@ -11,7 +11,7 @@ const HeaderMain = ({ collapsed, setCollapsed }) => {
   const navigate = useNavigate(); // Hook para manejar la navegación
 
   return (
-    <Header>
+    <Header style={{padding: 0}}>
       <div className={styles.header}>
         {/* Botón para alternar la visibilidad de la barra lateral */}
         <Button

@@ -39,6 +39,15 @@ const DeleteTiendaModal = ({
           reload(); // Recargar los datos después de la eliminación
         }}
       >
+        <Form.Item
+          name="username" // Nombre del campo de usuario
+          style={{ display: 'none' }} // El campo se oculta visualmente
+          aria-hidden="true" // Asegura que las tecnologías de asistencia lo ignoren si es necesario
+        >
+          <Input type="text" 
+          autoComplete="username"
+          />
+        </Form.Item>
         {/* Campo de entrada para la contraseña como autorización */}
         <Form.Item
           name="password" // Nombre del campo en el formulario
@@ -49,7 +58,8 @@ const DeleteTiendaModal = ({
           }]}
         >
           <Input
-            type="password" // Tipo de entrada para ocultar los caracteres
+            type="password"
+            autoComplete="new-password"
           />
         </Form.Item>
       </Form>

@@ -13,7 +13,12 @@ const ProdRoutes = lazy(() => import("./Routers/ProdRoutes"));
 const TestView = lazy(() => import("./Views/TestView"));
 
 // Componente de carga (puedes personalizarlo)
-const Loading = () => <div>Cargando...</div>;
+const Loading = () => <div style={{
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+}}>Cargando...</div>;
 
 export const Routing = () => {
     return (

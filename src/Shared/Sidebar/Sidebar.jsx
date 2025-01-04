@@ -15,13 +15,12 @@ const Sidebar = ({ collapsed }) => {
     <>
       {/* Sidebar usando el componente Sider de Ant Design */}
       <Sider
-        style={{ height: '100vh', overflowY: 'scroll', padding: '0' }} // Estilo de la altura y el scroll
+        className={styles.sidebar} // Estilo de la altura y el scroll
         trigger={null} // Desactivamos el trigger para colapsar
         collapsible // Hace que el sidebar sea colapsable
         collapsed={collapsed} // Determina si el sidebar está colapsado o no
         width={250} // Establece el ancho cuando el sidebar no está colapsado
         breakpoint="lg" // Define el tamaño para el punto de ruptura (cuando cambia el layout)
-        className="sidebar" // Clases personalizadas
         collapsedWidth="0" // Establece el ancho cuando el sidebar está colapsado
       >
         {/* Cabecera del Sidebar */}

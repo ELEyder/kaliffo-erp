@@ -1,16 +1,13 @@
 import { Table, Button, Popconfirm, FloatButton } from "antd"; // Importar componentes de Ant Design
 import { useParams } from 'react-router-dom'; // Hook para obtener parámetros de la ruta
-import { PlusOutlined } from "@ant-design/icons"; // Icono para el botón flotante
 import React, { useState, useEffect } from "react"; // Hooks de React para manejar estado y ciclos de vida
 import { getPagosByTrabajador, deletePagoById } from "@AA/Pago"; // Funciones para obtener y eliminar pagos
-import AddPagoModal from "@CA/trabajadores/AddPagoModal"; // Modal para agregar nuevos pagos
 
 const PagosTable = () => {
   const { id } = useParams(); // Obtener el ID del trabajador desde los parámetros de la URL
 
   const [tabla, setTabla] = useState([]); // Estado para almacenar la lista de pagos
   const [reload, setReload] = useState(false); // Estado para activar recarga después de acciones (agregar/eliminar)
-  const [OpenAddPago, setOpenAddPago] = useState(false); // Estado para controlar la visibilidad del modal de agregar pago
 
   // Obtener los pagos del trabajador cuando el componente se monta o cambia el estado de recarga
   useEffect(() => {
@@ -88,22 +85,7 @@ const PagosTable = () => {
         columns={columns} // Columnas definidas anteriormente
         dataSource={tabla} // Datos de la tabla (pagos)
         pagination={{ pageSize: 5 }} // Paginación, 5 elementos por página
-      />
-
-      {/* Botón flotante para activar el modal de "Añadir Pago" */}
-      <FloatButton
-        icon={<PlusOutlined />} // Icono del botón flotante
-        type="primary" // Tipo del botón
-        tooltip={"Añadir Pago"} // Texto del tooltip
-        onClick={() => setOpenAddPago(true)} // Abrir el modal al hacer clic
-      />
-
-      {/* Modal de agregar pago, se abre al hacer clic en el botón flotante */}
-      <AddPagoModal
-        openModal={OpenAddPago} // Controlar la visibilidad del modal
-        closeModal={() => setOpenAddPago(false)} // Cerrar el modal cuando sea invocado
-        reload={() => setReload(!reload)} // Activar recarga después de agregar un pago
-        idUsuario={id} // Pasar el ID del trabajador para asociarlo con el nuevo pago
+        rowKey={'pago_id'}
       />
     </>
   );

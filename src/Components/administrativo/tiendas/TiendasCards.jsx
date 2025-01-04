@@ -35,7 +35,7 @@ const TiendasCards = () => {
           <Card 
             key={index} 
             title={tienda.tienda} // Título de la tienda
-            style={{ header: { textAlign: "center", fontSize: "22px" }, body: { textAlign: "center", width: 300, overflow: "hidden" } }} // Estilo de la tarjeta
+            style={{ overflow: "hidden" }} // Estilo de la tarjeta
             actions={[
               // Botón para editar tienda con tooltip
               <Tooltip title="Editar Tienda" className={"card-update"} onClick={(e) => {

@@ -50,7 +50,7 @@ const UpdateTiendaModal = ({ openModal, closeModal, id, reload, values }) => {
             message: "Nombre de la tienda requerida", // Mensaje de error
           }]}
         >
-          <Input /> {/* Campo de entrada para el nombre de la tienda */}
+          <Input />
         </Form.Item>
 
         {/* Campo de entrada para la dirección de la tienda */}
@@ -63,7 +63,7 @@ const UpdateTiendaModal = ({ openModal, closeModal, id, reload, values }) => {
             message: "Direccion requerida", // Mensaje de error
           }]}
         >
-          <Input /> {/* Campo de entrada para la dirección de la tienda */}
+          <Input />
         </Form.Item>
 
         {/* Campo de entrada para el número de teléfono de la tienda */}
@@ -75,7 +75,7 @@ const UpdateTiendaModal = ({ openModal, closeModal, id, reload, values }) => {
             message: "Telefono requerido", // Mensaje de error
           }]}
         >
-          <Input maxLength={9} /> {/* Campo de entrada para el teléfono con un máximo de 9 caracteres */}
+          <Input maxLength={9} />
         </Form.Item>
       </Form>
     </Modal>

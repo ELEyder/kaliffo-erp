@@ -14,8 +14,12 @@
 .buttonSidebar:hover {
     background-color: black;
 }
-@media (max-width: 480px) {
+
+@media (max-width: 616px) {
+    .header {
+        justify-content: right;
+    }
     .title {
         display: none;
     }
-}
+  }

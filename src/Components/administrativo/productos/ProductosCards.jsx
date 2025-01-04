@@ -47,6 +47,7 @@ const ProductosCards = () => {
                   <Popconfirm
                     title="ELIMINAR"
                     description="¿DESEA ELIMINAR ESTE PRODUCTO?"
+                    placement="bottom"
                     okText="Confirmar"
                     onConfirm={(e) => {
                       e.stopPropagation(); // Evita que se ejecute el click en el Card

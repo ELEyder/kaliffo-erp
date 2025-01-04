@@ -1,5 +1,4 @@
 import { Routing } from './routing'
-import { useState } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import locale from 'antd/locale/es_ES';
 import { ConfigProvider } from 'antd';

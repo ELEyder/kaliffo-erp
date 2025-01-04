@@ -1,5 +1,4 @@
 import apiClient from '../apiClient';
-import { showNotification } from "../../Shared/Notifications";
 
 /**
  * Obtiene los datos de un corte por lote ID.
@@ -33,7 +32,6 @@ export const addCorte = async (id, data) => {
   console.log(data)
   try {
     await apiClient.post(`/corte/create/array/${id}`, data, { withCredentials: true });
-    showNotification("add", "Corte añadido");
   } catch (error) {
     console.error("Error al añadir el corte:", error);
   }
@@ -91,13 +89,11 @@ export const getAddTaller = async (id, setData, form) => {
  */
 export const deleteCorte = async (id, estado) => {
   if (estado !== 1) {
-    showNotification("error", "No se puede borrar cortes en proceso");
     return;
   }
 
   try {
     await apiClient.put(`/corte/desactivar/${id}`);
-    showNotification("delete", "Corte eliminado");
   } catch (error) {
     console.error("Error al eliminar el corte:", error);
   }
@@ -140,7 +136,6 @@ export const changeStatusCorte = async (id, data = null) => {
     }));
 
     await apiClient.put(`/corte/sgte/lote/${id}`, { detalles: values }, { withCredentials: true });
-    showNotification("add", "Estado pasado");
   } catch (error) {
     console.error("Error al cambiar el estado del corte:", error);
   }
@@ -158,7 +153,6 @@ export const getTaller = async (id, values = null) => {
     }
 
     await apiClient.put(`/corte/sgte/lote/${id}`, { detalles: values });
-    showNotification("add", "Estado pasado");
   } catch (error) {
     console.error("Error al enviar los datos del taller:", error);
   }
