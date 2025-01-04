@@ -9,6 +9,7 @@ const TiendasView = () => {
       <Divider style={{ textTransform: "uppercase" }}>TIENDAS</Divider>
       {/* Componente que muestra las tarjetas de tiendas */}
       <TiendasCards />
+      <Divider></Divider>
     </>
   );
 };

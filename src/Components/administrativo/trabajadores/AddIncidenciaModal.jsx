@@ -63,7 +63,7 @@ const AddIncidenciaModal = ({
                     label="Descripcion" // Etiqueta para el campo
                     rules={[{ required: true, message: "Descripcion Requerida" }]} // Regla de validación: campo requerido
                 >
-                    <Input.TextArea autoSize={{ minRows: 2, maxRows: 6 }} />
+                    <Input/>
                 </Form.Item>
 
             </Form>

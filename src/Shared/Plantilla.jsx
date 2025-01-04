@@ -22,7 +22,7 @@ const Plantilla = () => {
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} /> {/* Sidebar */}
       <Layout>
         <HeaderMain collapsed={collapsed} setCollapsed={setCollapsed} /> {/* Header */}
-        <Content style={{ padding: "0 24px", height: 'calc(100vh - 64px - 70px)', overflowY: 'auto' }}>
+        <Content style={{ padding: "0 24px", height: 'calc(100vh - 64px - 70px)', overflowY: 'auto', position: 'relative' }}>
           <Outlet /> {/* Aquí se renderizan las rutas hijas */}
         </Content>
         <FooterMain /> {/* Footer */}
