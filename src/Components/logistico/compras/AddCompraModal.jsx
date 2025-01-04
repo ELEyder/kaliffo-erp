@@ -15,15 +15,16 @@ import {
   AutoComplete,
 } from "antd";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { getTiendas } from "@AA/Tienda";
-import { addCompra, getEmpresas, getProductos } from "@AL/Compras";
+import { getTiendas } from "@AA/Tienda"; // Obtiene la lista de tiendas
+import { addCompra, getEmpresas, getProductos } from "@AL/Compras"; // Funciones para agregar compra, obtener empresas y productos
 
 const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
   const [form] = Form.useForm();
-  const [tiendas, setTiendas] = useState([]);
-  const [empresas, setEmpresas] = useState([]);
-  const [productos, setProductos] = useState([]);
+  const [tiendas, setTiendas] = useState([]); // Estado para almacenar las tiendas
+  const [empresas, setEmpresas] = useState([]); // Estado para almacenar las empresas
+  const [productos, setProductos] = useState([]); // Estado para almacenar los productos
 
+  // Calcula el total y la cantidad total de los productos
   const calculoTotal = (detalle) => {
     const cantidad = detalle.reduce(
       (acc, curr) => acc + (curr?.cantidad || 0),
@@ -32,16 +33,17 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
     const total = detalle.reduce((acc, curr) => acc + (curr?.total || 0), 0);
 
     form.setFieldsValue({
-      cantidad_total: cantidad,
-      total_neto: total,
+      cantidad_total: cantidad, // Actualiza el campo de cantidad total
+      total_neto: total, // Actualiza el campo de total neto
     });
   };
 
+  // Efecto que se ejecuta al montar el componente para obtener tiendas, empresas y productos
   useEffect(() => {
-    getTiendas(setTiendas);
-    getEmpresas(setEmpresas);
-    getProductos(setProductos);
-    console.log(empresas)
+    getTiendas(setTiendas); // Obtiene las tiendas
+    getEmpresas(setEmpresas); // Obtiene las empresas
+    getProductos(setProductos); // Obtiene los productos
+    console.log(empresas); // Muestra en consola las empresas (puedes eliminarlo después)
   }, []);
 
   return (
@@ -49,45 +51,43 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
       forceRender
       getContainer={false}
       title={`Añadir nueva compra`}
-      open={openModal}
-      onCancel={() => closeModal(false)}
+      open={openModal} // Controla la visibilidad del modal
+      onCancel={() => closeModal(false)} // Cierra el modal
       style={{ textTransform: "uppercase" }}
-      okText="Añadir"
-      onOk={form.submit}
-      centered={true}
-      width={800}
+      okText="Añadir" // Texto del botón de acción
+      onOk={form.submit} // Ejecuta la acción de agregar compra al hacer clic en el botón "Añadir"
+      centered={true} // Centra el modal
+      width={800} // Ancho del modal
     >
       <Form
         style={{ maxWidth: 700, margin: "0 auto", marginTop: "30px" }}
         size="large"
-        form={form}
+        form={form} // Vincula el formulario al estado de Ant Design
         layout="vertical"
         labelAlign="left"
         id="formulariocrear"
         onFinish={async (values) => {
-          await addCompra(values);
-          setReload(!reload);
-          closeModal(false);
-          form.resetFields();
+          await addCompra(values); // Agrega la compra
+          setReload(!reload); // Fuerza la recarga de los datos
+          closeModal(false); // Cierra el modal
+          form.resetFields(); // Resetea los campos del formulario
         }}
-        initialValues={{ detalle: [{}] }}
+        initialValues={{ detalle: [{}] }} // Inicializa el formulario con un producto por defecto
         onValuesChange={(changedValues, allValues) => {
-          calculoTotal(allValues.detalle);
+          calculoTotal(allValues.detalle); // Calcula el total cada vez que cambian los valores
         }}
       >
+        {/* Sección para los datos de la compra */}
         <Row gutter={24} style={{ textAlign: "center" }}>
           <Col span={17}>
-            <Card
-              title="Datos compra"
-              style={{ width: "100%", textAlign: "center" }}
-            >
+            <Card title="Datos compra" style={{ width: "100%", textAlign: "center" }}>
               <Row gutter={16}>
+                {/* Selección de tienda */}
                 <Col span={12}>
                   <Form.Item
                     label="Tienda"
                     name="tienda"
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
+                    rules={[{ required: true, message: "Obligatorio" }]}>
                     <Select
                       options={tiendas.map((tienda) => ({
                         value: tienda.tienda_id,
@@ -97,12 +97,13 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
                     />
                   </Form.Item>
                 </Col>
+
+                {/* Selección de empresa */}
                 <Col span={12}>
                   <Form.Item
                     label="Empresa"
                     name="empresa"
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
+                    rules={[{ required: true, message: "Obligatorio" }]}>
                     <AutoComplete
                       options={empresas.map((empresa) => ({
                         value: empresa.empresa_proveedor,
@@ -115,21 +116,20 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
                   </Form.Item>
                 </Col>
               </Row>
+
+              {/* Fecha de compra */}
               <Form.Item
                 label="Fecha Compra"
                 name="fecha_compra"
-                rules={[{ required: true, message: "Obligatorio" }]}
-              >
+                rules={[{ required: true, message: "Obligatorio" }]}>
                 <DatePicker style={{ width: "100%" }} />
               </Form.Item>
             </Card>
           </Col>
 
+          {/* Sección de datos totales */}
           <Col span={7} style={{ textAlign: "center" }}>
-            <Card
-              title="Datos Total"
-              style={{ width: "100%", textAlign: "center" }}
-            >
+            <Card title="Datos Total" style={{ width: "100%", textAlign: "center" }}>
               <Form.Item label="Cantidad" name="cantidad_total">
                 <InputNumber placeholder="Cantidad" style={{ width: "100%" }} readOnly />
               </Form.Item>
@@ -142,6 +142,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
 
         <Divider style={{ borderColor: "black" }} />
 
+        {/* Lista de productos */}
         <Form.List name="detalle">
           {(fields, { add, remove }) => (
             <>
@@ -155,11 +156,11 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
                   }}
                   align="baseline"
                 >
+                  {/* Selección de producto */}
                   <Form.Item
                     {...restField}
                     name={[name, "producto"]}
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
+                    rules={[{ required: true, message: "Obligatorio" }]}>
                     <AutoComplete
                       style={{ width: "240px" }}
                       placeholder="Nombre del Producto"
@@ -173,22 +174,23 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
                     />
                   </Form.Item>
 
+                  {/* Cantidad del producto */}
                   <Form.Item
                     {...restField}
                     name={[name, "cantidad"]}
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
+                    rules={[{ required: true, message: "Obligatorio" }]}>
                     <InputNumber placeholder="Cantidad" style={{ width: "100%" }} />
                   </Form.Item>
 
+                  {/* Total del producto */}
                   <Form.Item
                     {...restField}
                     name={[name, "total"]}
-                    rules={[{ required: true, message: "Obligatorio" }]}
-                  >
+                    rules={[{ required: true, message: "Obligatorio" }]}>
                     <InputNumber placeholder="Total" style={{ width: "100%" }} />
                   </Form.Item>
 
+                  {/* Botón para eliminar producto */}
                   {fields.length > 1 && (
                     <MinusCircleOutlined onClick={() => remove(name)} />
                   )}
@@ -197,7 +199,7 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
               <Form.Item>
                 <Button
                   type="dashed"
-                  onClick={() => add()}
+                  onClick={() => add()} // Añadir un nuevo producto a la lista
                   block
                   icon={<PlusOutlined />}
                   style={{ marginTop: "10px" }}
