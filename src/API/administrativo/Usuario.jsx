@@ -129,7 +129,7 @@ export const getTrabajadoresTienda = async (id, setTabla) => {
 // Completar formulario de actualización de Trabajador
 export const setUpdateTrabajador = async (id, form, seteadorO) => {
   try {
-    const response = await apiClient.get(`/Trabajador/${id}`);
+    const response = await apiClient.get(`/trabajador/${id}`);
     const data = response.data;
     seteadorO(data);
     form.setFieldsValue({
@@ -141,6 +141,7 @@ export const setUpdateTrabajador = async (id, form, seteadorO) => {
       ["fecha_nacimiento"]: moment(data.fecha_nacimiento),
       ["tienda_id"]: data.tienda_id,
     });
+    console.log("Data:", response)
   } catch (error) {
     console.log("Error al obtener los detalles del Trabajador", error);
   }

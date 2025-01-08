@@ -60,8 +60,8 @@ const TrabajadoresTable = ({ tipo }) => {
     },
     {
       title: "Opciones",
-      dataIndex: "usuario_id",
-      key: "usuario_id",
+      dataIndex: "trabajador_id",
+      key: "trabajador_id",
       align: "center",
       render: (text) => (
         <Flex gap='small' justify="center" align="middle" wrap="wrap">

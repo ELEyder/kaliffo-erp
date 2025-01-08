@@ -135,8 +135,8 @@ const UpdateTrabajadorModal = ({
           </Col>
         </Row>
 
-        {/* Campo oculto para usuario_id */}
-        <Form.Item name="usuario_id" noStyle>
+        {/* Campo oculto para trabajador_id */}
+        <Form.Item name="trabajador_id" noStyle>
           <Input type="hidden" />
         </Form.Item>
       </Form>
