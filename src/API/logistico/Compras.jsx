@@ -7,7 +7,7 @@ import { showNotification } from "../../Shared/Notifications";
  */
 export const getCompras = async (setCompras) => {
   try {
-    const { data } = await apiClient.get("/compras");
+    const { data } = await apiClient.get("/compra");
     setCompras(data);
   } catch (error) {
     console.error("Error al obtener las compras:", error);
@@ -16,11 +16,11 @@ export const getCompras = async (setCompras) => {
 
 /**
  * Obtiene el detalle de una compra por su ID y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/compras/detalle/1
+ * URL de ejemplo: http://localhost:3000/compra/detalle/1
  */
 export const getComprasDetalle = async (setCompraDetalle, id) => {
   try {
-    const { data } = await apiClient.get(`/compras/detalle/${id}`);
+    const { data } = await apiClient.get(`/compra/detalle/${id}`);
     setCompraDetalle(data);
   } catch (error) {
     console.error("Error al obtener el detalle de la compra:", error);
@@ -29,11 +29,11 @@ export const getComprasDetalle = async (setCompraDetalle, id) => {
 
 /**
  * Obtiene la lista de empresas y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/compras/empresas
+ * URL de ejemplo: http://localhost:3000/compra/empresas
  */
 export const getEmpresas = async (setEmpresas) => {
   try {
-    const { data } = await apiClient.get("/compras/empresas");
+    const { data } = await apiClient.get("/compra/empresas");
     setEmpresas(data);
   } catch (error) {
     console.error("Error al obtener las empresas:", error);
@@ -42,11 +42,11 @@ export const getEmpresas = async (setEmpresas) => {
 
 /**
  * Obtiene la lista de productos y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/compras/productos
+ * URL de ejemplo: http://localhost:3000/compra/productos
  */
 export const getProductos = async (setProductos) => {
   try {
-    const { data } = await apiClient.get("/compras/productos");
+    const { data } = await apiClient.get("/compra/productos");
     setProductos(data);
   } catch (error) {
     console.error("Error al obtener los productos:", error);
@@ -55,7 +55,7 @@ export const getProductos = async (setProductos) => {
 
 /**
  * Agrega una nueva compra al servidor.
- * URL de ejemplo: http://localhost:3000/compras/create
+ * URL de ejemplo: http://localhost:3000/compra/create
  */
 export const addCompra = async (values) => {
   const compra = {
@@ -68,7 +68,7 @@ export const addCompra = async (values) => {
   };
 
   try {
-    await apiClient.post("/compras/create", compra);
+    await apiClient.post("/compra/create", compra);
     showNotification("add", "Compra añadida exitosamente");
   } catch (error) {
     showNotification("error", "Error al añadir la compra");
@@ -77,11 +77,11 @@ export const addCompra = async (values) => {
 
 /**
  * Elimina una compra por su ID.
- * URL de ejemplo: http://localhost:3000/compras/delete/1
+ * URL de ejemplo: http://localhost:3000/compra/delete/1
  */
 export const eliminarCompra = async (compra_id) => {
   try {
-    await apiClient.delete(`/compras/delete/${compra_id}`);
+    await apiClient.delete(`/compra/delete/${compra_id}`);
     showNotification("delete", "Compra eliminada exitosamente");
     return true;
   } catch (error) {
@@ -91,7 +91,7 @@ export const eliminarCompra = async (compra_id) => {
 
 /**
  * Actualiza una compra por su ID con los valores nuevos.
- * URL de ejemplo: http://localhost:3000/compras/update/1
+ * URL de ejemplo: http://localhost:3000/compra/update/1
  */
 export const updateCompra = async (id, values, originales) => {
   const valoresNuevos = {};
@@ -124,9 +124,9 @@ export const updateCompra = async (id, values, originales) => {
   }
 
   try {
-    await apiClient.put(`/compras/update/${id}`, valoresNuevos);
-    showNotification("update", "Compra actualizada exitosamente");
+    await apiClient.put(`/compra/update/${id}`, valoresNuevos);
+    console.log("Compra actualizada exitosamente");
   } catch (error) {
-    showNotification("error", "Error al actualizar la compra");
+    console.log("Error al actualizar la compra");
   }
 };

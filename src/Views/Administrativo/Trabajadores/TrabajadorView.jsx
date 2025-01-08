@@ -13,7 +13,7 @@ const Trabajador = () => {
       label: "Incidencias",
       children: <IncidenciasTable />, // Componente que muestra las incidencias
     },
-    { key: "Horario", label: "Horario", children: <HorariosTable /> }, // Componente que muestra los horarios
+    // { key: "Horario", label: "Horario", children: <HorariosTable /> }, // Componente que muestra los horarios
     { key: "Pagos", label: "Pagos", children: <PagosTable /> }, // Componente que muestra los pagos
   ];
 

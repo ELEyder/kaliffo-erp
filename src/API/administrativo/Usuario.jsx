@@ -141,7 +141,6 @@ export const setUpdateTrabajador = async (id, form, seteadorO) => {
       ["fecha_nacimiento"]: moment(data.fecha_nacimiento),
       ["tienda_id"]: data.tienda_id,
     });
-    console.log("Data:", response)
   } catch (error) {
     console.log("Error al obtener los detalles del Trabajador", error);
   }
