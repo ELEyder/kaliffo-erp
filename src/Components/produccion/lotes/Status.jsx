@@ -35,6 +35,7 @@ const Status = ({ fase, status, reload, setReload }) => {
         await setReload(!reload);  // Recarga los datos
       } else if (status == 2) {
         setOpenChangeStatus(true);  // Abre el modal para cambiar estado en Lavandería si está en estado 2
+        setReload(!reload);
       }
     }
     // Fase Acabados

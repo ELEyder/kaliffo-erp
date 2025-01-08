@@ -73,7 +73,7 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
             },
           ]}
         >
-          <InputNumber suffix="M" style={{ width: "100%" }} min={0} /> {/* Input para metraje con un sufijo "M" */}
+          <InputNumber suffix="M" style={{ width: "100%" }} min={0} />
         </Form.Item>
 
         {/* Campo Productos */}

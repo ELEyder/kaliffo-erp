@@ -31,7 +31,8 @@ export const addCorte = async (id, data) => {
   }));
   console.log(data)
   try {
-    await apiClient.post(`/corte/create/array/${id}`, data, { withCredentials: true });
+    var response = await apiClient.post(`/corte/create/array/${id}`, data);
+    console.log(response)
   } catch (error) {
     console.error("Error al añadir el corte:", error);
   }

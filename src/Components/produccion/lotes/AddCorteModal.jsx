@@ -72,7 +72,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
                     label="Cantidad Enviada"
                     rules={[{ required: true, message: "Cantidad enviada es requerida" }]} // Asegura que el campo sea obligatorio
                   >
-                    <InputNumber style={{ width: "100%" }} min={1} /> {/* Permite ingresar la cantidad enviada */}
+                    <InputNumber style={{ width: "100%" }} min={1} /> 
                   </Form.Item>
 
                   {/* Campo Talla */}
@@ -81,7 +81,7 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
                     label="Talla"
                     rules={[{ required: true, message: "Talla es requerida" }]} // Asegura que el campo sea obligatorio
                   >
-                    <InputNumber style={{ width: "100%" }} /> {/* Permite ingresar la talla */}
+                    <InputNumber style={{ width: "100%" }} />
                   </Form.Item>
 
                   {/* Campo Taller */}
