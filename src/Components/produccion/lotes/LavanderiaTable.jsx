@@ -6,6 +6,7 @@ import AddLavanderiaModal from "@CP/lotes/AddLavanderiaModal";
 
 const Lavanderia = ({ status, reload, setReload }) => {
   const { id } = useParams();
+  const [cortesT,setcortesT]=useState([]);
   const [data, setData] = useState([]);
   const [openAddModal, setOpenAddModal] = useState(false);
 
@@ -45,11 +46,11 @@ const Lavanderia = ({ status, reload, setReload }) => {
       align: "center",
     },
   ];
-  console.log(estado)
+  
   return (
     <>
       <Table dataSource={data} columns={columns} rowKey="corte_id" />
-      {estado ? (
+      {estado && cortesT>0 ? (
         <>
           <FloatButton
             style={{ insetInlineStart: 270 }}

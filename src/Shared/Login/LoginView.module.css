@@ -130,21 +130,22 @@ div.yeti {
 
 @keyframes view {
     0% {
-        transform: translateY(0px); /* Comienza en la posición inicial */
+      transform: translateY(0) translateY(0) rotate(0deg);
     }
     100% {
-        transform: translateY(4px); /* Se mueve 1px hacia abajo */
+      transform: translateX(15px) translateY(-8px) rotate(10deg);
     }
-}
-
-@keyframes noView {
+  }
+  
+  @keyframes noView {
     0% {
-        transform: translateY(4px); /* Comienza 1px abajo */
+      transform: translateX(15px) translateY(-8px) rotate(10deg);
     }
     100% {
-        transform: translateY(0px); /* Vuelve a la posición inicial */
+      transform: translateY(0) translateY(0) rotate(0deg);
     }
-}
+  }
+  
 
 
 @media (max-width: 1390px) {

@@ -10,12 +10,12 @@ import {
   Col,
   Flex,
 } from "antd";
-import { getCorte } from "@AP/Corte";
+import { getCorteDiferido } from "@AP/Corte";
 import { getColores } from "@AA/Color";
 import { addLavanderia } from "@AP/Lavanderia";
 import { useParams } from "react-router-dom";
 
-const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
+const AddLavanderiaModal = ({ openModal, closeModal, reload,setCortesT }) => {
   const { id } = useParams();
   const [form] = Form.useForm();
   const [cortes, setCortes] = useState([]);
@@ -23,8 +23,9 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
   const [maxValues, setMaxValues] = useState({}); // Estado para valores máximos dinámicos
 
   useEffect(() => {
-    getCorte(id, setCortes);
+    getCorteDiferido(id, setCortes);
     getColores(setColores);
+    setCortesT(cortes.length)
   }, [id]);
 
   const handleCorteChange = (fieldKey, corteId) => {
@@ -54,7 +55,7 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
       onOk={form.submit}
       okText="Añadir"
       centered
-      width={550}
+      width={645}
     >
       <Form
         form={form}

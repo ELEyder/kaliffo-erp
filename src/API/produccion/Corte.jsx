@@ -20,6 +20,21 @@ export const getCorte = async (id, setData) => {
   }
 };
 
+export const getCorteDiferido = async (id, setData) => {
+  try {
+    const response = await apiClient.get(`/corte/lote/${id}?tipo=diferido`, { withCredentials: true });
+
+    setData(response.data || []);
+  } catch (error) {
+    if (error.response?.status === 404) {
+      setData([]);
+    } else {
+      console.error("Error al obtener el corte:", error);
+      setData([]);
+    }
+  }
+};
+
 /**
  * Agrega un nuevo corte para un lote específico.
  * URL de ejemplo: http://localhost:3000/corte/create/array/1

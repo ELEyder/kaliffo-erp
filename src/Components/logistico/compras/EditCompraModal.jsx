@@ -11,12 +11,12 @@ import {
   DatePicker,
   InputNumber,
 } from "antd";
-import { getComprasDetalle, getEmpresas, getProductos,updateCompra } from "@AL/Compras";
+import { getComprasDetalle, getEmpresas, getProductos, updateCompra } from "@AL/Compras";
 import moment from "moment";
 
-const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
+const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
   const [form] = Form.useForm();
-  const[valoresO,setValoresO] =useState({});
+  const [valoresO, setValoresO] = useState({});
   const [empresas, setEmpresas] = useState([]);
   const [productos, setProductos] = useState([]);
 
@@ -32,27 +32,27 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
     );
 
     form.setFieldsValue({
-        cantidad: totalCantidad,
-        total: totalNeto,
+      cantidad: totalCantidad,
+      total: totalNeto,
     });
   };
 
   useEffect(() => {
     if (idC) {
       getComprasDetalle((data) => {
-        setValoresO(data)
+        setValoresO(data);
         form.setFieldsValue({
           tienda: data.tienda,
           empresa_proveedor: data.empresa_proveedor,
-          fecha_compra: moment(data.fecha_compra),
+          fecha_compra: data.fecha_compra ? moment(data.fecha_compra) : undefined,
           cantidad: data.cantidad,
           total: data.total,
-          detalle: data.detalle.map((item) => ({
+          detalle: data.detalle?.map((item) => ({
             producto: item.producto,
             cantidad: item.cantidad,
             total: item.total,
             compraDetalle_id: item.compraDetalle_id,
-          })),
+          })) || [],
         });
       }, idC);
       getEmpresas(setEmpresas);
@@ -64,7 +64,7 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
     <Modal
       title={`Editar Compra ${idC}`}
       open={openModal}
-      style={{textAlign:"center"}}
+      style={{ textAlign: "center" }}
       onCancel={() => closeModal(false)}
       onOk={form.submit}
       okText="Guardar"
@@ -76,9 +76,9 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
         size="large"
         layout="vertical"
         onFinish={async (values) => {
-            await updateCompra(idC,values,valoresO)
-            reload()
-            closeModal(false)
+          await updateCompra(idC, values, valoresO);
+          reload();
+          closeModal(false);
         }}
         onValuesChange={(changedValues, allValues) => {
           if (changedValues.detalle) {
@@ -88,26 +88,24 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
       >
         <Row gutter={24}>
           <Col span={17}>
-            <Card  title="Datos de la Compra">
+            <Card title="Datos de la Compra">
               <Row gutter={16}>
                 <Col span={12}>
-                  <Form.Item  label="Tienda" name="tienda">
-                    <Input style={{textAlign:"center"}} readOnly />
+                  <Form.Item label="Tienda" name="tienda">
+                    <Input style={{ textAlign: "center" }} readOnly />
                   </Form.Item>
                 </Col>
 
                 <Col span={12}>
                   <Form.Item label="Empresa" name="empresa_proveedor">
                     <AutoComplete
-                    style={{alignItems:"center"}}
+                      style={{ alignItems: "center" }}
                       options={empresas.map((empresa) => ({
                         value: empresa.empresa_proveedor,
                         label: empresa.empresa_proveedor,
                       }))}
                       filterOption={(inputValue, option) =>
-                        option?.value
-                          ?.toUpperCase()
-                          .indexOf(inputValue.toUpperCase()) !== -1
+                        option?.value?.toUpperCase().includes(inputValue.toUpperCase())
                       }
                     />
                   </Form.Item>
@@ -115,14 +113,14 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
               </Row>
 
               <Form.Item label="Fecha Compra" name="fecha_compra">
-                <DatePicker  style={{ width: "100%" }} />
+                <DatePicker style={{ width: "100%" }} />
               </Form.Item>
             </Card>
           </Col>
 
           <Col span={7}>
             <Card title="Totales">
-              <Form.Item label="Cantidad Total"  name="cantidad">
+              <Form.Item label="Cantidad Total" name="cantidad">
                 <InputNumber readOnly style={{ width: "100%" }} />
               </Form.Item>
               <Form.Item label="Total Neto" name="total">
@@ -134,10 +132,9 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
 
         <Divider />
 
-        {/* Listado de detalles */}
         <div>
           {form.getFieldValue("detalle")?.map((detalle, index) => (
-            <Row key={index} gutter={16}>
+            <Row key={detalle.compraDetalle_id || index} gutter={16}>
               <Col span={12}>
                 <Form.Item
                   label="Producto"
@@ -170,7 +167,6 @@ const EditCompraModal = ({ openModal, closeModal, idC,reload }) => {
                   <InputNumber min={0} style={{ width: "100%" }} />
                 </Form.Item>
               </Col>
-              {/* Campo oculto para compraDetalle_id */}
               <Form.Item
                 name={["detalle", index, "compraDetalle_id"]}
                 initialValue={detalle.compraDetalle_id}

@@ -198,7 +198,7 @@ const Yeti = ({styles, isFocused, isPasswordVisible }) => (
       />
       <g
       id="brazoDerecho"
-      className={isFocused ? styles.downAnimation : styles.upAnimation}
+      className={isFocused ? styles.upAnimation : styles.downAnimation}
         >
       <g
         style={{
@@ -223,7 +223,7 @@ const Yeti = ({styles, isFocused, isPasswordVisible }) => (
           }}
           transform="matrix(-.2758 -.08852 -.08852 .2758 116.113 111.111)"
         >
-          <path
+          <path XD="XDDDDDDDDDDDDDDD"
             d="m52.761 71.04-.001 2.504c-.002 1.044-.004 2.09-.01 3.135l-.014 1.361h29.312c2.738 0 4.942-1.56 4.942-3.5 0-1.938-2.204-3.5-4.942-3.5z"
             style={{
               fill: "#ddf1f8",
@@ -303,7 +303,7 @@ const Yeti = ({styles, isFocused, isPasswordVisible }) => (
       </g>
       <g
         id="brazoIzquierdo"
-        className={isFocused ? styles.downAnimation : styles.upAnimation}
+        className={isFocused ? styles.upAnimation : styles.downAnimation}
       >
 
       <path

@@ -9,7 +9,7 @@ import styles from "./LoginView.module.css";
 const LoginView = () => {
     const navigate = useNavigate();
     const { login } = useSession();
-    const [isFocused, setIsFocused] = useState(true);
+    const [isFocused, setIsFocused] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [formData, setFormData] = useState({ username: "", password: "" });
 
@@ -44,7 +44,7 @@ const LoginView = () => {
                     <div className={styles.yeti}>
                         <Yeti
                             styles={styles}
-                            isFocused={!isFocused}
+                            isFocused={isFocused}
                             isPasswordVisible={isPasswordVisible}
                         />
                     </div>
@@ -65,7 +65,17 @@ const LoginView = () => {
                         />
                     </div>
                     {/* Campo de contraseña */}
-                    <div className={styles.formGroup}>
+                    <div
+                        className={styles.formGroup}
+                        tabIndex={0} // Hace que el contenedor sea focuseable
+                        onFocus={() => setIsFocused(true)} // Activa el estado cuando se enfoca
+                        onBlur={(e) => {
+                            // Desactiva el estado solo si el foco sale del contenedor y sus hijos
+                            if (!e.currentTarget.contains(e.relatedTarget)) {
+                                setIsFocused(false);
+                            }
+                        }}
+                    >
                         <label htmlFor="password" className={styles.label}>
                             Contraseña:
                         </label>
@@ -76,10 +86,8 @@ const LoginView = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                onFocus={() => setIsFocused(false)}
-                                onBlur={() => setIsFocused(true)}
                                 className={styles.input}
-                                autoComplete="new-password"
+                                autoComplete="off"
                                 required
                             />
                             <button

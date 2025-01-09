@@ -10,6 +10,7 @@ const GenerarVentaRouters = lazy(() => import("./Routers/GenerarVentaRouters"));
 const AdminRoutes = lazy(() => import("./Routers/AdminRoutes"));
 const LogiticoRouters = lazy(() => import("./Routers/LogiticoRouters"));
 const ProdRoutes = lazy(() => import("./Routers/ProdRoutes"));
+const TestView = lazy(() => import("./Views/TestView"));
 
 // Componente de carga (puedes personalizarlo)
 const Loading = () => <div>Cargando...</div>;
@@ -26,6 +27,7 @@ export const Routing = () => {
                     <Route path="/generar/venta/*" element={<GenerarVentaRouters />} />
                 </Route>
                 <Route path="*" element={<ErrorView />} />
+                <Route path="/test" element={<TestView />} />
             </Routes>
         </Suspense>
     );
