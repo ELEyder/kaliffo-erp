@@ -129,7 +129,7 @@ export const getTrabajadoresTienda = async (id, setTabla) => {
 // Completar formulario de actualización de Trabajador
 export const setUpdateTrabajador = async (id, form, seteadorO) => {
   try {
-    const response = await apiClient.get(`/Trabajador/${id}`);
+    const response = await apiClient.get(`/trabajador/${id}`);
     const data = response.data;
     seteadorO(data);
     form.setFieldsValue({

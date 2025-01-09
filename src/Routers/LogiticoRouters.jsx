@@ -6,7 +6,12 @@ const ComprasView = lazy(() => import("@V/Logistico/Compras/ComprasView"));
 const AlmacenProductos = lazy(() => import("@V/Logistico/AlmacenProductos/AlmacenProductos"));
 
 // Componente de carga
-const Loading = () => <div>Cargando...</div>;
+const Loading = () => <div style={{
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+}}><img src="/img/loading/loading.gif"/> </div>;
 
 const LogiticoRouters = () => (
     <Suspense fallback={<Loading />}>

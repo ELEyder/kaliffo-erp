@@ -1,3 +1,5 @@
+import apiClient from '../apiClient';
+
 /**
  * Obtiene la lista de empresas relacionadas con las telas.
  * URL de ejemplo: http://localhost:3000/telas/empresas

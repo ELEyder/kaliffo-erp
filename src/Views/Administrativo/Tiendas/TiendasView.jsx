@@ -5,8 +5,11 @@ import { Divider } from "antd";
 const TiendasView = () => {
   return (
     <>
-      <Divider>TIENDAS</Divider>
-      <TiendasCards/>
+      {/* Encabezado con un divisor estilizado para "TIENDAS" */}
+      <Divider style={{ textTransform: "uppercase" }}>TIENDAS</Divider>
+      {/* Componente que muestra las tarjetas de tiendas */}
+      <TiendasCards />
+      <Divider></Divider>
     </>
   );
 };

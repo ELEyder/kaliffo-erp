@@ -1,3 +1,4 @@
+// ESTA VISTA ES SOLO PARA TESTEO, PRUEBA LA RUTA "test" PARA VISUALIZAR ESTE CONTENIDO
 import React, { useState } from "react";
 
 const FocusableDiv = () => {

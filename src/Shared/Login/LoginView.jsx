@@ -1,25 +1,25 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginApi } from "@A/auth/Login";
-import { showNotification } from "../Notifications";
-import { useSession } from "../../context/AuthProvider";
-import Yeti from "@C/Yeti";
-import styles from "./LoginView.module.css";
+import { useNavigate } from "react-router-dom"; // Hook para la navegación
+import { loginApi } from "@A/auth/Login"; // Función para realizar el login a través de la API
+import { showNotification } from "../Notifications"; // Función para mostrar notificaciones
+import { useSession } from "../../context/AuthProvider"; // Hook para manejar la sesión
+import Yeti from "@C/Yeti"; // Componente Yeti
+import styles from "./LoginView.module.css"; // Estilos específicos para este componente
 
 const LoginView = () => {
-    const navigate = useNavigate();
-    const { login } = useSession();
-    const [isFocused, setIsFocused] = useState(false);
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const [formData, setFormData] = useState({ username: "", password: "" });
+    const navigate = useNavigate(); // Inicializa el hook de navegación
+    const { login } = useSession(); // Obtiene la función login del contexto
+    const [isFocused, setIsFocused] = useState(false); // Estado para el foco en los campos
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Estado para la visibilidad de la contraseña
+    const [formData, setFormData] = useState({ username: "", password: "" }); // Estado para los datos del formulario
 
-    // Manejar cambios en los inputs
+    // Manejar los cambios en los inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Controlar visibilidad de la contraseña
+    // Controlar la visibilidad de la contraseña
     const togglePasswordVisibility = () => {
         setIsPasswordVisible((prev) => !prev);
     };
@@ -27,32 +27,32 @@ const LoginView = () => {
     // Manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await loginApi(formData);
+        const response = await loginApi(formData); // Llama a la API de login
         if (response.ok) {
-            login(response.userData);
-            navigate("/admin/trabajadores/tipo/ventas");
+            login(response.userData); // Si el login es exitoso, guarda la información del usuario
+            navigate("/admin/trabajadores/tipo/ventas"); // Redirige al usuario al panel de administración
         } else {
-            showNotification("error", "Dni o contraseña incorrectos.");
+            showNotification("error", "Dni o contraseña incorrectos."); // Muestra notificación en caso de error
         }
     };
 
     return (
         <div className={styles.body}>
             <div className={styles.content}>
+                {/* Formulario de login */}
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    <h2 className={styles.title}>Iniciar Sesión</h2>
+                    <h2 className={styles.title}><span className={styles.upper}>I</span>niciar <span className={styles.upper}>S</span>esión</h2>
                     <div className={styles.yeti}>
+                        {/* Componente Yeti para mostrar una animación o efecto */}
                         <Yeti
                             styles={styles}
-                            isFocused={isFocused}
-                            isPasswordVisible={isPasswordVisible}
+                            isFocused={isFocused} // Pasa el estado de foco
+                            isPasswordVisible={isPasswordVisible} // Pasa el estado de visibilidad de la contraseña
                         />
                     </div>
-                    {/* Campo de usuario */}
+                    {/* Campo para el nombre de usuario */}
                     <div className={styles.formGroup}>
-                        <label htmlFor="username" className={styles.label}>
-                            Usuario:
-                        </label>
+                        <label htmlFor="username" className={styles.label}>Usuario:</label>
                         <input
                             type="text"
                             id="username"
@@ -64,7 +64,7 @@ const LoginView = () => {
                             required
                         />
                     </div>
-                    {/* Campo de contraseña */}
+                    {/* Campo para la contraseña */}
                     <div
                         className={styles.formGroup}
                         tabIndex={0} // Hace que el contenedor sea focuseable
@@ -76,9 +76,7 @@ const LoginView = () => {
                             }
                         }}
                     >
-                        <label htmlFor="password" className={styles.label}>
-                            Contraseña:
-                        </label>
+                        <label htmlFor="password" className={styles.label}>Contraseña:</label>
                         <div className={styles.passwordWrapper}>
                             <input
                                 type={isPasswordVisible ? "text" : "password"}
@@ -90,6 +88,7 @@ const LoginView = () => {
                                 autoComplete="off"
                                 required
                             />
+                            {/* Botón para alternar la visibilidad de la contraseña */}
                             <button
                                 type="button"
                                 className={styles.toggleButton}
@@ -100,7 +99,7 @@ const LoginView = () => {
                             </button>
                         </div>
                     </div>
-                    {/* Botón de enviar */}
+                    {/* Botón para enviar el formulario */}
                     <div className={styles.formGroup}>
                         <button type="submit" className={styles.submitButton}>
                             Ingresar

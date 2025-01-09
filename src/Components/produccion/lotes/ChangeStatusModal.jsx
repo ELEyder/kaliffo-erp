@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react"; // Importa React y hooks
+import { useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
 import {
   Form,
   Modal,
@@ -7,87 +7,96 @@ import {
   Card,
   InputNumber,
   Input,
-  Typography,
   Row,
   Col,
   Divider,
-} from "antd";
+} from "antd"; // Importa componentes de Ant Design
 
-import { getChangeCorte, changeStatusCorte } from "@AP/Corte";
-import { getChangeLavanderia, changeStatusLavanderia } from "@AP/Lavanderia";
-import { changeStatusAcabado, getChangeAcabado } from "../../../API/produccion/Acabado";
+import { getChangeCorte, changeStatusCorte } from "@AP/Corte"; // Funciones de API para obtener y cambiar el estado del corte
+import { getChangeLavanderia, changeStatusLavanderia } from "@AP/Lavanderia"; // Funciones de API para lavandería
+import { changeStatusAcabado, getChangeAcabado } from "../../../API/produccion/Acabado"; // Funciones de API para acabado
 
 const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
-  const [form] = Form.useForm();
-  const { id } = useParams();
-  const [data, setData] = useState([]);
-  const [faseText, setFaseText] = useState("");
+  const [form] = Form.useForm(); // Crea el formulario con Ant Design
+  const { id } = useParams(); // Obtiene el ID de la URL
+  const [data, setData] = useState([]); // Estado para almacenar los datos de la fase (corte, lavandería, acabado)
+  const [faseText, setFaseText] = useState(""); // Estado para establecer el texto de la fase
 
+  // Efecto para cargar los datos según la fase seleccionada
   useEffect(() => {
-    switch (fase){
+    switch (fase) {
       case 1:
-        setFaseText("Corte")
-        getChangeCorte(id, setData, form);
-        break
+        setFaseText("Corte"); // Establece el texto para la fase de corte
+        getChangeCorte(id, setData, form); // Obtiene los datos de corte
+        break;
       case 2:
-        setFaseText("Lavanderia")
-        getChangeLavanderia(id,setData,form)
-        break
+        setFaseText("Lavanderia"); // Establece el texto para la fase de lavandería
+        getChangeLavanderia(id, setData, form); // Obtiene los datos de lavandería
+        break;
       case 3:
-        setFaseText("Acabado")
-        getChangeAcabado(id,setData,form)
-        break
+        setFaseText("Acabado"); // Establece el texto para la fase de acabado
+        getChangeAcabado(id, setData, form); // Obtiene los datos de acabado
+        break;
+      default:
+        break;
     }
-  }, [id, reload]);
+  }, [id, reload]); // El efecto se ejecuta cuando el ID o la función de recarga cambia
 
+  // Handler para manejar el envío del formulario
   const handleSubmit = async () => {
     try {
-      const values = form.getFieldsValue().items;
-      console.log("Values:", values)
-      switch (fase){
+      const values = form.getFieldsValue().items; // Obtiene los valores de los items del formulario
+      console.log("Values:", values) // Muestra los valores en consola para depuración
+      switch (fase) {
         case 1:
-          changeStatusCorte(id, values);
-          break
+          await changeStatusCorte(id, values); // Cambia el estado del corte
+          reload()
+          break;
         case 2:
-          changeStatusLavanderia(id, values);
-          break
+          await changeStatusLavanderia(id, values); // Cambia el estado de lavandería
+          reload()
+          break;
         case 3:
-          changeStatusAcabado(id, values);
-          break
+          await changeStatusAcabado(id, values); // Cambia el estado del acabado
+          reload()
+          break;
+        default:
+          reload()
+          break;
       }
 
-      form.resetFields();
-      reload();
-      closeModal();
+      form.resetFields(); // Resetea los campos del formulario
+      reload(); // Recarga los datos en el componente padre
+      closeModal(); // Cierra el modal
     } catch (error) {
-      console.error("Error al guardar:", error);
+      console.error("Error al guardar:", error); // Manejo de errores
     }
   };
 
-  // Constantes de estilos
-  const cardTitleStyle = { textAlign: "center"};
+  // Estilos reutilizables para las tarjetas y columnas
+  const cardTitleStyle = { textAlign: "center" };
   const columnCenterStyle = { textAlign: "center" };
 
   return (
     <Modal
       forceRender
       getContainer={false}
-      styles={{header:{textAlign:"center"}}}
+      styles={{ header: { textAlign: "center" } }}
       title="MERCADERÍA RECIBIDA"
-      open={openModal}
-      onCancel={closeModal}
-      footer={null}
+      open={openModal} // Determina si el modal está abierto o cerrado
+      onCancel={closeModal} // Cierra el modal al cancelar
+      footer={null} // No muestra los botones de footer predeterminados
     >
       <Form
-        form={form}
-        layout="vertical"
+        form={form} // Asocia el formulario con el estado de Ant Design
+        layout="vertical" // Establece el layout del formulario como vertical
         name="addProductos"
         style={{
-          maxWidth: 600,
+          maxWidth: 600, // Establece el ancho máximo del formulario
           display: "flex",
           flexDirection: "column",
         }}
-        autoComplete="off"
+        autoComplete="off" // Desactiva el autocompletado del navegador
       >
         <Form.List name="items">
           {() => (
@@ -98,44 +107,41 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
                 rowGap: 20,
               }}
             >
+              {/* Itera sobre los datos de la fase y muestra una tarjeta por cada uno */}
               {data.map((field, index) => (
                 <Card
                   key={index}
                   size="small"
-                  title={`${faseText} ${index + 1}`}
+                  title={`${faseText} ${index + 1}`} // Muestra el nombre de la fase y el índice
                   style={cardTitleStyle}
                 >
                   <Row justify="center">
                     <Col span={24} style={columnCenterStyle}>
-                      {field.detallesCorte}
+                      {field.detallesCorte} {/* Muestra los detalles del corte o fase */}
                     </Col>
                     <Col span={24}>
                       <Form.Item
                         label="Cantidad Recibida"
-                        name={[index, "cantidad_recibida"]}
-                        rules={[
-                          {
-                            required: true,
-                            message: "Ingrese una cantidad válida",
-                          },
-                        ]}
+                        name={[index, "cantidad_recibida"]} // Asocia este campo al índice de la lista
+                        rules={[{ required: true, message: "Ingrese una cantidad válida" }]} // Validación
                       >
                         <InputNumber
                           style={{ width: "100%" }}
-                          max={field.cantidad_recibida}
+                          max={field.cantidad_recibida} // Establece el máximo de cantidad según el dato recibido
                         />
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Input type="hidden" name={[index, "id"]} />
+                  <Input type="hidden" name={[index, "id"]} /> {/* Campo oculto para almacenar el ID */}
                 </Card>
               ))}
             </div>
           )}
         </Form.List>
 
-        <Divider />
+        <Divider /> {/* Agrega una línea divisoria */}
 
+        {/* Botón para guardar los cambios */}
         <Form.Item>
           <Button type="primary" onClick={handleSubmit}>
             Guardar
@@ -146,4 +152,4 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
   );
 };
 
-export default ChangeStatusModal;
+export default ChangeStatusModal; // Exporta el componente

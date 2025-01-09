@@ -16,7 +16,7 @@ export const getCompras = async (setCompras) => {
 
 /**
  * Obtiene el detalle de una compra por su ID y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/compras/detalle/1
+ * URL de ejemplo: http://localhost:3000/compra/detalle/1
  */
 export const getComprasDetalle = async (setCompraDetalle, id) => {
   try {
@@ -29,7 +29,7 @@ export const getComprasDetalle = async (setCompraDetalle, id) => {
 
 /**
  * Obtiene la lista de empresas y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/compras/empresas
+ * URL de ejemplo: http://localhost:3000/compra/empresas
  */
 export const getEmpresas = async (setEmpresas) => {
   try {
@@ -42,7 +42,7 @@ export const getEmpresas = async (setEmpresas) => {
 
 /**
  * Obtiene la lista de productos y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/compras/productos
+ * URL de ejemplo: http://localhost:3000/compra/productos
  */
 export const getProductos = async (setProductos) => {
   try {
@@ -55,7 +55,7 @@ export const getProductos = async (setProductos) => {
 
 /**
  * Agrega una nueva compra al servidor.
- * URL de ejemplo: http://localhost:3000/compras/create
+ * URL de ejemplo: http://localhost:3000/compra/create
  */
 export const addCompra = async (values) => {
   const compra = {
@@ -77,7 +77,7 @@ export const addCompra = async (values) => {
 
 /**
  * Elimina una compra por su ID.
- * URL de ejemplo: http://localhost:3000/compras/delete/1
+ * URL de ejemplo: http://localhost:3000/compra/delete/1
  */
 export const eliminarCompra = async (compra_id) => {
   try {
@@ -91,7 +91,7 @@ export const eliminarCompra = async (compra_id) => {
 
 /**
  * Actualiza una compra por su ID con los valores nuevos.
- * URL de ejemplo: http://localhost:3000/compras/update/1
+ * URL de ejemplo: http://localhost:3000/compra/update/1
  */
 export const updateCompra = async (id, values, originales) => {
   const valoresNuevos = {};
@@ -125,8 +125,8 @@ export const updateCompra = async (id, values, originales) => {
 
   try {
     await apiClient.put(`/compra/update/${id}`, valoresNuevos);
-    showNotification("update", "Compra actualizada exitosamente");
+    console.log("Compra actualizada exitosamente");
   } catch (error) {
-    showNotification("error", "Error al actualizar la compra");
+    console.log("Error al actualizar la compra");
   }
 };

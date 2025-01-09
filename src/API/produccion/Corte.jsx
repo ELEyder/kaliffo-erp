@@ -1,5 +1,4 @@
 import apiClient from '../apiClient';
-import { showNotification } from "../../Shared/Notifications";
 
 /**
  * Obtiene los datos de un corte por lote ID.
@@ -8,21 +7,6 @@ import { showNotification } from "../../Shared/Notifications";
 export const getCorte = async (id, setData) => {
   try {
     const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
-
-    setData(response.data || []);
-  } catch (error) {
-    if (error.response?.status === 404) {
-      setData([]);
-    } else {
-      console.error("Error al obtener el corte:", error);
-      setData([]);
-    }
-  }
-};
-
-export const getCorteDiferido = async (id, setData) => {
-  try {
-    const response = await apiClient.get(`/corte/lote/${id}?tipo=diferido`, { withCredentials: true });
 
     setData(response.data || []);
   } catch (error) {
@@ -45,10 +29,10 @@ export const addCorte = async (id, data) => {
     talla: detalle.talla,
     taller_id: detalle.taller_id ?? null,
   }));
-
+  console.log(data)
   try {
-    await apiClient.post(`/corte/create/array/${id}`, data, { withCredentials: true });
-    showNotification("add", "Corte añadido");
+    var response = await apiClient.post(`/corte/create/array/${id}`, data);
+    console.log(response)
   } catch (error) {
     console.error("Error al añadir el corte:", error);
   }
@@ -106,13 +90,11 @@ export const getAddTaller = async (id, setData, form) => {
  */
 export const deleteCorte = async (id, estado) => {
   if (estado !== 1) {
-    showNotification("error", "No se puede borrar corte en proceso");
     return;
   }
 
   try {
     await apiClient.put(`/corte/desactivar/${id}`);
-    showNotification("delete", "Corte eliminado");
   } catch (error) {
     console.error("Error al eliminar el corte:", error);
   }
@@ -124,7 +106,7 @@ export const deleteCorte = async (id, estado) => {
  */
 export const getStatusCorte = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
+    const response = await apiClient.get(`/corte/lote/${id}`);
 
     if (response.data.length === 0) {
       setData(0);
@@ -155,7 +137,6 @@ export const changeStatusCorte = async (id, data = null) => {
     }));
 
     await apiClient.put(`/corte/sgte/lote/${id}`, { detalles: values }, { withCredentials: true });
-    showNotification("add", "Estado pasado");
   } catch (error) {
     console.error("Error al cambiar el estado del corte:", error);
   }
@@ -173,7 +154,6 @@ export const getTaller = async (id, values = null) => {
     }
 
     await apiClient.put(`/corte/sgte/lote/${id}`, { detalles: values });
-    showNotification("add", "Estado pasado");
   } catch (error) {
     console.error("Error al enviar los datos del taller:", error);
   }

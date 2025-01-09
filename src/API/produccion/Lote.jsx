@@ -60,6 +60,5 @@ export const getFaseLote = async (id, setData, setOriginal) => {
     setOriginal(data.estado);
   } catch (error) {
     console.error("Error al obtener la fase del lote:", error);
-    showNotification("error", "Error al obtener la fase del lote");
   }
 };
