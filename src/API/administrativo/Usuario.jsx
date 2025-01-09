@@ -75,7 +75,7 @@ export const deleteTrabajadorById = async (id) => {
 // Obtener Trabajadors por rol http://localhost:3000/Trabajador?rol=1
 export const getTrabajadores = async (tipo, setData) => {
   try {
-    const response = await apiClient.get(`/Trabajador?rol=${dTipos[tipo]}`);
+    const response = await apiClient.get(`/trabajador?rol=${dTipos[tipo]}`);
     const Trabajadores = response.data;
 
     Trabajadores.forEach(Trabajador => {

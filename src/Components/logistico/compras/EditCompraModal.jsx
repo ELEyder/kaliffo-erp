@@ -11,7 +11,12 @@ import {
   DatePicker,
   InputNumber,
 } from "antd";
-import { getComprasDetalle, getEmpresas, getProductos, updateCompra } from "@AL/Compras";
+import {
+  getComprasDetalle,
+  getEmpresas,
+  getProductos,
+  updateCompra,
+} from "@AL/Compras";
 import moment from "moment";
 
 const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
@@ -21,7 +26,7 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
   const [productos, setProductos] = useState([]); // Estado para guardar los productos
 
   // Recalcula el total de la compra basado en los detalles
-  const recalcularTotales = (detalles) => {
+  const recalcularTotales = (detalles = []) => {
     const totalCantidad = detalles.reduce(
       (acc, curr) => acc + (curr?.cantidad || 0),
       0
@@ -32,37 +37,41 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
     );
 
     form.setFieldsValue({
-        cantidad: totalCantidad, // Establece el total de la cantidad
-        total: totalNeto, // Establece el total neto
+      cantidad: totalCantidad, // Establece el total de la cantidad
+      total: totalNeto, // Establece el total neto
     });
   };
 
   // Carga los detalles de la compra, las empresas y los productos al montar el componente
   useEffect(() => {
-    if (idC) {
+    if (idC && openModal) {
       // Obtiene los detalles de la compra
       getComprasDetalle((data) => {
-        setValoresO(data); // Guarda los valores originales de la compra
-        form.setFieldsValue({
-          tienda: data.tienda,
-          empresa_proveedor: data.empresa_proveedor,
-          fecha_compra: moment(data.fecha_compra), // Convierte la fecha de compra a formato adecuado
-          cantidad: data.cantidad,
-          total: data.total,
-          detalle: data.detalle.map((item) => ({
-            producto: item.producto,
-            cantidad: item.cantidad,
-            total: item.total,
-            compraDetalle_id: item.compraDetalle_id,
-          })),
-        });
+        if (data) {
+          setValoresO(data); // Guarda los valores originales de la compra
+          form.setFieldsValue({
+            tienda: data.tienda,
+            empresa_proveedor: data.empresa_proveedor,
+            fecha_compra: moment(data.fecha_compra), // Convierte la fecha de compra a formato adecuado
+            cantidad: data.cantidad,
+            total: data.total,
+            detalle:
+              data.detalle?.map((item) => ({
+                producto: item.producto,
+                cantidad: item.cantidad,
+                total: item.total,
+                compraDetalle_id: item.compraDetalle_id,
+              })) || [],
+          });
+        }
       }, idC);
-
+  
       // Obtiene las empresas y productos
       getEmpresas(setEmpresas);
       getProductos(setProductos);
     }
-  }, [idC]);
+  }, [idC, openModal]);
+  
 
   return (
     <Modal
@@ -73,9 +82,10 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
       onOk={form.submit} // Envía el formulario al hacer clic en "Guardar"
       okText="Guardar" // Texto del botón "Guardar"
       centered
+      forceRender
       width={800} // Establece el ancho del modal
     >
-      <Form
+     {openModal&&( <Form
         form={form} // Usamos el formulario de Ant Design
         size="large"
         layout="vertical"
@@ -114,7 +124,7 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
                       filterOption={(inputValue, option) =>
                         option?.value
                           ?.toUpperCase()
-                          .indexOf(inputValue.toUpperCase()) !== -1
+                          .includes(inputValue.toUpperCase())
                       }
                     />
                   </Form.Item>
@@ -144,8 +154,8 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
 
         {/* Listado de detalles de la compra */}
         <div>
-          {form.getFieldValue("detalle")?.map((detalle, index) => (
-            <Row key={index} gutter={16}>
+          {(form.getFieldValue("detalle") || []).map((detalle, index) => (
+            <Row key={detalle.compraDetalle_id || index} gutter={16}>
               <Col span={12}>
                 <Form.Item
                   label="Producto"
@@ -188,7 +198,7 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
             </Row>
           ))}
         </div>
-      </Form>
+      </Form>)}
     </Modal>
   );
 };

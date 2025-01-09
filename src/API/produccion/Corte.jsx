@@ -2,7 +2,7 @@ import apiClient from '../apiClient';
 
 /**
  * Obtiene los datos de un corte por lote ID.
- * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ * URL de ejemplo: http://localhost:3000/corte/lote/1
  */
 export const getCorte = async (id, setData) => {
   try {
@@ -21,7 +21,7 @@ export const getCorte = async (id, setData) => {
 
 /**
  * Agrega un nuevo corte para un lote específico.
- * URL de ejemplo: http://localhost:3000/cortes/create/array/1
+ * URL de ejemplo: http://localhost:3000/corte/create/array/1
  */
 export const addCorte = async (id, data) => {
   data.detalles = data.detalles.map(detalle => ({
@@ -40,7 +40,7 @@ export const addCorte = async (id, data) => {
 
 /**
  * Actualiza un corte para su visualización y manipulación en un formulario.
- * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ * URL de ejemplo: http://localhost:3000/corte/lote/1
  */
 export const getChangeCorte = async (id, setData, form) => {
   try {
@@ -63,7 +63,7 @@ export const getChangeCorte = async (id, setData, form) => {
 
 /**
  * Obtiene datos para agregar un taller a un corte existente.
- * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ * URL de ejemplo: http://localhost:3000/corte/lote/1
  */
 export const getAddTaller = async (id, setData, form) => {
   try {
@@ -86,7 +86,7 @@ export const getAddTaller = async (id, setData, form) => {
 
 /**
  * Desactiva un corte por su ID si no está en proceso.
- * URL de ejemplo: http://localhost:3000/cortes/desactivar/1
+ * URL de ejemplo: http://localhost:3000/corte/desactivar/1
  */
 export const deleteCorte = async (id, estado) => {
   if (estado !== 1) {
@@ -102,7 +102,7 @@ export const deleteCorte = async (id, estado) => {
 
 /**
  * Obtiene el estado de un corte para un lote específico.
- * URL de ejemplo: http://localhost:3000/cortes/lote/1
+ * URL de ejemplo: http://localhost:3000/corte/lote/1
  */
 export const getStatusCorte = async (id, setData) => {
   try {
@@ -121,7 +121,7 @@ export const getStatusCorte = async (id, setData) => {
 
 /**
  * Cambia el estado de un corte para un lote específico.
- * URL de ejemplo: http://localhost:3000/cortes/sgte/lote/1
+ * URL de ejemplo: http://localhost:3000/corte/sgte/lote/1
  */
 export const changeStatusCorte = async (id, data = null) => {
   try {
@@ -144,7 +144,7 @@ export const changeStatusCorte = async (id, data = null) => {
 
 /**
  * Envía los datos de un taller para un lote específico.
- * URL de ejemplo: http://localhost:3000/cortes/sgte/lote/1
+ * URL de ejemplo: http://localhost:3000/corte/sgte/lote/1
  */
 export const getTaller = async (id, values = null) => {
   try {
