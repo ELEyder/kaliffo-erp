@@ -41,7 +41,7 @@ const LoginView = () => {
             <div className={styles.content}>
                 {/* Formulario de login */}
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    <h2 className={styles.title}>Iniciar Sesión</h2>
+                    <h2 className={styles.title}><span className={styles.upper}>I</span>niciar <span className={styles.upper}>S</span>esión</h2>
                     <div className={styles.yeti}>
                         {/* Componente Yeti para mostrar una animación o efecto */}
                         <Yeti

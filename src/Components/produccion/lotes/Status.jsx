@@ -7,7 +7,7 @@ import AddTaller from "@CP/lotes/AddTaller";  // Modal para agregar un taller
 import styles from './Status.module.css';  // Estilos específicos para el estado
 import { changeStatusAcabado } from "../../../API/produccion/Acabado";  // Función para cambiar estado en Acabado
 
-const Status = ({ fase, status, reload, setReload }) => {
+const Status = ({ fase, status, reload }) => {
   const [OpenChangeStatus, setOpenChangeStatus] = useState(false);  // Controla la visibilidad del modal de cambio de estado en Corte
   const [OpenChangeStatusAcabado, setOpenChangeStatusAcabado] = useState(false);  // Controla la visibilidad del modal de cambio de estado en Acabado
   const [OpenAddTaller, setOpenAddTaller] = useState(false);  // Controla la visibilidad del modal de agregar taller
@@ -25,24 +25,24 @@ const Status = ({ fase, status, reload, setReload }) => {
       }
       else if (status == 2) {
         setOpenChangeStatus(true);  // Abre el modal para cambiar estado en Corte si está en estado 2
-        setReload(!reload);  // Recarga los datos
+        reload();  // Recarga los datos
       }
     }
     // Fase Lavandería
     else if (fase == 2) {
       if (status == 1) {
         await changeStatusLavanderia(id);  // Cambia el estado de Lavandería
-        await setReload(!reload);  // Recarga los datos
+        reload();  // Recarga los datos
       } else if (status == 2) {
         setOpenChangeStatus(true);  // Abre el modal para cambiar estado en Lavandería si está en estado 2
-        setReload(!reload);
+        reload();
       }
     }
     // Fase Acabados
     else if (fase == 3) {
       if (status == 1) {
         await changeStatusAcabado(id);  // Cambia el estado de Acabado
-        await setReload(!reload);  // Recarga los datos
+        await reload();  // Recarga los datos
       } else if (status == 2) {
         setOpenChangeStatusAcabado(true);  // Abre el modal para cambiar estado en Acabados si está en estado 2
       }
@@ -64,7 +64,7 @@ const Status = ({ fase, status, reload, setReload }) => {
       <ChangeStatusModal
         openModal={OpenChangeStatus}
         closeModal={() => setOpenChangeStatus(false)}
-        reload={() => setReload(!reload)}
+        reload={reload}
         fase={fase}
       />
 
@@ -72,7 +72,7 @@ const Status = ({ fase, status, reload, setReload }) => {
       <ChangeStatusAcabado
         openModal={OpenChangeStatusAcabado}
         closeModal={() => setOpenChangeStatusAcabado(false)}
-        reload={() => setReload(!reload)}
+        reload={reload}
         fase={fase}
       />
 
@@ -80,7 +80,7 @@ const Status = ({ fase, status, reload, setReload }) => {
       <AddTaller
         openModal={OpenAddTaller}
         closeModal={() => setOpenAddTaller(false)}
-        reload={() => setReload(!reload)}
+        reload={reload}
       />
     </>
   );

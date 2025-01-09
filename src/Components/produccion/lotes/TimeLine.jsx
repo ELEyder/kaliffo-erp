@@ -1,13 +1,12 @@
-import React from "react";
 import { Tooltip } from "antd";
 import styles from "./TimeLine.module.css";  // Estilos específicos para la línea de tiempo
 
-const TimeLine = ({ fase, setFase, faseTimeline }) => {
+const TimeLine = ({ fase, setFase, faseTimeline, reload }) => {
   // Colores asociados a cada fase
   const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];
-  
+
   // Arreglo de colores para cada fase, según el estado actual (fase)
-  const statusColors = Array(fase + 1).fill(colors[fase]);
+  let statusColors = Array(fase + 1).fill(colors[fase]);
   statusColors.push(...Array(4 - fase).fill("white"));  // Rellenar los colores faltantes hasta 4 fases
 
   return (

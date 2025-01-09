@@ -7,7 +7,6 @@ import {
   Card,
   InputNumber,
   Input,
-  Typography,
   Row,
   Col,
   Divider,
@@ -50,15 +49,19 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
       console.log("Values:", values) // Muestra los valores en consola para depuración
       switch (fase) {
         case 1:
-          changeStatusCorte(id, values); // Cambia el estado del corte
+          await changeStatusCorte(id, values); // Cambia el estado del corte
+          reload()
           break;
         case 2:
-          changeStatusLavanderia(id, values); // Cambia el estado de lavandería
+          await changeStatusLavanderia(id, values); // Cambia el estado de lavandería
+          reload()
           break;
         case 3:
-          changeStatusAcabado(id, values); // Cambia el estado del acabado
+          await changeStatusAcabado(id, values); // Cambia el estado del acabado
+          reload()
           break;
         default:
+          reload()
           break;
       }
 

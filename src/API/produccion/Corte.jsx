@@ -106,7 +106,7 @@ export const deleteCorte = async (id, estado) => {
  */
 export const getStatusCorte = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
+    const response = await apiClient.get(`/corte/lote/${id}`);
 
     if (response.data.length === 0) {
       setData(0);

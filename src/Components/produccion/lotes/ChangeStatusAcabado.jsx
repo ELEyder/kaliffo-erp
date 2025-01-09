@@ -62,14 +62,17 @@ const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase }) => {
       const values = form.getFieldsValue().items; // Obtiene los valores de los items del formulario
       switch (fase) {
         case 1:
-          changeStatusCorte(id, values); // Cambia el estado del corte
+          await changeStatusCorte(id, values); // Cambia el estado del corte
+          reload()
           break;
         case 2:
-          changeStatusLavanderia(id, values); // Cambia el estado de lavandería
+          await changeStatusLavanderia(id, values); // Cambia el estado de lavandería
+          reload()
           break;
         case 3:
           const params = form.getFieldValue().id; // Obtiene el parámetro de ID (almacén o tienda)
-          changeStatusAcabado(id, values, params); // Cambia el estado del acabado
+          await changeStatusAcabado(id, values, params); // Cambia el estado del acabado
+          reload()
           break;
         default:
           break;
