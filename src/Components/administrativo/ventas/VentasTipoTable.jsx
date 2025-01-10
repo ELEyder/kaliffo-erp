@@ -119,6 +119,7 @@ const VentasTipoTable = () => {
   return (
     <>
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columnas} // Columnas de la tabla
         pagination={{ pageSize: 7 }} // Paginación con 7 elementos por página
         dataSource={tablaDatos.map((item, index) => ({ ...item, key: index }))} // Datos de la tabla con clave única

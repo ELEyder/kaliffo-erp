@@ -53,6 +53,7 @@ const TallaDetalleModal = ({ openModal, closeModal, idD }) => {
     >
       {/* Tabla para mostrar los detalles de tallas y stock */}
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Pasar las columnas a la tabla
         pagination={{ pageSize: 4 }} // Paginación con 4 elementos por página
         bordered

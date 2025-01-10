@@ -71,6 +71,7 @@ const ProductoColoresTable = () => {
   return (
     <>
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Asocia las columnas a la tabla
         dataSource={data} // Asocia los datos obtenidos a la tabla
       />

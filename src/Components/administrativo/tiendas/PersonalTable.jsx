@@ -102,11 +102,12 @@ const PersonalTable = () => {
 
       {/* Tabla que muestra la lista de trabajadores */}
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Definición de columnas
         pagination={{ pageSize: 5 }} // Establecer paginación con 5 elementos por página
         bordered // Añadir borde a la tabla
-        dataSource={usuariostienda.map((item, index) => ({ ...item, key: index }))} // Mapear los datos con claves únicas
-        rowKey={(record) => record.usuario_id} // Definir la clave única de cada fila
+        dataSource={usuariostienda} // Mapear los datos con claves únicas
+        rowKey={"trabajador_id"} // Definir la clave única de cada fila
       />
 
       {/* Modal para actualizar los detalles de un trabajador */}

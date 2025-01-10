@@ -66,6 +66,7 @@ const DetalleVentaTable = ({
   return (
     <>
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columnas} // Columnas definidas anteriormente
         dataSource={tablaDatos?.detalles?.map((item, index) => ({
           ...item,

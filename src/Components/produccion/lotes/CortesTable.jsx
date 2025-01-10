@@ -61,7 +61,11 @@ const CortesTable = ({ status, reload }) => {
   return (
     <>
       {/* Tabla que muestra los cortes */}
-      <Table dataSource={data} columns={columns} rowKey="corte_id" />
+      <Table
+        scroll={{ x: 'min-content' }}
+        dataSource={data}
+        columns={columns}
+        rowKey="corte_id" />
 
       {/* Mostrar botón flotante para añadir corte si el estado es 0 o 1 */}
       {(status === 0 || status === 1) && (

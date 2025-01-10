@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Hook para la navegación
 import { loginApi } from "@A/auth/Login"; // Función para realizar el login a través de la API
-import { showNotification } from "../Notifications"; // Función para mostrar notificaciones
 import { useSession } from "../../context/AuthProvider"; // Hook para manejar la sesión
 import Yeti from "@C/Yeti"; // Componente Yeti
 import styles from "./LoginView.module.css"; // Estilos específicos para este componente
@@ -32,7 +31,7 @@ const LoginView = () => {
             login(response.userData); // Si el login es exitoso, guarda la información del usuario
             navigate("/admin/trabajadores/tipo/ventas"); // Redirige al usuario al panel de administración
         } else {
-            showNotification("error", "Dni o contraseña incorrectos."); // Muestra notificación en caso de error
+            console.log("Dni o contraseña incorrectos."); // Muestra notificación en caso de error
         }
     };
 

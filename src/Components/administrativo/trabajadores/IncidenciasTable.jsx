@@ -81,6 +81,7 @@ const IncidenciasTable = () => {
   return (
     <>
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Pasar las columnas al componente Table
         dataSource={tabla?.map((item, index) => ({ ...item, key: item.incidencia_id }))} // Establecer los datos para la tabla
         pagination={{ pageSize: 5 }} // Configuración de la paginación (5 elementos por página)

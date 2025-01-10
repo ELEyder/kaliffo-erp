@@ -133,6 +133,7 @@ const TablaCompras = () => {
 
       {/* Tabla de compras */}
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columnas} // Las columnas definidas previamente
         pagination={{ pageSize: 5 }} // Paginación para la tabla
         dataSource={tabla_datos.map((item, index) => ({

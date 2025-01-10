@@ -43,7 +43,6 @@ const AddCompraModal = ({ openModal, closeModal, reload, setReload }) => {
     getTiendas(setTiendas); // Obtiene las tiendas
     getEmpresas(setEmpresas); // Obtiene las empresas
     getProductos(setProductos); // Obtiene los productos
-    console.log(empresas); // Muestra en consola las empresas (puedes eliminarlo después)
   }, []);
 
   return (

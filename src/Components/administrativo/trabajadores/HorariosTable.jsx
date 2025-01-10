@@ -66,6 +66,7 @@ const HorariosTable = () => {
   return (
     <>
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Configuración de las columnas de la tabla
         dataSource={data} // Datos que se mostrarán en la tabla
         pagination={{ pageSize: 5 }} // Configuración de la paginación (5 elementos por página)

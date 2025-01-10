@@ -69,6 +69,7 @@ const ProductoTiendasTable = () => {
     <>
       {/* Tabla que muestra los datos de las tiendas y stock */}
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Definir las columnas de la tabla
         dataSource={tabla.map((item, index) => ({ ...item, key: index }))} // Asignar datos a la tabla y añadir una clave única
       />

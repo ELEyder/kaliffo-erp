@@ -75,7 +75,7 @@ const Lavanderia = ({ status, reload, setReload }) => {
   return (
     <>
 <<<<<<< HEAD
-      <Table dataSource={data} columns={columns} rowKey="corte_id" />
+      < dataSource={data} columns={columns} rowKey="corte_id" />
       {estado && cortesT>0 ? (
         <>
           <FloatButton

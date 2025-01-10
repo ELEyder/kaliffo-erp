@@ -66,6 +66,7 @@ const PagosTable = () => {
     <>
       {/* Tabla que muestra los datos de ventas */}
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columnas} // Configuración de las columnas
         pagination={{ pageSize: 5 }} // Establecer la paginación con 5 elementos por página
         bordered // Agregar borde a la tabla

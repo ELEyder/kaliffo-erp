@@ -78,6 +78,7 @@ const TelasInactivasTable = () => {
     <>
       {/* Renderiza la tabla con los datos de las telas inactivas */}
       <Table
+        scroll={{ x: 'min-content' }}
         ali // Esto parece un error, debería ser 'align'
         columns={columns} // Pasa las columnas definidas anteriormente
         dataSource={tabla.map((item, index) => ({ ...item, key: index }))} // Mapea las filas de datos y les asigna una clave única

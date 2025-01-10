@@ -79,6 +79,7 @@ const TelasActivasTable = () => {
   return (
     <>
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Define las columnas de la tabla
         dataSource={tabla.map((item, index) => ({ ...item, key: index }))} // Asocia los datos a la tabla y agrega una clave única por fila
       />

@@ -41,8 +41,8 @@ const ProductoDetalleTallasColoresModal = ({
             record.stock >= 50
               ? "green" // Verde si el stock es mayor o igual a 50
               : record.stock <= 20
-              ? "#f54242" // Rojo si el stock es menor o igual a 20
-              : "#FCFB77", // Amarillo si el stock está entre 20 y 50
+                ? "#f54242" // Rojo si el stock es menor o igual a 20
+                : "#FCFB77", // Amarillo si el stock está entre 20 y 50
           color: record.stock <= 20 || record.stock >= 50 ? "white" : "black", // Ajusta el color del texto
           padding: "10px", // Añade espacio dentro de las celdas
         },
@@ -67,6 +67,7 @@ const ProductoDetalleTallasColoresModal = ({
         footer={<Button onClick={() => closeModal(false)}>Cerrar</Button>} // Botón de cierre
       >
         <Table
+          scroll={{ x: 'min-content' }}
           columns={columns} // Asocia las columnas a la tabla
           pagination={{ pageSize: 4 }} // Define el tamaño de las páginas en la tabla
           bordered // Añade borde a la tabla

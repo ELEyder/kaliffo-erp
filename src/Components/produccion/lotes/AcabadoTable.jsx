@@ -24,6 +24,7 @@ const AcabadoTable = ({ reload }) => {
     <>
       {/* Renderiza la tabla con los datos de los acabados */}
       <Table 
+        scroll={{ x: 'min-content' }}
         dataSource={data} // Proporciona los datos a la tabla
         columns={columns} // Pasa las columnas definidas anteriormente
         rowKey="acabado_id" // Usa el 'acabado_id' como clave única para cada fila

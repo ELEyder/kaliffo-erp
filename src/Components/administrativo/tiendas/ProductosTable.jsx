@@ -93,6 +93,7 @@ const ProductosTable = () => {
     <>
       {/* Tabla que muestra la lista de productos para la tienda seleccionada */}
       <Table 
+        scroll={{ x: 'min-content' }}
         columns={columns} // Pasar la definición de columnas
         pagination={{ pageSize: 5 }} // Establecer paginación con 5 elementos por página
         bordered // Añadir borde a la tabla

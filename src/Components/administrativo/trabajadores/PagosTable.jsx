@@ -82,6 +82,7 @@ const PagosTable = () => {
     <>
       {/* Componente Table para mostrar la lista de pagos */}
       <Table
+        scroll={{ x: 'min-content' }}
         columns={columns} // Columnas definidas anteriormente
         dataSource={tabla} // Datos de la tabla (pagos)
         pagination={{ pageSize: 5 }} // Paginación, 5 elementos por página
