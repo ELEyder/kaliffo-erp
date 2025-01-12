@@ -47,7 +47,7 @@ const AddTrabajadorModal = ({
         onFinish={async (values) => {
           // Controlador de sumisión del formulario
           await addTrabajador(tipoTrabajador, values); // Llama a la función API para agregar el trabajador
-          setReload(!reload); // Alterna el estado de recarga para actualizar los datos
+          reload(); // Alterna el estado de recarga para actualizar los datos
           closeModal(false); // Cierra el modal después de la sumisión
           form.resetFields(); // Restablece los campos del formulario después de la sumisión
         }}

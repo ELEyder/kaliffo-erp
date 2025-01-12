@@ -43,7 +43,7 @@ const UpdateIncidenciaModal = ({
         onFinish={async () => {
           // Lógica al enviar el formulario
           await updateIncidenciaById(values.incidencia_id, form.getFieldsValue());
-          reload.current = !reload.current; // Marca para recargar los datos
+          reload();// Marca para recargar los datos
           closeModal(); // Cierra el modal
         }}
       >
