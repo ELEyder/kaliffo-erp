@@ -34,7 +34,7 @@ export const addTrabajador = async (tipoTrabajador, values) => {
 // Obtener Trabajador por ID http://localhost:3000/Trabajador/1
 export const getTrabajadorById = async (id, setTrabajador) => {
   try {
-    const response = await apiClient.get(`/Trabajador/${id}`);
+    const response = await apiClient.get(`/trabajador/${id}`);
     setTrabajador(response.data);
   } catch (error) {
     console.log("Error al obtener el Trabajador", error);

@@ -25,7 +25,7 @@ const AdminRoutes = () => (
             <Route path="/ventas" element={<VentasView />} />
 
             {/* Rutas de Trabajadores */}
-            <Route path="/trabajadores/tipo/:tipo" element={<TrabajadoresView />} />
+            <Route path="/trabajadores/tipo/:tipoTrabajador" element={<TrabajadoresView />} />
             <Route path="/trabajadores/:id" element={<TrabajadorView />} />
 
             {/* Rutas de Tiendas */}
