@@ -31,7 +31,17 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
       }
     },
     { title: "Descripción", dataIndex: "descripcion", key: "descripcion", align: "center" }, // Descripción de la incidencia
-    { title: "Fecha", dataIndex: "fecha_creacion", key: "fecha_creacion", align: "center" }, // Fecha en que se creó la incidencia
+    {
+      title: "Fecha", dataIndex: "fecha_creacion", key: "fecha_creacion", align: "center",
+      render: (fecha) => {
+        if (!fecha) return "-"; // Manejar casos donde la fecha sea nula
+        const date = new Date(fecha); // Convertir la fecha a objeto Date
+        const day = String(date.getDate()).padStart(2, "0"); // Obtener día con dos dígitos
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Obtener mes con dos dígitos (getMonth es base 0)
+        const year = date.getFullYear(); // Obtener año
+        return `${day}/${month}/${year}`; // Formatear en DD/MM/YYYY
+      },
+    }, // Fecha en que se creó la incidencia
 
   ];
 
@@ -46,7 +56,7 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
             block
             onClick={() => {
               setIncidencia(record); // Establecer la incidencia seleccionada para editar
-              changeModal("updI",true); // Abrir el modal de edición
+              changeModal("updI", true); // Abrir el modal de edición
             }}
           >
             Editar

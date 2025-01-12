@@ -5,7 +5,8 @@ import PagosTable from "@CA/trabajadores/PagosTable";
 import Tabla from "../../../Components/Tabla"
 import { Divider, Tabs, Flex, FloatButton } from "antd";
 import { FileAddOutlined } from '@ant-design/icons'; // Icono de agregar para el botón flotante
-import { getColumnas, getUrl } from "../../../interfaces/Incidencias";
+import * as Incidencias from "../../../interfaces/Incidencias";
+import * as Horarios from "../../../interfaces/Horarios";
 import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal"; // Componente modal para actualizar incidencias
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"; // Componente modal para agregar nuevas incidencias
 
@@ -21,7 +22,8 @@ const Trabajador = () => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };
 
-  const columnas = getColumnas(changeModal, setIncidencia, ()=>setReload(!reload))
+  const columnasI = Incidencias.getColumnas(changeModal, setIncidencia, () => setReload(!reload))
+  const columnasP = Horarios.getColumnas(() => setReload(!reload))
 
   // Definición de las pestañas que se mostrarán
   const items = [
@@ -30,14 +32,22 @@ const Trabajador = () => {
       label: "Incidencias",
       children:
         <Tabla
-          columnas={columnas}
+          columnas={columnasI}
           rowKey={"incidencia_id"}
-          url={getUrl(id)}
+          url={Incidencias.getUrl(id)}
           reload={() => setReload(!reload)}
         />, // Componente que muestra las incidencias
     },
-    // { key: "Horario", label: "Horario", children: <HorariosTable /> }, // Componente que muestra los horarios
-    { key: "Pagos", label: "Pagos", children: <PagosTable /> }, // Componente que muestra los pagos
+    {
+      key: "Horario", label: "Horario",
+      children: <Tabla
+        columnas={columnasP}
+        rowKey={"horario_id"}
+        url={Horarios.getUrl(id)}
+        reload={() => setReload(!reload)}
+      />,
+    }, // Componente que muestra los pagos
+    { key: "Pagos", label: "Pagos", children: <PagosTable /> }, // Componente que muestra los horarios
   ];
 
   return (
