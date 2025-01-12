@@ -3,20 +3,22 @@ import { useNavigate } from "react-router-dom";
 import { Table } from "antd"
 import apiClient from '../API/apiClient';
 
-const Tabla = ({ columnas , rowKey, url, reload }) => {
+const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => {
   const navigate = useNavigate();
-  const [data, setData] = useState([])
+  const [data, setData] = useState(dataSource ?? [])
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await apiClient.get(url);
-        setData(response.data);
-      } catch (e) {
-        setData([]);
+    if (url){
+      async function fetchData() {
+        try {
+          const response = await apiClient.get(url);
+          setData(response.data);
+        } catch (e) {
+          setData([]);
+        }
       }
+      fetchData();
     }
-    fetchData();
   }, [reload]);
 
   return (
