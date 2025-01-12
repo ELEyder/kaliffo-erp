@@ -25,10 +25,15 @@ const Tabla = ({ columnas , rowKey, url, reload }) => {
       pagination={{ pageSize: 5 }}
       dataSource={data}
       rowKey={rowKey}
-      onRow={(record) => ({
-        onClick: () => navigate(`/admin/trabajadores/${record.trabajador_id}`),
-        style: { cursor: "pointer" },
-      })}
+      onRow={(record) => {
+        if (record.trabajador_id) {
+          return {
+            onClick: () => navigate(`/admin/trabajadores/${record.trabajador_id}`),
+            style: { cursor: "pointer" },
+          };
+        }
+        return {};
+      }}
       scroll={{ x: 'min-content' }}
     />
   )

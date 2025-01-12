@@ -12,8 +12,8 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
       render: (value) => {
         const incidenciaMap = {
           1: "Familiar",
-          2: "Personal",
-          3: "Salud",
+          2: "Salud",
+          3: "Personal",
         };
         return incidenciaMap[value] || "Desconocido"; // Devuelve el texto correspondiente o "Desconocido" si no está mapeado
       },
