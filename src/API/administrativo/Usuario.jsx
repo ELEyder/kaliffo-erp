@@ -1,6 +1,8 @@
 import moment from "moment";
 import apiClient from '../apiClient';
-
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+dayjs.extend(customParseFormat);
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
 // Añadir un nuevo Trabajador http://localhost:3000/Trabajador/create
@@ -138,7 +140,7 @@ export const setUpdateTrabajador = async (id, form, seteadorO) => {
       ["ap_materno"]: data.ap_materno,
       ["telefono"]: data.telefono,
       ["dni"]: data.dni,
-      ["fecha_nacimiento"]: moment(data.fecha_nacimiento),
+      ["fecha_nacimiento"]: dayjs(data.fecha_nacimiento, "DD-MM-YYYY"),
       ["tienda_id"]: data.tienda_id,
     });
   } catch (error) {

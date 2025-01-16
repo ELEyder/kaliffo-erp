@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
 import { setUpdateTrabajador, updateTrabajador } from "@AA/Usuario";
 import { getTiendas } from "@AA/Tienda";
+import {
+  onlyDecimalKey,
+  onlyNumberKey,
+  onlyLettersKey,
+  onlyDecimalInput,
+  onlyNumberInput,
+  onlyLettersInput,
+  preventPaste,
+} from "../../../Shared/Tools"; // Funciones de utilidad para validación
 
 const UpdateTrabajadorModal = ({
   openModal, // Estado para controlar si el modal está abierto
@@ -67,7 +76,9 @@ const UpdateTrabajadorModal = ({
             <Form.Item
               name="ap_paterno"
               label="Apellido Paterno"
-              rules={[{ required: true, message: "Apellido Paterno Requerido" }]}
+              rules={[
+                { required: true, message: "Apellido Paterno Requerido" },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -76,7 +87,9 @@ const UpdateTrabajadorModal = ({
             <Form.Item
               name="ap_materno"
               label="Apellido Materno"
-              rules={[{ required: true, message: "Apellido Materno Requerido" }]}
+              rules={[
+                { required: true, message: "Apellido Materno Requerido" },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -89,9 +102,11 @@ const UpdateTrabajadorModal = ({
             <Form.Item
               label="Fecha Nacimiento"
               name="fecha_nacimiento"
-              rules={[{ required: true, message: "Fecha Nacimiento requerido" }]}
+              rules={[
+                { required: true, message: "Fecha Nacimiento requerido" },
+              ]}
             >
-              <DatePicker format={"YYYY-MM-DD"} placeholder="YYYY-MM-DD" />
+              <DatePicker format="DD-MM-YYYY" />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -100,7 +115,13 @@ const UpdateTrabajadorModal = ({
               label="Teléfono"
               rules={[{ required: true, message: "Teléfono Requerido" }]}
             >
-              <Input maxLength={9} showCount />
+              <Input
+                showCount
+                maxLength={9} // Longitud máxima del teléfono
+                onPaste={preventPaste}
+                onKeyDown={onlyNumberKey} // Permitir solo números
+                onInput={onlyNumberInput} // Permitir solo números en la entrada
+              />
             </Form.Item>
           </Col>
         </Row>
@@ -113,7 +134,11 @@ const UpdateTrabajadorModal = ({
               label="DNI"
               rules={[{ required: true, message: "DNI requerido" }]}
             >
-              <Input maxLength={8} style={{ textAlign: "center" }} showCount />
+              <Input maxLength={8} 
+              onPaste={preventPaste}
+              onKeyDown={onlyNumberKey} // Permitir solo números
+              onInput={onlyNumberInput} // Permitir solo números en la entrada
+              style={{ textAlign: "center" }} showCount />
             </Form.Item>
           </Col>
           <Col span={14}>
