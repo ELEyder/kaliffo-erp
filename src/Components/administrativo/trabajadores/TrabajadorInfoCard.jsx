@@ -1,4 +1,4 @@
-import { Card, List, Button, Image, Divider } from "antd";
+import { Card, Dropdown,List, Button, Image, Divider } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTrabajadorById } from "@AA/Usuario";
@@ -7,6 +7,18 @@ import { getReporteUsuario } from "@AA/Reporte";
 const { Meta } = Card;
 
 const TrabajadorInfo = () => {
+
+  const items = [
+    {
+      key: '1',
+      label: 'Historico',
+    },
+    {
+      key: '2',
+      label: 'Ultimo Mes',
+    }
+  ];
+
   const { id } = useParams(); // Obtiene el ID del trabajador desde los parámetros de la URL
   const [usuario, setUsuario] = useState([]); // Estado para almacenar la información del trabajador
 
@@ -67,14 +79,14 @@ const TrabajadorInfo = () => {
       <Divider />
 
       {/* Botón para obtener el reporte del usuario */}
-      <Button
-        type="primary"
-        onClick={() => getReporteUsuario(id)}
+      <Dropdown.Button
+        menu={{items,onClick:({key})=>getReporteUsuario(id,key)}}
         block
+        size="middle"
         style={{ fontWeight: "bold" }}
       >
         OBTENER REPORTE
-      </Button>
+      </Dropdown.Button>
     </Card>
   );
 };
