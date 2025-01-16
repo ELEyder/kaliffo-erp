@@ -95,7 +95,7 @@ const Trabajador = () => {
 
       <Divider></Divider> {/* Separador al final */}
 
-      <FloatButton tooltip="Añadir Nueva Incidencia" onClick={() => setModalAddIncidenciaOpen(true)} type="primary" icon={<FileAddOutlined />} /> {/* Botón flotante para agregar una nueva incidencia */}
+      <FloatButton tooltip="Añadir Nueva Incidencia" onClick={() => changeModal("addI", true)} type="primary" icon={<FileAddOutlined />} /> {/* Botón flotante para agregar una nueva incidencia */}
 
       {/* Modales para editar y agregar incidencias */}
       <UpdateIncidenciaModal
@@ -107,7 +107,7 @@ const Trabajador = () => {
       <AddIncidenciaModal
         openModal={modals.addI} // Controlar la visibilidad del modal
         closeModal={() => changeModal("addI", false)} // Función para cerrar el modal
-        reload={reload} // Pasar el estado de recarga para actualizar los datos
+        reload={() => setReload(!reload)} // Pasar el estado de recarga para actualizar los datos
         id={id} // Pasar el ID del trabajador para asociarlo con la nueva incidencia
       />
     </>
