@@ -32,7 +32,7 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
     },
     { title: "Descripción", dataIndex: "descripcion", key: "descripcion", align: "center" }, // Descripción de la incidencia
     {
-      title: "Fecha", dataIndex: "fecha_creacion", key: "fecha_creacion", align: "center",
+      title: "Fecha", dataIndex: "fecha", key: "fecha", align: "center",
       render: (fecha) => {
         if (!fecha) return "-"; // Manejar casos donde la fecha sea nula
         const date = new Date(fecha); // Convertir la fecha a objeto Date
