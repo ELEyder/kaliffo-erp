@@ -16,7 +16,7 @@ const TiendaCard = () => {
 
   return (
     <Card 
-      style={{ header: { textAlign: "center", fontWeight: "bold", fontSize: "23px" } }} // Estilo para el encabezado de la tarjeta
+    style={{ width: 300, textAlign: "center" }}
       title={tienda.tienda} // Mostrar el nombre de la tienda como título de la tarjeta
       actions={[
         <Button 

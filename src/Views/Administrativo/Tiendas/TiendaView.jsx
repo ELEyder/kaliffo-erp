@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import TiendaCard from "@CA/tiendas/TiendaCard";
 import ProductosTable from "@CA/tiendas/ProductosTable";
-import VentasTable from "@CA/tiendas/VentasTable";
 import Tabla from "../../../Components/Tabla"
 import { FileAddOutlined } from "@ant-design/icons"; // Icono para el botón de "Añadir"
 
@@ -48,7 +47,7 @@ const TiendaView = () => {
       key: '3', label: 'Ventas',
       children: <Tabla
         columnas={columnasV}
-        rowKey={"codigo"}
+        rowKey={"venta_id"}
         dataSource={Ventas.getData()}
         reload={() => setReload(!reload)}
       />
@@ -58,7 +57,7 @@ const TiendaView = () => {
   return (
     <>
       {/* Divisor inicial */}
-      <Divider />
+      <Divider>Detalles de la Tienda</Divider>
 
       {/* Contenedor flexible para la tarjeta y las pestañas */}
       <Flex
@@ -66,15 +65,29 @@ const TiendaView = () => {
         gap="large"
         justify="space-evenly"
         align="flex-start"
+        style={{
+          width: "100%",
+          maxWidth: "1200px", // Máxima anchura del contenedor
+          margin: "0 auto", // Centrado horizontal
+          padding: "1rem", // Espaciado interno
+        }}
       >
         {/* Componente de información de la tienda */}
-        <TiendaCard />
+        <TiendaCard style={{
+            flex: "1 1 45%",
+            minWidth: "400px", // Ancho mínimo
+            maxWidth: "700px", // Ancho máximo
+          }}/>
 
         {/* Pestañas con los detalles de la tienda */}
-        <Tabs defaultActiveKey="1" items={items}
+        <Tabs  
           style={{
+            flex: "1 1 45%",
             minWidth: "400px",
-          }} />
+            maxWidth: "700px",
+          }}
+          items={items}
+          />
       </Flex>
 
       <FloatButton tooltip="Añadir Nuevo Personal"
