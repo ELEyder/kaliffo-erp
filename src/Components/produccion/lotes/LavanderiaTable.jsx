@@ -74,4 +74,4 @@ const Lavanderia = ({ status, reload, setReload }) => {
   );
 };
 
-export default Lavanderia;
+export default LavanderiaTable;

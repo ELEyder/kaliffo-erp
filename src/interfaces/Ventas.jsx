@@ -24,8 +24,8 @@ export const getColumnas = (reload) => {
       render: (text) => (
         <Flex gap="small" justify="center" align="middle" wrap="wrap">
             <Popconfirm
-              title="ELIMINAR" // Título de la confirmación para eliminar
-              description="DESEA ELIMINAR A" // Descripción de la confirmación
+              title="ANULAR" // Título de la confirmación para eliminar
+              description="¿DESEA ANULAR ESTA VENTA?" // Descripción de la confirmación
               okText="Confirmar" // Texto para confirmar la eliminación
               onConfirm={ async(e) => {
                 e.stopPropagation(); // Evitar la propagación del evento
@@ -40,7 +40,7 @@ export const getColumnas = (reload) => {
                 danger
                 onClick={(e) => e.stopPropagation()} // Evitar la propagación del evento al hacer clic
               >
-                Eliminar
+                Anular
               </Button>
             </Popconfirm>
         </Flex>

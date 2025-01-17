@@ -127,6 +127,7 @@ function App() {
           },
           token: {
             colorPrimary: color1,
+            colorText: 'white',
             colorError: danger
           },
         }}

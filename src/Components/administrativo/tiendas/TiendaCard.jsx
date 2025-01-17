@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"; // Hooks de React
 import { useParams } from "react-router-dom"; // Hook de React Router para acceder a los parámetros de la URL
 import { getTiendaById } from "@AA/Tienda"; // Función para obtener los datos de la tienda por su ID
-import { Card, List, Button, Row, Col } from "antd"; // Componentes de Ant Design para el diseño y la interfaz de usuario
-
+import { Card, List, Button, Typography } from "antd"; // Componentes de Ant Design para el diseño y la interfaz de usuario
 import { getReporteTienda } from "@AA/Reporte"; // Función para obtener el reporte de la tienda
-
+const { Paragraph, Text } = Typography;
 const TiendaCard = () => {
   const { id } = useParams(); // Extraer el ID de la tienda desde los parámetros de la URL
   const [tienda, setTienda] = useState([]); // Estado para almacenar los datos de la tienda
@@ -56,18 +55,10 @@ const TiendaCard = () => {
           item // Renderizar cada elemento de la lista
         ) => (
           <List.Item>
-            <Row
-              justify="space-between"
-              align="middle"
-              style={{ width: "100%" }}
-            >
-              <Col span={11} style={{ textAlign: "left" }}>
-                <strong>{item.title}</strong>
-              </Col>
-              <Col span={13} style={{ textAlign: "right" }}>
-                <span>{item.value}</span>
-              </Col>
-            </Row>
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+              <strong>{item.title}:</strong>
+              <Paragraph copyable>{item.value}</Paragraph>
+            </div>
           </List.Item>
         )}
       />
