@@ -15,7 +15,7 @@ const TiendaView = () => {
   // Definición de las pestañas con los componentes relacionados
   const { id } = useParams(); // Extraer el ID de la tienda de los parámetros de la URL
   const [reload, setReload] = useState(true); // Estado para activar recarga después de acciones como agregar/eliminar
-  const [idPersonal, setIdPersonal] = useState(null); // Estado para almacenar el ID del trabajador seleccionado para editar
+  const [idPersonal, setIdPersonal] = useState(1); // Estado para almacenar el ID del trabajador seleccionado para editar
 
   const [modals, setModals] = useState({
     "updT": false,
