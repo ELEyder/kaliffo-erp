@@ -13,13 +13,8 @@ const AddCorteModal = ({ openModal, closeModal, reload }) => {
 
   // useEffect para obtener productos y trabajadores al cargar el componente
   useEffect(() => {
-<<<<<<< HEAD
-    getProductoByLote(id, setProductos)
-    getTrabajadores("talleres", setTalleres);
-=======
     getProductoByLote(id, setProductos); // Llama a la API para obtener productos por lote
     getTrabajadores("talleres", setTalleres); // Llama a la API para obtener trabajadores
->>>>>>> 25d544ec5a702f52e8bcbedc1ca428177ff5c456
   }, []);
 
   return (

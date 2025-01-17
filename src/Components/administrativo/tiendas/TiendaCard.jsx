@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; // Hooks de React
 import { useParams } from "react-router-dom"; // Hook de React Router para acceder a los parámetros de la URL
 import { getTiendaById } from "@AA/Tienda"; // Función para obtener los datos de la tienda por su ID
-import { Card, List, Button } from "antd"; // Componentes de Ant Design para el diseño y la interfaz de usuario
+import { Card, List, Button, Row, Col } from "antd"; // Componentes de Ant Design para el diseño y la interfaz de usuario
 
 import { getReporteTienda } from "@AA/Reporte"; // Función para obtener el reporte de la tienda
 
@@ -15,39 +15,64 @@ const TiendaCard = () => {
   }, [id]); // El arreglo de dependencias, dispara el efecto cuando cambia `id`
 
   return (
-    <Card 
-    style={{ width: 300, textAlign: "center" }}
+    <Card
+      style={{ width: 300, textAlign: "center" }}
       title={tienda.tienda} // Mostrar el nombre de la tienda como título de la tarjeta
       actions={[
-        <Button 
+        <Button
           onClick={() => getReporteTienda(id)} // Botón para obtener el reporte de la tienda al hacer clic
-          type="primary" 
-          block 
+          type="primary"
+          block
           style={{ fontWeight: "bold" }}
         >
           OBTENER REPORTE
-        </Button>
+        </Button>,
       ]}
     >
       {/* Lista que muestra la información de la tienda */}
       <List
         itemLayout="horizontal" // Disponer los elementos de la lista horizontalmente
-        dataSource={[ // Definir los datos que se mostrarán en la lista
-          { title: "DIRECCIÓN", value: tienda.direccion == null ? '0' : `${tienda.direccion}` }, // Dirección de la tienda
-          { title: "TELÉFONO", value: tienda.telefono == null ? '0' : `${tienda.telefono}` }, // Teléfono de la tienda
-          { title: "STOCK TOTAL", value: tienda.total_stock == null ? '0' : `${tienda.total_stock}` }, // Stock total
-          { title: "VENTAS TOTALES", value: tienda.ventas == null ? '0' : `${tienda.ventas}` }, // Ventas totales
+        dataSource={[
+          // Definir los datos que se mostrarán en la lista
+          {
+            title: "DIRECCIÓN",
+            value: tienda.direccion == null ? "0" : `${tienda.direccion}`,
+          }, // Dirección de la tienda
+          {
+            title: "TELÉFONO",
+            value: tienda.telefono == null ? "0" : `${tienda.telefono}`,
+          }, // Teléfono de la tienda
+          {
+            title: "STOCK TOTAL",
+            value: tienda.total_stock == null ? "0" : `${tienda.total_stock}`,
+          }, // Stock total
+          {
+            title: "VENTAS TOTALES",
+            value: tienda.ventas == null ? "0" : `${tienda.ventas}`,
+          }, // Ventas totales
           { title: "PERSONAL ASIGNADO", value: `${tienda.total_usuarios}` }, // Número de personal asignado
         ]}
-        renderItem={(item) => ( // Renderizar cada elemento de la lista
+        renderItem={(
+          item // Renderizar cada elemento de la lista
+        ) => (
           <List.Item>
-            <b style={{ textAlign: 'left', marginRight: "40px" }}>{item.title}</b> {/* Etiqueta en negrita alineada a la izquierda */}
-            <a style={{ float: "right" }}>{item.value}</a> {/* Valor alineado a la derecha */}
+            <Row
+              justify="space-between"
+              align="middle"
+              style={{ width: "100%" }}
+            >
+              <Col span={11} style={{ textAlign: "left" }}>
+                <strong>{item.title}</strong>
+              </Col>
+              <Col span={13} style={{ textAlign: "right" }}>
+                <span>{item.value}</span>
+              </Col>
+            </Row>
           </List.Item>
         )}
       />
     </Card>
   );
-}
+};
 
 export default TiendaCard; // Exportar el componente TiendaCard
