@@ -18,8 +18,9 @@ const TimeLine = ({ fase, setFase, faseTimeline, reload }) => {
             {/* Cada icono de fase se puede seleccionar solo si la fase está permitida por faseTimeline */}
             <div
               onClick={() => {
-                if (index + 1 <= faseTimeline) {  // Verifica si la fase es accesible
+                if (index + 1 <= faseTimeline && index + 1 != fase) {  // Verifica si la fase es accesible
                   setFase(index + 1);  // Cambia la fase al seleccionar el ícono
+                  reload()
                 }
               }}
               className={styles.loteIcon}
