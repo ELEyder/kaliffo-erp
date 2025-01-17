@@ -3,7 +3,9 @@ import ProductoInfoCard from "@C/administrativo/productos/ProductoInfoCard";
 import ProductoTiendasTable from "@CA/productos/ProductoTiendasTable";
 import ProductoTallasTable from "@CA/productos/ProductoTallasTable";
 import ProductoColoresTable from "@CA/productos/ProductoColoresTable";
-import { Col, Divider, Row, Tabs } from "antd";
+
+
+import { Flex, Divider , Tabs } from "antd";
 
 const ProductoView = () => {
   // Definición de las pestañas con sus respectivos componentes
@@ -21,16 +23,22 @@ const ProductoView = () => {
       </Divider>
 
       {/* Diseño de dos columnas: una para la información del producto y otra para las pestañas */}
-      <Row gutter={24}>
-        <Col span={10}>
+      <Flex
+        wrap
+        gap="large"
+        justify="space-evenly"
+        align="flex-start"
+        style={{
+          width: "100%",
+          maxWidth: "1200px", // Máxima anchura del contenedor
+          margin: "0 auto", // Centrado horizontal
+          padding: "1rem", // Espaciado interno
+        }}
+      >
           {/* Componente con la información del producto */}
           <ProductoInfoCard />
-        </Col>
-        <Col span={12}>
-          {/* Pestañas para mostrar detalles adicionales */}
           <Tabs defaultActiveKey="1" items={items} />
-        </Col>
-      </Row>
+      </Flex>
 
       {/* Divisor adicional para separar contenido */}
       <Divider />
