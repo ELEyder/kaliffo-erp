@@ -6,7 +6,7 @@ import { showNotification } from "../../Shared/Notifications";
  */
 export const getAlmacenProductos = async (setAlmacenes) => {
   try {
-    const response = await fetch("http://localhost:3000/almacen_productos"); // Realizar petición GET al servidor
+    const response = await fetch("http://localhost:3000/almacen_producto"); // Realizar petición GET al servidor
     const AlmacenData = await response.json(); // Convertir la respuesta a JSON
     setAlmacenes(AlmacenData); // Actualizar el estado con los datos obtenidos
   } catch (error) {
@@ -22,11 +22,11 @@ export const getAlmacenProductos = async (setAlmacenes) => {
 export const addAlmacenProductos = async (values) => {
   let AlmacenProductos = {
     nombre_almacen: values.nombre_almacen,
-    direccion: values.direccion,
+    direccion: values.nombre_almacen,
   };
 
   try {
-    const response = await fetch("http://localhost:3000/almacen_productos/create", {
+    const response = await fetch("http://localhost:3000/almacen_producto/create", {
       method: "POST", // Enviar una petición POST para crear un nuevo producto
       headers: {
         "Content-Type": "application/json", // Definir el tipo de contenido como JSON

@@ -50,7 +50,7 @@ const Status = ({ fase, status, reload }) => {
   };
 
   // Texto de las fases según el estado
-  const fasesText = ["Sin Estado", "Iniciar", "En Proceso", "Finalizado"];
+  const fasesText = ["", "Iniciar", "En Proceso", "Finalizado"];
 
   return (
     <>

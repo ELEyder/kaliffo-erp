@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"; // Importa React y hooks
 import { Form, Modal, Input, InputNumber, Button, Select, Row, Col } from "antd"; // Importa los componentes necesarios de Ant Design
-import { getCorte } from "@AP/Corte"; // Función para obtener cortes desde la API
+import { getCorteDiferido } from "@AP/Corte"; // Función para obtener cortes desde la API
 import { getColores } from "@AA/Color"; // Función para obtener colores desde la API
 import { addLavanderia } from "@AP/Lavanderia"; // Función para agregar lavandería desde la API
 import { useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
@@ -13,9 +13,10 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
   const [maxValues, setMaxValues] = useState({}); // Estado para almacenar valores máximos dinámicos (por corte)
 
   useEffect(() => {
-    getCorte(id, setCortes); // Llama a la API para obtener los cortes del lote
+    getCorteDiferido(id, setCortes); // Llama a la API para obtener los cortes del lote
     getColores(setColores); // Llama a la API para obtener los colores disponibles
-  }, [id]);
+    setMaxValues({})
+  }, [id,reload]);
 
   // Función que maneja el cambio en el corte seleccionado y actualiza el valor máximo en la cantidad
   const handleCorteChange = (fieldKey, corteId) => {
