@@ -15,7 +15,7 @@ const TiendaCard = () => {
 
   return (
     <Card
-      style={{ width: 350, textAlign: "center" }}
+      style={{ width: 300, textAlign: "center" }}
       title={tienda.tienda} // Mostrar el nombre de la tienda como título de la tarjeta
       actions={[
         <Button
@@ -25,20 +25,35 @@ const TiendaCard = () => {
           style={{ fontWeight: "bold" }}
         >
           OBTENER REPORTE
-        </Button>
+        </Button>,
       ]}
     >
       {/* Lista que muestra la información de la tienda */}
       <List
         itemLayout="horizontal" // Disponer los elementos de la lista horizontalmente
-        dataSource={[ // Definir los datos que se mostrarán en la lista
-          { title: "DIRECCIÓN", value: tienda.direccion == null ? '0' : `${tienda.direccion}` }, // Dirección de la tienda
-          { title: "TELÉFONO", value: tienda.telefono == null ? '0' : `${tienda.telefono}` }, // Teléfono de la tienda
-          { title: "STOCK TOTAL", value: tienda.total_stock == null ? '0' : `${tienda.total_stock}` }, // Stock total
-          { title: "VENTAS TOTALES", value: tienda.ventas == null ? '0' : `${tienda.ventas}` }, // Ventas totales
+        dataSource={[
+          // Definir los datos que se mostrarán en la lista
+          {
+            title: "DIRECCIÓN",
+            value: tienda.direccion == null ? "0" : `${tienda.direccion}`,
+          }, // Dirección de la tienda
+          {
+            title: "TELÉFONO",
+            value: tienda.telefono == null ? "0" : `${tienda.telefono}`,
+          }, // Teléfono de la tienda
+          {
+            title: "STOCK TOTAL",
+            value: tienda.total_stock == null ? "0" : `${tienda.total_stock}`,
+          }, // Stock total
+          {
+            title: "VENTAS TOTALES",
+            value: tienda.ventas == null ? "0" : `${tienda.ventas}`,
+          }, // Ventas totales
           { title: "PERSONAL ASIGNADO", value: `${tienda.total_usuarios}` }, // Número de personal asignado
         ]}
-        renderItem={(item) => ( // Renderizar cada elemento de la lista
+        renderItem={(
+          item // Renderizar cada elemento de la lista
+        ) => (
           <List.Item>
             <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
               <strong>{item.title}:</strong>
@@ -49,6 +64,6 @@ const TiendaCard = () => {
       />
     </Card>
   );
-}
+};
 
 export default TiendaCard; // Exportar el componente TiendaCard

@@ -42,6 +42,7 @@ const Trabajadores = () => {
         tooltip="Añadir nuevo trabajador"
         onClick={() => changeModal("addT", true)}
       />
+      
       <AddTrabajadorModal
         openModal={modals["addT"]}
         closeModal={() => changeModal("addT", false)}

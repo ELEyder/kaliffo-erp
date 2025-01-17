@@ -21,7 +21,8 @@ const CortesTable = ({ status, reload }) => {
   const columns = [
     { key: "taller", dataIndex: "taller", title: "Taller", align: "center" },
     { key: "producto", dataIndex: "producto", title: "Producto", align: "center" },
-    { key: "cantidad", dataIndex: "cantidad_enviada", title: "Cantidad", align: "center" },
+    { key: "cantidad_enviada", dataIndex: "cantidad_enviada", title: "Cantidad Enviada", align: "center" },
+    ...(data.some((record)=>record.estado===3)?[{ key: "cantidad_recibida", dataIndex: "cantidad_recibida", title: "Cantidad Recibida", align: "center" }]:[]),
     { key: "talla", dataIndex: "talla", title: "Talla", align: "center" },
 
     // Si hay cortes con estado 1, agregar columna de opciones para eliminar
@@ -32,8 +33,6 @@ const CortesTable = ({ status, reload }) => {
           key: "opciones",
           align: "center",
           render: (text, record) => {
-            // Mostrar botón de eliminar si el corte tiene estado 1
-            if (record.estado === 1) {
               return (
                 <Popconfirm
                   title="Eliminar"
@@ -50,7 +49,6 @@ const CortesTable = ({ status, reload }) => {
                   </Button>
                 </Popconfirm>
               );
-            }
             return null;
           },
         },
@@ -68,20 +66,22 @@ const CortesTable = ({ status, reload }) => {
         rowKey="corte_id" />
 
       {/* Mostrar botón flotante para añadir corte si el estado es 0 o 1 */}
-      {(status === 0 || status === 1) && (
-        <FloatButton
-          style={{ insetInlineStart: 270 }}
-          onClick={() => setOpenAddModal(true)}  // Abrir modal de agregar corte
-          tooltip="Añadir Corte"
-        />
-      )}
+      {(status === 0 || status === 1) ? (
+        <>
+          <FloatButton
+            style={{ insetInlineStart: 270 }}
+            onClick={() => setOpenAddModal(true)}  // Abrir modal de agregar corte
+            tooltip="Añadir Corte"
+          />
+          {/* Modal para añadir corte */}
+          <AddCorteModal
+            openModal={openAddModal}
+            closeModal={() => setOpenAddModal(false)}  // Cerrar modal
+            reload={reload}  // Recargar datos al añadir un corte
+          />
+        </>
+      ):null}
 
-      {/* Modal para añadir corte */}
-      <AddCorteModal
-        openModal={openAddModal}
-        closeModal={() => setOpenAddModal(false)}  // Cerrar modal
-        reload={reload}  // Recargar datos al añadir un corte
-      />
     </>
   );
 };

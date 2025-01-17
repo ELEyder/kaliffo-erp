@@ -22,12 +22,13 @@ const AlmacenProductosCards = () => {
   return (
     <>
       {/* Muestra los almacenes en tarjetas */}
-      <Flex wrap gap={"middle"} justify="space-evenly" gutter={20}>
+      <Flex wrap gap={"middle"} justify="space-evenly">
         {Almacenes.map((almacen, index) => {
           return (
             <Card
-              key={index} // Clave única para cada tarjeta
-              style={{ width: "300px", overflow: "hidden" }} // Estilo para las tarjetas
+              key={almacen.almacen_id} // Clave única para cada tarjeta
+              style={{ width: "300px", overflow: "hidden",textAlign:"center" }} // Estilo para las tarjetas
+              styles={{header:{textAlign:"center",textTransform:"uppercase"}}}
               title={almacen.nombre_almacen} // Título de la tarjeta (nombre del almacén)
               actions={[
                 // Acciones para editar, ver y eliminar almacén

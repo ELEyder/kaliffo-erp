@@ -1,4 +1,5 @@
 import { Button, Popconfirm } from "antd";
+import apiClient from "../API/apiClient";
 
 export const getColumnas = (reload) => {
   const columnas = [
@@ -49,8 +50,7 @@ export const getColumnas = (reload) => {
           okText="Confirmar" // Texto para el botón de confirmación
           cancelText="NO" // Texto para el botón de cancelación
           onConfirm={async () => {
-            // await apiClient.delete(`/asistencia/delete/${text}`);
-            console.log("En reparación")
+            await apiClient.delete(`/asistencia/delete/${text}`);
             reload(); // Cambiar el estado de recarga para actualizar los datos
           }}
         >

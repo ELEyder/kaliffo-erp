@@ -24,11 +24,7 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
           color: record.tipo === 3 ? "white" : "black", // Cambio de color de texto para el tipo "Salud"
           padding: "10px"
         }
-      }),
-      sorter: {
-        compare: (a, b) => a.incidencia.localeCompare(b.incidencia), // Ordenar incidencias por tipo
-        multiple: 1,
-      }
+      })
     },
     { title: "Descripción", dataIndex: "descripcion", key: "descripcion", align: "center" }, // Descripción de la incidencia
     {

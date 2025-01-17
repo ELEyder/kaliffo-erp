@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import TiendaCard from "@CA/tiendas/TiendaCard";
 import ProductosTable from "@CA/tiendas/ProductosTable";
-import Tabla from "../../../Components/Tabla"
+import Tabla from "../../../Components/Tabla";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono para el botón de "Añadir"
 
 import { FloatButton, Divider, Flex, Tabs } from "antd";
@@ -45,13 +45,16 @@ const TiendaView = () => {
     />
     },
     {
-      key: '2', label: 'Personal',
-      children: <Tabla
-        columnas={columnasP}
-        rowKey={"trabajador_id"}
-        url={Personal.getUrl(id)}
-        reload={() => setReload(!reload)}
-      />,
+      key: "2",
+      label: "Personal",
+      children: (
+        <Tabla
+          columnas={columnasP}
+          rowKey={"trabajador_id"}
+          url={Personal.getUrl(id)}
+          reload={() => setReload(!reload)}
+        />
+      ),
     },
     {
       key: '3', label: 'Ventas',
@@ -111,13 +114,13 @@ const TiendaView = () => {
         }}
         icon={<FileAddOutlined />} />
 
-      {/* Modal para actualizar los detalles de un trabajador */}
-      <UpdateTrabajadorModal
-        openModal={modals.updT} // Visibilidad del modal
-        closeModal={() => changeModal("updT", false)} // Cerrar el modal
-        id={idPersonal} // Pasar el ID del trabajador al modal
-        reload={() => setReload(!reload)} // Recargar después de actualizar
-      />
+          {/* Modal para actualizar los detalles de un trabajador */}
+          <UpdateTrabajadorModal
+            openModal={modals.updT} // Visibilidad del modal
+            closeModal={() => changeModal("updT", false)} // Cerrar el modal
+            id={idPersonal} // Pasar el ID del trabajador al modal
+            reload={() => setReload(!reload)} // Recargar después de actualizar
+          />
 
       {/* Modal para añadir un nuevo trabajador */}
       <AddPersonalModal

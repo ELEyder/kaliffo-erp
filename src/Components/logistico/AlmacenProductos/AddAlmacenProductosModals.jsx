@@ -42,7 +42,7 @@ const AddAlmacenProductosModals = ({ openModal, closeModal, reload }) => {
             },
           ]}
         >
-          <Input /> {/* Campo de entrada para el nombre */}
+          <Input />
         </Form.Item>
 
         {/* Campo para la dirección del almacén */}
@@ -57,7 +57,7 @@ const AddAlmacenProductosModals = ({ openModal, closeModal, reload }) => {
             },
           ]}
         >
-          <Input /> {/* Campo de entrada para la dirección */}
+          <Input /> 
         </Form.Item>
       </Form>
     </Modal>

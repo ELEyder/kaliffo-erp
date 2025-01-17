@@ -1,4 +1,4 @@
-import { Card, Dropdown,List, Button, Image, Divider } from "antd";
+import { Card, Dropdown, List, Button, Image, Divider, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTrabajadorById } from "@AA/Usuario";
@@ -7,16 +7,15 @@ import { getReporteUsuario } from "@AA/Reporte";
 const { Meta } = Card;
 
 const TrabajadorInfo = () => {
-
   const items = [
     {
-      key: '1',
-      label: 'Historico',
+      key: "1",
+      label: "Historico",
     },
     {
-      key: '2',
-      label: 'Ultimo Mes',
-    }
+      key: "2",
+      label: "Ultimo Mes",
+    },
   ];
 
   const { id } = useParams(); // Obtiene el ID del trabajador desde los parámetros de la URL
@@ -70,23 +69,29 @@ const TrabajadorInfo = () => {
         renderItem={(item) => (
           <List.Item>
             {/* Título y valor de cada propiedad */}
-            <b style={{ textAlign: "left", marginRight: "40px" }}>{item.title}</b>
+            <b style={{ textAlign: "left", marginRight: "40px" }}>
+              {item.title}
+            </b>
             <a style={{ float: "right" }}>{item.value}</a>
           </List.Item>
         )}
       />
-      
+
       <Divider />
 
       {/* Botón para obtener el reporte del usuario */}
-      <Dropdown.Button
-        menu={{items,onClick:({key})=>getReporteUsuario(id,key)}}
-        block
-        size="middle"
-        style={{ fontWeight: "bold" }}
-      >
-        OBTENER REPORTE
-      </Dropdown.Button>
+      <Row justify="center" align="middle">
+        <Col>
+          <Dropdown.Button
+            menu={{ items, onClick: ({ key }) => getReporteUsuario(id, key) }}
+            block
+            size="large"
+            style={{ fontWeight: "bold" }}
+          >
+            OBTENER REPORTE
+          </Dropdown.Button>
+        </Col>
+      </Row>
     </Card>
   );
 };
