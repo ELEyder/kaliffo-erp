@@ -1,5 +1,4 @@
 import { Button } from "antd";
-import apiClient from "../API/apiClient";
 
 export const getColumnas = (changeModal, setIdP, reload) => {
 // Definir las columnas para la tabla de productos

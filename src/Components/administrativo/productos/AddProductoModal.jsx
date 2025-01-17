@@ -43,7 +43,7 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
             },
           ]}
         >
-          <Input /> {/* Campo de texto */}
+          <Input />
         </Form.Item>
 
         <Row gutter={16}> {/* Espaciado entre columnas */}
