@@ -1,49 +1,56 @@
 import React, { useState } from "react";
 import ProductoInfoCard from "@C/administrativo/productos/ProductoInfoCard";
-import ProductoTiendasTable from "@CA/productos/ProductoTiendasTable";
-import ProductoTallasTable from "@CA/productos/ProductoTallasTable";
-import ProductoColoresTable from "@CA/productos/ProductoColoresTable";
+
+import ProductoDetalleTallasColoresModal from "@CA/productos/ProductoDetalleTallasColoresModal"; // Modal para detalles de tallas y colores
+import TallaDetalleModal from "@CA/productos/TallaDetalleModal"; // Modal para ver detalles de talla
+import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para detalles de la tienda
 
 import * as Tiendas from "../../../interfaces/Tiendas";
+import * as Tallas from "../../../interfaces/Tallas";
+import * as Colores from "../../../interfaces/Colores";
 
 import { Flex, Divider, Tabs } from "antd";
 import Tabla from "../../../Components/Tabla";
 import { useParams } from "react-router-dom";
 
-const ProductoView = () => {  
+const ProductoView = () => {
   // Definición de las pestañas con sus respectivos componentes
   const { id } = useParams()
   const [reload, setReload] = useState(true); // Estado para activar recarga después de acciones como agregar/eliminar
   const [idT, setIdT] = useState(0); // Estado para almacenar el ID de la tienda seleccionada
+  const [talla, setTalla] = useState(0);
+  const [detalleColor, setDetalleColor] = useState(0);
 
   const [modals, setModals] = useState({
     "tiendaD": false,
-    "addP": false,
-    "proD": false,
+    "tallaD": false,
+    "colorD": false,
   })
   const changeModal = (modalKey, value) => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };
 
-  const columnas = Tiendas.getColumnas(changeModal, setIdT, ()=> setReload(!reload))
+  const columnas = Tiendas.getColumnas(changeModal, setIdT, () => setReload(!reload))
+  const columnasT = Tallas.getColumnas(changeModal, setTalla)
+  const columnasC = Colores.getColumnas(changeModal, setDetalleColor)
 
   const items = [
     {
       key: '1', label: 'Tiendas',
       children: <Tabla
         columnas={columnas}
-        rowKey={"producto_id"}
+        rowKey={"tienda_id"}
         url={Tiendas.getUrl(id)}
         reload={() => setReload(!reload)}
       />
     },
     {
-      key: "2", label: "Personal",
+      key: "2", label: "Tallas",
       children: (
         <Tabla
-          columnas={columnas}
+          columnas={columnasT}
           rowKey={"trabajador_id"}
-          url={Tiendas.getUrl(id)}
+          url={Tallas.getUrl(id)}
           reload={() => setReload(!reload)}
         />
       ),
@@ -51,9 +58,9 @@ const ProductoView = () => {
     {
       key: '3', label: 'Colores',
       children: <Tabla
-        columnas={columnas}
+        columnas={columnasC}
         rowKey={"codigo"}
-        url={Tiendas.getUrl(id)}
+        url={Colores.getUrl(id)}
         reload={() => setReload(!reload)}
       />
     },
@@ -85,6 +92,31 @@ const ProductoView = () => {
 
       {/* Divisor adicional para separar contenido */}
       <Divider />
+
+      {/*Tiendas*/}
+      <ProductoDetalleModal
+        openModal={modals.tiendaD} // Estado para controlar la visibilidad del modal
+        closeModal={() => changeModal("tiendaD", false)} // Función para cerrar el modal
+        id={idT} // ID de la tienda seleccionada
+        idp={id} // Pasar el ID del producto como prop
+      />
+
+      {/*Tallas*/}
+      <ProductoDetalleTallasColoresModal
+        openModal={modals.tallaD} // Estado para controlar la visibilidad del modal
+        closeModal={() => changeModal("tallaD", false)} // Función para cerrar el modal
+        id={id} // ID del producto
+        talla={talla} // Talla seleccionada
+      />
+
+      {/*Colores*/}
+      <TallaDetalleModal
+        openModal={modals.colorD} // Controla la visibilidad del modal
+        closeModal={() => changeModal("colorD", false)} // Cierra el modal
+        idD={detalleColor} // Pasa el ID del detalle al modal
+      />
+
+
     </>
   );
 };
