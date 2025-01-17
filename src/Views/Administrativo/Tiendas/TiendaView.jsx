@@ -39,7 +39,7 @@ const TiendaView = () => {
       key: '1', label: 'Productos',
       children: <Tabla
       columnas={columnasPro}
-      rowKey={"trabajador_id"}
+      rowKey={"producto_id"}
       url={Productos.getUrl(id)}
       reload={() => setReload(!reload)}
     />
@@ -57,7 +57,7 @@ const TiendaView = () => {
       key: '3', label: 'Ventas',
       children: <Tabla
         columnas={columnasV}
-        rowKey={"venta_id"}
+        rowKey={"codigo"}
         dataSource={Ventas.getData()}
         reload={() => setReload(!reload)}
       />
