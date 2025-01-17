@@ -36,11 +36,11 @@ const Lote = () => {
       setStatus(<Status fase={fase} status={statusCorte} reload={()=>setReload(!reload)}/>)
     }
     else if (fase == 2) {
-      setContenido(<LavanderiaTable reload={reload} setReload={setReload}/>);
+      setContenido(<LavanderiaTable  reload={()=>setReload(!reload)} status={statusLavanderia}/>);
       setStatus(<Status fase={fase} status={statusLavanderia} reload={()=>setReload(!reload)}/>)
     }
     else if (fase == 3) {
-      setContenido(<TallerTable reload={reload} setReload={setReload}/>);
+      setContenido(<TallerTable  reload={()=>setReload(!reload)} status={statusAcabado}/>);
       setStatus(<Status fase={fase} status={statusAcabado} reload={()=>setReload(!reload)}/>)
     }
   }, [reload, id, fase, statusCorte, statusLavanderia, statusAcabado]);
