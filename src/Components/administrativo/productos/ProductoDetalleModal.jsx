@@ -9,7 +9,6 @@ const ProductoDetalleModal = ({
   closeModal, // Función para cerrar el modal
   id, // ID del producto
   idp, // ID de otro parámetro relacionado con el producto
-  nombreProducto, // Nombre del producto
 }) => {
 
   // Estados para controlar la visibilidad del modal de detalles y la información de producto

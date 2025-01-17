@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-import {
-  Form,
-  Modal,
-  Input,
-  InputNumber,
-  Button,
-  Select,
-  Row,
-  Col,
-  Flex,
-} from "antd";
-import { getCorteDiferido } from "@AP/Corte";
-import { getColores } from "@AA/Color";
-import { addLavanderia } from "@AP/Lavanderia";
-import { useParams } from "react-router-dom";
-
-const AddLavanderiaModal = ({ openModal, closeModal, reload,setCortesT }) => {
-  const { id } = useParams();
-  const [form] = Form.useForm();
-  const [cortes, setCortes] = useState([]);
-  const [colores, setColores] = useState([]);
-  const [maxValues, setMaxValues] = useState({}); // Estado para valores máximos dinámicos
-
-  useEffect(() => {
-    getCorteDiferido(id, setCortes);
-    getColores(setColores);
-    setCortesT(cortes.length)
-=======
 import React, { useState, useEffect } from "react"; // Importa React y hooks
 import { Form, Modal, Input, InputNumber, Button, Select, Row, Col } from "antd"; // Importa los componentes necesarios de Ant Design
 import { getCorte } from "@AP/Corte"; // Función para obtener cortes desde la API
@@ -45,7 +15,6 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
   useEffect(() => {
     getCorte(id, setCortes); // Llama a la API para obtener los cortes del lote
     getColores(setColores); // Llama a la API para obtener los colores disponibles
->>>>>>> 25d544ec5a702f52e8bcbedc1ca428177ff5c456
   }, [id]);
 
   // Función que maneja el cambio en el corte seleccionado y actualiza el valor máximo en la cantidad
@@ -69,16 +38,6 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
 
   return (
     <Modal
-<<<<<<< HEAD
-      title="Nueva Lavandería"
-      open={openModal}
-      styles={{header:{textAlign:"center"}}}
-      onCancel={() => closeModal(false)}
-      onOk={form.submit}
-      okText="Añadir"
-      centered
-      width={645}
-=======
       title="Nueva Lavandería" // Título del modal
       open={openModal} // Controla si el modal está abierto
       styles={{ header: { textAlign: "center" } }} // Centra el título del modal
@@ -87,7 +46,6 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
       okText="Añadir" // Texto del botón de confirmación
       centered // Centra el modal en la pantalla
       width={550} // Establece el ancho del modal
->>>>>>> 25d544ec5a702f52e8bcbedc1ca428177ff5c456
     >
       <Form
         form={form} // Asocia el formulario con el estado de Ant Design

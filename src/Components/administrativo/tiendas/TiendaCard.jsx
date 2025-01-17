@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"; // Hooks de React
 import { useParams } from "react-router-dom"; // Hook de React Router para acceder a los parámetros de la URL
 import { getTiendaById } from "@AA/Tienda"; // Función para obtener los datos de la tienda por su ID
-import { Card, List, Button } from "antd"; // Componentes de Ant Design para el diseño y la interfaz de usuario
-
+import { Card, List, Button, Typography } from "antd"; // Componentes de Ant Design para el diseño y la interfaz de usuario
 import { getReporteTienda } from "@AA/Reporte"; // Función para obtener el reporte de la tienda
-
+const { Paragraph, Text } = Typography;
 const TiendaCard = () => {
   const { id } = useParams(); // Extraer el ID de la tienda desde los parámetros de la URL
   const [tienda, setTienda] = useState([]); // Estado para almacenar los datos de la tienda
@@ -15,14 +14,14 @@ const TiendaCard = () => {
   }, [id]); // El arreglo de dependencias, dispara el efecto cuando cambia `id`
 
   return (
-    <Card 
-    style={{ width: 300, textAlign: "center" }}
+    <Card
+      style={{ width: 350, textAlign: "center" }}
       title={tienda.tienda} // Mostrar el nombre de la tienda como título de la tarjeta
       actions={[
-        <Button 
+        <Button
           onClick={() => getReporteTienda(id)} // Botón para obtener el reporte de la tienda al hacer clic
-          type="primary" 
-          block 
+          type="primary"
+          block
           style={{ fontWeight: "bold" }}
         >
           OBTENER REPORTE
@@ -41,8 +40,10 @@ const TiendaCard = () => {
         ]}
         renderItem={(item) => ( // Renderizar cada elemento de la lista
           <List.Item>
-            <b style={{ textAlign: 'left', marginRight: "40px" }}>{item.title}</b> {/* Etiqueta en negrita alineada a la izquierda */}
-            <a style={{ float: "right" }}>{item.value}</a> {/* Valor alineado a la derecha */}
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+              <strong>{item.title}:</strong>
+              <Paragraph copyable>{item.value}</Paragraph>
+            </div>
           </List.Item>
         )}
       />

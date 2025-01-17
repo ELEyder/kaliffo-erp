@@ -5,7 +5,7 @@ const FooterMain = () => {
     return (
         // Componente Footer con estilos personalizados
         <Footer style={{ textAlign: "center", background: "black" }}>
-            HOLA
+            DESARROLLADO POR RLCODE
         </Footer>
     );
 }
