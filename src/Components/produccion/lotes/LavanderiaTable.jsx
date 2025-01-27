@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getLavanderia } from "@AP/Lavanderia"; // Función para obtener los datos de lavandería
 import AddLavanderiaModal from "@CP/lotes/AddLavanderiaModal"; // Modal para agregar lavandería
 
-const Lavanderia = ({ status, reload, setReload }) => {
+const LavanderiaTable = ({ status, reload, setReload }) => {
   const { id } = useParams(); // Obtener el ID desde los parámetros de la URL
   const [data, setData] = useState([]); // Estado para almacenar los datos de lavandería
   const [openAddModal, setOpenAddModal] = useState(false); // Controlar si el modal está abierto
@@ -15,7 +15,7 @@ const Lavanderia = ({ status, reload, setReload }) => {
   }, [id, reload]);
 
   // Verificar si hay algún corte con estado 1
-  const hasOptions = data.some((record) => record.estado === 1);
+  const hasOptions = data.some((record) => record.estado === 1 );
 
   // Definir las columnas de la tabla
   const columns = [
@@ -54,7 +54,7 @@ const Lavanderia = ({ status, reload, setReload }) => {
       {/* Tabla que muestra los datos de lavandería */}
       <Table dataSource={data} columns={columns} rowKey="corte_id" />
 
-      {hasOptions? (
+      {(status===0||status===1)? (
         <>
           {/* Botón flotante para abrir el modal de agregar lavandería */}
           <FloatButton

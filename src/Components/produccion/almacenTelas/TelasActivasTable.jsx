@@ -22,6 +22,48 @@ const TelasActivasTable = () => {
       align: "center", // Alinea el texto al centro
     },
     {
+      title: "Artículo", // Título de la columna
+      dataIndex: "articulo", // Campo que se va a mostrar
+      key: "articulo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Numero Rollo", // Título de la columna
+      dataIndex: "numero_rollo", // Campo que se va a mostrar
+      key: "numero_rollo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "PRO.Numero Rollo", // Título de la columna
+      dataIndex: "pro_numero_rollo", // Campo que se va a mostrar
+      key: "pro_numero_rollo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Grado", // Título de la columna
+      dataIndex: "grado", // Campo que se va a mostrar
+      key: "grado", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Grupo", // Título de la columna
+      dataIndex: "grupo", // Campo que se va a mostrar
+      key: "grupo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Ancho Bruto", // Título de la columna
+      dataIndex: "ancho_bruto", // Campo que se va a mostrar
+      key: "ancho_bruto", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Ancho Neto", // Título de la columna
+      dataIndex: "ancho_neto", // Campo que se va a mostrar
+      key: "ancho_neto", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
       title: "Metraje", // Título de la columna
       dataIndex: "metraje", // Campo que se va a mostrar
       key: "metraje", // Clave única para la columna
@@ -29,21 +71,15 @@ const TelasActivasTable = () => {
       sorter: (a, b) => a.metraje - b.metraje, // Permite ordenar la columna de metraje
     },
     {
-      title: "Artículo", // Título de la columna
-      dataIndex: "articulo", // Campo que se va a mostrar
-      key: "articulo", // Clave única para la columna
+      title: "Empalme", // Título de la columna
+      dataIndex: "empalme", // Campo que se va a mostrar
+      key: "empalme", // Clave única para la columna
       align: "center", // Alinea el texto al centro
     },
     {
-      title: "Empresa Compra", // Título de la columna
-      dataIndex: "empresa_compra", // Campo que se va a mostrar
-      key: "empresa_compra", // Clave única para la columna
-      align: "center", // Alinea el texto al centro
-    },
-    {
-      title: "Fecha de Compra", // Título de la columna
-      dataIndex: "fecha_compra", // Campo que se va a mostrar
-      key: "fecha_compra", // Clave única para la columna
+      title: "Fecha de Ingreso", // Título de la columna
+      dataIndex: "fecha_ingreso", // Campo que se va a mostrar
+      key: "fecha_ingreso", // Clave única para la columna
       align: "center", // Alinea el texto al centro
     },
     {

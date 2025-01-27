@@ -14,35 +14,77 @@ const TelasInactivasTable = () => {
 
   const columns = [
     {
-      title: "N", // Título de la primera columna
-      dataIndex: "n", // Propiedad de los datos que se mostrará en esta columna
-      key: "n", // Clave para esta columna
-      align: "center", // Alineación centrada
-    },
-    {
-      title: "Metraje", // Título de la columna
-      dataIndex: "metraje", // Propiedad de los datos a mostrar
-      key: "metraje", // Clave de la columna
-      align: "center", // Alineación centrada
-      sorter: (a, b) => a.metraje - b.metraje, // Función para ordenar las filas por metraje
+      title: "N", // Título de la columna
+      dataIndex: "n", // Campo que se va a mostrar
+      key: "n", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
     },
     {
       title: "Artículo", // Título de la columna
-      dataIndex: "articulo", // Propiedad de los datos
-      key: "articulo", // Clave de la columna
-      align: "center", // Alineación centrada
+      dataIndex: "articulo", // Campo que se va a mostrar
+      key: "articulo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
     },
     {
-      title: "Empresa Compra", // Título de la columna
-      dataIndex: "empresa_compra", // Propiedad de los datos
-      key: "empresa_compra", // Clave de la columna
-      align: "center", // Alineación centrada
+      title: "Numero Rollo", // Título de la columna
+      dataIndex: "numero_rollo", // Campo que se va a mostrar
+      key: "numero_rollo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
     },
     {
-      title: "Fecha de Compra", // Título de la columna
-      dataIndex: "fecha_compra", // Propiedad de los datos
-      key: "fecha_compra", // Clave de la columna
-      align: "center", // Alineación centrada
+      title: "PRO.Numero Rollo", // Título de la columna
+      dataIndex: "pro_numero_rollo", // Campo que se va a mostrar
+      key: "pro_numero_rollo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Grado", // Título de la columna
+      dataIndex: "grado", // Campo que se va a mostrar
+      key: "grado", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Grupo", // Título de la columna
+      dataIndex: "grupo", // Campo que se va a mostrar
+      key: "grupo", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Ancho Bruto", // Título de la columna
+      dataIndex: "ancho_bruto", // Campo que se va a mostrar
+      key: "ancho_bruto", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Ancho Neto", // Título de la columna
+      dataIndex: "ancho_neto", // Campo que se va a mostrar
+      key: "ancho_neto", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Metraje", // Título de la columna
+      dataIndex: "metraje", // Campo que se va a mostrar
+      key: "metraje", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+      sorter: (a, b) => a.metraje - b.metraje, // Permite ordenar la columna de metraje
+    },
+    {
+      title: "Empalme", // Título de la columna
+      dataIndex: "empalme", // Campo que se va a mostrar
+      key: "empalme", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Fecha de Ingreso", // Título de la columna
+      dataIndex: "fecha_ingreso", // Campo que se va a mostrar
+      key: "fecha_ingreso", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
+    },
+    {
+      title: "Fecha de Salida", // Título de la columna
+      dataIndex: "fecha_salida", // Campo que se va a mostrar
+      key: "fecha_salida", // Clave única para la columna
+      align: "center", // Alinea el texto al centro
     },
     {
       title: "Opciones", // Título de la columna
