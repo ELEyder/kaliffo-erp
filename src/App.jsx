@@ -123,7 +123,10 @@ function App() {
             Popconfirm: {
               colorText: 'white',
               colorTextHeading: 'white'
-            }
+            },
+            Dropdown: {
+              colorBgElevated: color2,
+            },
           },
           token: {
             colorPrimary: color1,
