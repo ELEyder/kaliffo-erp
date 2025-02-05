@@ -1,7 +1,7 @@
 import { Button } from "antd";
 
 export const getColumnas = (changeModal, setIdM, tipo) => {
-  let columnas;
+  let columnas = [];
   if (tipo==="AT") {
     columnas = [
       {
@@ -61,8 +61,6 @@ export const getColumnas = (changeModal, setIdM, tipo) => {
       }
     ];
   }
-
-
   return columnas
 };
 
