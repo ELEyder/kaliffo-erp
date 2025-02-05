@@ -95,7 +95,7 @@ const SidebarMenu = () => {
       label: "LOGÍSTICO",
       type: "group",
       children: [
-        { key: "logistico-almacen-productos", icon: <BookOutlined />, label: <Link to="/almacen_productos">Almacen Productos</Link> },
+        { key: "logistico-almacen-productos", icon: <BookOutlined />, label: <Link to="/almacen">Almacen Productos</Link> },
         {
           key: "logistico-mover-mercaderia",
           label: "Mover Mercadería",
@@ -113,8 +113,8 @@ const SidebarMenu = () => {
       label: "PRODUCCIÓN",
       type: "group",
       children: [
-        { key: "produccion-almacen-telas", icon: <BookOutlined />, label: <Link to="/prod/telas">Almacén de Telas</Link> },
-        { key: "produccion-lotes", icon: <BookOutlined />, label: <Link to="/prod/lotes">Lotes</Link> },
+        { key: "produccion-almacen-telas", icon: <BookOutlined />, label: <Link to="/telas">Almacén de Telas</Link> },
+        { key: "produccion-lotes", icon: <BookOutlined />, label: <Link to="/lotes">Lotes</Link> },
       ],
     },
     {
