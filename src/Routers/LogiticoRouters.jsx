@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 // Lazy loading de componentes
 const ComprasView = lazy(() => import("@V/Logistico/Compras/ComprasView"));
 const MovimientosGenerar = lazy(()=>import("@V/Logistico/MovimientoMercaderia/MovimientoMercaderiaGenerar"))
+const MovimientosHistorial = lazy(()=>import("@V/Logistico/MovimientoMercaderia/MovimientoMercaderiaHistorial"))
+const MovimientosDetalle = lazy(()=>import("@V/Logistico/MovimientoMercaderia/MovimientosMercaderiaDetalle"))
 const AlmacenProductos = lazy(() => import("@V/Logistico/AlmacenProductos/AlmacenProductos"));
 const Almacen = lazy(()=>import("@V/Logistico/AlmacenProductos/Almacen"))
 
@@ -18,7 +20,8 @@ const Loading = () => <div style={{
 const LogiticoRouters = () => (
     <Suspense fallback={<Loading />}>
         <Routes>
-            <Route path="/movimientos_historial" element={<ComprasView />} />
+            <Route path="/movimientos_historial" element={<MovimientosHistorial />} />
+            <Route path="/movimientos_historial/:tipo" element={<MovimientosDetalle />} />
             <Route path="/movimientos_generar" element={< MovimientosGenerar />} />
             <Route path="/compras" element={<ComprasView />} />
 
