@@ -12,6 +12,7 @@ const AddLavanderiaModal = ({ openModal, closeModal, reload }) => {
   const [colores, setColores] = useState([]); // Estado para almacenar los colores obtenidos
   const [maxValues, setMaxValues] = useState({}); // Estado para almacenar valores máximos dinámicos (por corte)
 
+  //pasar variable como el reload
   useEffect(() => {
     getCorteDiferido(id, setCortes); // Llama a la API para obtener los cortes del lote
     getColores(setColores); // Llama a la API para obtener los colores disponibles

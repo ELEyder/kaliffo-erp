@@ -15,7 +15,7 @@ const LavanderiaTable = ({ status, reload, setReload }) => {
   }, [id, reload]);
 
   // Verificar si hay algún corte con estado 1
-  const hasOptions = data.some((record) => record.estado === 1);
+  const hasOptions = data.some((record) => record.estado === 1 );
 
   // Definir las columnas de la tabla
   const columns = [

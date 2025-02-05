@@ -1,5 +1,7 @@
+import { Children } from "react";
 import { showNotification } from "../../Shared/Notifications";
 import apiClient from "../apiClient";
+import apiClientFiles from "../ApiClientFIles";
 
 // Obtener todas las telas
 export const getTelas = async (setData) => {
@@ -62,6 +64,18 @@ export const getTelasInactivas = async (tipo, setData) => {
   }
 };
 
+
+// Obtener tipos de tela
+export const getTelaID = async (id) => {
+  try {
+    const response = await apiClient.get(`/tela/codigos/${id}`);
+    return response.data
+  } catch (error) {
+    console.error("Error al obtener tipos de tela:", error);
+    showNotification("error", "Error al obtener tipos de tela");
+  }
+};
+
 // Obtener tipos de tela
 export const getTiposTela = async (setTelas) => {
   try {
@@ -74,13 +88,14 @@ export const getTiposTela = async (setTelas) => {
 };
 
 // Agregar una nueva tela
-export const addTelas = async (values) => {
+export const addTelas = async (Archivos) => {
+  const formdata = new FormData();
+  formdata.append("file",Archivos[0])
   try {
-    await apiClient.post(`/tela/create`, values);
-    showNotification("add", "Tela agregada correctamente");
+    const response = await apiClientFiles.post(`/tela/create`, formdata);
+    return response;
   } catch (error) {
     console.error("Error al agregar la tela:", error);
-    showNotification("error", "Error al agregar la tela");
   }
 };
 
@@ -94,3 +109,18 @@ export const deleteTelaById = async (id) => {
     showNotification("error", "Error al desactivar la tela");
   }
 };
+
+//obtener pdf con los codigos de barras
+export const getCodigosBarras = async(id_lote)=>{
+  try {
+    const response = await apiClient.get(`/tela/imprimir/${id_lote}`, { responseType: 'blob' });
+
+    const pdf = response.data;
+    const url = window.URL.createObjectURL(pdf);
+    window.open(url);
+    return response.status;
+  } catch (error) {
+    console.log(error)
+  }
+}
+

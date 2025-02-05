@@ -74,12 +74,12 @@ export const getLotes = async (setData) => {
 };
 
 // Añadir un Lote
-export const addLote = async (values) => {
+export const addLote = async (values,ids,total) => {
   try {
     const productos = values.productos.join(",");
     const lote = {
-      tipo_tela: values.tipo_tela,
-      metraje: values.metraje,
+      rollos_tela: ids,
+      metraje: total,
       productos: productos,
     };
 
