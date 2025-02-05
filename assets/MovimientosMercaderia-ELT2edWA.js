@@ -1,0 +1,1 @@
+import{a as e}from"./apiClient-DNqqoRi2.js";const r=async a=>{try{const t=await e.get("/movimiento/");a(t.data)}catch{a([])}},c=async(a,t)=>{let o={almacen_id:a.almacen,tienda_id:a.tienda,detalle:t};try{await e.post("/movimiento/create?tipo=AT",o)}catch(i){console.log("Error al añadir la tienda",i)}};export{c,r as g};
