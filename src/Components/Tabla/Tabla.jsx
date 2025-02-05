@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "antd"
-import apiClient from '../API/apiClient';
+import apiClient from '../../API/apiClient';
 
 const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => {
   const navigate = useNavigate();

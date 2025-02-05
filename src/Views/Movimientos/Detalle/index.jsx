@@ -2,7 +2,7 @@ import { Divider } from "antd";
 import { useParams } from "react-router-dom";
 import * as MovimientosMercaderia from "../../../interfaces/MovimientosMercaderia";
 import { useState } from "react";
-import Tabla from "../../../Components/Tabla";
+import Tabla from "../../../Components/Tabla/Tabla";
 const MovimientosMercaderiaDetalle = () => {
   const { tipo } = useParams();
   const [idM, setidM] = useState(1);

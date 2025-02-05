@@ -4,7 +4,7 @@ import { Divider, Row, Col, Spin } from "antd";
 import TimeLine from "@CP/lotes/TimeLine";
 import Status from "@CP/lotes/Status";
 import { getFaseLote, getStatus } from "@AP/Lote";
-
+import Loading from "../../Components/Loading/Loading";
 // Lazy load de las tablas
 const CortesTable = lazy(() => import("@CP/lotes/CortesTable"));
 const LavanderiaTable = lazy(() => import("@CP/lotes/LavanderiaTable"));
@@ -36,13 +36,6 @@ const LoteView = () => {
   useEffect(() => {
     fetchGetStatus();
   }, [reload]);
-
-  const Loading = () => <div style={{
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-}}><img src="img/loading/loading.gif"/> </div>;
 
   const renderTable = () => {
     switch (fase) {
