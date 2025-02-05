@@ -17,7 +17,7 @@ const Loading = () => <div style={{
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-}}><img src="/img/loading/loading.gif"/> </div>;
+}}><img src="img/loading/loading.gif"/> </div>;
 
 export const Routing = () => {
     return (

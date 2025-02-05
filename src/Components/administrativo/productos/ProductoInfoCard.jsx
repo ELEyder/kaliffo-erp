@@ -12,11 +12,11 @@ const ProductoInfoCard = () => {
     getProductoById(id, setProducto); // Llama a la función para obtener los detalles del producto
   }, [id]); // El efecto se ejecuta cuando el `id` cambia
 
-  const imgSrc = `/img/productos/${producto.producto_id}.png`; // Ruta de la imagen del producto
+  const imgSrc = `img/productos/${producto.producto_id}.png`; // Ruta de la imagen del producto
 
   // Maneja el error en caso de que la imagen no exista
   const handleError = (e) => {
-    e.target.src = "/img/productos/generic.png"; // Asigna una imagen genérica si no se encuentra la imagen del producto
+    e.target.src = "img/productos/generic.png"; // Asigna una imagen genérica si no se encuentra la imagen del producto
   };
 
   return (

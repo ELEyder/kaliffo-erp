@@ -45,14 +45,14 @@ const TrabajadorInfo = () => {
           // Selección dinámica de imágenes según el nombre del usuario
           src={
             usuario.nombre === "Rodrigo"
-              ? `/img/usuarios/rodrigo.jpg`
+              ? `img/usuarios/rodrigo.jpg`
               : usuario.nombre === "Pablo"
-              ? `/img/usuarios/pablo.jpg`
+              ? `img/usuarios/pablo.jpg`
               : usuario.nombre === "Eyder"
-              ? `/img/usuarios/${images[Math.floor(Math.random() * 5)]}`
-              : `/img/usuarios/${usuario.usuario_id}.jpg`
+              ? `img/usuarios/${images[Math.floor(Math.random() * 5)]}`
+              : `img/usuarios/${usuario.usuario_id}.jpg`
           }
-          fallback="/img/usuarios/0.jpg" // Imagen predeterminada si falla la carga
+          fallback="img/usuarios/0.jpg" // Imagen predeterminada si falla la carga
         />
       }
     >
