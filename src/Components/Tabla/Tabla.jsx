@@ -21,6 +21,11 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
     }
   }, [reload]);
 
+  columnas = columnas.map((col) => ({
+    ...col,
+    align: 'center',
+  }));
+  
   return (
     <Table
       columns={columnas}

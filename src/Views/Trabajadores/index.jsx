@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, Navigate } from "react-router-dom";
-import { getColumnas, getUrl } from '../../interfaces/Trabajadores';
 import Tabla from "../../Components/Tabla/Tabla";
+import ITrabajadores from '../../interfaces/ITrabajadores';
 import { Divider, FloatButton } from "antd";
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal";
 import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
@@ -12,15 +12,16 @@ const Trabajadores = () => {
   const [reload, setReload] = useState(true)
   const [id, setId] = useState(0)
   const [modals, setModals] = useState({
-    "addT": false,
-    "addI": false,
-    "updT": false
+    addT: false,
+    addI: false,
+    updT: false
   })
+
   const changeModal = (modalKey, value) => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };
 
-  const columnas = getColumnas(tipoTrabajador, changeModal, setId, () => setReload(!reload))
+  const columnas = ITrabajadores(tipoTrabajador, changeModal, setId, () => setReload(!reload))
 
   if (!Object.keys(tiposTrabajador).includes(tipoTrabajador)) {
     return <Navigate to="/error" />;
@@ -33,9 +34,10 @@ const Trabajadores = () => {
       <Tabla
         columnas={columnas}
         rowKey={"trabajador_id"}
-        url={getUrl(tipoTrabajador)}
+        url={`/trabajador?rol=${tiposTrabajador[tipoTrabajador]}`}
         reload={() => setReload(!reload)}
       />
+
       {/* Tabla que muestra los trabajadores según el tipoTrabajador */}
 
       <FloatButton
@@ -44,14 +46,14 @@ const Trabajadores = () => {
       />
       
       <AddTrabajadorModal
-        openModal={modals["addT"]}
+        openModal={modals.addT}
         closeModal={() => changeModal("addT", false)}
         tipoTrabajador={tipoTrabajador}
         reload={() => setReload(!reload)}
       />
 
       <UpdateTrabajadorModal
-        openModal={modals["updT"]}
+        openModal={modals.updT}
         closeModal={() => changeModal("updT", false)}
         tipoTrabajador={tipoTrabajador}
         reload={() => setReload(!reload)}
@@ -59,7 +61,7 @@ const Trabajadores = () => {
       />
 
       <AddIncidenciaModal
-        openModal={modals["addI"]}
+        openModal={modals.addI}
         closeModal={() => changeModal("addI", false)}
         reload={() => setReload(!reload)}
         id={id}
