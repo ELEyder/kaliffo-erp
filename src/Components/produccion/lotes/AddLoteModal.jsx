@@ -32,10 +32,14 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
       if (event.key === "Enter") {
         if (codigoBarras.trim() !== "") {
           getTelaID(codigoBarras).then((tela) => {
-            setTelasCodigo((prev) => ({
-              ...prev,
-              [tela.tipo]: [...(prev[tela.tipo] || []), tela], // Agregar la tela al array
-            }));
+            if(tela){
+              if (!Object.values(telasCodigo).flat().some(({ tela_id }) => tela.tela_id === tela_id )){
+                setTelasCodigo((prev) => ({
+                  ...prev,
+                  [tela.tipo]: [...(prev[tela.tipo] || []), tela], // Agregar la tela al array
+                }));
+              }
+            }
           });
           setCodigoBarras(""); // Limpiar el código después de procesarlo
         }

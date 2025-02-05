@@ -66,7 +66,7 @@ export const getChangeCorte = async (id, setData, form) => {
     const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
 
     const detallesActualizados = response.data.map(detalle => ({
-      detallesCorte: `${detalle.taller} | ${detalle.producto} | ${detalle.talla}`,
+      detallesCorte: `Taller Asignado: ${detalle.taller} | Producto: ${detalle.producto} | Talla: ${detalle.talla}`,
       id: detalle.corte_id,
       cantidad_recibida: detalle.cantidad_enviada,
     }));

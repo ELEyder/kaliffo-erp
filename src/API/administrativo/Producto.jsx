@@ -1,3 +1,4 @@
+import { showNotification } from '../../Shared/Notifications';
 import apiClient from '../apiClient';
 
 // Añadir un producto http://localhost:3000/producto/create
@@ -86,9 +87,9 @@ export const addProductoDetalle = async (tiendaId, Producto) => {
 
 // Obtiene los detalles de un producto (Stock por colores de un producto en una tienda)
 // http://localhost:3000/producto/detalle/1?tipo=colores&tienda_id=1
-export const getColoresDetalleProducto = async (id,idp, setDetalles) => {
+export const getColoresDetalleProducto = async (tipo,id,idp, setDetalles) => {
   try {
-    const response = await apiClient.get(`/producto/detalle/${idp}?tipo=colores&tienda_id=${id}`);
+    const response = await apiClient.get(`/producto/detalle/${idp}?tipo=colores&${tipo}=${id}`);
     setDetalles(response.data);
   } catch (error) {
     console.log(`Error al obtener los colores detallados del producto ID ${idp} de la tienda ID ${id}:`, error)
@@ -121,6 +122,16 @@ export const getColoresTallaProducto = async (id,talla, setColores) => {
 export const getProductoByLote = async (id, setProductos) => {
   const response = await apiClient.get(`/lotes/productos/${id}`)
   setProductos(response.data)
+}
+
+//obtener producto simple usando el codigo 
+export const getProductoSimpleCodigoBarras = async (codigo,tipo,id)=>{
+  try {
+    const response = await apiClient.get(`/producto/codigo_simple/${codigo}?${tipo}=${id}`)
+    return response.data
+  } catch (error) {    
+    showNotification("error","ERROR AL OBTENER LOS DATOS")
+  }
 }
 
 // Prepara el actualizar producto http://localhost:3000/producto/1

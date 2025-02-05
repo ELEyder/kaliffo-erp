@@ -54,7 +54,7 @@ const LavanderiaTable = ({ status, reload, setReload }) => {
       {/* Tabla que muestra los datos de lavandería */}
       <Table dataSource={data} columns={columns} rowKey="corte_id" />
 
-      {(status===0||status===1)? (
+      {(status === 0 || status === 1) ? (
         <>
           {/* Botón flotante para abrir el modal de agregar lavandería */}
           <FloatButton

@@ -15,6 +15,18 @@ export const getAlmacenProductos = async (setAlmacenes) => {
   }
 };
 
+//obtine los datos de un almacen usando el id
+export const getAlmacenProducto = async (id,setAlmacen) => {
+  try {
+    const response = await fetch(`http://localhost:3000/almacen_producto/${id}`); // Realizar petición GET al servidor
+    const Almacen = await response.json(); // Convertir la respuesta a JSON
+    setAlmacen(Almacen); // Actualizar el estado con los datos obtenidos
+  } catch (error) {
+    console.error('Error al obtener los productos del almacén:', error);
+    setAlmacen([]); // En caso de error, establecer un arreglo vacío
+  }
+};
+
 /**
  * Añade un nuevo producto al almacén en el servidor.
  * URL de ejemplo: http://localhost:3000/almacen_productos/create

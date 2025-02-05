@@ -7,6 +7,7 @@ import TallaDetalleModal from "@CA/productos/TallaDetalleModal"; // Modal para m
 const ProductoDetalleModal = ({
   openModal, // Controla si el modal está abierto
   closeModal, // Función para cerrar el modal
+  tipo,
   id, // ID del producto
   idp, // ID de otro parámetro relacionado con el producto
 }) => {
@@ -19,7 +20,7 @@ const ProductoDetalleModal = ({
   // Efecto para obtener los detalles de los colores cuando el `idp` cambia
   useEffect(() => {
     if (idp) {
-      getColoresDetalleProducto(id, idp, setproductoDetalle); // Obtiene los detalles de los colores
+      getColoresDetalleProducto(tipo,id, idp, setproductoDetalle); // Obtiene los detalles de los colores
     }
   }, [idp]); // Dependencia del efecto: se ejecuta cuando `idp` cambia
 
@@ -33,7 +34,7 @@ const ProductoDetalleModal = ({
       render: (text, record) => {
         return (
           <>
-            {record.color_nombre} // Muestra el nombre del color
+            {record.color_nombre} 
           </>
         );
       },
@@ -66,7 +67,7 @@ const ProductoDetalleModal = ({
             setdetalle_ID(record.productoDetalle_id); // Establece el ID del detalle seleccionado
             setOpenTallaDetalleModal(true); // Abre el modal de detalles
           }}>
-            + // Botón para ver más detalles
+            + 
           </Button>
         );
       },

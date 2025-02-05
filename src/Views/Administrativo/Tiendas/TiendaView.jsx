@@ -25,6 +25,7 @@ const TiendaView = () => {
     "addP": false,
     "proD": false,
   })
+  
   const changeModal = (modalKey, value) => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Hook para navegar entre rutas
 import { Card, Flex, FloatButton, Popconfirm, Tooltip, Image } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { getAlmacenProductos } from "@AL/AlmacenProductos"; // Función para obtener los productos del almacén
@@ -8,6 +8,7 @@ import AddAlmacenProductosModals from "@CL/AlmacenProductos/AddAlmacenProductosM
 const { Meta } = Card;
 
 const AlmacenProductosCards = () => {
+  const navigate = useNavigate(); // Hook de navegación
   const [id, setId] = useState(0); // Estado para el ID del almacén seleccionado
   const [Almacenes, setAlmacenes] = useState([]); // Estado para almacenar los datos de los almacenes
   const [OpenAddAlmacenModal, setOpenAddAlmacenModal] = useState(false); // Estado para controlar la apertura del modal de añadir almacén
@@ -26,9 +27,17 @@ const AlmacenProductosCards = () => {
         {Almacenes.map((almacen, index) => {
           return (
             <Card
+              hoverable
+              onClick={() => navigate(`/logistico/almacen_productos/${almacen.almacen_id}`)}
               key={almacen.almacen_id} // Clave única para cada tarjeta
-              style={{ width: "300px", overflow: "hidden",textAlign:"center" }} // Estilo para las tarjetas
-              styles={{header:{textAlign:"center",textTransform:"uppercase"}}}
+              style={{
+                width: "300px",
+                overflow: "hidden",
+                textAlign: "center",
+              }} // Estilo para las tarjetas
+              styles={{
+                header: { textAlign: "center", textTransform: "uppercase" },
+              }}
               title={almacen.nombre_almacen} // Título de la tarjeta (nombre del almacén)
               actions={[
                 // Acciones para editar, ver y eliminar almacén
@@ -74,7 +83,10 @@ const AlmacenProductosCards = () => {
       </Flex>
 
       {/* Botón flotante para agregar un nuevo almacén */}
-      <FloatButton tooltip="Añadir Almacen" onClick={() => setOpenAddAlmacenModal(true)} />
+      <FloatButton
+        tooltip="Añadir Almacen"
+        onClick={() => setOpenAddAlmacenModal(true)}
+      />
 
       {/* Modal para añadir un nuevo almacén */}
       <AddAlmacenProductosModals

@@ -1,6 +1,47 @@
 import { showNotification } from "../../Shared/Notifications";
 import apiClient from "../apiClient";
 
+// Obtener Fase del Lote
+export const getFaseLote = async (id, setData, setOriginal) => {
+  try {
+    const response = await apiClient.get(`/lotes/${id}`);
+    const data = response.data;
+    console.log("Fase:", data.estado);
+    setData(data.estado);
+    setOriginal(data.estado);
+  } catch (error) {
+    console.error("Error al obtener la fase del lote:", error);
+  }
+};
+
+export const getStatus = async (id, fase , setStatus) => {
+
+  const routes = {
+    1: `/corte/lote/${id}`,
+    2: `/lavanderia/lote/${id}`,
+    3: `/acabado/lote/${id}`,
+  };
+
+  const url = routes[fase]; // Busca la URL según la fase
+
+  if (!url) return setStatus(0);
+
+  try {
+    const response = await apiClient.get(url);
+    const data = response.data;
+
+    if (data.length === 0) {
+      setStatus(0);
+    } else {
+      setStatus(data[0].estado);
+      console.log("Estado:", data[0].estado);
+    }
+  } catch (error) {
+    console.error("Error al obtener estado de lavandería:", error);
+    setStatus(0);
+  }
+};
+
 // Eliminar Lote por ID
 export const deleteLoteById = async (id) => {
   try {
@@ -50,15 +91,4 @@ export const addLote = async (values,ids,total) => {
   }
 };
 
-// Obtener Fase del Lote
-export const getFaseLote = async (id, setData, setOriginal) => {
-  try {
-    const response = await apiClient.get(`/lotes/${id}`);
-    const data = response.data;
-    console.log("Fase:", data.estado);
-    setData(data.estado);
-    setOriginal(data.estado);
-  } catch (error) {
-    console.error("Error al obtener la fase del lote:", error);
-  }
-};
+
