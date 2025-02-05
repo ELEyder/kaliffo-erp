@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Hook para la navegación
+import { Navigate, useNavigate } from "react-router-dom"; // Hook para la navegación
 import { loginApi } from "@A/auth/Login"; // Función para realizar el login a través de la API
 import { useSession } from "../../context/AuthProvider"; // Hook para manejar la sesión
 import Yeti from "@C/Yeti"; // Componente Yeti
@@ -10,10 +10,11 @@ import { useNotification } from "../../provider/NotificationProvider";
 const LoginView = () => {
     const navigate = useNavigate(); // Inicializa el hook de navegación
     const openNotification = useNotification(); // Usa el hook para obtener la función `open`
-    const { login } = useSession(); // Obtiene la función login del contexto
+    const { user, login } = useSession(); // Obtiene la función login del contexto
     const [isFocused, setIsFocused] = useState(false); // Estado para el foco en los campos
     const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Estado para la visibilidad de la contraseña
     const [formData, setFormData] = useState({ username: "", password: "" }); // Estado para los datos del formulario
+    const usernames = ["administrador", "venta", "produccion"];
 
     // Manejar los cambios en los inputs
     const handleChange = (e) => {
@@ -36,8 +37,10 @@ const LoginView = () => {
             openNotification("Dni o contraseña incorrectos."); // Muestra notificación en caso de error
         }
     };
-
-    return (
+    return (user && usernames.includes(user.rol ?? '')) ? (
+        <Navigate to={'/trabajadores/tipo/ventas'}/>
+    ) :
+        (
         <div className={styles.body}>
             <div className={styles.content}>
                 {/* Formulario de login */}
