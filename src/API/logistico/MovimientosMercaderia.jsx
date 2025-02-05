@@ -1,5 +1,15 @@
 import apiClient from '../apiClient';
 
+export const getMovimientos = async(setMovimientos) =>{
+  try {
+    const response = await apiClient.get(`/movimiento/`);
+    setMovimientos(response.data)
+  } catch (error) {
+    setMovimientos([])
+  }
+}
+
+
 export const createMovimiento_Almacen_Tienda = async (values, productos) => {
   let movimiento_AT = {
     almacen_id: values.almacen,
