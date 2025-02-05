@@ -2,20 +2,20 @@ import { lazy } from "react";
 import { Route } from "react-router-dom";
 
 // Lazy loading de componentes
-const TelasView = lazy(() => import("@V/Produccion/Telas/TelasView"));
-const TelaView = lazy(() => import("@V/Produccion/Telas/TelaView"));
-const LotesView = lazy(() => import("@V/Produccion/Lotes/LotesView"));
-const LoteView = lazy(() => import("@V/Produccion/Lotes/LoteView"));
+const Telas = lazy(() => import("../Views/Telas"));
+const Tela = lazy(() => import("../Views/Tela"));
+const Lotes = lazy(() => import("../Views/Lotes"));
+const Lote = lazy(() => import("../Views/Lote"));
 
 const produccion = () => (
         <>
             {/* Rutas de Telas */}
-            <Route path="/telas" element={<TelasView />} />
-            <Route path="/telas/:tipo" element={<TelaView />} />
+            <Route path="/telas" element={<Telas />} />
+            <Route path="/telas/:tipo" element={<Tela />} />
             
             {/* Rutas de Lotes */}
-            <Route path="/lotes" element={<LotesView />} />
-            <Route path="/lotes/:id" element={<LoteView />} />
+            <Route path="/lotes" element={<Lotes />} />
+            <Route path="/lotes/:id" element={<Lote />} />
         </>
 );
 

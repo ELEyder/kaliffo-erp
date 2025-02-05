@@ -8,7 +8,7 @@ import { getFaseLote, getStatus } from "@AP/Lote";
 // Lazy load de las tablas
 const CortesTable = lazy(() => import("@CP/lotes/CortesTable"));
 const LavanderiaTable = lazy(() => import("@CP/lotes/LavanderiaTable"));
-const TallerTable = lazy(() => import("../../../Components/produccion/lotes/AcabadoTable"));
+const TallerTable = lazy(() => import("../../Components/produccion/lotes/AcabadoTable"));
 
 const LoteView = () => {
   const { id } = useParams();

@@ -2,11 +2,11 @@ import { lazy } from "react";
 import { Route } from "react-router-dom";
 
 // Lazy loading del componente
-const GenerarVentaView = lazy(() => import("@V/Comercial/GenerarVenta/GenerarVentaView"));
+const Generar = lazy(() => import("../Views/Venta/Generar"));
 
 const Ventas = () => (
     <>
-        <Route path="/venta/generar/:tipo" element={<GenerarVentaView />} />
+        <Route path="/venta/generar/:tipo" element={<Generar />} />
     </>
 );
 
