@@ -4,6 +4,7 @@ import { loginApi } from "@A/auth/Login"; // Función para realizar el login a t
 import { useSession } from "../../context/AuthProvider"; // Hook para manejar la sesión
 import Yeti from "@C/Yeti"; // Componente Yeti
 import styles from "./LoginView.module.css"; // Estilos específicos para este componente
+import { Button, Input } from 'antd';
 
 const LoginView = () => {
     const navigate = useNavigate(); // Inicializa el hook de navegación
@@ -25,7 +26,6 @@ const LoginView = () => {
 
     // Manejar el envío del formulario
     const handleSubmit = async (e) => {
-        e.preventDefault();
         const response = await loginApi(formData); // Llama a la API de login
         if (response.ok) {
             login(response.userData); // Si el login es exitoso, guarda la información del usuario
@@ -39,7 +39,7 @@ const LoginView = () => {
         <div className={styles.body}>
             <div className={styles.content}>
                 {/* Formulario de login */}
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <form id="login" onSubmit={handleSubmit} className={styles.form}>
                     <h2 className={styles.title}><span className={styles.upper}>I</span>niciar <span className={styles.upper}>S</span>esión</h2>
                     <div className={styles.yeti}>
                         {/* Componente Yeti para mostrar una animación o efecto */}
@@ -51,17 +51,15 @@ const LoginView = () => {
                     </div>
                     {/* Campo para el nombre de usuario */}
                     <div className={styles.formGroup}>
-                        <label htmlFor="username" className={styles.label}>Usuario:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
+                        <Input
+                            placeholder="Usuario"
                             value={formData.username}
                             onChange={handleChange}
-                            className={styles.input}
                             autoComplete="username"
+                            name="username"
                             required
                         />
+
                     </div>
                     {/* Campo para la contraseña */}
                     <div
@@ -75,35 +73,29 @@ const LoginView = () => {
                             }
                         }}
                     >
-                        <label htmlFor="password" className={styles.label}>Contraseña:</label>
                         <div className={styles.passwordWrapper}>
-                            <input
+                            <Input
                                 type={isPasswordVisible ? "text" : "password"}
-                                id="password"
-                                name="password"
+                                placeholder="Contraseña"
                                 value={formData.password}
                                 onChange={handleChange}
-                                className={styles.input}
                                 autoComplete="off"
+                                name="password"
                                 required
                             />
                             {/* Botón para alternar la visibilidad de la contraseña */}
-                            <button
-                                type="button"
-                                className={styles.toggleButton}
+                            <Button
                                 onClick={togglePasswordVisibility}
                                 aria-label="Toggle Password Visibility"
                             >
                                 {isPasswordVisible ? "🙈" : "👁️"}
-                            </button>
+                            </Button>
                         </div>
                     </div>
                     {/* Botón para enviar el formulario */}
-                    <div className={styles.formGroup}>
-                        <button type="submit" className={styles.submitButton}>
-                            Ingresar
-                        </button>
-                    </div>
+                    <Button onClick={handleSubmit}>
+                        Ingresar
+                    </Button>
                 </form>
             </div>
         </div>

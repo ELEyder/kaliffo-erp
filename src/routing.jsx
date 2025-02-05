@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // Lazy loading de componentes
-const LoginView = lazy(() => import("./Shared/Login/LoginView"));
+const LoginView = lazy(() => import("./Views/Login/LoginView"));
 const ErrorView = lazy(() => import("./Shared/Error/ErrorView"));
 const Plantilla = lazy(() => import("./Shared/Plantilla"));
 
