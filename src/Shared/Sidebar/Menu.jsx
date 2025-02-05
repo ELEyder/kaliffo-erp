@@ -71,21 +71,21 @@ const SidebarMenu = () => {
           label: "Trabajadores",
           icon: <BookOutlined />,
           children: [
-            { key: "administrativo-trabajadores-ventas", icon: <UserOutlined />, label: <Link to="/admin/trabajadores/tipo/ventas">Vendedores</Link> },
-            { key: "administrativo-trabajadores-talleres", icon: <UserOutlined />, label: <Link to="/admin/trabajadores/tipo/talleres">Talleres</Link> },
-            { key: "administrativo-trabajadores-miscelaneos", icon: <UserOutlined />, label: <Link to="/admin/trabajadores/tipo/miscelaneos">Miscelaneos</Link> },
-            { key: "administrativo-trabajadores-costureros", icon: <UserOutlined />, label: <Link to="/admin/trabajadores/tipo/costureros">Costureros</Link> },
+            { key: "administrativo-trabajadores-ventas", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/ventas">Vendedores</Link> },
+            { key: "administrativo-trabajadores-talleres", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/talleres">Talleres</Link> },
+            { key: "administrativo-trabajadores-miscelaneos", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/miscelaneos">Miscelaneos</Link> },
+            { key: "administrativo-trabajadores-costureros", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/costureros">Costureros</Link> },
           ],
         },
-        { key: "administrativo-tiendas", icon: <HarmonyOSOutlined />, label: <Link to="/admin/tiendas">Tiendas</Link> },
-        { key: "administrativo-productos", icon: <CoffeeOutlined />, label: <Link to="/admin/productos">Productos</Link> },
+        { key: "administrativo-tiendas", icon: <HarmonyOSOutlined />, label: <Link to="/tiendas">Tiendas</Link> },
+        { key: "administrativo-productos", icon: <CoffeeOutlined />, label: <Link to="/productos">Productos</Link> },
         {
           key: "administrativo-ventas",
           label: "Ventas",
           icon: <BookOutlined />,
           children: [
-            { key: "administrativo-ventas-boleta", icon: <UserOutlined />, label: <Link to="/admin/ventas/boleta">Boletas</Link> },
-            { key: "administrativo-ventas-factura", icon: <UserOutlined />, label: <Link to="/admin/ventas/factura">Facturas</Link> },
+            { key: "administrativo-ventas-boleta", icon: <UserOutlined />, label: <Link to="/ventas/boleta">Boletas</Link> },
+            { key: "administrativo-ventas-factura", icon: <UserOutlined />, label: <Link to="/ventas/factura">Facturas</Link> },
           ],
         },
       ],
@@ -95,17 +95,17 @@ const SidebarMenu = () => {
       label: "LOGÍSTICO",
       type: "group",
       children: [
-        { key: "logistico-almacen-productos", icon: <BookOutlined />, label: <Link to="/logistico/almacen_productos">Almacen Productos</Link> },
+        { key: "logistico-almacen-productos", icon: <BookOutlined />, label: <Link to="/almacen">Almacen Productos</Link> },
         {
           key: "logistico-mover-mercaderia",
           label: "Mover Mercadería",
           icon: <BookOutlined />,
           children: [
-            { key: "logistico-mover-mercaderia-mover", icon: <UserOutlined />, label: <Link to="/logistico/movimientos_generar">Mover Mercadería</Link> },
-            { key: "logistico-mover-mercaderia-historial", icon: <UserOutlined />, label: <Link to="/logistico/movimientos_historial">Historial</Link> },
+            { key: "logistico-mover-mercaderia-mover", icon: <UserOutlined />, label: <Link to="/movimientos_generar">Mover Mercadería</Link> },
+            { key: "logistico-mover-mercaderia-historial", icon: <UserOutlined />, label: <Link to="/movimientos_historial">Historial</Link> },
           ],
         },
-        { key: "logistico-compras", icon: <CoffeeOutlined />, label: <Link to="/logistico/compras">Compras</Link> },
+        { key: "logistico-compras", icon: <CoffeeOutlined />, label: <Link to="/compras">Compras</Link> },
       ],
     },
     {
@@ -113,13 +113,13 @@ const SidebarMenu = () => {
       label: "PRODUCCIÓN",
       type: "group",
       children: [
-        { key: "produccion-almacen-telas", icon: <BookOutlined />, label: <Link to="/prod/telas">Almacén de Telas</Link> },
-        { key: "produccion-lotes", icon: <BookOutlined />, label: <Link to="/prod/lotes">Lotes</Link> },
+        { key: "produccion-almacen-telas", icon: <BookOutlined />, label: <Link to="/telas">Almacén de Telas</Link> },
+        { key: "produccion-lotes", icon: <BookOutlined />, label: <Link to="/lotes">Lotes</Link> },
       ],
     },
     {
       key: "group-ventas",
-      label: "VENTAS",
+      label: "COMERCIAL",
       type: "group",
       children: [
         {
@@ -127,8 +127,8 @@ const SidebarMenu = () => {
           label: "Generar Venta",
           icon: <BookOutlined />,
           children: [
-            { key: "ventas-generar-boleta", icon: <BookOutlined />, label: <Link to="/generar/venta/boleta">Boleta</Link> },
-            { key: "ventas-generar-factura", icon: <BookOutlined />, label: <Link to="/generar/venta/factura">Factura</Link> },
+            { key: "ventas-generar-boleta", icon: <BookOutlined />, label: <Link to="venta/generar/boleta">Boleta</Link> },
+            { key: "ventas-generar-factura", icon: <BookOutlined />, label: <Link to="venta/generar/factura">Factura</Link> },
           ],
         },
         { key: "ventas-devoluciones", icon: <BookOutlined />, label: <Link to="/devoluciones">Devoluciones</Link> },

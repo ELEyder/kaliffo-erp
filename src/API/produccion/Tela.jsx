@@ -1,5 +1,4 @@
 import { Children } from "react";
-import { showNotification } from "../../Shared/Notifications";
 import apiClient from "../apiClient";
 import apiClientFiles from "../ApiClientFIles";
 
@@ -10,7 +9,7 @@ export const getTelas = async (setData) => {
     setData(response.data);
   } catch (error) {
     console.error("Error al obtener las telas:", error);
-    showNotification("error", "Error al obtener las telas");
+    return("error", "Error al obtener las telas");
   }
 };
 
@@ -35,7 +34,7 @@ export const getTelasActivas = async (tipo, setData) => {
     setData(data);
   } catch (error) {
     console.error("Error al obtener telas activas:", error);
-    showNotification("error", "Error al obtener telas activas");
+    return("error", "Error al obtener telas activas");
   }
 };
 
@@ -60,7 +59,7 @@ export const getTelasInactivas = async (tipo, setData) => {
     setData(data);
   } catch (error) {
     console.error("Error al obtener telas inactivas:", error);
-    showNotification("error", "Error al obtener telas inactivas");
+    return("error", "Error al obtener telas inactivas");
   }
 };
 
@@ -72,7 +71,7 @@ export const getTelaID = async (id) => {
     return response.data
   } catch (error) {
     console.error("Error al obtener tipos de tela:", error);
-    showNotification("error", "Error al obtener tipos de tela");
+    return("error", "Error al obtener tipos de tela");
   }
 };
 
@@ -83,7 +82,7 @@ export const getTiposTela = async (setTelas) => {
     setTelas(response.data);
   } catch (error) {
     console.error("Error al obtener tipos de tela:", error);
-    showNotification("error", "Error al obtener tipos de tela");
+    return("error", "Error al obtener tipos de tela");
   }
 };
 
@@ -103,10 +102,10 @@ export const addTelas = async (Archivos) => {
 export const deleteTelaById = async (id) => {
   try {
     await apiClient.put(`/tela/desactivar/${id}`);
-    showNotification("delete", "Tela desactivada correctamente");
+    return("delete", "Tela desactivada correctamente");
   } catch (error) {
     console.error("Error al desactivar la tela:", error);
-    showNotification("error", "Error al desactivar la tela");
+    return("error", "Error al desactivar la tela");
   }
 };
 

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
 import TrabajadorInfoCard from "@CA/trabajadores/TrabajadorInfoCard";
 import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
-import Tabla from "../../../Components/Tabla";
+import Tabla from "../../Components/Tabla";
 import { Divider, Tabs, Flex, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono de agregar para el botón flotante
-import * as Incidencias from "../../../interfaces/Incidencias";
-import * as Horarios from "../../../interfaces/Horarios";
-import * as Pagos from "../../../interfaces/Pagos";
+import * as Incidencias from "../../interfaces/Incidencias";
+import * as Horarios from "../../interfaces/Horarios";
+import * as Pagos from "../../interfaces/Pagos";
 import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal"; // Componente modal para actualizar incidencias
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"; // Componente modal para agregar nuevas incidencias
 

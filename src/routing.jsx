@@ -1,16 +1,15 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import Administrativo from "./Routers/administrativo";
+import Logistico from "./Routers/logistico";
+import Produccion from "./Routers/produccion";
+import Comercial from "./Routers/Comercial";
 
 // Lazy loading de componentes
 const LoginView = lazy(() => import("./Views/Login/LoginView"));
-const ErrorView = lazy(() => import("./Shared/Error/ErrorView"));
+const ErrorView = lazy(() => import("./Views/Error/ErrorView"));
 const Plantilla = lazy(() => import("./Shared/Plantilla"));
-
-const GenerarVentaRouters = lazy(() => import("./Routers/GenerarVentaRouters"));
-const AdminRoutes = lazy(() => import("./Routers/AdminRoutes"));
-const LogiticoRouters = lazy(() => import("./Routers/LogiticoRouters"));
-const ProdRoutes = lazy(() => import("./Routers/ProdRoutes"));
-const TestView = lazy(() => import("./Views/TestView"));
+const TestView = lazy(() => import("./Views/Test"));
 
 // Componente de carga (puedes personalizarlo)
 const Loading = () => <div style={{
@@ -26,10 +25,10 @@ export const Routing = () => {
             <Routes>
                 <Route path="/" element={<LoginView />} />
                 <Route element={<Plantilla />}>
-                    <Route path="/admin/*" element={<AdminRoutes />} />
-                    <Route path="/logistico/*" element={<LogiticoRouters />} />
-                    <Route path="/prod/*" element={<ProdRoutes />} />
-                    <Route path="/generar/venta/*" element={<GenerarVentaRouters />} />
+                    {Administrativo()}
+                    {Logistico()}
+                    {Produccion()}
+                    {Comercial()}
                 </Route>
                 <Route path="*" element={<ErrorView />} />
                 <Route path="/test" element={<TestView />} />

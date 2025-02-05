@@ -1,5 +1,3 @@
-import { showNotification } from "../../Shared/Notifications";
-
 /**
  * Obtiene los productos del almacén desde el servidor y actualiza el estado.
  * URL de ejemplo: http://localhost:3000/almacen_productos
@@ -46,10 +44,9 @@ export const addAlmacenProductos = async (values) => {
       body: JSON.stringify(AlmacenProductos), // Convertir el objeto a JSON en el cuerpo de la solicitud
     });
 
-    if (!response.ok) {
-      throw new Error('Error al añadir el producto al almacén');
-    }
+    return response.json();
+
   } catch (error) {
-    showNotification("error", "Error al añadir el almacén", error); // Mostrar notificación en caso de error
+    return("Error al añadir el almacén", error);
   }
 };
