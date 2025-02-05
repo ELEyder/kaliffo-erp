@@ -9,7 +9,7 @@ import Comercial from "./Routers/Comercial";
 const LoginView = lazy(() => import("./Views/Login/LoginView"));
 const ErrorView = lazy(() => import("./Views/Error/ErrorView"));
 const Plantilla = lazy(() => import("./Shared/Plantilla"));
-const TestView = lazy(() => import("./Views/TestView"));
+const TestView = lazy(() => import("./Views/Test"));
 
 // Componente de carga (puedes personalizarlo)
 const Loading = () => <div style={{
