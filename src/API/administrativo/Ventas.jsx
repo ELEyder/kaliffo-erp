@@ -1,5 +1,4 @@
 import apiClient from '../apiClient'; // Importar cliente de API configurado
-import { showNotification } from "../../Shared/Notifications";
 
 // Métodos de pago disponibles
 const metodosPago = ["Efectivo", "Yape", "Transferencia"];
@@ -44,7 +43,7 @@ export const getVentas = async (tipo, setTablaDatos) => {
  * URL de ejemplo: No aplica (función local)
  */
 export const SearchVenta = async (id) => {
-  showNotification("delete", "Venta eliminada");
+  return("Venta eliminada");
 };
 
 /**
@@ -52,7 +51,7 @@ export const SearchVenta = async (id) => {
  * URL de ejemplo: No aplica (función local)
  */
 export const deleteVenta = async (id) => {
-  showNotification("delete", "Venta eliminada");
+  return("Venta eliminada");
 };
 
 /**

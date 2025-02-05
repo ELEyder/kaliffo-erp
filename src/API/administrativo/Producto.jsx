@@ -1,4 +1,3 @@
-import { showNotification } from '../../Shared/Notifications';
 import apiClient from '../apiClient';
 
 // Añadir un producto http://localhost:3000/producto/create
@@ -130,7 +129,7 @@ export const getProductoSimpleCodigoBarras = async (codigo,tipo,id)=>{
     const response = await apiClient.get(`/producto/codigo_simple/${codigo}?${tipo}=${id}`)
     return response.data
   } catch (error) {    
-    showNotification("error","ERROR AL OBTENER LOS DATOS")
+    return("error","ERROR AL OBTENER LOS DATOS")
   }
 }
 

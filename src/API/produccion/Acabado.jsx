@@ -1,4 +1,3 @@
-import { showNotification } from "../../Shared/Notifications";
 import apiClient from "../apiClient";
 
 // Obtener acabados por lote
@@ -20,10 +19,10 @@ export const getAcabadoByLote = async (id, setData) => {
 export const addAcabado = async (data) => {
   try {
     await apiClient.post(`/taller/create`, data);
-    showNotification("add", "Lavandería añadida correctamente");
+    return("add", "Lavandería añadida correctamente");
   } catch (error) {
     console.error("Error al añadir acabado:", error);
-    showNotification("error", "Error al añadir la lavandería");
+    return("error", "Error al añadir la lavandería");
   }
 };
 
@@ -57,10 +56,10 @@ export const getChangeAcabado = async (id, setData, form) => {
 export const deleteTaller = async (id) => {
   try {
     await apiClient.put(`/taller/desactivar/${id}`);
-    showNotification("delete", "Corte eliminado correctamente");
+    return("delete", "Corte eliminado correctamente");
   } catch (error) {
     console.error("Error al eliminar el taller:", error);
-    showNotification("error", "Error al eliminar el corte");
+    return("error", "Error al eliminar el corte");
   }
 };
 
@@ -101,9 +100,9 @@ export const changeStatusAcabado = async (id, data = null, params = null) => {
       params,
     });
 
-    showNotification("add", "Estado actualizado correctamente");
+    return("add", "Estado actualizado correctamente");
   } catch (error) {
     console.error("Error al cambiar estado del acabado:", error);
-    showNotification("error", `Error: ${error.message}`);
+    return("error", `Error: ${error.message}`);
   }
 };

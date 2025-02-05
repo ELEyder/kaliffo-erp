@@ -1,5 +1,4 @@
 import apiClient from '../apiClient';
-import { showNotification } from "../../Shared/Notifications";
 
 /**
  * Obtiene la lista de compras y actualiza el estado.
@@ -69,9 +68,9 @@ export const addCompra = async (values) => {
 
   try {
     await apiClient.post("/compra/create", compra);
-    showNotification("add", "Compra añadida exitosamente");
+    return("add", "Compra añadida exitosamente");
   } catch (error) {
-    showNotification("error", "Error al añadir la compra");
+    return("error", "Error al añadir la compra");
   }
 };
 
@@ -82,10 +81,10 @@ export const addCompra = async (values) => {
 export const eliminarCompra = async (compra_id) => {
   try {
     await apiClient.delete(`/compra/delete/${compra_id}`);
-    showNotification("delete", "Compra eliminada exitosamente");
+    return("delete", "Compra eliminada exitosamente");
     return true;
   } catch (error) {
-    showNotification("error", "Error al eliminar la compra");
+    return("error", "Error al eliminar la compra");
   }
 };
 

@@ -1,4 +1,3 @@
-import { showNotification } from "../../Shared/Notifications";
 import apiClient from "../apiClient";
 
 // Obtener Fase del Lote
@@ -46,10 +45,10 @@ export const getStatus = async (id, fase , setStatus) => {
 export const deleteLoteById = async (id) => {
   try {
     await apiClient.delete(`/lotes/delete/${id}`);
-    showNotification("delete", "Lote eliminado correctamente");
+    return("delete", "Lote eliminado correctamente");
   } catch (error) {
     console.error("Error al eliminar el lote:", error);
-    showNotification("error", "No se pudo eliminar el lote");
+    return("error", "No se pudo eliminar el lote");
   }
 };
 
@@ -69,7 +68,7 @@ export const getLotes = async (setData) => {
     setData(dataNormal);
   } catch (error) {
     console.error("Error al obtener lotes:", error);
-    showNotification("error", "Error al obtener lotes");
+    return("error", "Error al obtener lotes");
   }
 };
 
@@ -84,10 +83,10 @@ export const addLote = async (values,ids,total) => {
     };
 
     await apiClient.post(`/lotes/create`, lote);
-    showNotification("add", "Lote añadido correctamente");
+    return("add", "Lote añadido correctamente");
   } catch (error) {
     console.error("Error al añadir el lote:", error);
-    showNotification("error", "Error al añadir el lote");
+    return("error", "Error al añadir el lote");
   }
 };
 
