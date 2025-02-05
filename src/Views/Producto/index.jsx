@@ -5,12 +5,12 @@ import ProductoDetalleTallasColoresModal from "@CA/productos/ProductoDetalleTall
 import TallaDetalleModal from "@CA/productos/TallaDetalleModal"; // Modal para ver detalles de talla
 import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para detalles de la tienda
 
-import * as Tiendas from "../../../interfaces/Tiendas";
-import * as Tallas from "../../../interfaces/Tallas";
-import * as Colores from "../../../interfaces/Colores";
+import * as Tiendas from "../../interfaces/Tiendas";
+import * as Tallas from "../../interfaces/Tallas";
+import * as Colores from "../../interfaces/Colores";
 
 import { Flex, Divider, Tabs } from "antd";
-import Tabla from "../../../Components/Tabla";
+import Tabla from "../../Components/Tabla";
 import { useParams } from "react-router-dom";
 
 const ProductoView = () => {

@@ -2,26 +2,26 @@ import { lazy } from "react";
 import { Route } from "react-router-dom";
 
 // Lazy loading de componentes
-const TrabajadoresView = lazy(() => import("../Views/Trabajadores/"));
-const TrabajadorView = lazy(() => import("../Views/Trabajador/"));
-const VentasView = lazy(() => import("@V/Administrativo/Ventas/VentasView"));
-const TiendasView = lazy(() => import("@V/Administrativo/Tiendas/TiendasView"));
-const TiendaView = lazy(() => import("@V/Administrativo/Tiendas/TiendaView"));
-const ProductosView = lazy(() => import("@V/Administrativo/Productos/ProductosView"));
-const ProductoView = lazy(() => import("@V/Administrativo/Productos/ProductoView"));
+const Trabajadores = lazy(() => import("../Views/Trabajadores"));
+const Trabajador = lazy(() => import("../Views/Trabajador"));
+const Tiendas = lazy(() => import("../Views/Tiendas"));
+const Tienda = lazy(() => import("../Views/Tienda"));
+const Productos = lazy(() => import("../Views/Productos"));
+const Producto = lazy(() => import("../Views/Producto"));
+const Ventas = lazy(() => import("../Views/Ventas"));
 
 const Administrativo = () => (
     <>
-        <Route path="/trabajadores/tipo/:tipoTrabajador" element={<TrabajadoresView />} />
-        <Route path="/trabajadores/:id" element={<TrabajadorView />} />
+        <Route path="/trabajadores/tipo/:tipoTrabajador" element={<Trabajadores />} />
+        <Route path="/trabajadores/:id" element={<Trabajador />} />
 
-        <Route path="/tiendas" element={<TiendasView />} />
-        <Route path="/tiendas/:id" element={<TiendaView />} />
+        <Route path="/tiendas" element={<Tiendas />} />
+        <Route path="/tiendas/:id" element={<Tienda />} />
 
-        <Route path="/productos" element={<ProductosView />} />
-        <Route path="/productos/:id" element={<ProductoView />} />
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/productos/:id" element={<Producto />} />
 
-        <Route path="/ventas/:tipo" element={<VentasView />} />
+        <Route path="/ventas/:tipo" element={<Ventas />} />
     </>
 );
 

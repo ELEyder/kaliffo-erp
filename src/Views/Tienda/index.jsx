@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import TiendaCard from "@CA/tiendas/TiendaCard";
 import ProductosTable from "@CA/tiendas/ProductosTable";
-import Tabla from "../../../Components/Tabla";
+import Tabla from "../../Components/Tabla";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono para el botón de "Añadir"
 
 import { FloatButton, Divider, Flex, Tabs } from "antd";
-import * as Personal from "../../../interfaces/Personal";
-import * as Ventas from "../../../interfaces/Ventas";
-import * as Productos from "../../../interfaces/Productos";
+import * as Personal from "../../interfaces/Personal";
+import * as Ventas from "../../interfaces/Ventas";
+import * as Productos from "../../interfaces/Productos";
 import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal"; // Modal para actualizar los datos de un trabajador
 import AddPersonalModal from "@CA/tiendas/AddPersonalModal"; // Modal para añadir un nuevo trabajador
 import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para mostrar los detalles de un producto
