@@ -119,7 +119,7 @@ const SidebarMenu = () => {
     },
     {
       key: "group-ventas",
-      label: "VENTAS",
+      label: "COMERCIAL",
       type: "group",
       children: [
         {

@@ -30,7 +30,7 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
       onRow={(record) => {
         if (record.trabajador_id) {
           return {
-            onClick: () => navigate(`/admin/trabajadores/${record.trabajador_id}`),
+            onClick: () => navigate(`/trabajadores/${record.trabajador_id}`),
             style: { cursor: "pointer" },
           };
         }

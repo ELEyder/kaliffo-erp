@@ -2,7 +2,7 @@ import { lazy } from "react";
 import { Route } from "react-router-dom";
 
 // Lazy loading del componente
-const GenerarVentaView = lazy(() => import("@V/Ventas/GenerarVenta/GenerarVentaView"));
+const GenerarVentaView = lazy(() => import("@V/Comercial/GenerarVenta/GenerarVentaView"));
 
 const Ventas = () => (
     <>

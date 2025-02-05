@@ -28,7 +28,7 @@ const AlmacenProductosCards = () => {
           return (
             <Card
               hoverable
-              onClick={() => navigate(`/logistico/almacen_productos/${almacen.almacen_id}`)}
+              onClick={() => navigate(`/almacen_productos/${almacen.almacen_id}`)}
               key={almacen.almacen_id} // Clave única para cada tarjeta
               style={{
                 width: "300px",

@@ -3,15 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import Administrativo from "./Routers/administrativo";
 import Logistico from "./Routers/logistico";
 import Produccion from "./Routers/produccion";
-import Ventas from "./Routers/Ventas";
+import Comercial from "./Routers/Comercial";
 
 // Lazy loading de componentes
 const LoginView = lazy(() => import("./Views/Login/LoginView"));
 const ErrorView = lazy(() => import("./Views/Error/ErrorView"));
 const Plantilla = lazy(() => import("./Shared/Plantilla"));
 const TestView = lazy(() => import("./Views/TestView"));
-
-const GenerarVentaRouters = lazy(() => import("./Routers/Ventas"));
 
 // Componente de carga (puedes personalizarlo)
 const Loading = () => <div style={{
@@ -30,8 +28,7 @@ export const Routing = () => {
                     {Administrativo()}
                     {Logistico()}
                     {Produccion()}
-                    {Ventas()}
-                    <Route path="/generar/venta/*" element={<GenerarVentaRouters />} />
+                    {Comercial()}
                 </Route>
                 <Route path="*" element={<ErrorView />} />
                 <Route path="/test" element={<TestView />} />

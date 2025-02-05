@@ -2,9 +2,9 @@ import { lazy } from "react";
 import { Route } from "react-router-dom";
 
 // Lazy loading de componentes
+const TrabajadoresView = lazy(() => import("../Views/Trabajadores/"));
+const TrabajadorView = lazy(() => import("../Views/Trabajador/"));
 const VentasView = lazy(() => import("@V/Administrativo/Ventas/VentasView"));
-const TrabajadoresView = lazy(() => import("@V/Administrativo/Trabajadores/TrabajadoresView"));
-const TrabajadorView = lazy(() => import("@V/Administrativo/Trabajadores/TrabajadorView"));
 const TiendasView = lazy(() => import("@V/Administrativo/Tiendas/TiendasView"));
 const TiendaView = lazy(() => import("@V/Administrativo/Tiendas/TiendaView"));
 const ProductosView = lazy(() => import("@V/Administrativo/Productos/ProductosView"));
@@ -12,7 +12,6 @@ const ProductoView = lazy(() => import("@V/Administrativo/Productos/ProductoView
 
 const Administrativo = () => (
     <>
-
         <Route path="/trabajadores/tipo/:tipoTrabajador" element={<TrabajadoresView />} />
         <Route path="/trabajadores/:id" element={<TrabajadorView />} />
 
@@ -23,7 +22,6 @@ const Administrativo = () => (
         <Route path="/productos/:id" element={<ProductoView />} />
 
         <Route path="/ventas/:tipo" element={<VentasView />} />
-
     </>
 );
 

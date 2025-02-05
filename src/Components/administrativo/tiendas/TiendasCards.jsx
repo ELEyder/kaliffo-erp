@@ -50,7 +50,7 @@ const TiendasCards = () => {
               </Tooltip>,
               // Botón para ver detalles de la tienda con tooltip
               <Tooltip title="Ver Detalles" className={"card-view"}>
-                <Link to={`/admin/tiendas/${tienda.tienda_id}`}>
+                <Link to={`/tiendas/${tienda.tienda_id}`}>
                   <EyeOutlined style={{ color: "white" }} key="view" />
                 </Link>
               </Tooltip>,

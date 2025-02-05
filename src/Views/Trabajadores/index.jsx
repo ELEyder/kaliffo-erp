@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Navigate } from "react-router-dom";
-import Tabla from "../../../Components/Tabla";
+import Tabla from "../../Components/Tabla";
 import { Divider, FloatButton } from "antd";
-import { getColumnas, getUrl } from '../../../interfaces/Trabajadores';
+import { getColumnas, getUrl } from '../../interfaces/Trabajadores';
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal";
 import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal";
 import AddTrabajadorModal from "@CA/trabajadores/AddTrabajadorModal";
