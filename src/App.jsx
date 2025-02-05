@@ -135,7 +135,7 @@ function App() {
           },
         }}
         locale={locale}>
-        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Router basename='/Kaliffo_Front/' future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routing />
         </Router>
       </ConfigProvider>
