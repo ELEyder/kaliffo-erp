@@ -69,7 +69,7 @@ export const getVentasByTienda = async (id, setTablaDatos) => {
  */
 export const getVentaById = async (id, setTablaDatos) => {
   try {
-    const { data } = await apiClient.get(`/venta/${id}`); // Realizar petición GET al servidor
+    const { data, status } = await apiClient.get(`/venta/${id}`); // Realizar petición GET al servidor
     let count = 0;
 
     const detallesConNuevoParametro = data.detalles.map(detalle => {
@@ -88,11 +88,10 @@ export const getVentaById = async (id, setTablaDatos) => {
     data.tienda = tienda[data.tienda_id - 1];
     data.tipoPago = metodosPago[data.tipoPago - 1];
     data.detalles = detallesConNuevoParametro;
-
-    setTablaDatos(data); // Actualizar estado con los datos transformados
+    setTablaDatos(status != 500 ? data : []) 
   } catch (error) {
     console.error(`Error al obtener la venta con ID ${id}:`, error);
-    setTablaDatos(null); // En caso de error, establecer un valor nulo
+    setTablaDatos([]); // En caso de error, establecer un valor nulo
   }
 };
 
