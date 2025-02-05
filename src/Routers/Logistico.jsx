@@ -4,8 +4,9 @@ import { Route } from "react-router-dom";
 // Lazy loading de componentes
 const Almacenes = lazy(() => import("../Views/Almacenes"));
 const Almacen = lazy(() => import("../Views/Almacen"));
-const ComprasView = lazy(() => import("../Views/Logistico/Compras"));
-const MovimientosGenerar = lazy(() => import("../Views/Logistico/MovimientoMercaderia"));
+const Compras = lazy(() => import("../Views/Compras"));
+const Historial = lazy(() => import("../Views/Movimientos/Historial"));
+const Mercaderia = lazy(() => import("../Views/Movimientos/Mercaderia"));
 
 const logistico = () => (
     <>
@@ -13,9 +14,9 @@ const logistico = () => (
         <Route path="/almacen" element={<Almacenes />} />
         <Route path="/almacen/:id" element={<Almacen />} />
 
-        <Route path="/movimientos_generar" element={< MovimientosGenerar />} />
-        <Route path="/movimientos_historial" element={<ComprasView />} />
-        <Route path="/compras" element={<ComprasView />} />
+        <Route path="/movimientos/generar" element={< Mercaderia />} />
+        <Route path="/movimientos/historial" element={<Historial />} />
+        <Route path="/compras" element={<Compras />} />
 
     </>
 );

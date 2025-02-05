@@ -40,7 +40,7 @@ const AlmacenCard = () =>{
             )=>(
                 <List.Item>
                     <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
-                        <stron>{item.title}:</stron>
+                        <strong>{item.title}:</strong>
                         <Paragraph>{item.value}</Paragraph>
                     </div>
                 </List.Item>

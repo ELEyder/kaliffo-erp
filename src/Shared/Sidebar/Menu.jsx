@@ -101,8 +101,8 @@ const SidebarMenu = () => {
           label: "Mover Mercadería",
           icon: <BookOutlined />,
           children: [
-            { key: "logistico-mover-mercaderia-mover", icon: <UserOutlined />, label: <Link to="/movimientos_generar">Mover Mercadería</Link> },
-            { key: "logistico-mover-mercaderia-historial", icon: <UserOutlined />, label: <Link to="/movimientos_historial">Historial</Link> },
+            { key: "logistico-mover-mercaderia-mover", icon: <UserOutlined />, label: <Link to="/movimientos/generar">Mover Mercadería</Link> },
+            { key: "logistico-mover-mercaderia-historial", icon: <UserOutlined />, label: <Link to="/movimientos/historial">Historial</Link> },
           ],
         },
         { key: "logistico-compras", icon: <CoffeeOutlined />, label: <Link to="/compras">Compras</Link> },
