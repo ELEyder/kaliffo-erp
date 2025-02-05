@@ -7,7 +7,7 @@ import Ventas from "./Routers/Ventas";
 
 // Lazy loading de componentes
 const LoginView = lazy(() => import("./Views/Login/LoginView"));
-const ErrorView = lazy(() => import("./Shared/Error/ErrorView"));
+const ErrorView = lazy(() => import("./Views/Error/ErrorView"));
 const Plantilla = lazy(() => import("./Shared/Plantilla"));
 const TestView = lazy(() => import("./Views/TestView"));
 

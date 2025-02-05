@@ -7,11 +7,11 @@ const NotificationContext = createContext(null);
 export const NotificationProvider = ({ children }) => {
   const [api, contextHolder] = notification.useNotification();
 
-  const open = (placement) => {
+  const open = (message, description = null) => {
     api.info({
-      message: `Notification ${placement}`,
-      description: "Hola",
-      placement,
+      message: message,
+      description: description,
+      placement: "topRight",
     });
   };
 
