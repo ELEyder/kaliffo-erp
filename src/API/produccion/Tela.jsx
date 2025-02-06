@@ -1,6 +1,5 @@
-import { Children } from "react";
-import apiClient from "../apiClient";
-import apiClientFiles from "../ApiClientFIles";
+import { apiClient } from "../apiClient";
+import { apiClientFiles } from "../apiClient";
 
 // Obtener todas las telas
 export const getTelas = async (setData) => {

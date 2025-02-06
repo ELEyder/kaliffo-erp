@@ -1,4 +1,4 @@
-import apiClient from "../apiClient";
+import { apiClient } from "../apiClient";
 
 // Obtener lavandería por lote
 export const getLavanderia = async (id, setData) => {

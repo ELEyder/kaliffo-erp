@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import { useParams } from "react-router-dom";
+import { redirect, useNavigate, useParams } from "react-router-dom";
 import { Divider, Row, Col, Spin } from "antd";
 import TimeLine from "@CP/lotes/TimeLine";
 import Status from "@CP/lotes/Status";
@@ -12,6 +12,7 @@ const TallerTable = lazy(() => import("../../Components/produccion/lotes/Acabado
 
 const LoteView = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [reload, setReload] = useState(false);
   const [fase, setFase] = useState(0);
   const [maxFase, setMaxFase] = useState(0);
@@ -53,12 +54,29 @@ const LoteView = () => {
   return (
     <>
       <Divider>DETALLES DEL LOTE</Divider>
-      <TimeLine
-        fase={fase}
-        setFase={setFase}
-        faseTimeline={maxFase}
-        reload={() => setReload(!reload)}
-      />
+      <div>
+      <div className={styles.loteIcons}>
+      {["Corte", "Lavandería", "Taller de Acabados Finales", "Almacen"].map(
+        (title, index) => (
+          <Tooltip key={index} title={title}>
+            <div
+              onClick={() => {
+                navigate('/lotes')
+              }}
+              className={styles.loteIcon}
+              style={{ backgroundColor: statusColors[index + 1] }}  // Colorea según el estado de la fase
+            >
+              <img
+                className={styles.svgLote}
+                src={`/svg/lote/${index + 1}.svg`}  // Ruta de la imagen SVG de la fase
+                alt={title}  // Texto alternativo para la imagen
+              />
+            </div>
+          </Tooltip>
+        )
+      )}
+    </div>
+      </div>
       <Row>
         <Col span={18}>
           <Suspense fallback={<Loading/>}>

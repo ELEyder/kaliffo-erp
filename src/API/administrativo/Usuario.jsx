@@ -1,5 +1,5 @@
 import moment from "moment";
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat);

@@ -1,5 +1,5 @@
 import { Flex, Button, Popconfirm } from "antd";
-import apiClient from "../API/apiClient";
+import { apiClient }from "../API/apiClient";
 
 const ITrabajadores = (tipoTrabajador, changeModal, setId, reload) => {
   let columnas = [

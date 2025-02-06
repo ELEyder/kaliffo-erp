@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "antd"
-import apiClient from '../../API/apiClient';
+import { apiClient } from '../../API/apiClient';
 
 const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => {
   const navigate = useNavigate();
@@ -21,15 +21,15 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
     }
   }, [reload]);
 
-  const getSorter = (dataIndex) => {
-    console.log(dataIndex)
-    return dataIndex === "trabajador_id" ||
-    dataIndex === "id" || dataIndex === "Opciones" ? 0 :
+  const getSorter = (col) => {
+    console.log(col.dataIndex)
+    return col.dataIndex === "trabajador_id" ||
+    col.dataIndex === "id" || col.title === "Opciones" ? 0 :
     (a, b) => {
-      if (typeof a[dataIndex] === 'string' && typeof b[dataIndex] === 'string') {
-        return a[dataIndex].localeCompare(b[dataIndex]);
-      } else if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
-        return a[dataIndex] - b[dataIndex];
+      if (typeof a[col.dataIndex] === 'string' && typeof b[col.dataIndex] === 'string') {
+        return a[col.dataIndex].localeCompare(b[col.dataIndex]);
+      } else if (typeof a[col.dataIndex] === 'number' && typeof b[col.dataIndex] === 'number') {
+        return a[col.dataIndex] - b[col.dataIndex];
       } else {
         return 0; // Si no son comparables, no ordenamos
       }
@@ -40,7 +40,7 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
     ...col,
     align: 'center',
     key: col.title,
-    sorter: getSorter(col.dataIndex),
+    sorter: getSorter(col),
   }));
   
   return (

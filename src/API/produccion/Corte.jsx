@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 /**
  * Obtiene los datos de un corte por lote ID.
