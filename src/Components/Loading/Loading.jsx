@@ -5,7 +5,7 @@ const Loading = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-        }}> <img src="/img/loading/loading.gif" alt="Cargando..." /> </div>
+        }}> <img src="/logo2.svg" alt="Cargando..." /> </div>
     )
 }
 
