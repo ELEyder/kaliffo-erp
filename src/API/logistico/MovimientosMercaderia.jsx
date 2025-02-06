@@ -9,6 +9,14 @@ export const getMovimientos = async(setMovimientos) =>{
   }
 }
 
+export const getMovimientoDetalle = async(setMovimiento,tipo,idM)=>{
+  try {
+    const response = await apiClient.get(`/movimiento/detalle/${idM}?tipo=${tipo}`)
+    setMovimiento(response.data)
+  } catch (error) {
+    setMovimiento([])
+  }
+}
 
 export const createMovimiento_Almacen_Tienda = async (values, productos) => {
   let movimiento_AT = {

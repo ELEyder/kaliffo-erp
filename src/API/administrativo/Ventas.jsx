@@ -38,6 +38,23 @@ export const getVentas = async (tipo, setTablaDatos) => {
   }
 };
 
+export const createVenta = async(tipo,values,detalle,cantidad,total_b,total_igv,total_N)=>{
+  let venta = {
+    tipo,
+    cantidad,
+    total_b,
+    total_igv,
+    total_N,
+    tipoPago: values.metodo,
+    ...(tipo === "boleta" ? { dni: values.dni } : { ruc: values.ruc }), // ✅ Corrección
+    direccion: values.direccion,
+    nombre: values.nombre,
+    detalle: detalle
+  };
+
+  console.log(venta)
+}
+
 /**
  * Muestra una notificación al buscar una venta.
  * URL de ejemplo: No aplica (función local)

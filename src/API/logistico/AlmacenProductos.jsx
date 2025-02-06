@@ -13,6 +13,7 @@ export const getAlmacenProductos = async (setAlmacenes) => {
   }
 };
 
+
 //obtine los datos de un almacen usando el id
 export const getAlmacenProducto = async (id,setAlmacen) => {
   try {

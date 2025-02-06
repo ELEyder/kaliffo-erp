@@ -133,6 +133,16 @@ export const getProductoSimpleCodigoBarras = async (codigo,tipo,id)=>{
   }
 }
 
+//obtener producto detalle usando el codigo 
+export const getProductoCompletoCodigoBarras = async (codigo)=>{
+  try {
+    const response = await apiClient.get(`/producto/codigo_completo/${codigo}`)
+    return response.data
+  } catch (error) {    
+    return("error","ERROR AL OBTENER LOS DATOS")
+  }
+}
+
 // Prepara el actualizar producto http://localhost:3000/producto/1
 export const setUpdateProducto = async (id, form) => {
   try {
