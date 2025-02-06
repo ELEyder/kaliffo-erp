@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Kaliffo_Front/',
+  // base: '/Kaliffo_Front/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),

@@ -21,9 +21,26 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
     }
   }, [reload]);
 
+  const getSorter = (dataIndex) => {
+    console.log(dataIndex)
+    return dataIndex === "trabajador_id" ||
+    dataIndex === "id" || dataIndex === "Opciones" ? 0 :
+    (a, b) => {
+      if (typeof a[dataIndex] === 'string' && typeof b[dataIndex] === 'string') {
+        return a[dataIndex].localeCompare(b[dataIndex]);
+      } else if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
+        return a[dataIndex] - b[dataIndex];
+      } else {
+        return 0; // Si no son comparables, no ordenamos
+      }
+    };
+  };
+
   columnas = columnas.map((col) => ({
     ...col,
     align: 'center',
+    key: col.title,
+    sorter: getSorter(col.dataIndex),
   }));
   
   return (
