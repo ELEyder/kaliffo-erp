@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 // Añadir pago a trabajador http://localhost:3000/pago/create (No creado)
 export const addPago = async (id, data) => {

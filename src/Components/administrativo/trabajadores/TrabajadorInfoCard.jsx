@@ -1,10 +1,9 @@
-import { Card, Dropdown, List, Button, Image, Divider, Row, Col } from "antd";
+import { Card, Dropdown, List, Typography, Image, Divider, Row, Col } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getTrabajadorById } from "@AA/Usuario";
 import { getReporteUsuario } from "@AA/Reporte";
-
-const { Meta } = Card;
+const { Paragraph } = Typography;
 
 const TrabajadorInfo = () => {
   const items = [
@@ -47,12 +46,12 @@ const TrabajadorInfo = () => {
             usuario.nombre === "Rodrigo"
               ? `/img/usuarios/rodrigo.jpg`
               : usuario.nombre === "Pablo"
-              ? `/img/usuarios/pablo.jpg`
-              : usuario.nombre === "Eyder"
-              ? `/img/usuarios/${images[Math.floor(Math.random() * 5)]}`
-              : `/img/usuarios/${usuario.usuario_id}.jpg`
+                ? `/img/usuarios/pablo.jpg`
+                : usuario.nombre === "Eyder"
+                  ? `/img/usuarios/${images[Math.floor(Math.random() * 5)]}`
+                  : `/img/usuarios/${usuario.usuario_id}.jpg`
           }
-          fallback="/img/usuarios/0.jpg" // Imagen predeterminada si falla la carga
+          fallback={"/img/usuarios/0.jpg"} // Imagen predeterminada si falla la carga
         />
       }
     >
@@ -68,11 +67,10 @@ const TrabajadorInfo = () => {
         ]}
         renderItem={(item) => (
           <List.Item>
-            {/* Título y valor de cada propiedad */}
-            <b style={{ textAlign: "left", marginRight: "40px" }}>
-              {item.title}
-            </b>
-            <a style={{ float: "right" }}>{item.value}</a>
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+              <strong>{item.title}:</strong>
+              <Paragraph copyable>{item.value}</Paragraph>
+            </div>
           </List.Item>
         )}
       />

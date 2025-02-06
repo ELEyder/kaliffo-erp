@@ -10,7 +10,7 @@ import * as Tallas from "../../interfaces/Tallas";
 import * as Colores from "../../interfaces/Colores";
 
 import { Flex, Divider, Tabs } from "antd";
-import Tabla from "../../Components/Tabla";
+import Tabla from "../../Components/Tabla/Tabla";
 import { useParams } from "react-router-dom";
 
 const ProductoView = () => {

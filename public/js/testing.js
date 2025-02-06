@@ -17,7 +17,7 @@ app.get('/shutdown', (req, res) => {
       res.send('.');
     });
   } else {
-    console.log("xd")
+    console.log("Esta es tu PC")
   }
 });
 

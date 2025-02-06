@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import AlmacenCard from "@CL/AlmacenProductos/AlmacenCard";
 import { Divider, Flex, Tabs } from "antd";
 import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para mostrar los detalles de un producto
-import Tabla from "../../Components/Tabla";
+import Tabla from "../../Components/Tabla/Tabla";
 
 import * as AlmacenProductos from "../../interfaces/AlmacenesProductos";
 import { useState } from "react";

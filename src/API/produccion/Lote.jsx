@@ -1,4 +1,4 @@
-import apiClient from "../apiClient";
+import { apiClient } from "../apiClient";
 
 // Obtener Fase del Lote
 export const getFaseLote = async (id, setData, setOriginal) => {

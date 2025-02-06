@@ -40,7 +40,6 @@ export const getColumnas = (changeModal, setIdP) => {
             type="primary"
             block
             onClick={() => {
-                console.log(text)
               setIdP(text); // Establecer el ID del producto seleccionado
               changeModal("proD", true); // Abrir el modal de detalles del producto
             }}

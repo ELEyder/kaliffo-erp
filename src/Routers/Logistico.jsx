@@ -7,7 +7,7 @@ const Almacen = lazy(() => import("../Views/Almacen"));
 const Compras = lazy(() => import("../Views/Compras"));
 const Generar = lazy(() => import("../Views/Movimientos/Generar"));
 const Historial = lazy(() => import("../Views/Movimientos/Historial"));
-const MovimientosDetalle = lazy(()=>import("../Views/Movimientos/Historial/Detalle"))
+const MovimientosDetalle = lazy(()=>import("../Views/Movimientos/Detalle"))
 const logistico = () => (
     <>
         {/* Rutas para almacen productos */}

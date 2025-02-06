@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 // Crea una incidencia http://localhost:3000/incidencia/create
 export const addIncidencia = async (data) => {

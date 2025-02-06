@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 // Añadir una tienda http://localhost:3000/tienda/create
 export const addTienda = async (values) => {

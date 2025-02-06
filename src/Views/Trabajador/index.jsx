@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
 import TrabajadorInfoCard from "@CA/trabajadores/TrabajadorInfoCard";
 import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
-import Tabla from "../../Components/Tabla";
+import Tabla from "../../Components/Tabla/Tabla";
 import { Divider, Tabs, Flex, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono de agregar para el botón flotante
 import * as Incidencias from "../../interfaces/Incidencias";

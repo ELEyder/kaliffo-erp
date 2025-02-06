@@ -118,7 +118,7 @@ const MovimientoDetalleModal = ({ openModal, closeModal, tipo, idM }) => {
               <Col span={12}>
                 <Form.Item label="Producto">
                   <Input
-                    value={detalle.producto_nombre + detalle.color_nombre}
+                    value={detalle.producto_nombre + " " +detalle.color_nombre}
                     readOnly
                     style={{ textAlign: "center" }}
                   />

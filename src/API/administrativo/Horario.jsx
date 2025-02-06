@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 // Extrae los horarios de un trabajador http://localhost:3000/asistencia?usuario_id=1
 export const getHorariosByTrabajador = async (id, setHorario) => {

@@ -127,6 +127,10 @@ function App() {
             Dropdown: {
               colorBgElevated: color2,
             },
+            FloatButton: {
+            colorBgElevated: color1,
+            colorText: 'black',
+            },
           },
           token: {
             colorPrimary: color1,

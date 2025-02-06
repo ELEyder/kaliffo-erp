@@ -362,9 +362,9 @@ const GenerarVentas = () => {
                 <Select
                   defaultValue="1"
                   options={[
-                    { value: "1", label: "Efectivo" },
-                    { value: "2", label: "Yape/Plin" },
-                    { value: "3", label: "Transferencia" },
+                    { value: 1, label: "Efectivo" },
+                    { value: 2, label: "Yape/Plin" },
+                    { value: 3, label: "Transferencia" },
                   ]}
                 />
               </Form.Item>

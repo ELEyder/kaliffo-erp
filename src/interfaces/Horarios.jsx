@@ -1,5 +1,5 @@
 import { Button, Popconfirm } from "antd";
-import apiClient from "../API/apiClient";
+import { apiClient }from "../API/apiClient";
 
 export const getColumnas = (reload) => {
   const columnas = [

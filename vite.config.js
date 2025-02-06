@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // base: 'http://127.0.0.1:5500/dist',
+  // base: '/Kaliffo_Front/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -13,7 +13,6 @@ export default defineConfig({
       '@CL': path.resolve(__dirname, 'src/Components/logistico'),
       '@CP': path.resolve(__dirname, 'src/Components/produccion'),
       '@CV': path.resolve(__dirname, 'src/Components/ventas'),
-      '@V': path.resolve(__dirname, 'src/Views'),
       '@A': path.resolve(__dirname, 'src/API'),
       '@AA': path.resolve(__dirname, 'src/API/administrativo'),
       '@AL': path.resolve(__dirname, 'src/API/logistico'),

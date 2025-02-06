@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../ApiClient';
 
 export const getMovimientos = async(setMovimientos) =>{
   try {

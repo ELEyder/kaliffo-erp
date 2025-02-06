@@ -1,4 +1,4 @@
-import apiClient from '../apiClient'; // Importar cliente de API configurado
+import { apiClient } from '../ApiClient'; // Importar cliente de API configurado
 
 // Métodos de pago disponibles
 const metodosPago = ["Efectivo", "Yape", "Transferencia"];
@@ -15,7 +15,7 @@ const tienda = ["Almacen", "Tienda 1", "Tienda 2"];
  */
 export const getVentas = async (tipo, setTablaDatos) => {
   try {
-    const { data } = await apiClient.get('/venta'); // Realizar petición GET al servidor
+    const { data } = await apiClient.get(`/venta?tipoComprobante=${tipo==="boleta"?1:2}`); // Realizar petición GET al servidor
     let count = 0;
 
     const detallesConNuevoParametro = data.map(detalle => {
@@ -52,7 +52,14 @@ export const createVenta = async(tipo,values,detalle,cantidad,total_b,total_igv,
     detalle: detalle
   };
 
-  console.log(venta)
+
+  try {
+    await apiClient.post("/venta/create",venta)
+  } catch (error) {
+    console.log(error)
+  }
+
+  
 }
 
 /**

@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 /**
  * Realiza la autenticación del usuario enviando los datos de login al servidor.

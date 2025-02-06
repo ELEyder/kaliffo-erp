@@ -1,7 +1,9 @@
 import moment from "moment";
-import apiClient from '../apiClient';
-import dayjs from 'dayjs';
+import { apiClient } from '../apiClient';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import dayjs from 'dayjs';
+
+
 dayjs.extend(customParseFormat);
 const dTipos = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
@@ -45,21 +47,8 @@ export const getTrabajadorById = async (id, setTrabajador) => {
 
 // Actualizar un Trabajador http://localhost:3000/Trabajador/update/1
 export const updateTrabajador = async (id, values, originales) => {
-  // Convertir fecha si existe y es diferente
-  if (values.fecha_nacimientoE) {
-    values.fecha_nacimientoE = moment(values.fecha_nacimientoE).format("YYYY-MM-DD");
-  }
-
-  // Filtrar valores que han cambiado y no son undefined
-  const valoresnuevos = Object.keys(values).reduce((nuevos, key) => {
-    if (values[key] !== originales[key] && values[key] !== undefined) {
-      nuevos[key] = values[key];
-    }
-    return nuevos;
-  }, {});
-
   try {
-    await apiClient.put(`/Trabajador/update/${id}`, valoresnuevos);
+    await apiClient.put(`/Trabajador/update/${id}`, values);
   } catch (error) {
     console.error("Error al actualizar el Trabajador", error);
   }

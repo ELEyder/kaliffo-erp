@@ -1,27 +1,21 @@
 import { Flex, Button, Popconfirm } from "antd";
-import apiClient from "../API/apiClient";
+import { apiClient }from "../API/apiClient";
 
 export const getColumnas = (reload) => {
   const columnas = [
     {
       title: "Monto Pagado",
       dataIndex: "montoPagado",
-      key: "montoPagado",
-      align: "center",
       render: (text) => ("S/" + text) // Formatear el monto con el símbolo de moneda "S/"
     },
     {
       title: "Monto Faltante",
       dataIndex: "montoFaltante",
-      key: "montoFaltante",
-      align: "center",
       render: (text) => ("S/" + text) // Formatear el monto faltante con el símbolo de moneda "S/"
     },
     {
       title: "Fecha",
       dataIndex: "fecha",
-      key: "fecha",
-      align: "center",
       render: (fecha) => {
         if (!fecha) return "-"; // Manejar casos donde la fecha sea nula
         const date = new Date(fecha); // Convertir la fecha a objeto Date
@@ -34,8 +28,6 @@ export const getColumnas = (reload) => {
     {
       title: "Estado",
       dataIndex: "estado",
-      key: "estado",
-      align: "center",
       render: (value) => {
         const pagoMap = {
           0: "Pagado",
@@ -50,13 +42,7 @@ export const getColumnas = (reload) => {
           color: record.estado === "En Proceso" ? "black" : "white", // Color del texto según el estado
         }
       }),
-      // Ordenar los pagos según su estado
-      sorter: {
-        compare: (a, b) => a.estado.localeCompare(b.estado),
-        multiple: 1,
-      }
     },
-
   ];
 
   columnas.push({

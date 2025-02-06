@@ -1,4 +1,4 @@
-import apiClient from '../apiClient';
+import { apiClient } from '../apiClient';
 
 // Obtener las tallas de un producto http://localhost:3000/producto/detalle/1?tipo=tallas
 export const getTallasByProducto = async (id, setTallas) => {

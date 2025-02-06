@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import TiendaCard from "@CA/tiendas/TiendaCard";
 import ProductosTable from "@CA/tiendas/ProductosTable";
-import Tabla from "../../Components/Tabla";
+import Tabla from "../../Components/Tabla/Tabla";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono para el botón de "Añadir"
 
 import { FloatButton, Divider, Flex, Tabs } from "antd";
