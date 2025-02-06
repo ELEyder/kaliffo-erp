@@ -10,7 +10,7 @@ const ErrorView = () => {
                 {/* Contenedor del contenido de error */}
                 <div className={styles.content}>
                     {/* Imagen que muestra una animación de error */}
-                    <img className={styles.img} src="img/bg/error-3.gif" alt="Error animado" />
+                    <img className={styles.img} src={"/logo3.svg"} alt="Error animado" />
                     
                     {/* Texto grande del código de error 404 */}
                     <h1 className={styles.text}>

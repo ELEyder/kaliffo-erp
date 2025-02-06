@@ -28,7 +28,7 @@ const LotesCards = () => {
           const statusColors = Array(lote.estado + 1).fill(colors[lote.estado]);
           statusColors.push(...Array(4 - lote.estado).fill("white"));
           return (
-            <Link key={lote.lote_id} to={`/prod/lotes/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
+            <Link key={lote.lote_id} to={`/lotes/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{ width: "300px", textAlign: "center" }}
                 title={`LOTE ${lote.lote_id}`}
