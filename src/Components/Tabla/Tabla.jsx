@@ -22,7 +22,6 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
   }, [reload]);
 
   const getSorter = (col) => {
-    console.log(col.dataIndex)
     return col.dataIndex === "trabajador_id" ||
     col.dataIndex === "id" || col.title === "Opciones" ? 0 :
     (a, b) => {

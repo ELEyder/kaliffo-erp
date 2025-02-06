@@ -21,7 +21,6 @@ const LoteView = () => {
   const fetchGetStatus = async () => {
     if (fase > 0) {
       await getStatus(id, fase, setStatus);
-      console.log(status);
     }
   };
 

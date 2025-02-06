@@ -48,10 +48,8 @@ export const addCorte = async (id, data) => {
     talla: detalle.talla,
     taller_id: detalle.taller_id ?? null,
   }));
-  console.log(data)
   try {
     var response = await apiClient.post(`/corte/create/array/${id}`, data);
-    console.log(response)
   } catch (error) {
     console.error("Error al añadir el corte:", error);
   }
