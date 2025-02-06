@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Col, DatePicker, Form, Input, Modal, Row, Select } from "antd";
-import { setUpdateTrabajador, updateTrabajador } from "@AA/Usuario";
+import { updateTrabajador } from "@AA/Usuario";
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import dayjs from 'dayjs';
 import { getTiendas } from "@AA/Tienda";
+
+dayjs.extend(customParseFormat);
+
 import {
-  onlyDecimalKey,
   onlyNumberKey,
-  onlyLettersKey,
-  onlyDecimalInput,
   onlyNumberInput,
-  onlyLettersInput,
   preventPaste,
 } from "../../../Shared/Tools"; // Funciones de utilidad para validación
 
@@ -17,22 +18,26 @@ const UpdateTrabajadorModal = ({
   closeModal, // Función para cerrar el modal
   tipoTrabajador, // Tipo de trabajador (e.g., "ventas", "administrativo")
   reload, // Función para recargar los datos tras actualizar
-  id, // ID del trabajador a editar
+  data, // ID del trabajador a editar
 }) => {
   const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
   const [tiendas, setTiendas] = useState([]); // Lista de tiendas (para trabajadores de ventas)
-  const [valoresO, setValoresO] = useState({}); // Valores originales del trabajador
 
   useEffect(() => {
-    // Carga los datos del trabajador y los valores iniciales en el formulario
-    setUpdateTrabajador(id, form, setValoresO);
+    form.setFieldsValue({
+      ["nombre"]: data.nombre,
+      ["ap_paterno"]: data.ap_paterno,
+      ["ap_materno"]: data.ap_materno,
+      ["telefono"]: data.telefono,
+      ["dni"]: data.dni,
+      ["fecha_nacimiento"]: dayjs(data.fecha_nacimiento),
+      ["tienda_id"]: data.tienda_id,
+    });
+  }, [openModal]);
 
-    // Si el trabajador es de tipo "ventas", carga la lista de tiendas
-    if (tipoTrabajador === "ventas") {
-      getTiendas(setTiendas);
-    }
-  }, [id]);
-
+  useEffect(()=>{
+    getTiendas(setTiendas)
+  }, [])
   return (
     <Modal
       forceRender
@@ -52,10 +57,8 @@ const UpdateTrabajadorModal = ({
         form={form}
         layout="vertical"
         labelAlign="center"
-        id="formularioeditar"
         onFinish={async (values) => {
-          // Actualiza los datos del trabajador con los valores del formulario
-          await updateTrabajador(id, values, valoresO);
+          await updateTrabajador(data.trabajador_id, values);
           reload(); // Recarga los datos de la lista
           closeModal(false); // Cierra el modal
         }}

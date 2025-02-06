@@ -1,7 +1,7 @@
 import { Flex, Button, Popconfirm } from "antd";
 import { apiClient }from "../API/apiClient";
 
-const ITrabajadores = (tipoTrabajador, changeModal, setId, reload) => {
+const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) => {
   let columnas = [
     {
       title: "Nombre",
@@ -14,14 +14,13 @@ const ITrabajadores = (tipoTrabajador, changeModal, setId, reload) => {
     { title: "Sueldo", dataIndex: "sueldo" },
     {
       title: "Opciones",
-      dataIndex: "trabajador_id",
-      render: (trabajador_id) => (
+      render: (record) => (
         <Flex gap="small" justify="center" align="middle" wrap="wrap">
           <Button
             type="primary"
             onClick={(e) => {
-              e.stopPropagation(); // Evitar que el click llegue al padre
-              setId(trabajador_id);
+              e.stopPropagation();
+              setDataTrabajador(record);
               changeModal("updT", true);
             }}
           >
@@ -30,7 +29,7 @@ const ITrabajadores = (tipoTrabajador, changeModal, setId, reload) => {
           <Button
             onClick={(e) => {
               e.stopPropagation(); // Evitar que el click llegue al padre
-              setId(trabajador_id);
+              setDataTrabajador(record);
               changeModal("addI", true);
             }}
           >
@@ -43,7 +42,7 @@ const ITrabajadores = (tipoTrabajador, changeModal, setId, reload) => {
             cancelText="Cancelar"
             onConfirm={async (e) => {
               e.stopPropagation(); // Evitar que el click llegue al padre
-              await apiClient.delete(`/Trabajador/delete/${trabajador_id}`);
+              await apiClient.delete(`/trabajador/delete/${trabajador_id}`);
               reload();
             }}
           >

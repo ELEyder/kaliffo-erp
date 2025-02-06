@@ -7,23 +7,23 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
   const navigate = useNavigate();
   const [data, setData] = useState(dataSource ?? [])
 
+  async function fetchData() {
+    try {
+      const response = await apiClient.get(url);
+      setData(response.data);
+    } catch (e) {
+      setData([]);
+    }
+  }
+
   useEffect(() => {
     if (url){
-      async function fetchData() {
-        try {
-          const response = await apiClient.get(url);
-          setData(response.data);
-        } catch (e) {
-          setData([]);
-        }
-      }
       fetchData();
     }
-  }, [reload]);
+  }, [reload, url]);
 
   const getSorter = (col) => {
-    return col.dataIndex === "trabajador_id" ||
-    col.dataIndex === "id" || col.title === "Opciones" ? 0 :
+    return col.dataIndex === "id" || col.title === "Opciones" ? 0 :
     (a, b) => {
       if (typeof a[col.dataIndex] === 'string' && typeof b[col.dataIndex] === 'string') {
         return a[col.dataIndex].localeCompare(b[col.dataIndex]);
