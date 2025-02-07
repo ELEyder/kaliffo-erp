@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react"; // Importa React y hooks
-import { CloseOutlined, UploadOutlined } from "@ant-design/icons"; // Importa el ícono de cerrar
-import FormItem from "antd/es/form/FormItem"; // Importa FormItem de Ant Design
-import { getEmpresas } from "@AP/Empresa"; // Importa la función para obtener empresas
+import { useState } from "react"; // Importa React y hooks
+import { UploadOutlined } from "@ant-design/icons"; // Importa el ícono de cerrar
 import { getCodigosBarras, addTelas } from "@AP/Tela"; // Importa funciones para obtener tipos de tela y agregar telas
 import {
   Modal,
-  AutoComplete,
   Button,
-  Card,
   Form,
-  Input,
   Select,
-  Typography,
-  DatePicker,
   Upload,
   Steps,
   Col,
@@ -55,13 +48,14 @@ const AddTelasModal = ({
         <Row gutter={[16,16]} justify="center" align="middle">
           <Col span={24} style={{textAlign:"center"}}>
             <Upload {...props} accept=".xlsx" maxCount={1}>
-              <Button icon={<UploadOutlined></UploadOutlined>}>
+              <Button icon={<UploadOutlined></UploadOutlined>} >
                 Subir Excel
               </Button>
             </Upload>
           </Col>
           <Col span={24} style={{textAlign:"center"}}>
             <Button
+              type="primary"
               onClick={() => {
                 addTelas(Archivos)
                   .then((res) => {
@@ -75,7 +69,6 @@ const AddTelasModal = ({
                   });
               }}
               disabled={Archivos.length === 0}
-              type="primary"
             >
               SUBIR EXCEL
             </Button>

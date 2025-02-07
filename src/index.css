@@ -117,3 +117,11 @@ text-overflow: ellipsis;
 .ant-popover-inner {
   background-color: var(--bg) !important;
 }
+
+.ant-steps-icon {
+  color: rgb(255, 255, 255) !important
+}
+
+.anticon-check svg {
+  color: rgb(0, 0, 0) !important
+}

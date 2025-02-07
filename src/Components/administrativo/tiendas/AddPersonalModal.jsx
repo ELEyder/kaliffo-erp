@@ -22,7 +22,7 @@ const AddPersonalModal = ({
     <Modal
       forceRender
       getContainer={false}
-      title={`Añadir nuevo trabajador`} // Modal title
+      title={`Añadir nuevo personal`} // Modal title
       open={openModal} // Controls modal visibility
       onCancel={closeModal} // Close the modal when the user clicks on cancel
       style={{ textTransform: "uppercase" }} // Style for the modal header
@@ -64,9 +64,9 @@ const AddPersonalModal = ({
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase()) // Filter workers based on search input
             }
             options={Trabajadores.map((trabajador) => ({
-              value: trabajador.usuario_id, // Set value as worker id
+              value: trabajador.trabajador_id, // Set value as worker id
               label: trabajador.nombre + " " + trabajador.ap_paterno + " " + trabajador.ap_materno, // Display full name
-              key: trabajador.usuario_id, // Set key to worker id
+              key: trabajador.trabajador_id, // Set key to worker id
             }))}
           />
         </Form.Item>

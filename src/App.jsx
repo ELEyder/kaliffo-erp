@@ -31,7 +31,8 @@ function App() {
               defaultHoverBorderColor: color2,
               defaultBorderColor: color2,
               defaultHoverColor: 'white',
-              colorSplit: color2
+              colorSplit: color2,
+              borderColorDisabled: "transparent",
             },
             List: {
               colorText: "white",
@@ -132,6 +133,14 @@ function App() {
               colorText: 'black',
             },
             Typography: {
+              colorText: 'white',
+              colorTextDescription: 'white',
+            },
+            Steps: {
+              colorText: 'white',
+              colorTextDescription: 'white',
+            },
+            Upload: {
               colorText: 'white',
               colorTextDescription: 'white',
             },

@@ -8,32 +8,26 @@ export const getColumnas = (changeModal, setPersonal, reload) => {
       key: "nombre",
       render: (record) =>
         `${record.nombre} ${record.ap_paterno} ${record.ap_materno}`, // Concatenar nombre, apellido paterno y apellido materno
-      align: "center", // Alinear el texto al centro
     },
     {
       title: "DNI", // Título de la columna para el DNI del trabajador
       dataIndex: "dni", // Mapear la columna al campo "dni" en los datos
-      key: "dni",
-      align: "center", // Alinear el texto al centro
     },
     {
       title: "Teléfono", // Título de la columna para el teléfono del trabajador
       dataIndex: "telefono", // Mapear la columna al campo "telefono" en los datos
-      key: "telefono",
-      align: "center", // Alinear el texto al centro
     },
     {
       title: "Opciones", // Título de la columna para opciones (editar y eliminar)
-      dataIndex: "Opciones",
       render: (record) => {
         return (
           <Flex gap="small" justify="center" align="middle" wrap="wrap">
-            <Button type="primary"
+            {/* <Button type="primary"
               onClick={(e) => {
                 e.stopPropagation()
                 console.log("En reparación")
               }}
-            >+</Button>
+            >+</Button> */}
             {/* Botón de Editar: Abre el modal de actualización para el trabajador seleccionado */}
             <Button type="primary" onClick={(e) => {
               e.stopPropagation()

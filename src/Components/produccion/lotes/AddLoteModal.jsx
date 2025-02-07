@@ -1,7 +1,6 @@
 import {
   Form,
   Modal,
-  InputNumber,
   Select,
   Divider,
   Row,
@@ -110,8 +109,8 @@ const AddLoteModal = ({ openModal, closeModal, reload }) => {
         <Divider />
         <Row gutter={16} justify="center" align="middle">
           <Col span={24} style={{ textAlign: "center" }}>
-            <Title level={3}>Telas</Title>
-            <span>METRAJE USADO: {total}</span>
+            <Title style={{color: "white"}} level={3}>Telas</Title>
+            <span style={{color: "white"}}>METRAJE USADO: {total}</span>
           </Col>
           <Col span={24}>
             {Object.entries(telasCodigo).map(([codigo, detalles]) => (
