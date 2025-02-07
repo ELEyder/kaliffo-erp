@@ -1,13 +1,17 @@
 import { Button } from "antd"
-import { apiClient } from "../../../API/apiClient"
+import { apiClientFiles } from "../../../API/apiClient"
 import { useParams } from "react-router-dom"
 
 const Almacen = () => {
     const { id } = useParams()
 
     const imprimirCodigo = async () => {
-        await apiClient.get(`producto/imprimir/${id}`)
+        await apiClientFiles.get(`producto/imprimir/${id}`)
     }
+
+    const redirigirAlmacen = () => {
+        navigate("/almacen"); // Redirige al almacén
+    };
 
     return (
         <div style={{
@@ -19,7 +23,7 @@ const Almacen = () => {
             height: "100%"
         }}>
         <Button onClick={imprimirCodigo}>Imprimir código de barras</Button>
-        <Button onClick={imprimirCodigo}>Regirigir al Almacen</Button>
+        <Button onClick={redirigirAlmacen}>Regirigir al Almacen</Button>
         </div>
     )
 }
