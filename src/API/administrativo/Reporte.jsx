@@ -4,7 +4,6 @@ import { apiClient } from '../apiClient';
 export const getReporteUsuario = async (id,tipo) => {
   try {
     const response = await apiClient.get(`/trabajador/reporte/${id}?tipo=${tipo}`, { responseType: 'blob' });
-
     const pdf = response.data;
     const url = window.URL.createObjectURL(pdf);
     window.open(url);

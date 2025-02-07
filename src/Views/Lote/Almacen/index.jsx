@@ -6,7 +6,7 @@ const Almacen = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const imprimirCodigo = async () => {
-        await apiClient.get(`producto/imprimir/${id}`, { responseType: 'blob' })
+        const response = await apiClient.get(`producto/imprimir/${id}`, { responseType: 'blob' })
 
         const pdf = response.data;
         const url = window.URL.createObjectURL(pdf);
