@@ -27,24 +27,24 @@ const columnas = [
       }
     }),
   },
-  {
-    title: "Ver más", // Título de la columna
-    key: "verMas", // Clave única para la columna
-    align: "center", // Alinear el texto al centro
-    render: (text, record) => (
-      <Button 
-        type="primary" 
-        style={{ width: "55px" }} 
-        block
-        onClick={() => {
-          setTalla(record.talla); // Establecer la talla seleccionada
-          changeModal("tallaD",true); // Abrir el modal
-        }}
-      >
-        +
-      </Button>
-    ),
-  },
+  // {
+  //   title: "Ver más", // Título de la columna
+  //   key: "verMas", // Clave única para la columna
+  //   align: "center", // Alinear el texto al centro
+  //   render: (text, record) => (
+  //     <Button 
+  //       type="primary" 
+  //       style={{ width: "55px" }} 
+  //       block
+  //       onClick={() => {
+  //         setTalla(record.talla); // Establecer la talla seleccionada
+  //         changeModal("tallaD",true); // Abrir el modal
+  //       }}
+  //     >
+  //       +
+  //     </Button>
+  //   ),
+  // },
 ];
 
 

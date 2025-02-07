@@ -88,7 +88,7 @@ export const addProductoDetalle = async (tiendaId, Producto) => {
 // http://localhost:3000/producto/detalle/1?tipo=colores&tienda_id=1
 export const getColoresDetalleProducto = async (tipo,id,idp, setDetalles) => {
   try {
-    const response = await apiClient.get(`/producto/detalle/${idp}?tipo=colores&${tipo}=${id}`);
+    const response = await apiClient.get(`/producto/detalle/${id}?tipo=colores&${tipo}=${idp}`);
     setDetalles(response.data);
   } catch (error) {
     console.log(`Error al obtener los colores detallados del producto ID ${idp} de la tienda ID ${id}:`, error)

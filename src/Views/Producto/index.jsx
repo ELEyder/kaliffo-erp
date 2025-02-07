@@ -15,37 +15,43 @@ import { useParams } from "react-router-dom";
 
 const ProductoView = () => {
   // Definición de las pestañas con sus respectivos componentes
-  const { id } = useParams()
+  const { id } = useParams();
   const [reload, setReload] = useState(true); // Estado para activar recarga después de acciones como agregar/eliminar
   const [idT, setIdT] = useState(0); // Estado para almacenar el ID de la tienda seleccionada
   const [talla, setTalla] = useState(0);
   const [detalleColor, setDetalleColor] = useState(0);
 
   const [modals, setModals] = useState({
-    "tiendaD": false,
-    "tallaD": false,
-    "colorD": false,
-  })
+    tiendaD: false,
+    tallaD: false,
+    colorD: false,
+  });
   const changeModal = (modalKey, value) => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };
 
-  const columnas = Tiendas.getColumnas(changeModal, setIdT, () => setReload(!reload))
-  const columnasT = Tallas.getColumnas(changeModal, setTalla)
-  const columnasC = Colores.getColumnas(changeModal, setDetalleColor)
+  const columnas = Tiendas.getColumnas(changeModal, setIdT, () =>
+    setReload(!reload)
+  );
+  const columnasT = Tallas.getColumnas(changeModal, setTalla);
+  const columnasC = Colores.getColumnas(changeModal, setDetalleColor);
 
   const items = [
     {
-      key: '1', label: 'Tiendas',
-      children: <Tabla
-        columnas={columnas}
-        rowKey={"tienda_id"}
-        url={Tiendas.getUrl(id)}
-        reload={() => setReload(!reload)}
-      />
+      key: "1",
+      label: "Tiendas",
+      children: (
+        <Tabla
+          columnas={columnas}
+          rowKey={"tienda_id"}
+          url={Tiendas.getUrl(id)}
+          reload={() => setReload(!reload)}
+        />
+      ),
     },
     {
-      key: "2", label: "Tallas",
+      key: "2",
+      label: "Tallas",
       children: (
         <Tabla
           columnas={columnasT}
@@ -56,13 +62,16 @@ const ProductoView = () => {
       ),
     },
     {
-      key: '3', label: 'Colores',
-      children: <Tabla
-        columnas={columnasC}
-        rowKey={"codigo"}
-        url={Colores.getUrl(id)}
-        reload={() => setReload(!reload)}
-      />
+      key: "3",
+      label: "Colores",
+      children: (
+        <Tabla
+          columnas={columnasC}
+          rowKey={"codigo"}
+          url={Colores.getUrl(id)}
+          reload={() => setReload(!reload)}
+        />
+      ),
     },
   ];
   return (
@@ -86,8 +95,22 @@ const ProductoView = () => {
         }}
       >
         {/* Componente con la información del producto */}
-        <ProductoInfoCard />
-        <Tabs defaultActiveKey="1" items={items} />
+        <ProductoInfoCard
+          style={{
+            flex: "1 1 45%",
+            minWidth: "400px", // Ancho mínimo
+            maxWidth: "700px", // Ancho máximo
+          }}
+        />
+        <Tabs
+          style={{
+            flex: "1 1 45%",
+            minWidth: "400px",
+            maxWidth: "500px",
+          }}
+          defaultActiveKey="1"
+          items={items}
+        />
       </Flex>
 
       {/* Divisor adicional para separar contenido */}
@@ -97,8 +120,9 @@ const ProductoView = () => {
       <ProductoDetalleModal
         openModal={modals.tiendaD} // Estado para controlar la visibilidad del modal
         closeModal={() => changeModal("tiendaD", false)} // Función para cerrar el modal
-        id={idT} // ID de la tienda seleccionada
-        idp={id} // Pasar el ID del producto como prop
+        tipo="tienda_id"
+        id={id} // ID de la tienda seleccionada
+        idp={idT} // Pasar el ID del producto como prop
       />
 
       {/*Tallas*/}
@@ -115,8 +139,6 @@ const ProductoView = () => {
         closeModal={() => changeModal("colorD", false)} // Cierra el modal
         idD={detalleColor} // Pasa el ID del detalle al modal
       />
-
-
     </>
   );
 };
