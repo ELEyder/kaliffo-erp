@@ -21,10 +21,10 @@ const VentasTipoTable = () => {
   // Definición de las columnas para la tabla
   const columnas = [
     {
-      title: "Nº", // Encabezado de la columna
-      dataIndex: "id", // Clave del objeto correspondiente a esta columna
+      title: "Nº",
+      dataIndex: "id",
       key: "id",
-      align: "center", // Alineación del contenido
+      align: "center",
     },
     {
       title: "Código",
@@ -37,10 +37,7 @@ const VentasTipoTable = () => {
       dataIndex: "tipoVenta",
       key: "tipoVenta",
       align: "center",
-      sorter: {
-        compare: (a, b) => a.tipoVenta.localeCompare(b.tipoVenta), // Ordenación alfabética
-        multiple: 2,
-      },
+      sorter: (a, b) => a.tipoVenta.localeCompare(b.tipoVenta),
     },
     {
       title: "Fecha de Venta",
@@ -50,13 +47,10 @@ const VentasTipoTable = () => {
     },
     {
       title: "Cantidad",
-      dataIndex: "cantidad",
-      key: "cantidad",
+      dataIndex: "cantidad_total",
+      key: "cantidad_total",
       align: "center",
-      sorter: {
-        compare: (a, b) => a.cantidad.localeCompare(b.cantidad),
-        multiple: 2,
-      },
+      sorter: (a, b) => a.cantidad_total - b.cantidad_total, // Ahora ordena correctamente los números
     },
     {
       title: "Total Bruto",
@@ -69,10 +63,7 @@ const VentasTipoTable = () => {
       dataIndex: "totalNeto",
       key: "totalNeto",
       align: "center",
-      sorter: {
-        compare: (a, b) => a.totalNeto.localeCompare(b.totalNeto),
-        multiple: 2,
-      },
+      sorter: (a, b) => a.totalNeto - b.totalNeto, // Corrección de sorter para valores numéricos
     },
     {
       title: "IGV",
@@ -87,7 +78,6 @@ const VentasTipoTable = () => {
       align: "center",
       onCell: (record) => ({
         style: {
-          // Cambia el fondo y el color del texto según el tipo de pago
           background:
             record.tipoPago === "Efectivo"
               ? "#248304"
@@ -97,15 +87,12 @@ const VentasTipoTable = () => {
           color: record.tipoPago === "Transferencia" ? "black" : "white",
         },
       }),
-      sorter: {
-        compare: (a, b) => a.tipoPago.localeCompare(b.tipoPago),
-        multiple: 2,
-      },
+      sorter: (a, b) => a.tipoPago.localeCompare(b.tipoPago),
     },
     {
-      title: "RUC",
-      dataIndex: "ruc",
-      key: "ruc",
+      title: tipo === "boleta" ? "DNI" : "RUC", // Se selecciona el título dinámicamente
+      dataIndex: tipo === "boleta" ? "dni" : "ruc",
+      key: tipo === "boleta" ? "dni" : "ruc",
       align: "center",
     },
     {
@@ -115,7 +102,7 @@ const VentasTipoTable = () => {
       align: "center",
     },
   ];
-
+  
   return (
     <>
       <Table
@@ -128,7 +115,7 @@ const VentasTipoTable = () => {
         className="tabla_trabajadores"
         onRow={(record) => ({
           onClick: () => {
-            setId(record.id); // Al hacer clic en una fila, establece el ID
+            setId(record.venta_id); // Al hacer clic en una fila, establece el ID
             setOpenDetalleVentaModal(true); // Abre el modal de detalles
           },
           style: {

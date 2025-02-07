@@ -9,7 +9,7 @@ const DetalleVentaModal = ({
   closeModal, // Función para cerrar el modal
   id, // ID de la venta a mostrar
 }) => {
-  const { tipoVenta } = useParams(); // Obtiene el tipo de venta desde la URL
+  const { tipo } = useParams(); // Obtiene el tipo de venta desde la URL
   const [form] = Form.useForm(); // Formulario de Ant Design
   const [venta, setVenta] = useState(["detalles"]); // Estado para almacenar los datos de la venta
 
@@ -18,11 +18,13 @@ const DetalleVentaModal = ({
     getVentaById(id, setVenta); // Carga los detalles de la venta usando su ID
   }, [id]);
 
+  console.log(tipo)
+
   return (
     <Modal
       forceRender // Evita que el modal se desmonte al cerrarse
       getContainer={false}
-      title={`${tipoVenta} ${id}`} // Título dinámico con el tipo de venta e ID
+      title={`${tipo} ${id}`} // Título dinámico con el tipo de venta e ID
       open={openModal}
       onCancel={closeModal}
       style={{ textTransform: "uppercase" }}
@@ -50,7 +52,7 @@ const DetalleVentaModal = ({
                 itemLayout="horizontal"
                 dataSource={[
                   { title: venta.tienda, value: venta.codigo },
-                  { title: `RUC`, value: venta.ruc },
+                  { title: tipo==="boleta"?"DNI":"RUC", value: tipo==="boleta"?venta.dni:venta.ruc },
                   { title: venta.tipoPago, value: `S/${venta.totalNeto}` },
                 ]}
                 renderItem={(item) => (
@@ -69,7 +71,7 @@ const DetalleVentaModal = ({
               <List
                 itemLayout="horizontal"
                 dataSource={[
-                  { title: "Cantidad", value: "Sin Datos" }, // Este campo podría actualizarse si se obtiene la cantidad
+                  { title: "Cantidad", value: `${venta.cantidad_total}` }, // Este campo podría actualizarse si se obtiene la cantidad
                   { title: "Total Bruto", value: `S/${venta.totalBruto}` },
                   { title: "IGV", value: `S/${venta.totalIgv}` },
                   { title: "Total Neto", value: `S/${venta.totalNeto}` },
