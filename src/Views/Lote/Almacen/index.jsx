@@ -1,10 +1,10 @@
 import { Button } from "antd"
 import { apiClientFiles } from "../../../API/apiClient"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 const Almacen = () => {
     const { id } = useParams()
-
+    const navigate = useNavigate()
     const imprimirCodigo = async () => {
         await apiClientFiles.get(`producto/imprimir/${id}`)
     }
