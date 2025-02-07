@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Administrativo from "./Routers/administrativo";
 import Logistico from "./Routers/logistico";
-import Produccion from "./Routers/produccion";
+import Produccion from "./Routers/Produccion";
 import Comercial from "./Routers/Comercial";
 import Loading from "./Components/Loading/Loading";
 // Lazy loading de componentes

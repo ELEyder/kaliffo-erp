@@ -13,7 +13,24 @@ const LotesCards = () => {
   const [openAddProductoModal, setOpenAddProductoModal] = useState(false);  // Controlar el estado del modal
   const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];  // Colores de estado
   const [reload, setReload] = useState(false);  // Controlar la recarga de datos
-
+  const allFases = [
+    {
+      title: "Corte",
+      url: "corte"
+    },
+    {
+      title: "Lavandería",
+      url: "lavanderia"
+    },
+    {
+      title: "Taller de Acabados Finales",
+      url: "acabados"
+    },
+    {
+      title: "Almacén",
+      url: "almacen"
+    }
+  ]
   // Obtener los lotes al cargar el componente o cuando cambia el estado de reload
   useEffect(() => {
     getLotes(setLotes);
@@ -28,22 +45,22 @@ const LotesCards = () => {
           const statusColors = Array(lote.estado + 1).fill(colors[lote.estado]);
           statusColors.push(...Array(4 - lote.estado).fill("white"));
           return (
-            <Link key={lote.lote_id} to={`/lotes/${lote.lote_id}`} style={{ textDecoration: 'none' }}>
+            <Link key={lote.lote_id} to={`/lotes/${lote.lote_id}/${allFases[lote.estado - 1].url}`} style={{ textDecoration: 'none' }}>
               <Card
                 style={{ width: "300px", textAlign: "center" }}
                 title={`LOTE ${lote.lote_id}`}
               >
                 {/* Meta información sobre el lote */}
                 <Meta title={`Fecha de Creación: ${lote.fecha_creacion}`} />
-                <br/>
+                <br />
                 <Meta title={`Cantidad Total: ${lote.cantidad_total}`} />
-                
+
                 {/* Íconos de estado del lote */}
                 <div className={styles.cardLoteIcons}>
-                  {["Corte", "Lavandería", "Taller de Acabados Finales", "Almacen"].map((title, index) => (
-                    <Tooltip key={index} title={title}>
+                  {allFases.map((f, index) => (
+                    <Tooltip key={index} title={f.title}>
                       <div className={styles.cardLoteIcon} style={{ backgroundColor: statusColors[index + 1] }}>
-                        <img className={styles.cardSvgLote} src={`/svg/lote/${index + 1}.svg`} alt={title} />
+                        <img className={styles.cardSvgLote} src={`/svg/lote/${index + 1}.svg`} alt={f.title} />
                       </div>
                     </Tooltip>
                   ))}

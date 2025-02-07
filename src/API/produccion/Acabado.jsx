@@ -63,24 +63,6 @@ export const deleteTaller = async (id) => {
   }
 };
 
-// Obtener estado del acabado
-export const getStatusAcabado = async (id, setData) => {
-  try {
-    const response = await apiClient.get(`/taller/lote/${id}`);
-    const data = response.data;
-
-    if (data.length === 0) {
-      setData(0);
-    } else {
-      setData(data[0].estado);
-      console.log("Estado:", data[0].estado);
-    }
-  } catch (error) {
-    console.error("Error al obtener estado del acabado:", error);
-    setData(0);
-  }
-};
-
 // Cambiar estado del acabado
 export const changeStatusAcabado = async (id, data = null, params = null) => {
   try {

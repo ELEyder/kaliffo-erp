@@ -1,13 +1,12 @@
 import { apiClient } from "../apiClient";
 
 // Obtener Fase del Lote
-export const getFaseLote = async (id, setData, setOriginal) => {
+export const getFaseLote = async (id, setData) => {
   try {
     const response = await apiClient.get(`/lotes/${id}`);
     const data = response.data;
     console.log("Fase:", data.estado);
     setData(data.estado);
-    setOriginal(data.estado);
   } catch (error) {
     console.error("Error al obtener la fase del lote:", error);
   }

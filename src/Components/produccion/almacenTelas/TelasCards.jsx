@@ -28,7 +28,7 @@ const TelasCards = () => {
               key={index} // La clave única para cada tarjeta
               title={tela.tipo} // El título de la tarjeta es el tipo de tela
               className={styles.cardTela} // Clase de estilo personalizada
-              onClick={() => navigate(`/prod/telas/${tela.tipo}`)} // Redirige a la página de detalles de la tela cuando se hace clic
+              onClick={() => navigate(`/telas/${tela.tipo}`)} // Redirige a la página de detalles de la tela cuando se hace clic
             >
               <p>Stock por tela</p> {/* Descripción dentro de la tarjeta */}
               <div className={styles.body}>

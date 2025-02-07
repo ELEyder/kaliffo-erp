@@ -3,16 +3,20 @@ import { Table, FloatButton, Popconfirm, Button } from "antd";
 import { useParams } from "react-router-dom";
 import { getCorte, deleteCorte } from "@AP/Corte";  // Funciones para obtener y eliminar cortes
 import AddCorteModal from "@CP/lotes/AddCorteModal";  // Modal para agregar corte
+import { getStatus } from "../../../API/produccion/Lote";
 
-const CortesTable = ({ status, reload }) => {
+const CortesTable = () => {
   const { id } = useParams();  // Obtener el ID desde los parámetros de la URL
   const [data, setData] = useState([]);  // Estado para almacenar los cortes
+  const [status, setStatus] = useState([]);  // Estado para almacenar los cortes
+  const [reload, setReload] = useState([]);  // Estado para almacenar los cortes
   const [openAddModal, setOpenAddModal] = useState(false);  // Control del estado del modal
 
   // Obtener los cortes al cargar el componente o cuando cambia el ID o el reload
   useEffect(() => {
     getCorte(id, setData);
-  }, [id, status, reload]);
+    getStatus(id, 1, setStatus);
+  }, [id, reload]);
 
   // Verificar si hay algún corte con estado 1
   const hasOptions = data.some((record) => record.estado === 1);
@@ -41,7 +45,7 @@ const CortesTable = ({ status, reload }) => {
                   cancelText="No"
                   onConfirm={() => {
                     deleteCorte(record.corte_id, record.estado);  // Eliminar corte
-                    reload();  // Cambiar el estado de reload
+                    setReload(!reload);  // Cambiar el estado de reload
                   }}
                 >
                   <Button block style={{ background: "#f54242", color: "white" }} danger>
@@ -49,7 +53,6 @@ const CortesTable = ({ status, reload }) => {
                   </Button>
                 </Popconfirm>
               );
-            return null;
           },
         },
       ]
@@ -60,6 +63,7 @@ const CortesTable = ({ status, reload }) => {
     <>
       {/* Tabla que muestra los cortes */}
       <Table
+        style={{ width : "100%"}}
         scroll={{ x: 'min-content' }}
         dataSource={data}
         columns={columns}
@@ -69,7 +73,6 @@ const CortesTable = ({ status, reload }) => {
       {(status === 0 || status === 1) ? (
         <>
           <FloatButton
-            style={{ insetInlineStart: 270 }}
             onClick={() => setOpenAddModal(true)}  // Abrir modal de agregar corte
             tooltip="Añadir Corte"
           />
@@ -77,7 +80,7 @@ const CortesTable = ({ status, reload }) => {
           <AddCorteModal
             openModal={openAddModal}
             closeModal={() => setOpenAddModal(false)}  // Cerrar modal
-            reload={reload}  // Recargar datos al añadir un corte
+            reload={()=> setReload(!reload)}  // Recargar datos al añadir un corte
           />
         </>
       ):null}

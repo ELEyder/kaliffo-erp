@@ -18,7 +18,7 @@ const TiendaView = () => {
   const { id } = useParams(); // Extraer el ID de la tienda de los parámetros de la URL
   const [idp, setIdP]  = useState(1); // Extraer el ID de la tienda de los parámetros de la URL
   const [reload, setReload] = useState(true); // Estado para activar recarga después de acciones como agregar/eliminar
-  const [idPersonal, setIdPersonal] = useState(1); // Estado para almacenar el ID del trabajador seleccionado para editar
+  const [personal, setPersonal] = useState([]); // Estado para almacenar el ID del trabajador seleccionado para editar
   const [ viewButton , setViewButton] = useState('none')
   const [modals, setModals] = useState({
     "updT": false,
@@ -30,8 +30,8 @@ const TiendaView = () => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };
 
-  const columnasPro = Productos.getColumnas(changeModal, setIdPersonal, () => setReload(!reload))
-  const columnasP = Personal.getColumnas(changeModal, setIdPersonal, () => setReload(!reload))
+  const columnasPro = Productos.getColumnas(changeModal, setPersonal, () => setReload(!reload))
+  const columnasP = Personal.getColumnas(changeModal, setPersonal, () => setReload(!reload))
   const columnasV = Ventas.getColumnas(changeModal, setIdP, () => setReload(!reload))
 
 
@@ -119,7 +119,7 @@ const TiendaView = () => {
           <UpdateTrabajadorModal
             openModal={modals.updT} // Visibilidad del modal
             closeModal={() => changeModal("updT", false)} // Cerrar el modal
-            id={idPersonal} // Pasar el ID del trabajador al modal
+            data={personal} // Pasar el ID del trabajador al modal
             reload={() => setReload(!reload)} // Recargar después de actualizar
           />
 
