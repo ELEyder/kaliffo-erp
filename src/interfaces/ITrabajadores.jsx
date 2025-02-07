@@ -42,7 +42,7 @@ const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) =
             cancelText="Cancelar"
             onConfirm={async (e) => {
               e.stopPropagation(); // Evitar que el click llegue al padre
-              await apiClient.delete(`/trabajador/delete/${trabajador_id}`);
+              await apiClient.delete(`/trabajador/delete/${record.trabajador_id}`);
               reload();
             }}
           >
