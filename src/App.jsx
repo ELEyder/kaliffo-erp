@@ -128,8 +128,12 @@ function App() {
               colorBgElevated: color2,
             },
             FloatButton: {
-            colorBgElevated: color1,
-            colorText: 'black',
+              colorBgElevated: color1,
+              colorText: 'black',
+            },
+            Typography: {
+              colorText: 'white',
+              colorTextDescription: 'white',
             },
           },
           token: {
