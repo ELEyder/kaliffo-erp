@@ -1,12 +1,17 @@
 import { Button } from "antd"
-import { apiClientFiles } from "../../../API/apiClient"
+import { apiClient } from "../../../API/apiClient"
 import { useNavigate, useParams } from "react-router-dom"
 
 const Almacen = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const imprimirCodigo = async () => {
-        await apiClientFiles.get(`producto/imprimir/${id}`)
+        await apiClient.get(`producto/imprimir/${id}`, { responseType: 'blob' })
+
+        const pdf = response.data;
+        const url = window.URL.createObjectURL(pdf);
+        window.open(url);
+
     }
 
     const redirigirAlmacen = () => {
