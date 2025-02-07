@@ -1,7 +1,7 @@
 import { Flex, Button, Popconfirm } from "antd";
 import { apiClient }from "../API/apiClient";
 
-export const getColumnas = (changeModal, setId, reload) => {
+export const getColumnas = (changeModal, setPersonal, reload) => {
   const columnas = [
     {
       title: "Nombre", // Título de la columna para el nombre completo del trabajador
@@ -24,10 +24,8 @@ export const getColumnas = (changeModal, setId, reload) => {
     },
     {
       title: "Opciones", // Título de la columna para opciones (editar y eliminar)
-      dataIndex: "trabajador_id",
-      key: "opciones",
-      align: "center",
-      render: (text) => {
+      dataIndex: "Opciones",
+      render: (record) => {
         return (
           <Flex gap="small" justify="center" align="middle" wrap="wrap">
             <Button type="primary"
@@ -39,7 +37,7 @@ export const getColumnas = (changeModal, setId, reload) => {
             {/* Botón de Editar: Abre el modal de actualización para el trabajador seleccionado */}
             <Button type="primary" onClick={(e) => {
               e.stopPropagation()
-              setId(text); // Establecer el ID del trabajador para editar
+              setPersonal(record); // Establecer el ID del trabajador para editar
               changeModal("updT", true); // Abrir el modal de actualización
             }}>Editar</Button>
             {/* Botón de Eliminar: Muestra la confirmación para eliminar */}
@@ -50,7 +48,7 @@ export const getColumnas = (changeModal, setId, reload) => {
               cancelText="NO" // Texto del botón de cancelar
               onConfirm={async (e) => {
                 e.stopPropagation()
-                await apiClient.delete(`/trabajador/delete/${text}`);
+                await apiClient.delete(`/trabajador/delete/${record.trabajador_id}`);
                 reload(); // Disparar una recarga después de la eliminación
               }}
             >
