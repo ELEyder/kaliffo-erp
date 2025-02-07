@@ -75,7 +75,6 @@ const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase, status }) =>
           await changeStatusAcabado(id, values, params); // Cambia el estado del acabado
           if (status == 2 || status == 3) navigate(`/lotes/${id}/almacen`)
           console.log(values)
-          console.log(params)
           reload()
           break;
         default:
@@ -115,22 +114,23 @@ const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase, status }) =>
         }}
         autoComplete="off" // Desactiva el autocompletado del navegador
       >
+{/* 
         <Form.Item name="id">
-          {/* Select para elegir entre almacén o tienda */}
           <Select required>
             {opciones.map((opcion, index) => (
               opcion.tienda ? (
                 <Select.Option key={index} value={`tienda_id=${opcion.tienda_id}`}>
-                  {opcion.tienda} {/* Muestra el nombre de la tienda */}
+                  {opcion.tienda}
                 </Select.Option>
               ) : (
                 <Select.Option key={index} value={`almacen_id=${opcion.almacen_id}`}>
-                  {opcion.almacen} {/* Muestra el nombre del almacén */}
+                  {opcion.almacen}
                 </Select.Option>
               )
             ))}
           </Select>
         </Form.Item>
+        */}
 
         <Form.List name="items">
           {() => (
