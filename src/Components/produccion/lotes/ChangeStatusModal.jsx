@@ -51,17 +51,17 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase, status }) => {
       switch (fase) {
         case 1:
           await changeStatusCorte(id, values); // Cambia el estado del corte
-          if (status == 2) redirect(`/lotes/${id}/lavanderia`)
+          if (status == 2 || status == 3) navigate(`/lotes/${id}/lavanderia`)
           reload()
           break;
         case 2:
           await changeStatusLavanderia(id, values); // Cambia el estado de lavandería
-          if (status == 2) redirect(`/lotes/${id}/acabados`)
+          if (status == 2 || status == 3) navigate(`/lotes/${id}/acabados`)
           reload()
           break;
         case 3:
           await changeStatusAcabado(id, values); // Cambia el estado del acabado
-          if (status == 2) redirect(`/lotes/${id}/almacen`)
+          if (status == 2 || status == 3) navigate(`/lotes/${id}/almacen`)
             reload()
           break;
         default:

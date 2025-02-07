@@ -17,7 +17,7 @@ export const getStatus = async (id, fase , setStatus) => {
   const routes = {
     1: `/corte/lote/${id}`,
     2: `/lavanderia/lote/${id}`,
-    3: `/acabado/lote/${id}`,
+    3: `/taller/lote/${id}`,
   };
 
   const url = routes[fase]; // Busca la URL según la fase

@@ -62,6 +62,7 @@ const LoteView = () => {
               <Tooltip key={index} title={f.title}>
                 <div
                   onClick={() => {
+                    if (index < fase)
                     navigate(`/lotes/${id}/${f.url}`)
                   }}
                   className={styles.loteIcon}
