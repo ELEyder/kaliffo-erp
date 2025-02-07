@@ -78,7 +78,7 @@ export const changeStatusAcabado = async (id, data = null, params = null) => {
 
     const Lote = { detalles: values };
 
-    await apiClient.put(`/taller/sgte/${id}`, Lote, {
+    await apiClient.post(`/taller/sgte/${id}`, Lote, {
       params,
     });
 

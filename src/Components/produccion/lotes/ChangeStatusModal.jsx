@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"; // Importa React y hooks
-import { redirect, useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
+import { useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
 import {
   Form,
   Modal,

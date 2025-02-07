@@ -6,6 +6,7 @@ import styles from './index.module.css'
 import Status from "@CP/lotes/Status";
 import { getFaseLote, getStatus } from "@AP/Lote";
 import { Outlet } from 'react-router-dom'; // Importamos Navigate y Outlet para manejar la navegación y el renderizado de rutas secundarias
+import Almacen from "./Almacen";
 
 const LoteView = () => {
   const { id } = useParams();
@@ -53,7 +54,7 @@ const LoteView = () => {
 
 
   return (
-    <>
+    <div style={{display: "flex", flexDirection: "column", height: "100%"}}>
       <Divider >{currentPath.toUpperCase()}</Divider>
       <div>
         <div className={styles.loteIcons}>
@@ -86,19 +87,22 @@ const LoteView = () => {
         align="flex-start"
         style={{
           width: "100%",
+          flex: 1,
           maxWidth: "1200px", // Máxima anchura del contenedor
           margin: "0 auto", // Centrado horizontal
           padding: "1rem", // Espaciado interno
         }}
       >
-        <div style={{ flex: 1 }}>
+        <div style={ currentFase != "almacen" ? { flex: 1, height: "100%"} : { flex: 1}} >
           <Outlet context={{ reload, setReload }} /> {/* Este ocupará todo el espacio disponible */}
         </div>
+          {(currentPath != "almacen") ? (
         <div >
-          <Status fase={fase} status={status} reload={() => setReload(!reload)} />
+            <Status fase={fase} status={status} reload={() => setReload(!reload)} />
         </div>
+          ) : null}
       </Flex>
-    </>
+    </div>
   );
 };
 

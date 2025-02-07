@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"; // Importa React y hooks
-import { useParams } from "react-router-dom"; // Importa hook para obtener parámetros de la URL
+import { useNavigate, useParams } from "react-router-dom"; // Importa hook para obtener parámetros de la URL
 import {
   Form,
   Modal,
@@ -28,6 +28,7 @@ const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase, status }) =>
   const [tiendas, setTiendas] = useState([]); // Estado para almacenar las tiendas
   const [opciones, setOpciones] = useState([]); // Estado para almacenar la combinación de almacenes y tiendas
   const [faseText, setFaseText] = useState(""); // Estado para establecer el texto de la fase
+  const navigate = useNavigate()
 
   // Efecto para cargar datos según la fase seleccionada
   useEffect(() => {
@@ -72,6 +73,9 @@ const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase, status }) =>
         case 3:
           const params = form.getFieldValue().id; // Obtiene el parámetro de ID (almacén o tienda)
           await changeStatusAcabado(id, values, params); // Cambia el estado del acabado
+          if (status == 2 || status == 3) navigate(`/lotes/${id}/almacen`)
+          console.log(values)
+          console.log(params)
           reload()
           break;
         default:
@@ -113,7 +117,7 @@ const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase, status }) =>
       >
         <Form.Item name="id">
           {/* Select para elegir entre almacén o tienda */}
-          <Select>
+          <Select required>
             {opciones.map((opcion, index) => (
               opcion.tienda ? (
                 <Select.Option key={index} value={`tienda_id=${opcion.tienda_id}`}>
