@@ -1,6 +1,6 @@
 /**
  * Obtiene los productos del almacén desde el servidor y actualiza el estado.
- * URL de ejemplo: http://localhost:3000/almacen_productos
+ * URL de ejemplo: http://localhost:3000/almacen_producto
  */
 export const getAlmacenProductos = async (setAlmacenes) => {
   try {
@@ -28,7 +28,7 @@ export const getAlmacenProducto = async (id,setAlmacen) => {
 
 /**
  * Añade un nuevo producto al almacén en el servidor.
- * URL de ejemplo: http://localhost:3000/almacen_productos/create
+ * URL de ejemplo: http://localhost:3000/almacen_producto/create
  */
 export const addAlmacenProductos = async (values) => {
   let AlmacenProductos = {

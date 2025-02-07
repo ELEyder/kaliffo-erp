@@ -21,7 +21,6 @@ export const getStatus = async (id, fase , setStatus) => {
   };
 
   const url = routes[fase]; // Busca la URL según la fase
-
   if (!url) return setStatus(0);
 
   try {

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"; // Importa React y hooks
 import { Table } from "antd"; // Importa la tabla de Ant Design
-import { useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
+import { useOutletContext, useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
 import { getAcabadoByLote } from "@AP/Acabado"; // Función para obtener los acabados por lote desde la API
 
-const AcabadoTable = ({ reload }) => {
+const AcabadoTable = () => {
   const { id } = useParams(); // Obtiene el ID del lote desde la URL
   const [data, setData] = useState([]); // Estado para almacenar los datos de los acabados
+  const { reload, setReload } = useOutletContext();
 
   // useEffect para cargar los datos de acabados cuando el id o reload cambien
   useEffect(() => {

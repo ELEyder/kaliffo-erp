@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Table, FloatButton } from "antd";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { getLavanderia } from "@AP/Lavanderia"; // Función para obtener los datos de lavandería
 import AddLavanderiaModal from "@CP/lotes/AddLavanderiaModal"; // Modal para agregar lavandería
+import { getStatus } from "../../../API/produccion/Lote";
 
-const LavanderiaTable = ({ status, reload, setReload }) => {
+const LavanderiaTable = () => {
   const { id } = useParams(); // Obtener el ID desde los parámetros de la URL
   const [data, setData] = useState([]); // Estado para almacenar los datos de lavandería
+  const [status, setStatus] = useState([]);  // Estado para almacenar los cortes
+  const { reload, setReload } = useOutletContext();
+
   const [openAddModal, setOpenAddModal] = useState(false); // Controlar si el modal está abierto
 
   // Obtener los datos de lavandería al cargar el componente o cuando cambia el ID o el reload
   useEffect(() => {
     getLavanderia(id, setData);
+    getStatus(id, 2, setStatus)
   }, [id, reload]);
 
   // Verificar si hay algún corte con estado 1
-  const hasOptions = data.some((record) => record.estado === 1 );
+  const hasOptions = data.some((record) => record.estado === 1);
 
   // Definir las columnas de la tabla
   const columns = [
@@ -40,7 +45,7 @@ const LavanderiaTable = ({ status, reload, setReload }) => {
       align: "center",
       sorter: (a, b) => a.cantidad_enviada - b.cantidad_enviada, // Permite ordenar por cantidad
     },
-    ...(data.some((record)=>record.estado===3)?[{ key: "cantidad_recibida", dataIndex: "cantidad_recibida", title: "Cantidad Recibida", align: "center" }]:[]),
+    ...(data.some((record) => record.estado === 3) ? [{ key: "cantidad_recibida", dataIndex: "cantidad_recibida", title: "Cantidad Recibida", align: "center" }] : []),
     {
       key: "fecha_envio",
       dataIndex: "fecha_envio",

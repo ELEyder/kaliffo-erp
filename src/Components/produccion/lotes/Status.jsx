@@ -6,8 +6,11 @@ import { changeStatusLavanderia } from "../../../API/produccion/Lavanderia";  //
 import AddTaller from "@CP/lotes/AddTaller";  // Modal para agregar un taller
 import styles from './Status.module.css';  // Estilos específicos para el estado
 import { changeStatusAcabado } from "../../../API/produccion/Acabado";  // Función para cambiar estado en Acabado
+import { useNotification } from "../../../provider/NotificationProvider";
 
 const Status = ({ fase, status, reload }) => {
+
+  const openNotification = useNotification()
   const [OpenChangeStatus, setOpenChangeStatus] = useState(false);  // Controla la visibilidad del modal de cambio de estado en Corte
   const [OpenChangeStatusAcabado, setOpenChangeStatusAcabado] = useState(false);  // Controla la visibilidad del modal de cambio de estado en Acabado
   const [OpenAddTaller, setOpenAddTaller] = useState(false);  // Controla la visibilidad del modal de agregar taller
@@ -16,7 +19,7 @@ const Status = ({ fase, status, reload }) => {
   // Función que maneja el cambio de estado según la fase
   const eventStatus = async () => {
     if (status == 0) {
-      alert("agrega un elemento");
+      openNotification("Agrega un elemento")
     }
     // Fase Corte
     else if (fase == 1) {
@@ -50,14 +53,14 @@ const Status = ({ fase, status, reload }) => {
   };
 
   // Texto de las fases según el estado
-  const fasesText = ["", "Iniciar", "En Proceso", "Finalizado"];
+  const fasesText = ["Sin Datos", "Iniciar", "En Proceso", "Finalizado"];
 
   return (
     <>
       {/* Contenedor de estado con estilo dinámico según el estado */}
       <div className={`${styles.status} ${styles[`status-${status}`]}`} onClick={eventStatus}>
         <img className={styles.statusIcon} src="/svg/status/play.svg" alt="" />
-        <h1>{fasesText[status]}</h1>  {/* Muestra el texto correspondiente al estado */}
+        <h1 className={styles.text}>{fasesText[status]}</h1>  {/* Muestra el texto correspondiente al estado */}
       </div>
 
       {/* Modal para cambiar estado en Corte */}
@@ -66,6 +69,7 @@ const Status = ({ fase, status, reload }) => {
         closeModal={() => setOpenChangeStatus(false)}
         reload={reload}
         fase={fase}
+        status={status}
       />
 
       {/* Modal para cambiar estado en Acabado */}
@@ -74,6 +78,7 @@ const Status = ({ fase, status, reload }) => {
         closeModal={() => setOpenChangeStatusAcabado(false)}
         reload={reload}
         fase={fase}
+        status={status}
       />
 
       {/* Modal para agregar taller */}

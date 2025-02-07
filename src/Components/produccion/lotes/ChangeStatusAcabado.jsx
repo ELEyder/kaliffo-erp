@@ -20,7 +20,7 @@ import { changeStatusAcabado, getChangeAcabado } from "../../../API/produccion/A
 import { getTiendas } from '../../../API/administrativo/Tienda'; // Función de API para obtener tiendas
 import { getAlmacenes } from '../../../API/administrativo/Almacen'; // Función de API para obtener almacenes
 
-const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase }) => {
+const ChangeStatusAcabado = ({ openModal, closeModal, reload, fase, status }) => {
   const [form] = Form.useForm(); // Crea el formulario con Ant Design
   const { id } = useParams(); // Obtiene el ID de la URL
   const [data, setData] = useState([]); // Estado para almacenar los datos de la fase (corte, lavandería, acabado)

@@ -5,7 +5,6 @@ import styles from './index.module.css'
 
 import Status from "@CP/lotes/Status";
 import { getFaseLote, getStatus } from "@AP/Lote";
-import Loading from "../../Components/Loading/Loading";
 import { Outlet } from 'react-router-dom'; // Importamos Navigate y Outlet para manejar la navegación y el renderizado de rutas secundarias
 
 const LoteView = () => {
@@ -14,54 +13,51 @@ const LoteView = () => {
   const [reload, setReload] = useState(false);
   const [fase, setFase] = useState(0);
   const [status, setStatus] = useState(0);
-
-  const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];
-
-  let statusColors = Array(fase + 1).fill(colors[fase]);
-  statusColors.push(...Array(4 - fase).fill("white"));
-
-  const fetchGetStatus = async () => {
-    if (fase > 0) {
-      await getStatus(id, fase, setStatus);
+  const allFases = [
+    {
+      title: "Corte",
+      url: "corte",
+      color: "#9481fe"
+    },
+    {
+      title: "Lavandería",
+      url: "lavanderia",
+      color: "#49adfe"
+    },
+    {
+      title: "Taller de Acabados Finales",
+      url: "acabados",
+      color: "#49adfe"
+    },
+    {
+      title: "Almacén",
+      url: "almacen",
+      color: "#7bfe56"
     }
-  };
+  ]
+  const currentPath = location.pathname.split("/").pop();
 
-  const fetchGetFase = async () => {
-    await getFaseLote(id, setFase);
-    await fetchGetStatus();
-  };
+  const currentIndex = allFases.findIndex(fase => fase.url === currentPath);
+
+  const currentFase = allFases.find(fase => fase.url === currentPath);
+
+  const currentColor = currentFase ? currentFase.color : "white";
+
+  let statusColors = Array(currentIndex + 2).fill(currentColor);
+  statusColors.push(...Array(allFases.length - (currentIndex + 1)).fill("white"));
 
   useEffect(() => {
-    fetchGetFase();
-  }, []);
+    getStatus(id, fase, setStatus)
+    getFaseLote(id, setFase);
+  }, [reload, fase, status]);
 
-  useEffect(() => {
-    fetchGetStatus();
-  }, [reload]);
 
   return (
     <>
-      <Divider>DETALLES DEL LOTE</Divider>
+      <Divider >{currentPath.toUpperCase()}</Divider>
       <div>
         <div className={styles.loteIcons}>
-          {[
-            {
-              title: "Corte",
-              url: "corte"
-            },
-            {
-              title: "Lavandería",
-              url: "lavanderia"
-            },
-            {
-              title: "Taller de Acabados Finales",
-              url: "acabados"
-            },
-            {
-              title: "Almacén",
-              url: "almacen"
-            }
-          ].map(
+          {allFases.map(
             (f, index) => (
               <Tooltip key={index} title={f.title}>
                 <div
@@ -82,13 +78,24 @@ const LoteView = () => {
           )}
         </div>
       </div>
-      <Flex>
-        <Suspense fallback={<Loading />}>
-          <Outlet /> {/* Aquí se renderizan las rutas hijas */}
-        </Suspense>
-        {status != 0 ? (
+      <Flex
+        wrap
+        gap="large"
+        justify="space-evenly"
+        align="flex-start"
+        style={{
+          width: "100%",
+          maxWidth: "1200px", // Máxima anchura del contenedor
+          margin: "0 auto", // Centrado horizontal
+          padding: "1rem", // Espaciado interno
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <Outlet context={{ reload, setReload }} /> {/* Este ocupará todo el espacio disponible */}
+        </div>
+        <div >
           <Status fase={fase} status={status} reload={() => setReload(!reload)} />
-        ) : null}
+        </div>
       </Flex>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, FloatButton, Popconfirm, Button } from "antd";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { getCorte, deleteCorte } from "@AP/Corte";  // Funciones para obtener y eliminar cortes
 import AddCorteModal from "@CP/lotes/AddCorteModal";  // Modal para agregar corte
 import { getStatus } from "../../../API/produccion/Lote";
@@ -8,8 +8,8 @@ import { getStatus } from "../../../API/produccion/Lote";
 const CortesTable = () => {
   const { id } = useParams();  // Obtener el ID desde los parámetros de la URL
   const [data, setData] = useState([]);  // Estado para almacenar los cortes
+  const { reload, setReload } = useOutletContext();
   const [status, setStatus] = useState([]);  // Estado para almacenar los cortes
-  const [reload, setReload] = useState([]);  // Estado para almacenar los cortes
   const [openAddModal, setOpenAddModal] = useState(false);  // Control del estado del modal
 
   // Obtener los cortes al cargar el componente o cuando cambia el ID o el reload
@@ -63,7 +63,6 @@ const CortesTable = () => {
     <>
       {/* Tabla que muestra los cortes */}
       <Table
-        style={{ width : "100%"}}
         scroll={{ x: 'min-content' }}
         dataSource={data}
         columns={columns}

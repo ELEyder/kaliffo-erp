@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"; // Importa React y hooks
-import { useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
+import { redirect, useParams } from "react-router-dom"; // Hook para obtener parámetros de la URL
 import {
   Form,
   Modal,
@@ -12,16 +12,17 @@ import {
   Divider,
 } from "antd"; // Importa componentes de Ant Design
 
+import { useNavigate } from "react-router-dom";
 import { getChangeCorte, changeStatusCorte } from "@AP/Corte"; // Funciones de API para obtener y cambiar el estado del corte
 import { getChangeLavanderia, changeStatusLavanderia } from "@AP/Lavanderia"; // Funciones de API para lavandería
 import { changeStatusAcabado, getChangeAcabado } from "../../../API/produccion/Acabado"; // Funciones de API para acabado
 
-const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
+const ChangeStatusModal = ({ openModal, closeModal, reload, fase, status }) => {
   const [form] = Form.useForm(); // Crea el formulario con Ant Design
   const { id } = useParams(); // Obtiene el ID de la URL
   const [data, setData] = useState([]); // Estado para almacenar los datos de la fase (corte, lavandería, acabado)
   const [faseText, setFaseText] = useState(""); // Estado para establecer el texto de la fase
-
+  const navigate = useNavigate()
   // Efecto para cargar los datos según la fase seleccionada
   useEffect(() => {
     switch (fase) {
@@ -50,15 +51,18 @@ const ChangeStatusModal = ({ openModal, closeModal, reload, fase }) => {
       switch (fase) {
         case 1:
           await changeStatusCorte(id, values); // Cambia el estado del corte
+          if (status == 2) redirect(`/lotes/${id}/lavanderia`)
           reload()
           break;
         case 2:
           await changeStatusLavanderia(id, values); // Cambia el estado de lavandería
+          if (status == 2) redirect(`/lotes/${id}/acabados`)
           reload()
           break;
         case 3:
           await changeStatusAcabado(id, values); // Cambia el estado del acabado
-          reload()
+          if (status == 2) redirect(`/lotes/${id}/almacen`)
+            reload()
           break;
         default:
           reload()

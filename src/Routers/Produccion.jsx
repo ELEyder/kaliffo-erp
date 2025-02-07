@@ -7,6 +7,8 @@ const Tela = lazy(() => import("../Views/Tela"));
 const Layout = lazy(() => import("../Views/Lote/layout"));
 const Lotes = lazy(() => import("../Views/Lotes"));
 const Cortes = lazy(() => import("../Components/produccion/lotes/CortesTable"));
+const Lavanderia = lazy(() => import("../Components/produccion/lotes/LavanderiaTable"));
+const Acabado = lazy(() => import("../Components/produccion/lotes/AcabadoTable"));
 
 const produccion = () => (
     <>
@@ -18,8 +20,8 @@ const produccion = () => (
         <Route path="/lotes" element={<Lotes />} />
         <Route path="/lotes/:id" element={<Layout />}>
             <Route path="corte" element={<Cortes />} />
-            <Route path="lavanderia" element={<Lotes />} />
-            <Route path="acabados" element={<Lotes />} />
+            <Route path="lavanderia" element={<Lavanderia />} />
+            <Route path="acabados" element={<Acabado />} />
             <Route path="almacen" element={<Lotes />} />
         </Route>
     </>

@@ -1,17 +1,17 @@
 .status {
     background-color: white;
-    padding: 30px;
-    border: black solid 4px;
+    padding: 20px;
+    border: black solid 1px;
     border-radius: 40px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    gap: 10px;
 }
-  .status img {
-    padding: 20px;
-    width: 200px;
+  .statusIcon {
+    width: 80px;
 }
 
 .status-1 {
@@ -24,4 +24,10 @@
 
 .status-3 {
     background-color: #f85656;
+}
+
+h1.text {
+    color: black;
+    margin: 0;
+    white-space: nowrap;
 }
