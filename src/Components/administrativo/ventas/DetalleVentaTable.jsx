@@ -42,19 +42,6 @@ const DetalleVentaTable = ({
       render: (text) => `S/${text}`, // Formato personalizado para el contenido
     },
     {
-      title: "Precio Total",
-      dataIndex: "precioTotal",
-      key: "precioTotal",
-      align: "center",
-      render: (text) => `S/${text}`,
-    },
-    {
-      title: "IGV",
-      dataIndex: "igv",
-      key: "igv",
-      align: "center",
-    },
-    {
       title: "Neto",
       dataIndex: "precioNeto",
       key: "precioNeto",
