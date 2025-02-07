@@ -4,7 +4,6 @@ import axios from 'axios';
 const createApiClient = (contentType = 'application/json') => {
   const apiClient = axios.create({
     baseURL: 'http://localhost:3000', // URL base de la API
-    timeout: 5000, // Tiempo de espera para la solicitud
     headers: {
       'Content-Type': contentType, // Tipo de contenido dinámico
     },

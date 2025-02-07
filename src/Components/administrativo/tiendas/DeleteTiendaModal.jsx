@@ -1,6 +1,7 @@
 import { Form, Input, Modal } from "antd"; // Importar los componentes necesarios de Ant Design
 import React from "react"; // Importar React
 import { deleteTiendaById } from "@AA/Tienda"; // Importar la función para eliminar la tienda
+import { useNotification } from "../../../provider/NotificationProvider";
 
 const DeleteTiendaModal = ({
   openModal, // Propiedad para controlar la visibilidad del modal
@@ -10,6 +11,7 @@ const DeleteTiendaModal = ({
 }) => {
 
   const [form] = Form.useForm(); // Inicializar la instancia del formulario para manejar su estado
+  const openNotification = useNotification(); // Usa el hook para obtener la función `open`
 
   return (
     <Modal
@@ -34,9 +36,14 @@ const DeleteTiendaModal = ({
         id="formularioeditar"
         onFinish={async (values) => {
           // Cuando el formulario se envía
-          await deleteTiendaById(id, values); // Eliminar la tienda usando los valores del formulario (contraseña como autorización)
-          closeModal(); // Cerrar el modal después de la eliminación
-          reload(); // Recargar los datos después de la eliminación
+          if (values.password === "ACEPTAR"){
+            await deleteTiendaById(id, values); // Eliminar la tienda usando los valores del formulario (contraseña como autorización)
+            reload(); // Recargar los datos después de la eliminación
+            form.resetFields()
+            closeModal(); // Cerrar el modal después de la eliminación
+          } else {
+            openNotification("El texto no coincide")
+          }
         }}
       >
         <Form.Item
@@ -51,15 +58,17 @@ const DeleteTiendaModal = ({
         {/* Campo de entrada para la contraseña como autorización */}
         <Form.Item
           name="password" // Nombre del campo en el formulario
-          label="Password" // Etiqueta para el campo de contraseña
+          // label="Password" // Etiqueta para el campo de contraseña
+          label='Escriba "ACEPTAR"' // Etiqueta para el campo de contraseña
+          
           rules={[{
             required: true, // El campo de contraseña es obligatorio
             message: "Contraseña Requerida", // Mensaje de error si la contraseña no es proporcionada
           }]}
         >
           <Input
-            type="password"
-            autoComplete="new-password"
+            // type="password"
+            // autoComplete="new-password"
           />
         </Form.Item>
       </Form>

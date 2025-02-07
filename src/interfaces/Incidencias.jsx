@@ -43,7 +43,6 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
     },
     {
       title: "Opciones", // Columna de opciones para editar y eliminar incidencias
-      dataIndex: "Opciones", // Columna de opciones para editar y eliminar incidencias
       render: (record) => { // Renderizado personalizado para los botones de editar y eliminar
         return (
           <Flex gap="small" justify="center" align="middle" wrap="wrap">
