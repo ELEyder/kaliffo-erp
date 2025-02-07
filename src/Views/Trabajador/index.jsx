@@ -126,7 +126,7 @@ const Trabajador = () => {
             openModal={modals.addI} // Controlar la visibilidad del modal
             closeModal={() => changeModal("addI", false)} // Función para cerrar el modal
             reload={() => setReload(!reload)} // Pasar el estado de recarga para actualizar los datos
-            id={id} // Pasar el ID del trabajador para asociarlo con la nueva incidencia
+            data={id} // Pasar el ID del trabajador para asociarlo con la nueva incidencia
           />
         </>
       ) : null}

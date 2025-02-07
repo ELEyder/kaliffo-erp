@@ -32,10 +32,10 @@ const AddIncidenciaModal = ({
                 form={form} // Vincular la instancia del formulario con este formulario
                 labelAlign="center" // Alinear las etiquetas al centro
                 id="formularioinicidencias" // Establecer un ID único para el formulario
-                initialValues={{ trabajador_id: data.trabajador_id }} // Establecer el valor inicial para trabajador_id (ID del usuario)
+                initialValues={{ trabajador_id: data.trabajador_id ??  data }} // Establecer el valor inicial para trabajador_id (ID del usuario)
                 onFinish={async (values) => {
                     // Manejar la sumisión del formulario
-                    const formData = { ...values, trabajador_id: data.trabajador_id }; // Agregar el ID del usuario a los datos del formulario
+                    const formData = { ...values, trabajador_id: data.trabajador_id ?? data }; // Agregar el ID del usuario a los datos del formulario
                     await addIncidencia(formData); // Llamar a la función API para agregar la incidencia
                     reload() // Activar la recarga
                     closeModal(false); // Cerrar el modal
