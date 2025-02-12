@@ -1,1 +1,0 @@
-import{d as i,j as o}from"./index-5R_ouSBL.js";import{S as r}from"./index-BvxzAt7g.js";import{B as n}from"./button-jOS5C1LE.js";import"./useSize-QLyh_IgM.js";import"./gapSize-U1swVQyS.js";const c=()=>{const t=i();return o.jsx(o.Fragment,{children:o.jsx(r,{children:o.jsx(n,{type:"primary",onClick:()=>t("pong"),children:"Ping"})})})};export{c as default};
