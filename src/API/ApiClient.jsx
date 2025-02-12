@@ -3,7 +3,7 @@ import axios from 'axios';
 // Función para crear una instancia de Axios con configuración personalizada
 const createApiClient = (contentType = 'application/json') => {
   const apiClient = axios.create({
-    baseURL: 'http://localhost:3000', // URL base de la API
+    baseURL: import.meta.env.VITE_API_BASE_URL, // URL base de la API
     headers: {
       'Content-Type': contentType, // Tipo de contenido dinámico
     },
