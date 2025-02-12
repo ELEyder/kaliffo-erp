@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  // base: '/Kaliffo_Front/',
+  base: '/kaliffo-erp/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
@@ -21,9 +21,4 @@ export default defineConfig({
       '@S': path.resolve(__dirname, 'src/Shared'),
     },
   },
-  server: {
-    host: '0.0.0.0', // Esto permite conexiones externas
-    port: 5173,       // Asegúrate de que coincida con el puerto del túnel
-    strictPort: true, // Mantiene el puerto si está en uso
-  }
 })
