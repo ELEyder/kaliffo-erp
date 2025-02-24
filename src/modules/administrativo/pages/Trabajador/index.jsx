@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
-import TrabajadorInfoCard from "@CA/trabajadores/TrabajadorInfoCard";
+import { useState } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
 import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
 import { Tabla } from "../../../../Components/UI";
 import { Divider, Tabs, Flex, FloatButton } from "antd";
@@ -10,6 +9,8 @@ import * as Pagos from "../../../../interfaces/Pagos";
 import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal"; // Componente modal para actualizar incidencias
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"; // Componente modal para agregar nuevas incidencias
 import { Details } from "../../../../layouts";
+import TrabajadorCard from "../../components/Cards/TrabajadorCard";
+import IncidenciasTable from "../../components/Tables/IncidenciasTable";
 
 const Trabajador = () => {
   const { id } = useParams(); // Obtener el ID del trabajador desde los parámetros de la URL
@@ -36,51 +37,20 @@ const Trabajador = () => {
       key: "Incidencias",
       label: "Incidencias",
       children: (
-        <Tabla
-          columnas={columnasI}
-          rowKey={"incidencia_id"}
-          url={Incidencias.getUrl(id)}
-          reload={() => setReload(!reload)}
+        <IncidenciasTable
+          id={id}
         />
       ), // Componente que muestra las incidencias
     },
-    {
-      key: "Horario",
-      label: "Horario",
-      children: (
-        <Tabla
-          columnas={columnasH}
-          rowKey={"horario_id"}
-          url={Horarios.getUrl(id)}
-          reload={() => setReload(!reload)}
-        />
-      ),
-    }, // Componente que muestra los pagos
-    {
-      key: "Pagos",
-      label: "Pagos",
-      children: (
-        <Tabla
-          columnas={columnasP}
-          rowKey={"pago_id"}
-          url={Pagos.getUrl(id)}
-          reload={() => setReload(!reload)}
-        />
-      ),
-    }, // Componente que muestra los horarios
+
   ];
 
   return (
     <>
       <Divider>Detalles del Usuario</Divider>
       <Details>
-        <TrabajadorInfoCard
-          style={{
-            flex: "1 1 45%",
-            minWidth: "400px",
-            maxWidth: "700px",
-          }}
-        />
+        <TrabajadorCard id={id} />
+
         <Tabs
           style={{
             flex: "1 1 45%",
@@ -95,29 +65,6 @@ const Trabajador = () => {
       </Details>
       <Divider></Divider>
       
-      {ActiveTab === "Incidencias" ? (
-        <>
-          <FloatButton
-            tooltip="Añadir Nueva Incidencia"
-            onClick={() => changeModal("addI", true)}
-            type="primary"
-            icon={<FileAddOutlined />}
-          />
-          {/* Modales para editar y agregar incidencias */}
-          <UpdateIncidenciaModal
-            openModal={modals.updI} // Controlar la visibilidad del modal
-            closeModal={() => changeModal("updI", false)} // Función para cerrar el modal
-            reload={() => setReload(!reload)} // Pasar el estado de recarga para actualizar los datos
-            values={incidencia} // Pasar los datos de la incidencia seleccionada para editar
-          />
-          <AddIncidenciaModal
-            openModal={modals.addI} // Controlar la visibilidad del modal
-            closeModal={() => changeModal("addI", false)} // Función para cerrar el modal
-            reload={() => setReload(!reload)} // Pasar el estado de recarga para actualizar los datos
-            data={id} // Pasar el ID del trabajador para asociarlo con la nueva incidencia
-          />
-        </>
-      ) : null}
     </>
   );
 };

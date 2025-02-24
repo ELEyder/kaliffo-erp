@@ -1,5 +1,5 @@
 import { Routing } from './Routers'
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import locale from 'antd/locale/es_ES';
 import { ConfigProvider } from 'antd';
 
@@ -151,7 +151,7 @@ function App() {
           },
         }}
         locale={locale}>
-        <Router basename="/kaliffo-erp/" future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routing />
         </Router>
       </ConfigProvider>

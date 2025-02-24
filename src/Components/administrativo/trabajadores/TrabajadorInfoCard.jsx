@@ -5,7 +5,7 @@ import { getTrabajadorById } from "@AA/Usuario";
 import { getReporteUsuario } from "@AA/Reporte";
 const { Paragraph } = Typography;
 
-const TrabajadorInfo = () => {
+const TrabajadorCard = () => {
   const items = [
     {
       key: "1",
@@ -94,4 +94,4 @@ const TrabajadorInfo = () => {
   );
 };
 
-export default TrabajadorInfo;
+export default TrabajadorCard;

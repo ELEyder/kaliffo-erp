@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useParams, Navigate } from "react-router-dom";
-import { Divider, FloatButton } from "antd";
+import { Divider } from "antd";
 import { TrabajadoresTable } from '../../components/Tables';
 
 const Trabajadores = () => {

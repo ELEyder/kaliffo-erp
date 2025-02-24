@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom"; // Hook para la navegación
 import { loginApi } from "@A/auth/Login"; // Función para realizar el login a través de la API
 import { useSession } from "../../context/AuthProvider"; // Hook para manejar la sesión
-import Yeti from "@C/Yeti/Yeti"; // Componente Yeti
+import { Yeti } from "../../Components/icons"; // Componente Yeti
 import styles from "./LoginView.module.css"; // Estilos específicos para este componente
 import { Button, Input } from 'antd';
 import { useNotification } from "../../provider/NotificationProvider";

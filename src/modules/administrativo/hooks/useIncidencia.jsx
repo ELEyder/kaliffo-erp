@@ -4,6 +4,7 @@ import { useNotification } from "../../../provider/NotificationProvider";
 
 const useIncidencia = (onChange) => {
   const open = useNotification();
+  const [ incidencia, setIncidencia ]= useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -31,7 +32,18 @@ const useIncidencia = (onChange) => {
     await handleRequest(() => apiClient.post(`/incidencia/create`, values), "Incidencia agregada");
   };
 
-  return { loading, error, addIncidencia };
+  const updateIncidencia = async (id, data) => {
+    await handleRequest(() => apiClient.put(`/incidencia/update/${id}`, data), "Trabajador actualizado");
+  };
+
+  const deleteIncidencia = async (id) => {
+    await handleRequest(async () => {
+      await apiClient.delete(`/incidencia/delete/${id}`);
+      setIncidencia({});
+    }, "Incidencia eliminada");
+  };
+
+  return { loading, error, addIncidencia, updateIncidencia, deleteIncidencia };
 };
 
 export default useIncidencia;
