@@ -4,6 +4,7 @@ import { Tabla } from "../../../../Components/UI";
 import { useState } from "react";
 import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
 import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
+import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
 
 const TrabajadoresTable = ({ tipoTrabajador }) => {
   const { trabajadores, getTrabajadores } = useTrabajadores(tipoTrabajador);
@@ -13,6 +14,7 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
   const [modals, setModals] = useState({
     updT: false,
     addT: false,
+    addI: false,
   });
 
   const changeModal = (modalKey, value) => {
@@ -39,7 +41,15 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
           >
             Editar
           </Button>
-          <Button onClick={(e) => e.stopPropagation()}>+ Incidencia</Button>
+          <Button
+            onClick={(e) => {
+              e.stopPropagation();
+              setDataTrabajador(record);
+              changeModal("addI", true);
+            }}
+          >
+            + Incidencia
+          </Button>
           <Popconfirm
             title="¿ELIMINAR?"
             description="¿Estás seguro de eliminar este usuario?"
@@ -65,7 +75,11 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
 
   return (
     <>
-      <Tabla columnas={columnas} rowKey={"trabajador_id"} dataSource={trabajadores} />
+      <Tabla
+        columnas={columnas}
+        rowKey={"trabajador_id"}
+        dataSource={trabajadores}
+      />
 
       <FloatButton onClick={() => changeModal("addT", true)} />
 
@@ -81,6 +95,13 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
         openModal={modals.addT}
         closeModal={() => changeModal("addT", false)}
         tipoTrabajador={tipoTrabajador}
+        onAdded={getTrabajadores}
+      />
+
+      <AddIncidenciaModal
+        openModal={modals.addI}
+        closeModal={() => changeModal("addI", false)}
+        id={dataTrabajador.trabajador_id}
         onAdded={getTrabajadores}
       />
     </>

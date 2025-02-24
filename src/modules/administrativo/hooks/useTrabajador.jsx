@@ -53,9 +53,9 @@ const useTrabajador = (id, onChange) => {
 
   const deleteTrabajador = async (id) => {
     await handleRequest(async () => {
-      await apiClient.get(`/trabajador/delete/${id}`);
+      await apiClient.delete(`/trabajador/delete/${id}`);
       setTrabajador({});
-    }, "Trabajador eliminado ✅");
+    }, "Trabajador eliminado");
   };
 
   useEffect(() => {
