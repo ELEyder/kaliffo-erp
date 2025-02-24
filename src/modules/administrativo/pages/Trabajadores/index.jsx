@@ -16,19 +16,11 @@ const Trabajadores = () => {
 
   return (
     <>
-      {/* Divisor estilizado que muestra el tipoTrabajador */}
       <Divider style={{ textTransform: "uppercase" }}>{tipoTrabajador}</Divider>
 
-      <TrabajadoresTable tipoTrabajador={tipoTrabajador}
-        columnas={columnas}
-        rowKey={"trabajador_id"}
-        url={URL}
-        reload={reload}
+      <TrabajadoresTable
+        tipoTrabajador={tipoTrabajador}
       />
-
-      {/* Tabla que muestra los trabajadores según el tipoTrabajador */}
-
-
     </>
   );
 };

@@ -28,7 +28,7 @@ const useTrabajadores = ( tipo ) => {
     fetchTrabajadores();
   }, [tipo]);
   
-  return { trabajadores, loading, error };
+  return { trabajadores, loading, error, getTrabajadores };
 }
 
 export default useTrabajadores;

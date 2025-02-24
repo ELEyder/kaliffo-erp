@@ -6,8 +6,8 @@
 
   dayjs.extend(customParseFormat);
 
-  import DefaultModal from "../Modals/DefaultModal";
-import DefaultForm from "./DefaultForm";
+  import DefaultModal from "./DefaultModal";
+import DefaultForm from "../Forms/DefaultForm";
 import { useTrabajador } from "../../hooks";
 
   const UpdateTrabajadorModal = ({
@@ -15,11 +15,12 @@ import { useTrabajador } from "../../hooks";
     closeModal, // Función para cerrar el modal
     tipoTrabajador,
     data, // Data del trabajador a editar
+    onUpdated
   }) => {
 
     const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
     const [tiendas, setTiendas] = useState([]); // Lista de tiendas (para trabajadores de ventas)
-    const { updateTrabajador } = useTrabajador();
+    const { updateTrabajador } = useTrabajador(null, onUpdated);
 
     useEffect(() => {
       form.setFieldsValue({

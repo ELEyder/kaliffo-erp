@@ -12,7 +12,6 @@ import {
 } from "../../../../Shared/Tools"; // Funciones de utilidad para validación
 
 const DefaultForm = ({ onFinish, rows, form }) => {
-
   return (
     <Form
       style={{ maxWidth: 500, margin: "0 auto" }}
@@ -37,8 +36,7 @@ const DefaultForm = ({ onFinish, rows, form }) => {
         } else if (row.type === "date") {
           return (
             <Form.Item
-            key={row.name}
-
+              key={row.name}
               label={row.label}
               name={row.name}
               rules={[{ required: true, message: `${row.label} requerido/s` }]}
@@ -49,8 +47,7 @@ const DefaultForm = ({ onFinish, rows, form }) => {
         } else if (row.type === "select") {
           return (
             <Form.Item
-            key={row.name}
-
+              key={row.name}
               label={row.label}
               name={row.name}
               rules={[{ required: true, message: `${row.label} requerido/s` }]}
@@ -66,18 +63,29 @@ const DefaultForm = ({ onFinish, rows, form }) => {
           );
         } else if (row.type === "hidden") {
           return (
-              
-              <Form.Item name={row.name} noStyle key={row.name}>
+            <Form.Item name={row.name} noStyle key={row.name}>
               <Input type="hidden" />
             </Form.Item>
           );
         } else if (row.type === "number") {
           return (
             <Form.Item
-            key={row.name}
+              key={row.name}
               label={row.label}
               name={row.name}
-              rules={[{ required: true, message: `${row.label} requerido/s` }]}
+              rules={[
+                { required: true, message: `${row.label} requerido/s` },
+                {
+                  validator: (_, value) => {
+                    if (value && value.length < row.max) {
+                      return Promise.reject(
+                        new Error(`Debe tener al menos ${row.max} caracteres.`)
+                      );
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
             >
               <Input
                 showCount

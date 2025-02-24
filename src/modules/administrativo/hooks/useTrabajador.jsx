@@ -1,16 +1,30 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { apiClient } from "../../../API/apiClient";
+import { useNotification } from "../../../provider/NotificationProvider";
 
-const useTrabajador = ( id ) => {
+const useTrabajador = (id, onChange) => {
+  const open = useNotification();
   const [trabajador, setTrabajador] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const tiposTrabajador = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
-  const addTrabajador = async (type, values) => {
-
+  const handleRequest = async (callback, successMessage) => {
     setLoading(true);
+    setError(null);
+    try {
+      await callback();
+      onChange && onChange();
+      successMessage && open("Éxito", successMessage);
+    } catch (error) {
+      open(`Error ${error.status || ""}`, error.response?.data?.error || "Error desconocido");
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const addTrabajador = async (type, values) => {
     const data = {
       nombre: values.nombre,
       ap_paterno: values.ap_paterno,
@@ -22,64 +36,33 @@ const useTrabajador = ( id ) => {
       rol: tiposTrabajador[type],
       ...(tiposTrabajador[type] === 1 && { tienda_id: values.tienda_id }),
     };
-
-    try {
-      await apiClient.post(`/trabajador/create`, data);
-      await getTrabajador();
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+    await handleRequest(() => apiClient.post(`/trabajador/create`, data), "Trabajador agregado");
+  };
 
   const getTrabajador = async () => {
     if (!id) return;
-    setLoading(true);
-    try {
+    await handleRequest(async () => {
       const response = await apiClient.get(`/trabajador/${id}`);
       setTrabajador(response.data);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+    });
+  };
 
   const updateTrabajador = async (id, data) => {
-    setLoading(true);
-    try {
-      await apiClient.put(`/trabajador/${id}`, data);
-      await getTrabajador();
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+    await handleRequest(() => apiClient.put(`/trabajador/update/${id}`, data), "Trabajador actualizado");
+  };
 
-  
   const deleteTrabajador = async (id) => {
-    setLoading(true);
-    try {
+    await handleRequest(async () => {
       await apiClient.get(`/trabajador/delete/${id}`);
       setTrabajador({});
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+    }, "Trabajador eliminado ✅");
+  };
 
   useEffect(() => {
-    const fetchTrabajador = async () => {
-      await getTrabajador();
-    };
-  
-    fetchTrabajador();
+    getTrabajador();
   }, [id]);
 
   return { trabajador, loading, error, addTrabajador, updateTrabajador, deleteTrabajador };
-}
+};
 
 export default useTrabajador;
