@@ -47,7 +47,7 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
             cancelText="Cancelar"
             onConfirm={async (e) => {
               e.stopPropagation();
-              await deleteTrabajador(record.trabajador_id); // 🔄 Actualiza lista tras borrar
+              await deleteTrabajador(record.trabajador_id);
             }}
           >
             <Button type="primary" danger onClick={(e) => e.stopPropagation()}>
