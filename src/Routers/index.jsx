@@ -1,15 +1,15 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Administrativo from "./Routers/administrativo";
-import Logistico from "./Routers/logistico";
-import Produccion from "./Routers/Produccion";
-import Comercial from "./Routers/Comercial";
-import Loading from "./Components/Loading/Loading";
+import Administrativo from "../modules/administrativo/AdministrativoRouters";
+import Logistico from "./logistico";
+import Produccion from "./Produccion";
+import Comercial from "./Comercial";
+import Loading from "../Components/Loading/Loading";
 // Lazy loading de componentes
-const Layout = lazy(() => import("./Layout"));
-const LoginView = lazy(() => import("./Views/Login/LoginView"));
-const ErrorView = lazy(() => import("./Views/Error/ErrorView"));
-const TestView = lazy(() => import("./Views/Test"));
+const Layout = lazy(() => import("../layouts/Layout"));
+const LoginView = lazy(() => import("../Views/Login/LoginView"));
+const ErrorView = lazy(() => import("../Views/Error/ErrorView"));
+const TestView = lazy(() => import("../Views/Test"));
 
 // Componente de carga (puedes personalizarlo)
 

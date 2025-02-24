@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "antd"
-import { apiClient } from '../../API/apiClient';
+import { apiClient } from '../../../API/apiClient';
 
-const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => {
+const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = [] }) => {
   const navigate = useNavigate();
-  const [data, setData] = useState(dataSource ?? [])
+  const [data, setData] = useState([])
+  
+  useEffect(() => {
+    setData(dataSource);
+  }, [dataSource]);
 
   async function fetchData() {
     try {
@@ -41,7 +45,6 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = null }) => 
     key: col.title,
     sorter: getSorter(col),
   }));
-  
   return (
     <Table
       columns={columnas}

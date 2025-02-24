@@ -1,7 +1,18 @@
 import { Flex, Button, Popconfirm } from "antd";
-import { apiClient }from "../API/apiClient";
+import { useTrabajadores, useTrabajador } from "../../hooks";
+import { Tabla } from "../../../../Components/UI";
+import { useState } from "react";
+import UpdateTrabajadorModal from "../Forms/UpdateTrabajadorModal";
 
-const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) => {
+const TrabajadoresTable = ({tipoTrabajador}) => {
+  const { trabajadores } = useTrabajadores(tipoTrabajador);
+  const { deleteTrabajador } = useTrabajador();
+  const [ dataTrabajador , setDataTrabajador] = useState({});
+
+  const [modals, setModals] = useState({
+    updT: false,
+  });
+
   let columnas = [
     {
       title: "Nombre",
@@ -20,8 +31,6 @@ const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) =
             type="primary"
             onClick={(e) => {
               e.stopPropagation();
-              setDataTrabajador(record);
-              changeModal("updT", true);
             }}
           >
             Editar
@@ -29,8 +38,6 @@ const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) =
           <Button
             onClick={(e) => {
               e.stopPropagation(); // Evitar que el click llegue al padre
-              setDataTrabajador(record);
-              changeModal("addI", true);
             }}
           >
             + Incidencia
@@ -41,9 +48,8 @@ const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) =
             okText="Confirmar"
             cancelText="Cancelar"
             onConfirm={async (e) => {
-              e.stopPropagation(); // Evitar que el click llegue al padre
-              await apiClient.delete(`/trabajador/delete/${record.trabajador_id}`);
-              reload();
+              e.stopPropagation();
+              await deleteTrabajador(record.trabajador_id);
             }}
           >
             <Button type="primary" danger onClick={(e) => e.stopPropagation()}>
@@ -59,11 +65,25 @@ const ITrabajadores = (tipoTrabajador, changeModal, setDataTrabajador, reload) =
     columnas.splice(3, 0, {
       title: "Tienda",
       dataIndex: "tienda",
-      key: "tienda",
     });
   }
 
-  return columnas;
+  return (
+    <>
+      <Tabla
+        columnas={columnas}
+        rowKey={"trabajador_id"}
+        dataSource={trabajadores}
+      />
+
+      <UpdateTrabajadorModal
+        openModal={modals.updT}
+        closeModal={() => changeModal("updT", false)}
+        tipoTrabajador={tipoTrabajador}
+        data={dataTrabajador}
+      />
+    </>
+  );
 };
 
-export default ITrabajadores;
+export default TrabajadoresTable;

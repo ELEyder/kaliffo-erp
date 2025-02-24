@@ -19,14 +19,8 @@ export const addTrabajador = async (tipoTrabajador, values) => {
     telefono: values.telefono,
     sueldo: values.sueldo,
     rol: rol,
+    ...(rol === 1 && { tienda_id: values.tienda_id }),
   };
-  
-  if (rol === 1) {
-    Trabajador = {
-      ...Trabajador,
-      tienda_id: values.tienda_id,
-    };
-  }
 
   try {
     await apiClient.post(`/Trabajador/create`, Trabajador);

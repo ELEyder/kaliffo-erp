@@ -2,7 +2,7 @@ import React from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import { BookOutlined, UserOutlined, CoffeeOutlined, HarmonyOSOutlined } from "@ant-design/icons";
-import { useSession } from "../../context/AuthProvider"; // Hook para obtener información del usuario autenticado
+import { useSession } from "../../../context/AuthProvider"; // Hook para obtener información del usuario autenticado
 
 const SidebarMenu = () => {
   const { user } = useSession(); // Obtiene el usuario autenticado desde el contexto

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
 import TrabajadorInfoCard from "@CA/trabajadores/TrabajadorInfoCard";
 import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
-import Tabla from "../../Components/Tabla/Tabla";
+import { Tabla } from "../../../../Components/UI";
 import { Divider, Tabs, Flex, FloatButton } from "antd";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono de agregar para el botón flotante
-import * as Incidencias from "../../interfaces/Incidencias";
-import * as Horarios from "../../interfaces/Horarios";
-import * as Pagos from "../../interfaces/Pagos";
+import * as Incidencias from "../../../../interfaces/Incidencias";
+import * as Horarios from "../../../../interfaces/Horarios";
+import * as Pagos from "../../../../interfaces/Pagos";
 import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal"; // Componente modal para actualizar incidencias
 import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"; // Componente modal para agregar nuevas incidencias
+import { Details } from "../../../../layouts";
 
 const Trabajador = () => {
   const { id } = useParams(); // Obtener el ID del trabajador desde los parámetros de la URL
@@ -71,28 +72,15 @@ const Trabajador = () => {
 
   return (
     <>
-      <Divider>Detalles del Usuario</Divider> {/* Título de la sección */}
-      <Flex
-        wrap
-        gap="large"
-        justify="space-evenly"
-        align="flex-start"
-        style={{
-          width: "100%",
-          maxWidth: "1200px", // Máxima anchura del contenedor
-          margin: "0 auto", // Centrado horizontal
-          padding: "1rem", // Espaciado interno
-        }}
-      >
-        {/* Tarjeta de información del trabajador */}
+      <Divider>Detalles del Usuario</Divider>
+      <Details>
         <TrabajadorInfoCard
           style={{
             flex: "1 1 45%",
-            minWidth: "400px", // Ancho mínimo
-            maxWidth: "700px", // Ancho máximo
+            minWidth: "400px",
+            maxWidth: "700px",
           }}
         />
-        {/* Pestañas que contienen las tablas de incidencias, horarios y pagos */}
         <Tabs
           style={{
             flex: "1 1 45%",
@@ -104,9 +92,9 @@ const Trabajador = () => {
             setActiveTab(key);
           }}
         />
-      </Flex>
-      <Divider></Divider> {/* Separador al final */}
-      {/* Botón flotante para agregar una nueva incidencia */}
+      </Details>
+      <Divider></Divider>
+      
       {ActiveTab === "Incidencias" ? (
         <>
           <FloatButton

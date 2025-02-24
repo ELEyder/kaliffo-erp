@@ -2,8 +2,8 @@ import React from "react";
 import { Button } from "antd"; // Importación del botón de Ant Design
 import { MenuFoldOutlined, MenuUnfoldOutlined, LogoutOutlined } from '@ant-design/icons'; // Iconos de Ant Design
 import { Header } from "antd/es/layout/layout"; // Importación del componente Header de Ant Design
-import styles from './HeaderMain.module.css'; // Estilos específicos para este componente
-import { useSession } from "../../context/AuthProvider"; // Hook de autenticación para manejar el estado de la sesión
+import styles from './index.module.css'; // Estilos específicos para este componente
+import { useSession } from "../../../context/AuthProvider"; // Hook de autenticación para manejar el estado de la sesión
 import { useNavigate } from "react-router-dom"; // Hook para redirigir a otras rutas
 
 const HeaderMain = ({ collapsed, setCollapsed }) => {
