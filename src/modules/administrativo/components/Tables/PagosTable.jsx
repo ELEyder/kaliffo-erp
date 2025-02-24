@@ -1,25 +1,9 @@
-import { Flex, Button, Popconfirm, FloatButton } from "antd";
-import { useTrabajadores, useTrabajador } from "../../hooks";
 import { Tabla } from "../../../../Components/UI";
 import { useState } from "react";
-import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
-import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
-import usePagos from "../../hooks/usePagos";
+import { usePagos } from "../../hooks";
 
 const PagosTable = ({ id }) => {
-  const { pagos, getPagos } = usePagos(id);
-  const [dataPagos, setDataPagos] = useState({});
-
-  const [modals, setModals] = useState({
-    updT: false,
-    addT: false,
-    addI: false,
-  });
-
-  const changeModal = (modalKey, value) => {
-    setModals((prev) => ({ ...prev, [modalKey]: value }));
-  };
+  const { pagos } = usePagos(id);
 
   let columnas = [
     {
