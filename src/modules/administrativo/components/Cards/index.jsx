@@ -1,0 +1,1 @@
+export { default as TrabajadorCard } from './TrabajadorCard';

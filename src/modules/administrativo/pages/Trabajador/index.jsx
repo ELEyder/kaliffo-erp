@@ -1,16 +1,13 @@
 import { useState } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
 import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
 import { Tabla } from "../../../../Components/UI";
-import { Divider, Tabs, Flex, FloatButton } from "antd";
-import { FileAddOutlined } from "@ant-design/icons"; // Icono de agregar para el botón flotante
+import { Divider, Tabs } from "antd";
 import * as Incidencias from "../../../../interfaces/Incidencias";
 import * as Horarios from "../../../../interfaces/Horarios";
 import * as Pagos from "../../../../interfaces/Pagos";
-import UpdateIncidenciaModal from "@CA/trabajadores/UpdateIncidenciaModal"; // Componente modal para actualizar incidencias
-import AddIncidenciaModal from "@CA/trabajadores/AddIncidenciaModal"; // Componente modal para agregar nuevas incidencias
 import { Details } from "../../../../layouts";
-import TrabajadorCard from "../../components/Cards/TrabajadorCard";
-import IncidenciasTable from "../../components/Tables/IncidenciasTable";
+import { TrabajadorCard } from "../../components/Cards/";
+import { IncidenciasTable, PagosTable } from "../../components/Tables";
 
 const Trabajador = () => {
   const { id } = useParams(); // Obtener el ID del trabajador desde los parámetros de la URL
@@ -42,7 +39,27 @@ const Trabajador = () => {
         />
       ), // Componente que muestra las incidencias
     },
-
+    {
+      key: "Horario",
+      label: "Horario",
+      children: (
+        <Tabla
+          columnas={columnasH}
+          rowKey={"horario_id"}
+          url={Horarios.getUrl(id)}
+          reload={() => setReload(!reload)}
+        />
+      ),
+    }, // Componente que muestra los pagos
+    {
+      key: "Pagos",
+      label: "Pagos",
+      children: (
+        <PagosTable
+          id={id}
+        />
+      ),
+    }, // Componente que muestra los horarios
   ];
 
   return (
@@ -50,7 +67,6 @@ const Trabajador = () => {
       <Divider>Detalles del Usuario</Divider>
       <Details>
         <TrabajadorCard id={id} />
-
         <Tabs
           style={{
             flex: "1 1 45%",
@@ -64,7 +80,6 @@ const Trabajador = () => {
         />
       </Details>
       <Divider></Divider>
-      
     </>
   );
 };
