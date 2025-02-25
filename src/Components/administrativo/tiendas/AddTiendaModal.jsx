@@ -10,7 +10,6 @@ import {
 const AddTiendaModal = ({
   openModal, // Propiedad para controlar la visibilidad del modal
   closeModal, // Propiedad para cerrar el modal
-  reload, // Función para recargar los datos de la tienda
 }) => {
   const [form] = Form.useForm(); // Instancia del formulario para manejar su estado
 
@@ -37,7 +36,6 @@ const AddTiendaModal = ({
           await addTienda(values);
           form.resetFields();
           closeModal();
-          reload();
         }}
       >
         <Form.Item
