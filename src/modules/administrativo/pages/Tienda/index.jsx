@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import TiendaCard from "@CA/tiendas/TiendaCard";
-import ProductosTable from "@CA/tiendas/ProductosTable";
-import Tabla from "../../Components/Tabla/Tabla";
+import { Tabla } from "../../../../Components/UI";
 import { FileAddOutlined } from "@ant-design/icons"; // Icono para el botón de "Añadir"
 
 import { FloatButton, Divider, Flex, Tabs } from "antd";
-import * as Personal from "../../interfaces/Personal";
-import * as Ventas from "../../interfaces/Ventas";
-import * as Productos from "../../interfaces/Productos";
+import * as Personal from "../../../../interfaces/Personal";
+import * as Ventas from "../../../../interfaces/Ventas";
+import * as Productos from "../../../../interfaces/Productos";
 import UpdateTrabajadorModal from "@CA/trabajadores/UpdateTrabajadorModal"; // Modal para actualizar los datos de un trabajador
 import AddPersonalModal from "@CA/tiendas/AddPersonalModal"; // Modal para añadir un nuevo trabajador
 import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para mostrar los detalles de un producto
+import { Details } from "../../../../layouts";
+import TiendaDetailCard from "../../components/Cards/TiendaDetailCard";
 
 const TiendaView = () => {
   // Definición de las pestañas con los componentes relacionados
@@ -30,7 +31,6 @@ const TiendaView = () => {
     setModals((prev) => ({ ...prev, [modalKey]: value }));
   };
 
-  const columnasPro = Productos.getColumnas(changeModal, setPersonal, () => setReload(!reload))
   const columnasP = Personal.getColumnas(changeModal, setPersonal, () => setReload(!reload))
   const columnasV = Ventas.getColumnas(changeModal, setIdP, () => setReload(!reload))
 
@@ -38,12 +38,12 @@ const TiendaView = () => {
   const items = [
     {
       key: '1', label: 'Productos',
-      children: <Tabla
-      columnas={columnasPro}
-      rowKey={"producto_id"}
-      url={Productos.getUrl(id)}
-      reload={() => setReload(!reload)}
-    />
+    //   children: <Tabla
+    //   columnas={columnasPro}
+    //   rowKey={"producto_id"}
+    //   url={Productos.getUrl(id)}
+    //   reload={() => setReload(!reload)}
+    // />
     },
     {
       key: "2",
@@ -70,30 +70,10 @@ const TiendaView = () => {
 
   return (
     <>
-      {/* Divisor inicial */}
-      <Divider>Detalles de la Tienda</Divider>
-
-      {/* Contenedor flexible para la tarjeta y las pestañas */}
-      <Flex
-        wrap
-        gap="large"
-        justify="space-evenly"
-        align="flex-start"
-        style={{
-          width: "100%",
-          maxWidth: "1200px", // Máxima anchura del contenedor
-          margin: "0 auto", // Centrado horizontal
-          padding: "1rem", // Espaciado interno
-        }}
-      >
-        {/* Componente de información de la tienda */}
-        <TiendaCard style={{
-          flex: "1 1 45%",
-          minWidth: "400px", // Ancho mínimo
-          maxWidth: "700px", // Ancho máximo
-        }} />
-
-        {/* Pestañas con los detalles de la tienda */}
+      <Details>
+        <TiendaDetailCard
+        id={id}
+        />
         <Tabs
           style={{
             flex: "1 1 45%",
@@ -105,7 +85,7 @@ const TiendaView = () => {
             key == '2' ? setViewButton('block'): setViewButton('none')
           }}
         />
-      </Flex>
+      </Details>
 
       <FloatButton tooltip="Añadir Nuevo Personal"
         onClick={() => changeModal("addP", true)}

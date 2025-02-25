@@ -8,15 +8,8 @@ const DefaultCard = ({ title, image, list, children }) => {
   return (
     <Card
       style={{ width: 300, textAlign: "center" }}
-      title={title} // Título de la tarjeta
-      cover={
-        <Image
-          width="100%"
-          height="auto"
-          src={image}
-          fallback={"./img/usuarios/0.jpg"}
-        />
-      }
+      title={title || "Detalles"} // Título de la tarjeta
+      {...image && { cover: <Image width="100%" height="auto" src={image} fallback={"./img/usuarios/0.jpg"} /> }}
     >
       {/* Lista de detalles del trabajador */}
       <List

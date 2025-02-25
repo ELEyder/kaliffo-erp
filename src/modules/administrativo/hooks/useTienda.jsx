@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { apiClient } from "../../../API/apiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useTienda = (onChange) => {
-    const open = useNotification();
+  const open = useNotification();
+  const [tienda, setTienda] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -31,7 +32,18 @@ const useTienda = (onChange) => {
       direccion: values.direccion,
       telefono: values.telefono,
     };
-    await handleRequest(() => apiClient.post(`/tienda/create`, data), "Tienda agregada");
+    await handleRequest(
+      () => apiClient.post(`/tienda/create`, data),
+      "Tienda agregada"
+    );
+  };
+
+  const getTienda = async (id) => {
+    if (!id) return;
+    await handleRequest(async () => {
+      const response = await apiClient.get(`/tienda/${id}`);
+      setTienda(response.data);
+    });
   };
 
   const updateTienda = async (id, data) => {
@@ -47,7 +59,7 @@ const useTienda = (onChange) => {
     }, "Tienda eliminada");
   };
 
-  return { loading, error, updateTienda, deleteTienda, addTienda };
+  return { tienda, loading, error, updateTienda, deleteTienda, addTienda, getTienda };
 };
 
 export default useTienda;
