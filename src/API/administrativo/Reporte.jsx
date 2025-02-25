@@ -1,9 +1,9 @@
-import { apiClient } from '../apiClient';
+import { apiClient, apiClientFiles } from '../apiClient';
 
 // Obtener reporte de un usuario http://localhost:3000/usuario/reporte/1
 export const getReporteUsuario = async (id,tipo) => {
   try {
-    const response = await apiClient.get(`/trabajador/reporte/${id}?tipo=${tipo}`, { responseType: 'blob' });
+    const response = await apiClientFiles.get(`/trabajador/reporte/${id}?tipo=${tipo}`, { responseType: 'blob' });
     const pdf = response.data;
     const url = window.URL.createObjectURL(pdf);
     window.open(url);

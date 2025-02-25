@@ -1,15 +1,27 @@
-import { Card, Dropdown, List, Typography, Image, Divider, Row, Col } from "antd";
-import React, { useEffect, useState } from "react";
-import { getReporteUsuario } from "@AA/Reporte";
+import { Card, List, Typography, Image, Divider, Row, Col } from "antd";
 const { Paragraph } = Typography;
 
 const DefaultCard = ({ title, image, list, children }) => {
 
   return (
     <Card
-      style={{ width: 300, textAlign: "center" }}
+      style={{ textAlign: "center" }}
       title={title || "Detalles"} // Título de la tarjeta
-      {...image && { cover: <Image width="100%" height="auto" src={image} fallback={"./img/usuarios/0.jpg"} /> }}
+      {...image && {
+        cover: (
+          <Image
+            width="100%"
+            height="auto"
+            src={image}
+            fallback="./img/usuarios/0.jpg"
+            style={{
+              objectFit: "contain",
+              maxHeight: "400px",
+              width: "100%",
+            }}
+          />
+        ),
+      }}
     >
       {/* Lista de detalles del trabajador */}
       <List
@@ -17,7 +29,7 @@ const DefaultCard = ({ title, image, list, children }) => {
         dataSource={list}
         renderItem={(item) => (
           <List.Item>
-            <div style={{ width: "100%", display: "flex", justifyContent: "space-between" }}>
+            <div style={{ width: "100%", display: "flex", justifyContent: "space-between", gap: "20px" }}>
               <strong>{item.title}:</strong>
               <Paragraph copyable>{item.value}</Paragraph>
             </div>

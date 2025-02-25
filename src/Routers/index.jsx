@@ -5,8 +5,8 @@ import Logistico from "./logistico";
 import Produccion from "./Produccion";
 import Comercial from "./Comercial";
 import Loading from "../Components/Loading/Loading";
+import Layout from "../layouts/Layout";
 // Lazy loading de componentes
-const Layout = lazy(() => import("../layouts/Layout"));
 const LoginView = lazy(() => import("../Views/Login/LoginView"));
 const ErrorView = lazy(() => import("../Views/Error/ErrorView"));
 const TestView = lazy(() => import("../Views/Test"));
