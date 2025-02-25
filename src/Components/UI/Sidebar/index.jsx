@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { UserOutlined, RightOutlined, LeftOutlined } from '@ant-design/icons';
-import { Layout, Avatar, Typography, FloatButton } from 'antd';
+import { Layout } from 'antd';
 import Menu from "./Menu"; // Componente de menú
 import styles from './Sidebar.module.css' // Estilos CSS para el Sidebar
 import { useSession } from "../../../context/AuthProvider"; // Hook para acceder al estado de sesión
 
 const { Sider } = Layout; // Usamos el componente Sider de Ant Design para el sidebar
-const { Title } = Typography; // Usamos el componente Title de Ant Design para el título
 
 const Sidebar = ({ collapsed }) => {
   const { user, login, logout } = useSession(); // Extraemos los datos del usuario y funciones de login/logout desde el contexto
