@@ -11,12 +11,13 @@
   --font: "Poppins", sans-serif;
 }
 
-body {
+body, #root {
   background-color: var(--bg-2);
   position: relative;
   height: 100vh;
   font-family: var(--font);
 }
+
 ::-webkit-scrollbar {
   width: 12px;
 }

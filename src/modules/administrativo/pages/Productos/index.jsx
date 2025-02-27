@@ -1,6 +1,7 @@
 import React from "react";
 import ProductosCards from "@CA/productos/ProductosCards";
 import { Divider } from "antd";
+import ProductosTable from "../../components/Tables/ProductosTable";
 
 const ProductosView = () => {
   return (
@@ -10,7 +11,7 @@ const ProductosView = () => {
         Productos
       </Divider>
       {/* Componente que muestra las tarjetas de productos */}
-      <ProductosCards />
+      <ProductosTable />
     </>
   );
 };

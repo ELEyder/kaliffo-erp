@@ -74,7 +74,7 @@ const AddPersonalModal = ({
       </Form>
 
       {/* Link to create a new worker */}
-      <Link to="/trabajadores/tipo/ventas" style={{ textDecoration: "none" }}>
+      <Link to="/trabajadores" style={{ textDecoration: "none" }}>
         ¿Trabajador Nuevo? {/* Text linking to the worker creation page */}
       </Link>
     </Modal>

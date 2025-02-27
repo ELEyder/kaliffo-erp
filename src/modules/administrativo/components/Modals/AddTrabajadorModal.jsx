@@ -13,7 +13,6 @@ import { useTrabajador } from "../../hooks";
 const AddTrabajadorModal = ({
   openModal, // Estado para controlar si el modal está abierto
   closeModal, // Función para cerrar el modal
-  tipoTrabajador,
   onAdded
 }) => {
 
@@ -58,19 +57,17 @@ const AddTrabajadorModal = ({
       name: "dni",
       max: 8, // Longitud máxima del DNI
     },
-    ...(tipoTrabajador === "ventas"
-      ? [
-          {
-            type: "select",
-            label: "Tienda Asignada",
-            name: "tienda_id",
-            options: tiendas.map((tienda) => ({
-              value: tienda.tienda_id,
-              label: tienda.tienda,
-            })),
-          },
-        ]
-      : []), // Si no es 'ventas', no se agrega nada
+    {
+      type: "select",
+      label: "Rol",
+      name: "rol",
+      options: [
+        { value: 1, label: "Ventas" },
+        { value: 2, label: "Talleres" },
+        { value: 3, label: "Miselaneos" },
+        { value: 4, label: "Costureros" },
+      ],
+    },
     {
       type: "hidden",
       name: "trabajador_id",
@@ -83,7 +80,7 @@ const AddTrabajadorModal = ({
   ];
 
   const onFinish = async (values) => {
-    await addTrabajador(tipoTrabajador, values);
+    await addTrabajador(values);
     closeModal(false); // Cierra el modal tras actualizar
   };
   

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Table } from "antd"
 import { apiClient } from '../../../API/apiClient';
 
-const Tabla = ({ columnas , rowKey, url = null, dataSource = [] }) => {
+const Tabla = ({ columnas , rowKey, url = null, dataSource = [], loading = false }) => {
   const navigate = useNavigate();
   const [data, setData] = useState([])
   
@@ -51,10 +51,16 @@ const Tabla = ({ columnas , rowKey, url = null, dataSource = [] }) => {
       pagination={{ pageSize: 5 }}
       dataSource={data}
       rowKey={rowKey}
+      loading={loading}
       onRow={(record) => {
         if (record.trabajador_id) {
           return {
             onClick: () => navigate(`/trabajadores/${record.trabajador_id}`),
+            style: { cursor: "pointer" },
+          };
+        } else if (record.producto_id) {
+          return {
+            onClick: () => navigate(`/productos/${record.producto_id}`),
             style: { cursor: "pointer" },
           };
         }

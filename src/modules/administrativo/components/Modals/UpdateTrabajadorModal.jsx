@@ -13,7 +13,6 @@ import { useTrabajador } from "../../hooks";
   const UpdateTrabajadorModal = ({
     openModal, // Estado para controlar si el modal está abierto
     closeModal, // Función para cerrar el modal
-    tipoTrabajador,
     data, // Data del trabajador a editar
     onUpdated
   }) => {
@@ -71,7 +70,7 @@ import { useTrabajador } from "../../hooks";
         name: "dni",
         max: 8, // Longitud máxima del DNI
       },
-      ...(tipoTrabajador === "ventas"
+      ...(data.rol === "ventas"
         ? [
             {
               type: "select",

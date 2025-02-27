@@ -66,17 +66,7 @@ const SidebarMenu = () => {
       label: "ADMINISTRATIVO",
       type: "group",
       children: [
-        {
-          key: "administrativo-trabajadores",
-          label: "Trabajadores",
-          icon: <BookOutlined />,
-          children: [
-            { key: "administrativo-trabajadores-ventas", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/ventas">Vendedores</Link> },
-            { key: "administrativo-trabajadores-talleres", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/talleres">Talleres</Link> },
-            { key: "administrativo-trabajadores-miscelaneos", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/miscelaneos">Miscelaneos</Link> },
-            { key: "administrativo-trabajadores-costureros", icon: <UserOutlined />, label: <Link to="/trabajadores/tipo/costureros">Costureros</Link> },
-          ],
-        },
+        { key: "administrativo-trabajadores", icon: <BookOutlined />, label: <Link to="/trabajadores">Trabajadores</Link> },
         { key: "administrativo-tiendas", icon: <HarmonyOSOutlined />, label: <Link to="/tiendas">Tiendas</Link> },
         { key: "administrativo-productos", icon: <CoffeeOutlined />, label: <Link to="/productos">Productos</Link> },
         {

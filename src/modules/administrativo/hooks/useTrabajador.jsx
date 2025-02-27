@@ -24,7 +24,7 @@ const useTrabajador = (id, onChange) => {
     }
   };
 
-  const addTrabajador = async (type, values) => {
+  const addTrabajador = async (values) => {
     const data = {
       nombre: values.nombre,
       ap_paterno: values.ap_paterno,
@@ -33,8 +33,8 @@ const useTrabajador = (id, onChange) => {
       dni: values.dni,
       telefono: values.telefono,
       sueldo: values.sueldo,
-      rol: tiposTrabajador[type],
-      ...(tiposTrabajador[type] === 1 && { tienda_id: values.tienda_id }),
+      rol: values.rol,
+      ...(values.rol === 1 && { tienda_id: 1 }),
     };
     await handleRequest(() => apiClient.post(`/trabajador/create`, data), "Trabajador agregado");
   };

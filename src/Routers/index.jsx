@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Administrativo from "../modules/administrativo/AdministrativoRouters";
+import AdministrativoRouters from "../modules/administrativo/AdministrativoRouters";
 import Logistico from "./logistico";
 import Produccion from "./Produccion";
 import Comercial from "./Comercial";
@@ -20,7 +20,7 @@ export const Routing = () => {
             <Routes>
                 <Route path="/" element={<LoginView />} />
                 <Route element={<Layout />}>
-                    {Administrativo()}
+                    <Route path="*" element={<AdministrativoRouters />} />
                     {Logistico()}
                     {Produccion()}
                     {Comercial()}

@@ -6,8 +6,8 @@ import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
 import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
 
-const TrabajadoresTable = ({ tipoTrabajador }) => {
-  const { trabajadores, getTrabajadores } = useTrabajadores(tipoTrabajador);
+const TrabajadoresTable = ({ params }) => {
+  const { trabajadores, loading , getTrabajadores } = useTrabajadores(params);
   const { deleteTrabajador } = useTrabajador(null, getTrabajadores);
   const [dataTrabajador, setDataTrabajador] = useState({});
 
@@ -27,6 +27,8 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
     { title: "Teléfono", dataIndex: "telefono" },
     { title: "Incidencias", dataIndex: "total_incidencias" },
     { title: "Sueldo", dataIndex: "sueldo" },
+    { title: "Rol", dataIndex: "rol" },
+    { title: "Tienda", dataIndex: "tienda" },
     {
       title: "Opciones",
       render: (record) => (
@@ -69,16 +71,13 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
     },
   ];
 
-  if (tipoTrabajador === "ventas") {
-    columnas.splice(3, 0, { title: "Tienda", dataIndex: "tienda" });
-  }
-
   return (
     <>
       <Tabla
         columnas={columnas}
         rowKey={"trabajador_id"}
         dataSource={trabajadores}
+        loading={loading}
       />
 
       <FloatButton onClick={() => changeModal("addT", true)} />
@@ -86,7 +85,6 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
       <UpdateTrabajadorModal
         openModal={modals.updT}
         closeModal={() => changeModal("updT", false)}
-        tipoTrabajador={tipoTrabajador}
         data={dataTrabajador}
         onUpdated={getTrabajadores}
       />
@@ -94,7 +92,6 @@ const TrabajadoresTable = ({ tipoTrabajador }) => {
       <AddTrabajadorModal
         openModal={modals.addT}
         closeModal={() => changeModal("addT", false)}
-        tipoTrabajador={tipoTrabajador}
         onAdded={getTrabajadores}
       />
 

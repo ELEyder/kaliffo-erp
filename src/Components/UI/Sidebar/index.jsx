@@ -6,7 +6,7 @@ import { useSession } from "../../../context/AuthProvider"; // Hook para acceder
 const { Sider } = Layout; // Usamos el componente Sider de Ant Design para el sidebar
 
 const Sidebar = ({ collapsed }) => {
-  const { user, login, logout } = useSession(); // Extraemos los datos del usuario y funciones de login/logout desde el contexto
+  const { user } = useSession(); // Extraemos los datos del usuario y funciones de login/logout desde el contexto
 
   return (
     <>

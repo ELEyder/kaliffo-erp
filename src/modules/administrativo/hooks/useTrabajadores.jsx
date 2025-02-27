@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react"
 import { apiClient } from "../../../API/apiClient";
 
-const useTrabajadores = ( tipo ) => {
+const useTrabajadores = ( params  = "" ) => {
   const [trabajadores, setTrabajadores] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const tiposTrabajador = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
+
+  const tiposTrabajador = { 1: "Ventas", 2 : "Talleres", 3: "Miscelaneos", 4: "Costureros" };
 
   const getTrabajadores = async () => {
-    if (!tipo) return;
     setLoading(true);
     try {
-      let url = "";
-      if (tiposTrabajador[tipo]) {
-        url = `/trabajador?rol=${tiposTrabajador[tipo]}`
-      } else {
-        url = `/trabajador${tipo}`
-      }
+      let url = `/trabajador${params}`;
+      
       const response = await apiClient.get(url);
-      setTrabajadores(response.data);
+      const data = response.data.map((trabajador) =>{
+        return {
+          ...trabajador,
+          rol : tiposTrabajador[trabajador.rol],
+          tienda : trabajador.tienda ?? "Sin tienda"
+        }
+      })
+      setTrabajadores(data);
+    
     } catch (error) {
       setError(error);
     } finally {
@@ -30,9 +34,9 @@ const useTrabajadores = ( tipo ) => {
     const fetchTrabajadores = async () => {
       await getTrabajadores();
     };
-  
     fetchTrabajadores();
-  }, [tipo]);
+
+  }, [params]);
   
   return { trabajadores, loading, error, getTrabajadores };
 }

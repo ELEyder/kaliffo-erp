@@ -1,11 +1,9 @@
+import styles from './index.module.css'
 const Loading = () => {
     return (
-        <div style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-        }}> <img src={"./logo2.svg"}alt="Cargando..." /> </div>
+        <div className={styles.fullContainer}>
+            <img src={"./logo2.svg"}alt="Cargando..." />
+        </div>
     )
 }
 
