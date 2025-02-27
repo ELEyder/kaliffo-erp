@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Table } from "antd"
 import { apiClient } from '../../../API/apiClient';
 
-const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = [] }) => {
+const Tabla = ({ columnas , rowKey, url = null, dataSource = [] }) => {
   const navigate = useNavigate();
   const [data, setData] = useState([])
   
@@ -24,7 +24,7 @@ const Tabla = ({ columnas , rowKey, url = null, reload, dataSource = [] }) => {
     if (url){
       fetchData();
     }
-  }, [reload, url]);
+  }, [url]);
 
   const getSorter = (col) => {
     return col.dataIndex === "id" || col.title === "Opciones" ? 0 :

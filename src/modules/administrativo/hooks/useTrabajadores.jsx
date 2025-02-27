@@ -11,7 +11,13 @@ const useTrabajadores = ( tipo ) => {
     if (!tipo) return;
     setLoading(true);
     try {
-      const response = await apiClient.get(`/trabajador/?rol=${tiposTrabajador[tipo]}`);
+      let url = "";
+      if (tiposTrabajador[tipo]) {
+        url = `/trabajador?rol=${tiposTrabajador[tipo]}`
+      } else {
+        url = `/trabajador${tipo}`
+      }
+      const response = await apiClient.get(url);
       setTrabajadores(response.data);
     } catch (error) {
       setError(error);

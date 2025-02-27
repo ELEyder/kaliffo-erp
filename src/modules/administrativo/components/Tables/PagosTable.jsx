@@ -1,5 +1,4 @@
 import { Tabla } from "../../../../Components/UI";
-import { useState } from "react";
 import { usePagos } from "../../hooks";
 
 const PagosTable = ({ id }) => {
