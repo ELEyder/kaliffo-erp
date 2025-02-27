@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { apiClient } from "../../../API/apiClient";
 
-const useTrabajadores = ( params  = "" ) => {
+const useTrabajadores = ( params ) => {
   const [trabajadores, setTrabajadores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

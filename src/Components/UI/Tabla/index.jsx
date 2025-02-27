@@ -66,7 +66,7 @@ const Tabla = ({ columnas , rowKey, url = null, dataSource = [], loading = false
         }
         return {};
       }}
-      scroll={{ x: 'min-content' }}
+      scroll={{ x: "max-content" }}
     />
   )
 }

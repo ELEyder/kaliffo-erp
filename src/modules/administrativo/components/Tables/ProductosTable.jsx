@@ -1,7 +1,3 @@
-import React, { useEffect, useState } from "react"; // Importaciones de React
-import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para mostrar los detalles de un producto
-import { getProductosByTienda } from "@AA/Producto"; // Función API para obtener los productos de una tienda específica
-import { Button } from "antd"; // Componentes de Ant Design
 import { Tabla } from "../../../../Components/UI";
 import useProductos from "../../hooks/useProductos";
 import Loading from "../../../../Components/Loading/Loading";

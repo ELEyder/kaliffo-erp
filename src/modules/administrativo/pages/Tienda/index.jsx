@@ -47,7 +47,7 @@ const TiendaView = () => {
     {
       key: "2",
       label: "Personal",
-      children: <TrabajadoresTable tipoTrabajador={`?tienda_id=${id}`} />,
+      children: <TrabajadoresTable params={`?tienda_id=${id}`} />,
     },
     {
       key: "3",
