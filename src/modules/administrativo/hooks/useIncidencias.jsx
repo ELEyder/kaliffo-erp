@@ -10,7 +10,7 @@ const useIncidencias = ( id ) => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await apiClient.get(`/incidencia?usuario_id=${id}`);
+      const response = await apiClient.get(`/incidencia?trabajador_id=${id}`);
       setIncidencias(response.data);
     } catch (error) {
       setError(error);

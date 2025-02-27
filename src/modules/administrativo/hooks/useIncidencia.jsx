@@ -16,8 +16,8 @@ const useIncidencia = (onChange) => {
       onChange && onChange();
       successMessage && open("Éxito", successMessage);
     } catch (error) {
-      open(`Error ${error.status || ""}`, error.response?.data?.error || "Error desconocido");
-      console.log(error.response?.data?.errors || error.response?.data?.error || "Error desconocido")
+      open(`Error ${error.status || ""}`, error.response?.data?.errors[0]?.msg || error.response?.data?.error || "Error desconocido");
+      console.log(error.response?.data || "Error desconocido")
       setError(error);
     } finally {
       setLoading(false);
@@ -29,6 +29,7 @@ const useIncidencia = (onChange) => {
       ...values,
       trabajador_id: id,
     }
+    console.log("Values", values)
     await handleRequest(() => apiClient.post(`/incidencia/create`, values), "Incidencia agregada");
   };
 
