@@ -53,6 +53,8 @@ const DefaultForm = ({ onFinish, rows, form }) => {
               rules={[{ required: true, message: `${row.label} requerido/s` }]}
             >
               <Select
+              value={row.value}
+              onChange={row.onChange}
                 options={row.options.map((option) => ({
                   value: option.value,
                   label: option.label,

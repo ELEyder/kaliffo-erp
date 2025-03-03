@@ -7,7 +7,6 @@ const useTrabajador = (id, onChange) => {
   const [trabajador, setTrabajador] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const tiposTrabajador = { ventas: 1, talleres: 2, miscelaneos: 3, costureros: 4 };
 
   const handleRequest = async (callback, successMessage) => {
     setLoading(true);
@@ -48,6 +47,8 @@ const useTrabajador = (id, onChange) => {
   };
 
   const updateTrabajador = async (id, data) => {
+    data.tienda_id = data.rol != 1 ? 0 : data.rol
+    console.log( data)
     await handleRequest(() => apiClient.put(`/trabajador/update/${id}`, data), "Trabajador actualizado");
   };
 
