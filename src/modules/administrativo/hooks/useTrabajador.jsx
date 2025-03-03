@@ -33,8 +33,9 @@ const useTrabajador = (id, onChange) => {
       telefono: values.telefono,
       sueldo: values.sueldo,
       rol: values.rol,
-      ...(values.rol === 1 && { tienda_id: 1 }),
+      tienda_id : values.tienda_id ?? 0
     };
+    console.log("DATA:", data)
     await handleRequest(() => apiClient.post(`/trabajador/create`, data), "Trabajador agregado");
   };
 

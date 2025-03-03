@@ -10,15 +10,9 @@ const DefaultCard = ({ title, image, list, children }) => {
       {...image && {
         cover: (
           <Image
-            width="100%"
-            height="auto"
+            width="300px"
             src={image}
             fallback="./img/usuarios/0.jpg"
-            style={{
-              objectFit: "contain",
-              maxHeight: "400px",
-              width: "100%",
-            }}
           />
         ),
       }}

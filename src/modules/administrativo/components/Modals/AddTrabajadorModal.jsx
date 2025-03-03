@@ -19,6 +19,7 @@ const AddTrabajadorModal = ({
   const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
   const [tiendas, setTiendas] = useState([]); // Lista de tiendas (para trabajadores de ventas)
   const { addTrabajador } = useTrabajador(null, onAdded);
+  const [rol, setRol] = useState(0);
 
   useEffect(()=>{
     getTiendas(setTiendas)
@@ -58,24 +59,39 @@ const AddTrabajadorModal = ({
       max: 8, // Longitud máxima del DNI
     },
     {
-      type: "select",
-      label: "Rol",
-      name: "rol",
-      options: [
-        { value: 1, label: "Ventas" },
-        { value: 2, label: "Talleres" },
-        { value: 3, label: "Miselaneos" },
-        { value: 4, label: "Costureros" },
-      ],
-    },
-    {
-      type: "hidden",
-      name: "trabajador_id",
-    },
-    {
       type: "number",
       label: "Sueldo",
       name: "sueldo",
+    },
+    {
+      type: "select",
+      label: "Rol",
+      name: "rol",
+      value: rol,
+      onChange: (value) => setRol(value),
+      options: [
+        { value: 1, label: "Ventas" },
+        { value: 2, label: "Talleres" },
+        { value: 3, label: "Miscelaneos" },
+        { value: 4, label: "Costureros" },
+      ],
+    },
+    ...(rol == 1
+      ? [
+          {
+            type: "select",
+            label: "Tienda Asignada",
+            name: "tienda_id",
+            options: tiendas.map((tienda) => ({
+              value: tienda.tienda_id,
+              label: tienda.tienda,
+            })),
+          },
+        ]
+      : []), // Si no es 'ventas', no se agrega nada
+    {
+      type: "hidden",
+      name: "trabajador_id",
     },
   ];
 
