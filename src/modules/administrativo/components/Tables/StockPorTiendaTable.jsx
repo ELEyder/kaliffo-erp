@@ -2,7 +2,7 @@ import { Tabla } from "../../../../Components/UI";
 import useStockPorTienda from "../../hooks/useStockPorTienda";
 
 const StockPorTiendaTable = ({ id }) => {
-  const { tiendas, loading , getTiendas } = useStockPorTienda(id);
+  const { tiendas, loading } = useStockPorTienda(id);
 
   let columnas = [
     { title: "Tienda", dataIndex: "tienda" },

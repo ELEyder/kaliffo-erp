@@ -1,6 +1,5 @@
 import { useState } from "react"; // Importar hooks de React para manejar estado y ciclos de vida
 import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
-import { Tabla } from "../../../../Components/UI";
 import { Divider, Tabs } from "antd";
 import { Details } from "../../../../layouts";
 import { TrabajadorCard } from "../../components/Cards/";
@@ -9,7 +8,6 @@ import HorariosTable from "../../components/Tables/HorariosTable";
 
 const Trabajador = () => {
   const { id } = useParams(); // Obtener el ID del trabajador desde los parámetros de la URL
-  const [reload, setReload] = useState(true); // Estado para activar recarga después de acciones como agregar/eliminar
 
   // Definición de las pestañas que se mostrarán
   const items = [
@@ -48,11 +46,6 @@ const Trabajador = () => {
       <Details>
         <TrabajadorCard id={id} />
         <Tabs
-          style={{
-            flex: "1 1 45%",
-            minWidth: "400px",
-            maxWidth: "700px",
-          }}
           items={items}
         />
       </Details>

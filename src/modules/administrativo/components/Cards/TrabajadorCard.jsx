@@ -11,36 +11,27 @@ const items = [
 ];
 
 // Maneja la obtención del reporte
-const handleReporteClick = (id) => ({ key }) => getReporteUsuario(id, key);
+const handleReporteClick =
+  (id) =>
+  ({ key }) =>
+    getReporteUsuario(id, key);
 
 const TrabajadorCard = ({ id }) => {
   const { trabajador } = useTrabajador(id);
 
-  const img = useMemo(() => {
-    const imageMap = {
-      Rodrigo: "/img/usuarios/rodrigo.jpg",
-      Pablo: "/img/usuarios/pablo.jpg",
-    };
-    const images = [
-      "eyder1.jpg",
-      "eyder2.jpg",
-      "eyder3.jpg",
-      "eyder4.jpg",
-      "eyder5.gif",
-    ];
-    return imageMap[trabajador.nombre]
-      ? imageMap[trabajador.nombre]
-      : trabajador.nombre === "Eyder"
-      ? `/img/usuarios/${images[Math.floor(Math.random() * images.length)]}`
-      : `/img/usuarios/${trabajador.usuario_id}.jpg`;
-  }, [trabajador]);
-
-  const { nombres, dni, telefono, total_horas_trabajadas, total_incidencias, sueldo } = trabajador;
+  const {
+    nombres,
+    dni,
+    telefono,
+    total_horas_trabajadas,
+    total_incidencias,
+    sueldo,
+  } = trabajador;
 
   return (
     <DefaultCard
       title={nombres}
-      image={img}
+      image={`./img/usuarios/${id}.jpg`}
       list={[
         { title: "DNI", value: dni },
         { title: "TELÉFONO", value: telefono },

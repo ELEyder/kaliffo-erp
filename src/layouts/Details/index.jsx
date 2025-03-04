@@ -7,15 +7,8 @@ const Details = ({ children }) => {
     <>
       <Flex
         wrap
-        gap="large"
         justify="space-evenly"
-        align="flex-start"
-        style={{
-          width: "100%",
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "1rem",
-        }}
+        gap={"large"}
       >
         { children }
       </Flex>

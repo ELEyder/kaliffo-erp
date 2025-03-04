@@ -5,7 +5,7 @@ import DefaultCard from "./DefaultCard";
 const ProductoCard = ({ id }) => {
   const { producto, loading } = useProducto(id);
   
-  const { producto_id, nombre, stockTotal, precioBase, descuento, cantidad_colores } = producto;
+  const { nombre, stockTotal, precioBase, descuento, cantidad_colores } = producto;
 
   const items = [
     { key: "1", label: "Histórico" },
@@ -15,7 +15,7 @@ const ProductoCard = ({ id }) => {
   return (
     <DefaultCard
       title={nombre}
-      image={`/img/productos/${producto_id}.png`}
+      image={`./img/productos/${id}.png`}
       loading={loading}
       list={[
         { title: "STOCK TOTAL", value: stockTotal },

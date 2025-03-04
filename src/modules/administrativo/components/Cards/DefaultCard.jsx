@@ -8,7 +8,7 @@ const DefaultCard = ({ title, image, list, loading, children }) => {
   return (
     <Card
       style={{ textAlign: "center" }}
-      title={title || "Detalles"} // Título de la tarjeta
+      title={title || "Detalles"}
       loading={loading}
       {...image && {
         cover: (
