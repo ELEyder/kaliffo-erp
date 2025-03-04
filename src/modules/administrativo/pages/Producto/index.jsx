@@ -5,16 +5,18 @@ import ProductoDetalleTallasColoresModal from "@CA/productos/ProductoDetalleTall
 import TallaDetalleModal from "@CA/productos/TallaDetalleModal"; // Modal para ver detalles de talla
 import ProductoDetalleModal from "@CA/productos/ProductoDetalleModal"; // Modal para detalles de la tienda
 
-import * as Tiendas from "../../interfaces/Tiendas";
-import * as Tallas from "../../interfaces/Tallas";
-import * as Colores from "../../interfaces/Colores";
+import * as Tiendas from "../../../../interfaces/Tiendas";
+import * as Tallas from "../../../../interfaces/Tallas";
+import * as Colores from "../../../../interfaces/Colores";
 
 import { Flex, Divider, Tabs } from "antd";
-import Tabla from "../../Components/Tabla/Tabla";
+import { Tabla } from "../../../../Components/UI";
 import { useParams } from "react-router-dom";
+import { Details } from "../../../../layouts";
+import ProductoCard from "../../components/Cards/ProductoCard";
+import StockPorTiendaTable from "../../components/Tables/StockPorTienda";
 
 const ProductoView = () => {
-  // Definición de las pestañas con sus respectivos componentes
   const { id } = useParams();
   const [reload, setReload] = useState(true); // Estado para activar recarga después de acciones como agregar/eliminar
   const [idT, setIdT] = useState(0); // Estado para almacenar el ID de la tienda seleccionada
@@ -39,15 +41,12 @@ const ProductoView = () => {
   const items = [
     {
       key: "1",
-      label: "Tiendas",
-      children: (
-        <Tabla
-          columnas={columnas}
-          rowKey={"tienda_id"}
-          url={Tiendas.getUrl(id)}
-          reload={() => setReload(!reload)}
-        />
-      ),
+      label: "Stock por tienda",
+       children: (
+         <StockPorTiendaTable
+           id={id}
+         />
+       ),
     },
     {
       key: "2",
@@ -80,27 +79,9 @@ const ProductoView = () => {
       <Divider style={{ textTransform: "uppercase" }}>
         Detalles del Producto
       </Divider>
-
-      {/* Diseño de dos columnas: una para la información del producto y otra para las pestañas */}
-      <Flex
-        wrap
-        gap="large"
-        justify="space-evenly"
-        align="flex-start"
-        style={{
-          width: "100%",
-          maxWidth: "1200px", // Máxima anchura del contenedor
-          margin: "0 auto", // Centrado horizontal
-          padding: "1rem", // Espaciado interno
-        }}
-      >
-        {/* Componente con la información del producto */}
-        <ProductoInfoCard
-          style={{
-            flex: "1 1 45%",
-            minWidth: "400px", // Ancho mínimo
-            maxWidth: "700px", // Ancho máximo
-          }}
+      <Details>
+      <ProductoCard
+          id={id}
         />
         <Tabs
           style={{
@@ -111,12 +92,8 @@ const ProductoView = () => {
           defaultActiveKey="1"
           items={items}
         />
-      </Flex>
+      </Details>
 
-      {/* Divisor adicional para separar contenido */}
-      <Divider />
-
-      {/*Tiendas*/}
       <ProductoDetalleModal
         openModal={modals.tiendaD} // Estado para controlar la visibilidad del modal
         closeModal={() => changeModal("tiendaD", false)} // Función para cerrar el modal

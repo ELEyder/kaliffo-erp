@@ -8,7 +8,7 @@ const Trabajador = lazy(() => import("./pages/Trabajador"));
 const Tiendas = lazy(() => import("./pages/Tiendas"));
 const Tienda = lazy(() => import("./pages/Tienda"));
 const Productos = lazy(() => import("./pages/Productos"));
-const Producto = lazy(() => import("../../Views/Producto"));
+const Producto = lazy(() => import("./pages/Producto"));
 const Ventas = lazy(() => import("../../Views/Ventas"));
 
 const AdministrativoRouters = () => (

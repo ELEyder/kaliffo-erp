@@ -1,18 +1,21 @@
 import { Card, List, Typography, Image, Divider, Row, Col } from "antd";
+import { useState } from "react";
 const { Paragraph } = Typography;
 
-const DefaultCard = ({ title, image, list, children }) => {
+const DefaultCard = ({ title, image, list, loading, children }) => {
+  const [error, setError] = useState(false);
 
   return (
     <Card
       style={{ textAlign: "center" }}
       title={title || "Detalles"} // Título de la tarjeta
+      loading={loading}
       {...image && {
         cover: (
           <Image
             width="300px"
-            src={image}
-            fallback="./img/usuarios/0.jpg"
+            src={error ? "./img/usuarios/0.jpg" : image}
+            onError={() => setError(true)}
           />
         ),
       }}

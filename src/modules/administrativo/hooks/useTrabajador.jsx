@@ -33,7 +33,7 @@ const useTrabajador = (id, onChange) => {
       telefono: values.telefono,
       sueldo: values.sueldo,
       rol: values.rol,
-      tienda_id : values.tienda_id ?? 0
+      tienda_id : values.tienda_id ?? 1
     };
     console.log("DATA:", data)
     await handleRequest(() => apiClient.post(`/trabajador/create`, data), "Trabajador agregado");
@@ -48,7 +48,7 @@ const useTrabajador = (id, onChange) => {
   };
 
   const updateTrabajador = async (id, data) => {
-    data.tienda_id = data.rol != 1 ? 0 : data.rol
+    data.tienda_id = data.rol != 1 ? 1 : data.rol
     console.log( data)
     await handleRequest(() => apiClient.put(`/trabajador/update/${id}`, data), "Trabajador actualizado");
   };
