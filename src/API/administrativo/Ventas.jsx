@@ -1,4 +1,4 @@
-import { apiClient } from '../ApiClient'; // Importar cliente de API configurado
+import { apiClient } from '../apiClient'; // Importar cliente de API configurado
 
 // Métodos de pago disponibles
 const metodosPago = ["Efectivo", "Yape", "Transferencia"];

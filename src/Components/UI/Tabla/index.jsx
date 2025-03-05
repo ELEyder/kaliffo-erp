@@ -63,6 +63,11 @@ const Tabla = ({ columnas , rowKey, url = null, dataSource = [], loading = false
             onClick: () => navigate(`/productos/${record.producto_id}`),
             style: { cursor: "pointer" },
           };
+        } else if (record.venta_id) {
+          return {
+            onClick: () => navigate(`/venta/${record.venta_id}`),
+            style: { cursor: "pointer" },
+          };
         }
         return {};
       }}
