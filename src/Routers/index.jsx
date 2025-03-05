@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 
 import AdministrativoRouters from "../modules/administrativo/AdministrativoRouters";
 import LogisticoRouters from "../modules/logistico/LogisticoRouters";
-import ProduccionRouters from "../modules/logistico/LogisticoRouters";
-import ComercialRouters from "../modules/logistico/LogisticoRouters";
+import ProduccionRouters from "../modules/produccion/ProduccionRouters";
+import ComercialRouters from "../modules/comercial/ComercialRouters";
 
 import Loading from "../Components/Loading/Loading";
 import Layout from "../layouts/Layout";

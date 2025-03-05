@@ -1,23 +1,25 @@
-import { lazy } from "react";
-import { Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Loading from "../../Components/Loading/Loading";
 
 // Lazy loading de componentes
-const Telas = lazy(() => import("../Views/Telas"));
-const Tela = lazy(() => import("../Views/Tela"));
-const Layout = lazy(() => import("../Views/Lote/layout"));
-const Lotes = lazy(() => import("../Views/Lotes"));
-const Cortes = lazy(() => import("../Components/produccion/lotes/CortesTable"));
-const Lavanderia = lazy(() => import("../Components/produccion/lotes/LavanderiaTable"));
-const Acabado = lazy(() => import("../Components/produccion/lotes/AcabadoTable"));
-const Almacen = lazy(() => import("../Views/Lote/Almacen"));
+const Telas = lazy(() => import("./pages/Telas"));
+const Tela = lazy(() => import("./pages/Tela"));
+const Layout = lazy(() => import("./pages/Lote/layout"));
+const Lotes = lazy(() => import("./pages/Lotes"));
+const Cortes = lazy(() => import("../../Components/produccion/lotes/CortesTable"));
+const Lavanderia = lazy(() => import("../../Components/produccion/lotes/LavanderiaTable"));
+const Acabado = lazy(() => import("../../Components/produccion/lotes/AcabadoTable"));
+const Almacen = lazy(() => import("./pages/Lote/Almacen"));
+const ErrorView = lazy(() => import("../../Views/Error/ErrorView"));
 
 const ProduccionRouters = () => (
-    <>
-        {/* Rutas de Telas */}
-        <Route path="/telas" element={<Telas />} />
-        <Route path="/telas/:tipo" element={<Tela />} />
+  <Suspense fallback={<Loading />}>
+    <Routes>
+      {/* Rutas de Telas */}
+      <Route path="/telas" element={<Telas />} />
+      <Route path="/telas/:tipo" element={<Tela />} />
 
-        {/* Rutas de Lotes */}
         <Route path="/lotes" element={<Lotes />} />
         <Route path="/lotes/:id" element={<Layout />}>
             <Route path="corte" element={<Cortes />} />
@@ -25,7 +27,10 @@ const ProduccionRouters = () => (
             <Route path="acabados" element={<Acabado />} />
             <Route path="almacen" element={<Almacen />} />
         </Route>
-    </>
+      <Route path="*" element={<ErrorView />} />
+
+    </Routes>
+  </Suspense>
 );
 
 export default ProduccionRouters;

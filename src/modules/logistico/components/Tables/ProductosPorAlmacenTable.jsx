@@ -20,26 +20,6 @@ const ProductosPorAlmacenTable = ({ id }) => {
         },
       }),
     },
-    {
-      title: "Ver más", // Título de la columna para el botón "Ver más"
-      dataIndex: "producto_id",
-      key: "vermas",
-      align: "center",
-      render: (text, record) => {
-        return (
-          <Button
-            type="primary"
-            block
-            onClick={() => {
-              setIdP(text); // Establecer el ID del producto seleccionado
-              changeModal("proD", true); // Abrir el modal de detalles del producto
-            }}
-          >
-            +
-          </Button>
-        );
-      },
-    },
   ];
 
   return (

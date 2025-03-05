@@ -10,6 +10,7 @@ const Tienda = lazy(() => import("./pages/Tienda"));
 const Productos = lazy(() => import("./pages/Productos"));
 const Producto = lazy(() => import("./pages/Producto"));
 const Ventas = lazy(() => import("./pages/Ventas"));
+const ErrorView = lazy(() => import("../../Views/Error/ErrorView"));
 
 const AdministrativoRouters = () => (
   <Suspense fallback={<Loading />}>
@@ -21,6 +22,7 @@ const AdministrativoRouters = () => (
       <Route path="/productos" element={<Productos />} />
       <Route path="/productos/:id" element={<Producto />} />
       <Route path="/ventas/:tipo" element={<Ventas />} />
+      <Route path="*" element={<ErrorView />} />
     </Routes>
   </Suspense>
 );

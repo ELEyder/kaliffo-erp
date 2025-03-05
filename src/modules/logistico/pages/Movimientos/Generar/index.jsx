@@ -1,5 +1,5 @@
 import React from "react";
-import { useSession } from "../../../context/AuthProvider"; // Hook para acceder al estado de sesión
+import { useSession } from "../../../../../context/AuthProvider"; // Hook para acceder al estado de sesión
 import MovimientoAlmacenTienda from "@CL/MovimientoMercaderia/MovimientoAlmacenTienda";
 import MovimientoTiendaTienda from "@CL/MovimientoMercaderia/MovimientoTiendaTienda";
 
