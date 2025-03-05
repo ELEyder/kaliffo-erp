@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useProducto = (id, onChange) => {
@@ -25,13 +25,13 @@ const useProducto = (id, onChange) => {
 
   const addProducto = async (values) => {
     console.log("DATA:", data)
-    await handleRequest(() => apiClient.post(`/producto/create`, values), "Producto agregado");
+    await handleRequest(() => ApiClient.post(`/producto/create`, values), "Producto agregado");
   };
 
   const getProducto = async () => {
     if (!id) return;
     await handleRequest(async () => {
-      const response = await apiClient.get(`/producto/${id}`);
+      const response = await ApiClient.get(`/producto/${id}`);
       setProducto(response.data);
     });
   };
@@ -39,12 +39,12 @@ const useProducto = (id, onChange) => {
   const updateProducto = async (id, data) => {
     data.tienda_id = data.rol != 1 ? 0 : data.rol
     console.log( data)
-    await handleRequest(() => apiClient.put(`/producto/update/${id}`, data), "Producto actualizado");
+    await handleRequest(() => ApiClient.put(`/producto/update/${id}`, data), "Producto actualizado");
   };
 
   const deleteProducto = async (id) => {
     await handleRequest(async () => {
-      await apiClient.delete(`/producto/delete/${id}`);
+      await ApiClient.delete(`/producto/delete/${id}`);
       setProducto({});
     }, "Producto eliminado");
   };

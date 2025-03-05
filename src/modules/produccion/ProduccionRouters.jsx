@@ -19,14 +19,14 @@ const ProduccionRouters = () => (
       {/* Rutas de Telas */}
       <Route path="/telas" element={<Telas />} />
       <Route path="/telas/:tipo" element={<Tela />} />
-
+{/* 
         <Route path="/lotes" element={<Lotes />} />
         <Route path="/lotes/:id" element={<Layout />}>
             <Route path="corte" element={<Cortes />} />
             <Route path="lavanderia" element={<Lavanderia />} />
             <Route path="acabados" element={<Acabado />} />
             <Route path="almacen" element={<Almacen />} />
-        </Route>
+        </Route> */}
       <Route path="*" element={<ErrorView />} />
 
     </Routes>

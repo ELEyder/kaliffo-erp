@@ -1,4 +1,4 @@
-import { apiClient } from '../apiClient';
+import { ApiClient } from '../ApiClient';
 
 // Añadir una tienda http://localhost:3000/tienda/create
 export const addTienda = async (values) => {
@@ -9,7 +9,7 @@ export const addTienda = async (values) => {
   };
 
   try {
-    await apiClient.post(`/tienda/create`, Tienda);
+    await ApiClient.post(`/tienda/create`, Tienda);
   } catch (error) {
     console.log("Error al añadir la tienda", error);
   }
@@ -18,7 +18,7 @@ export const addTienda = async (values) => {
 // Obtener tienda por ID http://localhost:3000/tienda/1
 export const getTiendaById = async (id, setTienda) => {
   try {
-    const response = await apiClient.get(`/tienda/${id}`);
+    const response = await ApiClient.get(`/tienda/${id}`);
     setTienda(response.data);
   } catch (error) {
     console.log("Error al obtener la tienda", error);
@@ -34,7 +34,7 @@ export const updateTienda = async (id, values) => {
   };
 
   try {
-    await apiClient.put(`/tienda/update/${id}`, Tienda);
+    await ApiClient.put(`/tienda/update/${id}`, Tienda);
   } catch (error) {
     console.log(`Error al actualizar la tienda ID ${id}`, error);
   }
@@ -43,7 +43,7 @@ export const updateTienda = async (id, values) => {
 // Eliminar una tienda por ID http://localhost:3000/tienda/desactivar/1
 export const deleteTiendaById = async (id) => {
   try {
-    await apiClient.put(`/tienda/desactivar/${id}`);
+    await ApiClient.put(`/tienda/desactivar/${id}`);
   } catch (error) {
     console.log("Error al eliminar la tienda", error);
   }
@@ -52,7 +52,7 @@ export const deleteTiendaById = async (id) => {
 // Obtener todas las tiendas http://localhost:3000/tienda
 export const getTiendas = async (setTiendas) => {
   try {
-    const response = await apiClient.get(`/tienda`);
+    const response = await ApiClient.get(`/tienda`);
     setTiendas(response.data);
   } catch (error) {
     console.log("Error al obtener las tiendas", error);
@@ -62,7 +62,7 @@ export const getTiendas = async (setTiendas) => {
 // Obtener las tiendas asociadas a un producto http://localhost:3000/producto/detalle/1?tipo=tiendas
 export const getTiendasByProducto = async (id, setTiendas) => {
   try {
-    const response = await apiClient.get(`/producto/detalle/${id}?tipo=tiendas`);
+    const response = await ApiClient.get(`/producto/detalle/${id}?tipo=tiendas`);
     setTiendas(response.data);
   } catch (error) {
     console.log(`Error al obtener las tiendas asociadas al producto ID ${id}`, error);
@@ -72,7 +72,7 @@ export const getTiendasByProducto = async (id, setTiendas) => {
 // Establecer los valores para actualizar la tienda http://localhost:3000/tienda/1
 export const setUpdateTienda = async (id, form) => {
   try {
-    const response = await apiClient.get(`/tienda/${id}`);
+    const response = await ApiClient.get(`/tienda/${id}`);
     form.setFieldsValue({
       ["nombre"]: response.data.tienda,
       ["direccion"]: response.data.direccion,

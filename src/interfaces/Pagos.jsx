@@ -1,5 +1,5 @@
 import { Flex, Button, Popconfirm } from "antd";
-import { apiClient }from "../API/apiClient";
+import { ApiClient }from "../API/ApiClient";
 
 export const getColumnas = (reload) => {
   const columnas = [
@@ -58,7 +58,7 @@ export const getColumnas = (reload) => {
           okText="Confirmar" // Texto del botón de confirmación
           cancelText="Cancelar" // Texto del botón de cancelar
           onConfirm={async () => {
-            await apiClient.delete(`/pago/delete/${text}`);
+            await ApiClient.delete(`/pago/delete/${text}`);
             reload(); // Activar la recarga para actualizar los datos de la tabla
           }}
         >

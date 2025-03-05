@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useIncidencias = ( id ) => {
   const [incidencias, setIncidencias] = useState([]);
@@ -10,7 +10,7 @@ const useIncidencias = ( id ) => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await apiClient.get(`/incidencia?trabajador_id=${id}`);
+      const response = await ApiClient.get(`/incidencia?trabajador_id=${id}`);
       setIncidencias(response.data);
     } catch (error) {
       setError(error);

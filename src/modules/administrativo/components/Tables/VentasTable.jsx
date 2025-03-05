@@ -30,7 +30,7 @@ const VentasTable = () => {
               okText="Confirmar" // Texto para confirmar la eliminación
               onConfirm={ async(e) => {
                 e.stopPropagation(); // Evitar la propagación del evento
-                await apiClient.delete(`/trabajador/delete/${text}`); // Llamar a la función para eliminar la venta con el código proporcionado
+                await ApiClient.delete(`/trabajador/delete/${text}`); // Llamar a la función para eliminar la venta con el código proporcionado
                 reload()
               }}
               cancelText="NO" // Texto para cancelar la eliminación

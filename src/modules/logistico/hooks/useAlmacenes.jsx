@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useAlmacenes = () => {
   const [almacenes, setAlmacenes] = useState([]);
@@ -9,7 +9,7 @@ const useAlmacenes = () => {
   const getAlmacenes = async () => {
     setLoading(true);
     try {
-      const response = await apiClient.get(`almacen_producto`);
+      const response = await ApiClient.get(`almacen_producto`);
       setAlmacenes(response.data);
     } catch (error) {
       setError(error);

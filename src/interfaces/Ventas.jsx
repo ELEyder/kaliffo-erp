@@ -1,5 +1,5 @@
 import { Flex, Button, Popconfirm } from "antd";
-import { apiClient }from "../API/apiClient";
+import { ApiClient }from "../API/ApiClient";
 
 export const getColumnas = (reload) => {
   const columnas = [
@@ -29,7 +29,7 @@ export const getColumnas = (reload) => {
               okText="Confirmar" // Texto para confirmar la eliminación
               onConfirm={ async(e) => {
                 e.stopPropagation(); // Evitar la propagación del evento
-                await apiClient.delete(`/trabajador/delete/${text}`); // Llamar a la función para eliminar la venta con el código proporcionado
+                await ApiClient.delete(`/trabajador/delete/${text}`); // Llamar a la función para eliminar la venta con el código proporcionado
                 reload()
               }}
               cancelText="NO" // Texto para cancelar la eliminación

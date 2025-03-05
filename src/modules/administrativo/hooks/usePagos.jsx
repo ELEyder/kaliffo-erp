@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const usePagos = ( id ) => {
   const [pagos, setPagos] = useState([]);
@@ -11,7 +11,7 @@ const usePagos = ( id ) => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await apiClient.get(`/pago/${id}`);
+      const response = await ApiClient.get(`/pago/${id}`);
       setPagos(response.data.map(detalle => ({
         ...detalle,
         estado: estados[detalle.estado],

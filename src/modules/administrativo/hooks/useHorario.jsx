@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useHorario = ( onChange ) => {
@@ -25,7 +25,7 @@ const useHorario = ( onChange ) => {
 
   const deleteHorario = async (id) => {
     await handleRequest(async () => {
-      await apiClient.delete(`/asistencia/delete/${id}`);
+      await ApiClient.delete(`/asistencia/delete/${id}`);
     }, "Horario eliminado");
   };
   

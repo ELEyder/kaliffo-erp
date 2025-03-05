@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useStockPorColor = (id) => {
   const [colores, setColores] = useState([]);
@@ -9,7 +9,7 @@ const useStockPorColor = (id) => {
   const getColores = async () => {
     setLoading(true);
     try {
-      const response = await apiClient.get(`producto/detalle/${id}?tipo=colores`);
+      const response = await ApiClient.get(`producto/detalle/${id}?tipo=colores`);
       setColores(response.data);
     } catch (error) {
       setError(error);

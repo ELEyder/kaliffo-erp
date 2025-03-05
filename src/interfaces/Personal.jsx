@@ -1,5 +1,5 @@
 import { Flex, Button, Popconfirm } from "antd";
-import { apiClient }from "../API/apiClient";
+import { ApiClient }from "../API/ApiClient";
 
 export const getColumnas = (changeModal, setPersonal, reload) => {
   const columnas = [
@@ -42,7 +42,7 @@ export const getColumnas = (changeModal, setPersonal, reload) => {
               cancelText="NO" // Texto del botón de cancelar
               onConfirm={async (e) => {
                 e.stopPropagation()
-                await apiClient.delete(`/trabajador/delete/${record.trabajador_id}`);
+                await ApiClient.delete(`/trabajador/delete/${record.trabajador_id}`);
                 reload(); // Disparar una recarga después de la eliminación
               }}
             >

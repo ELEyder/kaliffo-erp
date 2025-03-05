@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useTrabajador = (id, onChange) => {
@@ -36,13 +36,13 @@ const useTrabajador = (id, onChange) => {
       tienda_id : values.tienda_id ?? 1
     };
     console.log("DATA:", data)
-    await handleRequest(() => apiClient.post(`/trabajador/create`, data), "Trabajador agregado");
+    await handleRequest(() => ApiClient.post(`/trabajador/create`, data), "Trabajador agregado");
   };
 
   const getTrabajador = async () => {
     if (!id) return;
     await handleRequest(async () => {
-      const response = await apiClient.get(`/trabajador/${id}`);
+      const response = await ApiClient.get(`/trabajador/${id}`);
       setTrabajador(response.data);
     });
   };
@@ -50,12 +50,12 @@ const useTrabajador = (id, onChange) => {
   const updateTrabajador = async (id, data) => {
     data.tienda_id = data.rol != 1 ? 1 : data.rol
     console.log( data)
-    await handleRequest(() => apiClient.put(`/trabajador/update/${id}`, data), "Trabajador actualizado");
+    await handleRequest(() => ApiClient.put(`/trabajador/update/${id}`, data), "Trabajador actualizado");
   };
 
   const deleteTrabajador = async (id) => {
     await handleRequest(async () => {
-      await apiClient.delete(`/trabajador/delete/${id}`);
+      await ApiClient.delete(`/trabajador/delete/${id}`);
       setTrabajador({});
     }, "Trabajador eliminado");
   };

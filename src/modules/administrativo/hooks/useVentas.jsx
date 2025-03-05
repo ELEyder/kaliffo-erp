@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useVentas = ( tipo = '' ) => {
   const [ventas, setVentas] = useState([]);
@@ -10,7 +10,7 @@ const useVentas = ( tipo = '' ) => {
     setLoading(true);
     try {
       let url = `/venta?tipoComprobante=${tipo==="boleta"?1:2}`;
-      const response = await apiClient.get(url);
+      const response = await ApiClient.get(url);
       setVentas(data);
     
     } catch (error) {

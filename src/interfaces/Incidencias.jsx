@@ -1,5 +1,5 @@
 import { Flex, Button, Popconfirm } from "antd";
-import { apiClient }from "../API/apiClient";
+import { ApiClient }from "../API/ApiClient";
 
 export const getColumnas = (changeModal, setIncidencia, reload) => {
   const columnas = [
@@ -57,7 +57,7 @@ export const getColumnas = (changeModal, setIncidencia, reload) => {
               okText="Confirmar"
               cancelText="Cancelar"
               onConfirm={async () => {
-                await apiClient.delete(`/incidencia/delete/${record.incidencia_id}`);
+                await ApiClient.delete(`/incidencia/delete/${record.incidencia_id}`);
                 reload(); // Activar la recarga después de la eliminación
               }}
             >

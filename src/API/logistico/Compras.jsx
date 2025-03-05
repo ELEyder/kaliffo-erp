@@ -1,4 +1,4 @@
-import { apiClient } from '../ApiClient';
+import { ApiClient } from '../ApiClient';
 
 /**
  * Obtiene la lista de compras y actualiza el estado.
@@ -6,7 +6,7 @@ import { apiClient } from '../ApiClient';
  */
 export const getCompras = async (setCompras) => {
   try {
-    const { data } = await apiClient.get("/compra");
+    const { data } = await ApiClient.get("/compra");
     setCompras(data);
   } catch (error) {
     console.error("Error al obtener las compras:", error);
@@ -19,7 +19,7 @@ export const getCompras = async (setCompras) => {
  */
 export const getComprasDetalle = async (setCompraDetalle, id) => {
   try {
-    const { data } = await apiClient.get(`/compra/detalle/${id}`);
+    const { data } = await ApiClient.get(`/compra/detalle/${id}`);
     setCompraDetalle(data);
   } catch (error) {
     console.error("Error al obtener el detalle de la compra:", error);
@@ -32,7 +32,7 @@ export const getComprasDetalle = async (setCompraDetalle, id) => {
  */
 export const getEmpresas = async (setEmpresas) => {
   try {
-    const { data } = await apiClient.get("/compra/empresas");
+    const { data } = await ApiClient.get("/compra/empresas");
     setEmpresas(data);
   } catch (error) {
     console.error("Error al obtener las empresas:", error);
@@ -45,7 +45,7 @@ export const getEmpresas = async (setEmpresas) => {
  */
 export const getProductos = async (setProductos) => {
   try {
-    const { data } = await apiClient.get("/compra/productos");
+    const { data } = await ApiClient.get("/compra/productos");
     setProductos(data);
   } catch (error) {
     console.error("Error al obtener los productos:", error);
@@ -67,7 +67,7 @@ export const addCompra = async (values) => {
   };
 
   try {
-    await apiClient.post("/compra/create", compra);
+    await ApiClient.post("/compra/create", compra);
     return("add", "Compra añadida exitosamente");
   } catch (error) {
     return("error", "Error al añadir la compra");
@@ -80,7 +80,7 @@ export const addCompra = async (values) => {
  */
 export const eliminarCompra = async (compra_id) => {
   try {
-    await apiClient.delete(`/compra/delete/${compra_id}`);
+    await ApiClient.delete(`/compra/delete/${compra_id}`);
     return("delete", "Compra eliminada exitosamente");
     return true;
   } catch (error) {
@@ -123,7 +123,7 @@ export const updateCompra = async (id, values, originales) => {
   }
 
   try {
-    await apiClient.put(`/compra/update/${id}`, valoresNuevos);
+    await ApiClient.put(`/compra/update/${id}`, valoresNuevos);
     console.log("Compra actualizada exitosamente");
   } catch (error) {
     console.log("Error al actualizar la compra");

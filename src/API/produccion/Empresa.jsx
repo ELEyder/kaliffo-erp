@@ -1,4 +1,4 @@
-import { apiClient } from '../apiClient';
+import { ApiClient } from '../ApiClient';
 
 /**
  * Obtiene la lista de empresas relacionadas con las telas.
@@ -6,7 +6,7 @@ import { apiClient } from '../apiClient';
  */
 export const getEmpresas = async (setData) => {
   try {
-    const response = await apiClient.get(`/telas/empresas`, { withCredentials: true });
+    const response = await ApiClient.get(`/telas/empresas`, { withCredentials: true });
     setData(response.data || []);
   } catch (error) {
     console.error("Error al obtener las empresas:", error);

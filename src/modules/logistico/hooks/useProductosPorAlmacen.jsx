@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useProductosPorAlmacen = ({ id }) => {
   const [productos, setProductos] = useState([]);
@@ -9,7 +9,7 @@ const useProductosPorAlmacen = ({ id }) => {
   const getProductos = async () => {
     setLoading(true);
     try {
-      const response = await apiClient.get(`producto?almacen_id=${id}`);
+      const response = await ApiClient.get(`producto?almacen_id=${id}`);
       setProductos(response.data);
     } catch (error) {
       setError(error);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useHorarios = ( id ) => {
   const [horarios, setHorarios] = useState([]);
@@ -10,7 +10,7 @@ const useHorarios = ( id ) => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await apiClient.get(`/asistencia?usuario_id=${id}`);
+      const response = await ApiClient.get(`/asistencia?usuario_id=${id}`);
       setHorarios(response.data);
       setError(error);
     } finally {

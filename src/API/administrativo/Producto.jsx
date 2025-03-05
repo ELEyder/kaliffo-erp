@@ -1,4 +1,4 @@
-import { apiClient } from '../apiClient';
+import { ApiClient } from '../ApiClient';
 
 // Añadir un producto http://localhost:3000/producto/create
 export const addProducto = async (values) => {
@@ -9,7 +9,7 @@ export const addProducto = async (values) => {
     stockTotal: 0
   }
   try {
-    await apiClient.post(`/producto/create`, Producto)
+    await ApiClient.post(`/producto/create`, Producto)
   } catch (error) {
     console.log(`Error al añadir un nuevo producto:`,error);
   }
@@ -17,7 +17,7 @@ export const addProducto = async (values) => {
 
 // Obtener un producto por su ID http://localhost:3000/producto/1
 export const getProductoById = async (id, setProducto) => {
-  const response = await apiClient.get(`/producto/${id}`)
+  const response = await ApiClient.get(`/producto/${id}`)
   setProducto(response.data)
 }
 
@@ -29,7 +29,7 @@ export const updateProducto = async (id, values) => {
     descuento : values.descuento,
   }
   try{
-    await apiClient.put(`/producto/update/${id}`, Producto)
+    await ApiClient.put(`/producto/update/${id}`, Producto)
   } catch (error) {
     console.log(`Error al actualizar el producto con ID ${id}:`, error);
   }
@@ -39,7 +39,7 @@ export const updateProducto = async (id, values) => {
 export const deleteProductoById = async (id, values) => {
   if (values.campo != "ACEPTO") return
   try {
-    await apiClient.put(`/producto/desactivar/${id}`)
+    await ApiClient.put(`/producto/desactivar/${id}`)
   } catch (error) {
     console.log(`Error al eliminar el producto ID ${id}:`, error)
   }
@@ -48,7 +48,7 @@ export const deleteProductoById = async (id, values) => {
 // Obtener los productos http://localhost:3000/producto
 export const getProductos = async (setProductos) => {
   try {
-    const response = await apiClient.get(`/producto`)
+    const response = await ApiClient.get(`/producto`)
     setProductos(response.data)
   } catch (error) {
     console.log(`Error al obtener los productos:`, error)
@@ -58,7 +58,7 @@ export const getProductos = async (setProductos) => {
 // Obtener los productos de una tienda http://localhost:3000/producto?tienda_id=1
 export const getProductosByTienda = async (id, setProductos) => {
   try {
-    const response = await apiClient.get(`/producto?tienda_id=${id}`)
+    const response = await ApiClient.get(`/producto?tienda_id=${id}`)
     setProductos(response.data)
   } catch (error) {
     console.log(`Error al obtener los productos de la tienda ID ${id}:`, error)
@@ -68,7 +68,7 @@ export const getProductosByTienda = async (id, setProductos) => {
 // Obtener los productos nuevos a agregar http://localhost:3000/producto?loose_id=1 (Descontinuado)
 export const getProductosNuevos = async (id, setProductos) => {
   try {
-    const response = await apiClient.get(`/producto?loose_id=${id}`);
+    const response = await ApiClient.get(`/producto?loose_id=${id}`);
     setProductos(response.data);
   } catch (error) {
     console.log(`Error al obtener los productos nuevos de la tienda ID ${id}:`, error)
@@ -78,7 +78,7 @@ export const getProductosNuevos = async (id, setProductos) => {
 // Añade el detalle a los productos http://localhost:3000/producto/create/detalle?tienda_id=1 (Descontinuado)
 export const addProductoDetalle = async (tiendaId, Producto) => {
   try {
-    await apiClient.post(`/producto/create/detalle?tienda_id=${tiendaId}`, Producto)
+    await ApiClient.post(`/producto/create/detalle?tienda_id=${tiendaId}`, Producto)
   } catch (error) {
     console.log(`Error al añadir detaller a los productos de la tienda ID ${tiendaId}:`, error)
   }
@@ -88,7 +88,7 @@ export const addProductoDetalle = async (tiendaId, Producto) => {
 // http://localhost:3000/producto/detalle/1?tipo=colores&tienda_id=1
 export const getColoresDetalleProducto = async (tipo,id,idp, setDetalles) => {
   try {
-    const response = await apiClient.get(`/producto/detalle/${id}?tipo=colores&${tipo}=${idp}`);
+    const response = await ApiClient.get(`/producto/detalle/${id}?tipo=colores&${tipo}=${idp}`);
     setDetalles(response.data);
   } catch (error) {
     console.log(`Error al obtener los colores detallados del producto ID ${idp} de la tienda ID ${id}:`, error)
@@ -99,7 +99,7 @@ export const getColoresDetalleProducto = async (tipo,id,idp, setDetalles) => {
 // http://localhost:3000/producto/talla/1
 export const getTallasColoresProductos = async (idD, setTallas) => {
   try {
-    const response = await apiClient.get(`/producto/talla/${idD}`);
+    const response = await ApiClient.get(`/producto/talla/${idD}`);
     setTallas(response.data);
   } catch (error) {
     console.log(`Error al obtener las tallas de los colores del producto detalle ${idD}:`, error)
@@ -110,7 +110,7 @@ export const getTallasColoresProductos = async (idD, setTallas) => {
 // http://localhost:3000/producto/detalle/1?tipo=tallas&talla=32
 export const getColoresTallaProducto = async (id,talla, setColores) => {
   try {
-    const response = await apiClient.get(`/producto/detalle/${id}?tipo=tallas&talla=${talla}`);
+    const response = await ApiClient.get(`/producto/detalle/${id}?tipo=tallas&talla=${talla}`);
     setColores(response.data);
   } catch (error) {
     console.log(`Error al obtener los colores de la talla ${talla} del producto ID ${id}:`, error)
@@ -119,14 +119,14 @@ export const getColoresTallaProducto = async (id,talla, setColores) => {
 
 // Obtiene los productos de un Lote http://localhost:3000/lotes/productos/1
 export const getProductoByLote = async (id, setProductos) => {
-  const response = await apiClient.get(`/lotes/productos/${id}`)
+  const response = await ApiClient.get(`/lotes/productos/${id}`)
   setProductos(response.data)
 }
 
 //obtener producto simple usando el codigo 
 export const getProductoSimpleCodigoBarras = async (codigo,tipo,id)=>{
   try {
-    const response = await apiClient.get(`/producto/codigo_simple/${codigo}?${tipo}=${id}`)
+    const response = await ApiClient.get(`/producto/codigo_simple/${codigo}?${tipo}=${id}`)
     return response.data
   } catch (error) {    
     return("error","ERROR AL OBTENER LOS DATOS")
@@ -136,7 +136,7 @@ export const getProductoSimpleCodigoBarras = async (codigo,tipo,id)=>{
 //obtener producto detalle usando el codigo 
 export const getProductoCompletoCodigoBarras = async (codigo)=>{
   try {
-    const response = await apiClient.get(`/producto/codigo_completo/${codigo}`)
+    const response = await ApiClient.get(`/producto/codigo_completo/${codigo}`)
     return response.data
   } catch (error) {    
     return("error","ERROR AL OBTENER LOS DATOS")
@@ -146,7 +146,7 @@ export const getProductoCompletoCodigoBarras = async (codigo)=>{
 // Prepara el actualizar producto http://localhost:3000/producto/1
 export const setUpdateProducto = async (id, form) => {
   try {
-    const response = await apiClient.get(`/producto/${id}`);
+    const response = await ApiClient.get(`/producto/${id}`);
     const data = response.data;
     form.setFieldsValue({
       ["nombre"]: data.nombre,

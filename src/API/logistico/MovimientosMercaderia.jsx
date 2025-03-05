@@ -1,8 +1,8 @@
-import { apiClient } from '../ApiClient';
+import { ApiClient } from '../ApiClient';
 
 export const getMovimientos = async(setMovimientos) =>{
   try {
-    const response = await apiClient.get(`/movimiento/`);
+    const response = await ApiClient.get(`/movimiento/`);
     setMovimientos(response.data)
   } catch (error) {
     setMovimientos([])
@@ -11,7 +11,7 @@ export const getMovimientos = async(setMovimientos) =>{
 
 export const getMovimientoDetalle = async(setMovimiento,tipo,idM)=>{
   try {
-    const response = await apiClient.get(`/movimiento/detalle/${idM}?tipo=${tipo}`)
+    const response = await ApiClient.get(`/movimiento/detalle/${idM}?tipo=${tipo}`)
     setMovimiento(response.data)
   } catch (error) {
     setMovimiento([])
@@ -25,7 +25,7 @@ export const createMovimiento_Almacen_Tienda = async (values, productos) => {
     detalle: productos,
   };
   try {
-    await apiClient.post(`/movimiento/create?tipo=AT`, movimiento_AT);
+    await ApiClient.post(`/movimiento/create?tipo=AT`, movimiento_AT);
   } catch (error) {
     console.log("Error al añadir la tienda", error);
   }

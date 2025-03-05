@@ -1,4 +1,4 @@
-import { apiClient } from '../apiClient';
+import { ApiClient } from '../ApiClient';
 
 /**
  * Obtiene los datos de un corte por lote ID.
@@ -6,7 +6,7 @@ import { apiClient } from '../apiClient';
  */
 export const getCorte = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
+    const response = await ApiClient.get(`/corte/lote/${id}`, { withCredentials: true });
 
     setData(response.data || []);
   } catch (error) {
@@ -25,7 +25,7 @@ export const getCorte = async (id, setData) => {
  */
 export const getCorteDiferido = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}?tipo=diferido`, { withCredentials: true });
+    const response = await ApiClient.get(`/corte/lote/${id}?tipo=diferido`, { withCredentials: true });
 
     setData(response.data || []);
   } catch (error) {
@@ -49,7 +49,7 @@ export const addCorte = async (id, data) => {
     taller_id: detalle.taller_id ?? null,
   }));
   try {
-    var response = await apiClient.post(`/corte/create/array/${id}`, data);
+    var response = await ApiClient.post(`/corte/create/array/${id}`, data);
   } catch (error) {
     console.error("Error al añadir el corte:", error);
   }
@@ -61,7 +61,7 @@ export const addCorte = async (id, data) => {
  */
 export const getChangeCorte = async (id, setData, form) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
+    const response = await ApiClient.get(`/corte/lote/${id}`, { withCredentials: true });
 
     const detallesActualizados = response.data.map(detalle => ({
       detallesCorte: `Taller Asignado: ${detalle.taller} | Producto: ${detalle.producto} | Talla: ${detalle.talla}`,
@@ -84,7 +84,7 @@ export const getChangeCorte = async (id, setData, form) => {
  */
 export const getAddTaller = async (id, setData, form) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
+    const response = await ApiClient.get(`/corte/lote/${id}`, { withCredentials: true });
 
     const detallesActualizados = response.data.map(detalle => ({
       datos_corte: `Producto: ${detalle.producto} | Cantidad: ${detalle.cantidad_enviada} | Talla: ${detalle.talla}`,
@@ -111,7 +111,7 @@ export const deleteCorte = async (id, estado) => {
   }
 
   try {
-    await apiClient.put(`/corte/desactivar/${id}`);
+    await ApiClient.put(`/corte/desactivar/${id}`);
   } catch (error) {
     console.error("Error al eliminar el corte:", error);
   }
@@ -123,7 +123,7 @@ export const deleteCorte = async (id, estado) => {
  */
 export const getStatusCorte = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/corte/lote/${id}`);
+    const response = await ApiClient.get(`/corte/lote/${id}`);
 
     if (response.data.length === 0) {
       setData(0);
@@ -143,7 +143,7 @@ export const getStatusCorte = async (id, setData) => {
 export const changeStatusCorte = async (id, data = null) => {
   try {
     if (!data) {
-      const response = await apiClient.get(`/corte/lote/${id}`, { withCredentials: true });
+      const response = await ApiClient.get(`/corte/lote/${id}`, { withCredentials: true });
       data = response.data;
     }
 
@@ -153,7 +153,7 @@ export const changeStatusCorte = async (id, data = null) => {
       taller_id: detalle.taller_id,
     }));
 
-    await apiClient.put(`/corte/sgte/lote/${id}`, { detalles: values }, { withCredentials: true });
+    await ApiClient.put(`/corte/sgte/lote/${id}`, { detalles: values }, { withCredentials: true });
   } catch (error) {
     console.error("Error al cambiar el estado del corte:", error);
   }
@@ -166,11 +166,11 @@ export const changeStatusCorte = async (id, data = null) => {
 export const getTaller = async (id, values = null) => {
   try {
     if (!values) {
-      const response = await apiClient.get(`/corte/lote/${id}`);
+      const response = await ApiClient.get(`/corte/lote/${id}`);
       values = response.data;
     }
 
-    await apiClient.put(`/corte/sgte/lote/${id}`, { detalles: values });
+    await ApiClient.put(`/corte/sgte/lote/${id}`, { detalles: values });
   } catch (error) {
     console.error("Error al enviar los datos del taller:", error);
   }

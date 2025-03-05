@@ -1,10 +1,10 @@
-import { apiClient } from "../apiClient";
-import { apiClientFiles } from "../apiClient";
+import { ApiClient } from "../ApiClient";
+import { ApiClientFiles } from "../ApiClient";
 
 // Obtener todas las telas
 export const getTelas = async (setData) => {
   try {
-    const response = await apiClient.get(`/tela/`);
+    const response = await ApiClient.get(`/tela/`);
     setData(response.data);
   } catch (error) {
     console.error("Error al obtener las telas:", error);
@@ -15,7 +15,7 @@ export const getTelas = async (setData) => {
 // Obtener telas activas por tipo
 export const getTelasActivas = async (tipo, setData) => {
   try {
-    const response = await apiClient.get(`/tela/${tipo}`, {
+    const response = await ApiClient.get(`/tela/${tipo}`, {
       params: { estado: 1 },
     });
 
@@ -40,7 +40,7 @@ export const getTelasActivas = async (tipo, setData) => {
 // Obtener telas inactivas por tipo
 export const getTelasInactivas = async (tipo, setData) => {
   try {
-    const response = await apiClient.get(`/tela/${tipo}`, {
+    const response = await ApiClient.get(`/tela/${tipo}`, {
       params: { estado: 0 },
     });
 
@@ -66,7 +66,7 @@ export const getTelasInactivas = async (tipo, setData) => {
 // Obtener tipos de tela
 export const getTelaID = async (id) => {
   try {
-    const response = await apiClient.get(`/tela/codigos/${id}`);
+    const response = await ApiClient.get(`/tela/codigos/${id}`);
     return response.data
   } catch (error) {
     console.error("Error al obtener tipos de tela:", error);
@@ -77,7 +77,7 @@ export const getTelaID = async (id) => {
 // Obtener tipos de tela
 export const getTiposTela = async (setTelas) => {
   try {
-    const response = await apiClient.get(`/tela/tipo`);
+    const response = await ApiClient.get(`/tela/tipo`);
     setTelas(response.data);
   } catch (error) {
     console.error("Error al obtener tipos de tela:", error);
@@ -90,7 +90,7 @@ export const addTelas = async (Archivos) => {
   const formdata = new FormData();
   formdata.append("file",Archivos[0])
   try {
-    const response = await apiClientFiles.post(`/tela/create`, formdata);
+    const response = await ApiClientFiles.post(`/tela/create`, formdata);
     return response;
   } catch (error) {
     console.error("Error al agregar la tela:", error);
@@ -100,7 +100,7 @@ export const addTelas = async (Archivos) => {
 // Desactivar (eliminar lógicamente) tela por ID
 export const deleteTelaById = async (id) => {
   try {
-    await apiClient.put(`/tela/desactivar/${id}`);
+    await ApiClient.put(`/tela/desactivar/${id}`);
     return("delete", "Tela desactivada correctamente");
   } catch (error) {
     console.error("Error al desactivar la tela:", error);
@@ -111,7 +111,7 @@ export const deleteTelaById = async (id) => {
 //obtener pdf con los codigos de barras
 export const getCodigosBarras = async(id_lote)=>{
   try {
-    const response = await apiClient.get(`/tela/imprimir/${id_lote}`, { responseType: 'blob' });
+    const response = await ApiClient.get(`/tela/imprimir/${id_lote}`, { responseType: 'blob' });
 
     const pdf = response.data;
     const url = window.URL.createObjectURL(pdf);

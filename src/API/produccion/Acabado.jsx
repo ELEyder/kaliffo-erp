@@ -1,9 +1,9 @@
-import { apiClient } from "../apiClient";
+import { ApiClient } from "../ApiClient";
 
 // Obtener acabados por lote
 export const getAcabadoByLote = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/taller/lote/${id}`);
+    const response = await ApiClient.get(`/taller/lote/${id}`);
     setData(response.data);
   } catch (error) {
     if (error.response && error.response.status === 404) {
@@ -18,7 +18,7 @@ export const getAcabadoByLote = async (id, setData) => {
 // Añadir acabado
 export const addAcabado = async (data) => {
   try {
-    await apiClient.post(`/taller/create`, data);
+    await ApiClient.post(`/taller/create`, data);
     return("add", "Lavandería añadida correctamente");
   } catch (error) {
     console.error("Error al añadir acabado:", error);
@@ -29,7 +29,7 @@ export const addAcabado = async (data) => {
 // Obtener y cambiar detalles de acabado
 export const getChangeAcabado = async (id, setData, form) => {
   try {
-    const response = await apiClient.get(`/taller/lote/${id}`);
+    const response = await ApiClient.get(`/taller/lote/${id}`);
     const data = response.data;
 
     const detallesConNuevoParametro = data.map((detalle) => ({
@@ -55,7 +55,7 @@ export const getChangeAcabado = async (id, setData, form) => {
 // Desactivar (eliminar lógicamente) taller por ID
 export const deleteTaller = async (id) => {
   try {
-    await apiClient.put(`/taller/desactivar/${id}`);
+    await ApiClient.put(`/taller/desactivar/${id}`);
     return("delete", "Corte eliminado correctamente");
   } catch (error) {
     console.error("Error al eliminar el taller:", error);
@@ -67,7 +67,7 @@ export const deleteTaller = async (id) => {
 export const changeStatusAcabado = async (id, data = null, params = null) => {
   try {
     if (!data) {
-      const response = await apiClient.get(`/taller/lote/${id}`);
+      const response = await ApiClient.get(`/taller/lote/${id}`);
       data = response.data;
     }
 
@@ -78,7 +78,7 @@ export const changeStatusAcabado = async (id, data = null, params = null) => {
 
     const Lote = { detalles: values };
 
-    await apiClient.post(`/taller/sgte/${id}`, Lote, {
+    await ApiClient.post(`/taller/sgte/${id}`, Lote, {
       params,
     });
 

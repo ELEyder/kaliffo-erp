@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useAlmacen = (onChange) => {
@@ -26,7 +26,7 @@ const useAlmacen = (onChange) => {
   const getAlmacen = async (id) => {
     if (!id) return;
     await handleRequest(async () => {
-      const response = await apiClient.get(`/almacen_producto/${id}`);
+      const response = await ApiClient.get(`/almacen_producto/${id}`);
       setAlmacen(response.data);
     });
   };

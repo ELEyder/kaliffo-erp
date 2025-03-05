@@ -1,4 +1,4 @@
-import { apiClient } from '../apiClient';
+import { ApiClient } from '../ApiClient';
 
 /**
  * Realiza la autenticación del usuario enviando los datos de login al servidor.
@@ -6,7 +6,7 @@ import { apiClient } from '../apiClient';
  */
 export const loginApi = async (values) => {
   try {
-    const response = await apiClient.post("/usuario/login", values); // Realizar petición POST al servidor con los datos de login
+    const response = await ApiClient.post("/usuario/login", values); // Realizar petición POST al servidor con los datos de login
 
     return {
       ok: true,

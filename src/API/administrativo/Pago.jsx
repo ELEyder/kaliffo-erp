@@ -1,4 +1,4 @@
-import { apiClient } from '../apiClient';
+import { ApiClient } from '../ApiClient';
 
 // Añadir pago a trabajador http://localhost:3000/pago/create (No creado)
 export const addPago = async (id, data) => {
@@ -8,7 +8,7 @@ export const addPago = async (id, data) => {
         descripcion: data.descripcion,
         usuario_id: Number(id),
       };
-      await apiClient.post(`/pago/create`, Pago);
+      await ApiClient.post(`/pago/create`, Pago);
     } catch (error) {
       console.error("Error al añadir el pago:", error);
     }
@@ -18,7 +18,7 @@ export const addPago = async (id, data) => {
 export const getPagosByTrabajador = async (id, setPagos)  => {
     try{
         const estados = ["Pagado", "En Proceso"]
-        const response = await apiClient.get(`/pago/${id}`)
+        const response = await ApiClient.get(`/pago/${id}`)
         const pagos = response.data
         const pagosNormalizados = pagos.map(detalle => {
             return {
@@ -35,7 +35,7 @@ export const getPagosByTrabajador = async (id, setPagos)  => {
 // Elimina un pago http://localhost:3000/pago/delete/1
 export const deletePagoById = async (id) => {
     try{
-        await apiClient.delete(`http://localhost:3000/pago/delete/${id}`)
+        await ApiClient.delete(`http://localhost:3000/pago/delete/${id}`)
     } catch (error) {
         console.error("Error al eliminar el pago:", error);
     }

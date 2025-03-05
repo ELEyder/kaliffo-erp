@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 
 const useTrabajadores = ( params = '' ) => {
   const [trabajadores, setTrabajadores] = useState([]);
@@ -13,7 +13,7 @@ const useTrabajadores = ( params = '' ) => {
     try {
       let url = `/trabajador${params}`;
       
-      const response = await apiClient.get(url);
+      const response = await ApiClient.get(url);
       const data = response.data.map((trabajador) =>{
         return {
           ...trabajador,

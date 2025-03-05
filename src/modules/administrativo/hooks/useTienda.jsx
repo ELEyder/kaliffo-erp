@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useTienda = (onChange) => {
@@ -33,7 +33,7 @@ const useTienda = (onChange) => {
       telefono: values.telefono,
     };
     await handleRequest(
-      () => apiClient.post(`/tienda/create`, data),
+      () => ApiClient.post(`/tienda/create`, data),
       "Tienda agregada"
     );
   };
@@ -41,21 +41,21 @@ const useTienda = (onChange) => {
   const getTienda = async (id) => {
     if (!id) return;
     await handleRequest(async () => {
-      const response = await apiClient.get(`/tienda/${id}`);
+      const response = await ApiClient.get(`/tienda/${id}`);
       setTienda(response.data);
     });
   };
 
   const updateTienda = async (id, data) => {
     await handleRequest(
-      () => apiClient.put(`/tienda/update/${id}`, data),
+      () => ApiClient.put(`/tienda/update/${id}`, data),
       "Tienda actualizada"
     );
   };
 
   const deleteTienda = async (id) => {
     await handleRequest(async () => {
-      await apiClient.put(`/tienda/desactivar/${id}`);
+      await ApiClient.put(`/tienda/desactivar/${id}`);
     }, "Tienda eliminada");
   };
 

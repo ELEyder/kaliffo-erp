@@ -1,9 +1,9 @@
-import { apiClient } from "../apiClient";
+import { ApiClient } from "../ApiClient";
 
 // Obtener Fase del Lote
 export const getFaseLote = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/lotes/${id}`);
+    const response = await ApiClient.get(`/lotes/${id}`);
     const data = response.data;
     console.log("Fase:", data.estado);
     setData(data.estado);
@@ -24,7 +24,7 @@ export const getStatus = async (id, fase , setStatus) => {
   if (!url) return setStatus(0);
 
   try {
-    const response = await apiClient.get(url);
+    const response = await ApiClient.get(url);
     const data = response.data;
 
     if (data.length === 0) {
@@ -42,7 +42,7 @@ export const getStatus = async (id, fase , setStatus) => {
 // Eliminar Lote por ID
 export const deleteLoteById = async (id) => {
   try {
-    await apiClient.delete(`/lotes/delete/${id}`);
+    await ApiClient.delete(`/lotes/delete/${id}`);
     return("delete", "Lote eliminado correctamente");
   } catch (error) {
     console.error("Error al eliminar el lote:", error);
@@ -53,7 +53,7 @@ export const deleteLoteById = async (id) => {
 // Obtener todos los lotes
 export const getLotes = async (setData) => {
   try {
-    const response = await apiClient.get(`/lotes`);
+    const response = await ApiClient.get(`/lotes`);
     const data = response.data;
     const dataNormal = data.map((lote) => ({
       ...lote,
@@ -80,7 +80,7 @@ export const addLote = async (values,ids,total) => {
       productos: productos,
     };
 
-    await apiClient.post(`/lotes/create`, lote);
+    await ApiClient.post(`/lotes/create`, lote);
     return("add", "Lote añadido correctamente");
   } catch (error) {
     console.error("Error al añadir el lote:", error);

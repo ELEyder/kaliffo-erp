@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiClient } from "../../../API/apiClient";
+import { ApiClient } from "../../../API/ApiClient";
 import { useNotification } from "../../../provider/NotificationProvider";
 
 const useIncidencia = (onChange) => {
@@ -30,16 +30,16 @@ const useIncidencia = (onChange) => {
       trabajador_id: id,
     }
     console.log("Values", values)
-    await handleRequest(() => apiClient.post(`/incidencia/create`, values), "Incidencia agregada");
+    await handleRequest(() => ApiClient.post(`/incidencia/create`, values), "Incidencia agregada");
   };
 
   const updateIncidencia = async (id, data) => {
-    await handleRequest(() => apiClient.put(`/incidencia/update/${id}`, data), "Trabajador actualizado");
+    await handleRequest(() => ApiClient.put(`/incidencia/update/${id}`, data), "Trabajador actualizado");
   };
 
   const deleteIncidencia = async (id) => {
     await handleRequest(async () => {
-      await apiClient.delete(`/incidencia/delete/${id}`);
+      await ApiClient.delete(`/incidencia/delete/${id}`);
       setIncidencia({});
     }, "Incidencia eliminada");
   };

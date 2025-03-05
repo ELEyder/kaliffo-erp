@@ -1,9 +1,9 @@
-import { apiClient } from "../apiClient";
+import { ApiClient } from "../ApiClient";
 
 // Obtener lavandería por lote
 export const getLavanderia = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/lavanderia/lote/${id}`);
+    const response = await ApiClient.get(`/lavanderia/lote/${id}`);
     setData(response.data);
   } catch (error) {
     if (error.response && error.response.status === 404) {
@@ -18,7 +18,7 @@ export const getLavanderia = async (id, setData) => {
 // Añadir lavandería
 export const addLavanderia = async (id, data) => {
   try {
-    await apiClient.post(`/lavanderia/create/array/${id}`, data, {
+    await ApiClient.post(`/lavanderia/create/array/${id}`, data, {
       withCredentials: true,
     });
     return("add", "Lavandería añadida correctamente");
@@ -31,7 +31,7 @@ export const addLavanderia = async (id, data) => {
 // Obtener y cambiar detalles de lavandería
 export const getChangeLavanderia = async (id, setData, form) => {
   try {
-    const response = await apiClient.get(`/lavanderia/lote/${id}`);
+    const response = await ApiClient.get(`/lavanderia/lote/${id}`);
     const data = response.data;
 
     const detallesConNuevoParametro = data.map((detalle) => ({
@@ -57,7 +57,7 @@ export const getChangeLavanderia = async (id, setData, form) => {
 // Desactivar (eliminar lógicamente) corte
 export const deleteCorte = async (id) => {
   try {
-    await apiClient.put(`/cortes/desactivar/${id}`);
+    await ApiClient.put(`/cortes/desactivar/${id}`);
     return("delete", "Corte eliminado correctamente");
   } catch (error) {
     console.error("Error al eliminar el corte:", error);
@@ -68,7 +68,7 @@ export const deleteCorte = async (id) => {
 // Obtener estado de lavandería
 export const getStatusLavanderia = async (id, setData) => {
   try {
-    const response = await apiClient.get(`/lavanderia/lote/${id}`, {
+    const response = await ApiClient.get(`/lavanderia/lote/${id}`, {
       withCredentials: true,
     });
     const data = response.data;
@@ -90,7 +90,7 @@ export const changeStatusLavanderia = async (id, data = null) => {
   try {
     // Si no se pasan datos, obtenerlos desde el API
     if (!data) {
-      const response = await apiClient.get(`/lavanderia/lote/${id}`, {
+      const response = await ApiClient.get(`/lavanderia/lote/${id}`, {
         withCredentials: true,
       });
       data = response.data;
@@ -108,7 +108,7 @@ export const changeStatusLavanderia = async (id, data = null) => {
     console.log("Lavandería:", Lote);
 
     // Solicitud PUT
-    await apiClient.put(`/lavanderia/sgte/lote/${id}`, Lote);
+    await ApiClient.put(`/lavanderia/sgte/lote/${id}`, Lote);
     return("add", "Estado actualizado correctamente");
   } catch (error) {
     console.error("Error en la función changeStatusLavanderia:", error);
