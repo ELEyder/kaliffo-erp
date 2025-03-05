@@ -23,7 +23,7 @@ const ErrorView = () => {
                     </h2>
 
                     {/* Enlace para redirigir al usuario a la página principal */}
-                    <Link to={"/trabajadores/tipo/ventas"}>Ir a la página principal</Link>
+                    <Link to={"/administrativo/trabajadores"}>Ir a la página principal</Link>
                 </div>
             </div>
         </>

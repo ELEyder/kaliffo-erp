@@ -11,7 +11,7 @@ const Lavanderia = lazy(() => import("../Components/produccion/lotes/LavanderiaT
 const Acabado = lazy(() => import("../Components/produccion/lotes/AcabadoTable"));
 const Almacen = lazy(() => import("../Views/Lote/Almacen"));
 
-const produccion = () => (
+const ProduccionRouters = () => (
     <>
         {/* Rutas de Telas */}
         <Route path="/telas" element={<Telas />} />
@@ -28,4 +28,4 @@ const produccion = () => (
     </>
 );
 
-export default produccion;
+export default ProduccionRouters;

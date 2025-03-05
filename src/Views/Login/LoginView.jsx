@@ -32,13 +32,13 @@ const LoginView = () => {
         const response = await loginApi(formData); // Llama a la API de login
         if (response.ok) {
             login(response.userData); // Si el login es exitoso, guarda la información del usuario
-            navigate("/trabajadores/tipo/ventas"); // Redirige al usuario al panel de administración
+            navigate("/administrativo/trabajadores"); // Redirige al usuario al panel de administración
         } else {
             openNotification("Dni o contraseña incorrectos."); // Muestra notificación en caso de error
         }
     };
     return (user && usernames.includes(user.rol ?? '')) ? (
-        <Navigate to={'/trabajadores/tipo/ventas'}/>
+        <Navigate to={'/administrativo/trabajadores'}/>
     ) :
         (
         <div className={styles.body}>

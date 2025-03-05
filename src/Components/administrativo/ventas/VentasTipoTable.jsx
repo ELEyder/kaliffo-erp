@@ -118,9 +118,6 @@ const VentasTipoTable = () => {
             setId(record.venta_id); // Al hacer clic en una fila, establece el ID
             setOpenDetalleVentaModal(true); // Abre el modal de detalles
           },
-          style: {
-            cursor: "pointer", // Cambia el cursor al pasar sobre la fila
-          },
         })}
       />
 

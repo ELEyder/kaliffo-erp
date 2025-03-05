@@ -1,47 +1,33 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Table } from "antd"
-import { apiClient } from '../../../API/apiClient';
+import { Table } from "antd";
 
-const Tabla = ({ columnas , rowKey, url = null, dataSource = [], loading = false }) => {
+const Tabla = ({ columnas, rowKey, dataSource = [], loading = false }) => {
   const navigate = useNavigate();
-  const [data, setData] = useState([])
-  
-  useEffect(() => {
-    setData(dataSource);
-  }, [dataSource]);
-
-  async function fetchData() {
-    try {
-      const response = await apiClient.get(url);
-      setData(response.data);
-    } catch (e) {
-      setData([]);
-    }
-  }
-
-  useEffect(() => {
-    if (url){
-      fetchData();
-    }
-  }, [url]);
 
   const getSorter = (col) => {
-    return col.dataIndex === "id" || col.title === "Opciones" ? 0 :
-    (a, b) => {
-      if (typeof a[col.dataIndex] === 'string' && typeof b[col.dataIndex] === 'string') {
-        return a[col.dataIndex].localeCompare(b[col.dataIndex]);
-      } else if (typeof a[col.dataIndex] === 'number' && typeof b[col.dataIndex] === 'number') {
-        return a[col.dataIndex] - b[col.dataIndex];
-      } else {
-        return 0; // Si no son comparables, no ordenamos
-      }
-    };
+    return col.dataIndex === "id" || col.title === "Opciones"
+      ? 0
+      : (a, b) => {
+          if (
+            typeof a[col.dataIndex] === "string" &&
+            typeof b[col.dataIndex] === "string"
+          ) {
+            return a[col.dataIndex].localeCompare(b[col.dataIndex]);
+          } else if (
+            typeof a[col.dataIndex] === "number" &&
+            typeof b[col.dataIndex] === "number"
+          ) {
+            return a[col.dataIndex] - b[col.dataIndex];
+          } else {
+            return 0; // Si no son comparables, no ordenamos
+          }
+        };
   };
 
   columnas = columnas.map((col) => ({
     ...col,
-    align: 'center',
+    align: "center",
     key: col.title,
     sorter: getSorter(col),
   }));
@@ -49,31 +35,25 @@ const Tabla = ({ columnas , rowKey, url = null, dataSource = [], loading = false
     <Table
       columns={columnas}
       pagination={{ pageSize: 5 }}
-      dataSource={data}
+      dataSource={dataSource}
       rowKey={rowKey}
       loading={loading}
       onRow={(record) => {
-        if (record.trabajador_id) {
-          return {
-            onClick: () => navigate(`/trabajadores/${record.trabajador_id}`),
-            style: { cursor: "pointer" },
-          };
-        } else if (record.producto_id) {
-          return {
-            onClick: () => navigate(`/productos/${record.producto_id}`),
-            style: { cursor: "pointer" },
-          };
-        } else if (record.venta_id) {
-          return {
-            onClick: () => navigate(`/venta/${record.venta_id}`),
-            style: { cursor: "pointer" },
-          };
-        }
-        return {};
+        let path = null;
+        if (record.trabajador_id)
+          path = `/administrativo/trabajadores/${record.trabajador_id}`;
+        else if (record.producto_id)
+          path = `/administrativo/productos/${record.producto_id}`;
+        else if (record.venta_id) path = `/administrativo/venta/${record.venta_id}`;
+        else if (record.almacen_id) path = `/logistico/almacen/${record.almacen_id}`;
+
+        return path
+          ? { onClick: () => navigate(path), style: { cursor: "pointer" } }
+          : { style: { cursor: "default" } };
       }}
       scroll={{ x: "max-content" }}
     />
-  )
-}
+  );
+};
 
 export default Tabla;
