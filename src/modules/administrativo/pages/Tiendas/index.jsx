@@ -1,12 +1,12 @@
 import React from "react";
-import TiendasCards from "../../components/Cards/TiendasCards";
 import { Divider } from "antd";
+import TiendasTable from "../../components/Tables/TiendasTable";
 
 const TiendasView = () => {
   return (
     <>
       <Divider style={{ textTransform: "uppercase" }}>Tiendas</Divider>
-      <TiendasCards />
+      <TiendasTable />
       <Divider></Divider>
     </>
   );

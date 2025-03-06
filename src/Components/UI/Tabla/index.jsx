@@ -46,6 +46,7 @@ const Tabla = ({ columnas, rowKey, dataSource = [], loading = false }) => {
           path = `/administrativo/productos/${record.producto_id}`;
         else if (record.venta_id) path = `/administrativo/venta/${record.venta_id}`;
         else if (record.almacen_id) path = `/logistico/almacen/${record.almacen_id}`;
+        else if (record.tienda_id) path = `/administrativo/tiendas/${record.tienda_id}`;
 
         return path
           ? { onClick: () => navigate(path), style: { cursor: "pointer" } }

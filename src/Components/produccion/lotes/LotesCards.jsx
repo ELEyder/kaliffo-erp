@@ -10,7 +10,7 @@ const { Meta } = Card;
 
 const LotesCards = () => {
   const [lotes, setLotes] = useState([]);  // Estado para almacenar los lotes
-  const [openAddProductoModal, setOpenAddProductoModal] = useState(false);  // Controlar el estado del modal
+  const [openModal, setOpenModal] = useState(false);  // Controlar el estado del modal
   const colors = ["white", "#9481fe", "#49adfe", "#ff7655", "#7bfe56"];  // Colores de estado
   const [reload, setReload] = useState(false);  // Controlar la recarga de datos
   const allFases = [
@@ -72,12 +72,12 @@ const LotesCards = () => {
       </Flex>
 
       {/* Botón flotante para abrir el modal de agregar lote */}
-      <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={() => setOpenAddProductoModal(true)} />
+      <FloatButton tooltip="Añadir Lote" icon={<PlusOutlined />} onClick={() => setOpenModal(true)} />
 
       {/* Modal para agregar lote */}
       <AddLoteModal
-        openModal={openAddProductoModal}
-        closeModal={() => setOpenAddProductoModal(false)}  // Cerrar modal
+        openModal={openModal}
+        closeModal={() => setOpenModal(false)}  // Cerrar modal
         reload={() => setReload(!reload)}  // Recargar los lotes al agregar uno
       />
     </>

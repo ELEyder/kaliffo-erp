@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"; // Importar React y el hook useEffect
-import { updateTienda } from "@AA/Tienda"; // Función para actualizar los detalles de la tienda
-import { Form, Modal, Input } from "antd"; // Componentes de Ant Design para formularios y modales
+import { Form } from "antd"; // Componentes de Ant Design para formularios y modales
 import { useTienda } from "../../hooks";
 import DefaultModal from "./DefaultModal";
 import DefaultForm from "../Forms/DefaultForm";
@@ -8,18 +7,17 @@ import DefaultForm from "../Forms/DefaultForm";
 const UpdateTiendaModal = ({
   openModal, // Estado para controlar si el modal está abierto
   closeModal,
-  id,
-  onUpdate,
-  values,
+  data,
+  onUpdated,
 }) => {
   const [form] = Form.useForm();
-  const { updateTienda } = useTienda(onUpdate);
+  const { updateTienda } = useTienda(onUpdated);
 
   useEffect(() => {
     form.setFieldsValue({
-      nombre: values.tienda,
-      direccion: values.direccion,
-      telefono: values.telefono,
+      nombre: data.tienda,
+      direccion: data.direccion,
+      telefono: data.telefono,
     });
   }, [openModal]);
 
@@ -43,7 +41,7 @@ const UpdateTiendaModal = ({
   ];
 
   const onFinish = async (values) => {
-    await updateTienda(id, values);
+    await updateTienda(data.tienda_id, values);
     closeModal(false);
   };
 

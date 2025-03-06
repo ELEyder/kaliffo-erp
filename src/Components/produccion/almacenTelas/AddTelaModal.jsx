@@ -1,7 +1,7 @@
-import { Form, Modal, Input, InputNumber, Row, Col } from "antd"; // Importa los componentes necesarios de Ant Design
+import { Form, Modal, Input } from "antd"; // Importa los componentes necesarios de Ant Design
 import React from "react"; // Importa React
 
-const AddProductoModal = ({ openModal, closeModal, reload }) => {
+const AddTelaModal = ({ openModal, closeModal, reload }) => {
   const [form] = Form.useForm(); // Crea una instancia del formulario para manejar los datos
 
   return (
@@ -90,4 +90,4 @@ const AddProductoModal = ({ openModal, closeModal, reload }) => {
   );
 };
 
-export default AddProductoModal; // Exporta el componente para que se pueda utilizar en otras partes del proyecto
+export default AddTelaModal; // Exporta el componente para que se pueda utilizar en otras partes del proyecto

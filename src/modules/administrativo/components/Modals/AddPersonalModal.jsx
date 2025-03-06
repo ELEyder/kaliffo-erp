@@ -7,7 +7,7 @@ const AddPersonalModal = ({
   openModal,
   closeModal,
   id,
-  reload
+  onAdded
 }) => {
   const [form] = Form.useForm(); // Form instance to handle form state
 
