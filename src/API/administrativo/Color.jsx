@@ -1,4 +1,5 @@
-import { ApiClient } from '../ApiClient';
+import { ApiClient } from '../../services/ApiClient';
+
 //Extraer todos los colores http://localhost:3000/color
 export const getColores = async (setColores) => {
   try {

@@ -1,4 +1,5 @@
-import { ApiClient } from '../ApiClient';
+import { ApiClient } from '../../services/ApiClient';
+
 
 // Función que obtiene la lista de almacenes desde el servidor y actualiza el estado con los datos o un arreglo vacío en caso de error.
 // http://localhost:3000/almacen_producto

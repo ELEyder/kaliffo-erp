@@ -1,17 +1,18 @@
 import { Dropdown } from "antd";
-import useProducto from "../../hooks/useProducto";
-import DefaultCard from "./DefaultCard";
+import { useProducto } from "../../hooks";  
+import { DefaultCard } from "../../../../components/UI";
 
 const ProductoCard = ({ id }) => {
   const { producto, loading } = useProducto(id);
-  
-  const { nombre, stockTotal, precioBase, descuento, cantidad_colores } = producto;
+
+  const { nombre, stockTotal, precioBase, descuento, cantidad_colores } =
+    producto;
 
   const items = [
     { key: "1", label: "Histórico" },
     { key: "2", label: "Último Mes" },
   ];
-  
+
   return (
     <DefaultCard
       title={nombre}
@@ -25,7 +26,7 @@ const ProductoCard = ({ id }) => {
       ]}
     >
       <Dropdown.Button
-        menu={{items, onClick: () => alert("Próximamente") }}
+        menu={{ items, onClick: () => alert("Próximamente") }}
         block
         size="large"
         style={{ fontWeight: "bold" }}
@@ -35,6 +36,5 @@ const ProductoCard = ({ id }) => {
     </DefaultCard>
   );
 };
-
 
 export default ProductoCard;

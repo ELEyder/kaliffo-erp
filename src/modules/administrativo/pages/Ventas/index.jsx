@@ -1,19 +1,15 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom"; // Para obtener parámetros de la URL
-import { Divider } from "antd"; // Componente de Ant Design para crear divisores
-import VentasPorTipoTable from "../../components/Tables/VentasPorTipoTable";
+import { useParams } from "react-router-dom";
+import { Divider } from "antd";
+import {VentasPorTipoTable} from "../../components/Tables";
 
 const VentasView = () => {
-  
   const { tipo } = useParams();
-
-  const [ modal, setModal] = useState(true)
 
   return (
     <>
-      <Divider style={{textTransform: "uppercase"}}> {tipo} </Divider>
+      <Divider> {tipo} </Divider>
 
-      <VentasPorTipoTable tipo={tipo}/>
+      <VentasPorTipoTable tipo={tipo} />
     </>
   );
 };

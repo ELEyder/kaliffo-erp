@@ -1,16 +1,12 @@
 import { Divider } from "antd";
-import ProductosTable from "../../components/Tables/ProductosTable";
+import { ProductosTable } from "../../components/Tables";
 
 const Productos = () => {
-
   return (
     <>
-      <Divider style={{ textTransform: "uppercase" }}>
-        Productos
-      </Divider>
+      <Divider>PRODUCTOS</Divider>
 
       <ProductosTable />
-
     </>
   );
 };

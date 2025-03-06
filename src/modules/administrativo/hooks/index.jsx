@@ -7,3 +7,5 @@ export { default as useTienda } from './useTienda';
 export { default as useTiendas } from './useTiendas';
 export { default as useTrabajadores } from './useTrabajadores';
 export { default as useTrabajador } from './useTrabajador';
+export { default as useProducto } from './useProducto';
+export { default as useProductos } from './useProductos';

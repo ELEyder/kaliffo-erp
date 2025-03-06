@@ -1,10 +1,12 @@
 import { Divider, Tabs } from "antd";
 import { useParams } from "react-router-dom";
 import { Details } from "../../../../layouts";
-import ProductoCard from "../../components/Cards/ProductoCard";
-import {StockPorTiendaTable} from "../../components/Table";
-import StockPorTallaTable from "../../components/Tables/StockPorTallaTable";
-import StockPorColoresTable from "../../components/Tables/StockPorColoresTable";
+import { ProductoCard } from "../../components/Cards";
+import {
+  StockPorTiendaTable,
+  StockPorTallaTable,
+  StockPorColoresTable,
+} from "../../components/Tables";
 
 const ProductoView = () => {
   const { id } = useParams();

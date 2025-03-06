@@ -1,4 +1,4 @@
-import { ApiClient, ApiClientFiles } from '../ApiClient';
+import { ApiClientFiles } from '../../services/ApiClient';
 
 // Obtener reporte de un usuario http://localhost:3000/usuario/reporte/1
 export const getReporteUsuario = async (id,tipo) => {

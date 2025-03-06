@@ -1,4 +1,5 @@
-import { ApiClient } from '../ApiClient';
+import { ApiClient } from '../../services/ApiClient';
+
 
 /**
  * Obtiene la lista de empresas relacionadas con las telas.

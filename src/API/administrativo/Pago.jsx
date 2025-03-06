@@ -1,4 +1,5 @@
-import { ApiClient } from '../ApiClient';
+import { ApiClient } from '../../services/ApiClient';
+
 
 // Añadir pago a trabajador http://localhost:3000/pago/create (No creado)
 export const addPago = async (id, data) => {

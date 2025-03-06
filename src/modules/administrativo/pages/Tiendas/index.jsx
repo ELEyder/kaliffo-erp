@@ -1,13 +1,11 @@
-import React from "react";
 import { Divider } from "antd";
-import TiendasTable from "../../components/Tables/TiendasTable";
+import { TiendasTable } from "../../components/Tables";
 
 const TiendasView = () => {
   return (
     <>
-      <Divider style={{ textTransform: "uppercase" }}>Tiendas</Divider>
+      <Divider>TIENDAS</Divider>
       <TiendasTable />
-      <Divider></Divider>
     </>
   );
 };

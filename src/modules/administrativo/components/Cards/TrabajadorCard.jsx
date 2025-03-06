@@ -1,7 +1,7 @@
 import { Dropdown } from "antd";
 import { getReporteUsuario } from "@AA/Reporte";
 import useTrabajador from "../../hooks/useTrabajador";
-import DefaultCard from "./DefaultCard";
+import { DefaultCard } from "../../../../components/UI";
 import { useMemo } from "react";
 
 // Lista de reportes

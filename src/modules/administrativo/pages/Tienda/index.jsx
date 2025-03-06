@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
-
 import { Tabs } from "antd";
-import ProductosTable from "../../components/Tables/ProductosTable";
 import { Details } from "../../../../layouts";
-import TiendaDetailCard from "../../components/Cards/TiendaDetailCard";
-import TrabajadoresTable from "../../components/Tables/TrabajadoresTable";
-import VentasTable from "../../components/Tables/VentasTable";
+import { TiendaCard } from "../../components/Cards";
+import {
+  ProductosTable,
+  TrabajadoresTable,
+  VentasTable,
+} from "../../components/Tables";
 
 const TiendaView = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const TiendaView = () => {
   return (
     <>
       <Details>
-        <TiendaDetailCard id={id} />
+        <TiendaCard id={id} />
 
         <Tabs items={items} />
       </Details>
