@@ -1,30 +1,10 @@
 import { useState } from "react";
-import { ApiClient } from "../../../API/ApiClient";
-import { useNotification } from "../../../provider/NotificationProvider";
+import { ApiClient } from "../../../services/ApiClient";
+import useApiRequest from "../../../hooks/useApiRequest";
 
 const useTienda = (onChange) => {
-  const open = useNotification();
+  const { handleRequest, loading, error } = useApiRequest(onChange);
   const [tienda, setTienda] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const handleRequest = async (callback, successMessage) => {
-    setLoading(true);
-    setError(null);
-    try {
-      await callback();
-      onChange && onChange();
-      successMessage && open("Éxito", successMessage);
-    } catch (error) {
-      open(
-        `Error ${error.status || ""}`,
-        error.response?.data?.error || "Error desconocido"
-      );
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const addTienda = async (values) => {
     const data = {
@@ -32,10 +12,7 @@ const useTienda = (onChange) => {
       direccion: values.direccion,
       telefono: values.telefono,
     };
-    await handleRequest(
-      () => ApiClient.post(`/tienda/create`, data),
-      "Tienda agregada"
-    );
+    return handleRequest(() => ApiClient.post(`/tienda/create`, data), "Tienda agregada");
   };
 
   const getTienda = async (id) => {
@@ -47,19 +24,22 @@ const useTienda = (onChange) => {
   };
 
   const updateTienda = async (id, data) => {
-    await handleRequest(
-      () => ApiClient.put(`/tienda/update/${id}`, data),
-      "Tienda actualizada"
-    );
+    await handleRequest(() => ApiClient.put(`/tienda/update/${id}`, data), "Tienda actualizada");
   };
 
   const deleteTienda = async (id) => {
-    await handleRequest(async () => {
-      await ApiClient.put(`/tienda/desactivar/${id}`);
-    }, "Tienda eliminada");
+    await handleRequest(() => ApiClient.put(`/tienda/desactivar/${id}`), "Tienda eliminada");
   };
 
-  return { tienda, loading, error, updateTienda, deleteTienda, addTienda, getTienda };
+  return {
+    tienda,
+    loading,
+    error,
+    addTienda,
+    getTienda,
+    updateTienda,
+    deleteTienda,
+  };
 };
 
 export default useTienda;

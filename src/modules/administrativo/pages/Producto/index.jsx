@@ -2,7 +2,7 @@ import { Divider, Tabs } from "antd";
 import { useParams } from "react-router-dom";
 import { Details } from "../../../../layouts";
 import ProductoCard from "../../components/Cards/ProductoCard";
-import StockPorTiendaTable from "../../components/Tables/StockPorTiendaTable";
+import {StockPorTiendaTable} from "../../components/Table";
 import StockPorTallaTable from "../../components/Tables/StockPorTallaTable";
 import StockPorColoresTable from "../../components/Tables/StockPorColoresTable";
 
@@ -28,9 +28,7 @@ const ProductoView = () => {
   ];
   return (
     <>
-      <Divider style={{ textTransform: "uppercase" }}>
-        Detalles del Producto
-      </Divider>
+      <Divider>DETALLES DEL PRODUCTO</Divider>
       <Details>
         <ProductoCard id={id} />
         <Tabs items={items} />

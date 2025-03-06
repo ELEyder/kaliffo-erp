@@ -1,10 +1,9 @@
-import { Flex, Button, Popconfirm, FloatButton } from "antd";
+import { useState } from "react";
 import { useTiendas, useTienda } from "../../hooks";
 import { Tabla } from "../../../../Components/UI";
-import { useState } from "react";
-import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
 import UpdateTiendaModal from "../Modals/UpdateTiendaModal";
+import AddTiendaModal from "../Modals/AddTiendaModal";
+import { Flex, Button, Popconfirm, FloatButton } from "antd";
 
 const TiendasTable = ({ params }) => {
   const { tiendas, loading , getTiendas } = useTiendas(params);
@@ -78,18 +77,12 @@ const TiendasTable = ({ params }) => {
         onUpdated={getTiendas}
       />
 
-      <AddTrabajadorModal
+      <AddTiendaModal
         openModal={modals.addT}
         closeModal={() => changeModal("addT", false)}
         onAdded={getTiendas}
       />
 
-      <AddIncidenciaModal
-        openModal={modals.addI}
-        closeModal={() => changeModal("addI", false)}
-        id={dataTienda.tienda_id}
-        onAdded={getTiendas}
-      />
     </>
   );
 };

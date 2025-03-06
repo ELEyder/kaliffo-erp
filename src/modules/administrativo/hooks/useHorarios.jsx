@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ApiClient } from "../../../API/ApiClient";
+import { ApiClient } from "../../../services/ApiClient";
 
 const useHorarios = ( id ) => {
   const [horarios, setHorarios] = useState([]);

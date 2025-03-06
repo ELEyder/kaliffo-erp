@@ -15,7 +15,7 @@ const AddTiendaModal = ({
 }) => {
   
   const [form] = Form.useForm();
-  const { addTienda } = useTienda(onAdded);
+  const { addTienda, error } = useTienda(onAdded);
 
   const rows = [
     {
@@ -37,13 +37,14 @@ const AddTiendaModal = ({
   ];
 
   const onFinish = async (values) => {
-    await addTienda(values);
-    closeModal();
+    const success = await addTienda(values);
+    console.log(success)
+    if (success) closeModal();
   };
 
   return (
     <DefaultModal
-      title={"Añadir Trabajador"}
+      title={"Añadir Tienda"}
       isOpen={openModal}
       onClose={closeModal}
       onOk={form.submit}

@@ -1,3 +1,11 @@
-export { default as TrabajadoresTable } from './TrabajadoresTable';
-export { default as IncidenciasTable } from './IncidenciasTable';
-export { default as PagosTable } from './PagosTable';
+export { default as HorariosTable } from "./HorariosTable";
+export { default as IncidenciasTable } from "./IncidenciasTable";
+export { default as PagosTable } from "./PagosTable";
+export { default as ProductosTable } from "./ProductosTable";
+export { default as StockPorColoresTable } from "./StockPorColoresTable";
+export { default as StockPorTallaTable } from "./StockPorTallaTable";
+export { default as StockPorTiendaTable } from "./StockPorTiendaTable";
+export { default as TiendasTable } from "./TiendasTable";
+export { default as TrabajadoresTable } from "./TrabajadoresTable";
+export { default as VentasPorTipoTable } from "./VentasPorTipoTable";
+export { default as VentasTable } from "./VentasTable";
