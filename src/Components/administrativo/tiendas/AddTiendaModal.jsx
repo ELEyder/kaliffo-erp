@@ -5,7 +5,7 @@ import {
   onlyNumberKey,
   onlyNumberInput,
   preventPaste,
-} from "../../../Shared/Tools"; // Funciones de utilidad para validación
+} from "../../../libs/Tools"; // Funciones de utilidad para validación
 
 const AddTiendaModal = ({
   openModal, // Propiedad para controlar la visibilidad del modal

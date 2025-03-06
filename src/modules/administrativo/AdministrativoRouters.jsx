@@ -10,7 +10,7 @@ const Tienda = lazy(() => import("./pages/Tienda"));
 const Productos = lazy(() => import("./pages/Productos"));
 const Producto = lazy(() => import("./pages/Producto"));
 const Ventas = lazy(() => import("./pages/Ventas"));
-const ErrorView = lazy(() => import("../../Views/Error/ErrorView"));
+const ErrorView = lazy(() => import("../../pages/Error/ErrorView"));
 
 const AdministrativoRouters = () => (
   <Suspense fallback={<Loading />}>

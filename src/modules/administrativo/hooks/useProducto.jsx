@@ -24,7 +24,7 @@ const useProducto = (id, onChange) => {
   };
 
   const addProducto = async (values) => {
-    console.log("DATA:", data)
+    console.log("DATA:", values)
     await handleRequest(() => ApiClient.post(`/producto/create`, values), "Producto agregado");
   };
 

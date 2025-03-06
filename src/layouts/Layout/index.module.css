@@ -1,8 +1,14 @@
+.main {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
 .content {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  height: 100vh;
+  height: 100%;
 }
 
 .son {

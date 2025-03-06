@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { DatePicker, Form, Input, Select } from "antd";
+import { DatePicker, Form, Input, InputNumber, Select } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
 
@@ -9,7 +8,7 @@ import {
   onlyNumberKey,
   onlyNumberInput,
   preventPaste,
-} from "../../../../Shared/Tools"; // Funciones de utilidad para validación
+} from "../../../../libs/Tools"; // Funciones de utilidad para validación
 
 const DefaultForm = ({ onFinish, rows, form }) => {
   return (
@@ -53,8 +52,8 @@ const DefaultForm = ({ onFinish, rows, form }) => {
               rules={[{ required: true, message: `${row.label} requerido/s` }]}
             >
               <Select
-              value={row.value}
-              onChange={row.onChange}
+                value={row.value}
+                onChange={row.onChange}
                 options={row.options.map((option) => ({
                   value: option.value,
                   label: option.label,
@@ -95,6 +94,24 @@ const DefaultForm = ({ onFinish, rows, form }) => {
                 onPaste={preventPaste}
                 onKeyDown={onlyNumberKey} // Permitir solo números
                 onInput={onlyNumberInput} // Permitir solo números en la entrada
+              />
+            </Form.Item>
+          );
+        } else if (row.type === "percent") {
+          return (
+            <Form.Item
+              key={row.name}
+              label={row.label}
+              name={row.name}
+              rules={[
+                { required: true, message: `${row.label} requerido/s` },
+              ]}
+            >
+              <InputNumber
+                min={0}
+                max={100}
+                formatter={(value) => `${value}%`}
+                parser={(value) => value?.replace("%", "")}
               />
             </Form.Item>
           );

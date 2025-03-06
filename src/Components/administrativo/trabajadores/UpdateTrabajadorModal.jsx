@@ -11,7 +11,7 @@ import {
   onlyNumberKey,
   onlyNumberInput,
   preventPaste,
-} from "../../../Shared/Tools"; // Funciones de utilidad para validación
+} from "../../../libs/Tools"; // Funciones de utilidad para validación
 
 const UpdateTrabajadorModal = ({
   openModal, // Estado para controlar si el modal está abierto

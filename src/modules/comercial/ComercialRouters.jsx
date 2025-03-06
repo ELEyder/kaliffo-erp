@@ -5,7 +5,7 @@ import Loading from "../../Components/Loading/Loading";
 
 // Lazy loading del componente
 const Generar = lazy(() => import("./pages/Venta/Generar"));
-const ErrorView = lazy(() => import("../../Views/Error/ErrorView"));
+const ErrorView = lazy(() => import("../../pages/Error/ErrorView"));
 
 const ComercialRouters = () => (
   <Suspense fallback={<Loading />}>

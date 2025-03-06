@@ -4,7 +4,7 @@ import { Layout as LayoutAnt } from "antd"; // Importamos Layout de Ant Design
 import { Sidebar, Header, Footer } from "../../Components/UI"; // Importamos los componentes Sidebar, Header y Footer
 import { useSession } from "../../context/AuthProvider"; // Importamos el hook useSession para acceder a los datos de sesión del usuario
 
-import styles from './index.module.css'
+import styles from "./index.module.css";
 const { Content } = LayoutAnt; // Desestructuramos Content de Layout
 
 const Layout = () => {
@@ -16,16 +16,18 @@ const Layout = () => {
   const usernames = ["administrador", "venta", "produccion"];
 
   return user && usernames.includes(user.rol ?? "") ? (
-    <LayoutAnt style={{ height: "100vh" }}>
-      <Sidebar collapsed={collapsed} />
-      <LayoutAnt className={styles.content}>
-        <Header collapsed={collapsed} setCollapsed={setCollapsed} />
-        <Content className={styles.son}>
-          <Outlet />
-        </Content>
-        <Footer />
+    <main className={styles.main}>
+      <Header collapsed={collapsed} setCollapsed={setCollapsed} />
+      <LayoutAnt>
+        <Sidebar collapsed={collapsed} />
+        <LayoutAnt className={styles.content}>
+          <Content className={styles.son}>
+            <Outlet />
+          </Content>
+          <Footer />
+        </LayoutAnt>
       </LayoutAnt>
-    </LayoutAnt>
+    </main>
   ) : (
     <Navigate to="/" />
   );

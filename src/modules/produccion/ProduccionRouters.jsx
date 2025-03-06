@@ -11,7 +11,7 @@ const Cortes = lazy(() => import("../../Components/produccion/lotes/CortesTable"
 const Lavanderia = lazy(() => import("../../Components/produccion/lotes/LavanderiaTable"));
 const Acabado = lazy(() => import("../../Components/produccion/lotes/AcabadoTable"));
 const Almacen = lazy(() => import("./pages/Lote/Almacen"));
-const ErrorView = lazy(() => import("../../Views/Error/ErrorView"));
+const ErrorView = lazy(() => import("../../pages/Error/ErrorView"));
 
 const ProduccionRouters = () => (
   <Suspense fallback={<Loading />}>

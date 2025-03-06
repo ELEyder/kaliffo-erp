@@ -1,7 +1,8 @@
 import { Layout } from 'antd';
-import Menu from "./Menu"; // Componente de menú
-import styles from './Sidebar.module.css' // Estilos CSS para el Sidebar
 import { useSession } from "../../../context/AuthProvider"; // Hook para acceder al estado de sesión
+import SidebarMenu from "./SidebarMenu"; // Componente de menú
+
+import styles from './index.module.css' // Estilos CSS para el Sidebar
 
 const { Sider } = Layout; // Usamos el componente Sider de Ant Design para el sidebar
 
@@ -10,7 +11,6 @@ const Sidebar = ({ collapsed }) => {
 
   return (
     <>
-      {/* Sidebar usando el componente Sider de Ant Design */}
       <Sider
         className={styles.sidebar} // Estilo de la altura y el scroll
         trigger={null} // Desactivamos el trigger para colapsar
@@ -20,14 +20,9 @@ const Sidebar = ({ collapsed }) => {
         breakpoint="lg" // Define el tamaño para el punto de ruptura (cuando cambia el layout)
         collapsedWidth="0" // Establece el ancho cuando el sidebar está colapsado
       >
-        {/* Cabecera del Sidebar */}
-        <div className={styles.sidebarHeader}>
-          {/* Mostrar el rol del usuario autenticado */}
-          <h1>{user.rol}</h1>
-        </div>
 
-        {/* Renderiza el componente Menu con los elementos de navegación */}
-        <Menu />
+        <SidebarMenu rol={user.rol} />
+
       </Sider>
     </>
   );

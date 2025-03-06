@@ -7,11 +7,7 @@ const App = () => {
 
   return (
     <>
-      <Space>
-        <Button type="primary" onClick={() => openNotification("pong")}>
-          Ping
-        </Button>
-      </Space>
+
     </>
   );
 };

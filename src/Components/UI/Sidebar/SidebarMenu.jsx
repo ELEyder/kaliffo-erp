@@ -2,12 +2,9 @@ import React from "react";
 import { Menu } from "antd";
 import { Link } from "react-router-dom";
 import { BookOutlined, UserOutlined, CoffeeOutlined, AppstoreOutlined } from "@ant-design/icons";
-import { useSession } from "../../../context/AuthProvider"; // Hook para obtener información del usuario autenticado
 
-const SidebarMenu = () => {
-  const { user } = useSession(); // Obtiene el usuario autenticado desde el contexto
+const SidebarMenu = ({ rol }) => {
 
-  // Función que filtra los elementos del menú según el rol del usuario
   const filterMenuItemsByRole = (items) => {
     const rolePermissions = {
       administrador: () => true, // Acceso total
@@ -33,7 +30,7 @@ const SidebarMenu = () => {
         ].includes(key),
     };
 
-    const hasAccess = rolePermissions[user.rol] || (() => false);
+    const hasAccess = rolePermissions[rol] || (() => false);
 
     return items
       .filter((item) => hasAccess(item.key)) 

@@ -9,9 +9,9 @@ import ComercialRouters from "../modules/comercial/ComercialRouters";
 import Loading from "../Components/Loading/Loading";
 import Layout from "../layouts/Layout";
 
-const LoginView = lazy(() => import("../Views/Login/LoginView"));
-const ErrorView = lazy(() => import("../Views/Error/ErrorView"));
-const TestView = lazy(() => import("../Views/Test"));
+const LoginView = lazy(() => import("../pages/Login/LoginView"));
+const ErrorView = lazy(() => import("../pages/Error/ErrorView"));
+const TestView = lazy(() => import("../pages/Test"));
 
 export const Routing = () => {
   return (
