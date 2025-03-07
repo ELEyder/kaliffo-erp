@@ -7,11 +7,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@C': path.resolve(__dirname, 'src/Components'),
-      '@CA': path.resolve(__dirname, 'src/Components/administrativo'),
-      '@CL': path.resolve(__dirname, 'src/Components/logistico'),
-      '@CP': path.resolve(__dirname, 'src/Components/produccion'),
-      '@CV': path.resolve(__dirname, 'src/Components/ventas'),
+      '@C': path.resolve(__dirname, 'src/components'),
+      '@CA': path.resolve(__dirname, 'src/components/administrativo'),
+      '@CL': path.resolve(__dirname, 'src/components/logistico'),
+      '@CP': path.resolve(__dirname, 'src/components/produccion'),
+      '@CV': path.resolve(__dirname, 'src/components/ventas'),
       '@A': path.resolve(__dirname, 'src/API'),
       '@AA': path.resolve(__dirname, 'src/API/administrativo'),
       '@AL': path.resolve(__dirname, 'src/API/logistico'),

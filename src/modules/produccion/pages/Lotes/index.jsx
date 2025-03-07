@@ -1,5 +1,5 @@
 import React from "react";
-import LotesCards from "../../../../Components/produccion/lotes/LotesCards";
+import LotesCards from "../../../../components/produccion/lotes/LotesCards";
 import { Divider } from "antd";
 
 const LotesView = () => {

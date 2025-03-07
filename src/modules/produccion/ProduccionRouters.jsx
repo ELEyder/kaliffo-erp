@@ -1,15 +1,15 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loading from "../../Components/Loading/Loading";
+import Loading from "../../components/Loading/Loading";
 
 // Lazy loading de componentes
 const Telas = lazy(() => import("./pages/Telas"));
 const Tela = lazy(() => import("./pages/Tela"));
 const Layout = lazy(() => import("./pages/Lote/layout"));
 const Lotes = lazy(() => import("./pages/Lotes"));
-const Cortes = lazy(() => import("../../Components/produccion/lotes/CortesTable"));
-const Lavanderia = lazy(() => import("../../Components/produccion/lotes/LavanderiaTable"));
-const Acabado = lazy(() => import("../../Components/produccion/lotes/AcabadoTable"));
+const Cortes = lazy(() => import("../../components/produccion/lotes/CortesTable"));
+const Lavanderia = lazy(() => import("../../components/produccion/lotes/LavanderiaTable"));
+const Acabado = lazy(() => import("../../components/produccion/lotes/AcabadoTable"));
 const Almacen = lazy(() => import("./pages/Lote/Almacen"));
 const ErrorView = lazy(() => import("../../pages/Error/ErrorView"));
 

@@ -1,5 +1,5 @@
 import useVentas from "../../hooks/useVentas";
-import Tabla from "../../../../Components/UI/Tabla";
+import Tabla from "../../../../components/UI/Tabla";
 
 const VentasPorTipoTable = ({ tipo }) => {
   const { ventas, loading } = useVentas(tipo)

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loading from "../../Components/Loading/Loading";
+import Loading from "../../components/Loading/Loading";
 
 // Lazy loading de componentes
 const Almacen = lazy(() => import("./pages/Almacen"));

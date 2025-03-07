@@ -1,7 +1,7 @@
 import React, { useState } from "react"; // Importamos React y useState para manejar el estado
 import { Navigate, Outlet } from "react-router-dom"; // Importamos Navigate y Outlet para manejar la navegación y el renderizado de rutas secundarias
 import { Layout as LayoutAnt } from "antd"; // Importamos Layout de Ant Design
-import { Sidebar, Header, Footer } from "../../Components/UI"; // Importamos los componentes Sidebar, Header y Footer
+import { Sidebar, Header, Footer } from "../../components/UI"; // Importamos los componentes Sidebar, Header y Footer
 import { useSession } from "../../context/AuthProvider"; // Importamos el hook useSession para acceder a los datos de sesión del usuario
 
 import styles from "./index.module.css";

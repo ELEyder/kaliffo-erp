@@ -1,6 +1,6 @@
 import { Tabla } from "../../../../components/UI";
 import useProductos from "../../hooks/useProductos";
-import Loading from "../../../../Components/Loading/Loading";
+import Loading from "../../../../components/Loading/Loading";
 import { FloatButton } from "antd";
 import AddProductoModal from "../Modals/AddProductoModal";
 import { useState } from "react";
