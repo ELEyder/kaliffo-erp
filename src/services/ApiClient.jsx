@@ -1,18 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
 // Función para crear una instancia de Axios con configuración personalizada
-const createApiClient = (contentType = 'application/json') => {
+const createApiClient = (contentType = "application/json") => {
   const ApiClient = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL, // URL base de la API
     headers: {
-      'Content-Type': contentType, // Tipo de contenido dinámico
+      "Content-Type": contentType, // Tipo de contenido dinámico
     },
     withCredentials: true, // Habilita el envío de cookies en solicitudes CORS
   });
 
   // Interceptor para agregar el token de autenticación
-  ApiClient.interceptors.request.use(config => {
-    const token = localStorage.getItem('token'); // Obtener el token desde localStorage
+  ApiClient.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token"); // Obtener el token desde localStorage
     if (token) {
       config.headers.Authorization = `Bearer ${token}`; // Agregar el token al encabezado
     }
@@ -24,4 +24,4 @@ const createApiClient = (contentType = 'application/json') => {
 
 // Exportación de instancias para uso específico
 export const ApiClient = createApiClient(); // Para JSON
-export const ApiClientFiles = createApiClient('multipart/form-data'); // Para archivos
+export const ApiClientFiles = createApiClient("multipart/form-data"); // Para archivos

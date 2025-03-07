@@ -2,7 +2,6 @@ import { Dropdown } from "antd";
 import { getReporteUsuario } from "@AA/Reporte";
 import useTrabajador from "../../hooks/useTrabajador";
 import { DefaultCard } from "../../../../components/UI";
-import { useMemo } from "react";
 
 // Lista de reportes
 const items = [
@@ -17,7 +16,11 @@ const handleReporteClick =
     getReporteUsuario(id, key);
 
 const TrabajadorCard = ({ id }) => {
-  const { trabajador } = useTrabajador(id);
+  const { trabajador, getTrabajador } = useTrabajador();
+  
+  useEffect(() => {
+    getTrabajador(id);
+  }, [id]);
 
   const {
     nombres,

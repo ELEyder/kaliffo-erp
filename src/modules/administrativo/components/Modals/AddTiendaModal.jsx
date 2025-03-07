@@ -4,18 +4,12 @@ import dayjs from "dayjs";
 
 dayjs.extend(customParseFormat);
 
-import DefaultModal from "./DefaultModal";
-import DefaultForm from "../Forms/DefaultForm";
-import {useTienda} from "../../hooks";
+import { DefaultForm, DefaultModal } from "../../../../components/UI";
+import { useTienda } from "../../hooks";
 
-const AddTiendaModal = ({
-  openModal,
-  closeModal,
-  onAdded,
-}) => {
-  
+const AddTiendaModal = ({ openModal, closeModal, onAdded }) => {
   const [form] = Form.useForm();
-  const { addTienda, error } = useTienda(onAdded);
+  const { addTienda } = useTienda(onAdded);
 
   const rows = [
     {
@@ -38,7 +32,7 @@ const AddTiendaModal = ({
 
   const onFinish = async (values) => {
     const success = await addTienda(values);
-    console.log(success)
+    console.log(success);
     if (success) closeModal();
   };
 
@@ -49,7 +43,7 @@ const AddTiendaModal = ({
       onClose={closeModal}
       onOk={form.submit}
     >
-      <DefaultForm form={form} onFinish={onFinish} rows={rows}/>
+      <DefaultForm form={form} onFinish={onFinish} rows={rows} />
     </DefaultModal>
   );
 };

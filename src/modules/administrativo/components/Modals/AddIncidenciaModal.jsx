@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { Form } from "antd";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
-import { getTiendas } from "@AA/Tienda";
 
 dayjs.extend(customParseFormat);
 
-import DefaultModal from "./DefaultModal";
-import DefaultForm from "../Forms/DefaultForm";
-import useIncidencia from "../../hooks/useIncidencia";
+import { DefaultForm, DefaultModal } from "../../../../components/UI";
+import { useIncidencia } from "../../hooks";
 
 const AddIncidenciaModal = ({
   openModal, // Estado para controlar la visibilidad del modal

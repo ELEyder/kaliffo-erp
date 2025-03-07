@@ -12,7 +12,6 @@ const useTrabajadores = ( params = '' ) => {
     setLoading(true);
     try {
       let url = `/trabajador${params}`;
-      
       const response = await ApiClient.get(url);
       const data = response.data.map((trabajador) =>{
         return {

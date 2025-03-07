@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useTiendas, useTienda } from "../../hooks";
-import { Tabla } from "../../../../Components/UI";
-import UpdateTiendaModal from "../Modals/UpdateTiendaModal";
-import AddTiendaModal from "../Modals/AddTiendaModal";
+import {UpdateTiendaModal, AddTiendaModal} from "../Modals";
 import { Flex, Button, Popconfirm, FloatButton } from "antd";
+import { Tabla } from "../../../../components/UI";
 
-const TiendasTable = ({ params }) => {
-  const { tiendas, loading , getTiendas } = useTiendas(params);
+const TiendasTable = () => {
+  const { tiendas, loading , getTiendas } = useTiendas();
   const { deleteTienda } = useTienda(getTiendas);
   const [dataTienda, setDataTienda] = useState({});
 

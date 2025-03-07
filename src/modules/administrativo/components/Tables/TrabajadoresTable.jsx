@@ -1,6 +1,6 @@
 import { Flex, Button, Popconfirm, FloatButton } from "antd";
 import { useTrabajadores, useTrabajador } from "../../hooks";
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 import { useState } from "react";
 import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
 import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
@@ -8,7 +8,7 @@ import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
 
 const TrabajadoresTable = ({ params }) => {
   const { trabajadores, loading , getTrabajadores } = useTrabajadores(params);
-  const { deleteTrabajador } = useTrabajador(null, getTrabajadores);
+  const { deleteTrabajador } = useTrabajador(getTrabajadores);
   const [dataTrabajador, setDataTrabajador] = useState({});
 
   const [modals, setModals] = useState({

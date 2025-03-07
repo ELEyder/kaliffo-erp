@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiClient } from "../../../services/ApiClient";
 import useApiRequest from "../../../hooks/useApiRequest";
 
@@ -12,11 +12,15 @@ const useTienda = (onChange) => {
       direccion: values.direccion,
       telefono: values.telefono,
     };
-    return handleRequest(() => ApiClient.post(`/tienda/create`, data), "Tienda agregada");
+    return handleRequest(
+      () => ApiClient.post(`/tienda/create`, data),
+      "Tienda agregada"
+    );
   };
 
   const getTienda = async (id) => {
     if (!id) return;
+    console.log("ID:", id, "ONCHANGE:", onChange)
     await handleRequest(async () => {
       const response = await ApiClient.get(`/tienda/${id}`);
       setTienda(response.data);
@@ -24,19 +28,25 @@ const useTienda = (onChange) => {
   };
 
   const updateTienda = async (id, data) => {
-    await handleRequest(() => ApiClient.put(`/tienda/update/${id}`, data), "Tienda actualizada");
+    await handleRequest(
+      () => ApiClient.put(`/tienda/update/${id}`, data),
+      "Tienda actualizada"
+    );
   };
 
   const deleteTienda = async (id) => {
-    await handleRequest(() => ApiClient.put(`/tienda/desactivar/${id}`), "Tienda eliminada");
+    await handleRequest(
+      () => ApiClient.put(`/tienda/desactivar/${id}`),
+      "Tienda eliminada"
+    );
   };
 
   return {
     tienda,
     loading,
     error,
-    addTienda,
     getTienda,
+    addTienda,
     updateTienda,
     deleteTienda,
   };

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import DefaultCard from "../../../administrativo/components/Cards/DefaultCard";
+import { DefaultCard } from "../../../../components/UI";
 import useAlmacen from "../../hooks/useAlmacen";
 
 const AlmacenCard = ({ id }) => {

@@ -9,3 +9,4 @@ export { default as useTrabajadores } from './useTrabajadores';
 export { default as useTrabajador } from './useTrabajador';
 export { default as useProducto } from './useProducto';
 export { default as useProductos } from './useProductos';
+export { default as useReporte } from './useReporte';

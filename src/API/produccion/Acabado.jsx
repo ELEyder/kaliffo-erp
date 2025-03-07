@@ -1,4 +1,4 @@
-import { ApiClient } from "../ApiClient";
+import { ApiClient } from '../../services/ApiClient';
 
 // Obtener acabados por lote
 export const getAcabadoByLote = async (id, setData) => {

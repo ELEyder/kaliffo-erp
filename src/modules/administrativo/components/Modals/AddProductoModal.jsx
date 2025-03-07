@@ -1,14 +1,13 @@
 import React from "react";
 import { Form } from "antd";
 
-import DefaultModal from "./DefaultModal";
-import DefaultForm from "../Forms/DefaultForm";
+import { DefaultForm, DefaultModal } from "../../../../components/UI";
 import useProducto from "../../hooks/useProducto";
 
 const AddProductoModal = ({ openModal, closeModal, onAdded }) => {
   const [form] = Form.useForm();
 
-  const { addProducto } = useProducto(null, onAdded)
+  const { addProducto } = useProducto(onAdded)
 
   const onFinish = async (values) => {
     await addProducto(values);

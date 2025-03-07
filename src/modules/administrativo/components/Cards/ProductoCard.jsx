@@ -1,9 +1,14 @@
 import { Dropdown } from "antd";
 import { useProducto } from "../../hooks";  
 import { DefaultCard } from "../../../../components/UI";
+import { useEffect } from "react";
 
 const ProductoCard = ({ id }) => {
-  const { producto, loading } = useProducto(id);
+  const { producto, loading, getProducto } = useProducto();
+
+  useEffect(() => {
+    getProducto();
+  }, [id]);
 
   const { nombre, stockTotal, precioBase, descuento, cantidad_colores } =
     producto;

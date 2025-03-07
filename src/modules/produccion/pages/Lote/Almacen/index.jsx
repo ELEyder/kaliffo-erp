@@ -1,5 +1,5 @@
 import { Button } from "antd"
-import { ApiClient } from "../../../../../API/ApiClient"
+import { ApiClient } from "../../../../../services/ApiClient"
 import { useNavigate, useParams } from "react-router-dom"
 
 const Almacen = () => {

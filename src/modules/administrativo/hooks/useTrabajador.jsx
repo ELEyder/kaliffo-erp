@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ApiClient } from "../../../services/ApiClient";
 import useApiRequest from "../../../hooks/useApiRequest";
 
-const useTrabajador = (id, onChange) => {
+const useTrabajador = (onChange) => {
   const { handleRequest, loading, error } = useApiRequest(onChange);
   const [trabajador, setTrabajador] = useState({});
 
@@ -16,13 +16,15 @@ const useTrabajador = (id, onChange) => {
       telefono: values.telefono,
       sueldo: values.sueldo,
       rol: values.rol,
-      tienda_id : values.tienda_id ?? 1
+      tienda_id: values.tienda_id ?? 1,
     };
-    console.log("DATA:", data)
-    await handleRequest(() => ApiClient.post(`/trabajador/create`, data), "Trabajador agregado");
+    await handleRequest(
+      () => ApiClient.post(`/trabajador/create`, data),
+      "Trabajador agregado"
+    );
   };
 
-  const getTrabajador = async () => {
+  const getTrabajador = async (id) => {
     if (!id) return;
     await handleRequest(async () => {
       const response = await ApiClient.get(`/trabajador/${id}`);
@@ -31,9 +33,12 @@ const useTrabajador = (id, onChange) => {
   };
 
   const updateTrabajador = async (id, data) => {
-    data.tienda_id = data.rol != 1 ? 1 : data.rol
-    console.log( data)
-    await handleRequest(() => ApiClient.put(`/trabajador/update/${id}`, data), "Trabajador actualizado");
+    data.tienda_id = data.rol != 1 ? 1 : data.rol;
+    console.log(data);
+    await handleRequest(
+      () => ApiClient.put(`/trabajador/update/${id}`, data),
+      "Trabajador actualizado"
+    );
   };
 
   const deleteTrabajador = async (id) => {
@@ -43,11 +48,15 @@ const useTrabajador = (id, onChange) => {
     }, "Trabajador eliminado");
   };
 
-  useEffect(() => {
-    getTrabajador();
-  }, [id]);
-
-  return { trabajador, loading, error, addTrabajador, updateTrabajador, deleteTrabajador };
+  return {
+    trabajador,
+    loading,
+    error,
+    getTrabajador,
+    addTrabajador,
+    updateTrabajador,
+    deleteTrabajador,
+  };
 };
 
 export default useTrabajador;

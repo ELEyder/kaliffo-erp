@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import { ApiClient } from "../../../services/ApiClient";
 import useApiRequest from "../../../hooks/useApiRequest";
 
-const useProducto = (id, onChange) => {
+const useProducto = (onChange) => {
   const { handleRequest, loading, error } = useApiRequest(onChange);
   const [producto, setProducto] = useState({});
 
   const addProducto = async (values) => {
-    console.log("DATA:", values)
-    await handleRequest(() => ApiClient.post(`/producto/create`, values), "Producto agregado");
+    console.log("DATA:", values);
+    await handleRequest(
+      () => ApiClient.post(`/producto/create`, values),
+      "Producto agregado"
+    );
   };
 
-  const getProducto = async () => {
+  const getProducto = async (id) => {
     if (!id) return;
     await handleRequest(async () => {
       const response = await ApiClient.get(`/producto/${id}`);
@@ -20,9 +23,12 @@ const useProducto = (id, onChange) => {
   };
 
   const updateProducto = async (id, data) => {
-    data.tienda_id = data.rol != 1 ? 0 : data.rol
-    console.log( data)
-    await handleRequest(() => ApiClient.put(`/producto/update/${id}`, data), "Producto actualizado");
+    data.tienda_id = data.rol != 1 ? 0 : data.rol;
+    console.log(data);
+    await handleRequest(
+      () => ApiClient.put(`/producto/update/${id}`, data),
+      "Producto actualizado"
+    );
   };
 
   const deleteProducto = async (id) => {
@@ -32,11 +38,15 @@ const useProducto = (id, onChange) => {
     }, "Producto eliminado");
   };
 
-  useEffect(() => {
-    getProducto();
-  }, [id]);
-
-  return { producto, loading, error, addProducto, updateProducto, deleteProducto };
+  return {
+    producto,
+    loading,
+    error,
+    getProducto,
+    addProducto,
+    updateProducto,
+    deleteProducto,
+  };
 };
 
 export default useProducto;

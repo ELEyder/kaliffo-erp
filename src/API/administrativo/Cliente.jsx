@@ -1,4 +1,4 @@
-import {ApiClient} from '../ApiClient';
+import { ApiClient } from '../../services/ApiClient';
 
 export const getDatosCliente = async (tipo,datos) =>{
     try {

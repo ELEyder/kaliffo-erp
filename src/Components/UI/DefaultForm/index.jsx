@@ -8,7 +8,7 @@ import {
   onlyNumberKey,
   onlyNumberInput,
   preventPaste,
-} from "../../../../libs/Tools"; // Funciones de utilidad para validación
+} from "../../../libs/Tools"; // Funciones de utilidad para validación
 
 const DefaultForm = ({ onFinish, rows, form }) => {
   return (

@@ -6,8 +6,7 @@ import { getTiendas } from "@AA/Tienda";
 
 dayjs.extend(customParseFormat);
 
-import DefaultModal from "./DefaultModal";
-import DefaultForm from "../Forms/DefaultForm";
+import { DefaultForm, DefaultModal } from "../../../../components/UI";
 import { useTrabajador } from "../../hooks";
 
 const AddTrabajadorModal = ({
@@ -18,7 +17,7 @@ const AddTrabajadorModal = ({
 
   const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
   const [tiendas, setTiendas] = useState([]); // Lista de tiendas (para trabajadores de ventas)
-  const { addTrabajador } = useTrabajador(null, onAdded);
+  const { addTrabajador } = useTrabajador(onAdded);
   const [rol, setRol] = useState(0);
 
   useEffect(()=>{

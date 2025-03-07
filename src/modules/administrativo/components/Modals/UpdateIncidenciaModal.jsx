@@ -5,8 +5,7 @@ import dayjs from "dayjs";
 
 dayjs.extend(customParseFormat);
 
-import DefaultModal from "./DefaultModal";
-import DefaultForm from "../Forms/DefaultForm";
+import { DefaultForm, DefaultModal } from "../../../../components/UI";
 import { useIncidencia } from "../../hooks";
 
 const UpdateIncidenciaModal = ({

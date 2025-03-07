@@ -1,5 +1,4 @@
-import { ApiClient } from "../ApiClient";
-import { ApiClientFiles } from "../ApiClient";
+import { ApiClient, ApiClientFiles } from '../../services/ApiClient';
 
 // Obtener todas las telas
 export const getTelas = async (setData) => {
