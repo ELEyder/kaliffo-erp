@@ -1,4 +1,4 @@
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 import useStockPorColor from "../../hooks/useStockPorColores";
 
 const StockPorColoresTable = ({ id }) => {

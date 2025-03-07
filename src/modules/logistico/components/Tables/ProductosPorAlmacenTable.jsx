@@ -1,4 +1,4 @@
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 import useProductosPorAlmacen from "../../hooks/useProductosPorAlmacen";
 
 const ProductosPorAlmacenTable = ({ id }) => {

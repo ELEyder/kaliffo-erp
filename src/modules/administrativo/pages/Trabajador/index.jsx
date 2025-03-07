@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"; // Hook para acceder a los parámetros de la ruta
+import { useParams } from "react-router-dom";
 import { Divider, Tabs } from "antd";
 import { Details } from "../../../../layouts";
 import { TrabajadorCard } from "../../components/Cards/";
@@ -9,7 +9,7 @@ import {
 } from "../../components/Tables";
 
 const Trabajador = () => {
-  const { id } = useParams(); // Obtener el ID del trabajador desde los parámetros de la URL
+  const { id } = useParams();
 
   const items = [
     {

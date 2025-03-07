@@ -1,4 +1,4 @@
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 import useProductos from "../../hooks/useProductos";
 import Loading from "../../../../Components/Loading/Loading";
 import { FloatButton } from "antd";

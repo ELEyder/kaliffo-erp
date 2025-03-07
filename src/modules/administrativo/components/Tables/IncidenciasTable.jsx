@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Flex, Button, Popconfirm, FloatButton } from "antd";
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
 import {useIncidencias, useIncidencia} from "../../hooks";
 import UpdateIncidenciaModal from "../Modals/UpdateIncidenciaModal";

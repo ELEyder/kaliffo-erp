@@ -1,5 +1,5 @@
 import { Button, Flex, Popconfirm } from "antd";
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 
 const VentasTable = () => {
 

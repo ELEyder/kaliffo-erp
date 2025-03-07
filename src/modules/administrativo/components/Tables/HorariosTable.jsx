@@ -1,5 +1,5 @@
 import { Button, Popconfirm } from "antd";
-import { Tabla } from "../../../../Components/UI";
+import { Tabla } from "../../../../components/UI";
 import {useHorario, useHorarios} from "../../hooks";
 
 const HorariosTable = ({ id }) => {
