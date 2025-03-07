@@ -41,7 +41,7 @@ const TrabajadorCard = ({ id }) => {
         { title: "TELÉFONO", value: telefono },
         { title: "HORAS TRABAJADAS", value: total_horas_trabajadas },
         { title: "NUM. INCIDENCIAS", value: total_incidencias },
-        { title: "SALARIO", value: `S/ ${sueldo}` },
+        { title: "SALARIO", value: `S/ ${sueldo || 0}` },
       ]}
     >
       <Dropdown.Button
