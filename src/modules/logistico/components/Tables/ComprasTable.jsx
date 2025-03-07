@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Button, Row, Col, Popconfirm, Table, FloatButton } from "antd";
-import AddCompraModal from "@CL/compras/AddCompraModal"; // Modal para añadir compras
-import DetallesComprasModal from "@CL/compras/DetallesComprasModal"; // Modal para ver detalles de compras
-import EditCompraModal from "@CL/compras/EditCompraModal"; // Modal para editar compras
-import useCompras from "../../hooks/useCompras";
+import { Button, Row, Col, Popconfirm, FloatButton } from "antd";
+import {
+  AddCompraModal,
+  DetallesComprasModal,
+  UpdateCompraModal,
+} from "../Modals";
+import { useCompras, useCompra } from "../../hooks";
 import { Tabla } from "../../../../components/UI";
-import useCompra from "../../hooks/useCompra";
 
 const ComprasTable = () => {
   const { compras, loading, getCompras } = useCompras();
   const { deleteCompra } = useCompra(getCompras);
-  const [idCompra, setIdCompra] = useState(null); // Estado para almacenar el ID de la compra seleccionada
-  const [openDetalleCompras, setopenDetalleCompras] = useState(false); // Estado para controlar la visibilidad del modal de detalles
-  const [reload, setReload] = useState(false); // Estado para forzar la recarga de datos
+  const [idCompra, setIdCompra] = useState(null);
+  const [reload, setReload] = useState(false);
 
   const [modals, setModals] = useState({
     dllC: false,
@@ -75,7 +75,7 @@ const ComprasTable = () => {
                 onClick={(e) => {
                   e.stopPropagation(); // Evita que se dispare el evento en otras filas
                   setIdCompra(record.compra_id); // Establece el ID de la compra seleccionada
-                  changeModal("dll",true); // Abre el modal de detalles
+                  changeModal("dll", true); // Abre el modal de detalles
                 }}
               >
                 +
@@ -140,7 +140,7 @@ const ComprasTable = () => {
         idC={idCompra} // Pasa el ID de la compra para obtener los detalles
       />
 
-      <EditCompraModal
+      <UpdateCompraModal
         openModal={modals.updC}
         closeModal={() => changeModal("updC", false)}
         reload={() => setReload(!reload)} // Recarga los datos al cerrar el modal

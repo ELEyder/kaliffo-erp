@@ -6,7 +6,7 @@ import LogisticoRouters from "../modules/logistico/LogisticoRouters";
 import ProduccionRouters from "../modules/produccion/ProduccionRouters";
 import ComercialRouters from "../modules/comercial/ComercialRouters";
 
-import Loading from "../components/Loading/Loading";
+import { Loading } from "../components/UI";
 import Layout from "../layouts/Layout";
 
 const LoginView = lazy(() => import("../pages/Login/LoginView"));

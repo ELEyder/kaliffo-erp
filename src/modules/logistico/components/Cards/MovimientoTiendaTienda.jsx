@@ -11,7 +11,7 @@ import {
     Button,
   } from "antd";
 
-const MovimientoTiendaTienda = () => {
+const MovimientoTiendaTiendaCard = () => {
   const { Title, Text } = Typography;
 
   const [productos, setProductos] = useState({}); // Estado para almacenar los productos seleccionados
@@ -181,4 +181,4 @@ const MovimientoTiendaTienda = () => {
   );
 };
 
-export default MovimientoTiendaTienda
+export default MovimientoTiendaTiendaCard

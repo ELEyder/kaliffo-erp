@@ -16,7 +16,7 @@ import { getTiendas } from "@AA/Tienda"; // Obtiene la lista de tiendas
 import { getProductoSimpleCodigoBarras } from "@AA/Producto";
 import {createMovimiento_Almacen_Tienda} from "@AL/MovimientosMercaderia"
 
-const MovimientoAlmacenTienda = () => {
+const MovimientoAlmacenTiendaCard = () => {
   const { Title, Text } = Typography;
 
   const [productos, setProductos] = useState({}); // Estado para almacenar los productos seleccionados
@@ -286,4 +286,4 @@ const MovimientoAlmacenTienda = () => {
   );
 };
 
-export default MovimientoAlmacenTienda;
+export default MovimientoAlmacenTiendaCard;

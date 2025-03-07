@@ -3,7 +3,7 @@ import { getMovimientoDetalle } from "@AL/MovimientosMercaderia"; // Función pa
 import { Modal, Form, Row, Col, Card, Input, Divider } from "antd";
 
 const MovimientoDetalleModal = ({ openModal, closeModal, tipo, idM }) => {
-  const [movimientoDetalle, setmovimientoDetalle] = useState(null);
+  const [movimientoDetalle, setmovimientoDetalle] = useState({});
 
   useEffect(() => {
     if (idM) {
@@ -31,12 +31,12 @@ const MovimientoDetalleModal = ({ openModal, closeModal, tipo, idM }) => {
           layout="vertical"
           labelAlign="left"
           initialValues={{
-            codigo: movimientoDetalle.cabecero.codigo,
-            transporte: movimientoDetalle.cabecero.transporte,
-            fecha_envio: movimientoDetalle.cabecero.fecha_envio,
-            fecha_inicio_envio: movimientoDetalle.cabecero.fecha_inicio_envio,
-            almacen: movimientoDetalle.cabecero.nombre_almacen,
-            tienda: movimientoDetalle.cabecero.tienda,
+            codigo: movimientoDetalle.cabecero?.codigo,
+            transporte: movimientoDetalle.cabecero?.transporte,
+            fecha_envio: movimientoDetalle.cabecero?.fecha_envio,
+            fecha_inicio_envio: movimientoDetalle.cabecero?.fecha_inicio_envio,
+            almacen: movimientoDetalle.cabecero?.nombre_almacen,
+            tienda: movimientoDetalle.cabecero?.tienda,
           }}
         >
           {/* Datos generales de la compra */}
@@ -113,7 +113,7 @@ const MovimientoDetalleModal = ({ openModal, closeModal, tipo, idM }) => {
 
           <Divider></Divider>
 
-          {movimientoDetalle.detalle.map((detalle, index) => (
+          {movimientoDetalle.detalle?.map((detalle, index) => (
             <Row key={index} gutter={16}>
               <Col span={12}>
                 <Form.Item label="Producto">

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+import { Loading } from "../../components/UI";
 
 // Lazy loading de componentes
 const Trabajadores = lazy(() => import("./pages/Trabajadores"));

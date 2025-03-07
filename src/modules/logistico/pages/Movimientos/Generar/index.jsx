@@ -1,19 +1,19 @@
 import React from "react";
 import { useSession } from "../../../../../context/AuthProvider"; // Hook para acceder al estado de sesión
-import MovimientoAlmacenTienda from "@CL/MovimientoMercaderia/MovimientoAlmacenTienda";
-import MovimientoTiendaTienda from "@CL/MovimientoMercaderia/MovimientoTiendaTienda";
+import MovimientoAlmacenTiendaCard from "../../../components/Cards/MovimientoAlmacenTienda"; 
+import MovimientoTiendaTiendaCard from "../../../components/Cards/MovimientoTiendaTienda";
 
 const MovimientoMercaderiaGenerar = () => {
 
-  const { user, login, logout } = useSession(); // Extraemos los datos del usuario y funciones de login/logout desde el contexto
+  const { user } = useSession(); // Extraemos los datos del usuario y funciones de login/logout desde el contexto
 
 
   return (
     <>
         {user.rol==="administrador"?(
-            <MovimientoAlmacenTienda />
+            <MovimientoAlmacenTiendaCard />
         ):(
-            <MovimientoTiendaTienda />
+            <MovimientoTiendaTiendaCard />
         )}
     </>
   );

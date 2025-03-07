@@ -19,7 +19,7 @@ import {
 } from "@AL/Compras";
 import moment from "moment";
 
-const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
+const UpdateCompraModal = ({ openModal, closeModal, idC, reload }) => {
   const [form] = Form.useForm();
   const [valoresO, setValoresO] = useState({}); // Estado para guardar los valores originales de la compra
   const [empresas, setEmpresas] = useState([]); // Estado para guardar las empresas
@@ -203,4 +203,4 @@ const EditCompraModal = ({ openModal, closeModal, idC, reload }) => {
   );
 };
 
-export default EditCompraModal;
+export default UpdateCompraModal;

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+import { Loading } from "../../components/UI";
 
 // Lazy loading de componentes
 const Almacen = lazy(() => import("./pages/Almacen"));
@@ -8,6 +8,7 @@ const Almacenes = lazy(() => import("./pages/Almacenes"));
 const Compras = lazy(() => import("./pages/Compras"));
 const Generar = lazy(() => import("./pages/Movimientos/Generar"));
 const Historial = lazy(() => import("./pages/Movimientos/Historial"));
+const Detalle = lazy(() => import("./pages/Movimientos/Historial/Detalle"));
 const ErrorView = lazy(() => import("../../pages/Error/ErrorView"));
 
 const LogisticoRouters = () => (
@@ -19,6 +20,7 @@ const LogisticoRouters = () => (
 
         <Route path="/movimientos/generar" element={<Generar />} />
         <Route path="/movimientos/historial" element={<Historial />} />
+        <Route path="/movimientos/historial/:tipo" element={<Detalle />} />
 
         <Route path="/compras" element={<Compras />} />
 

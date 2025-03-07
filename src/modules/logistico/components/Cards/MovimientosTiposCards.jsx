@@ -22,7 +22,7 @@ const MovimientosTiposCards = () => {
       {Object.keys(movimientos).map((tipo, index) => (
          <Card
          hoverable
-         onClick={() => navigate(`/movimientos/historial/${tipo}`)}
+         onClick={() => navigate(`/logistico/movimientos/historial/${tipo}`)}
          key={index}
          style={{
            width: "400px",

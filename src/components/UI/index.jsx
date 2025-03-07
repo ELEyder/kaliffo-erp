@@ -5,3 +5,4 @@ export { default as Tabla } from './Tabla';
 export { default as DefaultCard } from './DefaultCard';
 export { default as DefaultForm } from './DefaultForm';
 export { default as DefaultModal } from './DefaultModal';
+export { default as Loading } from './Loading';
