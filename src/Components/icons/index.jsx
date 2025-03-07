@@ -1,1 +1,0 @@
-export { default as Yeti } from './Yeti';
