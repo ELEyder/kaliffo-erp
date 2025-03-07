@@ -1,6 +1,6 @@
 import React from "react";
 import { Divider } from "antd";
-import AlmacenesTable from "../../components/Tables/AlmacenesTable";
+import { AlmacenesTable } from "../../components/Tables";
 
 const AlmacenProductos = () => {
   return (

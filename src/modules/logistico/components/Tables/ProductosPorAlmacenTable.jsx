@@ -1,21 +1,28 @@
+import { useEffect } from "react";
 import { Tabla } from "../../../../components/UI";
 import useProductosPorAlmacen from "../../hooks/useProductosPorAlmacen";
 
 const ProductosPorAlmacenTable = ({ id }) => {
+  const { productos, loading, getProductos } = useProductosPorAlmacen(id);
 
-  const { productos, loading } = useProductosPorAlmacen(id)
+  useEffect(() => {
+    getProductos(id);
+  }, []);
+
   const columnas = [
     { title: "Producto", dataIndex: "nombre" },
-    { title: "Stock", dataIndex: "stock", 
+    {
+      title: "Stock",
+      dataIndex: "stock",
       onCell: (record) => ({
         style: {
           background:
             record.stock >= 50
-              ? "green" // Verde para stock >= 50
+              ? "green"
               : record.stock <= 20
-              ? "#f54242" // Rojo para stock <= 20
-              : "#FCFB77", // Amarillo para stock intermedio
-          color: record.stock <= 20 || record.stock >= 50 ? "white" : "black", // Ajustar el color del texto basado en el stock
+              ? "#f54242"
+              : "#FCFB77",
+          color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
           padding: "10px",
         },
       }),

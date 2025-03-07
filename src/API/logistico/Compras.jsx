@@ -83,7 +83,6 @@ export const eliminarCompra = async (compra_id) => {
   try {
     await ApiClient.delete(`/compra/delete/${compra_id}`);
     return("delete", "Compra eliminada exitosamente");
-    return true;
   } catch (error) {
     return("error", "Error al eliminar la compra");
   }

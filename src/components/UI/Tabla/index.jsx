@@ -4,7 +4,7 @@ import { Table } from "antd";
 
 const Tabla = ({ columnas, rowKey, dataSource = [], loading = false }) => {
   const navigate = useNavigate();
-
+  
   const getSorter = (col) => {
     return col.dataIndex === "id" || col.title === "Opciones"
       ? 0

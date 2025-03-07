@@ -2,11 +2,11 @@ import { useState } from "react";
 import { ApiClient } from "../../../services/ApiClient";
 import useApiRequest from "../../../hooks/useApiRequest";
 
-const useTrabajador = (onChange) => {
+const useCompra = (onChange) => {
   const { handleRequest, loading, error } = useApiRequest(onChange);
-  const [trabajador, setTrabajador] = useState({});
+  const [compra, setCompra] = useState({});
 
-  const addTrabajador = async (values) => {
+  const addCompra = async (values) => {
     const data = {
       nombre: values.nombre,
       ap_paterno: values.ap_paterno,
@@ -19,44 +19,44 @@ const useTrabajador = (onChange) => {
       tienda_id: values.tienda_id ?? 1,
     };
     await handleRequest(
-      () => ApiClient.post(`/trabajador/create`, data),
-      "Trabajador agregado"
+      () => ApiClient.post(`/compra/create`, data),
+      "Compra agregado"
     );
   };
 
-  const getTrabajador = async (id) => {
+  const getCompra = async (id) => {
     if (!id) return;
     await handleRequest(async () => {
-      const response = await ApiClient.get(`/trabajador/${id}`);
-      setTrabajador(response.data);
+      const response = await ApiClient.get(`/compra/${id}`);
+      setCompra(response.data);
     });
   };
 
-  const updateTrabajador = async (id, data) => {
+  const updateCompra = async (id, data) => {
     data.tienda_id = data.rol != 1 ? 1 : data.rol;
     console.log(data);
     await handleRequest(
-      () => ApiClient.put(`/trabajador/update/${id}`, data),
-      "Trabajador actualizado"
+      () => ApiClient.put(`/compra/update/${id}`, data),
+      "Compra actualizado"
     );
   };
 
-  const deleteTrabajador = async (id) => {
+  const deleteCompra = async (id) => {
     await handleRequest(async () => {
-      await ApiClient.delete(`/trabajador/delete/${id}`);
-      setTrabajador({});
-    }, "Trabajador eliminado");
+      await ApiClient.delete(`/compra/delete/${id}`);
+      setCompra({});
+    }, "Compra eliminado");
   };
 
   return {
-    trabajador,
+    compra,
     loading,
     error,
-    getTrabajador,
-    addTrabajador,
-    updateTrabajador,
-    deleteTrabajador,
+    getCompra,
+    addCompra,
+    updateCompra,
+    deleteCompra,
   };
 };
 
-export default useTrabajador;
+export default useCompra;

@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ApiClient } from "../../../services/ApiClient";
 
-const useProductosPorAlmacen = ({ id }) => {
+const useProductosPorAlmacen = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const getProductos = async () => {
+  const getProductos = async (id) => {
     setLoading(true);
     try {
       const response = await ApiClient.get(`producto?almacen_id=${id}`);
@@ -18,13 +18,6 @@ const useProductosPorAlmacen = ({ id }) => {
     }
   }
 
-  useEffect(() => {
-    const fetchProductos = async () => {
-      await getProductos();
-    };
-    fetchProductos();
-  }, []);
-  
   return { productos, loading, error, getProductos };
 }
 

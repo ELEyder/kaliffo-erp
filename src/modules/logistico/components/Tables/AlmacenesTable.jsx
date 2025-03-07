@@ -2,8 +2,8 @@ import { Tabla } from "../../../../components/UI";
 import useAlmacenes from "../../hooks/useAlmacenes";
 
 const AlmacenesTable = () => {
-
   const { almacenes, loading } = useAlmacenes()
+
   const columnas = [
     { title: "Nombre del Almacen", dataIndex: "nombre_almacen" },
     { title: "Stock", dataIndex: "stock_total", 
@@ -25,7 +25,7 @@ const AlmacenesTable = () => {
   return (
     <Tabla
       columnas={columnas}
-      rowKey={"producto_id"}
+      rowKey={"almacen_id"}
       dataSource={almacenes}
       loading={loading}
     />
