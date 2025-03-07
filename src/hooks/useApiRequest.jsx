@@ -19,6 +19,7 @@ const useApiRequest = (onChange) => {
         `Error ${error.status || ""}`,
         error.response?.data?.error || "Error desconocido"
       );
+      console.log(error)
       setError(error);
     } finally {
       setLoading(false);

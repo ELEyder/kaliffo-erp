@@ -1,12 +1,13 @@
 import axios from "axios";
 
 // Función para crear una instancia de Axios con configuración personalizada
-const createApiClient = (contentType = "application/json") => {
+const createApiClient = (contentType = "application/json", type = "json") => {
   const ApiClient = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL, // URL base de la API
     headers: {
       "Content-Type": contentType, // Tipo de contenido dinámico
     },
+    responseType: type,
     withCredentials: true, // Habilita el envío de cookies en solicitudes CORS
   });
 
@@ -24,4 +25,4 @@ const createApiClient = (contentType = "application/json") => {
 
 // Exportación de instancias para uso específico
 export const ApiClient = createApiClient(); // Para JSON
-export const ApiClientFiles = createApiClient("multipart/form-data"); // Para archivos
+export const ApiClientFiles = createApiClient("multipart/form-data", "blob"); // Para archivos

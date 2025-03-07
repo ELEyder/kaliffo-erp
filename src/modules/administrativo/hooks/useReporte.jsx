@@ -9,12 +9,13 @@ const useReporte = () => {
     await handleRequest(async () => {
       const response = await ApiClientFiles.get(`/tienda/reporte/${id}`);
       const pdf = response.data;
+      console.log("RESPONSE:", response);
       const url = window.URL.createObjectURL(pdf);
       window.open(url);
     });
   };
 
-  const getReporteUsuario = async (id, tipo) => {
+  const getReporteTrabajador = async (id, tipo) => {
     if (!id) return;
     await handleRequest(async () => {
       const response = await ApiClientFiles.get(
@@ -26,7 +27,7 @@ const useReporte = () => {
     });
   };
 
-  return { loading, error, getReporteTienda, getReporteUsuario };
+  return { loading, error, getReporteTienda, getReporteTrabajador };
 };
 
 export default useReporte;

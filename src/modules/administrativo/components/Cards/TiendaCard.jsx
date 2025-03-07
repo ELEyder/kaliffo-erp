@@ -17,24 +17,23 @@ const TiendaCard = ({ id }) => {
       list={[
         {
           title: "DIRECCIÓN",
-          value: tienda.direccion == null ? "0" : `${tienda.direccion}`,
+          value: tienda.direccion,
         },
         {
           title: "TELÉFONO",
-          value: tienda.telefono == null ? "0" : `${tienda.telefono}`,
+          value: tienda.telefono,
         },
         {
           title: "STOCK TOTAL",
-          value: tienda.total_stock == null ? "0" : `${tienda.total_stock}`,
+          value: tienda.total_stock,
         },
         {
           title: "VENTAS TOTALES",
-          value: tienda.ventas == null ? "0" : `${tienda.ventas}`,
+          value: tienda.ventas,
         },
         {
           title: "PERSONAL ASIGNADO",
-          value:
-            tienda.total_usuarios == null ? "0" : `${tienda.total_usuarios}`,
+          value: tienda.total_usuarios,
         },
       ]}
     >

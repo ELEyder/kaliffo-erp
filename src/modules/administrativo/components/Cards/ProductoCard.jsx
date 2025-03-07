@@ -1,7 +1,7 @@
-import { Dropdown } from "antd";
-import { useProducto } from "../../hooks";  
-import { DefaultCard } from "../../../../components/UI";
 import { useEffect } from "react";
+import { useProducto } from "../../hooks";
+import { DefaultCard } from "../../../../components/UI";
+import { Dropdown } from "antd";
 
 const ProductoCard = ({ id }) => {
   const { producto, loading, getProducto } = useProducto();

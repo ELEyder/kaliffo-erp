@@ -1,27 +1,25 @@
-import { Dropdown } from "antd";
-import { getReporteUsuario } from "@AA/Reporte";
-import useTrabajador from "../../hooks/useTrabajador";
 import { useEffect } from "react";
 import { DefaultCard } from "../../../../components/UI";
+import { useReporte, useTrabajador } from "../../hooks";
+import { Dropdown } from "antd";
 
-// Lista de reportes
 const items = [
   { key: "1", label: "Histórico" },
   { key: "2", label: "Último Mes" },
 ];
 
-// Maneja la obtención del reporte
-const handleReporteClick =
-  (id) =>
-  ({ key }) =>
-    getReporteUsuario(id, key);
-
 const TrabajadorCard = ({ id }) => {
   const { trabajador, getTrabajador } = useTrabajador();
-  
+  const { getReporteTrabajador } = useReporte();
+
   useEffect(() => {
     getTrabajador(id);
   }, [id]);
+
+  const handleReporteClick =
+    (id) =>
+    ({ key }) =>
+      getReporteTrabajador(id, key);
 
   const {
     nombres,
