@@ -2,12 +2,16 @@ import { Flex, Button, Popconfirm, FloatButton } from "antd";
 import { useTrabajadores, useTrabajador } from "../../hooks";
 import { Tabla } from "../../../../components/UI";
 import { useState } from "react";
-import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
-import AddPersonalModal from "../Modals/AddPersonalModal";
+import {
+  UpdateTrabajadorModal,
+  AddIncidenciaModal,
+  AddPersonalModal,
+} from "../Modals";
 
 const PersonalTable = ({ tienda_id }) => {
-  const { trabajadores, loading , getTrabajadores } = useTrabajadores({tienda_id : tienda_id});
+  const { trabajadores, loading, getTrabajadores } = useTrabajadores({
+    tienda_id: tienda_id,
+  });
   const { deleteTrabajador } = useTrabajador(getTrabajadores);
   const [dataTrabajador, setDataTrabajador] = useState({});
 
