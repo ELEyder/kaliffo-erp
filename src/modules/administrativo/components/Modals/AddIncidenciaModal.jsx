@@ -1,19 +1,9 @@
 import { Form } from "antd";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import dayjs from "dayjs";
-
-dayjs.extend(customParseFormat);
-
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
 import { useIncidencia } from "../../hooks";
 
-const AddIncidenciaModal = ({
-  openModal, // Estado para controlar la visibilidad del modal
-  closeModal, // Función para cerrar el modal
-  id,
-  onAdded, // ID del usuario pasado como prop
-}) => {
-  const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
+const AddIncidenciaModal = ({ openModal, closeModal, id, onAdded }) => {
+  const [form] = Form.useForm();
   const { addIncidencia } = useIncidencia(onAdded);
 
   const rows = [

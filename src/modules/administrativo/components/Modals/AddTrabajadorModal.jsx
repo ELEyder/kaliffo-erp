@@ -110,9 +110,8 @@ const AddTrabajadorModal = ({
         form={form}
         onFinish={onFinish}
         rows={rows}
-      >
+      />
 
-      </DefaultForm>
     </DefaultModal>
   );
 };

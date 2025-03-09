@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { ApiClient } from "../../../services/ApiClient";
 
-const useTrabajadores = ( params = '' ) => {
+const useTrabajadores = ( filtros = {} ) => {
   const [trabajadores, setTrabajadores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -11,7 +11,10 @@ const useTrabajadores = ( params = '' ) => {
   const getTrabajadores = async () => {
     setLoading(true);
     try {
-      let url = `/trabajador${params}`;
+      let url = `/trabajador`;
+      const queryParams = new URLSearchParams(filtros).toString();
+      if (queryParams) url += `?${queryParams}`;
+      
       const response = await ApiClient.get(url);
       const data = response.data.map((trabajador) =>{
         return {
@@ -35,7 +38,7 @@ const useTrabajadores = ( params = '' ) => {
     };
     fetchTrabajadores();
 
-  }, [params]);
+  }, [JSON.stringify(filtros)]);
   
   return { trabajadores, loading, error, getTrabajadores };
 }

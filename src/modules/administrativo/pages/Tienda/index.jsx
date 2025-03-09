@@ -4,8 +4,8 @@ import { Details } from "../../../../layouts";
 import { TiendaCard } from "../../components/Cards";
 import {
   ProductosTable,
-  TrabajadoresTable,
   VentasTable,
+  PersonalTable,
 } from "../../components/Tables";
 
 const TiendaView = () => {
@@ -20,7 +20,7 @@ const TiendaView = () => {
     {
       key: "2",
       label: "Personal",
-      children: <TrabajadoresTable params={`?tienda_id=${id}`} />,
+      children: <PersonalTable tienda_id={id} />,
     },
     {
       key: "3",

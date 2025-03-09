@@ -3,11 +3,11 @@ import { useTrabajadores, useTrabajador } from "../../hooks";
 import { Tabla } from "../../../../components/UI";
 import { useState } from "react";
 import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
-import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
 import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
+import AddPersonalModal from "../Modals/AddPersonalModal";
 
-const TrabajadoresTable = ({ filtros }) => {
-  const { trabajadores, loading , getTrabajadores } = useTrabajadores(filtros);
+const PersonalTable = ({ tienda_id }) => {
+  const { trabajadores, loading , getTrabajadores } = useTrabajadores({tienda_id : tienda_id});
   const { deleteTrabajador } = useTrabajador(getTrabajadores);
   const [dataTrabajador, setDataTrabajador] = useState({});
 
@@ -89,9 +89,10 @@ const TrabajadoresTable = ({ filtros }) => {
         onUpdated={getTrabajadores}
       />
 
-      <AddTrabajadorModal
+      <AddPersonalModal
         openModal={modals.addT}
         closeModal={() => changeModal("addT", false)}
+        tienda_id={tienda_id}
         onAdded={getTrabajadores}
       />
 
@@ -105,4 +106,4 @@ const TrabajadoresTable = ({ filtros }) => {
   );
 };
 
-export default TrabajadoresTable;
+export default PersonalTable;

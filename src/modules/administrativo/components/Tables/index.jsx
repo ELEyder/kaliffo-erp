@@ -9,3 +9,4 @@ export { default as TiendasTable } from "./TiendasTable";
 export { default as TrabajadoresTable } from "./TrabajadoresTable";
 export { default as VentasPorTipoTable } from "./VentasPorTipoTable";
 export { default as VentasTable } from "./VentasTable";
+export { default as PersonalTable } from "./PersonalTable";

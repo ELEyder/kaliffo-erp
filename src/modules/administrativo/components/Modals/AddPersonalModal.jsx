@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from "react"; // React imports
-import { Form, Modal, Select } from "antd"; // Ant Design components
-import { Link } from "react-router-dom"; // For navigation
-import { updateTrabajadorTienda, getTrabajadoresDiferentes } from "@AA/Usuario"; // Functions for managing workers
+import { Form, Modal, Select } from "antd";
+import { Link } from "react-router-dom";
+import useTrabajadores from "../../hooks/useTrabajadores";
+import { useTrabajador } from "../../hooks";
+import { DefaultForm, DefaultModal } from "../../../../components/UI";
 
-const AddPersonalModal = ({
-  openModal,
-  closeModal,
-  id,
-  onAdded
-}) => {
-  const [form] = Form.useForm(); // Form instance to handle form state
+const AddPersonalModal = ({ openModal, closeModal, tienda_id, onAdded }) => {
+  const [form] = Form.useForm();
 
-  const [Trabajadores, setTrabajadores] = useState([]); // State to store the list of available workers
-
-  // Fetch the list of workers that are not already assigned to the store
-  useEffect(() => {
-    getTrabajadoresDiferentes(id, setTrabajadores); // Calls the API to get available workers
-  }, [id]); // Fetch workers whenever the store id changes
-
+  const { trabajadores } = useTrabajadores({rol : 1, antiTienda_id : tienda_id});
+  const { updateTrabajador } = useTrabajador(onAdded)
+  const rows = [
+    {
+      type : "select",
+      name : "personal",
+      label : "Personal",
+      options: trabajadores.map((trabajador) => ({
+        value: trabajador.trabajador_id,
+        label: trabajador.nombres,
+      })),
+    }
+  ]
   return (
+    <>
+    <DefaultModal>
+      <DefaultForm 
+        rows={rows}
+      />
+    </DefaultModal>
     <Modal
       forceRender
       getContainer={false}
@@ -31,7 +39,6 @@ const AddPersonalModal = ({
       centered={true} // Center the modal
       width={500} // Set the modal width
     >
-
       <Form
         style={{ maxWidth: 500, margin: "0 auto" }} // Center the form
         size="large"
@@ -40,44 +47,54 @@ const AddPersonalModal = ({
         labelAlign="center" // Align labels to the center
         id="formulariaddpersonal"
         onFinish={async (values) => {
-          // When the form is submitted
-          await updateTrabajadorTienda(id, values); // Update the store with the selected worker
-          reload(); // Reload the store data
+          await updateTrabajador(values.personal, {tienda_id : tienda_id}); // Update the store with the selected worker
           closeModal(); // Close the modal
         }}
       >
-
         {/* Personal Selection */}
         <Form.Item
           style={{ marginTop: 20 }}
           name="personal"
           label="Personal" // Label for the field
-          rules={[{
-            required: true, // Field is required
-            message: "Personal Requerido", // Error message if validation fails
-          }]}
+          rules={[
+            {
+              required: true, // Field is required
+              message: "Personal Requerido", // Error message if validation fails
+            },
+          ]}
         >
           <Select
             showSearch
             placeholder="Seleccionar Un personal" // Placeholder text
-            filterOption={(input, option) =>
-              (option?.label ?? "").toLowerCase().includes(input.toLowerCase()) // Filter workers based on search input
+            filterOption={
+              (input, option) =>
+                (option?.label ?? "")
+                  .toLowerCase()
+                  .includes(input.toLowerCase()) // Filter workers based on search input
             }
-            options={Trabajadores.map((trabajador) => ({
+            options={trabajadores.map((trabajador) => ({
               value: trabajador.trabajador_id, // Set value as worker id
-              label: trabajador.nombre + " " + trabajador.ap_paterno + " " + trabajador.ap_materno, // Display full name
+              label:
+                trabajador.nombre +
+                " " +
+                trabajador.ap_paterno +
+                " " +
+                trabajador.ap_materno, // Display full name
               key: trabajador.trabajador_id, // Set key to worker id
             }))}
           />
         </Form.Item>
-
       </Form>
 
       {/* Link to create a new worker */}
-      <Link to="/administrativo/trabajadores" style={{ textDecoration: "none" }}>
+      <Link
+        to="/administrativo/trabajadores"
+        style={{ textDecoration: "none" }}
+      >
         ¿Trabajador Nuevo? {/* Text linking to the worker creation page */}
       </Link>
     </Modal>
+    </>
   );
 };
 

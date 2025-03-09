@@ -33,7 +33,7 @@ const useTrabajador = (onChange) => {
   };
 
   const updateTrabajador = async (id, data) => {
-    data.tienda_id = data.rol != 1 ? 1 : data.rol;
+    if (data.rol) data.tienda_id = data.rol != 1 ? 1 : data.rol;
     console.log(data);
     await handleRequest(
       () => ApiClient.put(`/trabajador/update/${id}`, data),
