@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   Card,
@@ -17,12 +17,10 @@ import { getDatosCliente } from "@AA/Cliente";
 
 const GenerarVentas = () => {
   const { Title, Text } = Typography;
-  const [productos, setProductos] = useState({}); // Estado para almacenar los productos seleccionados
-  const [codigoBarras, setCodigoBarras] = useState(""); // Estado para capturar el código de barras ingresado
-  const [reload, setReload] = useState(false);
+  const [productos, setProductos] = useState({});
+  const [codigoBarras, setCodigoBarras] = useState("");
   const [form] = Form.useForm();
-
-  const { tipo } = useParams(); // Obtiene el parámetro "tipo" desde la URL
+  const { tipo } = useParams();
 
   useEffect(() => {
     const escaner = (event) => {
@@ -102,7 +100,7 @@ const GenerarVentas = () => {
           });
         }
 
-        setCodigoBarras(""); // Limpiar después de procesar
+        setCodigoBarras("");
       } else {
         setCodigoBarras((prev) => prev + event.key);
       }
@@ -114,7 +112,6 @@ const GenerarVentas = () => {
     };
   }, [codigoBarras]);
 
-  // Función para eliminar un producto de la lista
   const eliminarProducto = (codigo) => {
     setProductos((prevProductos) => {
       const { [codigo]: _, ...resto } = prevProductos;
@@ -122,7 +119,6 @@ const GenerarVentas = () => {
     });
   };
 
-  // Cálculos de totales
   const totalCantidad = Object.values(productos).reduce(
     (acc, { cantidad }) => acc + cantidad,
     0
@@ -131,8 +127,8 @@ const GenerarVentas = () => {
     (acc, { cantidad, precio }) => acc + cantidad * precio,
     0
   );
-  const totalIGV = Math.floor(totalBruto * 0.18); // Calcula el IGV
-  const totalNeto = (totalBruto + totalIGV).toFixed(1); // Suma total bruto e IGV
+  const totalIGV = Math.floor(totalBruto * 0.18);
+  const totalNeto = (totalBruto + totalIGV).toFixed(1);
 
   return (
     <>
@@ -158,7 +154,6 @@ const GenerarVentas = () => {
         }}
       >
         <Row gutter={16}>
-          {/* Columna de productos */}
           <Col span={16}>
             <Row>
               <Col span={24}>
