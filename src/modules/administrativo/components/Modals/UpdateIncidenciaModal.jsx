@@ -8,14 +8,8 @@ dayjs.extend(customParseFormat);
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
 import { useIncidencia } from "../../hooks";
 
-const UpdateIncidenciaModal = ({
-  openModal, // Estado para controlar si el modal está abierto
-  closeModal, // Función para cerrar el modal
-  data, // Data del trabajador a editar
-  onUpdated,
-}) => {
-  
-  const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
+const UpdateIncidenciaModal = ({ openModal, closeModal, data, onUpdated }) => {
+  const [form] = Form.useForm();
   const { updateIncidencia } = useIncidencia(onUpdated);
 
   useEffect(() => {

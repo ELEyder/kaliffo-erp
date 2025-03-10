@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "antd";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import dayjs from "dayjs";
-import { getTiendas } from "@AA/Tienda";
-
-dayjs.extend(customParseFormat);
-
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
-import { useTrabajador } from "../../hooks";
+import { useTiendas, useTrabajador } from "../../hooks";
+import dayjs from "dayjs";
 
-const UpdateTrabajadorModal = ({
-  openModal, // Estado para controlar si el modal está abierto
-  closeModal, // Función para cerrar el modal
-  data, // Data del trabajador a editar
-  onUpdated,
-}) => {
-  const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
-  const [tiendas, setTiendas] = useState([]); // Lista de tiendas (para trabajadores de ventas)
+const UpdateTrabajadorModal = ({ openModal, closeModal, data, onUpdated }) => {
+  const [form] = Form.useForm();
   const { updateTrabajador } = useTrabajador(onUpdated);
+  const { tiendas } = useTiendas();
   const [rol, setRol] = useState(1);
 
   useEffect(() => {
@@ -28,20 +18,23 @@ const UpdateTrabajadorModal = ({
       ["ap_materno"]: data.ap_materno,
       ["telefono"]: data.telefono,
       ["dni"]: data.dni,
-      ["fecha_nacimiento"]: dayjs(data.fecha_nacimiento),
+      fecha_nacimiento: data.fecha_nacimiento ? dayjs(data.fecha_nacimiento) : null,
       ["tienda_id"]: data.tienda_id,
       ["rol"]: data.rol,
     });
 
-    const tiposTrabajador = { 1: "Ventas", 2 : "Talleres", 3: "Miscelaneos", 4: "Costureros" };
-    const rol = Object.entries(tiposTrabajador).find(([key, value]) => value === data.rol)?.[0];
+    const tiposTrabajador = {
+      1: "Ventas",
+      2: "Talleres",
+      3: "Miscelaneos",
+      4: "Costureros",
+    };
+    const rol = Object.entries(tiposTrabajador).find(
+      ([key, value]) => value === data.rol
+    )?.[0];
 
-    setRol(rol)
+    setRol(rol);
   }, [openModal]);
-
-  useEffect(() => {
-    getTiendas(setTiendas);
-  }, []);
 
   const rows = [
     {
@@ -68,13 +61,13 @@ const UpdateTrabajadorModal = ({
       type: "number",
       label: "Teléfono",
       name: "telefono",
-      max: 9, // Longitud máxima del teléfono
+      max: 9,
     },
     {
       type: "number",
       label: "DNI",
       name: "dni",
-      max: 8, // Longitud máxima del DNI
+      max: 8,
     },
     {
       type: "select",
@@ -101,7 +94,7 @@ const UpdateTrabajadorModal = ({
             })),
           },
         ]
-      : []), // Si no es 'ventas', no se agrega nada
+      : []),
     {
       type: "hidden",
       name: "trabajador_id",
@@ -110,7 +103,7 @@ const UpdateTrabajadorModal = ({
 
   const onFinish = async (values) => {
     await updateTrabajador(data.trabajador_id, values);
-    closeModal(false); // Cierra el modal tras actualizar
+    closeModal(false);
   };
 
   return (

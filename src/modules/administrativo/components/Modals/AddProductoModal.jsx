@@ -1,13 +1,11 @@
-import React from "react";
 import { Form } from "antd";
-
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
-import useProducto from "../../hooks/useProducto";
+import { useProducto } from "../../hooks";
 
 const AddProductoModal = ({ openModal, closeModal, onAdded }) => {
   const [form] = Form.useForm();
 
-  const { addProducto } = useProducto(onAdded)
+  const { addProducto } = useProducto(onAdded);
 
   const onFinish = async (values) => {
     await addProducto(values);
@@ -46,4 +44,4 @@ const AddProductoModal = ({ openModal, closeModal, onAdded }) => {
   );
 };
 
-export default AddProductoModal; // Exporta el componente
+export default AddProductoModal;

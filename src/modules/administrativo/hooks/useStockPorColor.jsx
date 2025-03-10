@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { ApiClient } from "../../../services/ApiClient";
 
 const useStockPorColor = (id) => {
@@ -9,14 +9,16 @@ const useStockPorColor = (id) => {
   const getColores = async () => {
     setLoading(true);
     try {
-      const response = await ApiClient.get(`producto/detalle/${id}?tipo=colores`);
+      const response = await ApiClient.get(
+        `producto/detalle/${id}?tipo=colores`
+      );
       setColores(response.data);
     } catch (error) {
       setError(error);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     const fetchColores = async () => {
@@ -24,8 +26,8 @@ const useStockPorColor = (id) => {
     };
     fetchColores();
   }, []);
-  
+
   return { colores, loading, error, getColores };
-}
+};
 
 export default useStockPorColor;

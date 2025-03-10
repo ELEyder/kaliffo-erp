@@ -4,7 +4,7 @@ import { Footer } from "antd/es/layout/layout"; // Importación del componente F
 const FooterMain = () => {
     return (
         // Componente Footer con estilos personalizados
-        <Footer style={{ textAlign: "center", background: "black" }}>
+        <Footer style={{ textAlign: "center", background: "black", color :"white"}}>
             DESARROLLADO POR RLCODE
         </Footer>
     );

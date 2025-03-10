@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { Flex, Button, Popconfirm, FloatButton } from "antd";
 import { useTrabajadores, useTrabajador } from "../../hooks";
 import { Tabla } from "../../../../components/UI";
-import { useState } from "react";
 import {
   UpdateTrabajadorModal,
   AddIncidenciaModal,

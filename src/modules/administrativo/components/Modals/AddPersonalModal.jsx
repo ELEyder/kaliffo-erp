@@ -1,7 +1,6 @@
 import { Form } from "antd";
 import { Link } from "react-router-dom";
-import useTrabajadores from "../../hooks/useTrabajadores";
-import { useTrabajador } from "../../hooks";
+import { useTrabajador, useTrabajadores } from "../../hooks";
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
 
 const AddPersonalModal = ({ openModal, closeModal, tienda_id, onAdded }) => {

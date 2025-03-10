@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "antd";
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import dayjs from 'dayjs';
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import dayjs from "dayjs";
 import { getTiendas } from "@AA/Tienda";
 
 dayjs.extend(customParseFormat);
@@ -9,20 +9,15 @@ dayjs.extend(customParseFormat);
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
 import { useTrabajador } from "../../hooks";
 
-const AddTrabajadorModal = ({
-  openModal, // Estado para controlar si el modal está abierto
-  closeModal, // Función para cerrar el modal
-  onAdded
-}) => {
-
-  const [form] = Form.useForm(); // Inicializa el formulario de Ant Design
-  const [tiendas, setTiendas] = useState([]); // Lista de tiendas (para trabajadores de ventas)
+const AddTrabajadorModal = ({ openModal, closeModal, onAdded }) => {
+  const [form] = Form.useForm();
+  const [tiendas, setTiendas] = useState([]);
   const { addTrabajador } = useTrabajador(onAdded);
   const [rol, setRol] = useState(0);
 
-  useEffect(()=>{
-    getTiendas(setTiendas)
-  }, [])
+  useEffect(() => {
+    getTiendas(setTiendas);
+  }, []);
 
   const rows = [
     {
@@ -49,13 +44,13 @@ const AddTrabajadorModal = ({
       type: "number",
       label: "Teléfono",
       name: "telefono",
-      max: 9, // Longitud máxima del teléfono
+      max: 9,
     },
     {
       type: "number",
       label: "DNI",
       name: "dni",
-      max: 8, // Longitud máxima del DNI
+      max: 8,
     },
     {
       type: "number",
@@ -87,7 +82,7 @@ const AddTrabajadorModal = ({
             })),
           },
         ]
-      : []), // Si no es 'ventas', no se agrega nada
+      : []),
     {
       type: "hidden",
       name: "trabajador_id",
@@ -96,9 +91,9 @@ const AddTrabajadorModal = ({
 
   const onFinish = async (values) => {
     await addTrabajador(values);
-    closeModal(false); // Cierra el modal tras actualizar
+    closeModal(false);
   };
-  
+
   return (
     <DefaultModal
       title={"Añadir Trabajador"}
@@ -106,12 +101,7 @@ const AddTrabajadorModal = ({
       onClose={closeModal}
       onOk={form.submit}
     >
-      <DefaultForm
-        form={form}
-        onFinish={onFinish}
-        rows={rows}
-      />
-
+      <DefaultForm form={form} onFinish={onFinish} rows={rows} />
     </DefaultModal>
   );
 };

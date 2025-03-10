@@ -1,10 +1,10 @@
-import React, { useEffect } from "react"; // Importar React y el hook useEffect
-import { Form } from "antd"; // Componentes de Ant Design para formularios y modales
+import { useEffect } from "react";
+import { Form } from "antd";
 import { useTienda } from "../../hooks";
 import { DefaultForm, DefaultModal } from "../../../../components/UI"; 
 
 const UpdateTiendaModal = ({
-  openModal, // Estado para controlar si el modal está abierto
+  openModal,
   closeModal,
   data,
   onUpdated,

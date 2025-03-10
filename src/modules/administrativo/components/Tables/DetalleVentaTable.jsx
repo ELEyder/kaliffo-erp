@@ -3,8 +3,9 @@ import { Table } from "antd";
 
 import { getVentaById } from "@AA/Ventas"; // Función para obtener datos de una venta por ID
 
+// No test
 const DetalleVentaTable = ({
-  id, // ID de la venta que se utilizará para obtener los datos
+  id,
   data, // Propiedad opcional (no parece ser utilizada aquí)
 }) => {
   const [tablaDatos, setTablaDatos] = useState([]); // Estado para almacenar los datos de la tabla

@@ -10,3 +10,6 @@ export { default as useTrabajador } from './useTrabajador';
 export { default as useProducto } from './useProducto';
 export { default as useProductos } from './useProductos';
 export { default as useReporte } from './useReporte';
+export { default as useStockPorColor } from './useStockPorColor';
+export { default as useStockPorTalla } from './useStockPorTalla';
+export { default as useStockPorTienda } from './useStockPorTienda';

@@ -97,6 +97,22 @@ const Tabla = ({ columnas, rowKey, dataSource = [], loading = false }) => {
             },
           }),
         };
+      case "stock":
+        return {
+          onCell: (record) => ({
+            style: {
+              background:
+                record.stock >= 50
+                  ? "green"
+                  : record.stock <= 20
+                  ? "#f54242"
+                  : "#FCFB77",
+              color:
+                record.stock <= 20 || record.stock >= 50 ? "white" : "black",
+              padding: "10px",
+            },
+          }),
+        };
     }
   };
 

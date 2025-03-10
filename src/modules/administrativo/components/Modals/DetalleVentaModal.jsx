@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Form, Modal, List, Card, Row, Col, Divider } from "antd";
-import { getVentaById } from "@AA/Ventas"; // Función para obtener la venta por ID
-import DetalleVentaTable from "@CA/ventas/DetalleVentaTable"; // Componente para mostrar detalles de la venta
+import { getVentaById } from "@AA/Ventas";
+import DetalleVentaTable from "@CA/ventas/DetalleVentaTable";
 
+// (No Test)
 const DetalleVentaModal = ({
-  openModal, // Controla si el modal está abierto
-  closeModal, // Función para cerrar el modal
-  id, // ID de la venta a mostrar
+  openModal,
+  closeModal,
+  id,
 }) => {
-  const { tipo } = useParams(); // Obtiene el tipo de venta desde la URL
-  const [form] = Form.useForm(); // Formulario de Ant Design
-  const [venta, setVenta] = useState(["detalles"]); // Estado para almacenar los datos de la venta
+  const { tipo } = useParams();
+  const [form] = Form.useForm();
+  const [venta, setVenta] = useState(["detalles"]);
 
-  // Efecto para cargar los detalles de la venta al montar el componente o al cambiar el ID
   useEffect(() => {
-    getVentaById(id, setVenta); // Carga los detalles de la venta usando su ID
+    getVentaById(id, setVenta);
   }, [id]);
 
   console.log(tipo)
@@ -34,7 +34,6 @@ const DetalleVentaModal = ({
       centered
       width="800px"
     >
-      {/* Contenedor principal con estilo centralizado */}
       <Card style={{ textAlign: "center", margin: "auto" }}>
         {/* Fila con dos columnas para detalles generales */}
         <Row gutter={24} style={{ marginTop: "16px" }}>

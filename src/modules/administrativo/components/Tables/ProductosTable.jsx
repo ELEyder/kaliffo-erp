@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { FloatButton } from "antd";
 import { Tabla, Loading } from "../../../../components/UI";
 import { useProductos } from "../../hooks";
-import { FloatButton } from "antd";
 import { AddProductoModal } from "../Modals";
 
 const ProductosTable = () => {
@@ -74,4 +74,4 @@ const ProductosTable = () => {
   );
 };
 
-export default ProductosTable; // Exportar el componente ProductosTable
+export default ProductosTable;
