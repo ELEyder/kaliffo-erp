@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Divider } from "antd";
-import {VentasPorTipoTable} from "../../components/Tables";
+import { VentasPorTipoTable } from "../../components/Tables";
 
 const VentasView = () => {
   const { tipo } = useParams();

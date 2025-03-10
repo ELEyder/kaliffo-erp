@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { Flex, Button, Popconfirm, FloatButton } from "antd";
 import { useTrabajadores, useTrabajador } from "../../hooks";
 import { Tabla } from "../../../../components/UI";
-import { useState } from "react";
-import UpdateTrabajadorModal from "../Modals/UpdateTrabajadorModal";
-import AddTrabajadorModal from "../Modals/AddTrabajadorModal";
-import AddIncidenciaModal from "../Modals/AddIncidenciaModal";
+import {
+  UpdateTrabajadorModal,
+  AddTrabajadorModal,
+  AddIncidenciaModal,
+} from "../Modals";
 
 const TrabajadoresTable = ({ filtros }) => {
-  const { trabajadores, loading , getTrabajadores } = useTrabajadores(filtros);
+  const { trabajadores, loading, getTrabajadores } = useTrabajadores(filtros);
   const { deleteTrabajador } = useTrabajador(getTrabajadores);
   const [dataTrabajador, setDataTrabajador] = useState({});
 

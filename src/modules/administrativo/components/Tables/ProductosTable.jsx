@@ -1,9 +1,8 @@
-import { Tabla } from "../../../../components/UI";
-import useProductos from "../../hooks/useProductos";
-import Loading from "../../../../components/UI/Loading";
-import { FloatButton } from "antd";
-import AddProductoModal from "../Modals/AddProductoModal";
 import { useState } from "react";
+import { Tabla, Loading } from "../../../../components/UI";
+import { useProductos } from "../../hooks";
+import { FloatButton } from "antd";
+import { AddProductoModal } from "../Modals";
 
 const ProductosTable = () => {
   const { productos, loading, getProductos } = useProductos();
@@ -12,42 +11,42 @@ const ProductosTable = () => {
   const columnas = [
     { title: "Producto", dataIndex: "nombre" },
     {
-      title: "Stock", // Título de la columna para el stock
-      dataIndex: "stockTotal", // Mapear la columna al campo "stock" en los datos
+      title: "Stock",
+      dataIndex: "stockTotal",
       onCell: (record) => ({
         style: {
           background:
             record.stock >= 50
-              ? "green" // Verde para stock >= 50
+              ? "green"
               : record.stock <= 20
-              ? "#f54242" // Rojo para stock <= 20
-              : "#FCFB77", // Amarillo para stock intermedio
-          color: record.stock <= 20 || record.stock >= 50 ? "white" : "black", // Ajustar el color del texto basado en el stock
+              ? "#f54242"
+              : "#FCFB77",
+          color: record.stock <= 20 || record.stock >= 50 ? "white" : "black",
           padding: "10px",
         },
       }),
     },
     {
-      title: "Precio", // Título de la columna para el precio
-      dataIndex: "precioBase", // Mapear la columna al campo "precioBase" en los datos
-      render: (text) => `S/ ${text}`, // Formatear el precio como "S/ [precio]"
+      title: "Precio",
+      dataIndex: "precioBase",
+      render: (text) => `S/ ${text}`,
     },
     {
-      title: "Descuento", // Título de la columna para el descuento
+      title: "Descuento",
       dataIndex: "descuento",
-      render: (text) => `${text}%`, // Mostrar el descuento como porcentaje
+      render: (text) => `${text}%`,
       onCell: (record) => ({
         style: {
           background:
             record.descuento <= 10
-              ? "green" // Verde para descuento <= 10%
+              ? "green"
               : record.descuento >= 20
-              ? "#f54242" // Rojo para descuento >= 20%
-              : "#FCFB77", // Amarillo para descuento intermedio
+              ? "#f54242"
+              : "#FCFB77",
           color:
             record.descuento <= 10 || record.descuento >= 20
               ? "white"
-              : "black", // Ajustar el color del texto basado en el descuento
+              : "black",
           padding: "10px",
         },
       }),
@@ -59,9 +58,9 @@ const ProductosTable = () => {
   return (
     <>
       <Tabla
-        columnas={columnas} // Pasar la definición de columnas
+        columnas={columnas}
         rowKey={"producto_id"}
-        dataSource={productos} // Mapear los datos con claves únicas
+        dataSource={productos}
       />
 
       <FloatButton onClick={() => setAddProducto(true)} />

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useTiendas, useTienda } from "../../hooks";
-import {UpdateTiendaModal, AddTiendaModal} from "../Modals";
+import { UpdateTiendaModal, AddTiendaModal } from "../Modals";
 import { Flex, Button, Popconfirm, FloatButton } from "antd";
 import { Tabla } from "../../../../components/UI";
 
 const TiendasTable = () => {
-  const { tiendas, loading , getTiendas } = useTiendas();
+  const { tiendas, loading, getTiendas } = useTiendas();
   const { deleteTienda } = useTienda(getTiendas);
   const [dataTienda, setDataTienda] = useState({});
 
@@ -81,7 +81,6 @@ const TiendasTable = () => {
         closeModal={() => changeModal("addT", false)}
         onAdded={getTiendas}
       />
-
     </>
   );
 };

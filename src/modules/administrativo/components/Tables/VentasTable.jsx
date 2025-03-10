@@ -2,48 +2,42 @@ import { Button, Flex, Popconfirm } from "antd";
 import { Tabla } from "../../../../components/UI";
 
 const VentasTable = () => {
-
   const columnas = [
-    { title: "Nº", dataIndex: "id", key: "id", align: "center" }, // Columna para el número de venta
-    { title: "Código", dataIndex: "codigo", key: "codigo", align: "center" }, // Columna para el código de venta
-    { title: "Tipo de Venta", dataIndex: "tipo", key: "tipo", align: "center" }, // Columna para el tipo de venta
-    { title: "Fecha de Venta", dataIndex: "fechaVenta", key: "fechaVenta", align: "center" }, // Columna para la fecha de venta
-    { title: "Cantidad", dataIndex: "cantidad", key: "cantidad", align: "center" }, // Columna para la cantidad vendida
-    { title: "Total Bruto", dataIndex: "totalBruto", key: "totalBruto", align: "center" }, // Columna para el total bruto
-    { title: "Total Neto", dataIndex: "totalNeto", key: "totalNeto", align: "center" }, // Columna para el total neto
-    { title: "IGV", dataIndex: "IGV", key: "IGV", align: "center" }, // Columna para el IGV (impuesto)
-    { title: "Tipo de Pago", dataIndex: "tipoPago", key: "tipoPago", align: "center" }, // Columna para el tipo de pago
-    { title: "RUC", dataIndex: "RUC", key: "RUC", align: "center" }, // Columna para el RUC (registro único de contribuyente)
-    { title: "Tienda", dataIndex: "tiendaId", key: "tiendaId", align: "center" }, // Columna para la tienda
-
-    // Columna para las opciones (Eliminar)
+    { title: "Nº (Datos de prueba)", dataIndex: "id" },
+    { title: "Código", dataIndex: "codigo" },
+    { title: "Tipo de Venta", dataIndex: "tipo" },
+    { title: "Fecha de Venta", dataIndex: "fechaVenta" },
+    { title: "Cantidad", dataIndex: "cantidad" },
+    { title: "Total Bruto", dataIndex: "totalBruto" },
+    { title: "Total Neto", dataIndex: "totalNeto" },
+    { title: "IGV", dataIndex: "IGV" },
+    { title: "Tipo de Pago", dataIndex: "tipoPago" },
+    { title: "RUC", dataIndex: "RUC" },
+    { title: "Tienda", dataIndex: "tiendaId" },
     {
       title: "Opciones",
       dataIndex: "codigo",
-      key: "opciones",
-      align: "center",
       render: (text) => (
         <Flex gap="small" justify="center" align="middle" wrap="wrap">
-            <Popconfirm
-              title="ANULAR" // Título de la confirmación para eliminar
-              description="¿DESEA ANULAR ESTA VENTA?" // Descripción de la confirmación
-              okText="Confirmar" // Texto para confirmar la eliminación
-              onConfirm={ async(e) => {
-                e.stopPropagation(); // Evitar la propagación del evento
-                await ApiClient.delete(`/trabajador/delete/${text}`); // Llamar a la función para eliminar la venta con el código proporcionado
-                reload()
-              }}
-              cancelText="NO" // Texto para cancelar la eliminación
+          <Popconfirm
+            title="ANULAR"
+            description="¿DESEA ANULAR ESTA VENTA?"
+            okText="Confirmar"
+            onConfirm={async (e) => {
+              e.stopPropagation();
+              await ApiClient.delete(`/trabajador/delete/${text}`);
+            }}
+            cancelText="NO"
+          >
+            <Button
+              block
+              style={{ background: "#f54242", color: "white" }}
+              danger
+              onClick={(e) => e.stopPropagation()}
             >
-              <Button
-                block
-                style={{ background: "#f54242", color: "white" }} // Estilo para el botón de eliminar
-                danger
-                onClick={(e) => e.stopPropagation()} // Evitar la propagación del evento al hacer clic
-              >
-                Anular
-              </Button>
-            </Popconfirm>
+              Anular
+            </Button>
+          </Popconfirm>
         </Flex>
       ),
     },
@@ -80,11 +74,7 @@ const VentasTable = () => {
 
   return (
     <>
-      <Tabla
-        columnas={columnas}
-        rowKey={"id"}
-        dataSource={ventas}
-      />
+      <Tabla columnas={columnas} rowKey={"id"} dataSource={ventas} />
     </>
   );
 };
