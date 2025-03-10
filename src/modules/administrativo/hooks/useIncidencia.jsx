@@ -1,5 +1,5 @@
-import useApiRequest from "../../../hooks/useApiRequest";
 import { ApiClient } from "../../../services/ApiClient";
+import { useApiRequest } from "../../../hooks";
 
 const useIncidencia = (onChange) => {
   const { handleRequest, loading, error } = useApiRequest(onChange);
@@ -8,13 +8,19 @@ const useIncidencia = (onChange) => {
     values = {
       ...values,
       trabajador_id: id,
-    }
-    console.log("Values", values)
-    await handleRequest(() => ApiClient.post(`/incidencia/create`, values), "Incidencia agregada");
+    };
+    console.log("Values", values);
+    await handleRequest(
+      () => ApiClient.post(`/incidencia/create`, values),
+      "Incidencia agregada"
+    );
   };
 
   const updateIncidencia = async (id, data) => {
-    await handleRequest(() => ApiClient.put(`/incidencia/update/${id}`, data), "Trabajador actualizado");
+    await handleRequest(
+      () => ApiClient.put(`/incidencia/update/${id}`, data),
+      "Trabajador actualizado"
+    );
   };
 
   const deleteIncidencia = async (id) => {

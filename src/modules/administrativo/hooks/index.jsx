@@ -13,3 +13,4 @@ export { default as useReporte } from './useReporte';
 export { default as useStockPorColor } from './useStockPorColor';
 export { default as useStockPorTalla } from './useStockPorTalla';
 export { default as useStockPorTienda } from './useStockPorTienda';
+export { default as useVentas } from './useVentas';

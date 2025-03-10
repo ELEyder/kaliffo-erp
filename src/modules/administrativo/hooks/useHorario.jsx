@@ -1,7 +1,7 @@
 import { ApiClient } from "../../../services/ApiClient";
-import useApiRequest from "../../../hooks/useApiRequest";
+import { useApiRequest } from "../../../hooks";
 
-const useHorario = ( onChange ) => {
+const useHorario = (onChange) => {
   const { handleRequest, loading, error } = useApiRequest(onChange);
 
   const deleteHorario = async (id) => {
@@ -9,8 +9,8 @@ const useHorario = ( onChange ) => {
       await ApiClient.delete(`/asistencia/delete/${id}`);
     }, "Horario eliminado");
   };
-  
+
   return { loading, error, deleteHorario };
-}
+};
 
 export default useHorario;

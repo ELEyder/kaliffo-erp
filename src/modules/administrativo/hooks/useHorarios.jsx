@@ -18,8 +18,6 @@ const useHorarios = ( id ) => {
     }
   }
 
-
-
   useEffect(() => {
     const fetchHorarios = async () => {
       await getHorarios();

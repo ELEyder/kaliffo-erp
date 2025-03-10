@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Table } from "antd";
-
-import { getVentaById } from "@AA/Ventas"; // Función para obtener datos de una venta por ID
+import { getVentaById } from "@AA/Ventas";
 
 // No test
 const DetalleVentaTable = ({

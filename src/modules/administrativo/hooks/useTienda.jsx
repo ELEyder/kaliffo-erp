@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ApiClient } from "../../../services/ApiClient";
-import useApiRequest from "../../../hooks/useApiRequest";
+import { useApiRequest } from "../../../hooks";
 
 const useTienda = (onChange) => {
   const { handleRequest, loading, error } = useApiRequest(onChange);
@@ -20,7 +20,7 @@ const useTienda = (onChange) => {
 
   const getTienda = async (id) => {
     if (!id) return;
-    console.log("ID:", id, "ONCHANGE:", onChange)
+    console.log("ID:", id, "ONCHANGE:", onChange);
     await handleRequest(async () => {
       const response = await ApiClient.get(`/tienda/${id}`);
       setTienda(response.data);

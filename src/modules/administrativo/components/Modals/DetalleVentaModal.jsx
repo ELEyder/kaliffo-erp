@@ -5,11 +5,7 @@ import { getVentaById } from "@AA/Ventas";
 import DetalleVentaTable from "@CA/ventas/DetalleVentaTable";
 
 // (No Test)
-const DetalleVentaModal = ({
-  openModal,
-  closeModal,
-  id,
-}) => {
+const DetalleVentaModal = ({ openModal, closeModal, id }) => {
   const { tipo } = useParams();
   const [form] = Form.useForm();
   const [venta, setVenta] = useState(["detalles"]);
@@ -18,11 +14,11 @@ const DetalleVentaModal = ({
     getVentaById(id, setVenta);
   }, [id]);
 
-  console.log(tipo)
+  console.log(tipo);
 
   return (
     <Modal
-      forceRender // Evita que el modal se desmonte al cerrarse
+      forceRender
       getContainer={false}
       title={`${tipo} ${id}`} // Título dinámico con el tipo de venta e ID
       open={openModal}
@@ -51,7 +47,10 @@ const DetalleVentaModal = ({
                 itemLayout="horizontal"
                 dataSource={[
                   { title: venta.tienda, value: venta.codigo },
-                  { title: tipo==="boleta"?"DNI":"RUC", value: tipo==="boleta"?venta.dni:venta.ruc },
+                  {
+                    title: tipo === "boleta" ? "DNI" : "RUC",
+                    value: tipo === "boleta" ? venta.dni : venta.ruc,
+                  },
                   { title: venta.tipoPago, value: `S/${venta.totalNeto}` },
                 ]}
                 renderItem={(item) => (
@@ -90,7 +89,8 @@ const DetalleVentaModal = ({
         <Row>
           <Col span={24}>
             <Divider />
-            <DetalleVentaTable id={id} /> {/* Componente que muestra los detalles de la venta */}
+            <DetalleVentaTable id={id} />{" "}
+            {/* Componente que muestra los detalles de la venta */}
           </Col>
         </Row>
       </Card>

@@ -1,5 +1,5 @@
 import { ApiClientFiles } from "../../../services/ApiClient";
-import useApiRequest from "../../../hooks/useApiRequest";
+import { useApiRequest } from "../../../hooks";
 
 const useReporte = () => {
   const { handleRequest, loading, error } = useApiRequest();

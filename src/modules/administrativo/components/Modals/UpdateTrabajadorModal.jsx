@@ -12,15 +12,17 @@ const UpdateTrabajadorModal = ({ openModal, closeModal, data, onUpdated }) => {
 
   useEffect(() => {
     form.setFieldsValue({
-      ["trabajador_id"]: data.trabajador_id,
-      ["nombre"]: data.nombre,
-      ["ap_paterno"]: data.ap_paterno,
-      ["ap_materno"]: data.ap_materno,
-      ["telefono"]: data.telefono,
-      ["dni"]: data.dni,
-      fecha_nacimiento: data.fecha_nacimiento ? dayjs(data.fecha_nacimiento) : null,
-      ["tienda_id"]: data.tienda_id,
-      ["rol"]: data.rol,
+      trabajador_id: data.trabajador_id,
+      nombre: data.nombre,
+      ap_paterno: data.ap_paterno,
+      ap_materno: data.ap_materno,
+      telefono: data.telefono,
+      dni: data.dni,
+      fecha_nacimiento: data.fecha_nacimiento
+        ? dayjs(data.fecha_nacimiento)
+        : null,
+      tienda_id: data.tienda_id,
+      rol: data.rol,
     });
 
     const tiposTrabajador = {

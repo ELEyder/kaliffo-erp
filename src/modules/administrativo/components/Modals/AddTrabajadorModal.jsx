@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Form } from "antd";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import dayjs from "dayjs";
-import { getTiendas } from "@AA/Tienda";
-
-dayjs.extend(customParseFormat);
-
 import { DefaultForm, DefaultModal } from "../../../../components/UI";
-import { useTrabajador } from "../../hooks";
+import { useTiendas, useTrabajador } from "../../hooks";
 
 const AddTrabajadorModal = ({ openModal, closeModal, onAdded }) => {
   const [form] = Form.useForm();
-  const [tiendas, setTiendas] = useState([]);
+  const { tiendas } = useTiendas()
   const { addTrabajador } = useTrabajador(onAdded);
   const [rol, setRol] = useState(0);
-
-  useEffect(() => {
-    getTiendas(setTiendas);
-  }, []);
 
   const rows = [
     {
