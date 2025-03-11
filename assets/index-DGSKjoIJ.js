@@ -1,0 +1,1 @@
+import{j as n}from"./index-Bunp8VmX.js";import{M as s}from"./index-DCZRlB0p.js";const l=({title:e,children:t,isOpen:r,onClose:o,onOk:a})=>n.jsx(s,{forceRender:!0,getContainer:!1,title:e,open:r,onCancel:o,okText:"Aceptar",onOk:a,styles:{header:{textTransform:"uppercase",textAlign:"center"}},centered:!0,children:t});export{l as D};

@@ -1,0 +1,1 @@
+import{r as e}from"./index-Bunp8VmX.js";import{A as d}from"./ApiClient-CwTlTqVt.js";const l=()=>{const[n,r]=e.useState([]),[o,s]=e.useState(!1),[i,c]=e.useState(null),a=async()=>{s(!0);try{const t=await d.get("/tienda");r(t.data)}catch(t){c(t)}finally{s(!1)}};return e.useEffect(()=>{(async()=>{await a()})()},[]),{tiendas:n,loading:o,error:i,getTiendas:a}};export{l as u};
