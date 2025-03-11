@@ -1,15 +1,12 @@
 import { Divider } from "antd";
-import React from "react";
-import MovimientosTiposCards from "../../../components/Cards/MovimientosTiposCards";
- 
+import { MovimientosTiposCards } from "../../../components/Cards";
+
 const MovimientoMercaderiaHistorial = () => {
   return (
     <>
-        <Divider>
-            MOVIMIENTOS
-        </Divider>
+      <Divider>MOVIMIENTOS</Divider>
 
-        <MovimientosTiposCards />
+      <MovimientosTiposCards />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import MovimientosTable from "../../../../components/Tables/MovimientosTable";
+import { MovimientosTable } from "../../../../components/Tables";
 import { Divider } from "antd";
 
 const MovimientosMercaderiaDetalle = () => {

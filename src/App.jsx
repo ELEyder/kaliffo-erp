@@ -90,7 +90,9 @@ function App() {
               colorBorder: 'black',
               optionSelectedBg: bg2,
               colorBgElevated: bg,
-              colorText: 'white'
+              colorText: 'white',
+              colorTextPlaceholder: 'white',
+              colorBgContainerDisabled: 'red',
             },
             Menu: {
               itemBg: bg,

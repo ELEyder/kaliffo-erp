@@ -21,9 +21,9 @@ import moment from "moment";
 
 const UpdateCompraModal = ({ openModal, closeModal, idC, reload }) => {
   const [form] = Form.useForm();
-  const [valoresO, setValoresO] = useState({}); // Estado para guardar los valores originales de la compra
-  const [empresas, setEmpresas] = useState([]); // Estado para guardar las empresas
-  const [productos, setProductos] = useState([]); // Estado para guardar los productos
+  const [valoresO, setValoresO] = useState({});
+  const [empresas, setEmpresas] = useState([]);
+  const [productos, setProductos] = useState([]);
 
   // Recalcula el total de la compra basado en los detalles
   const recalcularTotales = (detalles = []) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Col,
@@ -11,25 +11,24 @@ import {
   Button,
   Checkbox,
 } from "antd";
-import { getAlmacenProductos } from "@AL/AlmacenProductos"; // Función para obtener los productos del almacén
-import { getTiendas } from "@AA/Tienda"; // Obtiene la lista de tiendas
+import { getAlmacenProductos } from "@AL/AlmacenProductos";
+import { getTiendas } from "@AA/Tienda";
 import { getProductoSimpleCodigoBarras } from "@AA/Producto";
-import {createMovimiento_Almacen_Tienda} from "@AL/MovimientosMercaderia"
+import { createMovimiento_Almacen_Tienda } from "@AL/MovimientosMercaderia";
 
 const MovimientoAlmacenTiendaCard = () => {
   const { Title, Text } = Typography;
 
-  const [productos, setProductos] = useState({}); // Estado para almacenar los productos seleccionados
+  const [productos, setProductos] = useState({});
   const [codigoBarras, setCodigoBarras] = useState(""); // Estado para capturar el código de barras ingresado
   const [almacenes, setAlmacenes] = useState([]);
   const [form] = Form.useForm();
   const [tiendas, setTiendas] = useState([]); // Estado para almacenar las tiendas
-  const [reload, setReload] = useState(false);
 
   useEffect(() => {
     getAlmacenProductos(setAlmacenes);
     getTiendas(setTiendas); // Obtiene las tiendas
-  }, [reload]);
+  }, []);
 
   useEffect(() => {
     const escaner = (event) => {
@@ -83,7 +82,11 @@ const MovimientoAlmacenTiendaCard = () => {
                         cantidad: totalCantidad,
                         detalles: [
                           ...prev[nombre_producto].detalles,
-                          { detalle_id:productoO.productoDetalle_id,codigo: codigoBarras, cantidad: 1 },
+                          {
+                            detalle_id: productoO.productoDetalle_id,
+                            codigo: codigoBarras,
+                            cantidad: 1,
+                          },
                         ],
                       },
                     }
@@ -94,7 +97,13 @@ const MovimientoAlmacenTiendaCard = () => {
                         color_id: productoO.color_id,
                         talla: productoO.talla,
                         cantidad: totalCantidad,
-                        detalles: [{ detalle_id:productoO.productoDetalle_id,codigo: codigoBarras, cantidad: 1 }],
+                        detalles: [
+                          {
+                            detalle_id: productoO.productoDetalle_id,
+                            codigo: codigoBarras,
+                            cantidad: 1,
+                          },
+                        ],
                       },
                     };
               });
@@ -132,10 +141,15 @@ const MovimientoAlmacenTiendaCard = () => {
     <>
       <Divider>GENERAR MOVIMIENTO DE MERCADERIA</Divider>
 
-      <Form form={form} size="large" labelAlign="left" layout="vertical"
-      onFinish={async(values)=>{
-        await createMovimiento_Almacen_Tienda(values,productos)
-      }}>
+      <Form
+        form={form}
+        size="large"
+        labelAlign="left"
+        layout="vertical"
+        onFinish={async (values) => {
+          await createMovimiento_Almacen_Tienda(values, productos);
+        }}
+      >
         <Row gutter={16}>
           {/* Columna de productos */}
           <Col span={16}>
@@ -218,7 +232,7 @@ const MovimientoAlmacenTiendaCard = () => {
                   fontWeight: "bold",
                 }}
               >
-                <Text>CANTIDAD TOTAL: {total}</Text>
+                <Text style={{ color: "black" }}>CANTIDAD TOTAL: {total}</Text>
               </Col>
             </Row>
           </Col>
@@ -272,7 +286,7 @@ const MovimientoAlmacenTiendaCard = () => {
             {Object.keys(productos).length >= 1 && (
               <div style={{ marginTop: "10px" }}>
                 <Form.Item name="guia" valuePropName="guiaSI">
-                    <Checkbox>IMPRIMIR GUIA</Checkbox>
+                  <Checkbox>IMPRIMIR GUIA</Checkbox>
                 </Form.Item>
                 <Button type="primary" block htmlType="submit">
                   Enviar

@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { Divider } from "antd";
-
 import { ProductosPorAlmacenTable } from "../../components/Tables";
 import { AlmacenCard } from "../../components/Cards";
 import { Details } from "../../../../layouts";

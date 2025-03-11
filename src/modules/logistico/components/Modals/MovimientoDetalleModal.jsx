@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getMovimientoDetalle } from "@AL/MovimientosMercaderia"; // Función para obtener el detalle de la compra
+import { getMovimientoDetalle } from "@AL/MovimientosMercaderia";
 import { Modal, Form, Row, Col, Card, Input, Divider } from "antd";
 
 const MovimientoDetalleModal = ({ openModal, closeModal, tipo, idM }) => {

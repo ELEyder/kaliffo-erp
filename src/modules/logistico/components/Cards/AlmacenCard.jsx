@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { DefaultCard } from "../../../../components/UI";
-import useAlmacen from "../../hooks/useAlmacen";
+import { useAlmacen } from "../../hooks";
 
 const AlmacenCard = ({ id }) => {
   const { almacen, getAlmacen, loading } = useAlmacen();
 
   useEffect(() => {
-    getAlmacen(id)
-  }, [id])
+    getAlmacen(id);
+  }, [id]);
 
   return (
     <DefaultCard

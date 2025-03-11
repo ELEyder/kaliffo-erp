@@ -11,13 +11,12 @@ import {
     Button,
   } from "antd";
 
+//No test
 const MovimientoTiendaTiendaCard = () => {
   const { Title, Text } = Typography;
 
-  const [productos, setProductos] = useState({}); // Estado para almacenar los productos seleccionados
-  const [codigoBarras, setCodigoBarras] = useState(""); // Estado para capturar el código de barras ingresado
+  const [productos, setProductos] = useState({});
 
-  // Cálculos de totales
   const totalCantidad = Object.values(productos).reduce(
     (acc, { cantidad }) => acc + cantidad,
     0

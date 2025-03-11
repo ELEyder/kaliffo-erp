@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Hook para navegar entre rutas
-import { Card, Flex, FloatButton, Popconfirm, Tooltip, Image } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-import { getMovimientos } from "@AL/MovimientosMercaderia"; // Función para obtener los productos del almacén
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Card, Flex } from "antd";
+import { getMovimientos } from "@AL/MovimientosMercaderia";
 
 const { Meta } = Card;
 
 const MovimientosTiposCards = () => {
   const navigate = useNavigate();
-  const [tipo, setTipo] = useState("");
   const [movimientos, setMovimientos] = useState([]);
 
   useEffect(() => {
@@ -17,12 +15,11 @@ const MovimientosTiposCards = () => {
 
   return (
     <>
-      {/* Muestra los almacenes en tarjetas */}
       <Flex wrap gap={"middle"} justify="space-evenly">
-      {Object.keys(movimientos).map((tipo, index) => (
+      {movimientos.map((movimiento, index) => (
          <Card
          hoverable
-         onClick={() => navigate(`/logistico/movimientos/historial/${tipo}`)}
+         onClick={() => navigate(`/logistico/movimientos/historial/${movimiento.tipo}`)}
          key={index}
          style={{
            width: "400px",
@@ -33,14 +30,14 @@ const MovimientosTiposCards = () => {
            header: { textAlign: "center", textTransform: "uppercase" },
          }}
          title={
-           tipo === "AT"
+          movimiento.tipo === "AT"
              ? "MOVIMIENTOS DE ALMACÉN A TIENDA"
              : "MOVIMIENTOS DE TIENDA A TIENDA"
          }
        >
          <Meta
            style={{ textAlign: "left" }}
-           title={`Cantidad de movimientos: ${movimientos[tipo]}`}
+           title={`Cantidad de movimientos: ${movimiento.cantidad}`}
          />
        </Card>
       ))}

@@ -5,7 +5,6 @@ import { getComprasDetalle } from "@AL/Compras"; // Función para obtener el det
 const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
   const [compraDetalle, setcompraDetalle] = useState(null); // Estado para almacenar el detalle de la compra
 
-  // Efecto para obtener los detalles de la compra al recibir el idC
   useEffect(() => {
     if (idC) {
       getComprasDetalle(setcompraDetalle, idC); // Llama a la API para obtener el detalle de la compra
@@ -39,7 +38,6 @@ const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
             total_neto: compraDetalle.total,
           }}
         >
-          {/* Datos generales de la compra */}
           <Row gutter={24} style={{ textAlign: "center" }}>
             <Col span={17}>
               <Card
@@ -51,14 +49,12 @@ const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
                 }}
               >
                 <Row gutter={16}>
-                  {/* Tienda */}
                   <Col span={12}>
                     <Form.Item label="Tienda" name="tienda">
                       <Input readOnly style={{ textAlign: "center" }} />
                     </Form.Item>
                   </Col>
 
-                  {/* Empresa */}
                   <Col span={12}>
                     <Form.Item label="Empresa" name="empresa">
                       <Input readOnly style={{ textAlign: "center" }} />
@@ -66,14 +62,12 @@ const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
                   </Col>
                 </Row>
 
-                {/* Fecha de compra */}
                 <Form.Item label="Fecha Compra" name="fecha_compra">
                   <Input readOnly style={{ textAlign: "center" }} />
                 </Form.Item>
               </Card>
             </Col>
 
-            {/* Datos del total de la compra */}
             <Col span={7} style={{ textAlign: "center" }}>
               <Card
                 title="Datos Total"
@@ -95,7 +89,6 @@ const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
 
           <Divider style={{ borderColor: "black" }} />
 
-          {/* Detalle de los productos */}
           {compraDetalle.detalle.map((detalle, index) => (
             <Row key={index} gutter={16}>
               <Col span={12}>
@@ -117,7 +110,7 @@ const DetallesComprasModal = ({ openModal, closeModal, idC }) => {
           ))}
         </Form>
       ) : (
-        <p>Cargando datos...</p> // Mensaje que se muestra mientras se cargan los datos
+        <p>Cargando datos...</p>
       )}
     </Modal>
   );
